@@ -1675,5 +1675,12 @@
   "CoC7.LuckNotExpendable": "En Cthulhu d100 la Suerte es una característica derivada (POD×5) y no se puede gastar.",
   "CoC7.Fire.LuckOrClothesCatch": "Luck roll or clothing catches fire",
   "CoC7.Fire.ClothesAndHairCatch": "Clothing and hair catch fire",
-  "CoC7.Fire.LuckOrSuffocate": "Luck roll or begin to suffocate"
+  "CoC7.Fire.LuckOrSuffocate": "Luck roll or begin to suffocate",
+  "CoC7.CoC7CharacterSheet": "Cthulhu d100 Investigator Sheet (legacy)",
+  "CoC7.CoC7CharacterSheetMinimized": "Cthulhu d100 Investigator Sheet Summarized (legacy)",
+  "CoC7.CoC7CharacterSheetV3": "Cthulhu d100 Investigator Sheet v3",
+  "CoC7.CoC7ModelsItemOccupationSheet": "Cthulhu d100 Occupation Sheet",
+  "CoC7.SkillnameLaunch": "Throw",
+  "CoC7.Talent.Type.DisableCombatPool": "Disable combat pool",
+  "CoC7.gameRules": "Game rules"
 }

@@ -3716,7 +3716,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async developSkills (uuids, fastForward = false) {
     const skillMasteringThreshold = 90
-    const alwaysSuccessThreshold = 95
+    // Cthulhu d100: a roll of 98 or more always improves the skill, even when
+    // the skill is already above it. Call of Cthulhu 7e used 95.
+    const alwaysSuccessThreshold = 98
     const messageRows = []
     const actorUpdate = {}
     const rolls = []
@@ -3737,7 +3739,8 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           value: item.system.value
         }
         if (upgradeRoll.total > item.system.value || upgradeRoll.total >= alwaysSuccessThreshold) {
-          const augmentRoll = await new Roll('1D10').evaluate()
+          // Cthulhu d100 awards 1D3, not the 1D10 of Call of Cthulhu 7e
+          const augmentRoll = await new Roll('1D3').evaluate()
           if (!fastForward) {
             rolls.push(augmentRoll)
           }

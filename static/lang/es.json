@@ -1829,5 +1829,12 @@
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": "",
   "CoC7.Fire.LuckOrClothesCatch": "Chequeo de Suerte para que no prenda la ropa",
   "CoC7.Fire.ClothesAndHairCatch": "Prenden la ropa y el pelo",
-  "CoC7.Fire.LuckOrSuffocate": "Chequeo de Suerte para evitar comenzar a asfixiarse"
+  "CoC7.Fire.LuckOrSuffocate": "Chequeo de Suerte para evitar comenzar a asfixiarse",
+  "CoC7.CoC7CharacterSheet": "Hoja de investigador Cthulhu d100 (antigua)",
+  "CoC7.CoC7CharacterSheetMinimized": "Hoja de investigador resumida Cthulhu d100 (antigua)",
+  "CoC7.CoC7CharacterSheetV3": "Hoja de investigador Cthulhu d100 v3",
+  "CoC7.CoC7ModelsItemOccupationSheet": "Hoja de profesión Cthulhu d100",
+  "CoC7.SkillnameLaunch": "Lanzar",
+  "CoC7.Talent.Type.DisableCombatPool": "Desactivar reserva de combate",
+  "CoC7.gameRules": "Reglas de juego"
 }
