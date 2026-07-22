@@ -4498,22 +4498,28 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (damageTotal <= 0) return 0
       const hpNew = await this.#modifyHp(-damageTotal)
       const hpMax = (this.system.attribs.hp.max ?? 0)
-      if (damageTotal >= hpMax) {
-        await this.conditionsSet([STATUS_EFFECTS.dead])
-      } else if (game.settings.get(FOLDER_ID, 'pulpRuleIgnoreMajorWounds')) {
+      // CoC7 killed outright when a single blow matched the maximum hit points.
+      // Cthulhu d100 has no massive-damage rule: reaching 0 is a "herida
+      // mortal", and death is still avoidable with first aid or medical
+      // treatment before the end of the next turn. So a blow that big now falls
+      // through to the dying branch below rather than setting dead.
+      if (game.settings.get(FOLDER_ID, 'pulpRuleIgnoreMajorWounds')) {
         // Cthulhu d100: 0 hit points is a mortal wound, and 1 or 2 remaining
         // means the character passes out. CoC7 only went unconscious at 0.
         if (hpNew === 0) {
           this.conditionsSet([STATUS_EFFECTS.dying, STATUS_EFFECTS.unconscious])
         } else if (hpNew <= UNCONSCIOUS_HP_THRESHOLD) {
           this.conditionsSet([STATUS_EFFECTS.unconscious])
-        } else if (damageTotal >= Math.ceil(hpMax / 2)) {
+        } else if (damageTotal * 2 > hpMax) {
           await CoC7ConCheck.create(this)
         }
       } else {
-        // "Herida grave": more than half the maximum hit points from a single
-        // blow. The severe-wound consequences are rolled separately (F4.6).
-        if (damageTotal >= Math.ceil(hpMax / 2)) {
+        // "Herida grave": strictly more than half the maximum hit points from a
+        // single blow. Exactly half is a "herida leve", so this cannot be >=:
+        // with an even maximum, ceil(hpMax / 2) is exactly half and a blow of
+        // that size was being treated as severe. Compared doubled to keep it in
+        // integers. The severe-wound consequences are rolled separately (F4.6).
+        if (damageTotal * 2 > hpMax) {
           await this.conditionsSet([STATUS_EFFECTS.criticalWounds])
         }
         // Cthulhu d100: 0 hit points is a mortal wound, only avoidable with
