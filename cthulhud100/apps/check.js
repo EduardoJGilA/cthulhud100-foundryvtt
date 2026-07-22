@@ -30,7 +30,11 @@ export default class CoC7Check {
    * Constructor
    */
   constructor () {
-    this.#allowPush = true
+    // Cthulhu d100 has no pushed rolls. The mechanic is Call of Cthulhu's: the
+    // rulebook never offers a second attempt at a failed check, it modifies the
+    // threshold with circumstances and illumination instead. The machinery is
+    // left in place but nothing turns it on.
+    this.#allowPush = false
     this.#appliedDevelopment = false
     // this.#asyncActor = undefined
     // this.#callbackContext = undefined
@@ -731,10 +735,8 @@ export default class CoC7Check {
   async #setThreshold (useAlternativeSkill = false) {
     let threshold
     if (this.#type === CoC7Check.type.attribute && this.#key && typeof this.#asyncActor !== 'undefined') {
-      this.#allowPush = true
       threshold = parseInt((await this.#asyncActor)?.system?.attribs?.[this.#key]?.value, 10)
     } else if (this.#type === CoC7Check.type.characteristic && this.#key && typeof this.#asyncActor !== 'undefined') {
-      this.#allowPush = true
       if (this.#cardType === CoC7RollNormalize.CARD_TYPE.IDEA_CHECK) {
         threshold = parseInt((await this.#asyncActor)?.system?.config?.idea?.value, 10)
       } else if (this.#cardType === CoC7RollNormalize.CARD_TYPE.KNOW_CHECK) {
