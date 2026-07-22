@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-22 · **Fase actual:** toda la LÓGICA de reglas (F1-F4) implementada y verificada contra el manual. Falta la INTERFAZ: cartas de chat de F3 y F4, más F5, F2.4 y F0.5
+> **Última actualización:** 2026-07-22 · **Fase actual:** spec del reglamento COMPLETA. Toda la lógica de reglas (F1-F4) implementada y verificada. Falta: interfaz (cartas de chat), F5, F2.4, criaturas, F0.5
 
 ---
 
@@ -763,9 +763,14 @@ Apunta siempre a la última release, así que Foundry detecta las actualizacione
 
 ## Pendientes transversales
 
-- [ ] Extraer del PDF el cap. 9 "Criaturas de los Mitos" (pp. 38-43) y añadirlo a
-      `dev-docs/reglas-cthulhu-d100.md`; luego crear el compendio de criaturas
-- [ ] Extraer del PDF el cap. 10 "Tomos arcanos" (pp. 44-45): mecánica de hojear y estudiar
+- [x] Cap. 9 "Criaturas de los Mitos" y cap. 10 "Tomos arcanos" extraídos.
+      **La spec ya no tiene pendientes**: `reglas-cthulhu-d100.md` §12 y §13
+- [x] Compendio de tomos: 10 items en `packs/es-tomes`
+- [x] Hojear un libro (`CoC7MentalStability.skimTome()`): tiempo `/10`, EM `/4` redondeando
+      arriba; fallar significa no entender nada, **sin ganancia y sin pérdida**
+- [ ] Compendio de criaturas: falta. Formato documentado en §12. Ojo con la
+      **piel correosa**: no es solo armadura, las armas de fuego hacen daño mínimo y no
+      doblan por empalar. Necesita campo propio en el modelo de criatura.
 - [ ] Decidir si se conserva el sistema de **eras** (`cocidFlag.eras`) de upstream o se elimina
 - [ ] Decidir qué hacer con las funcionalidades de upstream ajenas a d100:
       persecuciones (`chase`), arquetipos, paquetes de experiencia, `talent`, `status`
