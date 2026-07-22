@@ -896,3 +896,32 @@ Corregido:
 
 > Nota: `isSevereWound` estaba implementado **dos veces**, correcto en `combat-tables.js`
 > (`> max / 2`) e incorrecto en `document-class.js` (`>= ceil(max/2)`). Ahora coinciden.
+
+### Quinta revisión — mecánicas completas ajenas al manual
+
+Búsqueda en las 52 páginas: **cero menciones** a dados de bonificación/penalización y
+**cero** a repetir una tirada fallada. Ambas son de CoC7. El manual ajusta una tirada con
+modificadores de circunstancia e iluminación, que mueven el umbral.
+
+- [x] **Tiradas forzadas (push) desactivadas.** Estaban activas incondicionalmente en toda
+      tirada de característica y de atributo, y por defecto en el constructor. Ninguna
+      habilidad del compendio lleva la propiedad `push`, así que el botón solo salía por
+      esas dos vías
+- [x] **Selector de dados de bonificación retirado del diálogo.** La maquinaria del pool se
+      mantiene —351 referencias— pero ya no se ofrece
+- [x] Verificado que las **especializaciones** están bien modeladas (`requiresname`,
+      `fighting`, `firearm`, `ranged`) y que `base: 0` en las habilidades de arma padre es
+      correcto: el manual dice "(varias)", cada tipo lleva sus propios puntos y los
+      porcentajes salen de las tablas de armas
+
+### Conflicto arquitectónico sin resolver
+
+- [ ] **`DICE_POOL_REASONS` compite con `combat-tables.js`.** `constants.js` mapea once
+      situaciones de combate a dados de bonificación/penalización al estilo CoC7
+      (superado en número, sorpresa, objetivo grande/pequeño, cobertura, quemarropa, en
+      melé, objetivo rápido, mano torpe, recargando). En d100 esas mismas situaciones se
+      resuelven con **multiplicadores de umbral**, y ya están implementadas en
+      `combat-tables.js` (`rangeMultiplier`, `combatModifier`, `initiative`).
+      Son dos sistemas paralelos para lo mismo. Retirado el acceso desde el diálogo, pero
+      las tarjetas de combate pueden seguir aplicando los de CoC7. Requiere revisar
+      `chat-combat-melee.js` y `chat-combat-ranged.js` a fondo
