@@ -1166,11 +1166,6 @@ export default class CoC7Utilities {
   }
 
   /**
-   * Half dice and numbers in Damage Bonus
-   * @param {string|integer} db
-   * @returns {string}
-   */
-  /**
    * Cthulhu d100 opposed check ("chequeo enfrentado", rulebook chapter 1).
    *
    * The classic BRP resistance table: one d100 roll against a percentage
@@ -1199,6 +1194,11 @@ export default class CoC7Utilities {
     return Math.max(0, Math.min(100, 50 + (a - p) * 5))
   }
 
+  /**
+   * Half dice and numbers in Damage Bonus
+   * @param {string|integer} db
+   * @returns {string}
+   */
   static halfDB (db) {
     let formula = ((db ?? '').toString().trim() === '' ? 0 : db).toString().replace(/\s+/g, '')
     if (!formula.startsWith('-')) {
