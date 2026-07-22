@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1 mayormente hecha y F6 (publicación) lista. Siguiente paso: primera prueba en Foundry (ver checklist). Pendientes: F0.5, F1.5, F1.6, F2-F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1 cerrada salvo detalles; F6 lista. Siguiente: primera prueba en Foundry (ver checklist). Pendientes: F0.5, cola de F1, F2-F5
 
 ---
 
@@ -399,8 +399,9 @@ y Pifia con `96-00`.
 - [ ] **Neutralizar el gasto de Suerte de CoC7.** En d100 la Suerte no es una reserva
       gastable. Sigue cableado: `luckSpendAbilities` en `character-system.js:190`,
       `luckAvoidUnconsciousness`, los botones de "push" con suerte en las cartas de chat
-      y `apps/roll-normalize.js`
-- [ ] Inconsciencia con 1-2 PV; recupera consciencia al llegar a ≥3
+      y `apps/roll-normalize.js`. Como la Suerte se recalcula en cada `prepare`, gastarla
+      **no persiste**: el botón existe y no hace nada.
+- [x] Inconsciencia con 1-2 PV; 0 PV es herida mortal (`UNCONSCIOUS_HP_THRESHOLD`)
 - [ ] La **Suerte deja de ser una reserva gastable** y pasa a ser derivada. Localizar y
       neutralizar el sistema de gasto de Luck de CoC7 (`luck` en `character-system.js`,
       `roll-normalize.js`, botones de "push" con suerte)
@@ -413,9 +414,16 @@ y Pifia con `96-00`.
       (el plan decía 19; son 20 contando el tramo neutro `21-25 → 0`)
 - [x] Verificada con script: los 200 valores de `FUE+TAM` 1-200 coinciden con la tabla
       de la pág. 11
-- [ ] Aplicación diferenciada: cuerpo a cuerpo/desarmado → MD completo;
-      arrojadizas → **mitad**; armas de fuego → **no se aplica**.
-      Va en `apps/chat-combat-melee.js` / `chat-combat-ranged.js` (F4)
+- [x] **Corregido un bug propio:** `dbFromCharacteristics()` devolvía positivos con signo
+      (`'+1D2'`), pero `chat-damage.js:366` antepone `+` salvo que el valor empiece por
+      `-`. Todo MD positivo generaba `'++1D2'`, fórmula inválida. Ahora los positivos van
+      sin signo, que es la convención que esperan los consumidores.
+- [x] **La aplicación diferenciada ya existe en el motor**, no hay que programarla: las
+      propiedades `addb` (MD completo) y `ahdb` (mitad, vía `CoC7Utilities.halfDB()`) del
+      item de arma la controlan. `halfDB` reduce el tamaño del dado y maneja negativos
+      (`-1D8` → `-1D4`), así que sirve para los tramos de penalización de d100.
+- [ ] Es por tanto **tarea de datos (F2)**: marcar `addb` en cuerpo a cuerpo y desarmado,
+      `ahdb` en arrojadizas, y **ninguna de las dos** en armas de fuego
 
 > A diferencia de CoC7, en d100 **no hay penalizadores planos**: los tramos bajos son
 > dados que se restan (`-1D8` … `-1D2`), no `-1` / `-2`. `dbFromCharacteristics()`
@@ -426,9 +434,11 @@ y Pifia con `96-00`.
 > **`buildFromCharacteristics()` sigue con la lógica de CoC7.** La Corpulencia (Build) no
 > existe en d100. Decidir en F4 si se elimina o se deja inerte.
 
-### F1.5 — Chequeos enfrentados ⛔ no iniciado — es un módulo NUEVO, no una modificación
-- [ ] Fórmula `50 + (activo - pasivo) × 5`, acotada a `[0,100]`
-- [ ] `+10` o más → éxito automático; `-10` o menos → imposible
+### F1.5 — Chequeos enfrentados 🟡 núcleo hecho, falta la interfaz
+- [x] Fórmula `50 + (activo - pasivo) × 5`, acotada a `[0,100]`, en
+      `apps/utilities.js CoC7Utilities.resistanceChance()`
+- [x] `+10` o más → automático; `-10` o menos → imposible (sale solo del acotado)
+- [x] Verificada con script contra las 21 filas de la tabla del manual
 - [ ] Diálogo para elegir Factor Activo y Factor Pasivo (atributos, o POT de veneno
       o enfermedad, que van de 3 a 21)
 - [ ] Carta de chat propia con el porcentaje resultante y la tirada
@@ -447,8 +457,14 @@ y Pifia con `96-00`.
 > Consumidores que lo necesitarán: Presa (FUE vs FUE, §7), venenos y enfermedades
 > (POT vs CON, §8).
 
-### F1.6 — Modificadores de circunstancia e iluminación
-- [ ] Circunstancias: `+20 / +10 / -10 / -20` en el diálogo de tirada
+### F1.6 — Modificadores de circunstancia e iluminación 🟡 parcial
+- [x] Circunstancias `+20 / +10 / 0 / -10 / -20` en `apps/roll-dialog.js`, con las cinco
+      claves i18n traducidas a los 15 idiomas
+- [x] El selector de dificultad ya **no ofrece** Difícil ni Extremo: en d100 no existen
+- [ ] `difficultyLevel` conserva el enum de CoC7 (113 referencias en 13 archivos,
+      entrelazado con el gasto de Suerte). Solo se podó la interfaz; podar el enum es
+      una tarea aparte y arriesgada
+- [ ] Falta cablear el modificador elegido a `flatThresholdModifier`
 - [ ] Iluminación: penumbra `×1/2`, oscuridad casi total `×1/4`, oscuridad total `×1/4`
       con tope `min(POD×3, INT×3)`
 
