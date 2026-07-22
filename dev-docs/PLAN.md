@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1 en curso — F1.2 completa; F1.1, F1.3 y F1.4 parciales. Pendientes: F0.5, F1.5, F1.6, F2-F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1 mayormente hecha; lista para la primera prueba en Foundry (ver checklist abajo). Pendientes: F0.5, F1.5, F1.6, F2-F5
 
 ---
 
@@ -139,6 +139,57 @@ Esta tabla resume dónde duele. Detalle completo en `dev-docs/reglas-cthulhu-d10
 - Si una tarea revela que el plan está equivocado, **actualizar este documento** en el
   mismo commit.
 - Los identificadores de tarea (`F1.3`) son estables: úsalos al referirte al trabajo.
+
+---
+
+## 🧪 Checklist de la primera prueba en Foundry
+
+Todo lo hecho hasta ahora está validado con `eslint`, `webpack` y scripts contra las
+tablas del manual. **Nada se ha ejecutado dentro de Foundry todavía.**
+
+### Antes de abrir Foundry
+
+```bash
+npm run build          # despliega en /mnt/storage/foundryuserdata/Data/systems/cthulhud100
+```
+
+Foundry solo escanea `Data/systems/` **al arrancar**. Hay que reiniciar el servidor
+(PID del proceso `node /mnt/storage/foundry/resources/app/main.js`).
+
+### Qué comprobar, en orden
+
+| # | Acción | Resultado esperado |
+|---|---|---|
+| 1 | Crear mundo con el sistema `Cthulhu d100` | Aparece en la lista de sistemas |
+| 2 | Consola del navegador (F12) al cargar | Sin errores rojos. Avisos de deprecación anotarlos, no bloquean |
+| 3 | Crear un actor de tipo personaje | La ficha abre |
+| 4 | Tirar características | Valores **3-18**, no percentiles. TAM e INT entre 8 y 18; EST entre 6 y 21 |
+| 5 | Etiquetas de la ficha | FUE CON TAM DES **CAR** INT POD **EST** (en español) |
+| 6 | Poner CON 12, TAM 14 | **PV = 13** (`ceil(26/2)`) |
+| 7 | Poner POD 14 | **PM = 14** · **Suerte = 70** · Estabilidad Mental (clásica) = 70 |
+| 8 | Poner INT 14 | **Idea = 70**. El tooltip debe decir Especial 14, Crítico 4 |
+| 9 | Poner FUE 11, TAM 12 | **MD = 0**. Con FUE 13 / TAM 14 (=27) debe dar **+1D2** |
+| 10 | Tirar una habilidad al 50% | Crítico `01-03`, Especial `04-10`, Éxito `11-50`, Fallo `51-95`, Pifia `96-00` |
+| 11 | Tirar una habilidad al 8% | Especial `01-02`, sin banda de crítico separada |
+| 12 | Carta de chat de una tirada | Dice "Éxito especial", nunca "Éxito difícil" |
+| 13 | Iniciativa en combate | Orden por DES cruda (3-18), sin el `+50` por arma de fuego |
+
+### Problemas conocidos — no reportar como nuevos
+
+- **La Suerte no se puede gastar.** Es derivada (`POD×5`) y se recalcula en cada
+  `prepare`, así que los botones de gasto de CoC7 no persisten nada. Falta retirarlos
+  de la interfaz (F1.3).
+- **El selector de dificultad sigue ofreciendo Difícil/Extremo.** `difficultyLevel`
+  aún es el de CoC7; en d100 la dificultad se aplica con modificadores ±10/20% (F1.6).
+- **Las habilidades y armas son las de CoC7.** Los compendios propios son F2.
+- **La cordura es la de CoC7.** Los dos sistemas del manual son F3.
+- **El combate es el de CoC7.** Tablas cruzadas de Esquiva/Bloqueo, empalar y
+  localización de impactos son F4.
+- **13 idiomas conservan los nombres de CoC7** para CAR y EST. Solo español e inglés
+  están renombrados.
+- **Corpulencia (Build) sigue existiendo.** No es un concepto de d100.
+- **Persecuciones, arquetipos, eras y paquetes de experiencia** son funciones de
+  upstream ajenas a d100; siguen presentes y sin adaptar.
 
 ---
 
