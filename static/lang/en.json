@@ -1,6 +1,5 @@
 {
   "CoC7.title": "Call of Cthulhu 7h Edition",
-
   "TYPES.Actor.character": "Investigator",
   "TYPES.Actor.container": "Container",
   "TYPES.Actor.creature": "Creature",
@@ -10,7 +9,6 @@
   "CoC7.ActorDataLinked": "Actor data are linked",
   "CoC7.ActorDataNotLinked": "Actor data are NOT linked",
   "CoC7.ActorIsSyntheticActor": "Actor is a synthetic actor (instance of an actor)",
-
   "TYPES.Item.archetype": "Archetype",
   "TYPES.Item.armor": "Armor",
   "TYPES.Item.book": "Book",
@@ -24,7 +22,6 @@
   "TYPES.Item.status": "Status",
   "TYPES.Item.talent": "Talent",
   "TYPES.Item.weapon": "Weapon",
-
   "CHARAC.STR": "STR",
   "CHARAC.Strength": "Strength",
   "CHARAC.CON": "CON",
@@ -127,7 +124,6 @@
   "CoC7.Reset": "Reset",
   "CoC7.Initiative": "Initiative",
   "CoC7.InitiativeRoll": "Initiative roll",
-
   "CoC7.Cast": "Cast",
   "CoC7.CastHidden": "Cast Hidden",
   "CoC7.MessageCast": "To Chat",
@@ -140,20 +136,18 @@
   "CoC7.OtherCosts": "Other Costs",
   "CoC7.CastingSpell": "Casting <i>{spell}</i>.",
   "CoC7.NotEnoughMagicPoints": "{spell} costs {originalMagicPoints} Magic Points, but you only have {actorMagicPoints}. Would you like to take the remaining {convertedHitPoints} from your Hit Points? You will take {convertedHitPoints} damage if you proceed.",
-
   "CoC7.CopyToClipboard": "Copy to clipboard",
   "CoC7.WhisperToSelection": "Whisper to selected tokens",
   "CoC7.WhisperTo": "Whisper to",
   "CoC7.SendToChat": "Send to chat",
-
   "CoC7.RegularSuccess": "Regular success",
   "CoC7.HardSuccess": "Hard success",
   "CoC7.ExtremeSuccess": "Extreme success",
+  "CoC7.SpecialSuccess": "Special success",
   "CoC7.CriticalSuccess": "Critical success",
   "CoC7.Fumble": "Fumble",
   "CoC7.Failure": "Failure",
   "CoC7.Malfunction": "{itemName} had a malfunction",
-
   "CoC7.Dice": "Dice",
   "CoC7.DiceModifierBonus": "bonus",
   "CoC7.DiceModifierPenalty": "penalty",
@@ -185,9 +179,7 @@
   "CoC7.KeeperSentDecoy": "Decoy roll sent to players",
   "CoC7.FakeRoll": "Send a decoy roll to players",
   "CoC7.ErrorMissingKeeperUser": "Your keeper needs to be connected to perform this action",
-
   "CoC7.ConstitutionCheck": "Constitution check",
-
   "CoC7.SanDataSelectionWindow": "Select SAN losses",
   "CoC7.BonusSelectionWindow": "Bonus selection window",
   "CoC7.BonusSelectionWindowNamed": "Select modifier for {name} check",
@@ -207,6 +199,7 @@
   "CoC7.RollDifficultyHard": "Hard",
   "CoC7.RollDifficultyHardTitle": "Hard difficulty",
   "CoC7.RollDifficultyExtreme": "Extreme",
+  "CoC7.RollDifficultySpecial": "Special",
   "CoC7.RollDifficultyExtremeTitle": "Extreme difficulty",
   "CoC7.RollDifficultyCritical": "Critical",
   "CoC7.RollDifficultyCriticalTitle": "Critical difficulty",
@@ -224,12 +217,10 @@
   "CoC7.CombinedAllHint": "All rolls must succeed",
   "CoC7.CloseCard": "Close card",
   "CoC7.AttackManeuver": "Attack Maneuver",
-
   "CoC7.CheckResult": "{name} check ({value}%) - {difficulty} difficulty",
   "CoC7.CheckRollResult": "{name} ({value}%) - {difficulty} difficulty",
   "CoC7.ItemCheckResult": "{item} - {skill} check ({value}%) - {difficulty} difficulty",
   "CoC7.CheckRawValue": "({rawvalue}%) - {difficulty} difficulty",
-
   "CoC7.ArmorAbsorbsDamage": "Armor absorbs total damage",
   "CoC7.ArmorWillFormula": "Armor value needs rolled",
   "CoC7.Critical": "Critical",
@@ -242,7 +233,6 @@
   "CoC7.ShotIsImpossible": "Shot is impossible",
   "CoC7.OutOfAmmo": "Out of Ammo",
   "CoC7.OutOfShots": "Out of shots",
-
   "CoC7.BonusDamageRoll": "Rolling Damage Bonus",
   "CoC7.Type": "Type",
   "CoC7.FightBack": "Fighting Back",
@@ -273,8 +263,6 @@
   "CoC7.DamageInflicted": "Damage inflicted",
   "CoC7.Damage": "Damage",
   "CoC7.TotalDamage": "Total damage",
-
-
   "CoC7.rangeCombatCard.SingleShot": "Single Shot",
   "CoC7.rangeCombatCard.MultipleShots": "Multi. Shots",
   "CoC7.AutomaticFire": "Automatic Fire",
@@ -338,13 +326,10 @@
   "CoC7.rangeCombatCard.InMeleeTitle": "1 penalty die. Target is engaged in melee combat",
   "CoC7.rangeCombatCard.FastMovingTargetTitle": "1 penalty die. Target is fast (MOV 8+) and moving at full speed",
   "CoC7.rangeCombatCard.SurprisedTargetTitle": "1 bonus die for surprised target",
-
   "CoC7.meleeCombatDamageTakes": "takes",
   "CoC7.meleeCombatDamageFrom": "from",
   "CoC7.meleeCombatDamageDeals": "deals",
   "CoC7.meleeCombatDamageWith": "with",
-
-
   "CoC7.Value": "Value",
   "CoC7.SkillBase": "Base",
   "CoC7.BaseSkillValue": "Base skill value",
@@ -353,14 +338,12 @@
   "CoC7.SkillExperiencePackage": "Experience Package",
   "CoC7.SkillOccupation": "Occupation",
   "CoC7.SkillPersonal": "Personal",
-
   "CoC7.SkillTotalExperience": "Experience points",
   "CoC7.SkillTotalExperiencePackagePoints": "Experience Package points",
   "CoC7.SkillTotalArchetype": "Archetype points",
   "CoC7.SkillTotalOccupation": "Occupation points",
   "CoC7.SkillTotalPersonal": "Personal points",
   "CoC7.CharacteristicsPoints": "Characteristics points",
-
   "CoC7.ItemQuantity": "Quantity",
   "CoC7.ItemWeight": "Weight",
   "CoC7.ItemDetails": "Details",
@@ -378,7 +361,6 @@
   "CoC7.WeaponBulletsInMag": "Magazine",
   "CoC7.ItemPrice": "Price",
   "CoC7.Armor": "Armor",
-
   "CoC7.EraInvictus": "Invictus",
   "CoC7.EraDarkAges": "Dark Ages - Standard",
   "CoC7.EraDarkAgesPulp": "Dark Ages - Pulp",
@@ -395,7 +377,6 @@
   "CoC7.EraReignOfTerror": "Reign Of Terror",
   "CoC7.Eras": "Cthulhu Flavors",
   "CoC7.EraAvailability": "Availability",
-
   "CoC7.SkillNoXpGain": "No XP gain",
   "CoC7.SkillHintNoXpGain": "Do not allow skill to be ticked for \"Rewards of Experience: The Investigator Development Phase\"",
   "CoC7.SkillXpGainDisabled": "XP Gain disabled.",
@@ -418,7 +399,6 @@
   "CoC7.SkillHintPickNameOnly": "The name for this specialization can be picked from a list",
   "CoC7.SkillOwn": "Own",
   "CoC7.SkillHintOwn": "This specialisation is own",
-
   "CoC7.WeaponRanged": "Range",
   "CoC7.WeaponManeuver": "Maneuver",
   "CoC7.WeaponTouch": "Touch",
@@ -438,14 +418,11 @@
   "CoC7.Weapon.Property.Thrown": "Thrown",
   "CoC7.Weapon.Property.Burn": "Burn",
   "CoC7.Weapon.Property.Shotgun": "Shotgun",
-
   "CoC7.ErrorInvalidFormula": "{value} is not a valid formula",
   "CoC7.ErrorInvalidCardType": "Card Type",
   "CoC7.ErrorInvalidRollType": "Roll Type",
   "CoC7.Validate": "Validate",
   "CoC7.Apply": "Apply",
-
-
   "CoC7.FightingSpecializationName": "Fighting",
   "CoC7.UnarmedWeaponName": "Unarmed",
   "CoC7.FirearmSpecializationName": "Firearms",
@@ -456,7 +433,6 @@
   "CoC7.AnySpecName": "Any",
   "CoC7.BoutOfMadnessName": "Bout of Madness",
   "CoC7.InsanityName": "Insanity",
-
   "CoC7.SkillNameHandgun": "Handgun",
   "CoC7.SkillNameRifle": "Rifle",
   "CoC7.SkillNameShotgun": "Shotgun",
@@ -464,7 +440,6 @@
   "CoC7.SkillNameSmb": "Submachine Gun",
   "CoC7.SkillNameMachineGun": "Machine Gun",
   "CoC7.SkillNameLaunch": "Launch",
-
   "CoC7.NewSkillName": "new skill",
   "CoC7.AddSkill": "Add skill",
   "CoC7.DevelopmentPhase": "Development Phase",
@@ -495,14 +470,12 @@
   "CoC7.SortBySkillValue": "Sort by skill percent",
   "CoC7.UncommonSkillsShow": "Show uncommon skills",
   "CoC7.UncommonSkillsHide": "Hide uncommon skills",
-
   "CoC7.NewArmorName": "new armor",
   "CoC7.NewBookName": "new book",
   "CoC7.AddBook": "Add book",
   "CoC7.NewSpellName": "new spell",
   "CoC7.AddSpell": "Add spell",
   "CoC7.AddArmor": "Add armor",
-
   "CoC7.AddWeapon": "Add weapon",
   "CoC7.NewWeaponName": "new weapon",
   "CoC7.EditWeapon": "Edit Weapon",
@@ -523,7 +496,6 @@
   "CoC7.EnterFormula": "Enter formula",
   "CoC7.SanRollHint": "Roll san check for targets",
   "CoC7.NoSkill": "No skill",
-
   "CoC7.LinkCheck": "{name} check",
   "CoC7.LinkCheckDiff": "[{difficulty}] {name} check",
   "CoC7.LinkCheckModif": "{name} check({modifier})",
@@ -540,7 +512,6 @@
   "CoC7.LinkItemDiff": "[{difficulty}] {name}",
   "CoC7.LinkItemModif": "{name} ({modifier})",
   "CoC7.LinkItemDiffModif": "[{difficulty}] {name} ({modifier})",
-
   "CoC7.ManualCreditValues": "Manual Credit Values",
   "CoC7.MonetarySymbol": "Symbol :",
   "CoC7.AutoCreditValues": "Toggle Automatic calculation",
@@ -584,7 +555,6 @@
   "CoC7.MonetaryDefaultRich": "Rich",
   "CoC7.MonetaryDefaultSuperRich": "Super Rich",
   "CoC7.MonetaryDefaultAristocracy": "Aristocracy",
-
   "CoC7.PossessionsNotes": "Notes :",
   "CoC7.PossessionsNotesHolder": "Notes",
   "CoC7.UseLuck": "Use Luck",
@@ -597,7 +567,6 @@
   "CoC7.UseLuckForAvoidDeath": "Spend {luck} luck to avoid death",
   "CoC7.UseLuckForSecondAttack": "Spend 10 luck for a second attack",
   "CoC7.UseLuckForLookOutMaster": "Spend all luck FOR Look Out Master!",
-
   "CoC7.BackgroundNewSection": "Add new section",
   "CoC7.BackgroundSectionNameHolder": "Enter section title",
   "CoC7.BackgroundDeleteSection": "Delete section",
@@ -616,7 +585,6 @@
   "CoC7.AddSanityLossImmunity": "Add Sanity Loss Immunity",
   "CoC7.DeleteSanityLossEncounter": "Delete Sanity Loss Encounter",
   "CoC7.DeleteSanityLossImmunity": "Delete Sanity Loss Immunity",
-
   "CoC7.SanityLossType": "Type",
   "CoC7.SanityLossTypeDialogTitle": "New sanity loss or immunity",
   "CoC7.SanityLossTypeDialogBody": "Add a new Mythos Encounter, Sanity Loss, or Sanity Immunity to the character.",
@@ -624,8 +592,6 @@
   "CoC7.SanityLossTypeValue": "Sanity points lost",
   "CoC7.SanityLossEncounter": "Sanity loss encounter",
   "CoC7.SanityLossImmunity": "Sanity loss immunity",
-
-
   "CoC7.PerformInvoluntaryAction": "Involuntary action performed",
   "CoC7.SanityCheck": "Sanity check",
   "CoC7.IntCheck": "Intelligence check",
@@ -672,7 +638,6 @@
   "CoC7.MythosGain": "Mythos gain",
   "CoC7.YouGainedCthulhuMythos": "Your mind quail before the unearthly manifestation (+{value}% Cthulhu Mythos)",
   "CoC7.CardResolved": "Card resolved",
-
   "CoC7.InsertLocation": "Insert location",
   "CoC7.RemoveLocation": "Remove location",
   "CoC7.LocationNotEmpty": "You can't remove a location with an actor",
@@ -780,7 +745,6 @@
   "CoC7.Actions": "actions:",
   "CoC7.Chase.InitiativeShort": "INIT: {value}",
   "CoC7.Chase.AdjustedMovementShort": "ADJ. MOV: {value}",
-
   "CoC7.SpellCastingTime": "Casting Time",
   "CoC7.CallSpell": "Call",
   "CoC7.DismissSpell": "Dismiss",
@@ -794,7 +758,6 @@
   "CoC7.SpellCosts": "Spell Costs",
   "CoC7.SpellSuccessfullyLearned": "Spell '{spell}' was learned successfully!",
   "CoC7.SpellAlreadyLearned": "Spell named ('{spell}') was already learned.",
-
   "CoC7.Spell.Cost.AdditionalInformation": "Additional information",
   "CoC7.Spell.Cost.AdditionalCasterPromptAdd": "Additional caster prompt: Add",
   "CoC7.Spell.Cost.AdditionalCasterCost": "Additional caster cost",
@@ -808,13 +771,11 @@
   "CoC7.Spell.Cost.SetVariable": "Set variable",
   "CoC7.Spell.Cost.Toggle": "Toggle",
   "CoC7.Spell.Cost.TriggerPrompt": "Show dialog prompt",
-
   "CoC7.Spell.Group.AdditionalCasters": "Additional Casters",
   "CoC7.Spell.Group.CasterCosts": "Caster Costs",
   "CoC7.Spell.Group.CastingTime": "Casting time",
   "CoC7.Spell.Group.Prompt": "Prompt",
   "CoC7.Spell.Group.System": "System",
-
   "CoC7.Spell.Costs.AddCasters": "Add group of casters",
   "CoC7.Spell.Costs.AddSectionBefore": "Add section before",
   "CoC7.Spell.Costs.DeleteCasters": "Remove group of casters",
@@ -828,12 +789,10 @@
   "CoC7.Spell.Costs.VariableName": "Number name",
   "CoC7.Spell.Costs.VariablePlaceholder": "@variable",
   "CoC7.Spell.Costs.Value": "Value",
-
   "CoC7.Spell.Legacy.Label": "Legacy spell costs",
   "CoC7.Spell.Legacy.Hint": "Please use the costs on the details tab which support the more interactive costs required by many spells and can be automatically removed from an Actor.",
   "CoC7.Spell.ErrorPromptNotShown": "You have not prompted for all use input",
   "CoC7.Spell.ErrorUnableToFindAdditionalCasters": "You need to set up additional casters before assigning costs",
-
   "CoC7.BookAlterProgress": "Study progress quantity",
   "CoC7.BookProgressValue": "Number to alter progress by (1 - {max})",
   "CoC7.BookType": "Book Type",
@@ -866,11 +825,9 @@
   "CoC7.Unreadable": "Unreadable",
   "CoC7.BookProgressSummary": "{fullStudies} ({currentPercent}%)",
   "CoC7.DeleteBookProgress": "Remove book progress",
-
   "CoC7.Crew": "Crew",
   "CoC7.Origin": "Origin",
   "CoC7.ArmedVehicle": "Armed Vehicle",
-
   "CoC7.PulpTalents": "Pulp Talents",
   "CoC7.TalentType": "Talent Type",
   "CoC7.PhysicalTalent": "Physical",
@@ -880,11 +837,9 @@
   "CoC7.BasicTalent": "Basic",
   "CoC7.InsaneTalent": "Insane",
   "CoC7.OtherTalent": "Other",
-
   "CoC7.Items": "Items",
   "CoC7.Books": "Books",
   "CoC7.Status": "Status",
-
   "CoC7.Classic": "Classic",
   "CoC7.Lovecraftian": "Lovecraftian",
   "CoC7.Pulp": "Pulp",
@@ -921,7 +876,6 @@
   "CoC7.SkillSelectBase": "Select base value for skill {name}",
   "CoC7.SelectSkill": "Select an existing skill",
   "CoC7.CreateNewSkill": "Create a new skill",
-
   "CoC7.Characteristics": "Characteristics",
   "CoC7.Characteristic": "Characteristic",
   "CoC7.EnableCharacteristics": "Enable characteristics",
@@ -931,10 +885,8 @@
   "CoC7.BonusPoints": "Bonus Points",
   "CoC7.SuggestedOccupations": "Suggested Occupations",
   "CoC7.SuggestedTraits": "Suggested Traits",
-
   "CoC7.PutGunAway": "Put your gun away",
   "CoC7.DrawGun": "Draw your gun",
-
   "CoC7.GmTools": "Keeper's tools",
   "CoC7.GmNotes": "Keeper's notes",
   "CoC7.DevPhase": "Development phase",
@@ -954,7 +906,6 @@
   "CoC7.WarnFastTargetWithWrongMOV": "Fast selected on a target with less than 8 MOV. (MOV: {mov})",
   "CoC7.WarnTooManyTarget": "Too many target selected. Keeping only last selected target",
   "CoC7.WarnNoTargetsSanCheck": "You have no targets selected. Either select targets or create a link.",
-
   "CoC7.allActors": "All Actors",
   "CoC7.restTargets": "Rest Targets",
   "CoC7.startRest": "Start Rest",
@@ -974,19 +925,15 @@
   "CoC7.ErrorUnexpectedWeaponText": "Unexpected weapons text, please raise a bug report with the text you are attempting to import",
   "CoC7.ErrorUnexpectedSkillsText": "Unexpected skills text, please raise a bug report with the text you are attempting to import",
   "CoC7.ErrorNoTokensSelected": "No tokens selected",
-
   "CoC7.InfoSkillAddedAtBase": "This skill {name} has been added at {percent}%",
   "CoC7.InfoLessSkillThanOptions": "There's only {skillCount} of {optionsCount} options, adding all of them",
-
   "CoC7.MessageCheckRequestedWait": "{check} roll requested by your Keeper.<br>Wait before clicking!<br>",
   "CoC7.MessageTargetCheckRequested": "Your keeper has requested {name} make a {check} roll.",
   "CoC7.MessageBoutOfMadnessTableNotFound": "The result from the madness table was not found, please check all your roll tables are created",
   "CoC7.MessageBoutOfMadnessItemNotFound": "The result from the madness table was not found, please check all your statuses are created",
   "CoC7.MessageRollingCharacteristic": "Rolling characteristic {label}: {formula}",
-
   "CoC7.NoTargetTitle": "Do you want to proceed without a target?",
   "CoC7.NoTargetSelected": "You have not selected a target for your {weapon} check. Do you want to proceed anyway?",
-
   "CoC7.Import": "Import",
   "CoC7.Proceed": "Proceed",
   "CoC7.Cancel": "Cancel",
@@ -995,7 +942,6 @@
   "CoC7.Enable": "Enable",
   "CoC7.Disable": "Disable",
   "CoC7.Duration": "Duration",
-
   "CoC7.ActorImporter": "Actor Importer",
   "CoC7.ActorImporterSummary": "Import an NPC or Creature from description and stats. Just paste the corresponding plain text",
   "CoC7.PasteTheDataBelow": "Paste the raw text data below",
@@ -1028,29 +974,24 @@
   "CoC7.ImportActorItemsItemWorldModuleSystem": "Items / World / Modules / System",
   "CoC7.ImportActorItemsWorldModuleItemSystem": "World / Modules / Items / System",
   "CoC7.ActorImported": "New {actorType} imported: {actorName}",
-
   "CoC7.DholeHouseActorImporter": "The Dhole's House Actor Importer JSON",
   "CoC7.DholeHouseActorImporterSummary": "Export your DholeHouse's character as JSON and upload it here.",
   "CoC7.DholeHouseImportingName": "About to import: ",
   "CoC7.DholeHousePickYourJSONFile": "Pick the JSON file exported from The Dhole's House",
   "CoC7.DholeHouseActorImporterSource": "Imported from The Dhole's House Actor",
   "CoC7.DholeHouseInvalidActor": "The selected JSON doesn't seem to be a valid Dhole's House exported character",
-
   "CoC7.Migrate.Title": "Update required",
   "CoC7.Migrate.Message": "<div>Your world requires an update to run version {version}.</div><div>Please backup your world folder before starting the upgrade.</div><div>If you do not update your world the system will not work correctly.</div><div>The world may be restarted when completed.</div>",
   "CoC7.Migrate.WithModulesMessage": "<div>Your world or modules may require an update to run version {version}.</div><div>Please backup your world and module folders listed below before starting the upgrade.</div><div>If you do not update your world the system will not work correctly.</div><div>The following modules contain actors or items so will also be checked.</div>{modules}<div>The world may be restarted when completed.</div>",
   "CoC7.Migrate.GMRequired": "<div>Your world requires an update to run version {version}.</div><div>Please wait for your GM to update the system then refresh (F5) this page.</div>",
   "CoC7.Migrate.ButtonUpdate": "Update",
   "CoC7.Migrate.ButtonSkip": "Skip",
-
   "CoC7.Migrate.TriggerButton": "Trigger Data Migration",
   "CoC7.Migrate.TriggerTitle": "Trigger Data Migration",
   "CoC7.Migrate.TriggerContents": "<div>Turn on data migration and restart</div>",
   "CoC7.Migrate.TriggerRestart": "Save and restart",
-
   "CoC7.Migrate.Complete": "Finished migrating your data",
   "CoC7.System.Documentation": "View CoC7 System Manual",
-
   "CoC7.Settings.CoreRules.Title": "Core Rule Book Optional Rules",
   "CoC7.Settings.Rules.Name": "Variant/Optional Rules",
   "CoC7.Settings.Rules.Label": "Configure Variant/Optional Rules",
@@ -1104,7 +1045,6 @@
   "CoC7.Settings.AllowPushFumbles.Hint": "If a roll is pushable and the result was a fumble after dealing with the fumble consequences, allow the roll to be pushed.",
   "CoC7.Settings.CharacteristicsOrder.Name": "Characteristics Order",
   "CoC7.Settings.CharacteristicsOrder.Hint": "There are many minor changes to the characteristics order. Drag these into the order for this world.",
-
   "CoC7.Settings.DropCoCID.Name": "Use CoC ID on item drops",
   "CoC7.Settings.DropCoCID.Hint": "When dropping items with a CoC ID prompt to store the CoC ID instead of the item",
   "CoC7.Settings.DropCoCID.Dialog": "Use the CoC ID for dropped items where possible? This allows the system to select the correct item for your world era.",
@@ -1112,13 +1052,10 @@
   "CoC7.Settings.DropCoCID.Prompt": "Prompt each time",
   "CoC7.Settings.DropCoCID.UseCoCID": "Use CoC ID Where Possible",
   "CoC7.Settings.DropCoCID.IgnoreCoCID": "Do Not Use CoC ID",
-
   "CoC7.Maximize": "Maximize",
   "CoC7.Summarize": "Summarize",
   "CoC7.ClearAllConditions": "Clear All Conditions",
-
   "CoC7.UnableToUploadDholeImage": "You do not have permission to upload images, if you import the default avatar will be used.",
-
   "CoC7.MessageTitleSelectUserToGiveTo": "Give item to another character",
   "CoC7.MessageSelectUserToGiveTo": "Which character would you like to give this item to?",
   "CoC7.MessageDistanceCalculationFailure": "Unable to calculate distance between tokens, please use the token character sheet.",
@@ -1126,7 +1063,6 @@
   "CoC7.DistanceUnitYard": "yd",
   "CoC7.DistanceUnitMetre": "m",
   "CoC7.ErrorUnknownDistanceUnit": "Unknown distance unit, using {distance}{unit} as {distance} yards",
-
   "CoC7.ToolTipShort": "<label>{skill} {regular}% ({hard}/{extreme})</label>",
   "CoC7.ToolTipSkill": "<label>{skill} {regular}% ({hard}/{extreme})</label><ul><li><strong>Left click</strong> roll check with options</li><li><strong>Shift + Left click</strong> Immediate regular difficulty roll</li></ul><label>Opposed checks</label><ul><li><strong>Right click</strong> Opposed check with options</li><li><strong>Shift + Right click</strong> Immediate opposed check</li></ul><label>Combined checks</label><ul><li><strong>Alt/Option + Right click</strong> Combined check with options</li><li><strong>Shift + Alt/Option + Right click</strong> Immediate combined check</li></ul>",
   "CoC7.ToolTipBasic": "<label>{skill} {regular}% ({hard}/{extreme})</label><ul><li><strong>Left click</strong> roll check with options</li><li><strong>Shift + Left click</strong> Immediate regular difficulty roll</li></ul>",
@@ -1141,7 +1077,6 @@
   "CoC7.ToolTipSkillFlagged": "Flagged for development",
   "CoC7.ToolTipSkillUnflagged": "Not flagged for development",
   "CoC7.ToolTipSeeNotes": "See notes",
-
   "SETTINGS.TitleRules": "Rules",
   "SETTINGS.TitleInitiative": "Initiative Settings",
   "SETTINGS.TitleRoll": "Roll Settings",
@@ -1255,13 +1190,10 @@
   "SETTINGS.SceneDistanceNotCalculatedNoErrorHint": "When starting a ranged combat if playing theatre of the mind do not show the unable to calculate distance message.",
   "CoC7.SETTINGS.LegacySpellCosts": "Always show legacy spell costs system",
   "CoC7.SETTINGS.LegacySpellCostsHint": "Show the legacy spell cost entries even if they are empty",
-
   "CoC7.getTheExample": "Copy Example",
   "CoC7.Copied": "Copied the Example Text to Clipboard",
-
   "CoC7.EffectNew": "New effect",
   "CoC7.EffectAppliedCantOverride": "An active effect is applies. You can't modify [{name}]. Deactivate the corresponding effect to modify this value.",
-
   "CoC7.InvestigatorWizard.Title": "Investigator Creation Wizard",
   "CoC7.InvestigatorWizard.TitleKeeperConfiguration": "Keeper Configuration",
   "CoC7.InvestigatorWizard.TitleSelectSetup": "Investigator Setup",
@@ -1334,7 +1266,6 @@
   "CoC7.InvestigatorWizard.CreateInstructions": "Click create to create your character. You Keeper needs to be online for the character to be created.",
   "CoC7.InvestigatorWizard.CreatingInvestigator": "Please wait while the keeper creates your investigator.",
   "CoC7.InvestigatorWizard.PersonalDescription": "Personal Description",
-
   "CoC7.CoCIDFlag.id": "ID",
   "CoC7.CoCIDFlag.loading": "Loading Matching Items",
   "CoC7.CoCIDFlag.title": "Edit System ID (CoC ID)",
@@ -1464,7 +1395,6 @@
   "CoC7.CoCIDFlag.error.unknown-era": "Unknown Era \"{era}\"",
   "CoC7.CoCIDFlag.error.incorrect.type": "Tried to convert CoC ID with non existing document type. See console log.",
   "CoC7.CoCIDFlag.error.documents-not-found": "Documents were not found in world or Compendia matching the CoC IDs ({cocids}), language \"{lang}\", and era \"{era}\". Please check your Era for the world setting.",
-
   "CoC7.CoCIDBatch.title": "Batch set System ID (CoC ID)",
   "CoC7.CoCIDBatch.summary": "The CoC7 System has introduced a System ID (CoC ID). This allows the system to identify FoundryVTT documents for example telling which skill on an Actor is Dodge. This page will allow you to set the id for existing {type} documents. The System ID should use the English translation of the name to support localization across all languages.",
   "CoC7.CoCIDBatch.ThrowSkillChange": "The CoC ID for \"Fighting (Throw)\", \"Firearms (Throw)\", and \"Ranged (Throw)\" are no longer needed, do you want to update the relevant skills in this world to \"Throw\"?",
@@ -1486,22 +1416,18 @@
   "CoC7.CoCIDCompendiumPopulateDestination": "Destination Module",
   "CoC7.CoCIDCompendiumPopulateTypes": "Types",
   "CoC7.CoCIDCompendiumPopulateButton": "Populate",
-
   "CoC7.TokenCreationRoll.Title": "Rollable detected",
   "CoC7.TokenCreationRoll.Prompt": "This token has rollable characteristics or skills.<br>What do you want to do ?",
   "CoC7.TokenCreationRoll.ButtonRoll": "Roll all",
   "CoC7.TokenCreationRoll.ButtonAverage": "Average all",
   "CoC7.TokenCreationRoll.Rolled": "{name} characteristics and skills rolled",
   "CoC7.TokenCreationRoll.Averaged": "{name} characteristics and skills averaged",
-
-
   "CoC7.Temporary": "Temporary",
   "CoC7.Passive": "Passive",
   "CoC7.Inactive": "Inactive",
   "CoC7.Suppressed": "Suppressed",
   "CoC7.Unavailable": "Unavailable",
   "CoC7.ManualTalents": "Manual Talents",
-
   "CoC7.PickWhichActorTitle": "Pick who to roll as",
   "CoC7.PickWhichActorDesc": "You have Owner permissions for multiple Actors please pick which to roll as",
   "CoC7.WaitingOnUser": "Waiting On User",
@@ -1509,13 +1435,11 @@
   "CoC7.ErrorOpposedRollsLimitedToTwoActors": "An opposed card requires two actors",
   "CoC7.ErrorOpposedRollsMissingAttackerDefender": "An opposed card needs an attacker and defender",
   "CoC7.PauseName": "Time Stop",
-
   "CoC7.ClickableEvents.MouseOver.Title": "Permission to click",
   "CoC7.ClickableEvents.MouseOver.Hint": "Return boolean if should allow click and show mouse cursor",
   "CoC7.ClickableEvents.LeftClick.Title": "Left Click Script",
   "CoC7.ClickableEvents.RightClick.Title": "Right Click Script",
   "TYPES.RegionBehavior.coc7ClickableEvents": "Clickable Events",
-
   "CoC7.SANSameLossAsMythosGain": "Sanity loss equal to Cthulhu Mythos gain",
   "CoC7.ExperiencePackageBackground": "Add to the investigator’s backstory based on the experience.",
   "CoC7.ExperiencePackageDialogTitle": "Select Experience Package options",
@@ -1523,7 +1447,6 @@
   "CoC7.ExperiencePackageApplySanity": "Apply Sanity Loss",
   "CoC7.EmptySpellList": "Add a spell by dropping it here.",
   "CoC7.EmptyStatusList": "Add a phobia/mania by dropping it here.",
-
   "CoC7.PromptAddInjuryScar": "Add an injury/scar",
   "CoC7.PromptAddStatus": "Add a Phobia/Mania",
   "CoC7.PromptAddSpells": "Add spells",
@@ -1532,9 +1455,7 @@
   "CoC7.ErrorExperiencePackageNotGM": "Your keeper must apply Experience Packages",
   "CoC7.ClearExperiencePackageName": "Clear Experience Package name",
   "CoC7.SheetExperiencePackageName": "Experience",
-
   "CoC7.AlternativeNames": "Alternative names",
-
   "TOKEN.MOVEMENT.ACTIONS.walk.label": "Walk",
   "TOKEN.MOVEMENT.ACTIONS.fly.label": "Fly",
   "TOKEN.MOVEMENT.ACTIONS.swim.label": "Swim",
@@ -1544,11 +1465,9 @@
   "TOKEN.MOVEMENT.ACTIONS.jump.label": "Jump",
   "TOKEN.MOVEMENT.ACTIONS.blink.label": "Teleport (Blink)",
   "TOKEN.MOVEMENT.ACTIONS.displace.label": "Teleport (Displace)",
-
   "CoC7.PortraitOptions": "Portrait Options",
   "CoC7.WhatCopiedClipboard": "\"{what}\" copied to clipboard.",
   "CoC7.AddedEmbeddedItems": "Added {names}",
-
   "CoC7.Errors.UnableToLoadMessage": "Unable to load message",
   "CoC7.Errors.UnparsableRoll": "Unable to work out what you are rolling",
   "CoC7.Errors.UnparsableActor": "Unable to work out who is rolling",
@@ -1576,7 +1495,6 @@
   "CoC7.Config.AdventureSubheading": "Fixed Adventure Subheading",
   "CoC7.Config.AdventureChangeHint": "You will need to close and reopen the document for the changes to be applied",
   "CoC7.ModifiedByActiveEffect": "This is modified by an Active Effect and can not be edited directly",
-
   "CoC7.CoC7ModelsActorContainerSheetV2": "CoC7 Container Sheet",
   "CoC7.CoC7ModelsActorCharacterSheetV2": "CoC7 Investigator Sheet v2",
   "CoC7.CoC7ModelsActorCharacterSheetSummarizedV2": "CoC7 Investigator Sheet Summarized v2",
@@ -1597,7 +1515,6 @@
   "CoC7.CoC7ModelsItemStatusSheet": "CoC7 Status Sheet",
   "CoC7.CoC7ModelsItemTalentSheet": "CoC7 Talent Sheet",
   "CoC7.CoC7ModelsItemWeaponSheet": "CoC7 Weapon Sheet",
-
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceDrawingToggle": "CCI: Drawing Toggle",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceAmbientLightToggle": "CCI: Light Toggle",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceMapPinToggle": "CCI: Map Pin Toggle",
@@ -1606,7 +1523,6 @@
   "TYPES.RegionBehavior.ChaosiumCanvasInterfacePlaySound": "CCI: Play Sound",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceToScene": "CCI: To Scene",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceTileToggle": "CCI: Tile Toggle",
-
   "CoC7.ChaosiumCanvasInterface.Actions.Hide": "Hide",
   "CoC7.ChaosiumCanvasInterface.Actions.Show": "Show",
   "CoC7.ChaosiumCanvasInterface.Actions.Toggle": "Toggle",

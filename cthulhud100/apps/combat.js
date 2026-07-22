@@ -60,13 +60,9 @@ export default class CoC7Combat {
                 tokenInitiative.classList.add('regular-success')
                 initiativeText.innerText = game.i18n.localize('CoC7.RollDifficultyRegular')
                 break
-              case CoC7DicePool.successLevel.hard:
-                tokenInitiative.classList.add('hard-success')
-                initiativeText.innerText = game.i18n.localize('CoC7.RollDifficultyHard')
-                break
-              case CoC7DicePool.successLevel.extreme:
-                tokenInitiative.classList.add('extreme-success')
-                initiativeText.innerText = game.i18n.localize('CoC7.RollDifficultyExtreme')
+              case CoC7DicePool.successLevel.special:
+                tokenInitiative.classList.add('special-success')
+                initiativeText.innerText = game.i18n.localize('CoC7.RollDifficultySpecial')
                 break
               case CoC7DicePool.successLevel.critical:
                 tokenInitiative.classList.add('critical')

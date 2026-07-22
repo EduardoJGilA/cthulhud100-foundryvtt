@@ -18,8 +18,7 @@ export default class CoC7MessageResults {
    *  - {string} threshold
    *  - {boolean} isRolled
    *  - {boolean} isCritical
-   *  - {boolean} isExtremeSuccess
-   *  - {boolean} isHardSuccess
+   *  - {boolean} isSpecialSuccess
    *  - {boolean} isRegularSuccess
    *  - {boolean} isRegularFailure
    *  - {boolean} isFumble

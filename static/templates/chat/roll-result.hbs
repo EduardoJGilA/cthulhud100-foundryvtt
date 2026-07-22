@@ -111,7 +111,7 @@
           {{/if}}
         </div>
       </div>
-      <h4 class="dice-total{{#unless ../noThreshold}}{{#if diceGroup.isCritical}} critical{{else if diceGroup.isFumble}} fumble{{else if diceGroup.isRegularFailure}} failure{{else if diceGroup.isExtremeSuccess}} success-extreme{{else if diceGroup.isHardSuccess}} success-hard{{else if diceGroup.isRegularSuccess}} success-regular{{/if}}{{/unless}}" data-tooltip="{{#unless ../noThreshold}}{{diceGroup.resultType}}{{/unless}}">
+      <h4 class="dice-total{{#unless ../noThreshold}}{{#if diceGroup.isCritical}} critical{{else if diceGroup.isFumble}} fumble{{else if diceGroup.isRegularFailure}} failure{{else if diceGroup.isSpecialSuccess}} success-special{{else if diceGroup.isRegularSuccess}} success-regular{{/if}}{{/unless}}" data-tooltip="{{#unless ../noThreshold}}{{diceGroup.resultType}}{{/unless}}">
         {{#if ../customResult}}
           {{localize ../customResult}}
         {{else}}

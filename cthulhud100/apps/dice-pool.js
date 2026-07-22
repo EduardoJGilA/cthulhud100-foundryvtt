@@ -93,9 +93,8 @@ export default class CoC7DicePool {
       fumble: -99,
       failure: 0,
       regular: 1,
-      hard: 2,
-      extreme: 3,
-      critical: 4
+      special: 2,
+      critical: 3
     }
   }
 
@@ -581,9 +580,8 @@ export default class CoC7DicePool {
             decader: '00',
             decaders: [],
             isCritical: false,
-            isExtremeSuccess: false,
+            isSpecialSuccess: false,
             isFumble: false,
-            isHardSuccess: false,
             isRegularFailure: false,
             isRegularSuccess: false,
             isRolledSuccess: false,
@@ -674,13 +672,9 @@ export default class CoC7DicePool {
                   output.resultType = game.i18n.localize('CoC7.RegularSuccess')
                   output.isRegularSuccess = true
                   break
-                case CoC7DicePool.successLevel.hard:
-                  output.resultType = game.i18n.localize('CoC7.HardSuccess')
-                  output.isHardSuccess = true
-                  break
-                case CoC7DicePool.successLevel.extreme:
-                  output.resultType = game.i18n.localize('CoC7.ExtremeSuccess')
-                  output.isExtremeSuccess = true
+                case CoC7DicePool.successLevel.special:
+                  output.resultType = game.i18n.localize('CoC7.SpecialSuccess')
+                  output.isSpecialSuccess = true
                   break
                 case CoC7DicePool.successLevel.critical:
                   output.resultType = game.i18n.localize('CoC7.CriticalSuccess')
@@ -852,18 +846,9 @@ export default class CoC7DicePool {
    * Is final roll extreme success
    * @returns {boolean}
    */
-  get isExtremeSuccess () {
+  get isSpecialSuccess () {
     const roll = this.diceGroups[this.diceGroups.length - 1]
-    return roll?.isExtremeSuccess ?? false
-  }
-
-  /**
-   * Is final roll hard success
-   * @returns {boolean}
-   */
-  get isHardSuccess () {
-    const roll = this.diceGroups[this.diceGroups.length - 1]
-    return roll?.isHardSuccess ?? false
+    return roll?.isSpecialSuccess ?? false
   }
 
   /**
@@ -1285,17 +1270,10 @@ export default class CoC7DicePool {
    * @returns {integer}
    */
   #minimumFumbleFromThreshold () {
-    if (typeof this.#threshold !== 'undefined') {
-      switch (this.#difficulty) {
-        case CoC7DicePool.difficultyLevel.regular:
-          return (this.#threshold + this.#flatThresholdModifier < 50 ? 96 : 100)
-        case CoC7DicePool.difficultyLevel.hard:
-          return (Math.floor((this.#threshold + this.#flatThresholdModifier) / 2) < 50 ? 96 : 100)
-        case CoC7DicePool.difficultyLevel.extreme:
-          return (Math.floor((this.#threshold + this.#flatThresholdModifier) / 5) < 50 ? 96 : 100)
-      }
-    }
-    return 100
+    // Cthulhu d100: a fumble is always 96-00, whatever the skill value.
+    // (Call of Cthulhu 7e instead moved the threshold to 100 once the target
+    // reached 50%; that rule does not exist in this system.)
+    return 96
   }
 
   /**
@@ -1329,12 +1307,20 @@ export default class CoC7DicePool {
       }
       if (typeof this.#threshold !== 'undefined' && this.#difficulty !== CoC7DicePool.difficultyLevel.impossible) {
         const regularSuccess = this.#threshold + this.#flatThresholdModifier
-        ranges.critical = 1
+        // Cthulhu d100 success tiers: critical is a twentieth of the effective
+        // score, special a fifth. There is no "hard" tier.
+        //
+        // Both are rounded half up, not truncated. This reproduces every row of
+        // the "Probabilidades de exitos extra" table in the rulebook: at 50% the
+        // critical range is 01-03 (50/20 = 2.5 -> 3), and at 8% the special range
+        // is 01-02 (8/5 = 1.6 -> 2). Truncating would be off by one on most rows.
+        //
+        // A roll of 01 is always a critical, hence the floor of 1.
+        ranges.critical = Math.max(1, Math.round(regularSuccess / 20))
         let minimum = ranges.critical
         let maximum = ranges.fumble - 1
         const checks = {
-          extreme: Math.floor(regularSuccess / 5),
-          hard: Math.floor(regularSuccess / 2),
+          special: Math.max(1, Math.round(regularSuccess / 5)),
           regular: regularSuccess
         }
         for (const key in checks) {
@@ -1477,9 +1463,8 @@ export default class CoC7DicePool {
       poolModifier: this.poolModifier,
       isRolled: this.isRolled,
       isCritical: diceGroups[0]?.isCritical,
-      isExtremeSuccess: diceGroups[0]?.isExtremeSuccess,
+      isSpecialSuccess: diceGroups[0]?.isSpecialSuccess,
       isFumble: diceGroups[0]?.isFumble,
-      isHardSuccess: diceGroups[0]?.isHardSuccess,
       isRegularFailure: diceGroups[0]?.isRegularFailure,
       isRegularSuccess: diceGroups[0]?.isRegularSuccess,
       isSuccess: diceGroups[0]?.isSuccess,

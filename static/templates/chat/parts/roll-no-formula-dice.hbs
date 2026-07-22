@@ -78,7 +78,7 @@
         </div>
       </div>
     </div>
-    <h4 class="dice-total{{#if diceGroup.isCritical}} critical{{else if diceGroup.isFumble}} fumble{{else if diceGroup.isRegularFailure}} failure{{else if diceGroup.isExtremeSuccess}} success-extreme{{else if diceGroup.isHardSuccess}} success-hard{{else if diceGroup.isRegularSuccess}} success-regular{{/if}}">{{diceGroup.total}} {{diceGroup.resultType}}{{#if diceGroup.flatDiceModifier}} ({{#if (gt diceGroup.flatDiceModifier 0)}}+{{/if}}{{diceGroup.flatDiceModifier}}){{/if}}</h4>
+    <h4 class="dice-total{{#if diceGroup.isCritical}} critical{{else if diceGroup.isFumble}} fumble{{else if diceGroup.isRegularFailure}} failure{{else if diceGroup.isSpecialSuccess}} success-special{{else if diceGroup.isRegularSuccess}} success-regular{{/if}}">{{diceGroup.total}} {{diceGroup.resultType}}{{#if diceGroup.flatDiceModifier}} ({{#if (gt diceGroup.flatDiceModifier 0)}}+{{/if}}{{diceGroup.flatDiceModifier}}){{/if}}</h4>
     {{#if hasMalfunction}}
       <h4 class="coc7-malfunction">{{malfunctionTxt}}</h4>
     {{/if}}

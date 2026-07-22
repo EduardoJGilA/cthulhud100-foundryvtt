@@ -298,9 +298,9 @@ export default class CoC7ChatOpposedMessage {
           const item = winner.getItemByName(check.#actorRolls[winnerUuid].key, 'weapon')
           const loser = await fromUuid(loserUuid)
           let isCritical = false
-          if (check.#actorRolls[winnerUuid].dicePool.difficulty < CoC7DicePool.successLevel.extreme && check.#actorRolls[winnerUuid].dicePool.successLevel >= CoC7DicePool.successLevel.extreme) {
+          if (check.#actorRolls[winnerUuid].dicePool.difficulty < CoC7DicePool.successLevel.special && check.#actorRolls[winnerUuid].dicePool.successLevel >= CoC7DicePool.successLevel.special) {
             isCritical = true
-          } else if (check.#actorRolls[winnerUuid].dicePool.difficulty === CoC7DicePool.successLevel.extreme && check.#actorRolls[winnerUuid].dicePool.isCritical) {
+          } else if (check.#actorRolls[winnerUuid].dicePool.difficulty === CoC7DicePool.successLevel.special && check.#actorRolls[winnerUuid].dicePool.isCritical) {
             isCritical = true
           }
           CoC7ChatDamage.createFromActors({ attacker: winner, weapon: item, isCritical, target: loser })

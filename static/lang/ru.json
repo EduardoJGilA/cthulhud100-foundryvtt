@@ -1,6 +1,5 @@
 {
   "CoC7.title": "Зов Ктулху 7-е издание",
-
   "TYPES.Actor.character": "Персонаж",
   "TYPES.Actor.container": "Контейнер",
   "TYPES.Actor.creature": "Существо",
@@ -10,7 +9,6 @@
   "CoC7.ActorDataLinked": "Данные персонажа связаны",
   "CoC7.ActorDataNotLinked": "Данные персонажа НЕ связаны",
   "CoC7.ActorIsSyntheticActor": "Персонаж является синтетическим персонажем (экземпляром персонажа)",
-
   "TYPES.Item.archetype": "Архетип",
   "TYPES.Item.book": "Книга",
   "TYPES.Item.chase": "Погоня",
@@ -22,7 +20,6 @@
   "TYPES.Item.status": "Статус",
   "TYPES.Item.talent": "Талант",
   "TYPES.Item.weapon": "Оружие",
-
   "CHARAC.STR": "СИЛ",
   "CHARAC.Strengh": "Сила",
   "CHARAC.Strength": "Сила",
@@ -132,7 +129,6 @@
   "CoC7.Restart": "Перезапустить",
   "CoC7.Reset": "Сбросить",
   "CoC7.Initiative": "Инициатива",
-
   "CoC7.Cast": "Произнести",
   "CoC7.SanityCost": "Стоимость рассудка",
   "CoC7.PowerCost": "Стоимость силы воли",
@@ -141,20 +137,18 @@
   "CoC7.OtherCosts": "Другие расходы",
   "CoC7.CastingSpell": "Произносит <i>{spell}</i>.",
   "CoC7.NotEnoughMagicPoints": "{spell} стоит {originalMagicPoints} очков магии, но у вас есть только {actorMagicPoints}. Хотите ли вы взять оставшиеся {convertedHitPoints} из своих очков здоровья? Вы получите {convertedHitPoints} урона, если продолжите.",
-
   "CoC7.CopyToClipboard": "Скопировать в буфер обмена",
   "CoC7.WhisperToSelection": "Шепнуть выбранным токенам",
   "CoC7.WhisperTo": "Шепнуть",
   "CoC7.SendToChat": "Отправить в чат",
-
   "CoC7.RegularSuccess": "Обычный успех",
   "CoC7.HardSuccess": "Трудный успех",
   "CoC7.ExtremeSuccess": "Экстремальный успех",
+  "CoC7.SpecialSuccess": "Особый успех",
   "CoC7.CriticalSuccess": "Критический успех",
   "CoC7.Fumble": "Неудача",
   "CoC7.Failure": "Провал",
   "CoC7.Malfunction": "{itemName} вышел из строя",
-
   "CoC7.Dice": "Кости",
   "CoC7.DiceModifierBonus": "бонус",
   "CoC7.DiceModifierPenalty": "штраф",
@@ -191,9 +185,7 @@
   "CoC7.ErrorMissingKeeperUser": "Ваш хранитель должен быть подключен, чтобы выполнить это действие",
   "CoC7.BonusDieAssailantReason": "Добавить 1 бонусную кость (нападающий лежит, связан...)",
   "CoC7.PenaltyDieSelfReason": "Добавить 1 штрафную кость (за то, что лежишь, связан...)",
-
   "CoC7.ConstitutionCheck": "Проверка телосложения",
-
   "CoC7.SanDataSelectionWindow": "Выберите потери РАС",
   "CoC7.BonusSelectionWindow": "Окно выбора бонусов",
   "CoC7.BonusSelectionWindowNamed": "Выберите модификатор для проверки {name}",
@@ -213,6 +205,7 @@
   "CoC7.RollDifficultyHard": "Трудная",
   "CoC7.RollDifficultyHardTitle": "Трудная сложность",
   "CoC7.RollDifficultyExtreme": "Экстремальная",
+  "CoC7.RollDifficultySpecial": "Особый",
   "CoC7.RollDifficultyExtremeTitle": "Экстремальная сложность",
   "CoC7.RollDifficultyCritical": "Критическая",
   "CoC7.RollDifficultyCriticalTitle": "Критическая сложность",
@@ -230,11 +223,9 @@
   "CoC7.CombinedAllHint": "Все броски должны быть успешными",
   "CoC7.CloseCard": "Закрыть карточку",
   "CoC7.AttackManeuver": "Атакующий маневр",
-
   "CoC7.CheckResult": "Проверка {name} ({value}%) - сложность {difficulty}",
   "CoC7.ItemCheckResult": "{item} - проверка {skill} ({value}%) - сложность {difficulty}",
   "CoC7.CheckRawValue": "({rawvalue}%) - сложность {difficulty}",
-
   "CoC7.ArmorAbsorbsDamage": "Броня поглощает весь урон",
   "CoC7.ArmorIgnored": "Броня игнорируется",
   "CoC7.Critical": "Критический",
@@ -247,7 +238,6 @@
   "CoC7.ShotIsImpossible": "Выстрел невозможен",
   "CoC7.OutOfAmmo": "Без патронов",
   "CoC7.OutOfShots": "Без выстрелов",
-
   "CoC7.BonusDamageRoll": "Бросок бонусного урона",
   "CoC7.Type": "Тип",
   "CoC7.FightBack": "Отбиваться",
@@ -281,9 +271,7 @@
   "CoC7.CheckFailed": "Проверка провалена",
   "CoC7.CheckPassed": "Проверка пройдена",
   "CoC7.CheckMemoryRepressed": "Память подавлена",
-
   "CoC7.combatCard.dive4cover": "Прыжок под прикрытие",
-
   "CoC7.rangeCombatCard.SingleShot": "Одиночный выстрел",
   "CoC7.rangeCombatCard.MultipleShots": "Множественные выстрелы",
   "CoC7.AutomaticFire": "Автоматический огонь",
@@ -318,14 +306,11 @@
   "CoC7.rangeCombatCard.InMeleeTitle": "1 штрафная кость. Цель участвует в рукопашном бою",
   "CoC7.rangeCombatCard.FastMovingTargetTitle": "1 штрафная кость. Цель быстрая (ДВИЖ 8+) и движется на полной скорости",
   "CoC7.rangeCombatCard.SurprisedTargetTitle": "1 бонусная кость за удивленную цель",
-
   "CoC7.meleeCombatDamageTakes": "получает",
   "CoC7.meleeCombatDamageFrom": "от",
   "CoC7.meleeCombatDamageDeals": "наносит",
   "CoC7.meleeCombatDamageWith": "с",
-
   "CoC7.DropZone": "Зона сброса",
-
   "CoC7.Value": "Значение",
   "CoC7.SkillValue": "Значение навыка",
   "CoC7.SkillBase": "Базовое",
@@ -334,14 +319,12 @@
   "CoC7.SkillArchetype": "Архетип",
   "CoC7.SkillOccupation": "Профессия",
   "CoC7.SkillPersonal": "Личное",
-
   "CoC7.SkillTotalExperience": "Очки опыта",
   "CoC7.SkillTotalArchetype": "Очки архетипа",
   "CoC7.SkillTotalOccupation": "Очки профессии",
   "CoC7.SkillTotalPersonal": "Личные очки",
   "CoC7.CharacteristicsPoints": "Очки характеристик",
   "CoC7.TotalPoints": "Всего очков профессии",
-
   "CoC7.ItemQuantity": "Количество",
   "CoC7.ItemWeight": "Вес",
   "CoC7.ItemDetails": "Детали",
@@ -360,11 +343,9 @@
   "CoC7.WeaponBulletsInMag": "Магазин",
   "CoC7.ItemPrice": "Цена",
   "CoC7.Armor": "Броня",
-
   "CoC7.EraInvictus": "Инвиктус",
   "CoC7.EraDarkAges": "Темные века - Стандарт",
   "CoC7.EraDarkAgesPulp": "Темные века - Пульп",
-
   "CoC7.EraDownDarkerTrails": "По Темным Тропам - Стандарт",
   "CoC7.EraDownDarkerTrailsPulp": "По Темным Тропам - Пульп",
   "CoC7.EraGasLight": "Ктулху в Газовом Свете",
@@ -376,7 +357,6 @@
   "CoC7.EraRegencyPulp": "Ктулху в Регентство - Пульп",
   "CoC7.Eras": "Вкусы Ктулху",
   "CoC7.EraAvailability": "Доступность",
-
   "CoC7.SkillNoAdjustments": "Без корректировки",
   "CoC7.SkillNoXpGain": "Без прироста ОП",
   "CoC7.SkillXpGainDisabled": "Прирост ОП отключен.",
@@ -391,7 +371,6 @@
   "CoC7.SkillKeepBaseValue": "Сохранить базовое значение",
   "CoC7.SkillPickNameOnly": "Выбрать специализацию",
   "CoC7.SkillSpecializationIsUnique": "Уникальная специализация",
-
   "CoC7.WeaponRanged": "Дальность",
   "CoC7.WeaponManeuver": "Маневр",
   "CoC7.WeaponTouch": "Прикосновение",
@@ -412,7 +391,6 @@
   "CoC7.Weapon.Property.Thrown": "Метательное",
   "CoC7.Weapon.Property.Burn": "Горение",
   "CoC7.Weapon.Property.Shotgun": "Дробовик",
-
   "CoC7.ErrorItem": "Не удалось найти предмет",
   "CoC7.ErrorActor": "Не удалось найти персонажа",
   "CoC7.ErrorInvalidFormula": "{value} не является допустимой формулой",
@@ -421,9 +399,7 @@
   "CoC7.ErrorInvalidRollType": "Тип броска",
   "CoC7.Validate": "Проверить",
   "CoC7.Apply": "Применить",
-
   "CoC7.NewBioSectionName": "Новый раздел",
-
   "CoC7.FightingSpecializationName": "Борьба",
   "CoC7.UnarmedWeaponName": "Без оружия",
   "CoC7.FirearmSpecializationName": "Огнестрельное оружие",
@@ -432,7 +408,6 @@
   "CoC7.AnySpecName": "Любое",
   "CoC7.BoutOfMadnessName": "Приступ безумия",
   "CoC7.InsanityName": "Безумие",
-
   "CoC7.NewSkillName": "новый навык",
   "CoC7.AddSkill": "Добавить навык",
   "CoC7.CleanSkillList": "Очистить список навыков",
@@ -454,7 +429,6 @@
   "CoC7.LuckIncreased": "Удача восстановлена ({die}/{score}) на {augment} очков",
   "CoC7.LuckNotIncreased": "Удача НЕ восстановлена ({die}/{score})",
   "CoC7.DevelopAttribWarn": "Вы не можете получить доступ к некоторым атрибутам в развитии/создании.",
-
   "CoC7.SkillDetail": "Деталь",
   "CoC7.EditSkill": "Редактировать навык",
   "CoC7.DeleteSkill": "Удалить навык",
@@ -469,12 +443,10 @@
   "CoC7.SortBySkillValue": "Сортировать по проценту навыка",
   "CoC7.UncommonSkillsShow": "Показать нечастые навыки",
   "CoC7.UncommonSkillsHide": "Скрыть нечастые навыки",
-
   "CoC7.NewBookName": "новая книга",
   "CoC7.AddBook": "Добавить книгу",
   "CoC7.NewSpellName": "новое заклинание",
   "CoC7.AddSpell": "Добавить заклинание",
-
   "CoC7.AddWeapon": "Добавить оружие",
   "CoC7.NewWeaponName": "новое оружие",
   "CoC7.EditWeapon": "Редактировать оружие",
@@ -496,7 +468,6 @@
   "CoC7.SANCheckTitle": "Потеря РС : {name} ({sanMin}/{sanMax})",
   "CoC7.NoSkill": "Нет навыка",
   "CoC7.AddWeapontHint": "<p>{actor} не имеет {weapon}.<br>Вы хотите создать его?</p>",
-
   "CoC7.LinkCheck": " Проверка {name}",
   "CoC7.LinkCheckDiff": "[{difficulty}] Проверка {name}",
   "CoC7.LinkCheckModif": " Проверка {name}({modifier})",
@@ -509,7 +480,6 @@
   "CoC7.LinkItemDiff": "[{difficulty}] {name}",
   "CoC7.LinkItemModif": " {name} ({modifier})",
   "CoC7.LinkItemDiffModif": "[{difficulty}] {name} ({modifier})",
-
   "CoC7.ManualCreditValues": "Ручные значения кредита",
   "CoC7.MonetarySymbol": "Символ :",
   "CoC7.MonetaryFactor": "Фактор :",
@@ -547,10 +517,8 @@
   "CoC7.MonetaryDefaultWealthy": "Богатый",
   "CoC7.MonetaryDefaultRich": "Богаче",
   "CoC7.MonetaryDefaultSuperRich": "Супер богатый",
-
   "CoC7.PossessionsNotes": "Заметки :",
   "CoC7.PossessionsNotesHolder": "Заметки",
-
   "CoC7.BackgroundNewSection": "Добавить новый раздел",
   "CoC7.BackgroundSectionNameHolder": "Введите название раздела",
   "CoC7.BackgroundDeleteSection": "Удалить раздел",
@@ -560,14 +528,12 @@
   "CoC7.BackgroundFlags": "Флаги",
   "CoC7.BackgroundFlagsMythosExperienced": "5% безумия Мифоса награждены",
   "CoC7.BackgroundFlagsMythosHardened": "Мифос закален",
-
   "CoC7.SanityLossEncounters": "Встречи с потерей рассудка",
   "CoC7.SanityLossImmunities": "Иммунитеты к потере рассудка",
   "CoC7.AddSanityLossEncounter": "Добавить встречу с потерей рассудка",
   "CoC7.AddSanityLossImmunity": "Добавить иммунитет к потере рассудка",
   "CoC7.DeleteSanityLossEncounter": "Удалить встречу с потерей рассудка",
   "CoC7.DeleteSanityLossImmunity": "Удалить иммунитет к потере рассудка",
-
   "CoC7.SanityLossType": "Тип",
   "CoC7.SanityLossTypeDialogTitle": "Новая потеря или иммунитет рассудка",
   "CoC7.SanityLossTypeDialogBody": "Добавить новую встречу с Мифосом, потерю или иммунитет рассудка персонажу.",
@@ -575,9 +541,7 @@
   "CoC7.SanityLossTypeValue": "Потерянные очки рассудка",
   "CoC7.SanityLossEncounter": "Встреча с потерей рассудка",
   "CoC7.SanityLossImmunity": "Иммунитет к потере рассудка",
-
   "CoC7.creatureFightingSkill": "Бой",
-
   "CoC7.InvoluntaryAction": "Непроизвольное действие",
   "CoC7.PerformInvoluntaryAction": "Непроизвольное действие выполнено",
   "CoC7.SanityCheck": "Проверка рассудка",
@@ -737,7 +701,6 @@
   "CoC7.Chase.PreysMax": "Макс. беглецов: {value}",
   "CoC7.Chase.ChasersMin": "Мин. преследователей: {value}",
   "CoC7.Chase.ChasersMax": "Макс. преследователей: {value}",
-
   "CoC7.SpellCastingTime": "Время заклинания",
   "CoC7.SpellCastingCost": "Стоимость заклинания",
   "CoC7.CallSpell": "Призвать",
@@ -751,7 +714,6 @@
   "CoC7.SpellType": "Тип заклинания",
   "CoC7.SpellSuccessfullyLearned": "Заклинание '{spell}' успешно изучено!",
   "CoC7.SpellAlreadyLearned": "Заклинание с именем ('{spell}') уже изучено.",
-
   "CoC7.BookHasNothingMoreToTeach": "{book} больше не может ничему научить. Навык Мифов Ктулху {actor} выше, чем этот рейтинг Мифов.",
   "CoC7.BookType": "Тип книги",
   "CoC7.Content": "Содержание",
@@ -986,7 +948,6 @@
   "CoC7.Maximize": "Развернуть",
   "CoC7.Summarize": "Свернуть",
   "CoC7.ClearAllConditions": "Очистить все условия",
-
   "CoC7.UnableToInteractWithChatCard": "Вы не можете взаимодействовать с этим сообщением, если вам нужно что-то изменить, попросите своего Хранителя выбрать опции за вас",
   "CoC7.UnableToCopyToClipboard": "Не удалось скопировать в буфер обмена, это может быть связано с настройками безопасности вашего браузера.",
   "CoC7.UnableToUploadDholeImage": "У вас нет разрешения на загрузку изображений, если вы импортируете, будет использован аватар по умолчанию.",

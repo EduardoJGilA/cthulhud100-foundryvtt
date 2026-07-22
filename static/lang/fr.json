@@ -1,6 +1,5 @@
 {
   "CoC7.title": "L'Appel de Cthulhu 7ème Édition",
-
   "TYPES.Actor.character": "Personnage",
   "TYPES.Actor.container": "Coffre",
   "TYPES.Actor.creature": "Créature",
@@ -10,7 +9,6 @@
   "CoC7.ActorDataLinked": "Les données de l'acteur et du token sont liées",
   "CoC7.ActorDataNotLinked": "Les données de l'acteur et du token NE sont PAS liées",
   "CoC7.ActorIsSyntheticActor": "L'acteur est une instance d'acteur",
-
   "TYPES.Item.archetype": "Archétype",
   "TYPES.Item.armor": "Armure",
   "TYPES.Item.book": "Ouvrage",
@@ -24,7 +22,6 @@
   "TYPES.Item.status": "État",
   "TYPES.Item.talent": "Talent",
   "TYPES.Item.weapon": "Arme",
-
   "CHARAC.STR": "FOR",
   "CHARAC.Strength": "Force",
   "CHARAC.CON": "CON",
@@ -127,7 +124,6 @@
   "CoC7.Reset": "Réinitialiser",
   "CoC7.Initiative": "Initiative",
   "CoC7.InitiativeRoll": "Jet d'Initiative",
-
   "CoC7.Cast": "Jet",
   "CoC7.CastHidden": "Jet Caché",
   "CoC7.MessageCast": "Vers le Chat",
@@ -140,20 +136,18 @@
   "CoC7.OtherCosts": "Autres coûts",
   "CoC7.CastingSpell": "Jette <i>{spell}</i>.",
   "CoC7.NotEnoughMagicPoints": "{spell} coûte {originalMagicPoints} Points de Magie, vous n'en avez que {actorMagicPoints}. Voulez-vous utiliser vos {convertedHitPoints} Points de Vie restants? Vous subirez {convertedHitPoints} points de dommage en le faisant.",
-
   "CoC7.CopyToClipboard": "Copier vers le presse-papier",
   "CoC7.WhisperToSelection": "Murmurer aux tokens sélectionnés",
   "CoC7.WhisperTo": "Murmurer à",
   "CoC7.SendToChat": "Envoyer au chat",
-
   "CoC7.RegularSuccess": "Réussite ordinaire",
   "CoC7.HardSuccess": "Réussite majeur",
   "CoC7.ExtremeSuccess": "Réussite extrême",
+  "CoC7.SpecialSuccess": "Succès spécial",
   "CoC7.CriticalSuccess": "Réussite critique",
   "CoC7.Fumble": "Échec critique",
   "CoC7.Failure": "Échec",
   "CoC7.Malfunction": "{itemName} subit une panne.",
-
   "CoC7.Dice": "Dés",
   "CoC7.DiceModifierBonus": "bonus",
   "CoC7.DiceModifierPenalty": "malus",
@@ -185,9 +179,7 @@
   "CoC7.KeeperSentDecoy": "Jet leurre envoyé aux joueurs",
   "CoC7.FakeRoll": "Envoyer un jet leurre aux joueurs",
   "CoC7.ErrorMissingKeeperUser": "Votre gardien doit être connecté pour accomplir cette action",
-
   "CoC7.ConstitutionCheck": "Test de constitution",
-
   "CoC7.SanDataSelectionWindow": "Choisissez les pertes de SAN",
   "CoC7.BonusSelectionWindow": "Paramètres du test",
   "CoC7.BonusSelectionWindowNamed": "Sélectionner les paramètres de test de {name}",
@@ -207,6 +199,7 @@
   "CoC7.RollDifficultyHard": "Majeur",
   "CoC7.RollDifficultyHardTitle": "Difficulté majeure",
   "CoC7.RollDifficultyExtreme": "Extrême",
+  "CoC7.RollDifficultySpecial": "Spécial",
   "CoC7.RollDifficultyExtremeTitle": "Difficulté extrême",
   "CoC7.RollDifficultyCritical": "Critique",
   "CoC7.RollDifficultyCriticalTitle": "Difficulté critique",
@@ -224,12 +217,10 @@
   "CoC7.CombinedAllHint": "Tous les jets doivent réussir",
   "CoC7.CloseCard": "Fermer la carte",
   "CoC7.AttackManeuver": "Manœuvre d'attaque",
-
   "CoC7.CheckResult": "jet de {name} ({value}%) - difficulté {difficulty}",
   "CoC7.CheckRollResult": "{name} ({value}%) - difficulté {difficulty}",
   "CoC7.ItemCheckResult": "{item} - jet de {skill} obtient ({value}%) - difficulté {difficulty}",
   "CoC7.CheckRawValue": "({rawvalue}%) - difficulté {difficulty}",
-
   "CoC7.ArmorAbsorbsDamage": "L'armure absorbe tous les dommages",
   "CoC7.ArmorWillFormula": "La valeur d'armure nécessite un jet",
   "CoC7.Critical": "Critique",
@@ -242,7 +233,6 @@
   "CoC7.ShotIsImpossible": "Tir impossible",
   "CoC7.OutOfAmmo": "Plus de munitions",
   "CoC7.OutOfShots": "Plus de tirs",
-
   "CoC7.BonusDamageRoll": "Jet d'Impact",
   "CoC7.Type": "Type",
   "CoC7.FightBack": "Rendre les coups",
@@ -273,8 +263,6 @@
   "CoC7.DamageInflicted": "Dommages infligés",
   "CoC7.Damage": "Dommages",
   "CoC7.TotalDamage": "Total des dommages",
-
-
   "CoC7.rangeCombatCard.SingleShot": "Tir simple",
   "CoC7.rangeCombatCard.MultipleShots": "Tir semi-auto",
   "CoC7.AutomaticFire": "Armes automatiques",
@@ -338,13 +326,10 @@
   "CoC7.rangeCombatCard.InMeleeTitle": "1 dé malus. La cible est engagée dans un combat rapproché",
   "CoC7.rangeCombatCard.FastMovingTargetTitle": "1 dé malus. La cible est rapide (Mouvement 8+) et se déplaçant à pleine vitesse",
   "CoC7.rangeCombatCard.SurprisedTargetTitle": "1 dé bonus pour une cible surprise",
-
   "CoC7.meleeCombatDamageTakes": "prend",
   "CoC7.meleeCombatDamageFrom": "de",
   "CoC7.meleeCombatDamageDeals": "fait",
   "CoC7.meleeCombatDamageWith": "avec",
-
-
   "CoC7.Value": "Valeur",
   "CoC7.SkillBase": "Base",
   "CoC7.BaseSkillValue": "Valeur de la compétence de base",
@@ -353,14 +338,12 @@
   "CoC7.SkillExperiencePackage": "Kit Expérience",
   "CoC7.SkillOccupation": "Occupation",
   "CoC7.SkillPersonal": "Personnel",
-
   "CoC7.SkillTotalExperience": "Points(%) d'expérience",
   "CoC7.SkillTotalExperiencePackagePoints": "Points du Kit Expérience",
   "CoC7.SkillTotalArchetype": "Points d'archétype",
   "CoC7.SkillTotalOccupation": "Points d'occupation",
   "CoC7.SkillTotalPersonal": "Points personnels",
   "CoC7.CharacteristicsPoints": "Points de caractéristiques",
-
   "CoC7.ItemQuantity": "Quantité",
   "CoC7.ItemWeight": "Poids",
   "CoC7.ItemDetails": "Détails",
@@ -378,7 +361,6 @@
   "CoC7.WeaponBulletsInMag": "Capacité",
   "CoC7.ItemPrice": "Prix",
   "CoC7.Armor": "Armure",
-
   "CoC7.EraInvictus": "Cthulhu Invictus",
   "CoC7.EraDarkAges": "An Mil",
   "CoC7.EraDarkAgesPulp": "An Mil - Pulp",
@@ -395,7 +377,6 @@
   "CoC7.EraReignOfTerror": "Le Règne de la Terreur",
   "CoC7.Eras": "Époques Cthulhiennes",
   "CoC7.EraAvailability": "Disponibilité",
-
   "CoC7.SkillNoXpGain": "Pas de gain d'XP",
   "CoC7.SkillHintNoXpGain": "Ne pas autoriser la compétence à être cochée pour \"Récompenses de l'expérience : La phase de développement de l'investigateur\"",
   "CoC7.SkillXpGainDisabled": "Gain d'XP désactivé.",
@@ -418,7 +399,6 @@
   "CoC7.SkillHintPickNameOnly": "Le nom de cette spécialisation peut être choisi dans une liste",
   "CoC7.SkillOwn": "Lui est propre",
   "CoC7.SkillHintOwn": "Cette spécialisation lui est propre",
-
   "CoC7.WeaponRanged": "À distance",
   "CoC7.WeaponManeuver": "Manœuvre",
   "CoC7.WeaponTouch": "Contact",
@@ -438,14 +418,11 @@
   "CoC7.Weapon.Property.Thrown": "Lancé",
   "CoC7.Weapon.Property.Burn": "Brûle",
   "CoC7.Weapon.Property.Shotgun": "Fusil à pompe",
-
   "CoC7.ErrorInvalidFormula": "{value} n'est pas une formule valide",
   "CoC7.ErrorInvalidCardType": "Type de Carte",
   "CoC7.ErrorInvalidRollType": "Type de Jet",
   "CoC7.Validate": "Valider",
   "CoC7.Apply": "Appliquer",
-
-
   "CoC7.FightingSpecializationName": "Combat. Au Contact",
   "CoC7.UnarmedWeaponName": "Sans arme",
   "CoC7.FirearmSpecializationName": "Combat. Arme à feu",
@@ -456,7 +433,6 @@
   "CoC7.AnySpecName": "Au choix",
   "CoC7.BoutOfMadnessName": "Folie passagère",
   "CoC7.InsanityName": "Folie",
-
   "CoC7.SkillNameHandgun": "Arme de poing",
   "CoC7.SkillNameRifle": "Fusil",
   "CoC7.SkillNameShotgun": "Fusil de chasse",
@@ -464,7 +440,6 @@
   "CoC7.SkillNameSmb": "Pistolet mitrailleur",
   "CoC7.SkillNameMachineGun": "Mitrailleuse",
   "CoC7.SkillNameLaunch": "Lancer",
-
   "CoC7.NewSkillName": "Nouvelle compétence",
   "CoC7.AddSkill": "Ajouter une compétence",
   "CoC7.DevelopmentPhase": "Phase de développement",
@@ -495,14 +470,12 @@
   "CoC7.SortBySkillValue": "Trier par valeur de compétence",
   "CoC7.UncommonSkillsShow": "Montrer les compétences spéciales",
   "CoC7.UncommonSkillsHide": "Cacher les compétences spéciales",
-
   "CoC7.NewArmorName": "nouvelle armure",
   "CoC7.NewBookName": "nouvel ouvrage",
   "CoC7.AddBook": "Ajouter un ouvrage",
   "CoC7.NewSpellName": "nouveau sort",
   "CoC7.AddSpell": "Ajouter un sort",
   "CoC7.AddArmor": "Ajouter une armure",
-
   "CoC7.AddWeapon": "Ajouter une arme",
   "CoC7.NewWeaponName": "Nouvelle arme",
   "CoC7.EditWeapon": "Éditer l'arme",
@@ -523,7 +496,6 @@
   "CoC7.EnterFormula": "Entrez la formule",
   "CoC7.SanRollHint": "Déclencher un test de SAN pour les personnages ciblés",
   "CoC7.NoSkill": "Aucune compétence",
-
   "CoC7.LinkCheck": " test de {name}",
   "CoC7.LinkCheckDiff": "[{difficulty}] test de {name}",
   "CoC7.LinkCheckModif": " test de {name} ({modifier})",
@@ -540,7 +512,6 @@
   "CoC7.LinkItemDiff": "[{difficulty}] {name}",
   "CoC7.LinkItemModif": " {name} ({modifier})",
   "CoC7.LinkItemDiffModif": "[{difficulty}] {name} ({modifier})",
-
   "CoC7.ManualCreditValues": "Richesses manuelle",
   "CoC7.MonetarySymbol": "Symbole",
   "CoC7.AutoCreditValues": "Basculer en mode calcul automatique / manuelle",
@@ -584,7 +555,6 @@
   "CoC7.MonetaryDefaultRich": "Riche",
   "CoC7.MonetaryDefaultSuperRich": "Très Riche",
   "CoC7.MonetaryDefaultAristocracy": "Aristocratie",
-
   "CoC7.PossessionsNotes": "Notes",
   "CoC7.PossessionsNotesHolder": "Notes",
   "CoC7.UseLuck": "Utiliser la Chance",
@@ -597,7 +567,6 @@
   "CoC7.UseLuckForAvoidDeath": "Dépenser {luck} points de chance pour éviter la mort",
   "CoC7.UseLuckForSecondAttack": "Dépenser 10 points de chance pour une deuxième attaque",
   "CoC7.UseLuckForLookOutMaster": "Dépenser toute sa chance POUR Regarde, Maître !",
-
   "CoC7.BackgroundNewSection": "Ajouter une nouvelle section",
   "CoC7.BackgroundSectionNameHolder": "Nommer la section",
   "CoC7.BackgroundDeleteSection": "Supprimer la section",
@@ -616,7 +585,6 @@
   "CoC7.AddSanityLossImmunity": "Ajouter une immunité aux pertes de SAN",
   "CoC7.DeleteSanityLossEncounter": "Supprimer une perte de SAN liée à une Rencontre",
   "CoC7.DeleteSanityLossImmunity": "Supprimer une immunité aux pertes de SAN",
-
   "CoC7.SanityLossType": "Type",
   "CoC7.SanityLossTypeDialogTitle": "Nouvelle immunité ou perte de SAN liée à une Rencontre",
   "CoC7.SanityLossTypeDialogBody": "Ajouter une Confrontation au Mythe, Perte de SAN, ou Immunité à ce personnage.",
@@ -624,8 +592,6 @@
   "CoC7.SanityLossTypeValue": "Perte de points de SAN",
   "CoC7.SanityLossEncounter": "Perte de SAN liée à la Rencontre",
   "CoC7.SanityLossImmunity": "Immunité à la perte de SAN",
-
-
   "CoC7.PerformInvoluntaryAction": "Action involontaire effectuée",
   "CoC7.SanityCheck": "Test de SAN",
   "CoC7.IntCheck": "Test d'intelligence",
@@ -672,7 +638,6 @@
   "CoC7.MythosGain": "Gain de Mythe",
   "CoC7.YouGainedCthulhuMythos": "Votre esprit défaille à la vue de cette manifestation (+{value}% Mythe de Cthulhu)",
   "CoC7.CardResolved": "Fin",
-
   "CoC7.InsertLocation": "Insérer une étape",
   "CoC7.RemoveLocation": "Supprimer une étape",
   "CoC7.LocationNotEmpty": "Vous ne pouvez pas supprimer une étape avec un personnage",
@@ -780,7 +745,6 @@
   "CoC7.Actions": "actions:",
   "CoC7.Chase.InitiativeShort": "INIT: {value}",
   "CoC7.Chase.AdjustedMovementShort": "ADJ. MOV: {value}",
-
   "CoC7.SpellCastingTime": "Temps de préparation",
   "CoC7.CallSpell": "Appel ",
   "CoC7.DismissSpell": "Rejet",
@@ -794,7 +758,6 @@
   "CoC7.SpellCosts": "Coûts du sort",
   "CoC7.SpellSuccessfullyLearned": "Sort '{spell}' appris !",
   "CoC7.SpellAlreadyLearned": "Le sort ('{spell}') est déjà connu.",
-
   "CoC7.Spell.Cost.AdditionalInformation": "Informations supplémentaires",
   "CoC7.Spell.Cost.AdditionalCasterPromptAdd": "Pour le lanceur: Ajouter",
   "CoC7.Spell.Cost.AdditionalCasterCost": "Coût de lancement supplémentaire",
@@ -808,13 +771,11 @@
   "CoC7.Spell.Cost.SetVariable": "Définir la variable",
   "CoC7.Spell.Cost.Toggle": "Basculer",
   "CoC7.Spell.Cost.TriggerPrompt": "Afficher la boîte de dialogue",
-
   "CoC7.Spell.Group.AdditionalCasters": "Lanceurs supplémentaires",
   "CoC7.Spell.Group.CasterCosts": "Coûts du lanceur",
   "CoC7.Spell.Group.CastingTime": "Temps d'incantation",
   "CoC7.Spell.Group.Prompt": "Invite",
   "CoC7.Spell.Group.System": "Système",
-
   "CoC7.Spell.Costs.AddCasters": "Ajouter un groupe de lanceurs",
   "CoC7.Spell.Costs.AddSectionBefore": "Ajouter une section avant",
   "CoC7.Spell.Costs.DeleteCasters": "Supprimer le groupe de lanceurs",
@@ -828,12 +789,10 @@
   "CoC7.Spell.Costs.VariableName": "Nombre",
   "CoC7.Spell.Costs.VariablePlaceholder": "@variable",
   "CoC7.Spell.Costs.Value": "Valeur",
-
   "CoC7.Spell.Legacy.Label": "Coûts des sorts hérités",
   "CoC7.Spell.Legacy.Hint": "Veuillez utiliser les coûts de l'onglet détails qui prennent en charge les coûts plus interactifs requis par de nombreux sorts et peuvent être automatiquement supprimés d'un acteur.",
   "CoC7.Spell.ErrorPromptNotShown": "Vous n'avez pas affiché toutes les invites de saisie utilisateur",
   "CoC7.Spell.ErrorUnableToFindAdditionalCasters": "Vous devez configurer des lanceurs supplémentaires avant d'attribuer des coûts",
-
   "CoC7.BookAlterProgress": "Quantité de progression d'étude",
   "CoC7.BookProgressValue": "Nombre pour modifier la progression (1 - {max})",
   "CoC7.BookType": "Type d'ouvrage",
@@ -866,11 +825,9 @@
   "CoC7.Unreadable": "Illisible",
   "CoC7.BookProgressSummary": "{fullStudies} ({currentPercent}%)",
   "CoC7.DeleteBookProgress": "Supprimer la progression d'étude",
-
   "CoC7.Crew": "Équipage",
   "CoC7.Origin": "Origine",
   "CoC7.ArmedVehicle": "Véhicule Armé",
-
   "CoC7.PulpTalents": "Talents Pulp",
   "CoC7.TalentType": "Type de Talent",
   "CoC7.PhysicalTalent": "Physique",
@@ -880,11 +837,9 @@
   "CoC7.BasicTalent": "Basique",
   "CoC7.InsaneTalent": "Folie",
   "CoC7.OtherTalent": "Autre",
-
   "CoC7.Items": "Objets",
   "CoC7.Books": "Ouvrages",
   "CoC7.Status": "États",
-
   "CoC7.Classic": "Classique",
   "CoC7.Lovecraftian": "Lovecraftien",
   "CoC7.Pulp": "Pulp",
@@ -921,7 +876,6 @@
   "CoC7.SkillSelectBase": "Sélectionner la valeur de base pour la compétence {name}",
   "CoC7.SelectSkill": "Sélectionner une compétence existante",
   "CoC7.CreateNewSkill": "Créer une nouvelle compétence",
-
   "CoC7.Characteristics": "Caractéristiques",
   "CoC7.Characteristic": "Caractéristique",
   "CoC7.EnableCharacteristics": "Activer le tirage des caractéristiques",
@@ -931,10 +885,8 @@
   "CoC7.BonusPoints": "Points Bonus",
   "CoC7.SuggestedOccupations": "Occupations suggérées",
   "CoC7.SuggestedTraits": "Traits suggérés",
-
   "CoC7.PutGunAway": "Rangez votre arme",
   "CoC7.DrawGun": "Dégainez votre arme",
-
   "CoC7.GmTools": "Outils du Gardien",
   "CoC7.GmNotes": "Notes du Gardien",
   "CoC7.DevPhase": "Phase de développement",
@@ -954,7 +906,6 @@
   "CoC7.WarnFastTargetWithWrongMOV": "'Rapide' sélectionné sur une cible avec un Mvt de moins de 8. (Mvt: {mov})",
   "CoC7.WarnTooManyTarget": "Trop de cibles sélectionnées. Seule la première est prise en compte",
   "CoC7.WarnNoTargetsSanCheck": "Pas de cible sélectionnée. Choisissez une cible ou créez un lien.",
-
   "CoC7.allActors": "Tous les Personnages",
   "CoC7.restTargets": "Candidats au repos",
   "CoC7.startRest": "Se reposer (PV, PM, SAN)",
@@ -974,19 +925,15 @@
   "CoC7.ErrorUnexpectedWeaponText": "Texte d'arme incompréhensible, déclarez un bug avec le texte que vous essayez d'importer",
   "CoC7.ErrorUnexpectedSkillsText": "Texte de compétence incompréhensible, déclarez un bug avec le texte que vous essayez d'importer",
   "CoC7.ErrorNoTokensSelected": "Pas de token sélectionné",
-
   "CoC7.InfoSkillAddedAtBase": "Cette compétence skill {name} a été ajoutée à {percent}%",
   "CoC7.InfoLessSkillThanOptions": "Seulement {skillCount} compétences pour {optionsCount} options. Toutes les compétences seront ajoutées",
-
   "CoC7.MessageCheckRequestedWait": "Votre gardien demande un jet de {check}.<br>Attendez ses instructions!<br>",
   "CoC7.MessageTargetCheckRequested": "Votre gardien demande un jet de {check} pour {name}.",
   "CoC7.MessageBoutOfMadnessTableNotFound": "Le résultat n'a pas été trouvé sur la table de folies, vérifiez les tables aléatoires créées.",
   "CoC7.MessageBoutOfMadnessItemNotFound": "Le résultat n'a pas été trouvé sur la table de folies, vérifiez les statuts créés.",
   "CoC7.MessageRollingCharacteristic": "Jet de la caractéristique {label}: {formula}",
-
   "CoC7.NoTargetTitle": "Souhaitez-vous continuer sans cible ?",
   "CoC7.NoTargetSelected": "Vous n'avez pas sélectionné de cible pour votre jet en {weapon}. Continuer malgré tout?",
-
   "CoC7.Import": "Importer",
   "CoC7.Proceed": "Continuer",
   "CoC7.Cancel": "Annuler",
@@ -995,7 +942,6 @@
   "CoC7.Enable": "Activer",
   "CoC7.Disable": "Désactiver",
   "CoC7.Duration": "Durée",
-
   "CoC7.ActorImporter": "Import de Protagoniste",
   "CoC7.ActorImporterSummary": "Importer un PNJ ou une Créature depuis sa description et ses statistiques. Copier simplement le texte",
   "CoC7.PasteTheDataBelow": "Coller le texte brut ci-dessous",
@@ -1028,29 +974,24 @@
   "CoC7.ImportActorItemsItemWorldModuleSystem": "Objets / Monde / Modules / Système",
   "CoC7.ImportActorItemsWorldModuleItemSystem": "Monde / Modules / Objets / Système",
   "CoC7.ActorImported": "Nouvel {actorType} importé: {actorName}",
-
   "CoC7.DholeHouseActorImporter": "Le Dhole's House Actor Importer JSON",
   "CoC7.DholeHouseActorImporterSummary": "Exporter le JSON de votre personnage DholeHouse et transférez-le ici.",
   "CoC7.DholeHouseImportingName": "A propos de l'import: ",
   "CoC7.DholeHousePickYourJSONFile": "Choisissez le fichier JSON exporter de The Dhole's House",
   "CoC7.DholeHouseActorImporterSource": "Importé de Dhole's House Actor",
   "CoC7.DholeHouseInvalidActor": "Le JSON sélectionné ne semble pas être un export de personnage Dhole's House valide",
-
   "CoC7.Migrate.Title": "Mise à jour requise",
   "CoC7.Migrate.Message": "<div>Votre monde a besoin d'une mise à jour pour tourner sous la version {version}.</div><div>Faîtes une sauvegarde avant de lancer la mise à jour.</div><div>Sans mise à jour, le système risque de dysfonctionner.</div><div>Le monde risque de redémarrer à la fin du processus.</div>",
   "CoC7.Migrate.WithModulesMessage": "<div>Votre monde ou vos modules doivent requérir une mise à jour pour fonctionner en version {version}.</div><div>Sauvegardez votre monde et le répertoire de vos modules listés ci-dessous avant de mettre à jour.</div><div>Si vous ne mettez pas à jour votre monde, le système ne fonctionnera pas correctement.</div><div>Les modules suivants contiennent des personnages ou des objets, ils seront donc sélectionnés.</div>{modules}<div>Le monde risque de redémarrer une fois terminé.</div>",
   "CoC7.Migrate.GMRequired": "<div>Votre monde a besoin d'une mise à jour pour tourner sous la version {version}.</div><div>Attendez que votre Gardien fasse la mise à jour puis rafraîchissez (F5) cette page.</div>",
   "CoC7.Migrate.ButtonUpdate": "Mise à jour",
   "CoC7.Migrate.ButtonSkip": "Passer",
-
   "CoC7.Migrate.TriggerButton": "Déclencher la Migration de Données",
   "CoC7.Migrate.TriggerTitle": "Déclencher la Migration de Données",
   "CoC7.Migrate.TriggerContents": "<div>Lance la migration de données puis redémarre</div>",
   "CoC7.Migrate.TriggerRestart": "Sauvegarde et redémarrage",
-
   "CoC7.Migrate.Complete": "Migration des données terminée",
   "CoC7.System.Documentation": "Consulter le manuel du système",
-
   "CoC7.Settings.CoreRules.Title": "Règles Optionnelles du Livre de Base",
   "CoC7.Settings.Rules.Name": "Variantes/Règles optionnelles",
   "CoC7.Settings.Rules.Label": "Configurer les variantes/règles optionnelles",
@@ -1104,7 +1045,6 @@
   "CoC7.Settings.AllowPushFumbles.Hint": "Si un jet est relançable et que le résultat était une maladresse, après avoir géré les conséquences de celle-ci, autoriser la relance du jet.",
   "CoC7.Settings.CharacteristicsOrder.Name": "Ordre des caractéristiques",
   "CoC7.Settings.CharacteristicsOrder.Hint": "Il existe de nombreuses variations mineures dans l'ordre des caractéristiques. Faites-les glisser dans l'ordre souhaité pour ce monde.",
-
   "CoC7.Settings.DropCoCID.Name": "Utiliser les CoC ID quand on dépose un item",
   "CoC7.Settings.DropCoCID.Hint": "En déposant un item avec un CoC ID, demander de conserver le CoC ID à la place de celui de l'item",
   "CoC7.Settings.DropCoCID.Dialog": "Utiliser les CoC ID pour les items déposés quand cela est possible ? Cela permet au système de sélectionner l'item correspondant à l'époque du monde.",
@@ -1112,13 +1052,10 @@
   "CoC7.Settings.DropCoCID.Prompt": "Afficher à chaque fois",
   "CoC7.Settings.DropCoCID.UseCoCID": "Utiliser les CoC ID autant que possible",
   "CoC7.Settings.DropCoCID.IgnoreCoCID": "Ne pas utiliser les CoC ID",
-
   "CoC7.Maximize": "Développer",
   "CoC7.Summarize": "Compacter",
   "CoC7.ClearAllConditions": "Effacer toutes les Conditions",
-
   "CoC7.UnableToUploadDholeImage": "Vous n'avez pas le droit de transférer des images, en cas d'import, l'avatar par défaut sera utilisé.",
-
   "CoC7.MessageTitleSelectUserToGiveTo": "Donner un objet à un autre personnage",
   "CoC7.MessageSelectUserToGiveTo": "A qui voulez-vous donner cet objet ?",
   "CoC7.MessageDistanceCalculationFailure": "Impossible de calculer la distance séparant les tokens, utiliser la fiche du token du personnage SVP.",
@@ -1126,7 +1063,6 @@
   "CoC7.DistanceUnitYard": "yd",
   "CoC7.DistanceUnitMetre": "m",
   "CoC7.ErrorUnknownDistanceUnit": "Unité de distance inconnue, utilisation de {distance}{unit} pour {distance} yards",
-
   "CoC7.ToolTipShort": "<label>{skill} {regular}% ({hard}/{extreme})</label>",
   "CoC7.ToolTipSkill": "<label>{skill} {regular}% ({hard}/{extreme})</label><ul><li><strong>Clic gauche</strong> Jet avec options</li><li><strong>Shift + Clic gauche</strong> Jet immédiat à difficulté normale</li></ul><label>Jets opposés</label><ul><li><strong>Clic droit</strong> Jet opposé avec options</li><li><strong>Shift + Clic droit</strong> Jet opposé immédiat</li></ul><label>Jets combinés</label><ul><li><strong>Alt/Option + Clic droit</strong> Jet combiné avec options</li></ul>",
   "CoC7.ToolTipBasic": "<label>{skill} {regular}% ({hard}/{extreme})</label><ul><li><strong>Clic gauche</strong> : lancer de jet avec options</li><li><strong>Maj + Clic gauche</strong> : lancer immédiat en difficulté normale</li></ul>",
@@ -1141,7 +1077,6 @@
   "CoC7.ToolTipSkillFlagged": "Coché pour développement",
   "CoC7.ToolTipSkillUnflagged": "Pas coché pour développement",
   "CoC7.ToolTipSeeNotes": "Voir les notes",
-
   "SETTINGS.TitleRules": "Règles",
   "SETTINGS.TitleInitiative": "Paramètres d'initiative",
   "SETTINGS.TitleRoll": "Paramètres de jets de dés",
@@ -1255,13 +1190,10 @@
   "SETTINGS.SceneDistanceNotCalculatedNoErrorHint": "Au début d'un combat à distance, en mode immersion, ne pas afficher les messages de calcul.",
   "CoC7.SETTINGS.LegacySpellCosts": "Toujours afficher le système de coûts des sorts hérités",
   "CoC7.SETTINGS.LegacySpellCostsHint": "Afficher les entrées de coûts des sorts hérités même si elles sont vides",
-
   "CoC7.getTheExample": "Copier l'Exemple",
   "CoC7.Copied": "Texte de l'Exemple copié dans le presse-papier",
-
   "CoC7.EffectNew": "Nouvel effet",
   "CoC7.EffectAppliedCantOverride": "Un effet actif est applicable. Vous de pouvez modifier [{name}]. Désactivez cet effet pour pouvoir modifier cette valeur.",
-
   "CoC7.InvestigatorWizard.Title": "Création de Personnage guidée",
   "CoC7.InvestigatorWizard.TitleKeeperConfiguration": "Configuration du Gardien",
   "CoC7.InvestigatorWizard.TitleSelectSetup": "Configuration de l'Investigateur",
@@ -1334,7 +1266,6 @@
   "CoC7.InvestigatorWizard.CreateInstructions": "Cliquez sur créer pour créer votre personnage. Votre Gardien doit être connecté pour pouvoir procéder à la création.",
   "CoC7.InvestigatorWizard.CreatingInvestigator": "Attendez s'il vous plaît pendant que le Gardien crée votre investigateur.",
   "CoC7.InvestigatorWizard.PersonalDescription": "Description personnelle",
-
   "CoC7.CoCIDFlag.id": "ID",
   "CoC7.CoCIDFlag.loading": "Charger les objets correspondants",
   "CoC7.CoCIDFlag.title": "Éditer le System ID (CoC ID)",
@@ -1540,15 +1471,12 @@
   "CoC7.CoCIDFlag.keys.i.skill.stealth-water": "Discrétion (eau)",
   "CoC7.CoCIDFlag.keys.i.skill.smell-interesting": "Sentir quelque chose d'intéressant",
   "CoC7.CoCIDFlag.keys.i.skill.spot-hidden-echolocation": "Trouver Objet Caché (écholocation)",
-
   "CoC7.CoCIDFlag.keys.i.skill.throw": "Lancer",
-
   "CoC7.CoCIDFlag.keys.i.skill.art-craft-bowyer": "(An Mil)",
   "CoC7.CoCIDFlag.keys.i.skill.art-craft-bone-and-horn-worker": "(An Mil)",
   "CoC7.CoCIDFlag.keys.i.skill.status": "(An Mil/Invictus)",
   "CoC7.CoCIDFlag.keys.i.skill.empire": "(Invictus)",
   "CoC7.CoCIDFlag.keys.i.skill.art-craft-smith": "(An Mil)",
-
   "CoC7.CoCIDFlag.keys.i.skill.art-craft-chalk-art": "(By Gaslight)",
   "CoC7.CoCIDFlag.keys.i.skill.art-craft-sweep": "(By Gaslight)",
   "CoC7.CoCIDFlag.keys.i.skill.reassure": "(By Gaslight/Regency)",
@@ -1574,7 +1502,6 @@
   "CoC7.CoCIDFlag.error.unknown-era": "Époque inconnue \"{era}\"",
   "CoC7.CoCIDFlag.error.incorrect.type": "Tentative de convertir le CoC ID d'un item manquant. Consultez la console.",
   "CoC7.CoCIDFlag.error.documents-not-found": "Items inconnus dans le monde ou dans les compendiums pour les CoC IDs ({cocids}), langue \"{lang}\", et l'époque \"{era}\". Vérifiez l'époque du monde.",
-
   "CoC7.CoCIDBatch.title": "Automate du System ID (CoC ID)",
   "CoC7.CoCIDBatch.summary": "Le système CoC7 a ajouté le System ID (CoC ID). Cela permet d'identifier les items FoundryVTT, les compétences par exemple. Cette page vous permettra de positionner l'identifiant pour des '{type}' existant(e)s. Le System ID doit utiliser les traductions anglaises pour pouvoir supporter le portage dans d'autres langues.",
   "CoC7.CoCIDBatch.ThrowSkillChange": "Les CoC ID pour \"Combat (Lancer)\", \"Armes à feu (Lancer)\" et \"À distance (Lancer)\" ne sont plus nécessaires, souhaitez-vous mettre à jour les compétences correspondantes dans ce monde vers \"Lancer\" ?",
@@ -1596,22 +1523,18 @@
   "CoC7.CoCIDCompendiumPopulateDestination": "Module de Destination",
   "CoC7.CoCIDCompendiumPopulateTypes": "Types",
   "CoC7.CoCIDCompendiumPopulateButton": "Peupler",
-
   "CoC7.TokenCreationRoll.Title": "Aléatoire détecté",
   "CoC7.TokenCreationRoll.Prompt": "Ce token a des caractéristiques ou compétences aléatoires.<br>Que souhaitez-vous faire ?",
   "CoC7.TokenCreationRoll.ButtonRoll": "Jeter les dés pour toutes",
   "CoC7.TokenCreationRoll.ButtonAverage": "Prendre les moyennes",
   "CoC7.TokenCreationRoll.Rolled": "Caractéristiques et compétences {name} jetées",
   "CoC7.TokenCreationRoll.Averaged": "Caractéristiques et compétences {name} moyennées",
-
-
   "CoC7.Temporary": "Temporaire",
   "CoC7.Passive": "Passif",
   "CoC7.Inactive": "Inactif",
   "CoC7.Suppressed": "Supprimé",
   "CoC7.Unavailable": "Indisponible",
   "CoC7.ManualTalents": "Talents manuels",
-
   "CoC7.PickWhichActorTitle": "Choisissez à la place de qui faire le jet ",
   "CoC7.PickWhichActorDesc": "Vous êtes Propriétaire de plusieurs Acteurs, choisissez à la place de qui faire le jet",
   "CoC7.WaitingOnUser": "En attente de l'utilisateur",
@@ -1619,13 +1542,11 @@
   "CoC7.ErrorOpposedRollsLimitedToTwoActors": "Une carte de jet opposé demandes deux acteurs",
   "CoC7.ErrorOpposedRollsMissingAttackerDefender": "Une carte d'opposition nécessite un attaquant et un défenseur",
   "CoC7.PauseName": "Pause Poulpique",
-
   "CoC7.ClickableEvents.MouseOver.Title": "Permission de cliquer",
   "CoC7.ClickableEvents.MouseOver.Hint": "Renvoie un booléen si le click est permis et affiche le curseur de la souris",
   "CoC7.ClickableEvents.LeftClick.Title": "Script sur Click Gauche",
   "CoC7.ClickableEvents.RightClick.Title": "Script sur Click Droit",
   "TYPES.RegionBehavior.coc7ClickableEvents": "Événements cliquables",
-
   "CoC7.SANSameLossAsMythosGain": "Perte de SAN équivalente au gain en Mythe de Cthulhu",
   "CoC7.ExperiencePackageBackground": "Ajouter à l'historique de l'investigateur se basant sur son expérience.",
   "CoC7.ExperiencePackageDialogTitle": "Sélectionnez les options du Kit Expérience",
@@ -1633,7 +1554,6 @@
   "CoC7.ExperiencePackageApplySanity": "Appliquer la perte de SAN",
   "CoC7.EmptySpellList": "Ajouter un sort en le déposant ici.",
   "CoC7.EmptyStatusList": "Ajouter une phobie/manie en la déposant ici.",
-
   "CoC7.PromptAddInjuryScar": "Ajouter une blessure/cicatrice",
   "CoC7.PromptAddStatus": "Ajouter une phobie/manie",
   "CoC7.PromptAddSpells": "Ajouter des sorts",
@@ -1642,9 +1562,7 @@
   "CoC7.ErrorExperiencePackageNotGM": "Votre gardien doit appliquer les Kits Expérience",
   "CoC7.ClearExperiencePackageName": "Effacer le nom du Kit Expérience",
   "CoC7.SheetExperiencePackageName": "Expérience",
-
   "CoC7.AlternativeNames": "Noms alternatifs",
-
   "TOKEN.MOVEMENT.ACTIONS.walk.label": "Marcher",
   "TOKEN.MOVEMENT.ACTIONS.fly.label": "Voler",
   "TOKEN.MOVEMENT.ACTIONS.swim.label": "Nager",
@@ -1654,11 +1572,9 @@
   "TOKEN.MOVEMENT.ACTIONS.jump.label": "Sauter",
   "TOKEN.MOVEMENT.ACTIONS.blink.label": "Téléporter (Clignote)",
   "TOKEN.MOVEMENT.ACTIONS.displace.label": "Téléporter (Déplace)",
-
   "CoC7.PortraitOptions": "Options de portrait",
   "CoC7.WhatCopiedClipboard": "\"{what}\" copié dans le presse-papiers.",
   "CoC7.AddedEmbeddedItems": "{names} ajouté(s)",
-
   "CoC7.Errors.UnableToLoadMessage": "Impossible de charger le message",
   "CoC7.Errors.UnparsableRoll": "Impossible de déterminer ce que vous lancez",
   "CoC7.Errors.UnparsableActor": "Impossible de déterminer qui effectue le lancer",
@@ -1686,7 +1602,6 @@
   "CoC7.Config.AdventureSubheading": "Sous-titre d'aventure fixe",
   "CoC7.Config.AdventureChangeHint": "Vous devrez fermer et rouvrir le document pour que les modifications soient appliquées",
   "CoC7.ModifiedByActiveEffect": "Ceci est modifié par un effet actif et ne peut pas être édité directement",
-
   "CoC7.CoC7ModelsActorContainerSheetV2": "Fiche de conteneur CoC7",
   "CoC7.CoC7ModelsActorCharacterSheetV2": "Fiche d'investigateur CoC7 v2",
   "CoC7.CoC7ModelsActorCharacterSheetSummarizedV2": "Fiche d'investigateur résumée CoC7 v2",
@@ -1707,7 +1622,6 @@
   "CoC7.CoC7ModelsItemStatusSheet": "Fiche de statut CoC7",
   "CoC7.CoC7ModelsItemTalentSheet": "Fiche de talent CoC7",
   "CoC7.CoC7ModelsItemWeaponSheet": "Fiche d'arme CoC7",
-
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceDrawingToggle": "CCI : Bascule de dessin",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceAmbientLightToggle": "CCI : Bascule de lumière",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceMapPinToggle": "CCI : Bascule d'épingle de carte",
@@ -1716,7 +1630,6 @@
   "TYPES.RegionBehavior.ChaosiumCanvasInterfacePlayer": "CCI : Joueur",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceToScene": "CCI : Vers la scène",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceTileToggle": "CCI : Bascule de tuile",
-
   "CoC7.ChaosiumCanvasInterface.Actions.Hide": "Cacher",
   "CoC7.ChaosiumCanvasInterface.Actions.Show": "Montrer",
   "CoC7.ChaosiumCanvasInterface.Actions.Toggle": "Basculer",

@@ -271,8 +271,12 @@ Sustituye la petición original de licencia MIT, que es inviable (ver §0, Nota 
 Es la fase de mayor rendimiento por línea tocada.
 
 **Criterio de aceptación:** una ficha con FUE 13 / TAM 14 muestra MD `0`; una habilidad al
-50% produce Crítico con `01-02`, Especial con `03-10`, Éxito con `11-50`, Fallo con `51-95`
+50% produce Crítico con `01-03`, Especial con `04-10`, Éxito con `11-50`, Fallo con `51-95`
 y Pifia con `96-00`.
+
+> **Corregido.** La primera redacción de este criterio decía Crítico `01-02`, deducido de
+> `floor(50/20)`. Es incorrecto: la tabla "Probabilidades de éxitos extra" (PDF pág. 6)
+> da Crítico 3 para el tramo 50-52%. El manual **redondea al más cercano**, no trunca.
 
 ### F1.1 — Atributos en escala 3-18
 - [ ] `cthulhud100/models/actor/global-system.js:120` `defineSchemaCharacteristics()`: renombrar
@@ -290,16 +294,30 @@ y Pifia con `96-00`.
 - [ ] Etiquetas en los 15 `static/lang/*.json`: FUE, CON, DES, TAM, INT, POD, CAR, EST
       (traducidas por idioma; el inglés puede conservar STR/CON/DEX/SIZ/INT/POW/APP/EDU)
 
-### F1.2 — Niveles de éxito
-- [ ] `cthulhud100/apps/dice-pool.js:91` `successLevel`: redefinir a
-      `fumble / failure / regular / special / critical` (desaparece `hard`)
-- [ ] `cthulhud100/apps/dice-pool.js:1325` `#populateThresholdRanges()`: umbrales
-      `crítico = floor(hab/20)`, `especial = floor(hab/5)`, `éxito = hab`
-- [ ] `cthulhud100/apps/dice-pool.js:1293`: pifia **siempre** 96-00, eliminar la condición `<50`
-- [ ] `01` → éxito crítico automático; `00` → fallo y pifia automáticos
-- [ ] Actualizar los iconos y textos de nivel de éxito en `dice-pool.js:690-703`
-- [ ] Revisar `cthulhud100/apps/check.js` (1233 líneas) por referencias a `hard`
-- [ ] Revisar las plantillas de chat en `static/templates/chat/` que muestren niveles
+### F1.2 — Niveles de éxito ✅
+- [x] `successLevel` redefinido a `fumble(-99) / failure(0) / regular(1) / special(2) /
+      critical(3)`; desaparece `hard`
+- [x] `#populateThresholdRanges()`: `crítico = max(1, round(hab/20))`,
+      `especial = max(1, round(hab/5))`, `éxito = hab`
+- [x] `#minimumFumbleFromThreshold()`: pifia **siempre** 96, condición `<50` eliminada
+- [x] `01` → crítico automático (por el `max(1, …)`); `00` → pifia (cae en `[96,100]`)
+- [x] Renombrado `isExtremeSuccess` → `isSpecialSuccess`; `isHardSuccess` eliminado
+      (6 sitios JS + 4 plantillas `.hbs`)
+- [x] Referencias corregidas en `combat.js`, `chat-damage.js`, `chat-opposed-message.js`
+- [x] CSS: `.extreme-success` → `.special-success`; `.hard-success` y `.success-hard`
+      eliminados de `coc7-all.less`, `coc7-v12.less`, `coc7-chat-message.less`
+- [x] Claves i18n `CoC7.SpecialSuccess` y `CoC7.RollDifficultySpecial` añadidas y
+      traducidas en los 15 idiomas
+- [x] `npm run eslint` limpio, `npm run build` correcto
+
+> **El manual redondea, no trunca.** Verificado con un script contra las 24 filas de la
+> tabla de la pág. 6: los 100 valores de 1% a 100% coinciden usando
+> `Math.round`. Con `Math.floor` fallaban la mayoría de las filas.
+>
+> **Pendiente:** `difficultyLevel` todavía conserva `hard`/`extreme` (20 referencias cada
+> uno). Es un concepto distinto —la dificultad *solicitada* de una tirada— y en d100 no
+> existe: la dificultad se aplica con modificadores de circunstancia ±10/20%. Podarlo
+> queda como tarea de F1.6.
 
 ### F1.3 — Características derivadas
 - [ ] `Idea = INT×5`, `Suerte = POD×5`, `Cultura General = EST×5`

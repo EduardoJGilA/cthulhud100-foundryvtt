@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-      <h4 class="dice-total{{#if isCritical}} critical{{else if isFumble}} fumble{{else if isRegularFailure}} failure{{else if isExtremeSuccess}} success-extreme{{else if isHardSuccess}} success-hard{{else if isRegularSuccess}} success-regular{{/if}}" data-tooltip="{{resultType}}">{{total}}{{#if isPushed}} {{localize 'CoC7.PushedRoll'}}{{/if}}{{#if luckSpent}} - {{localize 'CoC7.LuckSpentAlt'}} ({{luckSpent}}){{/if}}</h4>
+      <h4 class="dice-total{{#if isCritical}} critical{{else if isFumble}} fumble{{else if isRegularFailure}} failure{{else if isSpecialSuccess}} success-special{{else if isRegularSuccess}} success-regular{{/if}}" data-tooltip="{{resultType}}">{{total}}{{#if isPushed}} {{localize 'CoC7.PushedRoll'}}{{/if}}{{#if luckSpent}} - {{localize 'CoC7.LuckSpentAlt'}} ({{luckSpent}}){{/if}}</h4>
     </div>
   </div>
 {{/unless}}

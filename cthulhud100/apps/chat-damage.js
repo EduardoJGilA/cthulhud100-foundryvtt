@@ -151,7 +151,7 @@ export default class CoC7ChatDamage {
         this.attacker = attackerData.attackerUuid
         this.item = attackerData.itemUuid
       }
-      if (checkCritical && attackerData.successLevel >= CoC7DicePool.successLevel.extreme) {
+      if (checkCritical && attackerData.successLevel >= CoC7DicePool.successLevel.special) {
         this.#isCritical = true
         const item = (await this.item)
         if (item?.system?.properties.impl ?? false) {

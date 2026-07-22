@@ -1,6 +1,5 @@
 {
   "CoC7.title": "크툴루의 부름 7th Edition",
-
   "TYPES.Actor.character": "캐릭터",
   "TYPES.Actor.container": "보관함",
   "TYPES.Actor.creature": "크리쳐",
@@ -10,7 +9,6 @@
   "CoC7.ActorDataLinked": "캐릭터 시트가 연동되었습니다",
   "CoC7.ActorDataNotLinked": "캐릭터 시트가 연동되어있지않습니다",
   "CoC7.ActorIsSyntheticActor": "이 캐릭터 시트는 변장(변장한 캐릭터의 시트) 입니다",
-
   "TYPES.Item.archetype": "캐릭터 타입",
   "TYPES.Item.armor": "방어구",
   "TYPES.Item.book": "서적",
@@ -24,7 +22,6 @@
   "TYPES.Item.status": "상황",
   "TYPES.Item.talent": "재능",
   "TYPES.Item.weapon": "무기",
-
   "CHARAC.STR": "근력",
   "CHARAC.Strengh": "근력",
   "CHARAC.Strength": "근력",
@@ -135,7 +132,6 @@
   "CoC7.Restart": "다시 시작",
   "CoC7.Reset": "재설정",
   "CoC7.Initiative": "계획",
-
   "CoC7.Cast": "시전",
   "CoC7.CastHidden": "비밀 시전",
   "CoC7.SanityCost": "이성 조건",
@@ -145,20 +141,18 @@
   "CoC7.OtherCosts": "기타 조건",
   "CoC7.CastingSpell": "<i>{spell}</i> 주문 시전.",
   "CoC7.NotEnoughMagicPoints": "{spell}의 소모마력은 {originalMagicPoints} 이지만, 현재 당신의 마력은 {actorMagicPoints} 가지고있습니다. 부족한마력대신 {convertedHitPoints} 만큼의 체력을 변환해서 사용하시겠습니까? 계속진행한다면 {convertedHitPoints} 만큼의 피해 대미지를 입습니다.",
-
   "CoC7.CopyToClipboard": "클립보드에 복사",
   "CoC7.WhisperToSelection": "선택한 토큰에 귓속말",
   "CoC7.WhisperTo": "귓속말: ",
   "CoC7.SendToChat": "채팅송신",
-
   "CoC7.RegularSuccess": "보통 성공",
   "CoC7.HardSuccess": "어려운 성공",
   "CoC7.ExtremeSuccess": "극단적 성공",
+  "CoC7.SpecialSuccess": "스페셜 성공",
   "CoC7.CriticalSuccess": "대성공",
   "CoC7.Fumble": "대실패",
   "CoC7.Failure": "실패",
   "CoC7.Malfunction": "{itemName} 이(가) 고장났습니다",
-
   "CoC7.Dice": "주사위",
   "CoC7.DiceModifierBonus": "주사위",
   "CoC7.DiceModifierPenalty": "패널티",
@@ -195,9 +189,7 @@
   "CoC7.ErrorMissingKeeperUser": "이 작업을 수행하려면 수호자가 연결되어 있어야 합니다.",
   "CoC7.BonusDieAssailantReason": "보너스 다이스 1개 (타켓가 구속되어있거나 엎드려있는 상태 입니다)",
   "CoC7.PenaltyDieSelfReason": "패널티 다이스 1개 (캐릭터가 구속되어있거나 엎드려있는 상태 입니다)",
-
   "CoC7.ConstitutionCheck": "건강 판정",
-
   "CoC7.SanDataSelectionWindow": "이성치 손실 선택",
   "CoC7.BonusSelectionWindow": "보너스 선택창",
   "CoC7.BonusSelectionWindowNamed": "{name} 판정을 위해 난이도를 선택합니다",
@@ -217,6 +209,7 @@
   "CoC7.RollDifficultyHard": "어려움",
   "CoC7.RollDifficultyHardTitle": "어려움 난이도",
   "CoC7.RollDifficultyExtreme": "극단적",
+  "CoC7.RollDifficultySpecial": "스페셜",
   "CoC7.RollDifficultyExtremeTitle": "극단적 난이도",
   "CoC7.RollDifficultyCritical": "대성공",
   "CoC7.RollDifficultyCriticalTitle": "대성공 난이도",
@@ -236,11 +229,9 @@
   "CoC7.CombinedAllHint": "모든 판정에 성공해야 함",
   "CoC7.CloseCard": "카드 닫기",
   "CoC7.AttackManeuver": "공격 계획",
-
   "CoC7.CheckResult": "{name} 판정 ({value}%) - {difficulty} 난이도",
   "CoC7.ItemCheckResult": "{item} - {skill} 판정 ({value}%) - {difficulty} 난이도",
   "CoC7.CheckRawValue": "({rawvalue}%) - {difficulty} 난이도",
-
   "CoC7.ArmorAbsorbsDamage": "장갑이 모든 피해 흡수",
   "CoC7.ArmorIgnored": "장갑 무시",
   "CoC7.Critical": "치명타",
@@ -253,7 +244,6 @@
   "CoC7.ShotIsImpossible": "사격 불가",
   "CoC7.OutOfAmmo": "탄약 고갈",
   "CoC7.OutOfShots": "사정거리 밖",
-
   "CoC7.BonusDamageRoll": "피해 보너스 판정",
   "CoC7.Type": "유형",
   "CoC7.FightBack": "반격",
@@ -287,9 +277,7 @@
   "CoC7.CheckFailed": "실패",
   "CoC7.CheckPassed": "성공",
   "CoC7.CheckMemoryRepressed": "억압된 기억",
-
   "CoC7.combatCard.dive4cover": "엄페물에 뛰어들기",
-
   "CoC7.rangeCombatCard.SingleShot": "사격(단발)",
   "CoC7.rangeCombatCard.MultipleShots": "사격(연발)",
   "CoC7.AutomaticFire": "반자동 사격",
@@ -325,14 +313,11 @@
   "CoC7.rangeCombatCard.InMeleeTitle": "패널티 주사위 1개. 대상이 근접 전투에 들어갔습니다",
   "CoC7.rangeCombatCard.FastMovingTargetTitle": "패널티 주사위 1개. 대상이 빠르고 (MOV 8+) 최고 속도로 움직입니다",
   "CoC7.rangeCombatCard.SurprisedTargetTitle": "놀란 대상에게 보너스 주사위 1개",
-
   "CoC7.meleeCombatDamageTakes": "받는 피해",
   "CoC7.meleeCombatDamageFrom": "공격자",
   "CoC7.meleeCombatDamageDeals": "주는 피해",
   "CoC7.meleeCombatDamageWith": "사용무기",
-
   "CoC7.DropZone": "낙하 지점",
-
   "CoC7.Value": "수치",
   "CoC7.SkillValue": "기능 수치",
   "CoC7.SkillBase": "기본",
@@ -342,7 +327,6 @@
   "CoC7.SkillExperiencePackage": "경험치 패키지",
   "CoC7.SkillOccupation": "직업 기능",
   "CoC7.SkillPersonal": "관심 기능",
-
   "CoC7.SkillTotalExperience": "경험치 점수",
   "CoC7.SkillTotalExperiencePackagePoints": "경험치 패키지 점수",
   "CoC7.SkillTotalArchetype": "캐릭터 타입 점수",
@@ -350,7 +334,6 @@
   "CoC7.SkillTotalPersonal": "관심 기능 점수",
   "CoC7.CharacteristicsPoints": "특성치 점수",
   "CoC7.TotalPoints": "총 직업 기능 점수",
-
   "CoC7.ItemQuantity": "양",
   "CoC7.ItemWeight": "무게",
   "CoC7.ItemDetails": "상세",
@@ -369,7 +352,6 @@
   "CoC7.WeaponBulletsInMag": "탄창",
   "CoC7.ItemPrice": "가격",
   "CoC7.Armor": "장갑",
-
   "CoC7.EraInvictus": "인빅터스",
   "CoC7.EraDarkAges": "암흑기",
   "CoC7.EraDarkAgesPulp": "암흑기 - 펄프",
@@ -386,7 +368,6 @@
   "CoC7.EraReignOfTerror": "테러의 시대",
   "CoC7.Eras": "크툴루 배경",
   "CoC7.EraAvailability": "시대 선택",
-
   "CoC7.SkillNoAdjustments": "수정 불가",
   "CoC7.SkillNoXpGain": "경험치 습득 불가",
   "CoC7.SkillXpGainDisabled": "경험지 습득에 문제가 생겼습니다.",
@@ -402,7 +383,6 @@
   "CoC7.SkillKeepBaseValue": "기본값 유지",
   "CoC7.SkillPickNameOnly": "전문화 선택",
   "CoC7.SkillSpecializationIsUnique": "특수 전문화",
-
   "CoC7.WeaponRanged": "원거리",
   "CoC7.WeaponManeuver": "기능",
   "CoC7.WeaponTouch": "접촉",
@@ -423,7 +403,6 @@
   "CoC7.Weapon.Property.Thrown": "투척",
   "CoC7.Weapon.Property.Burn": "발화",
   "CoC7.Weapon.Property.Shotgun": "산탄총",
-
   "CoC7.ErrorItem": "아이템을 찾을 수 없습니다",
   "CoC7.ErrorActor": "캐릭터를 찾을 수 없습니다",
   "CoC7.ErrorInvalidFormula": "{value}은(는) 유효한 수식이 아닙니다.",
@@ -432,9 +411,7 @@
   "CoC7.ErrorInvalidRollType": "판정 유형",
   "CoC7.Validate": "승인",
   "CoC7.Apply": "적용",
-
   "CoC7.NewBioSectionName": "새 단락",
-
   "CoC7.FightingSpecializationName": "근접전",
   "CoC7.UnarmedWeaponName": "비무장",
   "CoC7.FirearmSpecializationName": "사격",
@@ -445,7 +422,6 @@
   "CoC7.AnySpecName": "다양",
   "CoC7.BoutOfMadnessName": "일시적 광기",
   "CoC7.InsanityName": "장기적 광기",
-
   "CoC7.SkillNameHandgun": "핸드건",
   "CoC7.SkillNameRifle": "라이플",
   "CoC7.SkillNameShotgun": "산탄총",
@@ -453,7 +429,6 @@
   "CoC7.SkillNameSmb": "서브머신건",
   "CoC7.SkillNameMachineGun": "머신건",
   "CoC7.SkillNameLaunch": "런쳐",
-
   "CoC7.NewSkillName": "새 기능",
   "CoC7.AddSkill": "기능 추가",
   "CoC7.CleanSkillList": "기능 목록 정렬",
@@ -489,13 +464,11 @@
   "CoC7.SortBySkillValue": "기능 퍼센트로 정렬",
   "CoC7.UncommonSkillsShow": "희귀 기능 표시",
   "CoC7.UncommonSkillsHide": "희귀 기능 숨김",
-
   "CoC7.NewBookName": "새로운 서적",
   "CoC7.AddBook": "서적 추가",
   "CoC7.NewSpellName": "새로운 주문",
   "CoC7.AddSpell": "주문 추가",
   "CoC7.AddArmor": "방어구 추가",
-
   "CoC7.AddWeapon": "무기 추가",
   "CoC7.NewWeaponName": "새로운 무기",
   "CoC7.EditWeapon": "무기 편집",
@@ -518,7 +491,6 @@
   "CoC7.SANCheckTitle": "이성 감소 : {name} ({sanMin}/{sanMax})",
   "CoC7.NoSkill": "기능 없음",
   "CoC7.AddWeapontHint": "<p>{actor}에게 {weapon}.<br>이(가)없습니다 추가하시겠습니까?</p>",
-
   "CoC7.LinkCheck": " {name} 판정",
   "CoC7.LinkCheckDiff": "[{difficulty}] {name} 판정",
   "CoC7.LinkCheckModif": " {name} 판정({modifier})",
@@ -535,7 +507,6 @@
   "CoC7.LinkItemDiff": "[{difficulty}] {name}",
   "CoC7.LinkItemModif": " {name} ({modifier})",
   "CoC7.LinkItemDiffModif": "[{difficulty}] {name} ({modifier})",
-
   "CoC7.ManualCreditValues": "수동조절한 신용치",
   "CoC7.MonetarySymbol": "상징 :",
   "CoC7.MonetaryFactor": "요인 :",
@@ -580,10 +551,8 @@
   "CoC7.MonetaryDefaultRich": "부유한 계층",
   "CoC7.MonetaryDefaultSuperRich": "초부유층",
   "CoC7.MonetaryDefaultAristocracy": "귀족 계급",
-
   "CoC7.PossessionsNotes": "메모 :",
   "CoC7.PossessionsNotesHolder": "메모",
-
   "CoC7.BackgroundNewSection": "새로운 문단 추가",
   "CoC7.BackgroundSectionNameHolder": "문단 제목 입력",
   "CoC7.BackgroundDeleteSection": "문단 삭제",
@@ -593,14 +562,12 @@
   "CoC7.BackgroundFlags": "플래그",
   "CoC7.BackgroundFlagsMythosExperienced": "크툴루 신화로 이성 5% 추가",
   "CoC7.BackgroundFlagsMythosHardened": "확립된 신화",
-
   "CoC7.SanityLossEncounters": "이성 상실 조우",
   "CoC7.SanityLossImmunities": "이성 상실 면역",
   "CoC7.AddSanityLossEncounter": "이성 상실 조우 추가",
   "CoC7.AddSanityLossImmunity": "이성 상실 면역 추가",
   "CoC7.DeleteSanityLossEncounter": "이성 상실 조우 삭제",
   "CoC7.DeleteSanityLossImmunity": "이성 상실 면역 삭제",
-
   "CoC7.SanityLossType": "종류",
   "CoC7.SanityLossTypeDialogTitle": "새로운 이성 상실 또는 면역",
   "CoC7.SanityLossTypeDialogBody": "캐릭터에게 새로운 크툴루 신화 조우, 이성 상실 또는 이성 면역 추가.",
@@ -608,9 +575,7 @@
   "CoC7.SanityLossTypeValue": "이성 포인트 상실",
   "CoC7.SanityLossEncounter": "이성 상실 조우",
   "CoC7.SanityLossImmunity": "이성 상실 면역",
-
   "CoC7.creatureFightingSkill": "근접전",
-
   "CoC7.InvoluntaryAction": "비자발적 행동",
   "CoC7.PerformInvoluntaryAction": "비자발적 행동을 수행했습니다",
   "CoC7.SanityCheck": "이성 판정",
@@ -663,7 +628,6 @@
   "CoC7.MythosGain": "신화 상승",
   "CoC7.YouGainedCthulhuMythos": "당신의 마음은 이 소름끼치는 현실앞에서 움츠러듭니다  (+{value}% 크툴루 신화)",
   "CoC7.CardResolved": "카드 해결",
-
   "CoC7.InsertLocation": "지정 위치",
   "CoC7.RemoveLocation": "위치 삭제",
   "CoC7.LocationNotEmpty": "캐릭터가 있는 위치를 삭제할 수 없습니다.",
@@ -785,7 +749,6 @@
   "CoC7.Chase.PreysMax": "도망자 최고수치: {value}",
   "CoC7.Chase.ChasersMin": "추격자 최소수치: {value}",
   "CoC7.Chase.ChasersMax": "추격자 최고수치: {value}",
-
   "CoC7.SpellCastingTime": "시전 시간",
   "CoC7.SpellCastingCost": "시전 비용",
   "CoC7.CallSpell": "강림",
@@ -799,7 +762,6 @@
   "CoC7.SpellType": "주문 타입",
   "CoC7.SpellSuccessfullyLearned": " '{spell}' 주문을 성공적으로 배웠습니다!",
   "CoC7.SpellAlreadyLearned": "('{spell}') 는(은) 이미 알고있는 주문입니다.",
-
   "CoC7.BookHasNothingMoreToTeach": "{book}로 더이상 얻을 지식이 없습니다. {actor}의 크툴루 신화 기능이 이 신화 등급보다 높습니다.",
   "CoC7.BookType": "서적 타입",
   "CoC7.Content": "내용",
@@ -829,11 +791,9 @@
   "CoC7.StudyTime": "연구 시간",
   "CoC7.UnknownLanguage": "{actor} 이(가) 이 책이 쓰여진 언어를 이해 할수없습니다.",
   "CoC7.Unreadable": "해독 불가",
-
   "CoC7.Crew": "그룹",
   "CoC7.Origin": "기원",
   "CoC7.ArmedVehicle": "군용 탈것",
-
   "CoC7.PulpTalents": "펄프 재능",
   "CoC7.TalentType": "재능 타입",
   "CoC7.PhysicalTalent": "신체적",
@@ -844,12 +804,10 @@
   "CoC7.InsaneTalent": "광기",
   "CoC7.Sane": "정신",
   "CoC7.OtherTalent": "기타",
-
   "CoC7.Items": "아이템",
   "CoC7.Vehicle": "탈것",
   "CoC7.Books": "서적",
   "CoC7.Status": "상태",
-
   "CoC7.Classic": "기본",
   "CoC7.Lovecraftian": "러브 크래프트",
   "CoC7.Pulp": "펄프",
@@ -889,7 +847,6 @@
   "CoC7.SkillSelectBase": "기능 {name} 의 기본치 값 선택",
   "CoC7.SelectSkill": "기존 기능 선택",
   "CoC7.CreateNewSkill": "새 기능 생성",
-
   "CoC7.Characteristics": "특성치",
   "CoC7.Characteristic": "특성치",
   "CoC7.EnableCharacteristics": "특성치 입력",
@@ -899,10 +856,8 @@
   "CoC7.BonusPoints": "보너스 포인트",
   "CoC7.SuggestedOccupations": "추천 직업",
   "CoC7.SuggestedTraits": "추천 성격",
-
   "CoC7.PutGunAway": "총 집어넣기",
   "CoC7.DrawGun": "총 꺼내기",
-
   "CoC7.GmTools": "수호자 도구",
   "CoC7.GmNotes": "수호자 메모",
   "CoC7.DevPhase": "성장 단계",
@@ -922,7 +877,6 @@
   "CoC7.WarnFastTargetWithWrongMOV": "이동력 8 미만인 적을 빠르게 목표로 선택합니다. (이동력: {mov})",
   "CoC7.WarnTooManyTarget": "너무 많은 목표를 선택했습니다 마지막으로 선택한 목표만 유지합니다",
   "CoC7.WarnNoTargetsSanCheck": "선택한 목표가 없습니다. 목표를 선택하거나 링크를 생성하십시오.",
-
   "CoC7.allActors": "모든 캐릭터",
   "CoC7.restTargets": "남은 목표",
   "CoC7.startRest": "휴식 시작",
@@ -933,7 +887,6 @@
   "CoC7.magicPointsRecovered": "마력이 회복되었습니다",
   "CoC7.hasCriticalWounds": "치명타로 입은 상처때문에 체력을 회복할 수 없습니다.",
   "CoC7.quickHealer": "빠른 회복",
-
   "CoC7.ErrorNoDodgeSkill": "이 캐릭터는 회피 기능을 가지고 있지 않습니다",
   "CoC7.ErrorNotEnoughLuck": "{actor} 은(는) 기본치를 만들기위한 행운이 부족합니다",
   "CoC7.ErrorManeuverNotPossible": "상대가 너무 강해서 대처할 수 없습니다.",
@@ -948,11 +901,9 @@
   "CoC7.ErrorUnexpectedSkillsText": "예상치 못한 기능 버그 텍스트입니다. 가져오려는 텍스트로 버그 보고서를 제출하십시오.",
   "CoC7.ErrorNoTokensSelected": "토큰을 선택하지 않았습니다.",
   "CoC7.ErrorEvaluatingDamage": "피해 표기 오류",
-
   "CoC7.InfoSkillAddedAtBase": "이 기술 {name}이 {percent}% 추가되었습니다.",
   "CoC7.InfoLessSkillThanOptions": "{skillCount} 과 {optionsCount} 옵션만 있으므로, 모두 추가합니다.",
   "CoC7.InfoAllSkillsAlreadySelected": "이미 모든 기능이 선택되었습니다.",
-
   "CoC7.MessageCheckRequestedWait": "수호자가 {check} 판정을 요청했습니다.<br>클릭하기 전에 잠시 기다려주세요!<br>",
   "CoC7.MessageTargetCheckRequested": "수호자가 {name} 에게 {check} 판정을 요청했습니다.",
   "CoC7.MessageTitleSelectSingleUserForTarget": "이 공격에 대응할 수 있는 캐릭터",
@@ -960,11 +911,9 @@
   "CoC7.MessageBoutOfMadnessTableNotFound": "광기표의 결과를 찾을 수 없습니다. 모든 롤 테이블이 생성되었는지 확인해주세요.",
   "CoC7.MessageBoutOfMadnessItemNotFound": "광기표의 결과를 찾을 수 없습니다. 모든 특성치가 생성되었는지 확인해 주세요.",
   "CoC7.MessageRollingCharacteristic": "굴림 특성 {label}: {formula}",
-
   "CoC7.DealDamage": "{damage}의 피해를 {target}에게 주겠습니까?",
   "CoC7.DamageDealTo": "Damage {name} {damage}HP",
   "CoC7.NoTargetSelected": " {weapon} 무기 판정의 목표를 선택하지 않았습니다. 계속 진행하시겠습니까?",
-
   "CoC7.Import": "불러오기",
   "CoC7.Proceed": "진행",
   "CoC7.Cancel": "취소",
@@ -973,7 +922,6 @@
   "CoC7.Enable": "허용",
   "CoC7.Disable": "삭제",
   "CoC7.Duration": "지속",
-
   "CoC7.ActorImporter": "캐릭터 불러오기",
   "CoC7.ActorImporterSummary": "NPC 혹은 크리처의 설명과 특성치를 불러옵니다. 해당 형식의 플레인 텍스트를 붙여넣으십시오.",
   "CoC7.PasteTheDataBelow": "로우 텍스트 데이터를 아래에 붙여넣으십시오.",
@@ -1006,21 +954,18 @@
   "CoC7.ImportActorItemsItemWorldModuleSystem": "아이템 / 월드 / 모듈 / 시스템",
   "CoC7.ImportActorItemsWorldModuleItemSystem": "월드 / 모듈 / 아이템 / 시스템",
   "CoC7.ActorImported": "새로운 {actorType} 이름밎 유형: {actorName}",
-
   "CoC7.DholeHouseActorImporter": "The Dhole's House의 캐릭터 JSON 파일 을(를) 가져옵니다",
   "CoC7.DholeHouseActorImporterSummary": "DholeHouse의 캐릭터를 JSON 파일 을(를)여기에 업로드하세요.",
   "CoC7.DholeHouseImportingName": "가져오기: ",
   "CoC7.DholeHousePickYourJSONFile": "Dhole's House에서 내보낸 JSON 파일을 선택하십시오.",
   "CoC7.DholeHouseActorImporterSource": "The Dhole's House 에서 가져온 캐릭터",
   "CoC7.DholeHouseInvalidActor": "선택한 JSON 파일은 유효한 Dhole's House의 파일이 아닌 것 같습니다.",
-
   "CoC7.HowToTranslateTitle": "번역 방법",
   "CoC7.HowToTranslateWarning": "신뢰할 수 없는 모듈은 설치하지 마십시오.",
   "CoC7.HowToTranslateInstallBabele": "Foundry의 모듈 관리자로부터 Babelle 모듈을 설치/업데이트 하십시오.",
   "CoC7.HowToTranslateInstallTranslation": "Foundry의 모듈 관리자로부터 번역 모듈을 설치/업데이트 하십시오.",
   "CoC7.HowToTranslateEnableTranslation": "게임 월드의 설정 / 모듈 관리에서 Babelle과 번역 모듈을 모두 활성화하십시오.",
   "CoC7.HowToTranslateNoTranslation": "새로운 언어의 번역을 생성하는 절차는 번역 모듈에서 확인할 수 있습니다.",
-
   "CoC7.Migrate.Title": "업데이트 필요",
   "CoC7.Migrate.Message": "<div>현재 사용 중인 월드는 {version} 버전을 실행하려면 업데이트가 필요합니다.</div><div>업데이트를 진행하기전에 월드 폴더를 백업하세요.</div><div>월드를 업데이트 하지않으면 시스템이 올바르게 작동하지않습니다.</div><div>업데이트가 완료되면 월드가 재시작됩니다.</div>",
   "CoC7.Migrate.WithModulesMessage": "<div>사용 중인 월드 또는 모듈에서 {version} 버전을 실행하려면 업데이트가 필요할 수 있습니다.</div><div>업데이트를 시작하기 전에 아래에 나열된 월드 밎 모듈 폴더를 백업하세요.</div><div>월드를 업데이트하지 않으면 시스템이 올바르게 작동하지 않습니다.</div><div>다음 모듈에는 캐릭터와 아이템 항목이 포함되어 있으므로 이에 대한 점검도 이루어집니다.</div>{modules}<div>완료되면 월드가 재시작될 수 있습니다.</div>",
@@ -1029,12 +974,10 @@
   "CoC7.Migrate.ButtonUpdate": "업데이트",
   "CoC7.Migrate.ButtonSkip": "건너뛰기",
   "CoC7.Migrate.ButtonOkay": "확인",
-
   "CoC7.Migrate.TriggerButton": "데이터 마이그레이션",
   "CoC7.Migrate.TriggerTitle": "데이터 마이그레이션",
   "CoC7.Migrate.TriggerContents": "<div>데이터 마이그레이션 버튼을 키고 재시작</div>",
   "CoC7.Migrate.TriggerRestart": "저장하고 재시작",
-
   "CoC7.Migrate.UpdateCurrentScene": "현재 장면 마이그레이션",
   "CoC7.Migrate.Complete": "데이터 마이그레이션 완료",
   "CoC7.Migrate.ErrorDocumentPack": "{collection} 팩의 {name} 문서에 대한 CoC7 시스템 마이그레이션 실패: {message}",
@@ -1043,9 +986,7 @@
   "CoC7.Migrate.ErrorTable": "{name} 테이블에 대한 CoC7 시스템 마이그레이션 실패: {message}",
   "CoC7.Migrate.ErrorItem": "{name} 항목에 대한 CoC7 시스템 마이그레이션 실패: {message}",
   "CoC7.Migrate.ErrorActor": "캐릭터 {name}: {message}에 대한 CoC7 시스템 마이그레이션 실패",
-
   "CoC7.System.Documentation": "CoC7 시스템 매뉴얼 보기",
-
   "CoC7.Settings.CoreRules.Title": "코어 룰북 옵션 룰",
   "CoC7.Settings.Rules.Name": "변형/옵션 룰",
   "CoC7.Settings.Rules.Label": "변형/옵션 룰 구성",
@@ -1073,7 +1014,6 @@
   "CoC7.Settings.WorldEra.Hint": "시대별로 스킬이 약간 다를 수 있으니, 이 세계의 시대를 선택해 주십시오. 그러면 시스템이 올바른 스킬을 검색할 수 있습니다.",
   "CoC7.Settings.ShowWorldEra.Name": "플레이어 목록에 월드 시대 표시",
   "CoC7.Settings.ShowWorldEra.Hint": "",
-
   "CoC7.Settings.DropCoCID.Name": "아이템 드롭 시 CoC ID 사용",
   "CoC7.Settings.DropCoCID.Hint": "CoC ID가 있는 아이템을 드롭할 때 아이템 대신 CoC ID를 저장할지 묻습니다",
   "CoC7.Settings.DropCoCID.Dialog": "가능한 경우 드롭된 아이템에 CoC ID를 사용하시겠습니까? 이 설정은 시스템이 귀하의 월드 시대에 맞는 올바른 아이템을 선택할 수 있게 합니다.",
@@ -1081,19 +1021,15 @@
   "CoC7.Settings.DropCoCID.Prompt": "매번 묻기",
   "CoC7.Settings.DropCoCID.UseCoCID": "가능한 경우 CoC ID 사용",
   "CoC7.Settings.DropCoCID.IgnoreCoCID": "CoC ID 사용 안 함",
-
   "CoC7.Maximize": "최대화",
   "CoC7.Summarize": "요약",
   "CoC7.ClearAllConditions": "모든 조건 초기화",
-
   "CoC7.UnableToInteractWithChatCard": "이 메시지와 상호 작용할 수 없습니다. 변경이 필요한 경우 수호자에게 요청해 옵션을 선택하세요.",
   "CoC7.UnableToCopyToClipboard": "브라우저 보안 설정으로 인해 클립보드에 복사할 수 없습니다.",
   "CoC7.UnableToUploadDholeImage": "이미지를 업로드할 권한이 없습니다. 기본 이미지가 사용됩니다.",
-
   "CoC7.MessageTitleSelectUserToGiveTo": "다른 캐릭터에게 아이템 제공",
   "CoC7.MessageSelectUserToGiveTo": "이 아이템을 어떤 캐릭터와 교환하시겠습니까?",
   "CoC7.MessageDistanceCalculationFailure": "토큰 간 거리를 계산할 수 없습니다. 토큰 캐릭터 시트를 사용하십시오.",
-
   "CoC7.ToolTipSkill": "<label>{skill} {regular}% ({hard}/{extreme})</label><ul><li><strong>좌클릭</strong> 선택지 있는 롤 체크 </li><li><strong>Shift + 좌클릭</strong> 즉시 일반 난이도 굴림</li></ul><label>대항 판정</label><ul><li><strong>우클릭</strong> 선택지 있는 대항 판정</li><li><strong>Shift + 우클릭</strong> 즉시 대항 판정</li></ul><label>복합 굴림</label><ul><li><strong>Alt/Option + 우클릭</strong>선택지 있는 복합 판정</li></ul>",
   "CoC7.ToolTipKeeperSkill": "<label>수호자 요청 굴림</label><ul><li><strong>CTRL + 좌클릭</strong> 굴림 링크 작성</li>{other}</ul>",
   "CoC7.ToolTipKeeperStandbySkill": "<li><strong>좌클릭</strong>  {name}의 굴림 요청</li>",
@@ -1106,7 +1042,6 @@
   "CoC7.ToolTipSkillFlagged": "개발자를 위한 플래그",
   "CoC7.ToolTipSkillUnflagged": "개발 플래그가 붙어 있지 않음",
   "CoC7.ToolTipSeeNotes": "노트 참고",
-
   "SETTINGS.TitleRules": "룰",
   "SETTINGS.TitleInitiative": "행동 순서 세팅",
   "SETTINGS.TitleRoll": "주사위 세팅",
@@ -1244,13 +1179,10 @@
   "SETTINGS.UseContextMenusHint": "[실험] 굴림의 경우 키 조합 대신 상황에 맞는 메뉴를 사용합니다.",
   "SETTINGS.SceneDistanceNotCalculatedNoError": "거리 범위에 대한 오류를 표시하지 마십시오",
   "SETTINGS.SceneDistanceNotCalculatedNoErrorHint": "마음속으로 상상하는 방식으로 전투를 진행할 때 원거리 전투를 시작할 경우, 거리를 계산할 수 없다는 메시지를 표시하지 마십시오.",
-
   "CoC7.getTheExample": "예시 복사",
   "CoC7.Copied": "클립보드에 예시 텍스트를 복사했습니다",
-
   "CoC7.EffectNew": "새로운 효과",
   "CoC7.EffectAppliedCantOverride": "활성 효과가 적용됩니다. [{name}]은(는) 수정할 수 없습니다. 해당 효과를 비활성화해야 이 값을 수정할수있습니다.",
-
   "CoC7.InvestigatorWizard.Title": "조사자 생성 마법사",
   "CoC7.InvestigatorWizard.TitleKeeperConfiguration": "키퍼 구성",
   "CoC7.InvestigatorWizard.TitleSelectSetup": "조사자 설정",
@@ -1323,7 +1255,6 @@
   "CoC7.InvestigatorWizard.CreateInstructions": "생성을 클릭해 캐릭터를 만드세요. 캐릭터를 생성하려면 키퍼가 접속해 있어야 합니다.",
   "CoC7.InvestigatorWizard.CreatingInvestigator": "키퍼가 조사자를 생성하는 동안 잠시만 기다려 주세요.",
   "CoC7.InvestigatorWizard.PersonalDescription": "개인적 묘사",
-
   "CoC7.CoCIDFlag.id": "ID",
   "CoC7.CoCIDFlag.title": "시스템 ID(CoC ID) 편집",
   "CoC7.CoCIDFlag.summary": "이 {type}의 최신 버전을 찾기 위해 사용할 그룹 식별자를 설정합니다. 시스템 ID(CoC ID)는 모든 언어에서의 지역화를 지원하기 위해 {type}의 영어 번역명을 사용해야 합니다.",
@@ -1353,7 +1284,6 @@
   "CoC7.CoCIDFlag.error.incorrect.type": "존재하지 않는 문서 유형으로 CoC ID 변환을 시도했습니다. 콘솔 로그를 확인하세요.",
   "CoC7.CoCIDFlag.error.document-not-found": "CoC ID \"{cocid}\", 언어 \"{lang}\", 시대 \"{era}\"에 해당하는 문서를 월드 또는 컴펜디움에서 찾지 못했습니다. 월드 설정의 시대(Era)를 확인하세요.",
   "CoC7.CoCIDFlag.error.documents-not-found": "CoC ID({cocids}), 언어 \"{lang}\", 시대 \"{era}\"에 해당하는 문서들을 월드 또는 컴펜디움에서 찾지 못했습니다. 월드 설정의 시대(Era)를 확인하세요.",
-
   "CoC7.CoCIDBatch.title": "시스템 ID(CoC ID) 일괄 설정",
   "CoC7.CoCIDBatch.summary": "CoC7 시스템에는 시스템 ID(CoC ID)가 도입되었습니다. 이를 통해 시스템은 기술 같은 FoundryVTT 문서를 식별할 수 있습니다. 이 페이지에서는 기존 {type} 문서에 ID를 일괄 설정할 수 있습니다. 시스템 ID는 모든 언어의 지역화를 지원하기 위해 반드시 영어 이름 기반으로 설정해야 합니다.",
   "CoC7.ActorCoCIDItemsBest": "CoC ID: 배우(Actor) 아이템 교체",
@@ -1373,22 +1303,18 @@
   "CoC7.CoCIDCompendiumPopulateDestination": "대상 모듈",
   "CoC7.CoCIDCompendiumPopulateTypes": "유형",
   "CoC7.CoCIDCompendiumPopulateButton": "채우기(Populate)",
-
   "CoC7.TokenCreationRoll.Title": "주사위 가능 항목 감지됨",
   "CoC7.TokenCreationRoll.Prompt": "이 토큰에는 굴릴 수 있는 능력치나 기술이 있습니다.<br>어떻게 하시겠습니까?",
   "CoC7.TokenCreationRoll.ButtonRoll": "전부 굴리기",
   "CoC7.TokenCreationRoll.ButtonAverage": "전부 평균치 적용",
   "CoC7.TokenCreationRoll.Rolled": "{name}의 능력치와 기술을 굴렸습니다",
   "CoC7.TokenCreationRoll.Averaged": "{name}의 능력치와 기술에 평균치를 적용했습니다",
-
   "CoC7.RealRollDecaderPlaceholderName": "10's",
-
   "CoC7.Temporary": "임시",
   "CoC7.Passive": "수동",
   "CoC7.Inactive": "비활성",
   "CoC7.Suppressed": "억제됨",
   "CoC7.Unavailable": "사용 불가",
-
   "CoC7.PickWhichActorTitle": "굴릴 배우 선택",
   "CoC7.PickWhichActorDesc": "여러 배우에 대해 소유자 권한을 가지고 있습니다. 어떤 배우로 굴릴지 선택하세요.",
   "CoC7.WaitingOnUser": "사용자 입력 대기 중",
@@ -1397,13 +1323,11 @@
   "CoC7.ErrorCombinedRollsRequireSingleActor": "복합 굴림에는 단일 배우만 사용할 수 있습니다.",
   "CoC7.ErrorOpposedRollsLimitedToTwoActors": "대항 굴림에는 두 명의 배우만 사용할 수 있습니다.",
   "CoC7.PauseName": "시간 정지",
-
   "CoC7.ClickableEvents.MouseOver.Title": "클릭 허용 여부",
   "CoC7.ClickableEvents.MouseOver.Hint": "클릭을 허용하고 마우스 커서를 표시할지 여부를 boolean으로 반환합니다.",
   "CoC7.ClickableEvents.LeftClick.Title": "좌클릭 스크립트",
   "CoC7.ClickableEvents.RightClick.Title": "우클릭 스크립트",
   "TYPES.RegionBehavior.coc7ClickableEvents": "클릭 가능한 이벤트",
-
   "CoC7.SANSameLossAsMythosGain": "크툴루 신화 증가만큼 이성 감소",
   "CoC7.ExperiencePackageBackground": "경험 패키지에 따라 조사자의 배경에 추가합니다.",
   "CoC7.ExperiencePackageDialogTitle": "경험 패키지 옵션 선택",
@@ -1411,7 +1335,6 @@
   "CoC7.ExperiencePackageApplySanity": "이성 감소 적용",
   "CoC7.EmptySpellList": "주문을 여기에 끌어다 놓아 추가하세요.",
   "CoC7.EmptyStatusList": "공포증/광기를 여기에 끌어다 놓아 추가하세요.",
-
   "CoC7.PromptAddInjuryScar": "부상/흉터 추가",
   "CoC7.PromptAddStatus": "공포증/광기 추가",
   "CoC7.PromptAddSpells": "주문 추가",
@@ -1420,9 +1343,7 @@
   "CoC7.ErrorExperiencePackageNotGM": "키퍼만 경험 패키지를 적용할 수 있습니다.",
   "CoC7.ClearExperiencePackageName": "경험 패키지 이름 지우기",
   "CoC7.SheetExperiencePackageName": "경험",
-
   "CoC7.AlternativeNames": "다른 이름들",
-
   "TOKEN.MOVEMENT.ACTIONS.walk.label": "걷기",
   "TOKEN.MOVEMENT.ACTIONS.fly.label": "날기",
   "TOKEN.MOVEMENT.ACTIONS.swim.label": "헤엄치기",
@@ -1432,14 +1353,12 @@
   "TOKEN.MOVEMENT.ACTIONS.jump.label": "점프",
   "TOKEN.MOVEMENT.ACTIONS.blink.label": "순간이동 (깜박임)",
   "TOKEN.MOVEMENT.ACTIONS.displace.label": "순간이동 (이동)",
-
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceDrawingToggle": "CCI: 그리기 토글",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceMapPinToggle": "CCI: 지도 핀 토글",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceOpenDocument": "CCI: 문서 열기",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfacePlaySound": "CCI: 소리 재생",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceToScene": "CCI: 장면으로 이동",
   "TYPES.RegionBehavior.ChaosiumCanvasInterfaceTileToggle": "CCI: 타일 토글",
-
   "CoC7.ChaosiumCanvasInterface.Buttons.Both": "마우스 양쪽 버튼",
   "CoC7.ChaosiumCanvasInterface.Buttons.Left": "왼쪽 마우스 버튼",
   "CoC7.ChaosiumCanvasInterface.Buttons.Right": "오른쪽 마우스 버튼",
