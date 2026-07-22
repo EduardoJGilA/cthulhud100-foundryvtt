@@ -120,7 +120,7 @@ Esta tabla resume dónde duele. Detalle completo en `dev-docs/reglas-cthulhu-d10
 | PV | `(SIZ+CON)/10` | `ceil((TAM+CON)/2)` | `character-system.js` |
 | PM | `POW/5` | `POD` | `character-system.js` |
 | Suerte | reserva propia tirada | **derivada** `POD×5` | `character-system.js` |
-| MD | tabla DB percentil | tabla por `FUE+TAM`, 19 tramos, `-1D8`→`+5D10` | nueva tabla |
+| MD | tabla DB percentil | tabla por `FUE+TAM`, 20 tramos, `-1D8`→`+5D10` | nueva tabla |
 | Cordura | SAN única | **dos sistemas seleccionables**; el "alternativo" no tiene equivalente | módulo nuevo |
 | Combate | tirada enfrentada | **tablas cruzadas 5×5** Esquiva/Bloqueo | `chat-combat-melee.js`, `-ranged.js` |
 | Iniciativa | DEX percentil | **DES 3-18** | `cthulhud100/apps/` combat |
@@ -132,7 +132,8 @@ Esta tabla resume dónde duele. Detalle completo en `dev-docs/reglas-cthulhu-d10
 ## Convenciones de trabajo
 
 - **Un commit por tarea** completada, mensaje en inglés, Conventional Commits.
-  Terminar el cuerpo con `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`.
+- **Nunca** añadir líneas `Co-Authored-By:` de IA ni ninguna otra marca de autoría
+  automática. El autor de los commits es el propietario del repositorio.
 - **No** hacer push ni abrir PR salvo petición explícita del usuario.
 - Antes de cerrar una fase, ejecutar su bloque "Criterio de aceptación" completo.
 - Si una tarea revela que el plan está equivocado, **actualizar este documento** en el
@@ -374,10 +375,26 @@ y Pifia con `96-00`.
 > **`buildFromCharacteristics()` sigue con la lógica de CoC7.** La Corpulencia (Build) no
 > existe en d100. Decidir en F4 si se elimina o se deja inerte.
 
-### F1.5 — Chequeos enfrentados
+### F1.5 — Chequeos enfrentados ⛔ no iniciado — es un módulo NUEVO, no una modificación
 - [ ] Fórmula `50 + (activo - pasivo) × 5`, acotada a `[0,100]`
 - [ ] `+10` o más → éxito automático; `-10` o menos → imposible
-- [ ] Integrar con `cthulhud100/apps/chat-opposed-message.js`
+- [ ] Diálogo para elegir Factor Activo y Factor Pasivo (atributos, o POT de veneno
+      o enfermedad, que van de 3 a 21)
+- [ ] Carta de chat propia con el porcentaje resultante y la tirada
+
+> **Comprobado: upstream no tiene nada reutilizable.** `apps/chat-opposed-message.js`
+> (1200+ líneas) resuelve enfrentamientos **comparando niveles de éxito** de dos tiradas
+> de habilidad, que es el modelo de CoC7. El chequeo enfrentado de d100 es la tabla de
+> resistencia clásica de BRP: una sola tirada contra un porcentaje calculado a partir de
+> la diferencia entre dos puntuaciones. No hay `50 +` ni tabla de resistencia en todo el
+> árbol (`grep` sin resultados).
+>
+> Conclusión: hay que escribirlo de cero. `chat-opposed-message.js` sirve como **modelo
+> de estructura** (cómo se crea y actualiza una carta de chat con varios participantes),
+> no como base a modificar.
+>
+> Consumidores que lo necesitarán: Presa (FUE vs FUE, §7), venenos y enfermedades
+> (POT vs CON, §8).
 
 ### F1.6 — Modificadores de circunstancia e iluminación
 - [ ] Circunstancias: `+20 / +10 / -10 / -20` en el diálogo de tirada
