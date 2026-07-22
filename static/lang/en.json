@@ -1668,6 +1668,7 @@
   "CoC7.Settings.SanitySystem.Alternative": "Alternative (tension bars)",
   "CoC7.Settings.HitLocationRule.Name": "Hit location rule",
   "CoC7.Settings.HitLocationRule.Hint": "Enable the optional hit location rule (1D20) and location hit point pools.",
+  "CoC7.LuckNotExpendable": "In Cthulhu d100 Luck is a derived attribute (POW×5) and cannot be spent.",
   "CoC7.SkillCategory": "Category",
   "CoC7.Creature.LeatherySkin": "Leathery skin",
   "CoC7.Creature.LeatherySkinHint": "Firearms do minimum damage and cannot double through impaling.",

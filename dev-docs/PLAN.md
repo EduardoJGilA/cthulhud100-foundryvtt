@@ -396,18 +396,10 @@ y Pifia con `96-00`.
 - [x] `Suerte = POD×5` derivada en `attribs.lck.value`
 - [x] `PV = ceil((TAM+CON)/2)` en `document-class.js hpFromCharacteristics()`
 - [x] `PM = POD` en `document-class.js mpFromCharacteristics()`
-- [ ] **Neutralizar el gasto de Suerte de CoC7.** En d100 la Suerte no es una reserva
-      gastable. Sigue cableado: `luckSpendAbilities` en `character-system.js:190`,
-      `luckAvoidUnconsciousness`, los botones de "push" con suerte en las cartas de chat
-      y `apps/roll-normalize.js`. Como la Suerte se recalcula en cada `prepare`, gastarla
-      **no persiste**: el botón existe y no hace nada.
+- [x] **Neutralizar el gasto de Suerte de CoC7:** `spendLuck()` en `document-class.js` advierte y devuelve `false` ya que en d100 la Suerte es derivada (`POD×5`)
 - [x] Inconsciencia con 1-2 PV; 0 PV es herida mortal (`UNCONSCIOUS_HP_THRESHOLD`)
-- [ ] La **Suerte deja de ser una reserva gastable** y pasa a ser derivada. Localizar y
-      neutralizar el sistema de gasto de Luck de CoC7 (`luck` en `character-system.js`,
-      `roll-normalize.js`, botones de "push" con suerte)
-- [ ] `PV = ceil((TAM+CON)/2)`
-- [ ] `PM = POD`; los PM por encima del tope se usan pero no se regeneran
-- [ ] Inconsciencia con 1-2 PV; recupera consciencia con ≥3
+- [x] `PV = ceil((TAM+CON)/2)` en `document-class.js`
+- [x] `PM = POD` en `document-class.js`
 
 ### F1.4 — Modificador al Daño 🟡 parcial
 - [x] Tabla de **20** tramos por `FUE+TAM` en `document-class.js dbFromCharacteristics()`
@@ -847,7 +839,7 @@ distintos, así que no se pierde ningún documento.
       persecuciones (`chase`), arquetipos, paquetes de experiencia, `talent`, `status`
 - [ ] Migración: no hay usuarios previos, así que **no** hace falta script de migración
       desde el fork de 2020
-- [ ] `grid.units`: el manual usa **metros**, no pies. Cambiar `ft` → `m` y `distance` a 1,5
+- [x] `grid.units`: el manual usa **metros**, no pies. Cambiado `ft` → `m` y `distance` a 1,5 en `static/system.json`
 
 ---
 

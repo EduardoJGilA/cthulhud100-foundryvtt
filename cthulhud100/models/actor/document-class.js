@@ -1530,17 +1530,12 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
   }
 
   /**
-   * Spend luck
-   * @param {int} amount
-   * @returns {Promise<Document|false>}
+   * Spend luck (disabled in Cthulhu d100; Luck is a derived attribute = PODx5)
+   * @param {number} amount
+   * @returns {Promise<false>}
    */
   async spendLuck (amount) {
-    const newLuck = parseInt(this.system.attribs.lck.value ?? 0, 10) - parseInt(amount, 10)
-    if (newLuck >= 0) {
-      return this.update({
-        'system.attribs.lck.value': newLuck
-      })
-    }
+    ui.notifications.warn('CoC7.LuckNotExpendable', { localize: true })
     return false
   }
 

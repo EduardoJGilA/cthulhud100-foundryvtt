@@ -1371,6 +1371,7 @@
   "CoC7.Settings.SanitySystem.Alternative": "Alternativo (barras de tensión)",
   "CoC7.Settings.HitLocationRule.Name": "Localización de impactos",
   "CoC7.Settings.HitLocationRule.Hint": "Activar la regla opcional de localización de impactos (1D20) y reservas de PV por localización.",
+  "CoC7.LuckNotExpendable": "En Cthulhu d100 la Suerte es una característica derivada (POD×5) y no se puede gastar.",
   "CoC7.SkillCategory": "Categoría",
   "CoC7.Creature.LeatherySkin": "Piel correosa",
   "CoC7.Creature.LeatherySkinHint": "Las armas de fuego hacen daño mínimo y no doblan daño por empalar.",
