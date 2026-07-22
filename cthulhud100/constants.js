@@ -19,12 +19,16 @@ export const PERSONAL_SKILL_POINTS_PER_INT = 10
 // once healed back to 3 (rulebook chapter 5). CoC7 only passed out at 0.
 export const UNCONSCIOUS_HP_THRESHOLD = 2
 
-// Cthulhu d100 has no era system. Call of Cthulhu 7e shipped fourteen of them
-// (Pulp, Dark Ages, Gaslight, Invictus and so on) and they cluttered every item
-// sheet and the compendium filter with settings this game does not use. Only
-// "standard" was ever set true in any compendium entry, so the rest are gone.
-// The key itself stays because item-system.js validates against it and every
-// pack references it.
+// The rulebook defines no list of eras. It assumes "la era clasica, los anos 20"
+// and otherwise leaves the period to the Keeper, saying only that a couple of
+// skills and pieces of kit vary "segun epoca de juego". So there is one entry,
+// named after the setting the book actually assumes.
+//
+// Call of Cthulhu 7e shipped fourteen (Pulp, Dark Ages, Gaslight, Invictus and
+// the rest) and they filled every item sheet and the compendium filter with
+// settings this game does not have. Only "standard" was ever set true in any
+// pack entry. The key is kept because item-system.js validates against it and
+// all 116 entries reference it.
 export const ERAS = {
   standard: {
     name: 'CoC7.EraStandard',

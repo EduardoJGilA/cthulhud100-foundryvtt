@@ -681,25 +681,21 @@ export default class CoC7DicePool {
                   output.isCritical = true
                   break
               }
-              output.successLevelIcons.icons = []
-              if (output.successLevel >= this.#difficulty) {
-                output.isSuccess = true
-                for (let index = 0, im = output.successLevel - this.#difficulty + 1; index < im; index++) {
-                  output.successLevelIcons.icons.push(output.isCritical ? 'medal' : 'star')
-                }
-                output.successLevelIcons.hint = game.i18n.format('CoC7.SuccessLevelHint', {
-                  value: output.successLevel - this.#difficulty + 1
-                })
-              } else {
-                output.isSuccess = false
-                const successLevel = output.isFumble ? -1 : output.successLevel
-                for (let index = 0, im = this.#difficulty - successLevel; index < im; index++) {
-                  output.successLevelIcons.icons.push(output.isFumble ? 'skull' : 'spider')
-                }
-                output.successLevelIcons.hint = game.i18n.format('CoC7.FailureLevelHint', {
-                  value: this.#difficulty - successLevel
-                })
-              }
+              // Cthulhu d100 has five discrete outcomes, not a count of levels
+              // cleared above a requested difficulty. CoC7 drew one star per
+              // level beyond the difficulty asked for, which here only ever
+              // rendered as "two stars means special, three means critical" -
+              // the tier restated as an unlabelled tally. One icon per outcome
+              // instead, with the tier name as the tooltip.
+              output.isSuccess = output.successLevel >= CoC7DicePool.successLevel.regular
+              output.successLevelIcons.icons = [{
+                [CoC7DicePool.successLevel.critical]: 'trophy',
+                [CoC7DicePool.successLevel.special]: 'medal',
+                [CoC7DicePool.successLevel.regular]: 'star',
+                [CoC7DicePool.successLevel.failure]: 'spider',
+                [CoC7DicePool.successLevel.fumble]: 'skull'
+              }[output.successLevel]].filter(Boolean)
+              output.successLevelIcons.hint = output.resultType
               output.isRolledSuccess = (output.isSuccess && this.#luckSpent === 0 && this.#bonusCount === 0 && this.#penaltyCount === 0)
               if (this.#setSuccess === true || this.#setSuccess === false) {
                 output.isSuccess = this.#setSuccess
