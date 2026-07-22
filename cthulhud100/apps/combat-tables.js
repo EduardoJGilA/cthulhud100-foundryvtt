@@ -81,6 +81,30 @@ export default class CoC7CombatTables {
   }
 
   /**
+   * Turn a numeric success level from the dice pool into the key the tables use.
+   * @param {number} successLevel value from CoC7DicePool.successLevel
+   * @returns {string} one of CoC7CombatTables.levels
+   */
+  static levelFromSuccessLevel (successLevel) {
+    const value = parseInt(successLevel, 10)
+    if (isNaN(value) || value <= -1) return 'fumble'
+    if (value === 0) return 'failure'
+    if (value === 1) return 'success'
+    if (value === 2) return 'special'
+    return 'critical'
+  }
+
+  /**
+   * Whether an outcome means the attack landed.
+   * @param {string} outcome one of CoC7CombatTables.outcome
+   * @returns {boolean}
+   */
+  static outcomeHits (outcome) {
+    const o = CoC7CombatTables.outcome
+    return [o.hit, o.impale, o.maxDamage].includes(outcome)
+  }
+
+  /**
    * Resolve an attack against a defence.
    * @param {object} options
    * @param {string} options.attacker attacker's roll level

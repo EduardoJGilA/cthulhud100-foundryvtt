@@ -1,5 +1,6 @@
 /* global ChatMessage foundry fromUuid game renderTemplate TokenDocument ui */
 import { FOLDER_ID } from '../constants.js'
+import CoC7CombatTables from './combat-tables.js'
 import CoC7ActorPickerDialog from './actor-picker-dialog.js'
 import CoC7ChatDamage from './chat-damage.js'
 import CoC7Check from './check.js'
@@ -683,15 +684,25 @@ export default class CoC7ChatOpposedMessage {
 
     if (data.allRollsAssigned && allRollsComplete) {
       data.allRollsComplete = true
-      if (checks[CoC7ChatOpposedMessage.participant.attacker].result === checks[CoC7ChatOpposedMessage.participant.defender].result) {
-        data.isTie = true
-        if (data.isCombat && anySuccess) {
-          data.canAdvantage = true
-          if (this.#advantage !== CoC7ChatOpposedMessage.participant.none) {
-            checks[this.#advantage].isWinner = true
-            data.hasWinner = true
-          }
+      if (data.isCombat) {
+        // Cthulhu d100 reads combat off the dodge or block table rather than
+        // comparing success levels, so a defender who rolls well can turn the
+        // attacker's own swing into a fumble. Ties are meaningless here: every
+        // pair of results has an entry.
+        const attacker = CoC7CombatTables.levelFromSuccessLevel(checks[CoC7ChatOpposedMessage.participant.attacker].result)
+        const defender = CoC7CombatTables.levelFromSuccessLevel(checks[CoC7ChatOpposedMessage.participant.defender].result)
+        const blocking = !(checks[CoC7ChatOpposedMessage.participant.defender].isDodge ?? false)
+        const resolution = CoC7CombatTables.resolve({ attacker, defender, blocking })
+        data.combatOutcome = resolution.outcome
+        data.attackerWeaponDamage = resolution.weaponDamage
+        if (CoC7CombatTables.outcomeHits(resolution.outcome)) {
+          checks[CoC7ChatOpposedMessage.participant.attacker].isWinner = true
+        } else {
+          checks[CoC7ChatOpposedMessage.participant.defender].isWinner = true
         }
+        data.hasWinner = true
+      } else if (checks[CoC7ChatOpposedMessage.participant.attacker].result === checks[CoC7ChatOpposedMessage.participant.defender].result) {
+        data.isTie = true
       } else if (checks[CoC7ChatOpposedMessage.participant.defender].result < checks[CoC7ChatOpposedMessage.participant.attacker].result) {
         checks[CoC7ChatOpposedMessage.participant.attacker].isWinner = true
         data.hasWinner = true
