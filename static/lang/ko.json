@@ -1461,5 +1461,13 @@
   "CoC7.CircumstanceVeryUnfavourable": "매우 불리 (-20%)",
   "CoC7.Circumstances": "상황",
   "CoC7.WeaponParry": "막기 가능",
-  "CoC7.WeaponResistance": "저항점"
+  "CoC7.WeaponResistance": "저항점",
+  "CoC7.MentalStability.calm": "Calm",
+  "CoC7.MentalStability.uneasy": "Uneasy",
+  "CoC7.MentalStability.tense": "Tense",
+  "CoC7.MentalStability.transitoryInsanity": "Transitory insanity",
+  "CoC7.Settings.SanitySystem.Name": "Madness system",
+  "CoC7.Settings.SanitySystem.Hint": "Which of the two madness systems from the rulebook this world uses.",
+  "CoC7.Settings.SanitySystem.Classic": "Classic (Mental Stability pool)",
+  "CoC7.Settings.SanitySystem.Alternative": "Alternative (tension bars)"
 }

@@ -155,6 +155,20 @@ export default function () {
       unknown: 'SETTINGS.CheckDifficultyUnknown'
     }
   })
+  // Cthulhu d100 ships two complete madness systems and expects the table to
+  // pick one (rulebook chapter 3).
+  game.settings.register(FOLDER_ID, 'sanitySystem', {
+    name: 'CoC7.Settings.SanitySystem.Name',
+    hint: 'CoC7.Settings.SanitySystem.Hint',
+    scope: 'world',
+    config: true,
+    default: 'classic',
+    type: String,
+    choices: {
+      classic: 'CoC7.Settings.SanitySystem.Classic',
+      alternative: 'CoC7.Settings.SanitySystem.Alternative'
+    }
+  })
   game.settings.register(FOLDER_ID, 'selfRollWhisperTarget', {
     name: 'SETTINGS.SelfRollWhisperTarget',
     hint: 'SETTINGS.SelfRollWhisperTargetHint',

@@ -1,6 +1,7 @@
 /* global CONFIG foundry game */
 import { FOLDER_ID, CHARACTERISTIC_MULTIPLIER } from '../../constants.js'
 import CoC7ModelsActorDocumentClass from './document-class.js'
+import CoC7MentalStability from '../../apps/mental-stability.js'
 import CoC7StringField from '../fields/string-field.js'
 
 export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDataModel {
@@ -38,7 +39,12 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
         max: new fields.NumberField({ initial: 99 }),
         dailyLoss: new fields.NumberField({ initial: 0 }),
         dailyLimit: new fields.NumberField({ initial: 0 }),
-        auto: new fields.BooleanField({ initial: true })
+        auto: new fields.BooleanField({ initial: true }),
+        // Cthulhu d100 alternative madness system (rulebook chapter 3).
+        // Tension accumulates across three bars sized from POD; underlyingMadness
+        // is Locura Subyacente, which only medical treatment removes.
+        tension: new fields.NumberField({ nullable: false, initial: 0, min: 0 }),
+        underlyingMadness: new fields.NumberField({ nullable: false, initial: 0, min: 0 })
       }, {
         label: 'CoC7.SAN',
         hint: 'CoC7.Sanity'
@@ -302,6 +308,17 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
       // CoC7. The Luck-spending machinery is still wired up elsewhere and has to
       // be neutralised separately.
       this.attribs.lck.value = this.characteristics.pow.value * CHARACTERISTIC_MULTIPLIER
+      // Alternative madness system: bars, state and modifiers all derive from
+      // POD and accumulated tension, so they are recomputed rather than stored.
+      if (game.settings.get(FOLDER_ID, 'sanitySystem') === 'alternative') {
+        const state = CoC7MentalStability.stateFromTension(this.characteristics.pow.value, this.attribs.san.tension)
+        this.config.mentalStability = {
+          bars: CoC7MentalStability.bars(this.characteristics.pow.value),
+          state,
+          modifiers: CoC7MentalStability.modifiers(state),
+          recoveryModifier: CoC7MentalStability.recoveryModifier(state)
+        }
+      }
       this.config.naturalHealing = (game.settings.get(FOLDER_ID, 'pulpRuleFasterRecovery') ? 2 : 1)
     }
   }

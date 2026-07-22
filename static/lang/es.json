@@ -1359,5 +1359,13 @@
   "CoC7.CircumstanceVeryUnfavourable": "Muy desfavorables (-20%)",
   "CoC7.Circumstances": "Circunstancias",
   "CoC7.WeaponParry": "Puede bloquear",
-  "CoC7.WeaponResistance": "Puntos de Resistencia"
+  "CoC7.WeaponResistance": "Puntos de Resistencia",
+  "CoC7.MentalStability.calm": "Tranquilo",
+  "CoC7.MentalStability.uneasy": "Intranquilo",
+  "CoC7.MentalStability.tense": "Tenso",
+  "CoC7.MentalStability.transitoryInsanity": "Enajenación Transitoria",
+  "CoC7.Settings.SanitySystem.Name": "Sistema de locura",
+  "CoC7.Settings.SanitySystem.Hint": "Cuál de los dos sistemas de Descenso a la Locura del manual usa este mundo.",
+  "CoC7.Settings.SanitySystem.Classic": "Clásico (reserva de Estabilidad Mental)",
+  "CoC7.Settings.SanitySystem.Alternative": "Alternativo (barras de tensión)"
 }
