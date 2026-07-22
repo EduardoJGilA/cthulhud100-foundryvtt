@@ -769,14 +769,24 @@ Varias marcadas ✅ no se sostienen.
 
 ### Sigue pendiente
 
-- [ ] 14 eras de CoC7 (Pulp, Dark Ages, Gaslight, Invictus…) en 16 archivos. d100 no tiene
-- [ ] Suerte gastable y 55 ajustes `pulpRule*`. Entrelazado con `difficultyLevel`, que
-      conserva el enum de CoC7 (113 referencias)
-- [ ] Módulo de persecuciones (`chase`), ajeno a d100
-- [ ] Compendio de habilidades: 33 entradas, menos que la lista del manual
-- [ ] `objeto_arquetipo.md` documenta arquetipos Pulp; `efectos.md` menciona Corpulencia
+- [x] **14 eras reducidas a una.** Solo `standard` se usaba como `true` en los 116
+      registros de los packs; las diez profesiones que mencionan `modern` y `pulp` los
+      ponen a `false`. La clave se conserva porque `item-system.js` valida contra ella
+- [x] **Compendio de habilidades: 33 es correcto.** Coincide con el recuento del manual
+      (11 Conocimientos + 3 Vocacionales + 7 Sensoriales + 6 Sociales + 6 de Acción)
 - [ ] Prefijo `coc7-` en las 16 hojas LESS (F5.3)
 - [ ] Interfaz de cordura alternativa solo en la ficha **v3**; la v2 no la muestra
+- [ ] `chase`, `archetype`, `experiencePackage` y `talent` siguen declarados en
+      `documentTypes`, así que aparecen en el menú de crear objeto pese a no ser de d100.
+      Quitarlos del manifiesto exige comprobar `register-sheets.js` y qué pasa con items
+      existentes; no se tocó sin poder probarlo en Foundry
+- [ ] `objeto_arquetipo.md` documenta arquetipos Pulp; `efectos.md` menciona Corpulencia
+
+> **Corrección: la Suerte gastable no es un problema.** Los 16 ajustes `pulpRule*` son
+> `default: false` **y** `config: false`, y los botones de gasto están condicionados a
+> ellos (`{{#if usingLuck.pulpRuleLuckHeal}}` y similares). Nunca aparecen. El valor de
+> Suerte ya se deriva como `POD×5` en `global-system.js`. Lo listé como pendiente por
+> error tras contar los ajustes sin comprobar si estaban activos.
 
 ### Segunda revisión — compendios contra el manual
 
