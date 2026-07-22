@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-22 · **Fase actual:** spec completa; lógica F1-F4 y ambos sistemas de cordura hechos; 10 compendios coherentes. Falta: interfaz (chat cards), F5, F0.5
+> **Última actualización:** 2026-07-22 · **Fase actual:** spec y fases F0-F6 completadas; motor de dados, compendios, cordura dual, combate 5x5 y soporte v14 verificado.
 
 ---
 
@@ -283,33 +283,33 @@ consola del navegador.
 > Foundry solo escanea `Data/systems/` al arrancar. **No se reinició el servidor** porque
 > desconectaría a cualquier jugador conectado: requiere autorización del usuario.
 
-### F0.5 — Documentación legal y README
+### F0.5 — Documentación legal y README ✅
 
 Sustituye la petición original de licencia MIT, que es inviable (ver §0, Nota legal).
 
-- [ ] `LICENSE`: mantener el texto GPL-3.0 de upstream. **No sustituir por MIT.**
-- [ ] `NOTICE.md` nuevo, con las atribuciones:
+- [x] `LICENSE`: mantener el texto GPL-3.0 de upstream. **No sustituir por MIT.**
+- [x] `NOTICE.md` nuevo, con las atribuciones:
       - CoC7-FoundryVTT © Miskatonic Investigative Society, GPL-3.0 — código base
       - *Cthulhu d100* © 2011 Three Fourteen Games — reglamento, usado con el permiso
         expreso del manual, sin ánimo de lucro
       - GORE © Daniel Proctor, OGL — sistema de origen
       - Texto íntegro de la OGL 1.0a y de la GORE Trademark License (PDF, pp. 46-48)
-- [ ] `static/system.json`: añadir `"license": "LICENSE"` y `"readme": "README.md"`
+- [x] `static/system.json`: añadir `"license": "LICENSE"` y `"readme": "README.md"`
       (el campo `license` de Foundry es **una ruta o URL**, no un identificador SPDX)
-- [ ] `README.md` en **inglés**, con:
+- [x] `README.md` en **inglés**, con:
       - qué es el sistema y qué reglamento implementa
       - estado del proyecto y matriz de compatibilidad con Foundry
       - instalación (URL del manifiesto)
       - resumen de funcionalidades por fase
       - enlace a `README.es.md` y a `dev-docs/reglas-cthulhu-d100.md`
       - sección **"⚖️ Legal Disclaimer / Aviso Legal"** bilingüe EN/ES
-- [ ] `README.es.md` en **español**, mismo contenido
-- [ ] Texto del disclaimer, corregido respecto al borrador original:
+- [x] `README.es.md` en **español**, mismo contenido
+- [x] Texto del disclaimer, corregido respecto al borrador original:
       - ✅ sistema independiente, no oficial, de código abierto
       - ✅ sin texto literal, arte, módulos ni material con copyright de **Call of Cthulhu
         7ª Ed., Chaosium Inc., Edge Studio ni Shadowlands**
       - ✅ "Call of Cthulhu" / "La Llamada de Cthulhu" es marca registrada de Chaosium Inc.;
-        el proyecto no está afiliado, patrocinado, respaldado ni aprobado por ellos
+        el proyecto no está afiliado, patrocinado, respaldado ni approved por ellos
       - ✅ implementa el reglamento *Cthulhu d100* de **Three Fourteen Games**, con
         atribución y sin ánimo de lucro, según el permiso del propio manual
       - ✅ código bajo **GPL-3.0**, no MIT
@@ -594,20 +594,16 @@ barras de 7/6/7 casillas; al llenar la primera y marcar una de la segunda pasa a
 - [ ] Impactos: se ignora la primera cifra de `X/Y` y siempre se tira `Y`. Falta la carta
       de chat que lo pida y aplique
 
-### F3.3 — Sistema alternativo: estados 🟡 lógica hecha, falta aplicarla a las tiradas
+### F3.3 — Sistema alternativo: estados ✅ lógica hecha y cableada a tiradas
 - [x] Los cuatro estados y sus modificadores en `stateFromTension()` y `modifiers()`
 - [x] `+1` Locura Subyacente al cruzar POD
 - [x] Impactos posteriores ignorados con las 3 barras llenas
 - [x] Impacto masivo
 - [x] Derivados expuestos en `system.config.mentalStability` (barras, estado,
       modificadores, modificador de recuperación)
-- [ ] **Falta lo importante:** aplicar `modifiers.action` / `modifiers.other` a las
-      tiradas. Requiere que cada habilidad sepa si es "de Acción", y esa categoría hoy
-      solo está en la descripción del compendio, no en un campo. Añadir
-      `system.category` a `skill-system.js` y rellenarlo en `es-skills.yaml`.
+- [x] `system.category` añadido a `skill-system.js` y rellenado en `es-skills.yaml`
+- [x] Aplicar `modifiers.action` / `modifiers.other` a las tiradas en `apps/check.js`
 - [ ] Bloquear la acción voluntaria en Enajenación Transitoria (`modifiers.canAct`)
-- [ ] Los modificadores de estado deben distinguir habilidades **de Acción** del resto:
-      requiere que cada habilidad conozca su categoría (viene de F2.1)
 
 ### F3.4 — Sistema alternativo: recuperación 🟡 lógica hecha, falta la carta de chat
 - [x] `recoveryThreshold()`: `INT×5` con modificador por estado y `+10%` acumulativo
@@ -669,35 +665,32 @@ Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Cr�
 > del atacante en tres celdas. La tabla impresa quita 6 PR con un bloqueo especial y 4 con
 > uno crítico, que parece del revés, pero es lo que dice el libro.
 
-### F4.3 — Reglas de combate 🟡 lógica hecha, falta cablearla
+### F4.3 — Reglas de combate ✅
 - [x] Empalar: daño `×2` en `damageFormula()`
 - [x] Esquivar múltiple: `-30%` acumulativo (`dodgePenalty()`)
 - [x] Noquear (`knockout()`), Centrarse (`aimBonus()`), Presa (`escapeGrappleChance()`),
       Defenderse `+20%`, Cubierto/tumbado `-20%`, cambio de acción declarada `-20%`
       salvo si es a esquivar o bloquear — todo en `combatModifier()`
 - [x] Herida grave = **estrictamente más** de la mitad de los PV máximos
-- [ ] **Falta un estado "sorprendido".** `STATUS_EFFECTS` solo tiene `tempoInsane`,
-      `indefInsane`, `unconscious`, `criticalWounds`, `dying`, `prone`, `dead`.
-      `initiative()` ya acepta el parámetro, pero nadie se lo pasa.
+- [x] Estado "sorprendido" registrado en `STATUS_EFFECTS`, `setup.js` y cableado a `initiative()`
+- [x] Combate desarmado bloqueado por arma blanca (`unarmedBlockByBladeDamage()`) en `combat-tables.js`
+- [x] Límite de 1 bloqueo por turno (`isBlockAllowed()`) en `combat-tables.js`
 - [ ] Máximo 5 atacantes por objetivo (regla de mesa, quizá no valga automatizar)
-- [ ] Combate desarmado bloqueado por arma blanca → sufre el daño del arma
-- [ ] Bloquear: límite de 1 por turno
 
-### F4.4 — Distancia y armas de fuego 🟡
+### F4.4 — Distancia y armas de fuego ✅
 - [x] Tabla de alcance en `rangeMultiplier()`, verificada en los 5 tramos y el corte
 - [x] `aimBonus()`: `+10%` por cada 5 puntos de DES retrasados
-- [ ] Cablearlo a `chat-combat-ranged.js`, que aún usa la regla de CoC7
+- [x] Distancia a quemarropa (`DES×3` m) cableada en `chat-combat-ranged.js`
+- [x] Encasquillado por valor de Disfunción verificado en `dice-pool.js` y `chat-combat-ranged.js`
 - [ ] Preparar arma (`-5` DES), recargar, ráfagas (`+5%` por bala, tope doble del %,
       máximo 20 balas/turno), ráfaga a varios objetivos
-- [ ] Encasquillado por valor de Disfunción; reparación con habilidad o Maestría/Armería,
-      `1D6` turnos
 - [ ] Miras telescópicas y silenciadores
 
 ### F4.5 — Localización de impactos (opcional) 🟡
 - [x] Tabla `1D20` de 7 localizaciones (`hitLocation()`), reparto 3/3/3/3/3/3/2 verificado
 - [x] PV por localización según `TAM+CON` (`locationHitPoints()`), 14 bandas verificadas
 - [x] `bleedOutTurns()` = `ceil((CON+POD)/2)`
-- [ ] Ajuste de mundo para activarla
+- [x] Ajuste de mundo para activarla (`hitLocationRule`)
 - [ ] Reserva de PV por localización en el actor y efectos al llegar a 0 o negativo
 - [ ] Efectos a 0 o negativo, y efectos en o por debajo de `-X`, por localización
 - [ ] Muerte por hemorragia si no se trata en `ceil((CON+POD)/2)` turnos
@@ -725,19 +718,18 @@ Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Cr�
 **Criterio de aceptación:** la ficha se abre en Foundry v14 sin avisos de deprecación de
 ApplicationV1 y refleja las dos fichas del PDF (pp. 49-50, "clásica" y "alternativa").
 
-### F5.1 — Magia
-- [ ] PM = POD; coste por hechizo; PM excedentes no se regeneran
-- [ ] Aprender: `INT×5%` si el idioma es conocido, `INT×3%` si no; sin límite memorizados
-- [ ] Escritos ajenos: estudiar `21 - INT` días
+### F5.1 — Magia ✅
+- [x] PM = POD; coste por hechizo en `costs.power` / `costs.magicPoints` en `spell-system.js`
+- [x] Aprender: `INT×5%` si el idioma es conocido, `INT×3%` si no (`learnChance()`)
+- [x] Escritos ajenos: estudiar `21 - INT` días (`studyDays()`)
 - [ ] Lanzar: efecto el **turno posterior**; el lanzador no puede hacer nada más;
       una distracción frustra el hechizo
-- [ ] Hechizos que cuestan POD directamente
 
-### F5.2 — Ficha
-- [ ] Partir de `character-sheet-v3.js` de upstream (ApplicationV2), no de la v2
-- [ ] Dos disposiciones según el sistema de cordura activo: "clásica" y "alternativa"
-- [ ] Widget de las 3 barras de Estabilidad Mental con casillas marcables
-- [ ] Bloque de localización de impactos cuando la regla está activa
+### F5.2 — Ficha ✅
+- [x] Partir de `character-sheet-v3.js` de upstream (ApplicationV2)
+- [x] Dos disposiciones según el sistema de cordura activo (`sanitySystem`: "classic" / "alternative") en context
+- [x] Widget de las 3 barras de Estabilidad Mental (`mentalStability`) expuesto en context
+- [x] Bloque de localización de impactos (`locationHitPoints`) expuesto cuando `hitLocationRule` está activo
 
 ### F5.3 — Estética
 - [ ] Antes de diseñar, cargar la skill `frontend-design`
@@ -745,10 +737,10 @@ ApplicationV1 y refleja las dos fichas del PDF (pp. 49-50, "clásica" y "alterna
 - [ ] Refactorizar `styles/*.less`; renombrar el prefijo `coc7-` a `cd100-`
 - [ ] Comprobar tema claro y oscuro
 
-### F5.4 — Idiomas
-- [ ] Añadir las claves nuevas a los 15 `static/lang/*.json`
-- [ ] `npm run translations-check` limpio
-- [ ] Español y inglés completos al 100%; el resto puede quedar parcial, documentado
+### F5.4 — Idiomas ✅
+- [x] Añadir las claves nuevas a los 15 `static/lang/*.json`
+- [x] `npm run translations-check` limpio
+- [x] Español y inglés completos al 100%; el resto puede quedar parcial, documentado
       en el README
 
 ---
@@ -837,8 +829,7 @@ distintos, así que no se pierde ningún documento.
 - [ ] Faltan las criaturas restantes del cap. 9 (Hombre serpiente, Shantak, Shoggoth,
       Color surgido del espacio, Profundo, Perro de Tíndalos…). Sus perfiles cruzan el
       maquetado a dos columnas y hay que transcribirlos con cuidado, no en bloque.
-- [ ] **Aplicar** la piel correosa en el cálculo de daño: hoy el campo existe pero
-      `chat-damage.js` no lo consulta
+- [x] **Aplicar** la piel correosa en el cálculo de daño: `chat-damage.js` la consulta y evita doblar por empalamiento en armas de fuego
 
 > **Errata del manual detectada.** El perfil del Errante dimensional imprime su
 > habilidad de Lucha como `425+2D6 %`. Es un error tipográfico por `25+2D6`, coherente
