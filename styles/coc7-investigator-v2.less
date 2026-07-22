@@ -108,7 +108,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
             border: 0;
             background: transparent;
             text-overflow: ellipsis;
-            color: #191813;
+            color: var(--color-text);
 
             &:hover,
             &:focus {
@@ -367,7 +367,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
-          color: #670b0b;
+          color: var(--color-hp-label);
 
           .hp-text {
             padding-top: 1rem;
@@ -375,7 +375,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
             margin: 0 auto;
 
             input {
-              color: #670b0b;
+              color: var(--color-hp-label);
             }
 
             .status {
@@ -384,7 +384,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
               color: grey;
 
               .status-on {
-                color: #670b0b;
+                color: var(--color-hp-label);
               }
             }
           }
@@ -397,7 +397,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
           background-repeat: no-repeat;
           background-position: center;
           margin-top: 5px;
-          color: #234337;
+          color: var(--color-sanity-label);
 
           .san-text {
             padding-top: 1rem;
@@ -409,7 +409,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
             }
 
             input {
-              color: #234337;
+              color: var(--color-sanity-label);
             }
 
             .status {
@@ -418,7 +418,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
               color: grey;
 
               .status-on {
-                color: #234337;
+                color: var(--color-sanity-label);
               }
             }
           }
@@ -469,7 +469,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
               .current-value,
               .max-value {
                 span {
-                  color: #191813;
+                  color: var(--color-text);
                 }
 
                 input {
@@ -477,7 +477,7 @@ body.theme-light .application.coc7.sheetV2:not(.investigator-summarized):not(.in
                   border: 0;
                   border-radius: @4px;
                   text-align: center;
-                  color: #191813;
+                  color: var(--color-text);
                 }
               }
 
@@ -1004,7 +1004,7 @@ body.theme-dark .application.coc7.sheetV2:not(.investigator-summarized):not(.inv
 
       .right-panel {
         .item .adjustment-value span {
-          color: #2b3753;
+          color: var(--color-sheet-front);
         }
       }
     }
