@@ -4,7 +4,7 @@ import TemplateHelpers from './src/template-helpers.js'
 
 const sources = {
   de: {
-    name: 'Cthulhu 7. Edition',
+    name: 'Cthulhu d100',
     priority: 0,
     pages: [
       {
@@ -86,7 +86,7 @@ const sources = {
     ]
   },
   en: {
-    name: 'Call of Cthulhu 7th Edition',
+    name: 'Cthulhu d100',
     priority: 0,
     pages: [
       {
@@ -176,7 +176,7 @@ const sources = {
     ]
   },
   es: {
-    name: 'La Llamada de Cthulhu 7ª Edición',
+    name: 'Cthulhu d100',
     priority: 0,
     pages: [
       {
@@ -254,7 +254,7 @@ const sources = {
     ]
   },
   fr: {
-    name: 'L\'Appel de Cthulhu version 7',
+    name: 'Cthulhu d100',
     priority: 0,
     pages: [
       {
@@ -264,7 +264,7 @@ const sources = {
     ]
   },
   ja: {
-    name: '新クトゥルフ神話TRPG',
+    name: 'Cthulhu d100',
     priority: 0,
     pages: [
       {
@@ -274,7 +274,7 @@ const sources = {
     ]
   },
   uk: {
-    name: 'Поклик Ктулху: 7 Видання',
+    name: 'Cthulhu d100',
     priority: 0,
     pages: [
       {

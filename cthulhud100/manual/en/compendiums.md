@@ -12,7 +12,7 @@ On the Setup page
 * Click the [fa-solid fa-plus]Add Compendium Pack button
 * Set the Label to be human readable
 * Set the Document Type to Item
-* Set the Required System to Call of Cthulhu 7th Edition
+* Set the Required System to Cthulhu d100
 * Click the [fa-solid fa-gear-code]Create Module button
 
 You can return to this page and edit the module to add more Compendium Packs later

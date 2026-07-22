@@ -12,7 +12,7 @@ En la página de Configuración:
 * Haz clic en el botón [fa-solid fa-plus]Añadir compendio
 * Establece la Etiqueta para que sea legible por humanos
 * Establece el Tipo de documento a Objeto
-* Establece el Sistema requerido a Call of Cthulhu 7th Edition
+* Establece el Sistema requerido a Cthulhu d100
 * Haz clic en el botón [fa-solid fa-gear-code]Crear Módulo
 
 Puedes volver a esta página y editar el módulo para agregar más Paquetes de Compendio más tarde.

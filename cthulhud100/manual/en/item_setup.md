@@ -12,7 +12,7 @@ Setups are predefined sets of skills and a way to generate the characteristics (
 4. On the _Details_ tab you can control
 
    1. Show / Hide the Characteristics tab with the Enable characteristics checkbox
-   2. Which version of Call of Cthulhu this is for, this can be filtered in compendiums
+   2. Which version of Cthulhu d100 this is for, this can be filtered in compendiums
    3. Names of biography sections (click on the `+` to add extra Biography sections), this can be replaced with a single block biography in settings
    4. Under items you can drag and drop default items and weapons
 
