@@ -1,0 +1,87 @@
+name: Pérdidas de Estabilidad Mental
+formula: 1d13
+results:
+- type: text
+  range:
+  - 1
+  - 1
+  name: Encontrar un animal muerto, velas y un recipiente con sangre
+  description: Pérdida <strong>0/1D2</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D2]].
+- type: text
+  range:
+  - 2
+  - 2
+  name: Ver un cadáver por sorpresa
+  description: Pérdida <strong>0/1D3</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D3]].
+- type: text
+  range:
+  - 3
+  - 3
+  name: Encontrar un cadáver calcinado
+  description: Pérdida <strong>0/1D3</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D3]].
+- type: text
+  range:
+  - 4
+  - 4
+  name: Encontrar los restos de una ceremonia con sacrificio humano
+  description: Pérdida <strong>0/1D4</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D4]].
+- type: text
+  range:
+  - 5
+  - 5
+  name: Ver los restos del sacrificio humano
+  description: Pérdida <strong>1/1D4+1</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D4+1]].
+- type: text
+  range:
+  - 6
+  - 6
+  name: Despertar atado en un entorno extraño
+  description: Pérdida <strong>0/1D6</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D6]].
+- type: text
+  range:
+  - 7
+  - 7
+  name: Ser atacado de forma organizada por ratas o insectos
+  description: Pérdida <strong>0/1D6</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D6]].
+- type: text
+  range:
+  - 8
+  - 8
+  name: Ver un gul o un profundo
+  description: Pérdida <strong>1/1D6</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D6]].
+- type: text
+  range:
+  - 9
+  - 9
+  name: Verte obligado a matar a un conocido inocente
+  description: Pérdida <strong>1/1D6+1</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D6+1]].
+- type: text
+  range:
+  - 10
+  - 10
+  name: Ver cómo un conocido te elige como sacrificio
+  description: Pérdida <strong>0/1D10</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D10]].
+- type: text
+  range:
+  - 11
+  - 11
+  name: Ser el sacrificio humano en una ceremonia
+  description: Pérdida <strong>1/1D10</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D10]].
+- type: text
+  range:
+  - 12
+  - 12
+  name: Ver cómo el cielo se tiñe de rojo
+  description: Pérdida <strong>2/2D10+1</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 2D10+1]].
+- type: text
+  range:
+  - 13
+  - 13
+  name: Ver al Gran Cthulhu
+  description: Pérdida <strong>1D10/1D100</strong>. Con el sistema alternativo se ignora la primera cifra y se tira siempre [[/r 1D100]].
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: rt..perdidas-de-estabilidad-mental
+      lang: es
+      priority: 0

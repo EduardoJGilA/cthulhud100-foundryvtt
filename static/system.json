@@ -138,6 +138,20 @@
       "name": "occupations",
       "path": "packs/es-occupations",
       "system": "cthulhud100"
+    },
+    {
+      "label": "Heridas Graves",
+      "type": "RollTable",
+      "name": "severe-wounds",
+      "path": "packs/es-severe-wounds",
+      "system": "cthulhud100"
+    },
+    {
+      "label": "Pérdidas de Estabilidad Mental",
+      "type": "RollTable",
+      "name": "sanity-losses",
+      "path": "packs/es-sanity-losses",
+      "system": "cthulhud100"
     }
   ],
   "languages": [
