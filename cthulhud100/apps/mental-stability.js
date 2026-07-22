@@ -1,4 +1,5 @@
 /* global game */
+import { CHARACTERISTIC_MULTIPLIER } from '../constants.js'
 
 /**
  * Cthulhu d100 alternative madness system, "Estabilidad Mental" (rulebook
@@ -164,6 +165,96 @@ export default class CoC7MentalStability {
     const m = Math.max(0, parseInt(underlyingMadness, 10) || 0)
     const r = parseInt(roll, 10) || 0
     return (r < m ? m - r : 0)
+  }
+
+  /**
+   * Threshold of the check that clears tension once the stressor is gone.
+   *
+   * INT x5, shifted by the state, plus a cumulative 10% for every hour that
+   * passes without a fresh impact.
+   * @param {object} options
+   * @param {number} options.int INT
+   * @param {string} options.state one of CoC7MentalStability.state
+   * @param {number} options.quietHours hours since the last impact
+   * @returns {number} percentage to roll against
+   */
+  static recoveryThreshold ({ int, state, quietHours = 0 } = {}) {
+    const base = (parseInt(int, 10) || 0) * CHARACTERISTIC_MULTIPLIER
+    const hours = Math.max(0, parseInt(quietHours, 10) || 0)
+    return Math.max(0, Math.min(100, base + CoC7MentalStability.recoveryModifier(state) + hours * 10))
+  }
+
+  /**
+   * Outcome of the recovery check.
+   *
+   * Success wipes all three bars: the mind has made sense of what happened.
+   * Failure adds 1d6 more tension, because it has not.
+   * @param {object} options
+   * @param {boolean} options.success whether the check passed
+   * @param {number} options.tension current tension
+   * @param {number} options.pow POD
+   * @param {number} options.extraRoll result of 1d6, used on failure
+   * @returns {number} tension afterwards
+   */
+  static applyRecovery ({ success, tension = 0, pow = 0, extraRoll = 0 } = {}) {
+    if (success) {
+      return 0
+    }
+    const bars = CoC7MentalStability.bars(pow)
+    return Math.min(bars.total, Math.max(0, parseInt(tension, 10) || 0) + (parseInt(extraRoll, 10) || 0))
+  }
+
+  /**
+   * Treating a disorder: a monthly Psicologia or Psicoanalisis check at -10%
+   * per point of severity. Success removes one degree and one point of
+   * underlying madness, a critical removes two of each.
+   * @param {object} options
+   * @param {number} options.skill practitioner's skill percentage
+   * @param {number} options.severity severity of the disorder
+   * @returns {number} percentage to roll against
+   */
+  static treatmentThreshold ({ skill, severity = 0 } = {}) {
+    const s = parseInt(skill, 10) || 0
+    return Math.max(0, s - (Math.max(0, parseInt(severity, 10) || 0) * 10))
+  }
+
+  /**
+   * Effect of a treatment check on a disorder.
+   * @param {object} options
+   * @param {boolean} options.success whether the check passed
+   * @param {boolean} options.critical whether it was a critical
+   * @param {number} options.severity current severity
+   * @param {number} options.underlyingMadness current Locura Subyacente
+   * @returns {object} severity and underlyingMadness afterwards
+   */
+  static applyTreatment ({ success, critical = false, severity = 0, underlyingMadness = 0 } = {}) {
+    const sev = Math.max(0, parseInt(severity, 10) || 0)
+    const mad = Math.max(0, parseInt(underlyingMadness, 10) || 0)
+    if (!success) {
+      return { severity: sev, underlyingMadness: mad }
+    }
+    const steps = (critical ? 2 : 1)
+    return {
+      severity: Math.max(0, sev - steps),
+      underlyingMadness: Math.max(0, mad - steps)
+    }
+  }
+
+  /**
+   * Underlying madness gained from reading a Mythos tome.
+   *
+   * Tomes cause underlying madness directly. When only another system's sanity
+   * loss is known, roll it, double the result, and every whole multiple of the
+   * reader's POD is one point.
+   * @param {object} options
+   * @param {number} options.loss sanity loss rolled for the tome
+   * @param {number} options.pow reader's POD
+   * @returns {number} points of underlying madness
+   */
+  static tomeMadness ({ loss, pow } = {}) {
+    const p = Math.max(1, parseInt(pow, 10) || 0)
+    const doubled = (parseInt(loss, 10) || 0) * 2
+    return Math.floor(doubled / p)
   }
 
   /**
