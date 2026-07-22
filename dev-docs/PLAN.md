@@ -647,12 +647,27 @@ Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Cr�
 - [ ] Turno de 12 segundos, 5 por minuto
 - [ ] **Declaración de acciones** y el `-20%` por cambiar lo declarado
 
-### F4.2 — Tablas cruzadas
-- [ ] Tabla de **Esquiva** 5×5 (§7). Resultado aplicado al **Atacante**
-- [ ] Tabla de **Bloqueo** 5×5, incluida la pérdida de PR del arma del atacante
+### F4.2 — Tablas cruzadas ✅ commit `6a7a832`
+- [x] Tabla de **Esquiva** 5×5 (§7). Resultado aplicado al **Atacante**
+- [x] Tabla de **Bloqueo** 5×5, incluida la pérdida de PR del arma del atacante
       (`-6 PR`, `-4 PR`, `-2 PR` según celda)
-- [ ] Resultados posibles: `Falla`, `Golpea`, `Empala`, `Máx. D`, `Pifia`
-- [ ] Reescribir `cthulhud100/apps/chat-combat-melee.js` y `chat-combat-ranged.js`
+- [x] Los 5 resultados: `miss`, `hit`, `impale`, `maxDamage`, `fumble`
+- [x] **Verificado celda a celda** contra una transcripción independiente: 25/25
+- [x] **Cableadas al combate real.** `apps/chat-opposed-message.js` resolvía comparando
+      niveles de éxito (regla de CoC7); ahora lee la tabla.
+- [x] Los empates dejan de ser caso especial en combate: toda pareja tiene entrada.
+      El desempate y el prompt de ventaja quedan solo para enfrentamientos fuera de combate.
+- [x] La tabla la elige la defensa: esquivar → Esquiva, cualquier otra → Bloqueo
+- [ ] `chat-combat-melee.js` y `chat-combat-ranged.js` aún no consultan `combatModifier()`
+      ni `dodgePenalty()` para los `-20%` / `-30%` acumulativos
+
+> **La diferencia no es cosmética.** Un defensor que saca crítico convierte el golpe del
+> atacante en **pifia**. Comparar niveles de éxito no puede producir eso: solo decía
+> quién ganaba.
+>
+> Ambas tablas dan los mismos resultados; solo difieren en que bloquear resta PR al arma
+> del atacante en tres celdas. La tabla impresa quita 6 PR con un bloqueo especial y 4 con
+> uno crítico, que parece del revés, pero es lo que dice el libro.
 
 ### F4.3 — Reglas de combate 🟡 lógica hecha, falta cablearla
 - [x] Empalar: daño `×2` en `damageFormula()`
