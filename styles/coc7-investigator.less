@@ -378,7 +378,11 @@
           font-family: var(--investigator-sheet-primary-font);
 
           .secondary-attribute {
+            // --color fills the total box behind white text.
+            // --color-label draws the heading directly on the sheet, so it needs
+            // more contrast in dark mode. See coc7-globals.less.
             --color: var(--color-labels);
+            --color-label: var(--color-labels);
             display: grid;
             grid-template-rows: @25px @24px @48px;
             font-family: var(--investigator-sheet-primary-font);
@@ -387,22 +391,26 @@
 
             &.attr-hp {
               --color: var(--color-hp);
+              --color-label: var(--color-hp-label);
             }
 
             &.attr-mp {
               --color: var(--color-mp);
+              --color-label: var(--color-mp-label);
             }
 
             &.attr-luck {
               --color: var(--color-luck);
+              --color-label: var(--color-luck-label);
             }
 
             &.attr-sanity {
               --color: var(--color-sanity);
+              --color-label: var(--color-sanity-label);
             }
 
             .attribute-name {
-              color: var(--color);
+              color: var(--color-label);
               font-size: @24px;
               text-align: center;
               font-weight: bold;

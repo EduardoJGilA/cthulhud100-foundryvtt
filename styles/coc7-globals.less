@@ -43,6 +43,16 @@
   --color-luck: var(--color-luck-base);
   --color-sanity: var(--color-sanity-base);
   /* ---------------------------------------- */
+  /*  Secondary attribute label colours       */
+  /*  The colours above are tuned to sit BEHIND white text, so they are dark
+  /*  by design. Drawing a label directly in them only works on the light
+  /*  sheet; dark mode overrides these with lightened variants.
+  /* ---------------------------------------- */
+  --color-hp-label: var(--color-hp);
+  --color-mp-label: var(--color-mp);
+  --color-luck-label: var(--color-luck);
+  --color-sanity-label: var(--color-sanity);
+  /* ---------------------------------------- */
   /*  Investigator Fonts                      */
   /* ---------------------------------------- */
   --investigator-sheet-primary-font: customSheetFont, "Modesto Condensed";
@@ -130,6 +140,15 @@ body.theme-dark .application.coc7,
   --color-mp: color-mix(in oklab, var(--color-mp-base), white 50%);
   --color-luck: color-mix(in oklab, var(--color-luck-base), white 15%);
   --color-sanity: color-mix(in oklab, var(--color-sanity-base), white 15%);
+
+  /* Label colours are mixed further so the text clears WCAG AA (4.5:1) against
+  /* the dark sheet, which averages #242422. The values above are too dark to
+  /* read as text there: 2.36:1 for sanity, 2.81:1 for hit points. They stay
+  /* unchanged because they are still used as fills behind white text. */
+  --color-hp-label: color-mix(in oklab, var(--color-hp-base), white 40%);
+  --color-mp-label: color-mix(in oklab, var(--color-mp-base), white 55%);
+  --color-luck-label: color-mix(in oklab, var(--color-luck-base), white 35%);
+  --color-sanity-label: color-mix(in oklab, var(--color-sanity-base), white 45%);
 
   --background-sheet: url('./assets/art/page-dark.webp');
   --nav-bg-color: rgb(255 255 255 / 0.05);
