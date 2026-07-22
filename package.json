@@ -1,6 +1,6 @@
 {
   "name": "fvtt-cthulhud100",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "An unofficial, independent implementation of the Cthulhu d100 rules (Three Fourteen Games, 2011) for Foundry Virtual Tabletop.",
   "scripts": {
     "build": "webpack --mode production",
