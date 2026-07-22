@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F0 casi completa — F0.1/F0.2/F0.3 hechas, F0.4 pendiente de reiniciar Foundry, F0.5 pendiente
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1 en curso — F1.2 completa, F1.1 parcial. Pendientes: F0.5, resto de F1, F2-F5
 
 ---
 
@@ -278,21 +278,33 @@ y Pifia con `96-00`.
 > `floor(50/20)`. Es incorrecto: la tabla "Probabilidades de éxitos extra" (PDF pág. 6)
 > da Crítico 3 para el tramo 50-52%. El manual **redondea al más cercano**, no trunca.
 
-### F1.1 — Atributos en escala 3-18
-- [ ] `cthulhud100/models/actor/global-system.js:120` `defineSchemaCharacteristics()`: renombrar
-      las ocho claves a `fue con des tam int pod car est` **o** mantener las claves internas
-      de CoC7 (`str con dex siz int pow app edu`) y traducir solo en la capa de idioma.
-      **Recomendación: mantener las claves internas**, cambiar solo etiquetas y fórmulas.
-      Reduce muchísimo el riesgo y el `document-class.js` de 157 KB sigue funcionando.
-      Decisión tomada: `_______`
-- [ ] Fórmulas por defecto: `str con dex pow app` → `3D6`; `siz int` → `2D6+6`; `edu` → `3D6+3`
-- [ ] Introducir el concepto de **multiplicador de característica**: el valor almacenado es
-      3-18 y el porcentaje de chequeo es `valor × 5`. Localizar todos los sitios que asumen
-      que la característica ya es un porcentaje
+### F1.1 — Atributos en escala 3-18 🟡 parcial, commit `cabd15c`
+- [x] **Decisión tomada: se mantienen las claves internas** `str con dex siz int pow app edu`.
+      Solo cambian etiquetas, fórmulas y la escala. `document-class.js` (157 KB) intacto.
+- [x] Fórmulas por defecto en `models/item/setup-system.js:29-41`:
+      `str con dex pow app` → `3D6`; `siz int` → `2D6+6`; `edu` (EST) → `3D6+3`.
+      Se elimina el `*5` de CoC7.
+- [x] Constante `CHARACTERISTIC_MULTIPLIER = 5` en `cthulhud100/constants.js`
+- [x] Aplicada en los tres sitios que convierten característica → umbral de tirada:
+      `apps/check.js:723` (rama `type.characteristic`), `apps/con-check.js:86`,
+      `apps/san-check-card.js:450` (chequeo de Idea)
+- [ ] **Auditar el resto de sitios** que asumen que la característica ya es un porcentaje.
+      Sospechosos localizados y sin revisar:
+      - `apps/chase-participant-dialog.js:315,320` (DES y CON en persecuciones)
+      - `apps/chat-combat-ranged.js:151` — `dex.value / 15` es la regla de alcance a
+        quemarropa de CoC7; en d100 es `DES×3` metros (ver §7 del reglamento)
+      - `apps/actor-importer.js:647`
+      - `models/actor/document-class.js` — buscar `characteristics` y `.value`
 - [ ] Validación: atributo <4 (salvo CAR) → marca de "inválido"; atributo a 0 → muerte;
       INT o POD a 0 → estado vegetativo
 - [ ] Etiquetas en los 15 `static/lang/*.json`: FUE, CON, DES, TAM, INT, POD, CAR, EST
       (traducidas por idioma; el inglés puede conservar STR/CON/DEX/SIZ/INT/POW/APP/EDU)
+- [ ] Revisar la ficha: los campos de característica deben aceptar 3-18 y mostrar el
+      porcentaje derivado (`valor × 5`) junto al valor
+
+> **Ojo al migrar:** cualquier actor creado antes de este cambio tiene las características
+> guardadas como percentiles. No hay usuarios todavía, así que no se escribe migración,
+> pero si aparecen mundos de prueba hay que recrear los actores.
 
 ### F1.2 — Niveles de éxito ✅
 - [x] `successLevel` redefinido a `fumble(-99) / failure(0) / regular(1) / special(2) /
