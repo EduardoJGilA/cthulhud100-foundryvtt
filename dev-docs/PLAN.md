@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1, F2.1-F2.3 y F6 hechas. Pendientes: F0.5, F2.4, F3-F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1, F2.1-F2.3, F3.0/F3.2/F3.3 y F6 hechas. Pendientes: F0.5, F2.4, resto de F3, F4, F5
 
 ---
 
@@ -544,9 +544,10 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
 barras de 7/6/7 casillas; al llenar la primera y marcar una de la segunda pasa a
 "Intranquilo" y sus habilidades de Acción reciben `+10%` mientras el resto recibe `-10%`.
 
-### F3.0 — Selector
-- [ ] Ajuste de mundo `sanitySystem`: `clasico` | `alternativo`
-- [ ] La ficha muestra un bloque u otro según el ajuste
+### F3.0 — Selector ✅ commit `d134025`
+- [x] Ajuste de mundo `sanitySystem`: `classic` | `alternative`, visible en configuración,
+      en `setup/register-settings.js`
+- [ ] La ficha muestra un bloque u otro según el ajuste (F5.2)
 
 ### F3.1 — Sistema clásico
 - [ ] Estabilidad Mental inicial `POD×5`
@@ -556,22 +557,28 @@ barras de 7/6/7 casillas; al llenar la primera y marcar una de la segunda pasa a
 - [ ] EM a 0 → locura irremediable, el PJ pasa a PNJ
 - [ ] Reaprovechar `cthulhud100/apps/san-check-card.js` de upstream, que ya es muy parecido
 
-### F3.2 — Sistema alternativo: estructura
-- [ ] Modelo de datos: 3 barras. Barra 1 `ceil(POD/2)`, barra 2 `floor(POD/2)`,
-      barra 3 `ceil(POD/2)`
-- [ ] Contador de **Locura Subyacente**
-- [ ] Impactos: se ignora la primera cifra de `X/Y`, siempre se tira `Y`; cada jugador tira
-      por separado
+### F3.2 — Sistema alternativo: estructura ✅ commit `d134025`
+- [x] `apps/mental-stability.js`: barras `ceil/floor/ceil`, total `POD×1,5` exacto
+- [x] Campos `san.tension` y `san.underlyingMadness` en el esquema
+- [x] `applyHit()` cubre las tres reglas difíciles: impacto masivo, cruce de POD y
+      "acostumbrarse a la tensión"
+- [x] Verificado contra los ejemplos del manual, incluido POD 12 + Gran Cthulhu sacando
+      40 → 3 de Locura Subyacente y 4 de tensión
+- [ ] Impactos: se ignora la primera cifra de `X/Y` y siempre se tira `Y`. Falta la carta
+      de chat que lo pida y aplique
 
-### F3.3 — Sistema alternativo: estados
-- [ ] Tranquilo → sin modificadores
-- [ ] Intranquilo (barra 1 llena + ≥1 en barra 2) → Acción `+10%`, resto `-10%`
-- [ ] Tenso (barra 2 llena + ≥1 en barra 3) → Acción `+20%`, resto `-20%`
-- [ ] Enajenación Transitoria (3 barras llenas) → no puede actuar voluntariamente
-- [ ] Al tachar la última casilla de la barra 2 → `+1` Locura Subyacente
-- [ ] Con las 3 barras llenas, los impactos posteriores se ignoran
-- [ ] **Impacto masivo** (> `POD×1,5` en un solo golpe): contar cuántas veces los puntos
-      igualan el POD → tachar esa cantidad en Locura Subyacente; el resto va a la barra 1
+### F3.3 — Sistema alternativo: estados 🟡 lógica hecha, falta aplicarla a las tiradas
+- [x] Los cuatro estados y sus modificadores en `stateFromTension()` y `modifiers()`
+- [x] `+1` Locura Subyacente al cruzar POD
+- [x] Impactos posteriores ignorados con las 3 barras llenas
+- [x] Impacto masivo
+- [x] Derivados expuestos en `system.config.mentalStability` (barras, estado,
+      modificadores, modificador de recuperación)
+- [ ] **Falta lo importante:** aplicar `modifiers.action` / `modifiers.other` a las
+      tiradas. Requiere que cada habilidad sepa si es "de Acción", y esa categoría hoy
+      solo está en la descripción del compendio, no en un campo. Añadir
+      `system.category` a `skill-system.js` y rellenarlo en `es-skills.yaml`.
+- [ ] Bloquear la acción voluntaria en Enajenación Transitoria (`modifiers.canAct`)
 - [ ] Los modificadores de estado deben distinguir habilidades **de Acción** del resto:
       requiere que cada habilidad conozca su categoría (viene de F2.1)
 
