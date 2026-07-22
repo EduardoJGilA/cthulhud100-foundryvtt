@@ -96,12 +96,6 @@
           </div>
           <div class="attribute-value">{{attribs.mov.value}}</div>
         </div>
-        <div class="attribute flexrow">
-          <div class="attribute-label">
-            <h2>{{localize 'CoC7.Build'}}:</h2>
-          </div>
-          <div class="attribute-value">{{attribs.build.value}}</div>
-        </div>
         <div class="attribute flexrow" data-attrib="db">
           <div class="attribute-label rollable">
             <h2>{{localize 'CoC7.DB'}}:</h2>
@@ -124,18 +118,6 @@
               {{attribs.mov.value}}
             {{else}}
               <input type="text" {{#if attribs.mov.activeEffectValue}} data-tooltip="CoC7.ModifiedByActiveEffect" {{/if}} name="system.attribs.mov.value" value="{{attribs.mov.sourceValue}}" />
-            {{/if}}
-          </div>
-        </div>
-        <div class="attribute{{#unless attribs.build.auto}} manual-override{{/unless}} flexrow" data-attrib="build">
-          <div class="attribute-label attribute clickable item-control" data-action="auto-toggle" data-tooltip="CoC7.ToolTipAutoToggle" data-tooltip-class="coc7-wider-tooltip" data-attrib="build">
-            <h2>{{localize 'CoC7.Build'}}:</h2>
-          </div>
-          <div class="attribute-value">
-            {{#if attribs.build.auto}}
-              {{attribs.build.value}}
-            {{else}}
-              <input type="text" {{#if attribs.build.activeEffectValue}} data-tooltip="CoC7.ModifiedByActiveEffect" {{/if}} name="system.attribs.build.value" value="{{attribs.build.sourceValue}}" />
             {{/if}}
           </div>
         </div>

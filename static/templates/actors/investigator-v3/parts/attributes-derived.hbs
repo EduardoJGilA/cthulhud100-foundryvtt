@@ -8,14 +8,6 @@
         <input type="text" class="derived-attribute-edit derived-attribute-mov" {{#if attribs.mov.activeEffectValue}} data-tooltip="CoC7.ModifiedByActiveEffect" {{/if}} name="system.attribs.mov.value" value="{{#if attribs.mov.activeEffectValue}}{{attribs.mov.sourceValue}}{{else}}{{attribs.mov.value}}{{/if}}" />
       {{/if}}
     </div>
-    <div class="derived-attribute{{#unless (and document.system.flags.locked document.system.attribs.build.auto)}} manual-override{{/unless}}">
-      <span class="derived-attribute-name attribute{{#unless document.system.flags.locked}} clickable item-control{{/unless}}" {{#unless document.system.flags.locked}} data-action="auto-toggle" data-tooltip="CoC7.ToolTipAutoToggle" data-tooltip-class="coc7-wider-tooltip" {{/unless}} data-attrib="build">{{localize 'CoC7.Build'}}:</span>
-      {{#if (or document.system.flags.locked document.system.attribs.build.auto)}}
-        <span class="derived-attribute-value derived-attribute-build">{{document.system.attribs.build.value}}</span>
-      {{else}}
-        <input type="text" class="derived-attribute-edit derived-attribute-build" {{#if attribs.build.activeEffectValue}} data-tooltip="CoC7.ModifiedByActiveEffect" {{/if}} name="system.attribs.build.value" value="{{#if attribs.build.activeEffectValue}}{{attribs.build.sourceValue}}{{else}}{{attribs.build.value}}{{/if}}" />
-      {{/if}}
-    </div>
     <div class="derived-attribute attribute{{#unless (and document.system.flags.locked document.system.attribs.db.auto)}} manual-override{{/unless}}" data-attrib="db">
       <span class="derived-attribute-name attribute{{#if document.system.flags.locked}} attribute-name rollable{{else}} clickable item-control{{/if}}" {{#unless document.system.flags.locked}} data-action="auto-toggle" data-tooltip="CoC7.ToolTipAutoToggle" {{else}} data-tooltip="CoC7.ToolTipDB" {{/unless}} data-tooltip-class="coc7-wider-tooltip" data-attrib="db">{{localize 'CoC7.DB'}}:</span>
       {{#if (or document.system.flags.locked document.system.attribs.db.auto)}}

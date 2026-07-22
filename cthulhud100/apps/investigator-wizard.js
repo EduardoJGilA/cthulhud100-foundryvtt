@@ -1,5 +1,5 @@
 /* global Actor ChatMessage CONFIG CONST DragDrop foundry game Hooks renderTemplate Roll TextEditor ui */
-import { FOLDER_ID, ERAS, PERSONAL_SKILL_POINTS_PER_INT } from '../constants.js'
+import { FOLDER_ID, ERAS, PERSONAL_SKILL_POINTS_PER_INT, CHARACTERISTIC_MULTIPLIER } from '../constants.js'
 import CoC7DicePool from './dice-pool.js'
 import CoC7ModelsActorDocumentClass from '../models/actor/document-class.js'
 import CoC7ModelsItemOccupationSystem from '../models/item/occupation-system.js'
@@ -2232,8 +2232,12 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       },
       embeddedItems
     }
-    actorData.document.system.attribs.san.value = actorData.document.system.characteristics.pow.value
-    actorData.document.system.attribs.san.dailyLimit = Math.floor(actorData.document.system.characteristics.pow.value / 5)
+    // Cordura is POD x5, and the daily loss limit is a fifth of that, so POD.
+    // This used to set sanity to POD outright, giving wizard-built
+    // investigators a fifth of the sanity they should start with.
+    const pow = actorData.document.system.characteristics.pow.value
+    actorData.document.system.attribs.san.value = pow * CHARACTERISTIC_MULTIPLIER
+    actorData.document.system.attribs.san.dailyLimit = pow
     return actorData
   }
 

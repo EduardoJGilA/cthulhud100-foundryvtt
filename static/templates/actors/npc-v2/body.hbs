@@ -148,13 +148,6 @@
             <a class="item-control{{#if document.system.attribs.db.auto}} auto-on{{else}} auto-off{{/if}}" data-action="auto-toggle" data-tooltip="CoC7.ToolTipAutoToggle" data-tooltip-class="coc7-wider-tooltip"><i class="fa-solid fa-cogs"></i></a>
           {{/unless}}
         </div>
-        <div class="attribute flexrow" data-attrib="build">
-          <div class="attribute-name">{{localize 'CoC7.Build'}}:</div>
-          <input class="detail-value attribute-max{{#if attribs.build.activeEffectValue}} modified-by-active-effect{{/if}}" type="text" {{#if attribs.build.activeEffectValue}}{{#if @root.document.system.flags.locked}} value="{{attribs.build.value}}" data-tooltip="CoC7.ModifiedByActiveEffect" readonly{{else}} name="system.attribs.build.value" value="{{attribs.build.sourceValue}}" {{/if}}{{else}} name="system.attribs.build.value" value="{{attribs.build.value}}" {{/if}} {{#if (or document.system.flags.locked document.system.attribs.build.auto)}} readonly{{/if}}/>
-          {{#unless document.system.flags.locked}}
-            <a class="item-control{{#if document.system.attribs.build.auto}} auto-on{{else}} auto-off{{/if}}" data-action="auto-toggle" data-tooltip="CoC7.ToolTipAutoToggle" data-tooltip-class="coc7-wider-tooltip"><i class="fa-solid fa-cogs"></i></a>
-          {{/unless}}
-        </div>
         <div class="attribute flexrow" data-attrib="armor">
           <div class="attribute-name">{{localize 'CoC7.Armor'}}:</div>
           {{#if document.system.flags.locked}}
