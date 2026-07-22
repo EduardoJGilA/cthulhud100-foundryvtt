@@ -1775,5 +1775,9 @@
   "CoC7.SkillCategory": "Catégorie",
   "CoC7.Creature.LeatherySkin": "Leathery skin",
   "CoC7.Creature.LeatherySkinHint": "Firearms do minimum damage and cannot double through impaling.",
-  "CoC7.MentalStabilityDepleted": "{name} n'a plus de Stabilité Mentale : irrémédiablement fou, devient un PNJ."
+  "CoC7.MentalStabilityDepleted": "{name} n'a plus de Stabilité Mentale : irrémédiablement fou, devient un PNJ.",
+  "CoC7.Surprised": "Sorprendido",
+  "CoC7.Settings.HitLocationRule.Name": "Localización de impactos",
+  "CoC7.Settings.HitLocationRule.Hint": "Activar la regla opcional de localización de impactos (1D20) y reservas de PV por localización.",
+  "CoC7.LuckNotExpendable": "En Cthulhu d100 la Suerte es una característica derivada (POD×5) y no se puede gastar."
 }
