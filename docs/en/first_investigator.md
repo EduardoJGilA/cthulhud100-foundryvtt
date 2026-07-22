@@ -7,7 +7,7 @@ This page creates an investigator using the provided compendiums, if you are rea
 
 # Skill
 
-Click on the Compendium Packs tab then under the Item heading open up the Skills Item (CoC7). Here you will find the skills shown on the characters sheets available from Chaosium's website.
+Click on the Compendium Packs tab then open the **Skills** compendium. It holds the Cthulhu d100 skill list, grouped into Knowledge, Vocational, Sensory, Social and Action, with their base percentages.
 
 - _No adjustment_ - Can not be assigned personal skill points.
 - _No XP gain_ - You do not mark this skill for improvement on a success.

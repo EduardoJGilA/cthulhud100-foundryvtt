@@ -1,42 +1,195 @@
 # Combate
 
+El combate de Cthulhu d100 se resuelve por **comparación de resultados**, no por tirada
+enfrentada. El atacante tira y el defensor tira; los dos niveles de éxito se cruzan en una
+tabla que decide qué ocurre. El sistema hace ese cruce por ti.
+
+Un turno dura **12 segundos**, es decir 5 turnos por minuto.
+
 ## Iniciar el combate
 
-En la escena, selecciona las fichas involucradas en el combate, haz clic derecho en una de ellas y en la esquina inferior derecha, haz clic en el icono _Alternar estado de combate_. Esto agregará los actores correspondientes de las fichas seleccionadas a la pestaña de Encuentros de combate.
-Luego, en la pestaña de Encuentros de combate, puedes _comenzar el combate_.
-
-El rastreador de combate te ayudará a seguir tanto las iniciativas de los diferentes actores como las rondas de combate.
+En la escena, selecciona las fichas implicadas, haz clic derecho en una de ellas y pulsa el
+icono _Alternar estado de combate_ en la esquina inferior derecha. Eso añade los actores a
+la pestaña de Encuentros. Desde ahí puedes _comenzar el combate_.
 
 ## Iniciativa
 
-En Foundry, los turnos de combate están ordenados por iniciativa; en el sistema, esto suele ser la _DES_ del actor. Entonces, para establecer las iniciativas, haz clic en el icono de dados de cada actor o simplemente en el icono con 3 personas en la parte superior izquierda de la pestaña de combate para establecer todas a la vez.
+El orden lo marca la **DES**, en su escala de 3 a 18. A mayor DES, antes se actúa. Pulsa el
+icono de dados de cada actor, o el de las tres personas arriba a la izquierda para tirar
+todas de golpe.
 
-Junto a cada actor en la pestaña de combate, hay 3 iconos:
+En caso de empate actúa primero quien tenga mayor porcentaje en la habilidad implicada. Si
+el empate persiste, ambos atacan a la vez.
 
-- _Un arma_: para _desenfundar el arma_ (esto sumará 50 a la iniciativa de ese personaje)
-- _Un ojo tachado_: para mostrar/ocultar el actor correspondiente en la lista.
-- _Una calavera_: para marcar a un personaje como derrotado y omitirlo en los turnos siguientes.
-- _Un objetivo_: para señalar al contendiente.
+Modificadores a la DES a efectos de iniciativa:
 
-## Seleccionar objetivo / objetivos
+| Situación | Efecto |
+|---|---|
+| **Sorpresa** | DES a la mitad, solo durante el primer turno |
+| **Preparar el arma** (desenfundar, amartillar, desenvainar) | −5 DES |
+| **Recargar y disparar** en el mismo turno | DES a la mitad |
+| **Esperar** | reduce su DES efectiva a voluntad, nunca por debajo de 1 |
+| **Centrarse en un objetivo** | +10% a la habilidad por cada 5 puntos de DES que retrase |
 
-Durante el turno de un actor, para atacar, lo primero que debes hacer es seleccionar el objetivo u objetivos. Esto se puede hacer haciendo _clic derecho_ en la ficha del objetivo y luego haciendo clic en el icono _objetivo_ (abajo a la izquierda). O activar el modo _objetivo_ desde la barra de herramientas izquierda y hacer clic en los objetivos.
+> El personaje sorprendido sí puede esquivar o bloquear con su DES normal; la penalización
+> solo afecta a cuándo le llega su turno para atacar.
 
-Luego, abre la hoja del actor y haz clic en el **nombre** del objeto que se usará para el ataque. Esto puede ser desde un disparo único de un arma de largo alcance, o algún ataque cuerpo a cuerpo o una maniobra.
-Este clic iniciará el flujo de trabajo de ataque en el chat; la tarjeta del chat permitirá seleccionar más opciones del ataque según el tipo de ataque.
+Junto a cada actor de la pestaña de combate hay varios iconos: un arma para marcar que
+lleva un arma preparada, un ojo tachado para ocultarlo de la lista, una calavera para
+marcarlo como derrotado y un objetivo para señalarlo.
 
-> Consejo: si haces _clic derecho_ en el icono de hoja del rastreador de combate, esto lo mostrará como una pequeña ventana y luego podrás ver tanto la ventana del rastreador de combate como los resultados del combate en el chat.
+## Declaración de acciones
 
-## Combate Cuerpo a Cuerpo
+Antes de empezar el turno, todos declaran qué van a intentar, en orden **decreciente** de
+iniciativa.
 
-## Maniobras
+Se puede terminar haciendo algo distinto a lo declarado, pero cuesta **−20%** a la
+habilidad implicada. La excepción es abandonar el plan para simplemente esquivar o
+bloquear, que no penaliza.
 
-Aún no implementadas.
+## Secuencia de un ataque
 
-## Disparo Único
+1. **Atacar**: `1D100` contra el porcentaje de la habilidad del arma.
+2. **Reaccionar**: el objetivo puede esquivar o bloquear, si no ha gastado ya su acción.
+3. **Resolver el daño**: dados del arma más el MD del atacante.
+4. **Aplicar**: se resta la armadura y luego se descuentan los PV.
 
-## Fuego Automático
+## Tablas de Esquiva y Bloqueo
 
-### Objetivos Múltiples
+Las filas son el resultado del **Atacante** y las columnas el del **Defensor**. El
+resultado se aplica al Atacante.
 
-## Recargar
+### Esquiva
+
+| At \ Def | Pifia | Fallo | Éxito | Especial | Crítico |
+|---|---|---|---|---|---|
+| **Pifia** | Falla | Falla | Pifia | Pifia | Pifia |
+| **Fallo** | Falla | Falla | Falla | Pifia | Pifia |
+| **Éxito** | Empala | Golpea | Falla | Falla | Pifia |
+| **Especial** | Máx. D | Empala | Golpea | Falla | Falla |
+| **Crítico** | Máx. D | Máx. D | Empala | Golpea | Falla |
+
+### Bloqueo
+
+| At \ Def | Pifia | Fallo | Éxito | Especial | Crítico |
+|---|---|---|---|---|---|
+| **Pifia** | Falla | Falla | Pifia | Pifia | Pifia |
+| **Fallo** | Falla | Falla | Falla | Pifia (−6 PR) | Pifia (−4 PR) |
+| **Éxito** | Empala | Golpea | Falla | Falla | Pifia (−2 PR) |
+| **Especial** | Máx. D | Empala | Golpea | Falla | Falla |
+| **Crítico** | Máx. D | Máx. D | Empala | Golpea | Falla |
+
+`Máx. D` es el daño máximo del arma, como si todos los dados hubieran salido al tope.
+`−N PR` son Puntos de Resistencia que pierde el arma del atacante.
+
+## Empalar
+
+Un ataque con resultado **Especial** —es decir, con una tirada igual o menor a un quinto
+del porcentaje efectivo— empala: el daño se **multiplica por dos**.
+
+La armadura se aplica con normalidad. Una esquiva o un bloqueo con resultado Especial o
+Crítico anulan el golpe; un éxito simple lo reduce a daño normal, pero no lo evita.
+
+## Bloquear y esquivar
+
+**Bloquear** consume la acción del turno y solo se puede hacer **una vez por turno**. Hay
+que anunciarlo justo después de la tirada del ataque que se quiere parar. El objeto usado
+recibe el daño original del golpe. No hay penalización del 20% por cambiar la acción
+declarada.
+
+**Esquivar** también consume la acción, pero excepcionalmente se puede esquivar más de un
+ataque: a partir del segundo, cada intento acumula **−30%**.
+
+Un personaje que decida actuar **solo a la defensiva** gana **+20%** a cualquier chequeo de
+esquiva o bloqueo hasta el turno siguiente.
+
+## Otras reglas de cuerpo a cuerpo
+
+| Regla | Efecto |
+|---|---|
+| **Número de atacantes** | Un objetivo solo puede ser atacado por 5 oponentes a la vez, menos si no se le puede rodear |
+| **Armas naturales** | Dientes y garras pueden bloquear otras armas naturales y ataques desarmados, pero no armas de fuego |
+| **Combate desarmado** | Si a un luchador desarmado le bloquean con un arma blanca, sufre el daño de esa arma |
+| **Noquear** | Hay que declararlo antes de tirar. Si el daño bastaría para una Herida Grave, el objetivo cae inconsciente `1D10+10` turnos. Si solo sería Herida Leve, se falla y se inflige el daño mínimo del arma sin MD |
+| **Presa** | Con un ataque exitoso el objetivo no puede moverse ni actuar este turno ni el siguiente. Un chequeo enfrentado de FUE contra FUE permite además desarmarlo. Liberarse: `DES×3`% |
+| **Cubierto o tumbado** | −20% a la propia Esquiva; quien le ataque a distancia sufre otro −20% |
+
+## Ataques a distancia
+
+El alcance modifica la habilidad **antes** que cualquier otro modificador:
+
+| Distancia | Habilidad |
+|---|---|
+| Hasta `DES×3` metros (objetivo cercano) | `×2` |
+| Hasta el alcance básico del arma | `×1` |
+| Hasta el doble del alcance básico | `÷2` |
+| Hasta el triple | `÷4` |
+| Hasta el cuádruple | `÷8` |
+
+> A distancia de contacto, muchas armas de proyectiles que no sean de fuego quedan
+> inoperativas.
+
+### Armas de fuego
+
+**Ráfagas**: cada bala después de la primera da **+5%**, hasta un máximo del doble del
+porcentaje de la habilidad. El tope es de 20 balas por turno. Si el ataque acierta, se tira
+al azar cuántas balas impactan (por ejemplo, `1D4` si se dispararon cuatro).
+
+Disparar en ráfaga contra **varios objetivos** no da esa bonificación y se resuelve por
+separado para cada uno.
+
+**Encasquillado**: cada arma tiene un valor de Disfunción. Si la tirada lo iguala o lo
+supera, el arma falla. Las no automáticas no disparan ese turno. Las automáticas y
+semiautomáticas quedan encasquilladas y requieren un chequeo de la habilidad del arma o de
+Maestría (Armería); con éxito se recuperan en `1D6` turnos.
+
+**Recargar**: un turno completo por cada dos balas o para cambiar un cargador; dos turnos
+para cambiar la cinta de una ametralladora.
+
+**Miras telescópicas**: retrasar la iniciativa hasta la mitad de la DES dobla el alcance
+efectivo y extiende la regla de objetivo cercano hasta `DES×6` metros. No se puede combinar
+con Centrarse en un objetivo. Con rifles, apuntar con mira multiplica el alcance base por
+cuatro sin alterar la DES.
+
+**Silenciadores**: dividen el alcance efectivo por la mitad y duran `1D100+10` disparos.
+
+### El MD según el tipo de ataque
+
+| Tipo | MD |
+|---|---|
+| Cuerpo a cuerpo y desarmado | completo |
+| Armas arrojadizas | la **mitad** |
+| Armas de fuego | **no se aplica** |
+
+## Localización de impactos (opcional)
+
+Se activa desde los ajustes del sistema. Ralentiza el combate, así que conviene usarla solo
+si el grupo disfruta de peleas tácticas.
+
+Se tira `1D20`:
+
+| 1D20 | Localización |
+|---|---|
+| 1–3 | Pierna derecha |
+| 4–6 | Pierna izquierda |
+| 7–9 | Abdomen |
+| 10–12 | Torso |
+| 13–15 | Brazo derecho |
+| 16–18 | Brazo izquierdo |
+| 19–20 | Cabeza |
+
+Cada localización tiene su propia reserva de PV, derivada de la suma de TAM y CON. Cuando
+una llega a 0 o queda en negativo, el sistema aplica los efectos correspondientes: la
+cabeza y el torso provocan inconsciencia inmediata con hemorragia, el abdomen derriba al
+personaje, y las extremidades quedan inútiles.
+
+Si el negativo iguala o supera los PV originales de esa localización, los efectos son
+mucho peores: la cabeza significa muerte inmediata, y el torso o el abdomen exigen superar
+`CON×4`% cada turno para no morir. Aun superándolos, el personaje muere si la herida no se
+trata en un número de turnos igual a la media, redondeando hacia arriba, de CON y POD.
+
+## Objetos inanimados
+
+Todo objeto tiene Puntos de Resistencia. Al quedarse sin PR se rompe. Se puede declarar un
+ataque contra un objeto que lleve un adversario; el GM puede aplicar un modificador
+negativo según su tamaño o si está parcialmente cubierto.

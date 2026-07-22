@@ -6,7 +6,7 @@ Esta página crea un investigador utilizando los compendios proporcionados; si e
 
 # Habilidad
 
-Haz clic en la pestaña de [fa-solid fa-atlas]Compendios y luego, bajo el encabezado Ejemplos del Sistema, abre el objeto Habilidades (CoC7). Aquí encontrarás las habilidades que se muestran en las hojas de personaje disponibles en el sitio web de Chaosium.
+Haz clic en la pestaña de [fa-solid fa-atlas]Compendios y luego abre el compendio **Habilidades**. Ahí están las habilidades de Cthulhu d100, agrupadas en Conocimientos, Vocacionales, Sensoriales, Sociales y de Acción, con sus porcentajes base.
 
 - _Sin ajuste_: No se pueden asignar puntos de habilidad personales.
 - _Sin ganancia de EXP_: No marcas esta habilidad para mejorar en caso de éxito.
