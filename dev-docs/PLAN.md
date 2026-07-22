@@ -768,9 +768,19 @@ Apunta siempre a la última release, así que Foundry detecta las actualizacione
 - [x] Compendio de tomos: 10 items en `packs/es-tomes`
 - [x] Hojear un libro (`CoC7MentalStability.skimTome()`): tiempo `/10`, EM `/4` redondeando
       arriba; fallar significa no entender nada, **sin ganancia y sin pérdida**
-- [ ] Compendio de criaturas: falta. Formato documentado en §12. Ojo con la
-      **piel correosa**: no es solo armadura, las armas de fuego hacen daño mínimo y no
-      doblan por empalar. Necesita campo propio en el modelo de criatura.
+- [x] Campo `leatherySkin` en `models/actor/creature-system.js` — **no es armadura**:
+      las armas de fuego hacen daño mínimo y no doblan por empalar
+- [x] Compendio de criaturas: **12 perfiles** en `packs/es-creatures`, 8 con piel
+      correosa, todos sin CAR ni EST como manda el manual
+- [ ] Faltan las criaturas restantes del cap. 9 (Hombre serpiente, Shantak, Shoggoth,
+      Color surgido del espacio, Profundo, Perro de Tíndalos…). Sus perfiles cruzan el
+      maquetado a dos columnas y hay que transcribirlos con cuidado, no en bloque.
+- [ ] **Aplicar** la piel correosa en el cálculo de daño: hoy el campo existe pero
+      `chat-damage.js` no lo consulta
+
+> **Errata del manual detectada.** El perfil del Errante dimensional imprime su
+> habilidad de Lucha como `425+2D6 %`. Es un error tipográfico por `25+2D6`, coherente
+> con todas las demás criaturas. Se ha corregido en el compendio.
 - [ ] Decidir si se conserva el sistema de **eras** (`cocidFlag.eras`) de upstream o se elimina
 - [ ] Decidir qué hacer con las funcionalidades de upstream ajenas a d100:
       persecuciones (`chase`), arquetipos, paquetes de experiencia, `talent`, `status`
