@@ -1396,8 +1396,9 @@ export default class CoC7Utilities {
     const choices = tables.reduce((c, r) => { c[r.uuid] = r.name; return c }, {
       none: 'SETTINGS.LetKeeperDecide'
     })
-    game.settings.settings.get('CoC7.boutOfMadnessSummaryTable').choices = choices
-    game.settings.settings.get('CoC7.boutOfMadnessRealTimeTable').choices = choices
+    // Settings are keyed "<package id>.<setting>", so this must follow FOLDER_ID
+    game.settings.settings.get(FOLDER_ID + '.boutOfMadnessSummaryTable').choices = choices
+    game.settings.settings.get(FOLDER_ID + '.boutOfMadnessRealTimeTable').choices = choices
   }
 
   /**

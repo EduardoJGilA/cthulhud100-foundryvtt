@@ -16,8 +16,8 @@ export default class CoC7ModelsActorCreatureSystem extends CoC7ModelsActorNPCSys
       // separately in attribs.armor as usual.
       leatherySkin: new fields.BooleanField({
         initial: false,
-        label: 'CoC7.Creature.LeatherySkin',
-        hint: 'CoC7.Creature.LeatherySkinHint'
+        label: 'CoC7.CreatureLeatherySkin',
+        hint: 'CoC7.CreatureLeatherySkinHint'
       })
     })
   }
