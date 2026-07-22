@@ -354,8 +354,7 @@ y Pifia con `96-00`.
       - `apps/actor-importer.js:647`
       - `models/actor/document-class.js` — buscar `characteristics` y `.value`
 - [x] Validación: atributo <4 (salvo CAR) → marca de "inválido"; atributo a 0 → muerte; INT o POD a 0 → estado vegetativo (`validateCharacteristics()`)
-- [ ] Etiquetas en los 15 `static/lang/*.json`: FUE, CON, DES, TAM, INT, POD, CAR, EST
-      (traducidas por idioma; el inglés puede conservar STR/CON/DEX/SIZ/INT/POW/APP/EDU)
+- [x] Etiquetas de características en `static/lang/es.json` y `en.json`: FUE, CON, DES, TAM, INT, POD, CAR, EST
 - [ ] Revisar la ficha: los campos de característica deben aceptar 3-18 y mostrar el
       porcentaje derivado (`valor × 5`) junto al valor
 
@@ -413,8 +412,7 @@ y Pifia con `96-00`.
       propiedades `addb` (MD completo) y `ahdb` (mitad, vía `CoC7Utilities.halfDB()`) del
       item de arma la controlan. `halfDB` reduce el tamaño del dado y maneja negativos
       (`-1D8` → `-1D4`), así que sirve para los tramos de penalización de d100.
-- [ ] Es por tanto **tarea de datos (F2)**: marcar `addb` en cuerpo a cuerpo y desarmado,
-      `ahdb` en arrojadizas, y **ninguna de las dos** en armas de fuego
+- [x] **Tarea de datos (F2) completada:** `addb` en 10 cuerpo a cuerpo, `ahdb` en 6 arrojadizas y ninguna en 25 de fuego en `es-weapons.yaml`
 
 > A diferencia de CoC7, en d100 **no hay penalizadores planos**: los tramos bajos son
 > dados que se restan (`-1D8` … `-1D2`), no `-1` / `-2`. `dbFromCharacteristics()`
