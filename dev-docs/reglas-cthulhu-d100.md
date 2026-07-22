@@ -609,7 +609,77 @@ Las escopetas tienen tres valores de daño/alcance según la distancia (corta/me
 
 ---
 
-## Pendiente de extraer
+---
 
-- Cap. 9 — Criaturas de los Mitos (pp. 38–43): formato de perfil y estadísticas.
-- Cap. 10 — Tomos arcanos (pp. 44–45): mecánica de hojear y estudiar libros.
+## 12. Criaturas de los Mitos
+
+Solo se dan perfiles de **criaturas menores**. El manual excluye deliberadamente a las
+mayores y a las deidades: *"Los PJ nunca deberían ser capaces de vencer en combate a un
+primigenio ni, para el caso, superarle en un chequeo enfrentado de DES."*
+
+### Formato de perfil
+
+| Campo | Contenido |
+|---|---|
+| Nombre | y entre corchetes el original en inglés si difiere |
+| Atributos | tiradas para generarlos. **Las criaturas no tienen CAR ni EST** |
+| EM | Impacto a la Estabilidad Mental, notación `X/Y` |
+| Tipos de ataque | `Tipo / Porcentaje / Daño base`. El MD se suma aparte |
+| Protección | puntos de armadura natural |
+| Información | tipo de criatura o sociedad a la que pertenece |
+| Referencias | relatos donde aparece |
+
+> **Piel correosa.** Cuando la protección la cita, además de los puntos de armadura las
+> **armas de fuego hacen daño mínimo** a la criatura y **no doblan daño por empalar**.
+> Es una regla propia, no un simple valor de armadura.
+
+Los perfiles no incluyen ninguna habilidad ajena al combate: el manual lo considera
+trabajoso y de poca utilidad en mesa.
+
+---
+
+## 13. Tomos arcanos
+
+### Formato de entrada
+
+| Campo | Contenido |
+|---|---|
+| Tiempo de lectura | Días / Semanas / Meses |
+| Idiomas | en los que existe el texto |
+| Materia | tema del que trata |
+| Mitos de Cthulhu | ganancia en %, con rango por edición y fórmula |
+| EM | pérdida de Estabilidad Mental |
+| Hechizos | qué contiene |
+
+### Hojear un libro
+
+Buscar un dato concreto en vez de leerlo entero. El jugador debe **explicar al GM qué
+información busca antes de tirar**.
+
+- Se tira en las mismas condiciones que la lectura completa
+- Tiempo necesario: **dividido entre 10**
+- Pérdida de Estabilidad Mental: **la cuarta parte**, redondeando hacia arriba
+- Si el dato buscado está relacionado con los Mitos, también se gana el percentil en
+  esa habilidad
+
+Si se falla la tirada, el personaje no ha entendido nada: **ni ganancia en Mitos de
+Cthulhu ni pérdida de Estabilidad Mental**.
+
+### Tomos con perfil en el manual
+
+| Tomo | Tiempo | Idiomas | Mitos % | EM |
+|---|---|---|---|---|
+| Necronomicón | Semanas | Árabe, Griego, Latín, Inglés, Español (parcial) | 12-21 (`11+1D10`) | `4D6` |
+| El Rey de Amarillo | Días | Francés, Inglés | 4-9 (`3+1D6`) | `5D6` |
+| Unausprechlichen Kulten | Semanas | Alemán, Inglés | 10-15 (`9+1D6`) | `3D6` |
+| Manuscritos Pnakóticos | Meses | Griego, Inglés | 8-13 (`7+1D6`) | `2D6` |
+| Tablillas de Eltdown | Semanas | Inglés | 9-14 (`8+1D6`) | `2D6` |
+| Siete libros crípticos de Hsan | Semanas | Chino mandarín, Inglés | 7-12 (`6+1D6`) | `2D6` |
+| Cantos de los Doles | Semanas | Inglés | 7-12 (`6+1D6`) | `2D6` |
+| Libro de Dzyan | Semanas | Inglés | 7-12 (`6+1D6`) | `1D6` |
+| Escritos de Ponapé | Semanas | Inglés | 4-7 (`3+1D4`) | `1D6` |
+| Prodigios Taumatúrgicos en la Canaán de Nueva Inglaterra | Semanas | Inglés | 2-5 (`1+1D4`) | `1D6` |
+
+> Con el **sistema alternativo** de locura, los tomos causan Locura Subyacente
+> directamente: se tira la pérdida, se multiplica por dos, y cada múltiplo entero del POD
+> del lector es un punto (ver §6b).

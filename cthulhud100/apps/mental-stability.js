@@ -258,6 +258,34 @@ export default class CoC7MentalStability {
   }
 
   /**
+   * Skimming a tome instead of reading it through (rulebook chapter 10).
+   *
+   * The player has to say what they are looking for before rolling. The check
+   * itself is unchanged, but the time drops to a tenth and the sanity loss to a
+   * quarter, rounded up. Failing means understanding nothing at all: no Mythos
+   * gain and no sanity loss either.
+   * @param {object} options
+   * @param {number} options.studyTime full reading time, in the tome's own units
+   * @param {string} options.sanityLoss full reading sanity loss formula
+   * @param {boolean} options.success whether the check passed
+   * @returns {object} time, sanity loss formula and whether Mythos is gained
+   */
+  static skimTome ({ studyTime = 0, sanityLoss = '0', success = true } = {}) {
+    if (!success) {
+      // Understood nothing: no gain, and no loss either
+      return { studyTime: 0, sanityLoss: null, gainsMythos: false }
+    }
+    const time = Math.max(0, parseFloat(studyTime) || 0) / 10
+    const loss = (sanityLoss ?? '').toString().trim()
+    return {
+      studyTime: time,
+      // A quarter, rounded up, hence ceil rather than plain division
+      sanityLoss: (loss === '' || loss === '0' ? null : 'ceil((' + loss + ')/4)'),
+      gainsMythos: true
+    }
+  }
+
+  /**
    * Localised label for a state
    * @param {string} state one of CoC7MentalStability.state
    * @returns {string}

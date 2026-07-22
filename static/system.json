@@ -152,6 +152,13 @@
       "name": "sanity-losses",
       "path": "packs/es-sanity-losses",
       "system": "cthulhud100"
+    },
+    {
+      "label": "Tomos Arcanos",
+      "type": "Item",
+      "name": "tomes",
+      "path": "packs/es-tomes",
+      "system": "cthulhud100"
     }
   ],
   "languages": [
