@@ -745,19 +745,35 @@ Varias marcadas ✅ no se sostienen.
 - 3 emisiones de socket en canales muertos (`system.CoC7`, `system.coc7`)
 - Colores hardcodeados en la ficha v2, sin variables de tema
 
-### Pendiente
+### Resuelto tras la auditoría
 
-- [ ] **Interfaz del sistema alternativo de cordura** — lo más urgente
-- [ ] Iluminación
-- [ ] `combate.md` son 43 líneas y no documenta ni empalar, ni esquiva/bloqueo, ni
-      localización, ni declaración de acciones. Sigue siendo el manual de CoC7
-- [ ] Residuos en el manual: `primer_investigador.md` remite a Chaosium,
-      `objeto_arquetipo.md` documenta arquetipos Pulp, `efectos.md` documenta Corpulencia
-- [ ] `Build` (Corpulencia): `document-class.js:2395` usa la tabla percentil de CoC7, con
-      atributos 3-18 devuelve **siempre -2**. Código muerto visible en la ficha
+- [x] **Interfaz del sistema alternativo de cordura** — parcial nueva
+      `investigator-v3/parts/mental-stability.hbs`: tres barras de casillas marcables,
+      estado derivado, modificadores y contador de Locura Subyacente. Acción
+      `mental-stability-set` en `global-sheet.js`; pulsar la última casilla marcada la
+      borra. Estilada con variables de tema, cadenas en los 15 idiomas
+- [x] **Iluminación** — `roll-dialog.js`: penumbra `×1/2`, oscuridad casi total y total
+      `×1/4`, con tope `min(POD, INT)×3` leído del actor que tira. Es multiplicativa, así
+      que se calcula contra el umbral al enviar y se pliega en el modificador aditivo
+      existente. Verificado con 6 casos
+- [x] **`combate.md` reescrito** en español (43 → 196 líneas) e inglés (41 → 193), con la
+      secuencia real: iniciativa por DES y sus modificadores, declaración de acciones,
+      las dos tablas 5×5, empalar, alcances, ráfagas, encasquillado y localización
+- [x] **Chaosium** eliminado de `primer_investigador.md` y `first_investigator.md`
+- [x] **`Build`** retirado de las fichas de investigador, resumida y PNJ. Los vehículos
+      conservan el suyo, donde sí significa algo
+- [x] **`san.dailyLimit`** unificado. Además el asistente ponía `san.value = POD` en vez de
+      `POD×5`: los investigadores creados con él nacían con **un quinto** de la Cordura
+- [x] **Tirada de mejora** `1D10` → `1D3`, umbral automático 95 → 98
+- [x] 7 claves i18n que salían crudas
+
+### Sigue pendiente
+
 - [ ] 14 eras de CoC7 (Pulp, Dark Ages, Gaslight, Invictus…) en 16 archivos. d100 no tiene
-- [ ] `san.dailyLimit` se calcula de dos formas distintas: `document-class.js:794` da POD,
-      `investigator-wizard.js:2236` da `floor(POD/5)`
-- [ ] Suerte gastable y 55 ajustes `pulpRule*`
+- [ ] Suerte gastable y 55 ajustes `pulpRule*`. Entrelazado con `difficultyLevel`, que
+      conserva el enum de CoC7 (113 referencias)
 - [ ] Módulo de persecuciones (`chase`), ajeno a d100
 - [ ] Compendio de habilidades: 33 entradas, menos que la lista del manual
+- [ ] `objeto_arquetipo.md` documenta arquetipos Pulp; `efectos.md` menciona Corpulencia
+- [ ] Prefijo `coc7-` en las 16 hojas LESS (F5.3)
+- [ ] Interfaz de cordura alternativa solo en la ficha **v3**; la v2 no la muestra
