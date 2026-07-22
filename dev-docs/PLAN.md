@@ -782,6 +782,26 @@ Apunta siempre a la última release, así que Foundry detecta las actualizacione
 
 ---
 
+## Validación cruzada de compendios
+
+Script de comprobación que conviene volver a pasar tras tocar cualquier compendio:
+
+1. Todo `img:` referenciado existe en `static/assets/`
+2. Toda habilidad citada en una profesión existe en `es-skills.yaml`
+3. Toda `skill.main.name` de un arma existe como habilidad, ignorando la especialización
+4. Sin `_id` duplicados entre compendios
+5. Sin `cocid` duplicados dentro del mismo pack
+
+Estado actual: **1-4 limpios**. En el 5 quedan 2 duplicados heredados de upstream
+(`i.weapon.shuriken` y `rt..system-bouts-of-madness-real-time`); el builder genera ids
+distintos, así que no se pierde ningún documento.
+
+> **Colisión de nombres a tener en cuenta.** La habilidad se llama `Esconder/se` y las
+> profesiones usan `/` para separar grupos, así que cualquier parser de esas descripciones
+> partirá el nombre por la mitad. Hoy no lo hace nadie porque las listas son prosa.
+
+---
+
 ## Pendientes transversales
 
 - [x] Cap. 9 "Criaturas de los Mitos" y cap. 10 "Tomos arcanos" extraídos.
@@ -803,6 +823,14 @@ Apunta siempre a la última release, así que Foundry detecta las actualizacione
 > habilidad de Lucha como `425+2D6 %`. Es un error tipográfico por `25+2D6`, coherente
 > con todas las demás criaturas. Se ha corregido en el compendio.
 - [ ] Decidir si se conserva el sistema de **eras** (`cocidFlag.eras`) de upstream o se elimina
+- [x] **Contenido de CoC7 retirado** de los compendios: actores de ejemplo (tenían
+      características percentiles, FUE 50 en una escala que acaba en 18), las 50 armas de
+      CoC7 que duplicaban las nuestras, items de ejemplo y las tablas de arrebatos de
+      locura, que pertenecen a otro sistema de cordura.
+      Se conservan fobias y manías (genéricas, sirven para los trastornos del sistema
+      alternativo), `roll-requests` y `system-doc`.
+- [ ] **`system-doc` documenta las reglas de CoC7** y el código lo consulta
+      (`hooks/ready.js:27`). Hay que regenerarlo con las reglas de d100 o desengancharlo.
 - [ ] Decidir qué hacer con las funcionalidades de upstream ajenas a d100:
       persecuciones (`chase`), arquetipos, paquetes de experiencia, `talent`, `status`
 - [ ] Migración: no hay usuarios previos, así que **no** hace falta script de migración
