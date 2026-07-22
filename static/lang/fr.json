@@ -1774,5 +1774,6 @@
   "CoC7.Settings.SanitySystem.Alternative": "Alternative (tension bars)",
   "CoC7.SkillCategory": "Catégorie",
   "CoC7.Creature.LeatherySkin": "Leathery skin",
-  "CoC7.Creature.LeatherySkinHint": "Firearms do minimum damage and cannot double through impaling."
+  "CoC7.Creature.LeatherySkinHint": "Firearms do minimum damage and cannot double through impaling.",
+  "CoC7.MentalStabilityDepleted": "{name} n'a plus de Stabilité Mentale : irrémédiablement fou, devient un PNJ."
 }

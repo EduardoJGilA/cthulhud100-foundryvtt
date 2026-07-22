@@ -1472,5 +1472,6 @@
   "CoC7.Settings.SanitySystem.Alternative": "Alternative (tension bars)",
   "CoC7.SkillCategory": "분류",
   "CoC7.Creature.LeatherySkin": "Leathery skin",
-  "CoC7.Creature.LeatherySkinHint": "Firearms do minimum damage and cannot double through impaling."
+  "CoC7.Creature.LeatherySkinHint": "Firearms do minimum damage and cannot double through impaling.",
+  "CoC7.MentalStabilityDepleted": "{name} has run out of Mental Stability: irremediably mad, and now an NPC."
 }

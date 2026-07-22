@@ -187,7 +187,9 @@ export default class CoC7SanCheckCard {
           const check = await CoC7SanCheckCard.loadFromMessage(message)
           if (check) {
             const actor = (await check.actor)
-            check.#boutDuration = (await new Roll('1D10').roll()).total
+            // Cthulhu d100: the bout lasts as many turns as points of Mental
+            // Stability were lost, not the 1D10 rounds CoC7 rolls for
+            check.#boutDuration = Math.max(1, check.#sanLossFinal)
             check.#boutRealTime = true
             check.#boutSummary = false
             check.#boutResult = await actor.enterBoutOfMadness(true, check.#boutDuration)
@@ -204,7 +206,7 @@ export default class CoC7SanCheckCard {
           const check = await CoC7SanCheckCard.loadFromMessage(message)
           if (check) {
             const actor = (await check.actor)
-            check.#boutDuration = (await new Roll('1D10').roll()).total
+            check.#boutDuration = Math.max(1, check.#sanLossFinal)
             check.#boutRealTime = false
             check.#boutSummary = true
             check.#boutResult = await actor.enterBoutOfMadness(false, check.#boutDuration)
@@ -434,7 +436,13 @@ export default class CoC7SanCheckCard {
       this.#intRolled = false
     }
 
-    if (actor.system.attribs.san.dailyLoss >= actor.system.attribs.san.dailyLimit) {
+    // Cthulhu d100: losing a fifth or more of the Mental Stability still left
+    // during one scene brings on a long-term problem. CoC7 measured a fifth of
+    // the starting score across a whole day instead, so a battered investigator
+    // was no easier to break than a fresh one.
+    const remaining = (actor.system.attribs.san.value ?? 0) + actor.system.attribs.san.dailyLoss
+    const sceneThreshold = Math.max(1, Math.ceil(remaining / 5))
+    if (actor.system.attribs.san.dailyLoss >= sceneThreshold) {
       this.#hasInsanity = true
       this.#intRolled = true
       this.#indefinitelyInsane = true
@@ -465,9 +473,16 @@ export default class CoC7SanCheckCard {
    */
   async triggerInsanity () {
     this.#boutOfMadnessOver = true
+    const actor = (await this.actor)
     if (this.#indefinitelyInsane) {
-      const actor = (await this.actor)
       await actor.conditionsSet([STATUS_EFFECTS.indefInsane])
+    }
+    // Cthulhu d100: Mental Stability at zero is the end of the character. They
+    // are irremediably mad and become an NPC, so the Keeper is told rather than
+    // left to notice a zero on the sheet.
+    if ((actor?.system?.attribs?.san?.value ?? 1) <= 0) {
+      await actor.conditionsSet([STATUS_EFFECTS.indefInsane])
+      ui.notifications.warn(game.i18n.format('CoC7.MentalStabilityDepleted', { name: actor.name }))
     }
     this.#cardOpen = false
   }
