@@ -1,0 +1,956 @@
+_id: wdI9VyWtT0Q1xaZ1
+name: Burocracia
+type: skill
+img: systems/cthulhud100/assets/icons/skills/law.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
+  base: '10'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.burocracia
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 40gyjzVBhAhUr71i
+name: Ciencias naturales
+type: skill
+img: systems/cthulhud100/assets/icons/skills/science_any.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>Biolog&iacute;a empieza en 5%; el resto de especialidades en 0%.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: true
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.ciencias-naturales
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: JbdYY3IybGzZmn3s
+name: Ciencias ocultas
+type: skill
+img: systems/cthulhud100/assets/icons/skills/occult.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
+  base: '5'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.ciencias-ocultas
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: nNkRK4SClNVn2sHa
+name: Ciencias sociales y humanidades
+type: skill
+img: systems/cthulhud100/assets/icons/skills/history.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>Antropolog&iacute;a, Arqueolog&iacute;a, Ciencias Pol&iacute;ticas y Criminolog&iacute;a empiezan en 5%; Geograf&iacute;a e Historia en 10%.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: true
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.ciencias-sociales-y-humanidades
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: fw8xACQJu3k1OtBE
+name: Idiomas
+type: skill
+img: systems/cthulhud100/assets/icons/skills/language.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>El idioma materno empieza en <strong>EST&times;5</strong>; el resto en 0%.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: true
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.idiomas
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: cNzNHTgOqKe4pZg0
+name: Manejo de archivos
+type: skill
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
+  base: '25'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.manejo-de-archivos
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: rNM2ARcOt3PrsajS
+name: Medicina
+type: skill
+img: systems/cthulhud100/assets/icons/skills/medicine.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.medicina
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: zOc5aPyjJDguRw0f
+name: Mitos de Cthulhu
+type: skill
+img: systems/cthulhud100/assets/icons/skills/cthulhu_mythos.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>No puede recibir puntos durante la creaci&oacute;n del personaje.</p>
+  base: '0'
+  properties:
+    noxpgain: true
+    special: true
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.mitos-de-cthulhu
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: lXIxkFXCff8lqSYv
+name: Primeros auxilios
+type: skill
+img: systems/cthulhud100/assets/icons/skills/first_aid.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
+  base: '15'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.primeros-auxilios
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: vmBhwXIsCa9LvqEz
+name: Psicoanálisis
+type: skill
+img: systems/cthulhud100/assets/icons/skills/psychoanalysis.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.psicoanalisis
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: cs9TvkzqVQiriIrW
+name: Psicología
+type: skill
+img: systems/cthulhud100/assets/icons/skills/psychology.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
+  base: '5'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.psicologia
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: XUtrfcm5ahMceWJv
+name: Arte
+type: skill
+img: systems/cthulhud100/assets/icons/skills/art_craft_any.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Vocacionales</em>.</p>
+  base: '5'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: true
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.arte
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: CqcX3PKittAFso5D
+name: Bricolaje
+type: skill
+img: systems/cthulhud100/assets/icons/skills/spanner.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Vocacionales</em>.</p>
+  base: '20'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.bricolaje
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: skFDng25sQDVEjne
+name: Maestrías
+type: skill
+img: systems/cthulhud100/assets/icons/skills/mechanical_repair.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Vocacionales</em>.</p><p>Electricidad empieza en 5% y Mec&aacute;nica en 20%; el resto en 0%.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: true
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.maestrias
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: y5v7Pv3x5Yojrmd3
+name: Discreción
+type: skill
+img: systems/cthulhud100/assets/icons/skills/stealth.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
+  base: '10'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.discrecion
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: vsQshMkJtr3KuNJl
+name: Esconder/se
+type: skill
+img: systems/cthulhud100/assets/icons/skills/disguise.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
+  base: '15'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.esconder-se
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: fGEWN0cCLFoQ1lTB
+name: Escuchar
+type: skill
+img: systems/cthulhud100/assets/icons/skills/listen.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
+  base: '25'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.escuchar
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: M0faJmQv3jHJq4CM
+name: Orientación
+type: skill
+img: systems/cthulhud100/assets/icons/skills/navigate.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
+  base: '15'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.orientacion
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: jT0mGCxJOqukEEDl
+name: Percibir
+type: skill
+img: systems/cthulhud100/assets/icons/skills/spot_hidden.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
+  base: '25'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.percibir
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: jUdZ2nWvk2PGspFU
+name: Seguir rastros
+type: skill
+img: systems/cthulhud100/assets/icons/skills/track.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sensoriales</em>.</p><p>&minus;10% acumulativo por cada d&iacute;a transcurrido desde que se dej&oacute; el rastro.</p>
+  base: '10'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.seguir-rastros
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: WK7jSKUk5614oyqC
+name: Supervivencia
+type: skill
+img: systems/cthulhud100/assets/icons/skills/survival_any.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
+  base: '15'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.supervivencia
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: i7Dwv3VNFNaC83LJ
+name: Autoridad
+type: skill
+img: systems/cthulhud100/assets/icons/skills/credit_rating.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sociales</em>.</p>
+  base: '@edu+@app'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.autoridad
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: TMPkYb6xEBjnHKhl
+name: Bajos fondos
+type: skill
+img: systems/cthulhud100/assets/icons/skills/poker-hand.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sociales</em>.</p>
+  base: '10'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.bajos-fondos
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: T2hXsZZjHfyqlyvg
+name: Embaucar
+type: skill
+img: systems/cthulhud100/assets/icons/skills/fast_talk.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sociales</em>.</p>
+  base: '10'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.embaucar
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: xmYb4syF1VKjRhGr
+name: Intimidar
+type: skill
+img: systems/cthulhud100/assets/icons/skills/intimidate.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sociales</em>.</p><p>Base <strong>TAM&times;2</strong> o <strong>INT&times;2</strong>, a elecci&oacute;n del jugador. Cambia la base a <code>@int*2</code> si se prefiere la amenaza sutil.</p>
+  base: '@siz*2'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.intimidar
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: Bjp023xwYVIRHe7I
+name: Oratoria
+type: skill
+img: systems/cthulhud100/assets/icons/skills/persuade.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sociales</em>.</p>
+  base: '10'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.oratoria
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: tPJDfmedxpaAxmSF
+name: Protocolo
+type: skill
+img: systems/cthulhud100/assets/icons/skills/shaking-hands.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Sociales</em>.</p>
+  base: '@edu*2'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.protocolo
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: dPdwbjNdNQn3zEwj
+name: Armas de Cuerpo a Cuerpo
+type: skill
+img: systems/cthulhud100/assets/icons/skills/fighting_sword.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Acción</em>.</p><p>La base depende del arma; ver la tabla de armas.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: true
+    firearm: false
+    ranged: false
+    requiresname: true
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.armas-de-cuerpo-a-cuerpo
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: KGXCf6GsyhoTjUzA
+name: Armas de Fuego
+type: skill
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Acción</em>.</p><p>La base depende del arma; ver la tabla de armas.</p>
+  base: '0'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: true
+    ranged: true
+    requiresname: true
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.armas-de-fuego
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: pqa59DbxCXj2muaK
+name: Conducir
+type: skill
+img: systems/cthulhud100/assets/icons/skills/drive_auto.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Acción</em>.</p>
+  base: '25'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.conducir
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: uPdzOs1cXuBIWanH
+name: Esquivar
+type: skill
+img: systems/cthulhud100/assets/icons/skills/dodge.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Acción</em>.</p>
+  base: '@dex*2'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.esquivar
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 2X6dbsUKB9vHj8nt
+name: Forma física
+type: skill
+img: systems/cthulhud100/assets/icons/skills/jump.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Acción</em>.</p>
+  base: '@dex+@str'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: false
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.forma-fisica
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: d4oq6uph4YKj4nhP
+name: Lucha
+type: skill
+img: systems/cthulhud100/assets/icons/skills/fighting_brawl.svg
+system:
+  description:
+    value: <p>Habilidad de tipo <em>Acción</em>.</p>
+  base: '@dex*2'
+  properties:
+    noxpgain: false
+    special: false
+    rarity: false
+    push: false
+    fighting: true
+    firearm: false
+    ranged: false
+    requiresname: false
+    picknameonly: false
+    own: false
+    keepbasevalue: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.skill.lucha
+      lang: es
+      eras:
+        standard: true
+      priority: 0

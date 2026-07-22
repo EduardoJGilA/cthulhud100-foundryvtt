@@ -59,11 +59,15 @@
   ],
   "packs": [
     {
-      "label": "Skills",
+      "label": "Habilidades",
       "type": "Item",
       "name": "skills",
-      "path": "packs/en-skills",
-      "system": "cthulhud100"
+      "path": "packs/es-skills",
+      "system": "cthulhud100",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "label": "Items Examples",

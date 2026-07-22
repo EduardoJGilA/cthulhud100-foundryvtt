@@ -188,18 +188,18 @@ Base entre paréntesis. `*` = requiere especialización (se compran y suben por 
 | Bajos fondos | 10% |
 | Embaucar | 10% |
 | Intimidar | `TAM×2` o `INT×2` % (a elección del jugador) |
-| Oratoria | — |
-| Protocolo | — |
+| Oratoria | 10% |
+| Protocolo | `EST×2` % |
 
 ### De acción
 | Habilidad | Base |
 |---|---|
 | Armas de Cuerpo a Cuerpo `*` | según arma (ver cap. 8) |
 | Armas de Fuego `*` | según arma (ver cap. 8) |
-| Conducir | — |
-| Esquivar | — |
-| Forma física | — |
-| Lucha | — |
+| Conducir | 25% |
+| Esquivar | `DES×2` % |
+| Forma física | `DES+FUE` % |
+| Lucha | `DES×2` % |
 
 Notas:
 - **Mitos de Cthulhu** no puede recibir puntos en la creación del personaje.
