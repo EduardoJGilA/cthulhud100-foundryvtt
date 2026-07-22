@@ -830,8 +830,7 @@ distintos, así que no se pierde ningún documento.
       locura, que pertenecen a otro sistema de cordura.
       Se conservan fobias y manías (genéricas, sirven para los trastornos del sistema
       alternativo), `roll-requests` y `system-doc`.
-- [ ] **`system-doc` documenta las reglas de CoC7** y el código lo consulta
-      (`hooks/ready.js:27`). Hay que regenerarlo con las reglas de d100 o desengancharlo.
+- [x] **`system-doc` actualizado** con las reglas de Cthulhu d100 (ES/EN) y reconstruido con `manuals-build`
 - [ ] Decidir qué hacer con las funcionalidades de upstream ajenas a d100:
       persecuciones (`chase`), arquetipos, paquetes de experiencia, `talent`, `status`
 - [ ] Migración: no hay usuarios previos, así que **no** hace falta script de migración
