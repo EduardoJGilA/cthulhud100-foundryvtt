@@ -866,3 +866,33 @@ Corregido en esta revisión:
 - [ ] Interfaz de cordura alternativa solo en la ficha v3
 - [ ] Prefijo `coc7-` en las 16 hojas LESS
 - [ ] Tipos de item ajenos: `chase`, `archetype`, `experiencePackage`, `talent`
+
+### Cuarta revisión — sub-reglas de combate, cordura y experiencia
+
+Verificado con pruebas numéricas:
+
+- **Ayudantes de combate**: alcance (`DES×3` / base / ÷2 / ÷4 / ÷8), iniciativa (sorpresa a
+  la mitad, preparar arma −5, espera, suelo en 1), apuntar (+10% por 5 DES), esquiva
+  múltiple (−30% acumulativo), presa (`DES×3`), noquear, bloqueo 1/turno
+- **Cordura alternativa**: reproduce **el ejemplo trabajado del propio manual** — POD 12
+  contra el Gran Cthulhu sacando 40 da 3 de Locura Subyacente y 4 de tensión
+- **Tratamiento** (−10% por grado, éxito −1/−1, crítico −2/−2) y **hojear tomos**
+  (tiempo ÷10, pérdida `ceil(x/4)`)
+
+Corregido:
+
+- [x] **`Máx. D` no maximizaba el daño.** Es el mejor resultado de las tablas cruzadas
+      —especial o crítico contra pifia— y devolvía la fórmula sin tocar, así que se tiraba
+      normal. Un arma de `2D6+2` daba una media de 9 donde debía dar **14 fijos**, y podía
+      sacar 4
+- [x] **`tomeMadness` truncaba.** El manual dice "cada vez que ese resultado iguale el POD
+      del lector **(o fracción)**", y "o fracción" es la misma expresión que usa la regla de
+      estudio para "cada 10% o fracción": redondea **arriba**. Una pérdida doblada de 28
+      contra POD 12 son 3 puntos, no 2
+- [x] **Estudio y práctica implementado** (`apps/experience.js`). Era la única regla del
+      manual sin implementación: dos semanas por cada 10% o fracción que se tenga al
+      empezar, luego chequeo de POD para `+1D3`, y si falla el tiempo se pierde. Un mentor
+      con al menos 10 puntos más reduce el tiempo un 25%
+
+> Nota: `isSevereWound` estaba implementado **dos veces**, correcto en `combat-tables.js`
+> (`> max / 2`) e incorrecto en `document-class.js` (`>= ceil(max/2)`). Ahora coinciden.
