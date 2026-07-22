@@ -92,6 +92,34 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
   }
 
   /**
+   * Validate characteristic values for Cthulhu d100 (reglas-cthulhu-d100.md §2).
+   * - Attribute < 4 (except APP/CAR) is marked invalid.
+   * - STR, CON, DEX, SIZ at 0 means physical death.
+   * - INT or POW at 0 means vegetative state / mindless.
+   * @returns {object} validation status and invalid fields
+   */
+  validateCharacteristics () {
+    const chars = this.system.characteristics
+    if (!chars) return { valid: true, dead: false, vegetative: false, invalidFields: [] }
+
+    const invalidFields = []
+    for (const key of ['str', 'con', 'dex', 'siz', 'int', 'pow', 'edu']) {
+      const val = parseInt(chars[key]?.value ?? 0, 10)
+      if (val < 4) invalidFields.push(key)
+    }
+
+    const dead = ['str', 'con', 'dex', 'siz'].some(k => (parseInt(chars[k]?.value ?? 0, 10)) === 0)
+    const vegetative = ['int', 'pow'].some(k => (parseInt(chars[k]?.value ?? 0, 10)) === 0)
+
+    return {
+      valid: invalidFields.length === 0,
+      dead,
+      vegetative,
+      invalidFields
+    }
+  }
+
+  /**
    * Portrait from token, prototype token, or actor
    * @returns {string}
    */

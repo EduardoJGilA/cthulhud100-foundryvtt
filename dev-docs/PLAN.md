@@ -353,8 +353,7 @@ y Pifia con `96-00`.
         quemarropa de CoC7; en d100 es `DES×3` metros (ver §7 del reglamento)
       - `apps/actor-importer.js:647`
       - `models/actor/document-class.js` — buscar `characteristics` y `.value`
-- [ ] Validación: atributo <4 (salvo CAR) → marca de "inválido"; atributo a 0 → muerte;
-      INT o POD a 0 → estado vegetativo
+- [x] Validación: atributo <4 (salvo CAR) → marca de "inválido"; atributo a 0 → muerte; INT o POD a 0 → estado vegetativo (`validateCharacteristics()`)
 - [ ] Etiquetas en los 15 `static/lang/*.json`: FUE, CON, DES, TAM, INT, POD, CAR, EST
       (traducidas por idioma; el inglés puede conservar STR/CON/DEX/SIZ/INT/POW/APP/EDU)
 - [ ] Revisar la ficha: los campos de característica deben aceptar 3-18 y mostrar el
