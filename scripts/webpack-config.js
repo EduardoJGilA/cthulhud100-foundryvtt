@@ -53,16 +53,16 @@ export default class WebpackConfig {
       throw new Error('No fvtt.config try running "npm run init"')
     }
 
-    if (!fs.existsSync(path.join(this.#config.rootFolder, 'binary-packs/en-skills/LOCK'))) {
-      throw new Error('Compendiums not built try running "npm run compendium-build"')
+    if (!fs.existsSync(path.join(this.#config.rootFolder, 'binary-packs/es-skills/LOCK'))) {
+      throw new Error('Compendiums not built try running "npm run compendiums-build"')
     }
 
     if (!fs.existsSync(path.join(this.#config.rootFolder, 'binary-packs/system-doc/LOCK'))) {
-      throw new Error('Manuals not built try running "npm run manual-build"')
+      throw new Error('Manuals not built try running "npm run manuals-build"')
     }
 
     if (!fs.existsSync(path.join(this.#config.rootFolder, 'binary-packs/roll-requests/LOCK'))) {
-      throw new Error('Roll requests not built try running "npm run rolls-build"')
+      throw new Error('Roll requests not built try running "npm run roll-requests-build"')
     }
 
     const jsonConfig = JSON.parse(fs.readFileSync(path.join(this.#config.rootFolder, '/fvtt.config.json'), 'utf8'))
