@@ -4,7 +4,7 @@ type: occupation
 img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
 system:
   description:
-    value: '<p>Ciencias ocultas, Ciencias sociales y humanidades (Historia y hasta otras dos a su elecci&oacute;n), Idioma (uno no nativo), Manejo de archivos / Embaucar</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+    value: '<p>Ciencias ocultas, Ciencias sociales y humanidades (Historia y hasta otras dos a su elecci&oacute;n), Idiomas (uno no nativo), Manejo de archivos / Embaucar</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
   source: 'Cthulhu d100, cap. 7'
   type:
     classic: true
