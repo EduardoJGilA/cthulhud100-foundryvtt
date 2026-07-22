@@ -1170,6 +1170,35 @@ export default class CoC7Utilities {
    * @param {string|integer} db
    * @returns {string}
    */
+  /**
+   * Cthulhu d100 opposed check ("chequeo enfrentado", rulebook chapter 1).
+   *
+   * The classic BRP resistance table: one d100 roll against a percentage
+   * derived from the gap between the Active Factor, whoever is trying to make
+   * something happen, and the Passive Factor resisting it. Even odds at 50%,
+   * five points per step of difference.
+   *
+   * A gap of +10 or more succeeds automatically and -10 or worse is
+   * impossible, which the clamp produces on its own.
+   *
+   * Both factors are on the 3-18 characteristic scale, except poison and
+   * disease potency (POT), which runs 3 to 21.
+   *
+   * This differs from Call of Cthulhu 7e, which resolves opposed actions by
+   * comparing the success levels of two separate skill rolls.
+   * @param {number} active Active Factor
+   * @param {number} passive Passive Factor
+   * @returns {number} chance of success, 0 to 100
+   */
+  static resistanceChance (active, passive) {
+    const a = parseInt(active, 10)
+    const p = parseInt(passive, 10)
+    if (isNaN(a) || isNaN(p)) {
+      return 0
+    }
+    return Math.max(0, Math.min(100, 50 + (a - p) * 5))
+  }
+
   static halfDB (db) {
     let formula = ((db ?? '').toString().trim() === '' ? 0 : db).toString().replace(/\s+/g, '')
     if (!formula.startsWith('-')) {
