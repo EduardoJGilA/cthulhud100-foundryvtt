@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1 cerrada salvo detalles; F6 lista. Siguiente: primera prueba en Foundry (ver checklist). Pendientes: F0.5, cola de F1, F2-F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1 y F2.1 hechas, F6 lista. Siguiente: primera prueba en Foundry (ver checklist). Pendientes: F0.5, F2.2-F2.4, F3-F5
 
 ---
 
@@ -477,19 +477,29 @@ y Pifia con `96-00`.
 **Criterio de aceptación:** crear un investigador desde cero usando solo los compendios del
 sistema, con reparto de `EST×20` + `INT×10` puntos.
 
-### F2.1 — Compendio de habilidades
-- [ ] Borrar `compendiums/en-skills.yaml` y crear `compendiums/es-habilidades.yaml`
+### F2.1 — Compendio de habilidades ✅ commit `11c3c82`
+- [x] Borrado `compendiums/en-skills.yaml`, creado `compendiums/es-skills.yaml`
       (+ traducciones) con las 5 categorías de `dev-docs/reglas-cthulhu-d100.md` §5:
       Conocimientos, Vocacionales, Sensoriales, Sociales, De acción
-- [ ] Respetar el formato de upstream: `_id`, `name`, `type: skill`, `img`, `system.base`,
-      `system.properties`, `flags.<id>.cocidFlag`
-- [ ] Marcar con `specialization: true` las que la requieren: Ciencias naturales, Ciencias
-      sociales y humanidades, Idiomas, Arte, Maestrías, Armas de Cuerpo a Cuerpo,
-      Armas de Fuego
-- [ ] Bases derivadas de atributo: Idioma materno `EST×5`, Autoridad `(EST+CAR)`,
-      Intimidar `TAM×2` o `INT×2` a elección del jugador
-- [ ] **Mitos de Cthulhu** con bandera que impida asignarle puntos en la creación
-- [ ] Iconos: reutilizar `static/assets/icons/skills/` de upstream; no importar arte del PDF
+- [x] 33 habilidades en las 5 categorías, formato de upstream respetado
+- [x] Las 7 que requieren especialización marcadas con `requiresname`
+- [x] Bases derivadas como **fórmulas** resueltas contra el actor: `@edu+@app`,
+      `@edu*2`, `@dex*2`, `@dex+@str`. Se resuelven vía `parsedValues()` en
+      `apps/utilities.js:938`, claves en minúscula
+- [x] **Mitos de Cthulhu** con `special` y `noxpgain`
+- [x] `push: false` en todas — empujar la tirada es mecánica de CoC7, no existe en d100
+- [x] Cada icono verificado contra los archivos en disco; ninguno queda roto
+- [x] Registrado en `static/system.json` y desplegado: 33 documentos en `packs/es-skills`
+
+> **Bases que faltaban en la spec.** Seis habilidades tenían `—` en
+> `reglas-cthulhu-d100.md` porque no las capturé en la primera extracción. Volví al PDF
+> (págs. 12-15) en vez de inventarlas: Oratoria 10%, Protocolo `EST×2`, Conducir 25%,
+> Esquivar `DES×2`, Forma física `DES+FUE`, Lucha `DES×2`. La spec ya está corregida.
+>
+> **Pendiente:** las especialidades con base propia (Biología 5%, Historia 10%,
+> Mecánica 20%, idioma materno `EST×5`…) están documentadas en la descripción de cada
+> habilidad, pero no existen como items separados. Decidir si se crean o si el jugador
+> las añade a mano.
 
 ### F2.2 — Armas
 - [ ] `cthulhud100/models/item/weapon-system.js`: añadir campos `pr` (Puntos de Resistencia),
