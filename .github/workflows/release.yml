@@ -1,0 +1,146 @@
+name: Release
+
+# Publishes a Foundry-installable release when a version tag is pushed.
+#
+#   git tag 0.2.0 && git push origin 0.2.0
+#
+# Foundry then installs from the manifest URL, which always points at the
+# newest release:
+#   https://github.com/EduardoJGilA/cthulhud100-foundryvtt/releases/latest/download/system.json
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+-*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build, e.g. 0.2.0'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Resolve version
+        id: version
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if [ -z "$VERSION" ]; then
+            VERSION="${GITHUB_REF_NAME}"
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Building ${VERSION}"
+
+      # package-lock.json is gitignored upstream, so `npm ci` has no lockfile
+      # to work from and would fail.
+      - name: Install dependencies
+        run: npm install
+
+      # The build reads fvtt.config.json to decide where to emit. It normally
+      # points at a local Foundry data directory; here it points at a throwaway
+      # folder inside the workspace. The build writes to
+      #   <prefix>/Data/systems/<system id>
+      - name: Point the build at a throwaway output directory
+        run: |
+          cat > fvtt.config.json <<'EOF'
+          {
+            "currentSelection": "ci",
+            "ci": "${{ github.workspace }}/build"
+          }
+          EOF
+          mkdir -p "${{ github.workspace }}/build/Data/systems"
+
+      - name: Stamp the version and release URLs into the manifest
+        run: |
+          node - "${{ steps.version.outputs.version }}" "${{ github.repository }}" <<'EOF'
+          const fs = require('fs')
+          const [, , version, repo] = process.argv
+          const path = 'static/system.json'
+          const manifest = JSON.parse(fs.readFileSync(path, 'utf8'))
+          manifest.version = version
+          manifest.url = `https://github.com/${repo}`
+          // "latest" so an installed system keeps finding new versions
+          manifest.manifest = `https://github.com/${repo}/releases/latest/download/system.json`
+          manifest.download = `https://github.com/${repo}/releases/download/${version}/system.zip`
+          fs.writeFileSync(path, JSON.stringify(manifest, null, 2) + '\n')
+          console.log(`version ${version}`)
+          console.log(`download ${manifest.download}`)
+          EOF
+
+      # These three populate compendiums/ and binary-packs/. The webpack build
+      # aborts without binary-packs/system-doc/LOCK and
+      # binary-packs/roll-requests/LOCK.
+      - name: Build compendium packs
+        run: |
+          npm run compendiums-build
+          npm run manuals-build
+          npm run roll-requests-build
+
+      - name: Build the system
+        run: npm run build
+
+      - name: Package
+        id: package
+        run: |
+          SYSTEM_DIR="${{ github.workspace }}/build/Data/systems/cthulhud100"
+          if [ ! -f "${SYSTEM_DIR}/system.json" ]; then
+            echo "::error::Build produced no system.json in ${SYSTEM_DIR}"
+            ls -R "${{ github.workspace }}/build" || true
+            exit 1
+          fi
+          # Zip the contents, not the directory, so Foundry unpacks it correctly
+          cd "${SYSTEM_DIR}"
+          zip -r -q "${{ github.workspace }}/system.zip" .
+          cp system.json "${{ github.workspace }}/system.json"
+          echo "Packaged $(du -h "${{ github.workspace }}/system.zip" | cut -f1)"
+
+      - name: Verify the packaged manifest
+        run: |
+          node - "${{ steps.version.outputs.version }}" <<'EOF'
+          const fs = require('fs')
+          const [, , version] = process.argv
+          const m = JSON.parse(fs.readFileSync('system.json', 'utf8'))
+          const problems = []
+          if (m.id !== 'cthulhud100') problems.push(`id is ${m.id}`)
+          if (m.version !== version) problems.push(`version is ${m.version}, expected ${version}`)
+          for (const field of ['manifest', 'download', 'compatibility', 'esmodules']) {
+            if (!m[field]) problems.push(`missing ${field}`)
+          }
+          if (problems.length) {
+            console.error('Manifest problems:\n  ' + problems.join('\n  '))
+            process.exit(1)
+          }
+          console.log(`ok: ${m.id} ${m.version}, Foundry ${m.compatibility.minimum}-${m.compatibility.verified}`)
+          EOF
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.version, '-') }}
+          files: |
+            system.json
+            system.zip
+          body: |
+            Install in Foundry VTT with this manifest URL:
+
+            ```
+            https://github.com/${{ github.repository }}/releases/latest/download/system.json
+            ```
+
+            An unofficial, independent implementation of the **Cthulhu d100**
+            rules (Three Fourteen Games, 2011). Not affiliated with Chaosium Inc.
