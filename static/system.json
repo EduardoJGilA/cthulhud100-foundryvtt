@@ -159,6 +159,13 @@
       "name": "tomes",
       "path": "packs/es-tomes",
       "system": "cthulhud100"
+    },
+    {
+      "label": "Criaturas de los Mitos",
+      "type": "Actor",
+      "name": "creatures",
+      "path": "packs/es-creatures",
+      "system": "cthulhud100"
     }
   ],
   "languages": [

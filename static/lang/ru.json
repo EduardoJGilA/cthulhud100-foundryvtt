@@ -1211,5 +1211,7 @@
   "CoC7.Settings.SanitySystem.Hint": "Which of the two madness systems from the rulebook this world uses.",
   "CoC7.Settings.SanitySystem.Classic": "Classic (Mental Stability pool)",
   "CoC7.Settings.SanitySystem.Alternative": "Alternative (tension bars)",
-  "CoC7.SkillCategory": "Категория"
+  "CoC7.SkillCategory": "Категория",
+  "CoC7.Creature.LeatherySkin": "Leathery skin",
+  "CoC7.Creature.LeatherySkinHint": "Firearms do minimum damage and cannot double through impaling."
 }
