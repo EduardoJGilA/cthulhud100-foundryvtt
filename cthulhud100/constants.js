@@ -19,62 +19,16 @@ export const PERSONAL_SKILL_POINTS_PER_INT = 10
 // once healed back to 3 (rulebook chapter 5). CoC7 only passed out at 0.
 export const UNCONSCIOUS_HP_THRESHOLD = 2
 
+// Cthulhu d100 has no era system. Call of Cthulhu 7e shipped fourteen of them
+// (Pulp, Dark Ages, Gaslight, Invictus and so on) and they cluttered every item
+// sheet and the compendium filter with settings this game does not use. Only
+// "standard" was ever set true in any compendium entry, so the rest are gone.
+// The key itself stays because item-system.js validates against it and every
+// pack references it.
 export const ERAS = {
   standard: {
-    name: 'CoC7.Era1920',
-    icon: 'game-icon game-icon-mustache'
-  },
-  modern: {
-    name: 'CoC7.EraModern',
-    icon: 'game-icon game-icon-billed-cap'
-  },
-  modernPulp: {
-    name: 'CoC7.EraModernPulp',
-    icon: 'game-icon game-icon-captain-hat-profile'
-  },
-  pulp: {
-    name: 'CoC7.EraPulp',
-    icon: 'game-icon game-icon-fedora'
-  },
-  downDarkerTrails: {
-    name: 'CoC7.EraDownDarkerTrails',
-    icon: 'game-icon game-icon-western-hat'
-  },
-  downDarkerTrailsPulp: {
-    name: 'CoC7.EraDownDarkerTrailsPulp',
-    icon: 'game-icon game-icon-bandit'
-  },
-  darkAges: {
-    name: 'CoC7.EraDarkAges',
-    icon: 'game-icon game-icon-barbute'
-  },
-  darkAgesPulp: {
-    name: 'CoC7.EraDarkAgesPulp',
-    icon: 'game-icon game-icon-heavy-helm'
-  },
-  regency: {
-    name: 'CoC7.EraRegency',
-    icon: 'game-icon game-icon-top-hat'
-  },
-  regencyPulp: {
-    name: 'CoC7.EraRegencyPulp',
-    icon: 'game-icon game-icon-carnival-mask'
-  },
-  reignOfTerror: {
-    name: 'CoC7.EraReignOfTerror',
-    icon: 'game-icon game-icon-guillotine'
-  },
-  gasLight: {
-    name: 'CoC7.EraGasLight',
-    icon: 'game-icon game-icon-old-lantern'
-  },
-  gasLightPulp: {
-    name: 'CoC7.EraGasLightPulp',
-    icon: 'game-icon game-icon-wall-light'
-  },
-  invictus: {
-    name: 'CoC7.EraInvictus',
-    icon: 'game-icon game-icon-centurion-helmet'
+    name: 'CoC7.EraStandard',
+    icon: 'game-icon game-icon-tentacles-skull'
   }
 }
 

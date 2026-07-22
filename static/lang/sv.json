@@ -1853,5 +1853,6 @@
   "CoC7.IlluminationNormal": "Normal light",
   "CoC7.IlluminationDim": "Gloom (half)",
   "CoC7.IlluminationNearDark": "Near total darkness (quarter)",
-  "CoC7.IlluminationTotalDark": "Total darkness (quarter, capped)"
+  "CoC7.IlluminationTotalDark": "Total darkness (quarter, capped)",
+  "CoC7.EraStandard": "Standard"
 }

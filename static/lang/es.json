@@ -1846,5 +1846,6 @@
   "CoC7.IlluminationNormal": "Luz normal",
   "CoC7.IlluminationDim": "Penumbra (mitad)",
   "CoC7.IlluminationNearDark": "Oscuridad casi total (un cuarto)",
-  "CoC7.IlluminationTotalDark": "Oscuridad total (un cuarto, con tope)"
+  "CoC7.IlluminationTotalDark": "Oscuridad total (un cuarto, con tope)",
+  "CoC7.EraStandard": "Estándar"
 }
