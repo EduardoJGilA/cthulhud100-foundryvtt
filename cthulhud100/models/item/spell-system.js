@@ -480,4 +480,27 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
     }
     return super.migrateData(source)
   }
+
+  /**
+   * Chance of learning a spell (reglas-cthulhu-d100.md §11).
+   * INT x 5% if written in a known language; INT x 3% if not.
+   * @param {object} options
+   * @param {number} options.int INT 3-18
+   * @param {boolean} options.knownLanguage true if language is known
+   * @returns {number} percentage chance
+   */
+  static learnChance ({ int, knownLanguage = true } = {}) {
+    const val = parseInt(int, 10) || 0
+    return Math.max(0, Math.min(100, val * (knownLanguage ? 5 : 3)))
+  }
+
+  /**
+   * Days required to study a spell from an arcana tome: 21 - INT days.
+   * @param {number} int INT 3-18
+   * @returns {number} days required
+   */
+  static studyDays (int) {
+    const val = parseInt(int, 10) || 0
+    return Math.max(1, 21 - val)
+  }
 }

@@ -1,6 +1,7 @@
 /* global foundry game */
 import { FOLDER_ID } from '../../constants.js'
 import CoC7ModelsActorCharacterSheetV2 from './character-sheet-v2.js'
+import CoC7CombatTables from '../../apps/combat-tables.js'
 
 export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorCharacterSheetV2 {
   static DEFAULT_OPTIONS = {
@@ -103,6 +104,15 @@ export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorChar
     context.tabs = this.getTabs('primary', 'skills', tabs)
 
     context.portraitFrame = context.document.flags[FOLDER_ID]?.portraitFrame
+    context.sanitySystem = game.settings.get(FOLDER_ID, 'sanitySystem')
+    context.hitLocationRule = game.settings.get(FOLDER_ID, 'hitLocationRule')
+    context.mentalStability = context.document.system.config?.mentalStability
+    if (context.hitLocationRule) {
+      context.locationHitPoints = CoC7CombatTables.locationHitPoints(
+        context.document.system.characteristics?.siz?.value,
+        context.document.system.characteristics?.con?.value
+      )
+    }
 
     return context
   }

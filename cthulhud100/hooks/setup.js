@@ -16,6 +16,12 @@ export default function () {
   }
   statusEffects.unshift(
     {
+      id: STATUS_EFFECTS.surprised,
+      name: 'CoC7.Surprised',
+      img: 'systems/' + FOLDER_ID + '/assets/icons/lightning-branches.svg',
+      sort: 1
+    },
+    {
       id: STATUS_EFFECTS.tempoInsane,
       name: 'CoC7.BoutOfMadnessName',
       img: 'systems/' + FOLDER_ID + '/assets/icons/hanging-spider.svg',

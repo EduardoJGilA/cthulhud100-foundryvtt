@@ -349,4 +349,30 @@ export default class CoC7CombatTables {
   static escapeGrappleChance (dex) {
     return Math.max(0, Math.min(100, (parseInt(dex, 10) || 0) * 3))
   }
+
+  /**
+   * Damage taken by an unarmed defender when blocking a blade or melee weapon attack.
+   * Rulebook chapter 4 (reglas-cthulhu-d100.md §7): Blocking unarmed against a blade weapon
+   * means the defender suffers the weapon's normal damage.
+   * @param {object} options
+   * @param {boolean} options.isUnarmedDefender true if defender is unarmed
+   * @param {boolean} options.isBladeWeapon true if attacker uses a blade/sharp weapon
+   * @param {string} options.damageFormula weapon damage formula
+   * @returns {string|null} formula of damage taken by defender, or null
+   */
+  static unarmedBlockByBladeDamage ({ isUnarmedDefender = false, isBladeWeapon = false, damageFormula = '' } = {}) {
+    if (isUnarmedDefender && isBladeWeapon) {
+      return damageFormula || null
+    }
+    return null
+  }
+
+  /**
+   * Checks if blocking is allowed in this turn (limit: 1 per turn).
+   * @param {number} blockAttempt number of blocks attempted this turn
+   * @returns {boolean} true if block is allowed
+   */
+  static isBlockAllowed (blockAttempt = 0) {
+    return blockAttempt < 1
+  }
 }

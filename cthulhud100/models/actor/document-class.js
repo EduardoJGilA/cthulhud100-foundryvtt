@@ -3038,7 +3038,8 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         // five, but neither has a status effect to read yet, so they are passed
         // explicitly by the combat app rather than guessed here (F4.3).
         return CoC7CombatTables.initiative({
-          dex: this.system.characteristics.dex.value
+          dex: this.system.characteristics.dex.value,
+          surprised: this.hasConditionStatus(STATUS_EFFECTS.surprised)
         })
     }
   }
@@ -4556,6 +4557,14 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       until: 15
     })
     return this.hasConditionStatus(STATUS_EFFECTS.prone)
+  }
+
+  /**
+   * Has status surprised
+   * @returns {boolean}
+   */
+  get surprised () {
+    return this.hasConditionStatus(STATUS_EFFECTS.surprised)
   }
 
   /**

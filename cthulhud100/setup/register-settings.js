@@ -169,6 +169,14 @@ export default function () {
       alternative: 'CoC7.Settings.SanitySystem.Alternative'
     }
   })
+  game.settings.register(FOLDER_ID, 'hitLocationRule', {
+    name: 'CoC7.Settings.HitLocationRule.Name',
+    hint: 'CoC7.Settings.HitLocationRule.Hint',
+    scope: 'world',
+    config: true,
+    default: false,
+    type: Boolean
+  })
   game.settings.register(FOLDER_ID, 'selfRollWhisperTarget', {
     name: 'SETTINGS.SelfRollWhisperTarget',
     hint: 'SETTINGS.SelfRollWhisperTargetHint',

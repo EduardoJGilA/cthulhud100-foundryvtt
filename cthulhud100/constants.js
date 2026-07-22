@@ -148,6 +148,7 @@ export const MONETARY_TYPES = {
 }
 
 export const STATUS_EFFECTS = {
+  surprised: 'surprised',
   tempoInsane: 'tempoInsane',
   indefInsane: 'indefInsane',
   unconscious: 'unconscious',
