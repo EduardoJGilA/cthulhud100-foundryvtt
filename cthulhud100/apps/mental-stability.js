@@ -254,7 +254,11 @@ export default class CoC7MentalStability {
   static tomeMadness ({ loss, pow } = {}) {
     const p = Math.max(1, parseInt(pow, 10) || 0)
     const doubled = (parseInt(loss, 10) || 0) * 2
-    return Math.floor(doubled / p)
+    // "Por cada vez que ese resultado iguale el POD del lector (o fraccion)":
+    // "o fraccion" is the same phrasing the study rule uses for "every 10% or
+    // part thereof", so a remainder counts as a whole point. Truncating here
+    // under-counted: doubled 28 against POD 12 is three points, not two.
+    return Math.ceil(doubled / p)
   }
 
   /**
