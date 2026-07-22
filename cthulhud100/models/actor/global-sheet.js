@@ -442,6 +442,18 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
             'system.attribs.lck.value': 0
           })
           break
+        case 'mental-stability-set':
+          {
+            // Clicking the last filled box clears it, so a mis-click is undone
+            // by clicking the same box again rather than hunting for the one
+            // before it.
+            const box = parseInt(event.currentTarget.dataset.value, 10)
+            const current = this.document.system.attribs?.san?.tension ?? 0
+            this.document.update({
+              'system.attribs.san.tension': (box === current ? box - 1 : box)
+            })
+          }
+          break
       }
     }))
     this.element.querySelectorAll('.reload-weapon').forEach((element) => {

@@ -46,6 +46,7 @@ export default async function () {
     'systems/' + FOLDER_ID + '/templates/actors/investigator-v3/parts/attributes-primary.hbs',
     'systems/' + FOLDER_ID + '/templates/actors/investigator-v3/parts/attributes-secondary.hbs',
     'systems/' + FOLDER_ID + '/templates/actors/investigator-v3/parts/attributes-derived.hbs',
+    'systems/' + FOLDER_ID + '/templates/actors/investigator-v3/parts/mental-stability.hbs',
     'systems/' + FOLDER_ID + '/templates/actors/investigator-v3/tabs/development.hbs',
     'systems/' + FOLDER_ID + '/templates/actors/investigator-v3/tabs/skills.hbs',
     'systems/' + FOLDER_ID + '/templates/actors/investigator-v3/tabs/combat.hbs',

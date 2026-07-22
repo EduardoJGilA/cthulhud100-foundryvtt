@@ -1,0 +1,44 @@
+{{!--
+  Alternative madness system.
+
+  Three bars sized from POD (ceil/floor/ceil). Tension fills them left to right;
+  the state is derived from how far it has spread, so the boxes are the only
+  control here. Clicking a box sets tension to that box, clicking the last
+  filled one clears it, which is the usual pencil-and-paper behaviour.
+--}}
+<div class="mental-stability" data-tooltip="CoC7.MentalStability.Hint">
+  <div class="mental-stability-header">
+    <span class="mental-stability-title">{{localize 'CoC7.MentalStability.Title'}}</span>
+    <span class="mental-stability-state state-{{mentalStability.state}}">{{mentalStability.stateLabel}}</span>
+  </div>
+
+  <div class="mental-stability-bars">
+    {{#each mentalStability.barBoxes as |bar|}}
+      <div class="mental-stability-bar bar-{{bar.index}}">
+        {{#each bar.boxes as |box|}}
+          <span class="mental-stability-box{{#if box.filled}} filled{{/if}}{{#unless @root.document.system.flags.locked}} item-control clickable{{/unless}}"
+                {{#unless @root.document.system.flags.locked}}data-action="mental-stability-set" data-value="{{box.value}}"{{/unless}}
+                data-tooltip="{{box.value}} / {{@root.mentalStability.bars.total}}"></span>
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="mental-stability-footer">
+    <label class="mental-stability-modifier">
+      {{localize 'CoC7.MentalStability.Action'}}
+      <span class="value">{{numberFormat mentalStability.modifiers.action decimals=0 sign=true}}%</span>
+    </label>
+    <label class="mental-stability-modifier">
+      {{localize 'CoC7.MentalStability.Other'}}
+      <span class="value">{{numberFormat mentalStability.modifiers.other decimals=0 sign=true}}%</span>
+    </label>
+    <label class="mental-stability-madness">
+      {{localize 'CoC7.MentalStability.UnderlyingMadness'}}
+      <input type="number" min="0" step="1"
+             name="system.attribs.san.underlyingMadness"
+             value="{{document.system.attribs.san.underlyingMadness}}"
+             {{#if document.system.flags.locked}}readonly{{/if}} />
+    </label>
+  </div>
+</div>

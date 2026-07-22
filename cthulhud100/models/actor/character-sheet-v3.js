@@ -2,6 +2,7 @@
 import { FOLDER_ID } from '../../constants.js'
 import CoC7ModelsActorCharacterSheetV2 from './character-sheet-v2.js'
 import CoC7CombatTables from '../../apps/combat-tables.js'
+import CoC7MentalStability from '../../apps/mental-stability.js'
 
 export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorCharacterSheetV2 {
   static DEFAULT_OPTIONS = {
@@ -106,7 +107,33 @@ export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorChar
     context.portraitFrame = context.document.flags[FOLDER_ID]?.portraitFrame
     context.sanitySystem = game.settings.get(FOLDER_ID, 'sanitySystem')
     context.hitLocationRule = game.settings.get(FOLDER_ID, 'hitLocationRule')
-    context.mentalStability = context.document.system.config?.mentalStability
+    const mentalStability = context.document.system.config?.mentalStability
+    if (mentalStability) {
+      // Flatten the three bar sizes into rows of boxes so the template can just
+      // iterate. Box values are cumulative across bars because tension is a
+      // single running total, not three separate counters.
+      //
+      // Built as a copy: system.config is derived data rebuilt on every
+      // prepare, and view-only fields have no business living there.
+      const tension = context.document.system.attribs?.san?.tension ?? 0
+      const sizes = [
+        mentalStability.bars.first,
+        mentalStability.bars.second,
+        mentalStability.bars.third
+      ]
+      let value = 0
+      context.mentalStability = {
+        ...mentalStability,
+        stateLabel: CoC7MentalStability.label(mentalStability.state),
+        barBoxes: sizes.map((size, index) => ({
+          index: index + 1,
+          boxes: Array.from({ length: size }, () => {
+            value++
+            return { value, filled: value <= tension }
+          })
+        }))
+      }
+    }
     if (context.hitLocationRule) {
       context.locationHitPoints = CoC7CombatTables.locationHitPoints(
         context.document.system.characteristics?.siz?.value,
