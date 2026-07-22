@@ -305,9 +305,28 @@ export default class CoC7CombatTables {
       return '(' + base + ')*2'
     }
     if (outcome === o.maxDamage) {
-      return base
+      return CoC7CombatTables.maximiseFormula(base)
     }
     return base
+  }
+
+  /**
+   * Rewrite a damage formula so every die yields its highest face.
+   *
+   * The cross tables produce "Max. D" when a special or critical attack meets a
+   * fumbled defence, and the rulebook defines that as the weapon's maximum
+   * damage. Returning the formula unchanged rolled it normally instead, so the
+   * best result in the table was no better than an ordinary hit.
+   *
+   * 2D6+2 becomes (2*6)+2, which is 14. Anything that is not a die term is left
+   * alone, so a bare number or a note such as "+Fuego" survives untouched.
+   * @param {string} formula damage formula
+   * @returns {string} formula that evaluates to its maximum
+   */
+  static maximiseFormula (formula) {
+    return (formula ?? '').toString().replace(/(\d+)[dD](\d+)/g, (match, count, faces) => {
+      return '(' + (parseInt(count, 10) * parseInt(faces, 10)) + ')'
+    })
   }
 
   /**
