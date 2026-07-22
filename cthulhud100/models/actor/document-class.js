@@ -1,5 +1,6 @@
 /* global Actor ChatMessage CONFIG CONST foundry fromUuid fromUuidSync game Hooks Roll TextEditor Token ui */
 import { FOLDER_ID, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER, PERSONAL_SKILL_POINTS_PER_INT, UNCONSCIOUS_HP_THRESHOLD } from '../../constants.js'
+import CoC7CombatTables from '../../apps/combat-tables.js'
 import CoC7AverageRoll from '../../apps/average-roll.js'
 import CoC7CharacteristicRollDialog from '../../apps/characteristic-roll-dialog.js'
 import CoC7CharacteristicSelectionDialog from '../../apps/characteristic-selection-dialog.js'
@@ -3033,7 +3034,12 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         // Cthulhu d100 orders combat purely by DES on the 3-18 scale. CoC7 added
         // 50 for a readied firearm; that rule does not exist here, and on this
         // scale it would swamp every other value.
-        return parseInt(this.system.characteristics.dex.value ?? 0, 10)
+        // Surprise halves this for the first turn and readying a weapon costs
+        // five, but neither has a status effect to read yet, so they are passed
+        // explicitly by the combat app rather than guessed here (F4.3).
+        return CoC7CombatTables.initiative({
+          dex: this.system.characteristics.dex.value
+        })
     }
   }
 
