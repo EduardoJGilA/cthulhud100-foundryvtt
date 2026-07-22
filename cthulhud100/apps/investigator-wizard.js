@@ -1,5 +1,5 @@
 /* global Actor ChatMessage CONFIG CONST DragDrop foundry game Hooks renderTemplate Roll TextEditor ui */
-import { FOLDER_ID, ERAS } from '../constants.js'
+import { FOLDER_ID, ERAS, PERSONAL_SKILL_POINTS_PER_INT } from '../constants.js'
 import CoC7DicePool from './dice-pool.js'
 import CoC7ModelsActorDocumentClass from '../models/actor/document-class.js'
 import CoC7ModelsItemOccupationSystem from '../models/item/occupation-system.js'
@@ -847,7 +847,8 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           context.creditRatingOkay = !(this.coc7Config.creditRating.max > 0)
           context.personal = {
             count: 0,
-            total: 2 * (parseInt(this.coc7Config.setupPoints.int, 10) + parseInt(this.coc7Config.setupModifiers.int, 10)),
+            // Cthulhu d100 gives INT x10 free points, against CoC7's INT x2
+            total: PERSONAL_SKILL_POINTS_PER_INT * (parseInt(this.coc7Config.setupPoints.int, 10) + parseInt(this.coc7Config.setupModifiers.int, 10)),
             remaining: 0
           }
           context.occupation = {
@@ -2120,7 +2121,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       monetary = foundry.utils.duplicate(setup.system.monetary)
     }
     const development = {
-      personal: 2 * (parseInt(data.setupPoints.int, 10) + parseInt(data.setupModifiers.int, 10)),
+      personal: PERSONAL_SKILL_POINTS_PER_INT * (parseInt(data.setupPoints.int, 10) + parseInt(data.setupModifiers.int, 10)),
       occupation: 0,
       archetype: 0
     }
