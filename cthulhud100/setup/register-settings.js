@@ -39,7 +39,8 @@ export default function () {
     name: 'CoC7.Settings.WorldEra.Name',
     hint: 'CoC7.Settings.WorldEra.Hint',
     scope: 'world',
-    config: true,
+    // Cthulhu d100: only one era remains, so there is nothing to pick
+    config: false,
     default: 'standard',
     type: String,
     /* // FoundryVTT V12 */
@@ -68,7 +69,8 @@ export default function () {
     name: 'CoC7.Settings.ShowWorldEra.Name',
     hint: 'CoC7.Settings.ShowWorldEra.Hint',
     scope: 'world',
-    config: true,
+    // Cthulhu d100: with a single era the badge says the same thing on every sheet
+    config: false,
     default: true,
     type: Boolean,
     onChange: () => {
@@ -390,7 +392,8 @@ export default function () {
     name: 'SETTINGS.UseIconForEras',
     hint: 'SETTINGS.UseIconForErasHint',
     scope: 'world',
-    config: true,
+    // Cthulhu d100: same reason
+    config: false,
     default: false,
     type: Boolean
   })
@@ -537,7 +540,8 @@ export default function () {
     name: 'SETTINGS.DebugMode',
     hint: 'SETTINGS.DebugModeHint',
     scope: 'client',
-    config: true,
+    // Cthulhu d100: no bonus dice can be produced any more
+    config: false,
     type: Boolean,
     default: false
   })
@@ -545,7 +549,8 @@ export default function () {
     name: 'SETTINGS.ShowExperimentalFeatures',
     hint: 'SETTINGS.ShowExperimentalFeaturesHint',
     scope: 'world',
-    config: true,
+    // Cthulhu d100: no penalty dice can be produced any more
+    config: false,
     type: Boolean,
     default: false
   })
