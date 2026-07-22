@@ -47,11 +47,21 @@ jobs:
               VERSION="${GITHUB_REF_NAME}"
               VERSION="${VERSION#v}"
             else
-              VERSION=$(node -p "require('./static/system.json').version")
+              git fetch --tags || true
+              BASE_VER=$(node -p "require('./static/system.json').version")
+              if git rev-parse "$BASE_VER" >/dev/null 2>&1 || git rev-parse "v$BASE_VER" >/dev/null 2>&1; then
+                VERSION=$(node -e "
+                  const parts = '$BASE_VER'.split('.').map(Number);
+                  parts[2] = (parts[2] || 0) + 1;
+                  console.log(parts.join('.'));
+                ")
+              else
+                VERSION="$BASE_VER"
+              fi
             fi
           fi
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "Building ${VERSION}"
+          echo "Building version ${VERSION}"
 
       # package-lock.json is gitignored upstream, so `npm ci` has no lockfile
       # to work from and would fail.
