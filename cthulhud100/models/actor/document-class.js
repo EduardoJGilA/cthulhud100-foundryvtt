@@ -2321,7 +2321,18 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (difference <= -5) {
         await this.conditionsSet([STATUS_EFFECTS.tempoInsane])
       }
-      if (changes['system.attribs.san.dailyLoss'] >= (this.system.attribs.san.dailyLimit ?? 0)) {
+      // Cthulhu d100: losing a fifth or more of the Mental Stability still
+      // remaining, within a single scene, brings on a long-term disorder. CoC7
+      // instead capped loss per day at a fifth of starting sanity, which is not
+      // a rule this game has.
+      //
+      // The accumulator is reset between scenes rather than at a day boundary,
+      // so the stability held at the start of the scene is what is left now plus
+      // what has been lost since: that reconstructs the exact figure the fifth
+      // is taken of.
+      const lostThisScene = changes['system.attribs.san.dailyLoss']
+      const stabilityAtSceneStart = (changes['system.attribs.san.value'] ?? this.system.attribs.san.value ?? 0) + lostThisScene
+      if (lostThisScene > 0 && lostThisScene >= Math.ceil(stabilityAtSceneStart / 5)) {
         await this.conditionsSet([STATUS_EFFECTS.indefInsane])
       }
     }
