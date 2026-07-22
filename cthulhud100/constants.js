@@ -3,6 +3,12 @@
 // scope for game settings and document flags.
 export const FOLDER_ID = 'cthulhud100'
 
+// Cthulhu d100 stores characteristics on the classic 3-18 scale. A percentile
+// check against a characteristic is rolled against the value times five, so
+// CON 12 is a 60% check. Derived scores use the same factor: Idea is INT x5,
+// Suerte POD x5 and Cultura General EST x5.
+export const CHARACTERISTIC_MULTIPLIER = 5
+
 export const ERAS = {
   standard: {
     name: 'CoC7.Era1920',

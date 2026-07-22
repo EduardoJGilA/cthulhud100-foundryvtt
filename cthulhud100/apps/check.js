@@ -1,5 +1,5 @@
 /* global ChatMessage foundry fromUuid game renderTemplate ui */
-import { FOLDER_ID, CHAT_MESSAGE_MODE } from '../constants.js'
+import { FOLDER_ID, CHAT_MESSAGE_MODE, CHARACTERISTIC_MULTIPLIER } from '../constants.js'
 import CoC7DicePool from './dice-pool.js'
 import CoC7ModelsItemSkillSystem from '../models/item/skill-system.js'
 import CoC7RollNormalize from './roll-normalize.js'
@@ -719,7 +719,8 @@ export default class CoC7Check {
       } else if (this.#cardType === CoC7RollNormalize.CARD_TYPE.KNOW_CHECK) {
         threshold = parseInt((await this.#asyncActor)?.system?.config?.know?.value, 10)
       } else {
-        threshold = parseInt((await this.#asyncActor)?.system?.characteristics?.[this.#key]?.value, 10)
+        // Characteristics are stored 3-18; a check is rolled against value x5
+        threshold = parseInt((await this.#asyncActor)?.system?.characteristics?.[this.#key]?.value, 10) * CHARACTERISTIC_MULTIPLIER
       }
     } else if (this.#type === CoC7Check.type.skill && this.#key) {
       if (!this.item) {

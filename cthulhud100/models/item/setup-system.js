@@ -26,15 +26,20 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
           /* // FoundryVTT V13 - not required
           enableIndividualRolls: true,
           */
-          str: new fields.StringField({ nullable: false, initial: '(3D6)*5' }),
-          con: new fields.StringField({ nullable: false, initial: '(3D6)*5' }),
-          siz: new fields.StringField({ nullable: false, initial: '(2D6+6)*5' }),
-          dex: new fields.StringField({ nullable: false, initial: '(3D6)*5' }),
-          app: new fields.StringField({ nullable: false, initial: '(3D6)*5' }),
-          int: new fields.StringField({ nullable: false, initial: '(2D6+6)*5' }),
-          pow: new fields.StringField({ nullable: false, initial: '(3D6)*5' }),
-          edu: new fields.StringField({ nullable: false, initial: '(2D6+6)*5' }),
-          luck: new fields.StringField({ nullable: false, initial: '(3D6)*5' })
+          // Cthulhu d100 keeps characteristics on the classic 3-18 scale rather
+          // than as percentiles, so the rolls are not multiplied by five.
+          // A check is rolled against the value times five (see CHARACTERISTIC_MULTIPLIER).
+          str: new fields.StringField({ nullable: false, initial: '3D6' }),
+          con: new fields.StringField({ nullable: false, initial: '3D6' }),
+          siz: new fields.StringField({ nullable: false, initial: '2D6+6' }),
+          dex: new fields.StringField({ nullable: false, initial: '3D6' }),
+          app: new fields.StringField({ nullable: false, initial: '3D6' }),
+          int: new fields.StringField({ nullable: false, initial: '2D6+6' }),
+          pow: new fields.StringField({ nullable: false, initial: '3D6' }),
+          // EST (Estudios) is 3D6+3 in this system, not 2D6+6
+          edu: new fields.StringField({ nullable: false, initial: '3D6+3' }),
+          // Suerte is derived from POD, not rolled; kept for the setup UI only
+          luck: new fields.StringField({ nullable: false, initial: '3D6' })
         })
         /* // FoundryVTT V13 - not required
         values: new fields.SchemaField({

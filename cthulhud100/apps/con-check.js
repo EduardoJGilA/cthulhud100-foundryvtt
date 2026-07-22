@@ -1,5 +1,5 @@
 /* global ChatMessage foundry fromUuid game renderTemplate ui */
-import { FOLDER_ID, CHAT_MESSAGE_MODE, STATUS_EFFECTS } from '../constants.js'
+import { FOLDER_ID, CHAT_MESSAGE_MODE, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER } from '../constants.js'
 import CoC7DicePool from './dice-pool.js'
 import CoC7SystemSocket from './system-socket.js'
 import CoC7Utilities from './utilities.js'
@@ -83,7 +83,7 @@ export default class CoC7ConCheck {
    */
   async rollCon () {
     const actor = (await this.actor)
-    this.#dicePool.threshold = actor.system.characteristics.con.value
+    this.#dicePool.threshold = actor.system.characteristics.con.value * CHARACTERISTIC_MULTIPLIER
     await this.#dicePool.roll()
     if (!this.message.blind && !this.isSuccess) {
       if (this.#stayAlive) {

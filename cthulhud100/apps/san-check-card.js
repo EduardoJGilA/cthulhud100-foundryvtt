@@ -1,5 +1,5 @@
 /* global ChatMessage foundry fromUuid game renderTemplate Roll TokenDocument ui */
-import { FOLDER_ID, CHAT_MESSAGE_MODE, STATUS_EFFECTS } from '../constants.js'
+import { FOLDER_ID, CHAT_MESSAGE_MODE, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER } from '../constants.js'
 import CoC7DicePool from './dice-pool.js'
 import CoC7SystemSocket from './system-socket.js'
 import CoC7Utilities from './utilities.js'
@@ -447,7 +447,7 @@ export default class CoC7SanCheckCard {
    */
   async rollInt () {
     const actor = (await this.actor)
-    this.#diceIntPool.threshold = actor.system.characteristics.int.value
+    this.#diceIntPool.threshold = actor.system.characteristics.int.value * CHARACTERISTIC_MULTIPLIER
     await this.#diceIntPool.roll()
     this.#intRolled = true
     if (this.#diceIntPool.isSuccess || this.#alreadyInsane) {
