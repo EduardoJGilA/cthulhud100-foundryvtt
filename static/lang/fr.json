@@ -1755,5 +1755,10 @@
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title": "Déclenche cette région",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint": "",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title": "Avec un clic de la souris",
-  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": ""
+  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": "",
+  "CoC7.CircumstanceVeryFavourable": "Très favorables (+20%)",
+  "CoC7.CircumstanceFavourable": "Favorables (+10%)",
+  "CoC7.CircumstanceNormal": "Normales",
+  "CoC7.CircumstanceUnfavourable": "Défavorables (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Très défavorables (-20%)"
 }

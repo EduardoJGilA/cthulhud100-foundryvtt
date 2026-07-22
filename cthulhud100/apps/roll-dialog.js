@@ -16,6 +16,9 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
       askValue: options.askValue ?? false,
       cardTypes: CoC7RollNormalize.cardTypes(options),
       difficulty: CoC7DicePool.difficultyLevel,
+      // Cthulhu d100 has no requested-difficulty tiers. A check is rolled against
+      // the skill, and the situation is expressed with the circumstance
+      // modifiers below (+/-20%, +/-10%), which adjust the threshold instead.
       difficultyTypes: [
         {
           key: CoC7DicePool.difficultyLevel.unknown,
@@ -24,15 +27,15 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
         {
           key: CoC7DicePool.difficultyLevel.regular,
           val: 'CoC7.RollDifficultyRegular'
-        },
-        {
-          key: CoC7DicePool.difficultyLevel.hard,
-          val: 'CoC7.RollDifficultyHard'
-        },
-        {
-          key: CoC7DicePool.difficultyLevel.extreme,
-          val: 'CoC7.RollDifficultyExtreme'
         }
+      ],
+      // Rulebook chapter 1: circumstance modifiers applied to the threshold
+      circumstanceModifiers: [
+        { key: 20, val: 'CoC7.CircumstanceVeryFavourable' },
+        { key: 10, val: 'CoC7.CircumstanceFavourable' },
+        { key: 0, val: 'CoC7.CircumstanceNormal' },
+        { key: -10, val: 'CoC7.CircumstanceUnfavourable' },
+        { key: -20, val: 'CoC7.CircumstanceVeryUnfavourable' }
       ],
       hideDifficulty: options.hideDifficulty === true,
       poolModifiers: {

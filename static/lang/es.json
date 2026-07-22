@@ -1351,5 +1351,10 @@
   "TOKEN.MOVEMENT.ACTIONS.climb.label": "Trepar",
   "TOKEN.MOVEMENT.ACTIONS.jump.label": "Saltar",
   "TOKEN.MOVEMENT.ACTIONS.blink.label": "Teletransporte (parpadeo)",
-  "TOKEN.MOVEMENT.ACTIONS.displace.label": "Teletransporte (desplazamiento)"
+  "TOKEN.MOVEMENT.ACTIONS.displace.label": "Teletransporte (desplazamiento)",
+  "CoC7.CircumstanceVeryFavourable": "Muy favorables (+20%)",
+  "CoC7.CircumstanceFavourable": "Favorables (+10%)",
+  "CoC7.CircumstanceNormal": "Normales",
+  "CoC7.CircumstanceUnfavourable": "Desfavorables (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Muy desfavorables (-20%)"
 }

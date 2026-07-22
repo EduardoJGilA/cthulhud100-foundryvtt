@@ -1117,5 +1117,10 @@
   "CoC7.CoCIDFlag.error.documents-not-found": "Documentos não foram encontrados no mundo ou nos compêndios correspondentes aos IDs do Sistema ({cocids}), idioma {lang} e era {era}. Verifique a sua Era nas configurações do mundo.",
   "I18N.LANGUAGE": "Português (Brasil)",
   "I18N.MAINTAINERS": "@Castanho#3271 reviewed by zorieuq360#6074",
-  "CoC7.PersonalSpeciality": "Número de especialidades pessoais ou de era"
+  "CoC7.PersonalSpeciality": "Número de especialidades pessoais ou de era",
+  "CoC7.CircumstanceVeryFavourable": "Muito favoráveis (+20%)",
+  "CoC7.CircumstanceFavourable": "Favoráveis (+10%)",
+  "CoC7.CircumstanceNormal": "Normais",
+  "CoC7.CircumstanceUnfavourable": "Desfavoráveis (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Muito desfavoráveis (-20%)"
 }

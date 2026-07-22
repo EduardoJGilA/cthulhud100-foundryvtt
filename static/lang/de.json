@@ -1352,5 +1352,10 @@
   "TOKEN.MOVEMENT.ACTIONS.climb.label": "Klettern",
   "TOKEN.MOVEMENT.ACTIONS.jump.label": "Springen",
   "TOKEN.MOVEMENT.ACTIONS.blink.label": "Teleportieren (Blinzeln)",
-  "TOKEN.MOVEMENT.ACTIONS.displace.label": "Teleportieren (Verdrängen)"
+  "TOKEN.MOVEMENT.ACTIONS.displace.label": "Teleportieren (Verdrängen)",
+  "CoC7.CircumstanceVeryFavourable": "Sehr günstig (+20%)",
+  "CoC7.CircumstanceFavourable": "Günstig (+10%)",
+  "CoC7.CircumstanceNormal": "Normal",
+  "CoC7.CircumstanceUnfavourable": "Ungünstig (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Sehr ungünstig (-20%)"
 }

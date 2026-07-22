@@ -1648,5 +1648,10 @@
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title": "触发该区域",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint": " ",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title": "点击按钮触发",
-  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": " "
+  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": " ",
+  "CoC7.CircumstanceVeryFavourable": "非常有利 (+20%)",
+  "CoC7.CircumstanceFavourable": "有利 (+10%)",
+  "CoC7.CircumstanceNormal": "正常",
+  "CoC7.CircumstanceUnfavourable": "不利 (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "非常不利 (-20%)"
 }

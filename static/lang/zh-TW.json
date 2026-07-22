@@ -1802,5 +1802,10 @@
   "CoC7.rangeCombatCard.ReloadingFirearmTooltip": "1 顆懲罰骰。同一輪中裝填一發並射擊",
   "CoC7.rangeCombatCard.ShootingWithOffHand": "以非慣用手射擊",
   "SETTINGS.DownDarkerTrailsRules": "闇黑之途規則",
-  "TYPES.RegionBehavior.ChaosiumCanvasInterfacePlayer": "CCI：玩家"
+  "TYPES.RegionBehavior.ChaosiumCanvasInterfacePlayer": "CCI：玩家",
+  "CoC7.CircumstanceVeryFavourable": "非常有利 (+20%)",
+  "CoC7.CircumstanceFavourable": "有利 (+10%)",
+  "CoC7.CircumstanceNormal": "正常",
+  "CoC7.CircumstanceUnfavourable": "不利 (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "非常不利 (-20%)"
 }

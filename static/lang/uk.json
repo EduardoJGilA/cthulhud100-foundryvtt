@@ -1309,5 +1309,10 @@
   "CoC7.ClickableEvents.MouseOver.Hint": "Повернути boolean, якщо дозволено натискання та відображення курсору",
   "CoC7.ClickableEvents.LeftClick.Title": "Сценарій ЛКМ",
   "CoC7.ClickableEvents.RightClick.Title": "Сценарій ПКМ",
-  "TYPES.RegionBehavior.coc7ClickableEvents": "Клікабельні події"
+  "TYPES.RegionBehavior.coc7ClickableEvents": "Клікабельні події",
+  "CoC7.CircumstanceVeryFavourable": "Дуже сприятливі (+20%)",
+  "CoC7.CircumstanceFavourable": "Сприятливі (+10%)",
+  "CoC7.CircumstanceNormal": "Звичайні",
+  "CoC7.CircumstanceUnfavourable": "Несприятливі (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Дуже несприятливі (-20%)"
 }

@@ -1809,5 +1809,10 @@
   "CoC7.UseLuckForLookOutMaster": "Använd alla turpoäng för Se upp, mästare!",
   "CoC7.UseLuckForReduceLoss": "Använd turpoäng för att minska {name}",
   "CoC7.UseLuckForSecondAttack": "Använd 10 turpoäng för en andra attack",
-  "CoC7.UseLuckForWeaponFailure": "Använd 10 turpoäng för att undvika konsekvenserna av vapenfel eller vapenfummel"
+  "CoC7.UseLuckForWeaponFailure": "Använd 10 turpoäng för att undvika konsekvenserna av vapenfel eller vapenfummel",
+  "CoC7.CircumstanceVeryFavourable": "Mycket gynnsamma (+20%)",
+  "CoC7.CircumstanceFavourable": "Gynnsamma (+10%)",
+  "CoC7.CircumstanceNormal": "Normala",
+  "CoC7.CircumstanceUnfavourable": "Ogynnsamma (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Mycket ogynnsamma (-20%)"
 }

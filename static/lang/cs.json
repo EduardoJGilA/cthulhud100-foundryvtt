@@ -1310,5 +1310,10 @@
   "SETTINGS.UseContextMenusHint": "[EXPERIMENTÁLNÍ] Místo kombinace kláves používejte pro rolovací tlačítka kontextové nabídky.",
   "SETTINGS.UseToken": "Použití obrázku tokenu",
   "SETTINGS.UseTokenHint": "Použití obrázku tokenu místo portrétů na kartách chatu",
-  "TYPES.RegionBehavior.coc7ClickableEvents": "Klikatelné události"
+  "TYPES.RegionBehavior.coc7ClickableEvents": "Klikatelné události",
+  "CoC7.CircumstanceVeryFavourable": "Velmi příznivé (+20%)",
+  "CoC7.CircumstanceFavourable": "Příznivé (+10%)",
+  "CoC7.CircumstanceNormal": "Normální",
+  "CoC7.CircumstanceUnfavourable": "Nepříznivé (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Velmi nepříznivé (-20%)"
 }

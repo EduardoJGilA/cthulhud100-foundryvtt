@@ -1623,5 +1623,10 @@
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title": "このリージョンを切り替え",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint": "",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title": "ボタンクリックで",
-  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": ""
+  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": "",
+  "CoC7.CircumstanceVeryFavourable": "非常に有利 (+20%)",
+  "CoC7.CircumstanceFavourable": "有利 (+10%)",
+  "CoC7.CircumstanceNormal": "通常",
+  "CoC7.CircumstanceUnfavourable": "不利 (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "非常に不利 (-20%)"
 }

@@ -1194,5 +1194,10 @@
   "CoC7.TokenCreationRoll.Prompt": "Этот жетон имеет подбрасываемые характеристики или навыки.<br>Что вы хотите сделать?",
   "CoC7.TokenCreationRoll.ButtonRoll": "Бросить все",
   "CoC7.TokenCreationRoll.ButtonAverage": "Усреднить все",
-  "CoC7.RealRollDecaderPlaceholderName": "10-ки"
+  "CoC7.RealRollDecaderPlaceholderName": "10-ки",
+  "CoC7.CircumstanceVeryFavourable": "Очень благоприятные (+20%)",
+  "CoC7.CircumstanceFavourable": "Благоприятные (+10%)",
+  "CoC7.CircumstanceNormal": "Обычные",
+  "CoC7.CircumstanceUnfavourable": "Неблагоприятные (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Очень неблагоприятные (-20%)"
 }

@@ -1467,5 +1467,10 @@
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title": "Włącz tę strefę",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint": "",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title": "Przyciskiem myszy",
-  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": ""
+  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": "",
+  "CoC7.CircumstanceVeryFavourable": "Bardzo sprzyjające (+20%)",
+  "CoC7.CircumstanceFavourable": "Sprzyjające (+10%)",
+  "CoC7.CircumstanceNormal": "Normalne",
+  "CoC7.CircumstanceUnfavourable": "Niesprzyjające (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Bardzo niesprzyjające (-20%)"
 }

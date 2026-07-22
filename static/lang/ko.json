@@ -1453,5 +1453,10 @@
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title": "트리거할 영역",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint": "",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title": "버튼 클릭으로 트리거",
-  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": ""
+  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": "",
+  "CoC7.CircumstanceVeryFavourable": "매우 유리 (+20%)",
+  "CoC7.CircumstanceFavourable": "유리 (+10%)",
+  "CoC7.CircumstanceNormal": "보통",
+  "CoC7.CircumstanceUnfavourable": "불리 (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "매우 불리 (-20%)"
 }

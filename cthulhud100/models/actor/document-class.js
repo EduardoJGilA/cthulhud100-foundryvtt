@@ -2345,18 +2345,20 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     // band below the neutral one is a die roll subtracted from the damage.
     // Rulebook page 11.
     const sum = parseInt(characteristics.str.value ?? 0, 10) + parseInt(characteristics.siz.value ?? 0, 10)
-    // [inclusive upper bound, modifier]
+    // [inclusive upper bound, modifier]. Positives carry no sign: callers such as
+    // chat-damage.js prepend '+' unless the value already starts with '-', so a
+    // signed positive would build '++1D2' and break the roll formula.
     const bands = [
       [5, '-1D8'], [10, '-1D6'], [15, '-1D4'], [20, '-1D2'], [25, 0],
-      [30, '+1D2'], [35, '+1D4'], [40, '+1D6'], [45, '+1D8'], [50, '+1D10'],
-      [60, '+1D12'], [70, '+2D6'], [80, '+2D8'], [90, '+2D10'], [100, '+2D12'],
-      [120, '+3D10'], [140, '+3D12'], [160, '+4D10'], [180, '+4D12'], [200, '+5D10']
+      [30, '1D2'], [35, '1D4'], [40, '1D6'], [45, '1D8'], [50, '1D10'],
+      [60, '1D12'], [70, '2D6'], [80, '2D8'], [90, '2D10'], [100, '2D12'],
+      [120, '3D10'], [140, '3D12'], [160, '4D10'], [180, '4D12'], [200, '5D10']
     ]
     for (const [max, modifier] of bands) {
       if (sum <= max) return modifier
     }
     // Above the printed table; keep scaling rather than returning nothing
-    return '+5D10'
+    return '5D10'
   }
 
   /**

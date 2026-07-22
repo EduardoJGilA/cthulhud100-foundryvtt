@@ -1273,5 +1273,10 @@
   "CoC7.ErrorRollAlreadyCompleted": "Questo tiro è già stato completato",
   "CoC7.ErrorNoActorPermission": "Non sei il Proprietario di questo Personaggio",
   "CoC7.ErrorCombinedRollsRequireSingleActor": "Non puoi avere più di un personaggio in un tiro combinato",
-  "CoC7.ErrorOpposedRollsLimitedToTwoActors": "Una carta contrapposta richiede due personaggi"
+  "CoC7.ErrorOpposedRollsLimitedToTwoActors": "Una carta contrapposta richiede due personaggi",
+  "CoC7.CircumstanceVeryFavourable": "Molto favorevoli (+20%)",
+  "CoC7.CircumstanceFavourable": "Favorevoli (+10%)",
+  "CoC7.CircumstanceNormal": "Normali",
+  "CoC7.CircumstanceUnfavourable": "Sfavorevoli (-10%)",
+  "CoC7.CircumstanceVeryUnfavourable": "Molto sfavorevoli (-20%)"
 }
