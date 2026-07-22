@@ -820,3 +820,49 @@ Problemas **nuevos**:
 > las entradas. Los ataques del Pólipo volador aparecen en el texto *por encima* de su
 > propio bloque de características. La atribución se confirma por materia (ciudades
 > subterráneas, *The Shadow Out of Time*), no por posición.
+
+### Tercera revisión — barrido capítulo por capítulo
+
+Verificado contra el PDF, con pruebas numéricas donde había fórmula:
+
+| Capítulo | Comprobado |
+|---|---|
+| 1 Reglas | niveles de éxito, pifia 96-00, circunstancias, iluminación, enfrentados |
+| 2 Atributos | escala 3-18, Idea `INT×5`, Suerte `POD×5`, Cultura Gral `EST×5`, PV, PM, MD |
+| 2 Límites | atributo <4 inválido, 0 = muerte, INT/POD 0 = estado vegetativo — implementados |
+| 3 Locura | barras `ceil/floor/ceil`, estados, Locura Subyacente, regla del 20% por escena |
+| 4 Combate | tablas cruzadas, localización, iniciativa DES, alcances |
+| 5 Daño | ácido, fuego, asfixia, ahogamiento, caídas, explosiones, curación, privación, conmoción — **todas las fórmulas verificadas** |
+| 5 Heridas | tabla de Heridas Graves (14 filas), inconsciencia a 1-2 PV |
+| 6 Magia | `21-INT` días, PM = POD |
+| 7 Creación | `EST×20` + `INT×10`, las 10 profesiones con sus listas |
+| 8 Armas | las 41, con daño, PR, disfunción, munición y tramos de escopeta |
+| 9 Criaturas | las 22 |
+| 10 Tomos | los 10, con ganancia en Mitos, pérdida de EM y tiempo |
+
+Corregido en esta revisión:
+
+- **Umbral de herida grave.** El manual dice "más del 50%"; el código usaba
+  `>= ceil(PVmax/2)`, que con PV máximos **pares** es exactamente la mitad. Con 10 PV,
+  un golpe de 5 disparaba herida grave cuando debía ser leve
+- **Muerte por daño masivo.** CoC7 mata si un golpe iguala los PV máximos. d100 **no tiene
+  esa regla**: llegar a 0 es herida mortal, evitable con Primeros Auxilios antes de que
+  acabe el turno siguiente
+- **Pérdida diaria de Cordura → regla de escena.** No existe límite diario en las 52
+  páginas. La regla real es perder el 20% o más de la EM restante en una escena
+- **Iconos de resultado.** Se contaban estrellas por nivel sobre la dificultad pedida, un
+  concepto de CoC7. Ahora un icono por resultado
+- **Terminología.** "Éxito normal" → "Éxito" y "Fracaso" → "Fallo", que es lo que dice
+  el manual
+
+### Pendiente al cierre de la tercera revisión
+
+- [ ] **Experiencia por estudio y práctica** (cap. 1): 2 semanas intensivas por cada 10% o
+      fracción que se tenga al empezar; al terminar, chequeo de POD → `+1D3`, y si falla
+      el tiempo se pierde. Es la única regla del manual sin implementar que he encontrado
+- [ ] **Campos personales de la ficha.** La hoja oficial (págs. 49-50) pide Edad, Sexo,
+      Altura, Peso, Pelo, Ojos y Rasgos distintivos. La ficha tiene en su lugar Ocupación,
+      Pronombre, Residencia y Lugar de nacimiento, que son de CoC7
+- [ ] Interfaz de cordura alternativa solo en la ficha v3
+- [ ] Prefijo `coc7-` en las 16 hojas LESS
+- [ ] Tipos de item ajenos: `chase`, `archetype`, `experiencePackage`, `talent`
