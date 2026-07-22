@@ -8,6 +8,7 @@
     "eslint": "eslint cthulhud100/ scripts/",
     "game-icons-build": "node scripts/game-icons-build.js",
     "init": "node scripts/init.js",
+    "lang-check": "node scripts/lang-collision-check.js",
     "manuals-build": "node scripts/manuals-build.js",
     "roll-requests-build": "node scripts/roll-requests-build.js",
     "standard": "standard",

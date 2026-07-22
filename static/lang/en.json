@@ -1672,5 +1672,8 @@
   "CoC7.SkillCategory": "Category",
   "CoC7.CreatureLeatherySkin": "Leathery skin",
   "CoC7.CreatureLeatherySkinHint": "Firearms do minimum damage and cannot double through impaling.",
-  "CoC7.MentalStabilityDepleted": "{name} has run out of Mental Stability: irremediably mad, and now an NPC."
+  "CoC7.MentalStabilityDepleted": "{name} has run out of Mental Stability: irremediably mad, and now an NPC.",
+  "CoC7.Fire.LuckOrClothesCatch": "Luck roll or clothing catches fire",
+  "CoC7.Fire.ClothesAndHairCatch": "Clothing and hair catch fire",
+  "CoC7.Fire.LuckOrSuffocate": "Luck roll or begin to suffocate"
 }

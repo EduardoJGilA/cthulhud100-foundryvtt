@@ -1826,5 +1826,8 @@
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title": "Trigger This Region",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint": "",
   "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title": "With A Button Click",
-  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": ""
+  "CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint": "",
+  "CoC7.Fire.LuckOrClothesCatch": "Chequeo de Suerte para que no prenda la ropa",
+  "CoC7.Fire.ClothesAndHairCatch": "Prenden la ropa y el pelo",
+  "CoC7.Fire.LuckOrSuffocate": "Chequeo de Suerte para evitar comenzar a asfixiarse"
 }
