@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1 y F2.1 hechas, F6 lista. Siguiente: primera prueba en Foundry (ver checklist). Pendientes: F0.5, F2.2-F2.4, F3-F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1, F2.1-F2.3 y F6 hechas. Pendientes: F0.5, F2.4, F3-F5
 
 ---
 
@@ -501,18 +501,33 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
 > habilidad, pero no existen como items separados. Decidir si se crean o si el jugador
 > las añade a mano.
 
-### F2.2 — Armas
-- [ ] `cthulhud100/models/item/weapon-system.js`: añadir campos `pr` (Puntos de Resistencia),
-      `empalar` (bool), `bloquear` (bool), `disfuncion` (int), `disparosPorTurno`
-- [ ] Escopetas: soportar los tres valores daño/alcance (corta/media/larga)
-- [ ] Compendio con las 3 tablas del §11: 10 cuerpo a cuerpo, 6 a distancia, 25 de fuego
-- [ ] Reglas de disfunción/encasquillado por tipo de arma
-- [ ] Objetos inanimados con PR; a 0 PR quedan inservibles
+### F2.2 — Armas ✅ commit `428ebd3`
+- [x] Campos nuevos en `weapon-system.js`: `resistance` (PR) y `properties.parry`
+      (bloquear). **`impl` (empalar), `malfunction` (disfunción) y `usesPerRound` ya
+      existían** en el modelo de upstream, no hubo que añadirlos.
+- [x] Escopetas: usan los tres tramos `range.normal/long/extreme` que ya existían
+- [x] Compendio `es-weapons.yaml`: **41 armas** (10 cuerpo a cuerpo, 6 arrojadizas,
+      25 de fuego), desplegado y verificado
+- [x] **MD diferenciado resuelto** (cerraba F1.4): 10 con `addb`, 6 con `ahdb`,
+      25 sin ninguno
+- [x] Etiquetas `CoC7.WeaponParry` y `CoC7.WeaponResistance` en los 15 idiomas
+- [ ] Objetos inanimados con PR y rotura a 0 PR: falta la lógica (F4)
 
-### F2.3 — Profesiones
-- [ ] Las 10 profesiones del §10 como items de tipo `occupation`
-- [ ] Puntos: `EST×20` profesionales + `INT×10` libres
-- [ ] Modelar los grupos separados por `/` y las opciones "a elección"
+> **Dos bugs propios cazados al verificar el pack:**
+> 1. El `:` dentro de las descripciones rompía el YAML sin comillas. El generador ahora
+>    entrecomilla todos los escalares.
+> 2. La disfunción **"00" del manual significa 100**, no cero. Al codificarla como `0`,
+>    mi generador la trataba como "sin valor" y **10 armas se quedaban sin disfunción**.
+>    Ahora las 25 armas de fuego la tienen.
+
+### F2.3 — Profesiones ✅ commit `b66db77`
+- [x] Las 10 profesiones del §10 como items `occupation`
+- [x] `EST×20` en `occupationSkillPoints.edu`; `INT×10` libres ya se calcula en el actor
+- [x] Grupos separados por `/` conservados en la descripción
+
+> Los grupos no se enlazan como items de habilidad: varias entradas son elecciones
+> ("al menos dos a su elección", "una de estas tres") que una lista plana de enlaces no
+> puede expresar. Queda como mejora si molesta en mesa.
 
 ### F2.4 — Creación de personajes
 - [ ] Adaptar el asistente de creación de upstream
