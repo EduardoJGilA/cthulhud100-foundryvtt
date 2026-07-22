@@ -152,4 +152,63 @@ export default class CoC7CombatTables {
   static bleedOutTurns (con, pow) {
     return Math.ceil(((parseInt(con, 10) || 0) + (parseInt(pow, 10) || 0)) / 2)
   }
+
+  /**
+   * Range multiplier applied to a ranged skill.
+   *
+   * Doubles inside DES x3 metres, halves past the weapon's base range and keeps
+   * halving out to four times it. The rulebook applies this before any other
+   * modifier.
+   * @param {object} options
+   * @param {number} options.distance distance to the target, in metres
+   * @param {number} options.baseRange the weapon's base range, in metres
+   * @param {number} options.dex the shooter's DES
+   * @returns {number} multiplier, 0 when out of range
+   */
+  static rangeMultiplier ({ distance, baseRange, dex } = {}) {
+    const d = Math.max(0, parseFloat(distance) || 0)
+    const base = Math.max(0, parseFloat(baseRange) || 0)
+    const pointBlank = (parseInt(dex, 10) || 0) * 3
+    if (d <= pointBlank) return 2
+    if (d <= base) return 1
+    if (d <= base * 2) return 0.5
+    if (d <= base * 3) return 0.25
+    if (d <= base * 4) return 0.125
+    return 0
+  }
+
+  /**
+   * Initiative from DES, on the 3-18 scale.
+   *
+   * Readying a weapon costs five points, and being surprised halves the score
+   * for the first turn only. A character may also hold back deliberately, never
+   * below one: there is no acting at DES 0.
+   * @param {object} options
+   * @param {number} options.dex DES
+   * @param {boolean} options.readying drawing or cocking a weapon this turn
+   * @param {boolean} options.surprised caught off guard, first turn only
+   * @param {number} options.delay points voluntarily given up
+   * @returns {number} initiative score
+   */
+  static initiative ({ dex, readying = false, surprised = false, delay = 0 } = {}) {
+    let value = parseInt(dex, 10) || 0
+    if (surprised) {
+      value = Math.floor(value / 2)
+    }
+    if (readying) {
+      value -= 5
+    }
+    value -= Math.max(0, parseInt(delay, 10) || 0)
+    return Math.max(1, value)
+  }
+
+  /**
+   * Bonus for holding back to concentrate on one target: ten percent for every
+   * five points of DES given up.
+   * @param {number} delay points of DES given up
+   * @returns {number} percentage bonus
+   */
+  static aimBonus (delay) {
+    return Math.floor((Math.max(0, parseInt(delay, 10) || 0)) / 5) * 10
+  }
 }
