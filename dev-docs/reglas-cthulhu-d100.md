@@ -194,12 +194,19 @@ Base entre paréntesis. `*` = requiere especialización (se compran y suben por 
 ### De acción
 | Habilidad | Base |
 |---|---|
-| Armas de Cuerpo a Cuerpo `*` | según arma (ver cap. 8) |
-| Armas de Fuego `*` | según arma (ver cap. 8) |
+| Armas de Cuerpo a Cuerpo `*` | base genérica 10%, por especialización: |
+| — Armas cortas | 20% · cuchillos, porras, dagas |
+| — Armas largas | 15% · espadas, atizadores, barras de acero |
+| — Armas de proyectil | 10% · arcos, ballestas |
+| — Armas arrojadizas | 10% · cuchillos, shuriken |
+| Armas de Fuego `*` | por especialización: |
+| — Armas cortas | 20% · pistolas, revólveres |
+| — Armas largas | 25% · fusiles, escopetas, rifles |
+| — Armas automáticas | según época |
 | Conducir | 25% |
 | Esquivar | `DES×2` % |
 | Forma física | `DES+FUE` % |
-| Lucha | `DES×2` % |
+| Lucha | `DES×2` % · daño 1D3. Crítico puede noquear; pifia inflige 1D3 al atacante |
 
 Notas:
 - **Mitos de Cthulhu** no puede recibir puntos en la creación del personaje.

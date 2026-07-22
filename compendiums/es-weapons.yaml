@@ -547,7 +547,7 @@ system:
     value: '<p>Habilidad base 25%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
   skill:
     main:
-      name: 'Lanzar'
+      name: 'Armas de Cuerpo a Cuerpo (Armas de proyectil)'
   range:
     normal:
       value: '15'
@@ -601,7 +601,7 @@ system:
     value: '<p>Habilidad base 20%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
   skill:
     main:
-      name: 'Lanzar'
+      name: 'Armas de Cuerpo a Cuerpo (Armas arrojadizas)'
   range:
     normal:
       value: '5'
@@ -655,7 +655,7 @@ system:
     value: '<p>Habilidad base 15%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
   skill:
     main:
-      name: 'Lanzar'
+      name: 'Armas de Cuerpo a Cuerpo (Armas de proyectil)'
   range:
     normal:
       value: '20'
@@ -709,7 +709,7 @@ system:
     value: '<p>Habilidad base 25%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
   skill:
     main:
-      name: 'Lanzar'
+      name: 'Armas de Cuerpo a Cuerpo (Armas arrojadizas)'
   range:
     normal:
       value: '40'
@@ -763,7 +763,7 @@ system:
     value: '<p>Habilidad base 5%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
   skill:
     main:
-      name: 'Lanzar'
+      name: 'Armas de Cuerpo a Cuerpo (Armas de proyectil)'
   range:
     normal:
       value: '175'
@@ -817,7 +817,7 @@ system:
     value: '<p>Habilidad base 15%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
   skill:
     main:
-      name: 'Lanzar'
+      name: 'Armas de Cuerpo a Cuerpo (Armas arrojadizas)'
   range:
     normal:
       value: '10'
@@ -1948,10 +1948,10 @@ type: weapon
 img: systems/cthulhud100/assets/icons/skills/firearms_machine_gun.svg
 system:
   description:
-    value: '<p>Especializaci&oacute;n: A. de Fuego (armamento pesado). Las armas de fuego <strong>no</strong> suman el MD.</p>'
+    value: '<p>Especializaci&oacute;n: Armamento pesado. Las armas de fuego <strong>no</strong> suman el MD.</p>'
   skill:
     main:
-      name: 'Armas de Fuego (A. de Fuego (armamento pesado))'
+      name: 'Armas de Fuego (Armamento pesado)'
   range:
     normal:
       value: '100'
@@ -2002,10 +2002,10 @@ type: weapon
 img: systems/cthulhud100/assets/icons/skills/firearms_machine_gun.svg
 system:
   description:
-    value: '<p>Especializaci&oacute;n: A. de Fuego (armamento pesado). Las armas de fuego <strong>no</strong> suman el MD.</p>'
+    value: '<p>Especializaci&oacute;n: Armamento pesado. Las armas de fuego <strong>no</strong> suman el MD.</p>'
   skill:
     main:
-      name: 'Armas de Fuego (A. de Fuego (armamento pesado))'
+      name: 'Armas de Fuego (Armamento pesado)'
   range:
     normal:
       value: '100'
