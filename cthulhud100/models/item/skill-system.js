@@ -33,6 +33,15 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
     return {
       skillName: new fields.StringField({ initial: '' }),
       specialization: new fields.StringField({ initial: '' }),
+      // Cthulhu d100 groups skills into five categories. This is not cosmetic:
+      // the alternative madness system gives action skills a bonus equal to the
+      // penalty it inflicts on every other category, so the roll needs to know
+      // which one a skill belongs to.
+      category: new fields.StringField({
+        initial: 'knowledge',
+        choices: ['knowledge', 'vocational', 'sensory', 'social', 'action'],
+        label: 'CoC7.SkillCategory'
+      }),
       description: new fields.SchemaField({
         value: new fields.HTMLField({ initial: '' }),
         /* // FoundryVTT V13 - not required

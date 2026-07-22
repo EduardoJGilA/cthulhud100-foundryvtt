@@ -1367,5 +1367,6 @@
   "CoC7.Settings.SanitySystem.Name": "Sistema de locura",
   "CoC7.Settings.SanitySystem.Hint": "Cuál de los dos sistemas de Descenso a la Locura del manual usa este mundo.",
   "CoC7.Settings.SanitySystem.Classic": "Clásico (reserva de Estabilidad Mental)",
-  "CoC7.Settings.SanitySystem.Alternative": "Alternativo (barras de tensión)"
+  "CoC7.Settings.SanitySystem.Alternative": "Alternativo (barras de tensión)",
+  "CoC7.SkillCategory": "Categoría"
 }

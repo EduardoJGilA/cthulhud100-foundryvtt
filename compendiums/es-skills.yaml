@@ -6,6 +6,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
   base: '10'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -35,6 +36,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>Biolog&iacute;a empieza en 5%; el resto de especialidades en 0%.</p>
   base: '0'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -64,6 +66,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
   base: '5'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -93,6 +96,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>Antropolog&iacute;a, Arqueolog&iacute;a, Ciencias Pol&iacute;ticas y Criminolog&iacute;a empiezan en 5%; Geograf&iacute;a e Historia en 10%.</p>
   base: '0'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -122,6 +126,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>El idioma materno empieza en <strong>EST&times;5</strong>; el resto en 0%.</p>
   base: '0'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -151,6 +156,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
   base: '25'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -180,6 +186,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
   base: '0'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -209,6 +216,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p><p>No puede recibir puntos durante la creaci&oacute;n del personaje.</p>
   base: '0'
+  category: knowledge
   properties:
     noxpgain: true
     special: true
@@ -238,6 +246,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
   base: '15'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -267,6 +276,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
   base: '0'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -296,6 +306,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Conocimientos</em>.</p>
   base: '5'
+  category: knowledge
   properties:
     noxpgain: false
     special: false
@@ -325,6 +336,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Vocacionales</em>.</p>
   base: '5'
+  category: vocational
   properties:
     noxpgain: false
     special: false
@@ -354,6 +366,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Vocacionales</em>.</p>
   base: '20'
+  category: vocational
   properties:
     noxpgain: false
     special: false
@@ -383,6 +396,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Vocacionales</em>.</p><p>Electricidad empieza en 5% y Mec&aacute;nica en 20%; el resto en 0%.</p>
   base: '0'
+  category: vocational
   properties:
     noxpgain: false
     special: false
@@ -412,6 +426,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
   base: '10'
+  category: sensory
   properties:
     noxpgain: false
     special: false
@@ -441,6 +456,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
   base: '15'
+  category: sensory
   properties:
     noxpgain: false
     special: false
@@ -470,6 +486,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
   base: '25'
+  category: sensory
   properties:
     noxpgain: false
     special: false
@@ -499,6 +516,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
   base: '15'
+  category: sensory
   properties:
     noxpgain: false
     special: false
@@ -528,6 +546,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
   base: '25'
+  category: sensory
   properties:
     noxpgain: false
     special: false
@@ -557,6 +576,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sensoriales</em>.</p><p>&minus;10% acumulativo por cada d&iacute;a transcurrido desde que se dej&oacute; el rastro.</p>
   base: '10'
+  category: sensory
   properties:
     noxpgain: false
     special: false
@@ -586,6 +606,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sensoriales</em>.</p>
   base: '15'
+  category: sensory
   properties:
     noxpgain: false
     special: false
@@ -615,6 +636,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sociales</em>.</p>
   base: '@edu+@app'
+  category: social
   properties:
     noxpgain: false
     special: false
@@ -644,6 +666,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sociales</em>.</p>
   base: '10'
+  category: social
   properties:
     noxpgain: false
     special: false
@@ -673,6 +696,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sociales</em>.</p>
   base: '10'
+  category: social
   properties:
     noxpgain: false
     special: false
@@ -702,6 +726,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sociales</em>.</p><p>Base <strong>TAM&times;2</strong> o <strong>INT&times;2</strong>, a elecci&oacute;n del jugador. Cambia la base a <code>@int*2</code> si se prefiere la amenaza sutil.</p>
   base: '@siz*2'
+  category: social
   properties:
     noxpgain: false
     special: false
@@ -731,6 +756,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sociales</em>.</p>
   base: '10'
+  category: social
   properties:
     noxpgain: false
     special: false
@@ -760,6 +786,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Sociales</em>.</p>
   base: '@edu*2'
+  category: social
   properties:
     noxpgain: false
     special: false
@@ -789,6 +816,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Acción</em>.</p><p>La base depende del arma; ver la tabla de armas.</p>
   base: '0'
+  category: action
   properties:
     noxpgain: false
     special: false
@@ -818,6 +846,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Acción</em>.</p><p>La base depende del arma; ver la tabla de armas.</p>
   base: '0'
+  category: action
   properties:
     noxpgain: false
     special: false
@@ -847,6 +876,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Acción</em>.</p>
   base: '25'
+  category: action
   properties:
     noxpgain: false
     special: false
@@ -876,6 +906,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Acción</em>.</p>
   base: '@dex*2'
+  category: action
   properties:
     noxpgain: false
     special: false
@@ -905,6 +936,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Acción</em>.</p>
   base: '@dex+@str'
+  category: action
   properties:
     noxpgain: false
     special: false
@@ -934,6 +966,7 @@ system:
   description:
     value: <p>Habilidad de tipo <em>Acción</em>.</p>
   base: '@dex*2'
+  category: action
   properties:
     noxpgain: false
     special: false

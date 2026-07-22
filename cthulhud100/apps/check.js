@@ -704,6 +704,27 @@ export default class CoC7Check {
   }
 
   /**
+   * Modifier from the alternative madness system.
+   *
+   * Under tension the body sharpens and concentration blunts, so action skills
+   * gain exactly what every other category loses. Returns 0 when the classic
+   * system is in use, which is the default.
+   * @param {string} category skill category
+   * @returns {Promise<number>} percentage modifier
+   */
+  async #mentalStabilityModifier (category) {
+    if (game.settings.get(FOLDER_ID, 'sanitySystem') !== 'alternative') {
+      return 0
+    }
+    const actor = await this.#asyncActor
+    const modifiers = actor?.system?.config?.mentalStability?.modifiers
+    if (!modifiers) {
+      return 0
+    }
+    return (category === 'action' ? modifiers.action : modifiers.other)
+  }
+
+  /**
    * Set threshold based on key and type
    * @param {boolean} useAlternativeSkill
    */
@@ -729,6 +750,7 @@ export default class CoC7Check {
       if (this.item) {
         this.#allowPush = (this.item.system.properties.push ?? false)
         threshold = parseInt(this.item.system.value, 10)
+        threshold += await this.#mentalStabilityModifier(this.item.system.category)
       }
     } else if (this.#type === CoC7Check.type.item && this.#key) {
       if (!this.item) {
