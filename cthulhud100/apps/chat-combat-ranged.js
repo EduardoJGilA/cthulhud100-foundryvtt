@@ -148,7 +148,11 @@ export default class CoC7ChatCombatRanged {
             if (targetToken && attackerToken) {
               const distanceBetweenTokens = CoC7Utilities.distanceBetweenTokens(attackerToken, targetToken)
               targetData.roundedDistance = distanceBetweenTokens.roundedDistance
-              const pbRangeInYd = attacker.system.characteristics.dex.value / 15
+              // Cthulhu d100 "objetivo cercano": DES x3 metres, inside which the
+              // skill is doubled. CoC7 used percentile DEX / 15 yards, which is
+              // meaningless on the 3-18 scale. The grid is configured in metres,
+              // so this distance is already in the right unit.
+              const pbRangeInYd = (attacker.system.characteristics.dex.value ?? 0) * 3
               if (distanceBetweenTokens.yards <= pbRangeInYd) {
                 targetData.baseRange = false
                 targetData.poolKeys.push('pointBlankRange')

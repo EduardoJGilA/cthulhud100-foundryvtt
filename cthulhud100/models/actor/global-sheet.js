@@ -1,5 +1,5 @@
 /* global ChatMessage CONFIG foundry fromUuid game Roll TokenDocument ui */
-import { FOLDER_ID } from '../../constants.js'
+import { FOLDER_ID, CHARACTERISTIC_MULTIPLIER } from '../../constants.js'
 import CoC7ActiveEffect from '../../apps/active-effect.js'
 import CoC7ChatDamage from '../../apps/chat-damage.js'
 import CoC7ConCheck from '../../apps/con-check.js'
@@ -582,18 +582,18 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     if (element.dataset.tooltipKey === 'know') {
       const data = {
         skill: game.i18n.localize('CoC7.KnowCheck') + ' (' + game.i18n.localize(CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField('edu').label) + ')',
-        regular: (this.document.system.characteristics.edu.value ?? 0),
-        hard: Math.floor((this.document.system.characteristics.edu.value ?? 0) / 2),
-        extreme: Math.floor((this.document.system.characteristics.edu.value ?? 0) / 5)
+        regular: (this.document.system.characteristics.edu.value ?? 0) * CHARACTERISTIC_MULTIPLIER,
+        special: Math.max(1, Math.round((this.document.system.characteristics.edu.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 5)),
+        critical: Math.max(1, Math.round((this.document.system.characteristics.edu.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 20))
       }
       toolTip = toolTip + game.i18n.format('CoC7.ToolTipBasic', data)
       basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
     } else if (element.dataset.tooltipKey === 'idea') {
       const data = {
         skill: game.i18n.localize('CoC7.IdeaCheck') + ' (' + game.i18n.localize(CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField('int').label) + ')',
-        regular: (this.document.system.characteristics.int.value ?? 0),
-        hard: Math.floor((this.document.system.characteristics.int.value ?? 0) / 2),
-        extreme: Math.floor((this.document.system.characteristics.int.value ?? 0) / 5)
+        regular: (this.document.system.characteristics.int.value ?? 0) * CHARACTERISTIC_MULTIPLIER,
+        special: Math.max(1, Math.round((this.document.system.characteristics.int.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 5)),
+        critical: Math.max(1, Math.round((this.document.system.characteristics.int.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 20))
       }
       toolTip = toolTip + game.i18n.format('CoC7.ToolTipBasic', data)
       basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)

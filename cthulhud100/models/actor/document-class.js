@@ -1,5 +1,5 @@
 /* global Actor ChatMessage CONFIG CONST foundry fromUuid fromUuidSync game Hooks Roll TextEditor Token ui */
-import { FOLDER_ID, STATUS_EFFECTS } from '../../constants.js'
+import { FOLDER_ID, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER, PERSONAL_SKILL_POINTS_PER_INT } from '../../constants.js'
 import CoC7AverageRoll from '../../apps/average-roll.js'
 import CoC7CharacteristicRollDialog from '../../apps/characteristic-roll-dialog.js'
 import CoC7CharacteristicSelectionDialog from '../../apps/characteristic-selection-dialog.js'
@@ -760,11 +760,11 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const hpMax = CoC7ModelsActorDocumentClass.hpFromCharacteristics(characteristics, this.type)
       updateDocument['system.attribs.hp.value'] = hpMax
       updateDocument['system.attribs.hp.max'] = hpMax
-      updateDocument['system.attribs.san.value'] = updateDocument['system.characteristics.pow.value']
-      updateDocument['system.attribs.mp.max'] = Math.floor(updateDocument['system.characteristics.pow.value'] / 5)
+      updateDocument['system.attribs.san.value'] = updateDocument['system.characteristics.pow.value'] * CHARACTERISTIC_MULTIPLIER
+      updateDocument['system.attribs.mp.max'] = updateDocument['system.characteristics.pow.value']
       updateDocument['system.attribs.san.dailyLimit'] = updateDocument['system.attribs.mp.max']
       updateDocument['system.attribs.mp.value'] = updateDocument['system.attribs.mp.max']
-      updateDocument['system.development.personal'] = updateDocument['system.characteristics.int.value'] * 2
+      updateDocument['system.development.personal'] = updateDocument['system.characteristics.int.value'] * PERSONAL_SKILL_POINTS_PER_INT
     }
     if (this.type === 'character') {
       if (game.settings.get(FOLDER_ID, 'oneBlockBackstory')) {
@@ -870,7 +870,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (roll.total > coreCharacteristic.value) {
         updateDocument['system.characteristics.' + coreCharacteristic.key + '.value'] = roll.total
         if (coreCharacteristic.key === 'int') {
-          updateDocument['system.development.personal'] = updateDocument['system.characteristics.int.value'] * 2
+          updateDocument['system.development.personal'] = updateDocument['system.characteristics.int.value'] * PERSONAL_SKILL_POINTS_PER_INT
         }
       }
     }
@@ -2012,7 +2012,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     })
     if (this.system.attribs.mp.auto) {
       if (this.system.characteristics.pow.value != null) {
-        return Math.floor(this.system.characteristics.pow.value / 5)
+        return parseInt(this.system.characteristics.pow.value, 10)
       }
       return 0
     }
@@ -3028,7 +3028,10 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         }
         break // eslint-disable-line no-unreachable
       default:
-        return this.system.characteristics.dex.value + (hasGun ? 50 : 0)
+        // Cthulhu d100 orders combat purely by DES on the 3-18 scale. CoC7 added
+        // 50 for a readied firearm; that rule does not exist here, and on this
+        // scale it would swamp every other value.
+        return parseInt(this.system.characteristics.dex.value ?? 0, 10)
     }
   }
 

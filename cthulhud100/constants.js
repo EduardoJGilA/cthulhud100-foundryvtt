@@ -9,6 +9,12 @@ export const FOLDER_ID = 'cthulhud100'
 // Suerte POD x5 and Cultura General EST x5.
 export const CHARACTERISTIC_MULTIPLIER = 5
 
+// Character creation skill points (rulebook chapter 7): EST x20 to spend inside
+// the chosen profession, plus INT x10 to spend on anything on the sheet.
+// CoC7 used EDU x4 (or x2) and INT x2 respectively.
+export const OCCUPATION_SKILL_POINTS_PER_EDU = 20
+export const PERSONAL_SKILL_POINTS_PER_INT = 10
+
 export const ERAS = {
   standard: {
     name: 'CoC7.Era1920',
