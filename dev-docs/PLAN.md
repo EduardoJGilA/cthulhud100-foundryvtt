@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-22 · **Fase actual:** spec completa; lógica F1-F4 y 15 compendios hechos. Pendientes: interfaz (chat cards), F5, resto de F2.4, criaturas restantes, F0.5
+> **Última actualización:** 2026-07-22 · **Fase actual:** spec completa; lógica F1-F4 y ambos sistemas de cordura hechos; 10 compendios coherentes. Falta: interfaz (chat cards), F5, F0.5
 
 ---
 
@@ -570,13 +570,19 @@ barras de 7/6/7 casillas; al llenar la primera y marcar una de la segunda pasa a
       en `setup/register-settings.js`
 - [ ] La ficha muestra un bloque u otro según el ajuste (F5.2)
 
-### F3.1 — Sistema clásico
-- [ ] Estabilidad Mental inicial `POD×5`
-- [ ] Chequeo `1D100 ≤ EM`; notación de pérdida `X/Y`
-- [ ] Pérdida grande → chequeo de Idea → locura temporal tantos turnos como puntos perdidos
-- [ ] Perder ≥20% de la EM restante en una escena → problema a largo plazo
-- [ ] EM a 0 → locura irremediable, el PJ pasa a PNJ
-- [ ] Reaprovechar `cthulhud100/apps/san-check-card.js` de upstream, que ya es muy parecido
+### F3.1 — Sistema clásico ✅ commit `24451b1`
+- [x] Estabilidad Mental inicial `POD×5` (`document-class.js:763`)
+- [x] Chequeo `1D100 ≤ EM` y notación `X/Y`: ya lo hacía la carta de upstream
+- [x] Locura temporal **tantos turnos como puntos perdidos**, no `1D10` como CoC7
+- [x] Problema a largo plazo al perder ≥20% de la EM **restante** en una escena
+- [x] EM a 0 → locura irremediable, aviso al GM de que el PJ pasa a PNJ
+- [x] Reaprovechado `apps/san-check-card.js`: solo tres reglas divergían
+
+> **La diferencia con más impacto en mesa** es el umbral. CoC7 medía un quinto de la
+> cordura **inicial** a lo largo de un día; d100 mide un quinto de la **restante** por
+> escena. Un investigador tocado con 20 puntos se rompe perdiendo 4, donde CoC7 le seguía
+> exigiendo los mismos 14 que cuando estaba entero. Es lo que hace que el descenso a la
+> locura se acelere.
 
 ### F3.2 — Sistema alternativo: estructura ✅ commit `d134025`
 - [x] `apps/mental-stability.js`: barras `ceil/floor/ceil`, total `POD×1,5` exacto
