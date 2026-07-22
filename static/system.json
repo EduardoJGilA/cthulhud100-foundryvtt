@@ -124,6 +124,13 @@
       "name": "en-wiki-weapons",
       "path": "packs/en-wiki-weapons",
       "system": "cthulhud100"
+    },
+    {
+      "label": "Armas",
+      "type": "Item",
+      "name": "weapons",
+      "path": "packs/es-weapons",
+      "system": "cthulhud100"
     }
   ],
   "languages": [

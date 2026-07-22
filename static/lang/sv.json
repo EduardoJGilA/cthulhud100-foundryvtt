@@ -1815,5 +1815,7 @@
   "CoC7.CircumstanceNormal": "Normala",
   "CoC7.CircumstanceUnfavourable": "Ogynnsamma (-10%)",
   "CoC7.CircumstanceVeryUnfavourable": "Mycket ogynnsamma (-20%)",
-  "CoC7.Circumstances": "Omständigheter"
+  "CoC7.Circumstances": "Omständigheter",
+  "CoC7.WeaponParry": "Kan blockera",
+  "CoC7.WeaponResistance": "Motståndspoäng"
 }

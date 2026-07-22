@@ -1200,5 +1200,7 @@
   "CoC7.CircumstanceNormal": "Обычные",
   "CoC7.CircumstanceUnfavourable": "Неблагоприятные (-10%)",
   "CoC7.CircumstanceVeryUnfavourable": "Очень неблагоприятные (-20%)",
-  "CoC7.Circumstances": "Обстоятельства"
+  "CoC7.Circumstances": "Обстоятельства",
+  "CoC7.WeaponParry": "Может блокировать",
+  "CoC7.WeaponResistance": "Очки прочности"
 }

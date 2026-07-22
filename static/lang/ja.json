@@ -1629,5 +1629,7 @@
   "CoC7.CircumstanceNormal": "通常",
   "CoC7.CircumstanceUnfavourable": "不利 (-10%)",
   "CoC7.CircumstanceVeryUnfavourable": "非常に不利 (-20%)",
-  "CoC7.Circumstances": "状況"
+  "CoC7.Circumstances": "状況",
+  "CoC7.WeaponParry": "受け流し可能",
+  "CoC7.WeaponResistance": "耐久力"
 }

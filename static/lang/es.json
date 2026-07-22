@@ -1357,5 +1357,7 @@
   "CoC7.CircumstanceNormal": "Normales",
   "CoC7.CircumstanceUnfavourable": "Desfavorables (-10%)",
   "CoC7.CircumstanceVeryUnfavourable": "Muy desfavorables (-20%)",
-  "CoC7.Circumstances": "Circunstancias"
+  "CoC7.Circumstances": "Circunstancias",
+  "CoC7.WeaponParry": "Puede bloquear",
+  "CoC7.WeaponResistance": "Puntos de Resistencia"
 }

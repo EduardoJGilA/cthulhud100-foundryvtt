@@ -1654,5 +1654,7 @@
   "CoC7.CircumstanceNormal": "正常",
   "CoC7.CircumstanceUnfavourable": "不利 (-10%)",
   "CoC7.CircumstanceVeryUnfavourable": "非常不利 (-20%)",
-  "CoC7.Circumstances": "情况"
+  "CoC7.Circumstances": "情况",
+  "CoC7.WeaponParry": "可格挡",
+  "CoC7.WeaponResistance": "抗力点"
 }

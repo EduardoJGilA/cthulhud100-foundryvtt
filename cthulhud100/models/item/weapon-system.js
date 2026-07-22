@@ -72,6 +72,10 @@ export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSyst
       ammo: new fields.NumberField({ nullable: false, initial: 0 }),
       malfunction: new fields.NumberField({ nullable: true, initial: null }),
       blastRadius: new fields.NumberField({ nullable: true, initial: null }),
+      // Cthulhu d100 "Puntos de Resistencia": every object has them, and a weapon
+      // that blocks an attack takes the damage. At 0 PR the object is ruined.
+      // The block table also strips PR from the attacker's weapon on some results.
+      resistance: new fields.NumberField({ nullable: true, initial: null }),
       properties: new fields.SchemaField({
         rngd: new fields.BooleanField({ label: 'CoC7.WeaponRanged', initial: false }),
         mnvr: new fields.BooleanField({ label: 'CoC7.WeaponManeuver', initial: false }),
@@ -79,6 +83,9 @@ export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSyst
         shotgun: new fields.BooleanField({ label: 'CoC7.Weapon.Property.Shotgun', initial: false }),
         dbrl: new fields.BooleanField({ label: 'CoC7.WeaponDualBarrel', initial: false }),
         impl: new fields.BooleanField({ label: 'CoC7.WeaponImpl', initial: false }),
+        // Cthulhu d100: whether this weapon can be used to block an attack.
+        // The rulebook lists it per weapon alongside impaling.
+        parry: new fields.BooleanField({ label: 'CoC7.WeaponParry', initial: false }),
         brst: new fields.BooleanField({ label: 'CoC7.WeaponBurst', initial: false }),
         auto: new fields.BooleanField({ label: 'CoC7.WeaponAuto', initial: false }),
         ahdb: new fields.BooleanField({ label: 'CoC7.WeaponAddHalfDb', initial: false }),
