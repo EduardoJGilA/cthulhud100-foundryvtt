@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-22 · **Fase actual:** spec del reglamento COMPLETA. Toda la lógica de reglas (F1-F4) implementada y verificada. Falta: interfaz (cartas de chat), F5, F2.4, criaturas, F0.5
+> **Última actualización:** 2026-07-22 · **Fase actual:** spec completa; lógica F1-F4 y 15 compendios hechos. Pendientes: interfaz (chat cards), F5, resto de F2.4, criaturas restantes, F0.5
 
 ---
 
@@ -529,9 +529,26 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
 > ("al menos dos a su elección", "una de estas tres") que una lista plana de enlaces no
 > puede expresar. Queda como mejora si molesta en mesa.
 
-### F2.4 — Creación de personajes
-- [ ] Adaptar el asistente de creación de upstream
-      (`coc7-investigator-wizard.less`, apps correspondientes) a la secuencia del §10
+### F2.4 — Creación de personajes 🟡
+- [x] `INT×10` puntos libres (`PERSONAL_SKILL_POINTS_PER_INT`). El asistente fijaba el
+      `INT×2` de CoC7 en **dos** sitios: `investigator-wizard.js:850` y `:2124`
+- [x] `EST×20` profesionales: ya venía del compendio de profesiones
+- [x] Mitos de Cthulhu excluido de la creación (ver nota de CoCIDs abajo)
+- [ ] Revisar el resto de la secuencia del asistente contra el §10
+
+> **Los CoCID van en inglés, siempre.** Son claves de búsqueda independientes del idioma:
+> el nombre se traduce, el id no. Los generé desde los nombres en español y rompí seis
+> enganches del código (`i.skill.dodge`, `i.skill.cthulhu-mythos`, `i.skill.language-own`,
+> `i.skill.credit-rating`, `i.skill.throw`, `i.skill.fighting-throw`).
+>
+> El síntoma visible: el asistente impide gastar puntos en Mitos de Cthulhu buscando
+> `i.skill.cthulhu-mythos`, pero el compendio decía `i.skill.mitos-de-cthulhu`, así que
+> **la restricción nunca se aplicaba**. Corregido.
+>
+> **Pendiente relacionado:** el código espera `i.skill.throw` y `i.skill.fighting-throw`,
+> que no existen en d100. Las armas arrojadizas del compendio apuntan a una habilidad
+> "Lanzar" que **tampoco está en la lista de habilidades del manual**. Hay que decidir si
+> se crea o si se resuelven con Armas de Cuerpo a Cuerpo.
 
 ---
 
