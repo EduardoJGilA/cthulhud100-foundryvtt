@@ -1,5 +1,5 @@
 /* global Actor ChatMessage CONFIG CONST foundry fromUuid fromUuidSync game Hooks Roll TextEditor Token ui */
-import { FOLDER_ID, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER, PERSONAL_SKILL_POINTS_PER_INT } from '../../constants.js'
+import { FOLDER_ID, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER, PERSONAL_SKILL_POINTS_PER_INT, UNCONSCIOUS_HP_THRESHOLD } from '../../constants.js'
 import CoC7AverageRoll from '../../apps/average-roll.js'
 import CoC7CharacteristicRollDialog from '../../apps/characteristic-roll-dialog.js'
 import CoC7CharacteristicSelectionDialog from '../../apps/characteristic-selection-dialog.js'
@@ -4457,29 +4457,28 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (damageTotal >= hpMax) {
         await this.conditionsSet([STATUS_EFFECTS.dead])
       } else if (game.settings.get(FOLDER_ID, 'pulpRuleIgnoreMajorWounds')) {
+        // Cthulhu d100: 0 hit points is a mortal wound, and 1 or 2 remaining
+        // means the character passes out. CoC7 only went unconscious at 0.
         if (hpNew === 0) {
-          if (damageTotal >= Math.ceil(hpMax / 2)) {
-            this.conditionsSet([STATUS_EFFECTS.dying])
-          } else {
-            this.conditionsSet([STATUS_EFFECTS.unconscious])
-          }
+          this.conditionsSet([STATUS_EFFECTS.dying, STATUS_EFFECTS.unconscious])
+        } else if (hpNew <= UNCONSCIOUS_HP_THRESHOLD) {
+          this.conditionsSet([STATUS_EFFECTS.unconscious])
         } else if (damageTotal >= Math.ceil(hpMax / 2)) {
           await CoC7ConCheck.create(this)
         }
       } else {
-        let hasMajorWound = false
+        // "Herida grave": more than half the maximum hit points from a single
+        // blow. The severe-wound consequences are rolled separately (F4.6).
         if (damageTotal >= Math.ceil(hpMax / 2)) {
           await this.conditionsSet([STATUS_EFFECTS.criticalWounds])
-          hasMajorWound = true
-        } else {
-          hasMajorWound = this.hasConditionStatus(STATUS_EFFECTS.criticalWounds)
         }
+        // Cthulhu d100: 0 hit points is a mortal wound, only avoidable with
+        // first aid before the end of the next turn. 1 or 2 remaining means
+        // the character is unconscious until healed back to 3.
         if (hpNew === 0) {
-          if (hasMajorWound) {
-            await this.conditionsSet([STATUS_EFFECTS.unconscious, STATUS_EFFECTS.dying])
-          } else {
-            await this.conditionsSet([STATUS_EFFECTS.unconscious])
-          }
+          await this.conditionsSet([STATUS_EFFECTS.unconscious, STATUS_EFFECTS.dying])
+        } else if (hpNew <= UNCONSCIOUS_HP_THRESHOLD) {
+          await this.conditionsSet([STATUS_EFFECTS.unconscious])
         }
       }
       return damageTotal

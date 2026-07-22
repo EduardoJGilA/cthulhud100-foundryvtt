@@ -15,6 +15,10 @@ export const CHARACTERISTIC_MULTIPLIER = 5
 export const OCCUPATION_SKILL_POINTS_PER_EDU = 20
 export const PERSONAL_SKILL_POINTS_PER_INT = 10
 
+// A character with only 1 or 2 hit points left is unconscious, and comes round
+// once healed back to 3 (rulebook chapter 5). CoC7 only passed out at 0.
+export const UNCONSCIOUS_HP_THRESHOLD = 2
+
 export const ERAS = {
   standard: {
     name: 'CoC7.Era1920',
