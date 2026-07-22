@@ -7,7 +7,7 @@ import CoC7Utilities from '../apps/utilities.js'
 import deprecated from '../deprecated.js'
 
 export default function () {
-  console.log('Call of Cthulhu 7th Edition | Ready')
+  console.log('Cthulhu d100 | Ready')
 
   const instructionsVersion = game.settings.get(FOLDER_ID, 'showInstructions')
   let lang = game.i18n.lang
