@@ -337,7 +337,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
    * @param {int} options.permissionTrue
    */
   static async MapPinToggle (toggle, { journalPageUuids = [], noteUuids = [], permissionFalse = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE, permissionTrue = CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER } = {}) {
-    game.socket.emit('system.CoC7', { type: 'toggleMapNotes', toggle: true })
+    game.socket.emit('system.' + FOLDER_ID, { type: 'toggleMapNotes', toggle: true })
     game.settings.set('core', NotesLayer.TOGGLE_SETTING, true)
     for (const docUuid of journalPageUuids) {
       const doc = await fromUuid(docUuid)

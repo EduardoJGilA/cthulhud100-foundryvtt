@@ -2245,7 +2245,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
     const actor = await CoC7InvestigatorWizard.createCharacter(actorData)
     const functionId = Hooks.on('renderActorSheetV2', (app, html, data) => {
       if (app.document.id === actor.id) {
-        game.socket.emit('system.CoC7', {
+        game.socket.emit('system.' + FOLDER_ID, {
           type: 'open-character',
           listener: Object.keys(actorData.document.ownership).find(k => k !== 'default'),
           payload: actor.id

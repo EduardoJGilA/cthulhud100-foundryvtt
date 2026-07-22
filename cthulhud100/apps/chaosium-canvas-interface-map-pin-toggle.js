@@ -1,4 +1,5 @@
 /* global CONST foundry fromUuid game NotesLayer */
+import { FOLDER_ID } from '../constants.js'
 import ChaosiumCanvasInterface from './chaosium-canvas-interface.js'
 
 export default class ChaosiumCanvasInterfaceMapPinToggle extends ChaosiumCanvasInterface {
@@ -101,7 +102,7 @@ export default class ChaosiumCanvasInterfaceMapPinToggle extends ChaosiumCanvasI
    * Handle click event
    */
   async #handleClickEvent () {
-    game.socket.emit('system.coc7', { type: 'toggleMapNotes', toggle: true })
+    game.socket.emit('system.' + FOLDER_ID, { type: 'toggleMapNotes', toggle: true })
     /* // FoundryVTT V12 */
     game.settings.set('core', (foundry.canvas.layers?.NotesLayer ?? NotesLayer).TOGGLE_SETTING, true)
     let toggle = false

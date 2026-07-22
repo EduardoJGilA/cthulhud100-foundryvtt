@@ -18,7 +18,10 @@ export default function (application, element, context, options) {
     button.append(buttonIcon)
     button.append(buttonText)
     button.addEventListener('click', async () => {
-      (await fromUuid('Compendium.CoC7.system-doc.JournalEntry.' + game.CoC7.Manual))?.sheet.render(true)
+      // The compendium UUID carries the package id, so it has to follow FOLDER_ID.
+      // With the id hardcoded, fromUuid returned null and the optional chain
+      // swallowed it, leaving the button silently doing nothing.
+      (await fromUuid('Compendium.' + FOLDER_ID + '.system-doc.JournalEntry.' + game.CoC7.Manual))?.sheet.render(true)
     })
     /* // FoundryVTT V12 */
     if (game.release.generation === 12) {
