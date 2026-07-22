@@ -1,7 +1,25 @@
-# IDE
+/binary-packs/
+*.todo
+*.bak
+/fvtt.config.json
+/node_modules/
+/package-lock.json
+/temp/
+# Previous file structure
+.husky/_
 .idea/
 .vs/
-package.json
-package-lock.json
-node_modules
-*.bak
+.vscode/
+*.log
+build/
+coverage/
+target/
+yarn.lock
+/dist/
+/fvtt.config.js
+/packs/
+
+# Local agent tooling
+/.agents/
+/.claude/
+/skills-lock.json
