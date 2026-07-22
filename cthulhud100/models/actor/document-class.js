@@ -2340,12 +2340,23 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {int}
    */
   static dbFromCharacteristics (characteristics) {
-    const sum = (characteristics.str.value ?? 0) + (characteristics.siz.value ?? 0)
-    if (sum < 65) return -2
-    if (sum < 85) return -1
-    if (sum < 125) return 0
-    if (sum < 165) return '1D4'
-    return Math.floor((sum - 45) / 80) + 'D6'
+    // Cthulhu d100 "Modificador al Dano": a table indexed by FUE + TAM on the
+    // 3-18 scale. Unlike Call of Cthulhu 7e there are no flat penalties; every
+    // band below the neutral one is a die roll subtracted from the damage.
+    // Rulebook page 11.
+    const sum = parseInt(characteristics.str.value ?? 0, 10) + parseInt(characteristics.siz.value ?? 0, 10)
+    // [inclusive upper bound, modifier]
+    const bands = [
+      [5, '-1D8'], [10, '-1D6'], [15, '-1D4'], [20, '-1D2'], [25, 0],
+      [30, '+1D2'], [35, '+1D4'], [40, '+1D6'], [45, '+1D8'], [50, '+1D10'],
+      [60, '+1D12'], [70, '+2D6'], [80, '+2D8'], [90, '+2D10'], [100, '+2D12'],
+      [120, '+3D10'], [140, '+3D12'], [160, '+4D10'], [180, '+4D12'], [200, '+5D10']
+    ]
+    for (const [max, modifier] of bands) {
+      if (sum <= max) return modifier
+    }
+    // Above the printed table; keep scaling rather than returning nothing
+    return '+5D10'
   }
 
   /**
@@ -2369,9 +2380,11 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {int}
    */
   static hpFromCharacteristics (characteristics, type) {
+    // Cthulhu d100: hit points are the average of TAM and CON, rounded up.
+    // CoC7 divided the percentile sum by ten instead.
     const sum = parseInt(characteristics.siz.value ?? 0, 10) + parseInt(characteristics.con.value ?? 0, 10)
-    const divisor = (game.settings.get(FOLDER_ID, 'pulpRuleDoubleMaxHealth') && type === 'character' ? 5 : 10)
-    return Math.floor(sum / divisor)
+    const hp = Math.ceil(sum / 2)
+    return (game.settings.get(FOLDER_ID, 'pulpRuleDoubleMaxHealth') && type === 'character' ? hp * 2 : hp)
   }
 
   /**
@@ -2380,7 +2393,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {int}
    */
   static mpFromCharacteristics (characteristics) {
-    return Math.floor((characteristics.pow.value ?? 0) / 5)
+    // Cthulhu d100: the starting magic point pool equals POD outright.
+    // CoC7 divided POW by five because POW was a percentile there.
+    return parseInt(characteristics.pow.value ?? 0, 10)
   }
 
   /**

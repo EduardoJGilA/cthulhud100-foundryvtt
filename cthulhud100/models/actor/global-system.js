@@ -1,5 +1,5 @@
 /* global CONFIG foundry game */
-import { FOLDER_ID } from '../../constants.js'
+import { FOLDER_ID, CHARACTERISTIC_MULTIPLIER } from '../../constants.js'
 import CoC7ModelsActorDocumentClass from './document-class.js'
 import CoC7StringField from '../fields/string-field.js'
 
@@ -286,14 +286,22 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
           this.attribs.mp.value = this.attribs.mp.max
         }
       }
+      // Cthulhu d100 derived scores: Cultura General is EST x5 and Idea is INT x5.
+      // In CoC7 these were the raw characteristics, which were already percentiles.
+      // check.js reads these values as thresholds directly, so the multiplier is
+      // applied here and must not be applied again there.
       this.config.know = {
-        value: this.characteristics.edu.value,
+        value: this.characteristics.edu.value * CHARACTERISTIC_MULTIPLIER,
         bonusDice: this.characteristics.edu.bonusDice ?? 0
       }
       this.config.idea = {
-        value: this.characteristics.int.value,
+        value: this.characteristics.int.value * CHARACTERISTIC_MULTIPLIER,
         bonusDice: this.characteristics.int.bonusDice ?? 0
       }
+      // Suerte is POD x5 and derived, not a pool that is rolled and spent as in
+      // CoC7. The Luck-spending machinery is still wired up elsewhere and has to
+      // be neutralised separately.
+      this.attribs.lck.value = this.characteristics.pow.value * CHARACTERISTIC_MULTIPLIER
       this.config.naturalHealing = (game.settings.get(FOLDER_ID, 'pulpRuleFasterRecovery') ? 2 : 1)
     }
   }

@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1 en curso — F1.2 completa, F1.1 parcial. Pendientes: F0.5, resto de F1, F2-F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1 en curso — F1.2 completa; F1.1, F1.3 y F1.4 parciales. Pendientes: F0.5, F1.5, F1.6, F2-F5
 
 ---
 
@@ -270,13 +270,19 @@ Sustituye la petición original de licencia MIT, que es inviable (ver §0, Nota 
 **Objetivo:** que toda tirada del sistema resuelva con las reglas de Cthulhu d100.
 Es la fase de mayor rendimiento por línea tocada.
 
-**Criterio de aceptación:** una ficha con FUE 13 / TAM 14 muestra MD `0`; una habilidad al
+**Criterio de aceptación:** una ficha con FUE 11 / TAM 12 muestra MD `0`; una habilidad al
 50% produce Crítico con `01-03`, Especial con `04-10`, Éxito con `11-50`, Fallo con `51-95`
 y Pifia con `96-00`.
 
-> **Corregido.** La primera redacción de este criterio decía Crítico `01-02`, deducido de
+> **Corregido dos veces.** La primera redacción decía Crítico `01-02`, deducido de
 > `floor(50/20)`. Es incorrecto: la tabla "Probabilidades de éxitos extra" (PDF pág. 6)
 > da Crítico 3 para el tramo 50-52%. El manual **redondea al más cercano**, no trunca.
+>
+> La segunda decía "FUE 13 / TAM 14 → MD `0`". También incorrecto: `13+14 = 27`, que cae
+> en el tramo 26-30 → `+1D2`. Para MD `0` hace falta `FUE+TAM` entre 21 y 25.
+>
+> **Lección:** no escribir criterios de aceptación de memoria. Calcularlos contra las
+> tablas de `reglas-cthulhu-d100.md` y verificarlos con un script.
 
 ### F1.1 — Atributos en escala 3-18 🟡 parcial, commit `cabd15c`
 - [x] **Decisión tomada: se mantienen las claves internas** `str con dex siz int pow app edu`.
@@ -331,8 +337,18 @@ y Pifia con `96-00`.
 > existe: la dificultad se aplica con modificadores de circunstancia ±10/20%. Podarlo
 > queda como tarea de F1.6.
 
-### F1.3 — Características derivadas
-- [ ] `Idea = INT×5`, `Suerte = POD×5`, `Cultura General = EST×5`
+### F1.3 — Características derivadas 🟡 parcial
+- [x] `Idea = INT×5` y `Cultura General = EST×5` en `models/actor/global-system.js:289-300`.
+      `check.js` lee `config.idea` / `config.know` como umbral directo, así que el
+      multiplicador se aplica **aquí y no allí** — cuidado con duplicarlo.
+- [x] `Suerte = POD×5` derivada en `attribs.lck.value`
+- [x] `PV = ceil((TAM+CON)/2)` en `document-class.js hpFromCharacteristics()`
+- [x] `PM = POD` en `document-class.js mpFromCharacteristics()`
+- [ ] **Neutralizar el gasto de Suerte de CoC7.** En d100 la Suerte no es una reserva
+      gastable. Sigue cableado: `luckSpendAbilities` en `character-system.js:190`,
+      `luckAvoidUnconsciousness`, los botones de "push" con suerte en las cartas de chat
+      y `apps/roll-normalize.js`
+- [ ] Inconsciencia con 1-2 PV; recupera consciencia al llegar a ≥3
 - [ ] La **Suerte deja de ser una reserva gastable** y pasa a ser derivada. Localizar y
       neutralizar el sistema de gasto de Luck de CoC7 (`luck` en `character-system.js`,
       `roll-normalize.js`, botones de "push" con suerte)
@@ -340,10 +356,23 @@ y Pifia con `96-00`.
 - [ ] `PM = POD`; los PM por encima del tope se usan pero no se regeneran
 - [ ] Inconsciencia con 1-2 PV; recupera consciencia con ≥3
 
-### F1.4 — Modificador al Daño
-- [ ] Implementar la tabla de 19 tramos por `FUE+TAM` (`dev-docs/reglas-cthulhu-d100.md` §2)
+### F1.4 — Modificador al Daño 🟡 parcial
+- [x] Tabla de **20** tramos por `FUE+TAM` en `document-class.js dbFromCharacteristics()`
+      (el plan decía 19; son 20 contando el tramo neutro `21-25 → 0`)
+- [x] Verificada con script: los 200 valores de `FUE+TAM` 1-200 coinciden con la tabla
+      de la pág. 11
 - [ ] Aplicación diferenciada: cuerpo a cuerpo/desarmado → MD completo;
-      arrojadizas → **mitad**; armas de fuego → **no se aplica**
+      arrojadizas → **mitad**; armas de fuego → **no se aplica**.
+      Va en `apps/chat-combat-melee.js` / `chat-combat-ranged.js` (F4)
+
+> A diferencia de CoC7, en d100 **no hay penalizadores planos**: los tramos bajos son
+> dados que se restan (`-1D8` … `-1D2`), no `-1` / `-2`. `dbFromCharacteristics()`
+> devuelve cadenas con signo (`'-1D8'`, `'+2D6'`) y el número `0` en el tramo neutro.
+> Verificar que los consumidores de `attribs.db.value` toleran el signo al construir
+> la fórmula de daño.
+>
+> **`buildFromCharacteristics()` sigue con la lógica de CoC7.** La Corpulencia (Build) no
+> existe en d100. Decidir en F4 si se elimina o se deja inerte.
 
 ### F1.5 — Chequeos enfrentados
 - [ ] Fórmula `50 + (activo - pasivo) × 5`, acotada a `[0,100]`
