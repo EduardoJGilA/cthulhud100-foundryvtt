@@ -1,4 +1,4 @@
-/* global CONFIG game */
+/* global CONFIG */
 // Package id. Must match "id" in static/system.json: Foundry validates it as the
 // scope for game settings and document flags.
 export const FOLDER_ID = 'cthulhud100'
@@ -122,129 +122,24 @@ export const FIGHTING_NAMES = {
   ranged: 'CoC7.RangedSpecializationName'
 }
 
-export const DICE_POOL_REASONS = {
-  outnumbered: {
-    active: true,
-    ifAttacker: false,
-    ifDefender: true,
-    forBonus: true,
-    forPenalty: false,
-    forMelee: true,
-    forRanged: false,
-    name: 'CoC7.OutNumbered',
-    tooltip: 'CoC7.TitleOutNumbered'
-  },
-  surprised: {
-    active: true,
-    ifAttacker: false,
-    ifDefender: true,
-    forBonus: true,
-    forPenalty: false,
-    forMelee: true,
-    forRanged: false,
-    name: 'CoC7.combatCard.surprised',
-    tooltip: 'CoC7.TitleSurprised'
-  },
-  sizeBig: {
-    active: true,
-    ifAttacker: true,
-    ifDefender: false,
-    forBonus: true,
-    forPenalty: false,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.rangeCombatCard.BigTarget',
-    tooltip: 'CoC7.rangeCombatCard.BigTargetTooltip'
-  },
-  sizeSmall: {
-    active: true,
-    ifAttacker: true,
-    ifDefender: false,
-    forBonus: false,
-    forPenalty: true,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.combatCard.SmallTarget',
-    tooltip: 'CoC7.combatCard.SmallTargetTooltip'
-  },
-  cover: {
-    active: true,
-    ifAttacker: false,
-    ifDefender: false,
-    forBonus: false,
-    forPenalty: true,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.rangeCombatCard.Cover',
-    tooltip: 'CoC7.rangeCombatCard.CoverTitle'
-  },
-  surprisedRanged: {
-    active: true,
-    ifAttacker: false,
-    ifDefender: true,
-    forBonus: true,
-    forPenalty: false,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.combatCard.surprised',
-    tooltip: 'CoC7.rangeCombatCard.SurprisedTargetTitle'
-  },
-  pointBlankRange: {
-    active: true,
-    ifAttacker: false,
-    ifDefender: false,
-    forBonus: true,
-    forPenalty: false,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.rangeCombatCard.PointBlankRange',
-    tooltip: 'CoC7.rangeCombatCard.PointBlankRangeTitle'
-  },
-  inMelee: {
-    active: true,
-    ifAttacker: true,
-    ifDefender: false,
-    forBonus: false,
-    forPenalty: true,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.rangeCombatCard.InMelee',
-    tooltip: 'CoC7.rangeCombatCard.InMeleeTitle'
-  },
-  fast: {
-    active: true,
-    ifAttacker: false,
-    ifDefender: false,
-    forBonus: false,
-    forPenalty: true,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.rangeCombatCard.FastMovingTarget',
-    tooltip: 'CoC7.rangeCombatCard.FastMovingTargetTitle'
-  },
-  shootWithOffhand: {
-    active: () => game.settings.get(FOLDER_ID, 'ddtRuleShootingWithOffHand'),
-    ifAttacker: true,
-    ifDefender: false,
-    forBonus: false,
-    forPenalty: true,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.rangeCombatCard.ShootingWithOffHand',
-    tooltip: 'CoC7.Settings.DDTRules.ShootingWithOffHand.Hint'
-  },
-  reloading: {
-    active: true,
-    ifAttacker: true,
-    ifDefender: false,
-    forBonus: false,
-    forPenalty: true,
-    forMelee: false,
-    forRanged: true,
-    name: 'CoC7.rangeCombatCard.ReloadingFirearm',
-    tooltip: 'CoC7.rangeCombatCard.ReloadingFirearmTooltip'
-  }
-}
+// Call of Cthulhu turned eleven combat situations into bonus or penalty dice.
+// Cthulhu d100 has no bonus dice at all, and resolves the situations it does
+// have by other means, all of them already implemented in apps/combat-tables.js:
+//
+//   surprise            DES halved for initiative, first turn only
+//   point blank range   skill doubled inside DES x3 metres (rangeMultiplier)
+//   reloading and firing DES halved for initiative
+//   prone or under cover -20% to dodge, -20% to the shooter (combatModifier)
+//   cover               with hit locations, the shot strikes the cover instead
+//   outnumbered         no bonus; the rulebook only caps attackers at five
+//
+// and four that are not in the book at all: big target, small target, target in
+// melee, fast moving target, and shooting with the off hand, which comes from a
+// Down Darker Trails option.
+//
+// Emptied rather than deleted: apps/utilities.js filters it and the melee and
+// ranged chat cards import it, and an empty object renders no toggles.
+export const DICE_POOL_REASONS = {}
 
 /* // FoundryVTT V13 */
 export const CHAT_MESSAGE_MODE = Object.keys(CONFIG.ChatMessage.modes ?? CONFIG.Dice.rollModes).reduce((c, k) => { c[k.replace(/roll$/, '').toUpperCase()] = k; return c }, {})
