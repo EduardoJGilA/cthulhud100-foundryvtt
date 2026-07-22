@@ -777,3 +777,29 @@ Varias marcadas ✅ no se sostienen.
 - [ ] `objeto_arquetipo.md` documenta arquetipos Pulp; `efectos.md` menciona Corpulencia
 - [ ] Prefijo `coc7-` en las 16 hojas LESS (F5.3)
 - [ ] Interfaz de cordura alternativa solo en la ficha **v3**; la v2 no la muestra
+
+### Segunda revisión — compendios contra el manual
+
+Verificado **correcto**:
+
+- **Armas (41)**: daño, PR, disfunción, munición y los tres tramos de las escopetas
+  coinciden con las tres tablas. Ojo al comprobarlo: la disfunción `00` se guarda como
+  `100`, que es lo correcto en dados percentiles, y las bases se guardan como cadena
+  porque el campo admite fórmulas
+- **Habilidades (33)**: coincide exactamente con el recuento del manual (11+3+7+6+6). Las
+  bases fijas y las derivadas (`@edu+@app`, `@dex*2`, `@dex+@str`…) son correctas
+- **Tomos (10)**: los diez están en el capítulo 10
+
+Problemas **nuevos**:
+
+- [ ] **El compendio de criaturas no es funcional.** Las 18 entradas tienen **cero
+      características** y **sin PV**: solo descripción en HTML. Arrastrar una a la escena
+      da un actor con FUE/CON/DES/TAM/INT/POD vacíos, 0 PV y sin ataques. El manual sí trae
+      los perfiles completos en fórmulas de dados (`Profundo: FUE 4D6, CON 4D6, DES 3D6,
+      TAM 3D6+3, INT 3D6, POD 4D6, EM 1/1D6, Lucha 20+2D6% / 1D6, protección 1`), pero no
+      se trasladaron al modelo de datos
+- [ ] **`Perro de Tíndalos` es inventado.** No aparece en ninguna de las 52 páginas del
+      PDF. Está mezclado con 17 criaturas legítimas sin distinción alguna
+- [ ] **Faltan criaturas del manual**: Mi-Go, Pólipo volador (Flying Polyp) y Prole Oscura
+      de Shub Niggurath. El capítulo tiene **16 bloques de perfil**; el compendio tiene 18
+      entradas, así que difiere en ambos sentidos
