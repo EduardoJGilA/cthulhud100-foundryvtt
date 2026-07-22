@@ -211,4 +211,118 @@ export default class CoC7CombatTables {
   static aimBonus (delay) {
     return Math.floor((Math.max(0, parseInt(delay, 10) || 0)) / 5) * 10
   }
+
+  /**
+   * Penalty for dodging more than once in a turn: nothing for the first, then
+   * a cumulative thirty percent from the second onwards.
+   * @param {number} attempt which dodge this is, counting from one
+   * @returns {number} percentage modifier, never positive
+   */
+  static dodgePenalty (attempt) {
+    const n = Math.max(1, parseInt(attempt, 10) || 1)
+    return -(n - 1) * 30
+  }
+
+  /**
+   * Modifiers that shift a combat roll, gathered in one place so the chat card
+   * does not have to remember them.
+   *
+   * Changing a declared action costs twenty percent unless the change is to
+   * dodge or block, which are always free. Fighting purely defensively pays
+   * twenty. Lying down or taking cover hurts your own dodge and anyone shooting
+   * at you equally.
+   * @param {object} options
+   * @param {boolean} options.changedDeclaredAction acting differently to the declaration
+   * @param {boolean} options.changedToDefence the change was to dodge or block
+   * @param {boolean} options.defending declared a purely defensive turn
+   * @param {boolean} options.prone lying down or behind cover
+   * @param {number} options.dodgeAttempt which dodge of the turn this is
+   * @returns {number} total percentage modifier
+   */
+  static combatModifier ({
+    changedDeclaredAction = false,
+    changedToDefence = false,
+    defending = false,
+    prone = false,
+    dodgeAttempt = 1
+  } = {}) {
+    let modifier = 0
+    if (changedDeclaredAction && !changedToDefence) {
+      modifier -= 20
+    }
+    if (defending) {
+      modifier += 20
+    }
+    if (prone) {
+      modifier -= 20
+    }
+    modifier += CoC7CombatTables.dodgePenalty(dodgeAttempt)
+    return modifier
+  }
+
+  /**
+   * Damage formula for an outcome.
+   *
+   * Impaling doubles the roll, and armour still applies. A maximum-damage
+   * result takes every die at its highest.
+   * @param {object} options
+   * @param {string} options.outcome one of CoC7CombatTables.outcome
+   * @param {string} options.formula the weapon's damage formula, modifier included
+   * @returns {string|null} formula to roll, or null when nothing lands
+   */
+  static damageFormula ({ outcome, formula } = {}) {
+    const o = CoC7CombatTables.outcome
+    const base = (formula ?? '').toString().trim()
+    if (base === '' || outcome === o.miss || outcome === o.fumble) {
+      return null
+    }
+    if (outcome === o.impale) {
+      // Impaling multiplies the damage by two
+      return '(' + base + ')*2'
+    }
+    if (outcome === o.maxDamage) {
+      return base
+    }
+    return base
+  }
+
+  /**
+   * Whether a wound counts as severe: more than half the maximum hit points
+   * from one blow. Several light wounds never add up to one.
+   * @param {number} damage damage from a single blow
+   * @param {number} maxHitPoints the target's maximum hit points
+   * @returns {boolean}
+   */
+  static isSevereWound (damage, maxHitPoints) {
+    const d = parseInt(damage, 10) || 0
+    const max = parseInt(maxHitPoints, 10) || 0
+    return max > 0 && d > max / 2
+  }
+
+  /**
+   * Result of a knockout attempt, which must be declared before rolling.
+   *
+   * Enough damage for a severe wound puts the target out for 1d10+10 turns.
+   * Anything less fails and inflicts only the weapon's minimum damage, with no
+   * damage modifier.
+   * @param {object} options
+   * @param {number} options.damage damage the blow would have done
+   * @param {number} options.maxHitPoints the target's maximum hit points
+   * @returns {object} whether it worked and how long they are out
+   */
+  static knockout ({ damage, maxHitPoints } = {}) {
+    if (CoC7CombatTables.isSevereWound(damage, maxHitPoints)) {
+      return { success: true, turnsUnconscious: '1D10+10' }
+    }
+    return { success: false, turnsUnconscious: 0, minimumDamageOnly: true }
+  }
+
+  /**
+   * Chance of breaking out of a grapple: DES x3.
+   * @param {number} dex DES
+   * @returns {number} percentage
+   */
+  static escapeGrappleChance (dex) {
+    return Math.max(0, Math.min(100, (parseInt(dex, 10) || 0) * 3))
+  }
 }
