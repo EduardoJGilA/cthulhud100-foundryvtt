@@ -563,11 +563,16 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
    */
   toolTipSkillEnter (element) {
     const isCombat = element.classList?.contains('combat')
+    // Cthulhu d100 thresholds: a fifth for a special, a twentieth for a
+    // critical, both rounded half up. These were showing Call of Cthulhu's
+    // halves and fifths, so a 50% skill advertised 25 and 10 where the real
+    // thresholds are 10 and 3.
+    const value = parseInt(element.dataset.valueTooltip, 10) || 0
     const data = {
       skill: element.dataset.nameTooltip,
       regular: element.dataset.valueTooltip,
-      hard: Math.floor(element.dataset.valueTooltip / 2),
-      extreme: Math.floor(element.dataset.valueTooltip / 5)
+      special: Math.max(1, Math.round(value / 5)),
+      critical: Math.max(1, Math.round(value / 20))
     }
     const basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
     let toolTip = game.i18n.format(isCombat ? 'CoC7.ToolTipCombat' : 'CoC7.ToolTipSkill', data)
