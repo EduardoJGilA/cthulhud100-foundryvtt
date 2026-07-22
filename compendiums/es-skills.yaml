@@ -22,7 +22,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.burocracia
+      id: i.skill.bureaucracy
       lang: es
       eras:
         standard: true
@@ -52,7 +52,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.ciencias-naturales
+      id: i.skill.natural-sciences
       lang: es
       eras:
         standard: true
@@ -82,7 +82,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.ciencias-ocultas
+      id: i.skill.occult
       lang: es
       eras:
         standard: true
@@ -112,7 +112,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.ciencias-sociales-y-humanidades
+      id: i.skill.social-sciences
       lang: es
       eras:
         standard: true
@@ -142,7 +142,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.idiomas
+      id: i.skill.language
       lang: es
       eras:
         standard: true
@@ -172,7 +172,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.manejo-de-archivos
+      id: i.skill.library-use
       lang: es
       eras:
         standard: true
@@ -202,7 +202,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.medicina
+      id: i.skill.medicine
       lang: es
       eras:
         standard: true
@@ -232,7 +232,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.mitos-de-cthulhu
+      id: i.skill.cthulhu-mythos
       lang: es
       eras:
         standard: true
@@ -262,7 +262,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.primeros-auxilios
+      id: i.skill.first-aid
       lang: es
       eras:
         standard: true
@@ -292,7 +292,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.psicoanalisis
+      id: i.skill.psychoanalysis
       lang: es
       eras:
         standard: true
@@ -322,7 +322,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.psicologia
+      id: i.skill.psychology
       lang: es
       eras:
         standard: true
@@ -352,7 +352,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.arte
+      id: i.skill.art-craft
       lang: es
       eras:
         standard: true
@@ -382,7 +382,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.bricolaje
+      id: i.skill.diy
       lang: es
       eras:
         standard: true
@@ -412,7 +412,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.maestrias
+      id: i.skill.trades
       lang: es
       eras:
         standard: true
@@ -442,7 +442,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.discrecion
+      id: i.skill.stealth
       lang: es
       eras:
         standard: true
@@ -472,7 +472,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.esconder-se
+      id: i.skill.hide
       lang: es
       eras:
         standard: true
@@ -502,7 +502,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.escuchar
+      id: i.skill.listen
       lang: es
       eras:
         standard: true
@@ -532,7 +532,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.orientacion
+      id: i.skill.navigate
       lang: es
       eras:
         standard: true
@@ -562,7 +562,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.percibir
+      id: i.skill.spot-hidden
       lang: es
       eras:
         standard: true
@@ -592,7 +592,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.seguir-rastros
+      id: i.skill.track
       lang: es
       eras:
         standard: true
@@ -622,7 +622,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.supervivencia
+      id: i.skill.survival
       lang: es
       eras:
         standard: true
@@ -652,7 +652,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.autoridad
+      id: i.skill.authority
       lang: es
       eras:
         standard: true
@@ -682,7 +682,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.bajos-fondos
+      id: i.skill.underworld
       lang: es
       eras:
         standard: true
@@ -712,7 +712,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.embaucar
+      id: i.skill.fast-talk
       lang: es
       eras:
         standard: true
@@ -742,7 +742,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.intimidar
+      id: i.skill.intimidate
       lang: es
       eras:
         standard: true
@@ -772,7 +772,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.oratoria
+      id: i.skill.oratory
       lang: es
       eras:
         standard: true
@@ -802,7 +802,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.protocolo
+      id: i.skill.etiquette
       lang: es
       eras:
         standard: true
@@ -832,7 +832,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.armas-de-cuerpo-a-cuerpo
+      id: i.skill.melee-weapons
       lang: es
       eras:
         standard: true
@@ -862,7 +862,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.armas-de-fuego
+      id: i.skill.firearms
       lang: es
       eras:
         standard: true
@@ -892,7 +892,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.conducir
+      id: i.skill.drive
       lang: es
       eras:
         standard: true
@@ -922,7 +922,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.esquivar
+      id: i.skill.dodge
       lang: es
       eras:
         standard: true
@@ -952,7 +952,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.forma-fisica
+      id: i.skill.athletics
       lang: es
       eras:
         standard: true
@@ -982,7 +982,7 @@ system:
 flags:
   cthulhud100:
     cocidFlag:
-      id: i.skill.lucha
+      id: i.skill.brawl
       lang: es
       eras:
         standard: true
