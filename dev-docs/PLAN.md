@@ -792,14 +792,21 @@ Verificado **correcto**:
 
 Problemas **nuevos**:
 
-- [ ] **El compendio de criaturas no es funcional.** Las 18 entradas tienen **cero
-      características** y **sin PV**: solo descripción en HTML. Arrastrar una a la escena
-      da un actor con FUE/CON/DES/TAM/INT/POD vacíos, 0 PV y sin ataques. El manual sí trae
-      los perfiles completos en fórmulas de dados (`Profundo: FUE 4D6, CON 4D6, DES 3D6,
-      TAM 3D6+3, INT 3D6, POD 4D6, EM 1/1D6, Lucha 20+2D6% / 1D6, protección 1`), pero no
-      se trasladaron al modelo de datos
-- [ ] **`Perro de Tíndalos` es inventado.** No aparece en ninguna de las 52 páginas del
-      PDF. Está mezclado con 17 criaturas legítimas sin distinción alguna
-- [ ] **Faltan criaturas del manual**: Mi-Go, Pólipo volador (Flying Polyp) y Prole Oscura
-      de Shub Niggurath. El capítulo tiene **16 bloques de perfil**; el compendio tiene 18
-      entradas, así que difiere en ambos sentidos
+- [x] **Criaturas reconciliadas con el capítulo 9.** El capítulo tiene **22 perfiles**; el
+      compendio tenía 18, uno de ellos inexistente en el manual.
+      - Eliminado `Perro de Tíndalos`: no aparece en ninguna de las 52 páginas. Sus
+        estadísticas estaban inventadas y convivían con las legítimas sin distinción
+      - Añadidas las cinco que faltaban: Mi-Go, Pólipo volador, Prole Oscura de
+        Shub-Niggurath, Terror Cazador y Vástago Estelar de Cthulhu
+      - Corregidas cuatro con características erróneas. Shantak y Shoggoth estaban muy
+        mal: Shantak tenía FUE `6D6+12` frente a `4D6+20`, y Shoggoth llevaba `18D6/12D6/24D6`
+        planos donde el manual los deriva de `1D20*1D6` con CON igual a FUE y TAM `FUE+4D6`
+
+> **Corrección de la revisión anterior.** Informé de que las criaturas tenían "cero
+> características". Era falso: mi sonda leía el campo `value` y el esquema usa `formula`.
+> Los datos estaban ahí; el problema real era de **exactitud**, no de ausencia.
+>
+> **Aviso para quien verifique**: el capítulo está a dos columnas y `pdftotext` entrelaza
+> las entradas. Los ataques del Pólipo volador aparecen en el texto *por encima* de su
+> propio bloque de características. La atribución se confirma por materia (ciudades
+> subterráneas, *The Shadow Out of Time*), no por posición.
