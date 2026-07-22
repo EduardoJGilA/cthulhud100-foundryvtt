@@ -1,0 +1,309 @@
+_id: BqTGAucOBcrJ8qQg
+name: 'Necronomicón'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Genérico</p><p><strong>Hechizos:</strong> Hechizos para contactar con todo tipo de seres.</p><p>Ganancia en Mitos de Cthulhu: <strong>12-21%</strong> según edición (<code>11+1D10</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>4D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Árabe, Griego, Latín, Inglés, Español (parcial)'
+  mythosRating: 21
+  sanityLoss: '4D6'
+  gains:
+    cthulhuMythos:
+      initial: 12
+      final: 21
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.necronomicon
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: heXfKX22oRS85oLH
+name: 'El Rey de Amarillo'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Mundo onírico y Hastur</p><p><strong>Hechizos:</strong> Hechizos para contactar con Hastur y para convocar Biyaquis.</p><p>Ganancia en Mitos de Cthulhu: <strong>4-9%</strong> según edición (<code>3+1D6</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>5D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Francés, Inglés'
+  mythosRating: 9
+  sanityLoss: '5D6'
+  gains:
+    cthulhuMythos:
+      initial: 4
+      final: 9
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.days'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.el-rey-de-amarillo
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: NwC6UgRZ8wkgk6Iq
+name: 'Unausprechlichen Kulten'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Genérico</p><p><strong>Hechizos:</strong> Algunos para convocar, atar y expulsar deidades.</p><p>Ganancia en Mitos de Cthulhu: <strong>10-15%</strong> según edición (<code>9+1D6</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>3D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Alemán, Inglés'
+  mythosRating: 15
+  sanityLoss: '3D6'
+  gains:
+    cthulhuMythos:
+      initial: 10
+      final: 15
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.unausprechlichen-kulten
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: Ptdpp9L2kLYOFCRG
+name: 'Manuscritos Pnakóticos'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Los primeros pobladores de la Tierra</p><p><strong>Hechizos:</strong> Hechizos para contactar y comunicarse con los Antiguos.</p><p>Ganancia en Mitos de Cthulhu: <strong>8-13%</strong> según edición (<code>7+1D6</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>2D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Griego, Inglés'
+  mythosRating: 13
+  sanityLoss: '2D6'
+  gains:
+    cthulhuMythos:
+      initial: 8
+      final: 13
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.months'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.manuscritos-pnakoticos
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: spTZRdmvc6b5uGwT
+name: 'Tablillas de Eltdown'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Seres del espacio exterior</p><p><strong>Hechizos:</strong> Hechizos de contacto con especies del espacio exterior.</p><p>Ganancia en Mitos de Cthulhu: <strong>9-14%</strong> según edición (<code>8+1D6</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>2D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Inglés'
+  mythosRating: 14
+  sanityLoss: '2D6'
+  gains:
+    cthulhuMythos:
+      initial: 9
+      final: 14
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.tablillas-de-eltdown
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 63sLyUIxQEiFzAaq
+name: 'Siete libros crípticos de Hsan'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Seres de los Mitos con presencia en China</p><p><strong>Hechizos:</strong> Hechizos de contacto, invocación y atadura de seres subterráneos.</p><p>Ganancia en Mitos de Cthulhu: <strong>7-12%</strong> según edición (<code>6+1D6</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>2D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Chino mandarín, Inglés'
+  mythosRating: 12
+  sanityLoss: '2D6'
+  gains:
+    cthulhuMythos:
+      initial: 7
+      final: 12
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.siete-libros-cripticos-de-hsan
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: fHgCuuvMNSnmYoU3
+name: 'Cantos de los Doles'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Cantos religiosos de los hombres de Leng</p><p><strong>Hechizos:</strong> Hechizos de contacto con seres en las Tierras del Sueño.</p><p>Ganancia en Mitos de Cthulhu: <strong>7-12%</strong> según edición (<code>6+1D6</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>2D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Inglés'
+  mythosRating: 12
+  sanityLoss: '2D6'
+  gains:
+    cthulhuMythos:
+      initial: 7
+      final: 12
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.cantos-de-los-doles
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: KQX9Vf9sHPgNtViN
+name: 'Libro de Dzyan'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Genérico</p><p><strong>Hechizos:</strong> Hechizos para convocar algunas especies menores.</p><p>Ganancia en Mitos de Cthulhu: <strong>7-12%</strong> según edición (<code>6+1D6</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>1D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Inglés'
+  mythosRating: 12
+  sanityLoss: '1D6'
+  gains:
+    cthulhuMythos:
+      initial: 7
+      final: 12
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.libro-de-dzyan
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: KshnMngy5yG0yEw3
+name: 'Escritos de Ponapé'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Profundos y sus cultos de humanos</p><p><strong>Hechizos:</strong> Ninguno.</p><p>Ganancia en Mitos de Cthulhu: <strong>4-7%</strong> según edición (<code>3+1D4</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>1D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Inglés'
+  mythosRating: 7
+  sanityLoss: '1D6'
+  gains:
+    cthulhuMythos:
+      initial: 4
+      final: 7
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.escritos-de-ponape
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: C9Qac1p1U99fBkwe
+name: 'Prodigios Taumatúrgicos en la Canaán de Nueva Inglaterra'
+type: book
+img: systems/cthulhud100/assets/icons/skills/library_use.svg
+system:
+  description:
+    value: '<p><strong>Materia:</strong> Magia, chamanismo y ocultismo de la era colonial americana</p><p><strong>Hechizos:</strong> Hechizos para contactar con seres primordiales.</p><p>Ganancia en Mitos de Cthulhu: <strong>2-5%</strong> según edición (<code>1+1D4</code>).</p><p>Con el sistema alternativo de locura, este tomo causa Locura Subyacente directamente: tira <code>1D6</code>, multiplica por dos, y cada múltiplo entero del POD del lector es un punto.</p>'
+  language: 'Inglés'
+  mythosRating: 5
+  sanityLoss: '1D6'
+  gains:
+    cthulhuMythos:
+      initial: 2
+      final: 5
+    occult: 0
+  study:
+    necessary: 1
+    units: 'CoC7.weeks'
+  type:
+    mythos: true
+    occult: false
+    other: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.book.prodigios-taumaturgicos-en-la-canaan-de-nueva-inglaterra
+      lang: es
+      eras:
+        standard: true
+      priority: 0

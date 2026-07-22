@@ -1,0 +1,93 @@
+name: Heridas Graves
+formula: 1d100
+results:
+- type: text
+  range:
+  - 1
+  - 11
+  name: I — 1D3 CAR
+  description: 'Cicatrices acusadas, no se pueden ocultar. Pérdida: <strong>1D3 CAR</strong>.'
+- type: text
+  range:
+  - 12
+  - 21
+  name: II — 1D3 INT
+  description: 'Herida en la cabeza. El máximo para las habilidades SOCIALES queda en 65%. Pérdida: <strong>1D3 INT</strong>.'
+- type: text
+  range:
+  - 22
+  - 31
+  name: III — 1D3 FUE
+  description: 'Heridas en las extremidades superiores, posible pérdida de dedos; es complicado o imposible utilizar dos objetos a la vez. Pérdida: <strong>1D3 FUE</strong>.'
+- type: text
+  range:
+  - 32
+  - 41
+  name: IV — 1D3 DES y 1D3 Mov
+  description: 'Trauma grave en pierna o pie. Pérdida: <strong>1D3 DES y 1D3 Mov</strong>.'
+- type: text
+  range:
+  - 42
+  - 51
+  name: V — 1D3 DES y 1D3 Mov
+  description: 'Herido el abdomen, con posibilidad de órganos dañados. Pérdida: <strong>1D3 DES y 1D3 Mov</strong>.'
+- type: text
+  range:
+  - 52
+  - 61
+  name: VI — 1D6 CAR
+  description: 'Como I, pero más severo. Pérdida: <strong>1D6 CAR</strong>.'
+- type: text
+  range:
+  - 62
+  - 71
+  name: VII — 1D6 FUE
+  description: 'Como III, y el personaje pierde permanentemente 1D3 PV irrecuperables. Pérdida: <strong>1D6 FUE</strong>.'
+- type: text
+  range:
+  - 72
+  - 81
+  name: VIII — 1D6 DES y 1D6 Mov
+  description: 'Como IV, pero el miembro queda amputado. Pérdida: <strong>1D6 DES y 1D6 Mov</strong>.'
+- type: text
+  range:
+  - 82
+  - 91
+  name: IX — 1D3 FUE y 1D3 CON, o bien 1D6 CON y 1D6 Mov
+  description: 'Como V, pero más grave. Pérdida: <strong>1D3 FUE y 1D3 CON, o bien 1D6 CON y 1D6 Mov</strong>.'
+- type: text
+  range:
+  - 92
+  - 93
+  name: X — 1D6 DES
+  description: 'Un brazo queda inútil. Pérdida: <strong>1D6 DES</strong>.'
+- type: text
+  range:
+  - 94
+  - 97
+  name: XI — 1D6 DES
+  description: 'Ambos brazos inútiles. Pérdida: <strong>1D6 DES</strong>.'
+- type: text
+  range:
+  - 98
+  - 98
+  name: XII — 1D3 CON, 1D3 CAR y 1D3 DES
+  description: 'Secuelas por todo el cuerpo. Pérdida: <strong>1D3 CON, 1D3 CAR y 1D3 DES</strong>.'
+- type: text
+  range:
+  - 99
+  - 99
+  name: XIII — 1D6 CAR
+  description: 'El PJ pierde parte de la cara. Pérdida: <strong>1D6 CAR</strong>.'
+- type: text
+  range:
+  - 100
+  - 100
+  name: XIV — 1D4 a cuatro atributos al azar
+  description: 'Traumatismo múltiple. Pérdida: <strong>1D4 a cuatro atributos al azar</strong>.'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: rt..heridas-graves
+      lang: es
+      priority: 0

@@ -1,0 +1,34 @@
+<section class="standard-form longer-labels scrollable">
+  <fieldset>
+    <legend>{{localize 'CoC7.Settings.CoreRules.Title'}}</legend>
+    {{formGroup fields.developmentRollForLuck value=values.developmentRollForLuck localize=true}}
+    {{formGroup fields.initiativeRule value=values.initiativeRule localize=true}}
+    {{formGroup fields.allowMythosHardened value=values.allowMythosHardened localize=true}}
+  </fieldset>
+  <fieldset>
+    <legend>{{localize 'SETTINGS.PulpRules'}}</legend>
+    {{formGroup fields.pulpRulesSetTo value=values.pulpRulesSetTo localize=true}}
+    {{formGroup fields.pulpRuleDoubleMaxHealth value=values.pulpRuleDoubleMaxHealth localize=true classes='pulpRulesSelect'}}
+    {{formGroup fields.pulpRuleDevelopmentRollLuck value=values.pulpRuleDevelopmentRollLuck localize=true classes='pulpRulesSelect'}}
+    {{formGroup fields.pulpRuleArchetype value=values.pulpRuleArchetype localize=true classes='pulpRulesSelect'}}
+    {{formGroup fields.pulpRuleOrganization value=values.pulpRuleOrganization localize=true classes='pulpRulesSelect'}}
+    {{formGroup fields.pulpRuleTalents value=values.pulpRuleTalents localize=true classes='pulpRulesSelect'}}
+    {{formGroup fields.pulpRuleFasterRecovery value=values.pulpRuleFasterRecovery localize=true classes='pulpRulesSelect'}}
+    {{formGroup fields.pulpRuleIgnoreMajorWounds value=values.pulpRuleIgnoreMajorWounds localize=true classes='pulpRulesSelect'}}
+    {{formGroup fields.pulpRuleIgnoreAgePenalties value=values.pulpRuleIgnoreAgePenalties localize=true classes='pulpRulesSelect'}}
+    <fieldset>
+      <legend>{{localize 'CoC7.Settings.PulpRules.LuckSpent.Title'}}</legend>
+      {{formGroup fields.pulpRuleLuckMalfunction value=values.pulpRuleLuckMalfunction localize=true classes='pulpRulesSelect'}}
+      {{formGroup fields.pulpRuleLuckHalfSanityLoss value=values.pulpRuleLuckHalfSanityLoss localize=true classes='pulpRulesSelect'}}
+      {{formGroup fields.pulpRuleLuckUnconsciousness value=values.pulpRuleLuckUnconsciousness localize=true classes='pulpRulesSelect'}}
+      {{formGroup fields.pulpRuleLuckHeal value=values.pulpRuleLuckHeal localize=true classes='pulpRulesSelect'}}
+      {{formGroup fields.pulpRuleLuckAvoidDeath value=values.pulpRuleLuckAvoidDeath localize=true classes='pulpRulesSelect'}}
+      {{formGroup fields.pulpRuleLuckSecondAttack value=values.pulpRuleLuckSecondAttack localize=true classes='pulpRulesSelect'}}
+      {{formGroup fields.pulpRuleLuckLookOutMaster value=values.pulpRuleLuckLookOutMaster localize=true classes='pulpRulesSelect'}}
+    </fieldset>
+  </fieldset>
+  <fieldset>
+    <legend>{{localize 'SETTINGS.DownDarkerTrailsRules'}}</legend>
+    {{formGroup fields.ddtRuleShootingWithOffHand value=values.ddtRuleShootingWithOffHand localize=true}}
+  </fieldset>
+</section>

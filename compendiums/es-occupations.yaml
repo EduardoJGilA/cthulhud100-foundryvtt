@@ -1,0 +1,549 @@
+_id: EuoStKzHMSAXcpPj
+name: 'Anticuario'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Ciencias ocultas, Ciencias sociales y humanidades (Historia y hasta otras dos a su elecci&oacute;n), Idiomas (uno no nativo), Manejo de archivos / Embaucar</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.anticuario
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: N81w0qrm03Z7YhfU
+name: 'Detective de la policía'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Burocracia, Ciencias sociales y humanidades (Criminal&iacute;stica) / Discreci&oacute;n, Esconder/se, Escuchar, Percibir / Autoridad, Intimidar / Armas de Fuego (Armas Cortas y hasta una m&aacute;s a su elecci&oacute;n)</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.detective-de-la-polic-iacute-a
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: DdEsDT4Ksy3Q01Ux
+name: 'Detective privado'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Burocracia / Arte (Interpretaci&oacute;n) / Discreci&oacute;n, Esconder/se, Escuchar, Percibir / Bajos Fondos, Intimidar / Armas de Cuerpo a Cuerpo (una a su elecci&oacute;n), Armas de Fuego (Armas Cortas), Lucha</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.detective-privado
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: o86NNmRjvqx7forH
+name: 'Diletante'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Ciencias Sociales y Humanidades (al menos dos a su elecci&oacute;n) / Arte (una a su elecci&oacute;n) / Autoridad, Protocolo</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.diletante
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: zqXOgpN4MG09SuFH
+name: 'Escritor'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Ciencias sociales y humanidades (entre una y tres a su elecci&oacute;n), Idiomas (uno adem&aacute;s del nativo), Manejo de Archivos / Arte (escritura) / Percibir / Autoridad</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.escritor
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: vIzJVKeUlODQFCy8
+name: 'Explorador'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Burocracia, Ciencias Naturales (una a su elecci&oacute;n), Ciencias Sociales y Humanidades (al menos una a su elecci&oacute;n), Idiomas (uno adem&aacute;s del nativo), Primeros Auxilios / Orientaci&oacute;n, Percibir, Seguir rastros, Supervivencia / Armas de fuego (Armas Largas), Forma F&iacute;sica</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.explorador
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 9XqVSIrikwVtXh51
+name: 'Médico'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Ciencias naturales (Biolog&iacute;a o Farmacolog&iacute;a y hasta una m&aacute;s a su elecci&oacute;n), Idiomas (lat&iacute;n), Manejo de archivos, Medicina, Primeros auxilios, Psicolog&iacute;a / Percibir / Autoridad</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.m-eacute-dico
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: yrvKndVsu0bgAM9t
+name: 'Periodista'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Ciencias sociales y humanidades (al menos una a su elecci&oacute;n), Manejo de archivos / Arte (escritura) / Discreci&oacute;n, Esconder/se, Escuchar, Percibir / y una de estas tres: Psicolog&iacute;a, Bajos fondos o Embaucar</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.periodista
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: vGc1utRduJs1jqId
+name: 'Profesor Universitario'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Burocracia, Ciencias Naturales (al menos dos a su elecci&oacute;n) -O- Ciencias Sociales y Humanidades (al menos dos a su elecci&oacute;n), Idiomas (al menos uno adem&aacute;s del nativo), Manejo de archivos / Autoridad, Oratoria</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.profesor-universitario
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: LEFRHhXg2xBL3sl1
+name: 'Religioso'
+type: occupation
+img: systems/cthulhud100/assets/icons/skills/laurel_crown.svg
+system:
+  description:
+    value: '<p>Ciencias Naturales (una a su elecci&oacute;n), Ciencias ocultas, Ciencias sociales y humanidades (al menos una a su elecci&oacute;n), Idiomas (al menos uno adem&aacute;s del nativo), Psicolog&iacute;a / Autoridad, Oratoria</p><p><strong>Puntos de habilidad:</strong> EST&times;20 para repartir entre las habilidades de la profesi&oacute;n, m&aacute;s INT&times;10 libres para cualquier habilidad de la ficha.</p><p>Los grupos separados por <code>/</code> son alternativas seg&uacute;n el manual.</p>'
+  source: 'Cthulhu d100, cap. 7'
+  type:
+    classic: true
+    lovecraftian: true
+    modern: false
+    pulp: false
+  occupationSkillPoints:
+    str:
+      multiplier: null
+      selected: false
+      optional: false
+    con:
+      multiplier: null
+      selected: false
+      optional: false
+    siz:
+      multiplier: null
+      selected: false
+      optional: false
+    dex:
+      multiplier: null
+      selected: false
+      optional: false
+    app:
+      multiplier: null
+      selected: false
+      optional: false
+    int:
+      multiplier: null
+      selected: false
+      optional: false
+    pow:
+      multiplier: null
+      selected: false
+      optional: false
+    edu:
+      multiplier: 20
+      selected: true
+      optional: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.occupation.religioso
+      lang: es
+      eras:
+        standard: true
+      priority: 0

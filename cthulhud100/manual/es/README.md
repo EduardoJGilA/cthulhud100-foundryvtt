@@ -1,0 +1,30 @@
+# Manual del sistema Cthulhu d100 para Foundry VTT
+
+Este sistema implementa el reglamento **Cthulhu d100** (Three Fourteen Games, 2011), basado en GORE/OGL.
+
+## Resumen del Reglamento
+
+- **Características (3-18):** `FUE`, `CON`, `DES`, `TAM`, `INT`, `POD`, `CAR`, `EST`.
+- **Derivados:**
+  - **Puntos de Vida (PV):** `ceil((TAM+CON)/2)`
+  - **Puntos de Magia (PM):** `POD`
+  - **Suerte:** `POD × 5` (derivada, no gastable)
+  - **Idea:** `INT × 5`
+  - **Cultura General:** `EST × 5`
+  - **Modificador al Daño (MD):** Tabla de 20 tramos por `FUE+TAM` (`-1D8` a `+5D10`).
+- **Niveles de Éxito:**
+  - **Crítico:** 5% superior (`redondear(habilidad / 20)`).
+  - **Especial:** 20% superior (`redondear(habilidad / 5)`).
+  - **Éxito:** `≤ habilidad`.
+  - **Fallo:** `> habilidad`.
+  - **Pifia:** `96–00` siempre.
+- **Sistemas de Cordura:**
+  - **Clásico:** Reserva de Estabilidad Mental (`POD × 5`).
+  - **Alternativo:** 3 barras de tensión (`ceil/floor/ceil`, total `POD × 1.5`), seguimiento de locura subyacente y modificadores de estado para habilidades de Acción (+10%) frente al resto (-10%).
+- **Combate:** Tablas cruzadas 5×5 de Esquiva y Bloqueo (§7), iniciativa basada en DES cruda (3-18), empalamientos, heridas graves (>50% PV de un golpe) y reglas opcionales de localización de impactos.
+
+## Licencia y Atribución
+
+- **Licencia de Código:** GPL-3.0 (derivado de CoC7-FoundryVTT © Miskatonic Investigative Society).
+- **Reglamento:** Cthulhu d100 © 2011 Three Fourteen Games, usado sin ánimo de lucro al amparo del permiso del manual.
+- **Sistema Base:** GORE © Daniel Proctor, OGL.

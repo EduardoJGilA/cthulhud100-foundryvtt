@@ -1,0 +1,2213 @@
+_id: wt7hHGUTnXwbSxkI
+name: 'Navaja'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_sword.svg
+system:
+  description:
+    value: '<p>Habilidad base 25%. Especializaci&oacute;n: Cortas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Cortas)'
+  range:
+    normal:
+      value: ''
+      damage: '1D4'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 6
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.navaja
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: lLh6uD2P4hALPTYV
+name: 'Daga'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_sword.svg
+system:
+  description:
+    value: '<p>Habilidad base 20%. Especializaci&oacute;n: Cortas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Cortas)'
+  range:
+    normal:
+      value: ''
+      damage: '1D4+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.daga
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: CC8XZn7pZ4AM0M4i
+name: 'Hacha pequeña'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_axe.svg
+system:
+  description:
+    value: '<p>Habilidad base 15%. Especializaci&oacute;n: Cortas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Cortas)'
+  range:
+    normal:
+      value: ''
+      damage: '1D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 6
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.hacha-pequena
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 1vrIra8sMJrgsjyD
+name: 'Porra'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_flail.svg
+system:
+  description:
+    value: '<p>Habilidad base 25%. Especializaci&oacute;n: Cortas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Cortas)'
+  range:
+    normal:
+      value: ''
+      damage: '1D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 10
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.porra
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 0R18OqlP0uRJrn60
+name: 'Espada'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_sword.svg
+system:
+  description:
+    value: '<p>Habilidad base 5%. Especializaci&oacute;n: Largas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Largas)'
+  range:
+    normal:
+      value: ''
+      damage: '2D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 18
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: true
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.espada
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: LRyilesO7tlKDIgf
+name: 'Cimitarra'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_sword.svg
+system:
+  description:
+    value: '<p>Habilidad base 15%. Especializaci&oacute;n: Largas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Largas)'
+  range:
+    normal:
+      value: ''
+      damage: '1D8+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 19
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: true
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.cimitarra
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: bZbuRdwAs2KAxMpp
+name: 'Lanza corta'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_spear.svg
+system:
+  description:
+    value: '<p>Habilidad base 10%. Especializaci&oacute;n: Largas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Largas)'
+  range:
+    normal:
+      value: ''
+      damage: '1D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 7
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: true
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.lanza-corta
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: HLu8uFBg1m6EMZQ0
+name: 'Vara de metal'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_flail.svg
+system:
+  description:
+    value: '<p>Habilidad base 25%. Especializaci&oacute;n: Largas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Largas)'
+  range:
+    normal:
+      value: ''
+      damage: '1D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 20
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: true
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.vara-de-metal
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: n8sIHRhg3wJ1fUuU
+name: 'Hacha de bombero'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_axe.svg
+system:
+  description:
+    value: '<p>Habilidad base 15%. Especializaci&oacute;n: Largas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Largas)'
+  range:
+    normal:
+      value: ''
+      damage: '2D6+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 10
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: true
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.hacha-de-bombero
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: lkgOf984imfPoNv4
+name: 'Motosierra'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_chainsaw.svg
+system:
+  description:
+    value: '<p>Habilidad base 20%. Especializaci&oacute;n: Largas.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Largas)'
+  range:
+    normal:
+      value: ''
+      damage: '2D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 20
+  blastRadius: null
+  properties:
+    rngd: false
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: true
+    brst: false
+    auto: false
+    ahdb: false
+    addb: true
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.motosierra
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: vfKMmBXurgqIwDjZ
+name: 'Cerbatana'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_bow.svg
+system:
+  description:
+    value: '<p>Habilidad base 25%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Armas de proyectil)'
+  range:
+    normal:
+      value: '15'
+      damage: '1D2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 6
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: true
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: true
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.cerbatana
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: sflBUbk2mRPCc5Xv
+name: 'Daga (arrojada)'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_throw.svg
+system:
+  description:
+    value: '<p>Habilidad base 20%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Armas arrojadizas)'
+  range:
+    normal:
+      value: '5'
+      damage: '1D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: true
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: true
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.daga-arrojada
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: U1z4VJG7nxpsCkdH
+name: 'Dardo'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_throw.svg
+system:
+  description:
+    value: '<p>Habilidad base 15%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Armas de proyectil)'
+  range:
+    normal:
+      value: '20'
+      damage: '1D4'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: null
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: true
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: true
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.dardo
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: sGkxiaxuRLX2AaPF
+name: 'Jabalina'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_spear.svg
+system:
+  description:
+    value: '<p>Habilidad base 25%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Armas arrojadizas)'
+  range:
+    normal:
+      value: '40'
+      damage: '1D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: true
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: true
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.jabalina
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: yrURrFhHSB7hCORX
+name: 'Arco largo'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_bow.svg
+system:
+  description:
+    value: '<p>Habilidad base 5%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Armas de proyectil)'
+  range:
+    normal:
+      value: '175'
+      damage: '2D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: 7
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: true
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: true
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.arco-largo
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: ISDRRP6470yiqWHM
+name: 'Piedra'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/fighting_throw.svg
+system:
+  description:
+    value: '<p>Habilidad base 15%. Arma arrojadiza: suma la <strong>mitad</strong> del MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Cuerpo a Cuerpo (Armas arrojadizas)'
+  range:
+    normal:
+      value: '10'
+      damage: '1D4'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: null
+  resistance: null
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: true
+    shotgun: false
+    dbrl: false
+    impl: true
+    parry: false
+    brst: false
+    auto: false
+    ahdb: true
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.piedra
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: JxdtTUJ2C14zXiEC
+name: '.22 Automática'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '10'
+      damage: '1D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '3'
+  ammo: 6
+  malfunction: 100
+  resistance: 6
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.22-automatica
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: nwMPOK2gA6EZ7j1b
+name: '.32 Automática'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '15'
+      damage: '1D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '3'
+  ammo: 8
+  malfunction: 99
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.32-automatica
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: pTa0z0Qd6J57IdFc
+name: '.32 Revólver'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '15'
+      damage: '1D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '3'
+  ammo: 6
+  malfunction: 100
+  resistance: 10
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.32-revolver
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: zE6jRzM5BR7jA9fL
+name: '.357 Revólver'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '18'
+      damage: '2D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 6
+  malfunction: 100
+  resistance: 11
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.357-revolver
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: HfQ2R0dP0mpmZv8k
+name: '.38 Automática'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '15'
+      damage: '1D10'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '2'
+  ammo: 6
+  malfunction: 99
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.38-automatica
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: SLYajbjkqUJmA130
+name: '.38 Revólver'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '15'
+      damage: '1D10'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '2'
+  ammo: 6
+  malfunction: 100
+  resistance: 10
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.38-revolver
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: U3iPWUaKC1FDVHiJ
+name: '9mm Automática'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '18'
+      damage: '1D10'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '3'
+  ammo: 17
+  malfunction: 98
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.9mm-automatica
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: mfOdqy15ougkyEms
+name: '.44 Revólver'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '28'
+      damage: '2D6+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 6
+  malfunction: 100
+  resistance: 12
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.44-revolver
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: J5AWmLwf6AqtyXMJ
+name: '.45 Automática'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '15'
+      damage: '1D10+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 7
+  malfunction: 100
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.45-automatica
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: ci7F3kemcuiNjFrL
+name: '.45 Revólver'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Cortas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Cortas)'
+  range:
+    normal:
+      value: '15'
+      damage: '1D10+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 6
+  malfunction: 100
+  resistance: 10
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.45-revolver
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: MlIkJ4IGZt0ern2g
+name: '.22 Bolt-action'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Largas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Largas)'
+  range:
+    normal:
+      value: '28'
+      damage: '1D6+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 6
+  malfunction: 99
+  resistance: 9
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.22-bolt-action
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: dqA1SFEFg1hittvV
+name: '.30-06 Bolt-action'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Largas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Largas)'
+  range:
+    normal:
+      value: '100'
+      damage: '2D6+4'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1/2'
+  ammo: 5
+  malfunction: 100
+  resistance: 12
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.30-06-bolt-action
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: I6uR5K6khehGRZbx
+name: '.30-06 Semiautomático'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Largas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Largas)'
+  range:
+    normal:
+      value: '115'
+      damage: '2D6+4'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '2'
+  ammo: 5
+  malfunction: 95
+  resistance: 12
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.30-06-semiautomatico
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: xna2kdHNAhuhHEdb
+name: 'AK-47'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Largas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Largas)'
+  range:
+    normal:
+      value: '80'
+      damage: '2D6+1'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '2'
+  ammo: 30
+  malfunction: 97
+  resistance: 12
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: true
+    auto: true
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.ak-47
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: yjY2EoBKNp1a8HLT
+name: 'Calibre 10, 2 cañones'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Largas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Largas)'
+  range:
+    normal:
+      value: '10'
+      damage: '4D6+2'
+    long:
+      value: '18'
+      damage: '2D6+1'
+    extreme:
+      value: '45'
+      damage: '1'
+  usesPerRound:
+    normal: '2'
+  ammo: 2
+  malfunction: 100
+  resistance: 12
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: true
+    dbrl: true
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.calibre-10-2-canones
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 8u7CPXk1sZSStWIG
+name: 'Calibre 12, 2 cañones'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Largas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Largas)'
+  range:
+    normal:
+      value: '10'
+      damage: '4D6'
+    long:
+      value: '20'
+      damage: '2D6'
+    extreme:
+      value: '45'
+      damage: '1D6'
+  usesPerRound:
+    normal: '2'
+  ammo: 2
+  malfunction: 100
+  resistance: 12
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: true
+    dbrl: true
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.calibre-12-2-canones
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: ChDKb3Hmwa39upRd
+name: 'Calibre 12 semiautomática'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armas Largas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armas Largas)'
+  range:
+    normal:
+      value: '10'
+      damage: '4D6'
+    long:
+      value: '20'
+      damage: '2D6'
+    extreme:
+      value: '45'
+      damage: '1D6'
+  usesPerRound:
+    normal: '2'
+  ammo: 5
+  malfunction: 100
+  resistance: 10
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: true
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.calibre-12-semiautomatica
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 9sIk0Ex5wQ9VNy1M
+name: 'Uzi 9mm'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_submachine_gun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: AA. Automáticas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (AA. Automáticas)'
+  range:
+    normal:
+      value: '35'
+      damage: '1D10'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '2'
+  ammo: 32
+  malfunction: 98
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: true
+    auto: true
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.uzi-9mm
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: cgeUylGcfImxpMgf
+name: 'Skorpion .32'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_submachine_gun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: AA. Automáticas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (AA. Automáticas)'
+  range:
+    normal:
+      value: '18'
+      damage: '1D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '3'
+  ammo: 20
+  malfunction: 96
+  resistance: 6
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: true
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.skorpion-32
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: Tvvvk4Rnma8sJcfW
+name: 'Thompson .45'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_submachine_gun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: AA. Automáticas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (AA. Automáticas)'
+  range:
+    normal:
+      value: '18'
+      damage: '1D10+2'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 30
+  malfunction: 96
+  resistance: 8
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: true
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.thompson-45
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: d8nlex2FWBrD99wL
+name: 'M249'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_machine_gun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armamento pesado. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armamento pesado)'
+  range:
+    normal:
+      value: '100'
+      damage: '2D8'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 100
+  malfunction: 96
+  resistance: 11
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: true
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: true
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.m249
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: AYwfChRWbNcAu4rj
+name: 'Bren Mark 1'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_machine_gun.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Armamento pesado. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Armamento pesado)'
+  range:
+    normal:
+      value: '100'
+      damage: '2D6+4'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 30
+  malfunction: 100
+  resistance: 11
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: true
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: true
+    blst: false
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.bren-mark-1
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: wCu1qupfK9hNrYA1
+name: 'Explosivos plásticos'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/demolitions.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Demoliciones. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Demoliciones)'
+  range:
+    normal:
+      value: ''
+      damage: '6D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: 99
+  resistance: 15
+  blastRadius: 6
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: true
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.explosivos-plasticos
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: kYbIWvlpCPe1PzKC
+name: 'Granada de mano'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/demolitions.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Lanzar. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Lanzar)'
+  range:
+    normal:
+      value: ''
+      damage: '4D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 0
+  malfunction: 99
+  resistance: 8
+  blastRadius: 4
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: true
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: true
+    stun: false
+    rare: false
+    burn: false
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.granada-de-mano
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: fDpNlyqRJKcOri87
+name: 'Lanzallamas'
+type: weapon
+img: systems/cthulhud100/assets/icons/skills/firearms_flamethrower.svg
+system:
+  description:
+    value: '<p>Especializaci&oacute;n: Lanzallamas. Las armas de fuego <strong>no</strong> suman el MD.</p>'
+  skill:
+    main:
+      name: 'Armas de Fuego (Lanzallamas)'
+  range:
+    normal:
+      value: '10'
+      damage: '2D6'
+    long:
+      value: ''
+      damage: ''
+    extreme:
+      value: ''
+      damage: ''
+  usesPerRound:
+    normal: '1'
+  ammo: 10
+  malfunction: 93
+  resistance: 6
+  blastRadius: null
+  properties:
+    rngd: true
+    mnvr: false
+    thrown: false
+    shotgun: false
+    dbrl: false
+    impl: false
+    parry: false
+    brst: false
+    auto: false
+    ahdb: false
+    addb: false
+    slnt: false
+    spcl: false
+    mont: false
+    blst: false
+    stun: false
+    rare: false
+    burn: true
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: i.weapon.lanzallamas
+      lang: es
+      eras:
+        standard: true
+      priority: 0
