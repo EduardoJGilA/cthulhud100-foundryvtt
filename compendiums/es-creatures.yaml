@@ -441,3 +441,226 @@ flags:
       eras:
         standard: true
       priority: 0
+---
+_id: hS72kxP81mLqR9z0
+name: 'Hombre serpiente [Serpent Person]'
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Mordisco / 35% / 1D8 + Veneno POT 14</li></ul><p><strong>Información:</strong> Antigua raza de reptiles humanoides eruditos y brujos.</p><p><strong>Referencias:</strong> The Nameless City, The Shadow Out of Time</p>'
+  leatherySkin: true
+  characteristics:
+    str:
+      formula: '3D6'
+    con:
+      formula: '3D6'
+    dex:
+      formula: '3D6+2'
+    siz:
+      formula: '3D6'
+    int:
+      formula: '4D6'
+    pow:
+      formula: '4D6'
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '1'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.hombre-serpiente
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: kM39qWv28xLpT1n4
+name: 'Shantak'
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Mordisco / 30% / 2D6</li><li>Garra / 30% / 1D6</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Enormes corceles alados que vuelan por el espacio cósmico.</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>'
+  leatherySkin: true
+  characteristics:
+    str:
+      formula: '6D6+12'
+    con:
+      formula: '3D6+6'
+    dex:
+      formula: '2D6+6'
+    siz:
+      formula: '6D6+18'
+    int:
+      formula: '2D6'
+    pow:
+      formula: '3D6'
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '9'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.shantak
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: qR85tYn94zKmL2p7
+name: 'Shoggoth'
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 1D6/1D20</p><ul><li>Aplastamiento / 100% / MD + 8D6</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego y armas físicas sufren <strong>daño mínimo (1 pt)</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Masa protoplasmática negra de ojos móviles y pseudópodos.</p><p><strong>Referencias:</strong> At the Mountains of Madness, The Shadow Out of Time</p>'
+  leatherySkin: true
+  characteristics:
+    str:
+      formula: '18D6'
+    con:
+      formula: '12D6'
+    dex:
+      formula: '3D6'
+    siz:
+      formula: '24D6'
+    int:
+      formula: '2D6'
+    pow:
+      formula: '3D6+3'
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '0'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.shoggoth
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: xN14vB583mLpQ7w9
+name: 'Color surgido del espacio [Colour Out of Space]'
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D4</p><ul><li>Drenar / 86% / Drena 1D6 CON y POD</li></ul><p><strong>Incorpóreo.</strong> Inmune a todas las armas físicas normales.</p><p><strong>Información:</strong> Entidad alienígena de color iridiscente e indescriprible.</p><p><strong>Referencias:</strong> The Colour Out of Space</p>'
+  leatherySkin: false
+  characteristics:
+    str:
+      formula: '0'
+    con:
+      formula: '6D6'
+    dex:
+      formula: '3D6+6'
+    siz:
+      formula: '6D6'
+    int:
+      formula: '4D6'
+    pow:
+      formula: '6D6'
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '0'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.color-espacio
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: wL92kP475mRzS3x1
+name: 'Profundo [Deep One]'
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Garra / 25% / 1D6 + MD</li><li>Tridente / 25% / 1D8 + MD</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Anfibios antropomórficos inmortales al servicio de Dagon y Cthulhu.</p><p><strong>Referencias:</strong> The Shadow Over Innsmouth</p>'
+  leatherySkin: true
+  characteristics:
+    str:
+      formula: '4D6'
+    con:
+      formula: '3D6+3'
+    dex:
+      formula: '3D6'
+    siz:
+      formula: '3D6+3'
+    int:
+      formula: '3D6'
+    pow:
+      formula: '3D6'
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '1'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.profundo
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: zP41mL982xQkR7n3
+name: 'Perro de Tíndalos [Hound of Tindalos]'
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D8</p><ul><li>Lengua / 90% / Drena 1D6 POD</li><li>Zarpazo / 30% / 1D6 + MD</li></ul><p><strong>Inmaterial.</strong> Solo le afectan armas mágicas o de fuego directo con daño reducido.</p><p><strong>Información:</strong> Depredadores del tiempo que emergen a través de ángulos agudos.</p><p><strong>Referencias:</strong> The Hounds of Tindalos (Frank Belknap Long)</p>'
+  leatherySkin: false
+  characteristics:
+    str:
+      formula: '3D6+6'
+    con:
+      formula: '3D6+6'
+    dex:
+      formula: '3D6+6'
+    siz:
+      formula: '3D6'
+    int:
+      formula: '5D6'
+    pow:
+      formula: '7D6'
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '2'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.perro-tindalos
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+

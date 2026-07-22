@@ -817,9 +817,7 @@ distintos, así que no se pierde ningún documento.
       las armas de fuego hacen daño mínimo y no doblan por empalar
 - [x] Compendio de criaturas: **12 perfiles** en `packs/es-creatures`, 8 con piel
       correosa, todos sin CAR ni EST como manda el manual
-- [ ] Faltan las criaturas restantes del cap. 9 (Hombre serpiente, Shantak, Shoggoth,
-      Color surgido del espacio, Profundo, Perro de Tíndalos…). Sus perfiles cruzan el
-      maquetado a dos columnas y hay que transcribirlos con cuidado, no en bloque.
+- [x] Compendio de criaturas completo: **18 perfiles** en `packs/es-creatures` (Antiguo, Araña de Leng, Bestia de la luna, Biyaqui, Dagon e Hydra, Descarnado nocturno, Dol, Errante dimensional, Gast, Gran Raza de Yith, Gug, Gul, Hombre serpiente, Shantak, Shoggoth, Color surgido del espacio, Profundo y Perro de Tíndalos)
 - [x] **Aplicar** la piel correosa en el cálculo de daño: `chat-damage.js` la consulta y evita doblar por empalamiento en armas de fuego
 
 > **Errata del manual detectada.** El perfil del Errante dimensional imprime su
