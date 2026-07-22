@@ -5,7 +5,7 @@
   </div>
 {{/if}}
 {{#each rollActors as |rollActor actorUuid|}}
-  {{~> 'systems/CoC7/templates/chat/parts/roll-container.hbs' rollActor=rollActor actorUuid=actorUuid}}
+  {{~> 'systems/cthulhud100/templates/chat/parts/roll-container.hbs' rollActor=rollActor actorUuid=actorUuid}}
 {{/each}}
 
 {{#if (and stillToRoll (not allRollsCompleted))}}

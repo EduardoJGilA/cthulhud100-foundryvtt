@@ -46,7 +46,7 @@ system:
     ahdb: true
   malfunction: 97
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.bow
       lang: en
@@ -67,7 +67,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.brass-knuckles
       lang: en
@@ -89,7 +89,7 @@ system:
     rngd: true
     ahdb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.bullwhip
       lang: en
@@ -110,7 +110,7 @@ system:
     rngd: false
     burn: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.burning-torch
       lang: en
@@ -131,7 +131,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.blackjack
       lang: en
@@ -152,7 +152,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.club-large
       lang: en
@@ -173,7 +173,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.club-small
       lang: en
@@ -199,7 +199,7 @@ system:
     ahdb: true
   malfunction: 96
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.crossbow
       lang: en
@@ -220,7 +220,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.garrote
       lang: en
@@ -241,7 +241,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.hatchet-sickle
       lang: en
@@ -262,7 +262,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.knife-large
       lang: en
@@ -283,7 +283,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.knife-medium
       lang: en
@@ -304,7 +304,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.knife-small
       lang: en
@@ -325,7 +325,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.nunchaku
       lang: en
@@ -347,7 +347,7 @@ system:
     rngd: true
     ahdb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.rock-thrown
       lang: en
@@ -372,7 +372,7 @@ system:
     normal: 2
   malfunction: 97
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.shuriken
       lang: en
@@ -392,7 +392,7 @@ system:
   properties:
     rngd: false
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.spear
       lang: en
@@ -414,7 +414,7 @@ system:
     rngd: true
     ahdb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.shuriken
       lang: en
@@ -440,7 +440,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.22-short-automatic
       lang: en
@@ -466,7 +466,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.25-derringer-1b
       lang: en
@@ -492,7 +492,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.32-or-7-65mm-revolver
       lang: en
@@ -518,7 +518,7 @@ system:
     rngd: true
   malfunction: 99
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.32-or-7-65mm-automatic
       lang: en
@@ -544,7 +544,7 @@ system:
     rngd: true
   malfunction: 99
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.model-p08-luger
       lang: en
@@ -570,7 +570,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.45-revolver
       lang: en
@@ -596,7 +596,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.45-automatic
       lang: en
@@ -622,7 +622,7 @@ system:
     rngd: true
   malfunction: 99
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.22-bolt-action-rifle
       lang: en
@@ -648,7 +648,7 @@ system:
     rngd: true
   malfunction: 98
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.30-lever-action-carbine
       lang: en
@@ -674,7 +674,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.45-martini-henry-rifle
       lang: en
@@ -700,7 +700,7 @@ system:
     rngd: true
   malfunction: 88
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.col-moran-s-air-rifle
       lang: en
@@ -726,7 +726,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.303-lee-enfield
       lang: en
@@ -752,7 +752,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.30-06-bolt-action-rifle
       lang: en
@@ -778,7 +778,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.elephant-gun-2b
       lang: en
@@ -811,7 +811,7 @@ system:
     shotgun: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.20-gauge-shotgun-2b
       lang: en
@@ -844,7 +844,7 @@ system:
     shotgun: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.16-gauge-shotgun-2b
       lang: en
@@ -877,7 +877,7 @@ system:
     shotgun: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.12-gauge-shotgun-2b
       lang: en
@@ -910,7 +910,7 @@ system:
     shotgun: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.12-gauge-shotgun-semi-auto
       lang: en
@@ -940,7 +940,7 @@ system:
     shotgun: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.12-gauge-shotgun-2b-sawed-off
       lang: en
@@ -966,7 +966,7 @@ system:
     rngd: true
   malfunction: 96
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.bergmann-mp181-mp2811
       lang: en
@@ -992,7 +992,7 @@ system:
     rngd: true
   malfunction: 96
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.thompson
       lang: en
@@ -1018,7 +1018,7 @@ system:
     rngd: true
   malfunction: 100
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.browning-auto-rifle-m1918
       lang: en
@@ -1044,7 +1044,7 @@ system:
     rngd: true
   malfunction: 96
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.30-browning-m1917a1
       lang: en
@@ -1070,7 +1070,7 @@ system:
     rngd: true
   malfunction: 96
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.bren-gun
       lang: en
@@ -1096,7 +1096,7 @@ system:
     rngd: true
   malfunction: 96
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.mark-i-lewis-gun
       lang: en
@@ -1122,7 +1122,7 @@ system:
     rngd: true
   malfunction: 99
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.vickers-303
       lang: en

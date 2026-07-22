@@ -342,8 +342,8 @@ _Exemple_: Utilisation d'une Note de carte, de deux Tuiles et de deux Régions d
 Les images des tuiles sont disponibles aux chemins suivants:
 
 ```
-systems/CoC7/assets/art/eye-red.svg
-systems/CoC7/assets/art/eye-green.svg
+systems/cthulhud100/assets/art/eye-red.svg
+systems/cthulhud100/assets/art/eye-green.svg
 ```
 
 #### CCI: Ouvrir un document
@@ -374,8 +374,8 @@ Exemple: Utilisation de trois Tuiles et de trois Régions de scène.
 Les images des tuiles sont disponibles aux chemins suivants:
 
 ```
-systems/CoC7/assets/art/eye-red.svg
-systems/CoC7/assets/art/eye-green.svg
+systems/cthulhud100/assets/art/eye-red.svg
+systems/cthulhud100/assets/art/eye-green.svg
 ```
 
 #### CCI: Changer de scène

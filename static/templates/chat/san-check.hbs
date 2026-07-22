@@ -21,7 +21,7 @@
   {{#if sanRolled}}
     <div class="coc7-chat-description">{{localize 'CoC7.SanityCheckPerformed'}}</div>
     {{#if diceGroup}}
-      {{~> 'systems/CoC7/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true}}
+      {{~> 'systems/cthulhud100/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true}}
     {{/if}}
     {{#if involuntaryActionPerformed}}
       {{#unless sanCheckPassed}}
@@ -53,11 +53,11 @@
           {{#if intRolled}}
             {{#if memoryRepressed}}
               <div class="coc7-chat-description">{{localize 'CoC7.MemoryRepressed'}}</div>
-              {{~> 'systems/CoC7/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true flavor='' diceGroup=intDiceGroup bonusDice=intBonusDice bonusType=intBonusType buttons=[]}}
+              {{~> 'systems/cthulhud100/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true flavor='' diceGroup=intDiceGroup bonusDice=intBonusDice bonusType=intBonusType buttons=[]}}
             {{/if}}
             {{#if temporaryInsane}}
               <div class="coc7-chat-description">{{localize 'CoC7.RememberEverything'}}</div>
-              {{~> 'systems/CoC7/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true flavor='' diceGroup=intDiceGroup bonusDice=intBonusDice bonusType=intBonusType buttons=[]}}
+              {{~> 'systems/cthulhud100/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true flavor='' diceGroup=intDiceGroup bonusDice=intBonusDice bonusType=intBonusType buttons=[]}}
             {{/if}}
             {{#if hasInsanity}}
               {{#unless boutOfMadnessOver}}

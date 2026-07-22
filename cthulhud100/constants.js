@@ -1,5 +1,7 @@
 /* global CONFIG game */
-export const FOLDER_ID = 'CoC7'
+// Package id. Must match "id" in static/system.json: Foundry validates it as the
+// scope for game settings and document flags.
+export const FOLDER_ID = 'cthulhud100'
 
 export const ERAS = {
   standard: {

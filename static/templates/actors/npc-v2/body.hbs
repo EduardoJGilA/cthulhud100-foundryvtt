@@ -236,7 +236,7 @@
       {{/unless}}
     </div>
     <div class="tab-group-tab html-element-toggled{{#unless document.system.flags.panelSkills}} html-element-hidden{{/unless}}">
-      {{> 'systems/CoC7/templates/actors/npc-v2/tab/skills.hbs'}}
+      {{> 'systems/cthulhud100/templates/actors/npc-v2/tab/skills.hbs'}}
     </div>
   </div>
   <div class="tab-group flexcol" data-panel="Combat" {{#if document.system.flags.panelCombat}} data-html-element-toggled="on" {{/if}}>
@@ -258,7 +258,7 @@
         <div class="attacks-per-round{{#if attacksRollable}} rollable{{/if}}">{{localize 'CoC7.AttacksPerRound'}}:</div>
         <input class="detail-value{{#if special.attacksPerRound.activeEffectValue}} modified-by-active-effect{{/if}}" style="flex: 0 0 4rem;" type="text" {{#if special.attacksPerRound.activeEffectValue}}{{#if @root.document.system.flags.locked}} value="{{special.attacksPerRound.value}}" data-tooltip="CoC7.ModifiedByActiveEffect" readonly{{else}} name="system.special.attacksPerRound" value="{{special.attacksPerRound.sourceValue}}" {{/if}}{{else}} name="system.special.attacksPerRound" value="{{special.attacksPerRound.value}}" {{#if @root.document.system.flags.locked}} readonly {{/if}}{{/if}}>
       </div>
-      {{> 'systems/CoC7/templates/actors/npc-v2/tab/combat.hbs'}}
+      {{> 'systems/cthulhud100/templates/actors/npc-v2/tab/combat.hbs'}}
     </div>
   </div>
   {{#if hasLuckAbilities}}
@@ -284,7 +284,7 @@
         <div class="tab-group-title">{{localize 'CoC7.Inventory'}}</div>
       </div>
       <div class="tab-group-tab html-element-toggled{{#unless document.system.flags.panelInventory}} html-element-hidden{{/unless}}">
-        {{> 'systems/CoC7/templates/actors/npc-v2/tab/inventory-items.hbs'}}
+        {{> 'systems/cthulhud100/templates/actors/npc-v2/tab/inventory-items.hbs'}}
       </div>
     </div>
   {{/if}}
@@ -320,7 +320,7 @@
       <div class="tab-group-title">{{localize 'CoC7.Effects'}} <i class="game-icon game-icon-aura"></i></div>
     </div>
     <div class="tab-group-tab html-element-toggled{{#unless document.system.flags.panelEffects}} html-element-hidden{{/unless}}">
-      {{> 'systems/CoC7/templates/common/active-effects.hbs'}}
+      {{> 'systems/cthulhud100/templates/common/active-effects.hbs'}}
     </div>
   </div>
   {{#if isKeeper}}

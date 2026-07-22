@@ -32,7 +32,7 @@ export default class CoC7Combat {
         const combatantControls = element.querySelector('.combatant-controls')
         const combatant = context.combat.combatants.get(combatantId)
         const theButton = newButton.cloneNode(true)
-        if (combatant.getFlag('CoC7', 'hasGun')) {
+        if (combatant.getFlag(FOLDER_ID, 'hasGun')) {
           theButton.setAttribute('title', game.i18n.localize('CoC7.PutGunAway'))
           theButton.classList.add('active')
         } else {
@@ -92,15 +92,15 @@ export default class CoC7Combat {
     const li = btn.closest('.combatant')
     const combatant = await game.combat.combatants.get(li.dataset.combatantId)
     if (combatant.actor.isOwner) {
-      if (combatant.getFlag('CoC7', 'hasGun')) {
-        await combatant.setFlag('CoC7', 'hasGun', false)
+      if (combatant.getFlag(FOLDER_ID, 'hasGun')) {
+        await combatant.setFlag(FOLDER_ID, 'hasGun', false)
       } else {
-        await combatant.setFlag('CoC7', 'hasGun', true)
+        await combatant.setFlag(FOLDER_ID, 'hasGun', true)
       }
     }
 
-    const newInit = await combatant.actor.rollInitiative(!!combatant.getFlag('CoC7', 'hasGun'))
-    if (combatant.getFlag('CoC7', 'hasGun')) {
+    const newInit = await combatant.actor.rollInitiative(!!combatant.getFlag(FOLDER_ID, 'hasGun'))
+    if (combatant.getFlag(FOLDER_ID, 'hasGun')) {
       if (combatant.initiative < newInit) {
         game.combat.setInitiative(combatant.id, newInit)
       }
@@ -132,7 +132,7 @@ export default class CoC7Combat {
       }
 
       // Produce an initiative roll for the Combatant
-      const roll = await combatant.actor.rollInitiative(!!combatant.getFlag('CoC7', 'hasGun'))
+      const roll = await combatant.actor.rollInitiative(!!combatant.getFlag(FOLDER_ID, 'hasGun'))
       updates.push({ _id: id, initiative: roll })
     }
     if (!updates.length) return this

@@ -16,7 +16,7 @@ Un sistema de juego para Foundry VTT que implementa **Cthulhu d100** (Three Four
 Games, 2011), un reglamento español de los Mitos de Cthulhu basado en GORE/OGL.
 
 La especificación funcional completa del reglamento está en
-[`docs/reglas-cthulhu-d100.md`](./reglas-cthulhu-d100.md). **Ese documento es la fuente de
+[`dev-docs/reglas-cthulhu-d100.md`](./reglas-cthulhu-d100.md). **Ese documento es la fuente de
 verdad para toda decisión de reglas.** Fue extraído del PDF original y contiene todas las
 tablas, fórmulas y mecánicas. Si una regla no está ahí, hay que volver al PDF (52 páginas,
 faltan por extraer los capítulos 9 "Criaturas" pp. 38-43 y 10 "Tomos arcanos" pp. 44-45).
@@ -52,7 +52,7 @@ Portarlo cuesta más que forkear upstream y perder las mejoras de 6 años.
    trabajo derivado debe distribuirse bajo GPL-3. Relicenciar a MIT sería relicenciar
    código ajeno sin permiso de sus autores.
 2. **No negar el uso de Cthulhu d100.** El proyecto *es* una implementación de ese
-   reglamento y `docs/reglas-cthulhu-d100.md` contiene sus tablas. El PDF autoriza
+   reglamento y `dev-docs/reglas-cthulhu-d100.md` contiene sus tablas. El PDF autoriza
    expresamente crear material derivado: *"Puede crearse material adicional utilizando el
    reglamento aquí presentado siempre que se haga referencia a la fuente original y que no
    se realice con afán de lucro."* Las reglas base son OGL (derivadas de GORE). Lo correcto
@@ -104,7 +104,7 @@ Build: `npm install` → `npm run build` (webpack, modo producción) o `npm run 
 
 ### Divergencias clave CoC7 → Cthulhu d100
 
-Esta tabla resume dónde duele. Detalle completo en `docs/reglas-cthulhu-d100.md`.
+Esta tabla resume dónde duele. Detalle completo en `dev-docs/reglas-cthulhu-d100.md`.
 
 | Área | CoC7 | Cthulhu d100 | Punto de ataque |
 |---|---|---|---|
@@ -159,7 +159,7 @@ consola del navegador.
 - [ ] `static/system.json`: `id` de `CoC7` → `cthulhud100`
 - [ ] `static/system.json`: `title` → `Cthulhu d100`, `description`, `version` → `0.1.0`,
       `authors`, `url`, `manifest`, `download` apuntando a `EduardoJGilA/cthulhud100-foundryvtt`
-- [ ] Buscar y sustituir la ruta `systems/CoC7/` → `systems/cthulhud100/` en todo el árbol
+- [ ] Buscar y sustituir la ruta `systems/cthulhud100/` → `systems/cthulhud100/` en todo el árbol
       (`grep -rl "systems/CoC7"` — afecta a `.hbs`, `.less`, `.yaml` y `.js`)
 - [ ] Decidir y documentar aquí si el *namespace* JS `CoC7` interno se renombra o se
       mantiene. **Recomendación: mantenerlo** en F0 para no romper 194 archivos; renombrar
@@ -199,7 +199,7 @@ Sustituye la petición original de licencia MIT, que es inviable (ver §0, Nota 
       - estado del proyecto y matriz de compatibilidad con Foundry
       - instalación (URL del manifiesto)
       - resumen de funcionalidades por fase
-      - enlace a `README.es.md` y a `docs/reglas-cthulhu-d100.md`
+      - enlace a `README.es.md` y a `dev-docs/reglas-cthulhu-d100.md`
       - sección **"⚖️ Legal Disclaimer / Aviso Legal"** bilingüe EN/ES
 - [ ] `README.es.md` en **español**, mismo contenido
 - [ ] Texto del disclaimer, corregido respecto al borrador original:
@@ -261,7 +261,7 @@ y Pifia con `96-00`.
 - [ ] Inconsciencia con 1-2 PV; recupera consciencia con ≥3
 
 ### F1.4 — Modificador al Daño
-- [ ] Implementar la tabla de 19 tramos por `FUE+TAM` (`docs/reglas-cthulhu-d100.md` §2)
+- [ ] Implementar la tabla de 19 tramos por `FUE+TAM` (`dev-docs/reglas-cthulhu-d100.md` §2)
 - [ ] Aplicación diferenciada: cuerpo a cuerpo/desarmado → MD completo;
       arrojadizas → **mitad**; armas de fuego → **no se aplica**
 
@@ -286,7 +286,7 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
 
 ### F2.1 — Compendio de habilidades
 - [ ] Borrar `compendiums/en-skills.yaml` y crear `compendiums/es-habilidades.yaml`
-      (+ traducciones) con las 5 categorías de `docs/reglas-cthulhu-d100.md` §5:
+      (+ traducciones) con las 5 categorías de `dev-docs/reglas-cthulhu-d100.md` §5:
       Conocimientos, Vocacionales, Sensoriales, Sociales, De acción
 - [ ] Respetar el formato de upstream: `_id`, `name`, `type: skill`, `img`, `system.base`,
       `system.properties`, `flags.<id>.cocidFlag`
@@ -477,7 +477,7 @@ ApplicationV1 y refleja las dos fichas del PDF (pp. 49-50, "clásica" y "alterna
 ## Pendientes transversales
 
 - [ ] Extraer del PDF el cap. 9 "Criaturas de los Mitos" (pp. 38-43) y añadirlo a
-      `docs/reglas-cthulhu-d100.md`; luego crear el compendio de criaturas
+      `dev-docs/reglas-cthulhu-d100.md`; luego crear el compendio de criaturas
 - [ ] Extraer del PDF el cap. 10 "Tomos arcanos" (pp. 44-45): mecánica de hojear y estudiar
 - [ ] Decidir si se conserva el sistema de **eras** (`cocidFlag.eras`) de upstream o se elimina
 - [ ] Decidir qué hacer con las funcionalidades de upstream ajenas a d100:

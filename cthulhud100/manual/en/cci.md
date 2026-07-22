@@ -51,7 +51,7 @@ This is designed to make a toggle for player Map Note visibility and requires tw
 ![](../../../static/assets/manual/cci/map_note_toggle_token.webp)
 Using a Map Note, two Tiles, and two Scene Regions
 
-The tile images are available on these paths systems/CoC7/assets/art/eye-red.svg and systems/CoC7/assets/art/eye-green.svg
+The tile images are available on these paths systems/cthulhud100/assets/art/eye-red.svg and systems/cthulhud100/assets/art/eye-green.svg
 
 ![](../../../static/assets/manual/cci/map_note_toggle_region.webp)
 Viewing the Scene Region layer
@@ -109,7 +109,7 @@ This is designed to be used with CCI Open Document (above) to show and hide a Ti
 ![](../../../static/assets/manual/cci/tile_toggle_token.webp)
 Using a three Tiles and three Scene Regions
 
-The tile images are available on these paths systems/CoC7/assets/art/eye-red.svg and systems/CoC7/assets/art/eye-green.svg
+The tile images are available on these paths systems/cthulhud100/assets/art/eye-red.svg and systems/cthulhud100/assets/art/eye-green.svg
 
 ![](../../../static/assets/manual/cci/tile_toggle_region.webp)
 Viewing the Scene Region layer

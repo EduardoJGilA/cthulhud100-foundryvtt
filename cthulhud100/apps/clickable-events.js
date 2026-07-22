@@ -1,4 +1,5 @@
 /* global canvas CONFIG CONST DocumentSheetConfig foundry fromUuid game NotesLayer RegionBehavior TokenLayer */
+import { FOLDER_ID } from '../constants.js'
 import ChaosiumCanvasInterfaceAmbientLightToggle from './chaosium-canvas-interface-ambient-light-toggle.js'
 import ChaosiumCanvasInterfaceDrawingToggle from './chaosium-canvas-interface-drawing-toggle.js'
 import ChaosiumCanvasInterfaceMapPinToggle from './chaosium-canvas-interface-map-pin-toggle.js'
@@ -82,7 +83,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
     /* // FoundryVTT V12 */
     ;(foundry.applications.apps?.DocumentSheetConfig ?? DocumentSheetConfig).registerSheet(
       RegionBehavior,
-      'CoC7',
+      FOLDER_ID,
       foundry.applications.sheets.RegionBehaviorConfig,
       {
         types,
@@ -354,9 +355,9 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
     for (const docUuid of noteUuids) {
       const doc = await fromUuid(docUuid)
       if (doc) {
-        let texture = 'systems/CoC7/assets/art/map-pin.svg'
+        let texture = 'systems/cthulhud100/assets/art/map-pin.svg'
         if (!toggle) {
-          texture = 'systems/CoC7/assets/art/map-pin-dark.svg'
+          texture = 'systems/cthulhud100/assets/art/map-pin-dark.svg'
         }
         await doc.update({ 'texture.src': texture })
       } else {

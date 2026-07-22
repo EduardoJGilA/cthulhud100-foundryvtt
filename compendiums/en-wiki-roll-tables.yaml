@@ -32,7 +32,7 @@ results:
     name: 'Mania'
     description: 'The investigator gains a new mania, such as ablutomania (compulsion for washing oneself), pseudomania (irrational compulsion for lying), or helminthomania (an excessive liking for worms). The investigator seeks to indulge in this new mania for the next [[/r 1D10]] rounds, and all actions suffer a penalty die while the bout continues.'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: rt..bouts-of-madness-table-realtime
       lang: en

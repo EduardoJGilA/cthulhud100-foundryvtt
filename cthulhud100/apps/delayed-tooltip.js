@@ -1,4 +1,5 @@
 /* global foundry game */
+import { FOLDER_ID } from '../constants.js'
 
 export default class CoC7DelayedTooltip {
   /**
@@ -16,7 +17,7 @@ export default class CoC7DelayedTooltip {
       if (typeof element.dataset.generatedTooltip === 'string' && element.dataset.generatedTooltip.length === 0) {
         return
       }
-      const delay = parseInt(game.settings.get('CoC7', 'toolTipDelay'))
+      const delay = parseInt(game.settings.get(FOLDER_ID, 'toolTipDelay'))
       if (delay > 0) {
         // A different tooltip is currently shown
         showExpanded = true

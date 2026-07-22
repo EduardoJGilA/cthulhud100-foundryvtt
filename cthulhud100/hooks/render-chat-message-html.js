@@ -19,7 +19,7 @@ import CoC7Utilities from '../apps/utilities.js'
  * @param {ApplicationRenderContext} context
  */
 export default async function (message, html, context) {
-  const trustedViewer = (game.user.isTrusted && game.settings.get('CoC7', 'trustedCanSeeChatCard'))
+  const trustedViewer = (game.user.isTrusted && game.settings.get(FOLDER_ID, 'trustedCanSeeChatCard'))
   if (game.user.isGM || trustedViewer) {
     if (!game.user.isGM) {
       html.querySelectorAll('.keeper-only-block button').forEach((element) => { element.disabled = true })
@@ -29,7 +29,7 @@ export default async function (message, html, context) {
   } else {
     html.querySelectorAll('.keeper-only-block').forEach((element) => element.remove())
   }
-  const trustedModifier = (game.user.isTrusted && game.settings.get('CoC7', 'trustedCanModfyChatCard'))
+  const trustedModifier = (game.user.isTrusted && game.settings.get(FOLDER_ID, 'trustedCanModfyChatCard'))
   if (!game.user.isGM && !trustedModifier) {
     html.querySelectorAll('.keeper-only-control').forEach((element) => { element.disabled = true })
   }

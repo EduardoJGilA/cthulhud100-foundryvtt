@@ -290,7 +290,7 @@ export default class CoC7Updater {
       const image = String(document.effects.contents[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
       if (image) {
         CoC7Updater.mergeEmbeddedDocuments(document.effects.contents[offset], documentUpdates, 'ActiveEffect', packId, document.uuid, {
-          img: 'systems/CoC7/assets/icons/' + image[1]
+          img: 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
     }
@@ -349,7 +349,7 @@ export default class CoC7Updater {
     const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
     if (image) {
       CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
-        img: 'systems/CoC7/assets/icons/' + image[1]
+        img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
     switch (document.type) {
@@ -365,7 +365,7 @@ export default class CoC7Updater {
             }
             const image = String(document.system.itemDocuments[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
             if (image) {
-              document.system.itemDocuments[offset].img = 'systems/CoC7/assets/icons/' + image[1]
+              document.system.itemDocuments[offset].img = 'systems/cthulhud100/assets/icons/' + image[1]
               changed = true
             }
             document.system.itemDocuments[offset] = JSON.stringify(document.system.itemDocuments[offset])
@@ -389,7 +389,7 @@ export default class CoC7Updater {
               }
               const image = String(document.system.groups[offset2].itemDocuments[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
               if (image) {
-                document.system.groups[offset2].itemDocuments[offset].img = 'systems/CoC7/assets/icons/' + image[1]
+                document.system.groups[offset2].itemDocuments[offset].img = 'systems/cthulhud100/assets/icons/' + image[1]
                 changed = true
               }
               document.system.groups[offset2].itemDocuments[offset] = JSON.stringify(document.system.groups[offset2].itemDocuments[offset])
@@ -773,14 +773,14 @@ export default class CoC7Updater {
     const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
     if (image) {
       CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
-        img: 'systems/CoC7/assets/icons/' + image[1]
+        img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
     if (typeof document.prototypeToken?.texture?.src !== 'undefined') {
       const image = String(document.prototypeToken.texture.src).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
       if (image) {
         CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
-          'prototypeToken.texture.src': 'systems/CoC7/assets/icons/' + image[1]
+          'prototypeToken.texture.src': 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
     }
@@ -788,7 +788,7 @@ export default class CoC7Updater {
       const image = String(document.effects.contents[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
       if (image) {
         CoC7Updater.mergeEmbeddedDocuments(document.effects.contents[offset], documentUpdates, 'ActiveEffect', packId, document.uuid, {
-          img: 'systems/CoC7/assets/icons/' + image[1]
+          img: 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
     }
@@ -949,7 +949,7 @@ export default class CoC7Updater {
     const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
     if (image) {
       CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Macro', packId, parentUuid, {
-        img: 'systems/CoC7/assets/icons/' + image[1]
+        img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
   }
@@ -966,14 +966,14 @@ export default class CoC7Updater {
     const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
     if (image) {
       CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'RollTable', packId, parentUuid, {
-        img: 'systems/CoC7/assets/icons/' + image[1]
+        img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
     for (const offset in document.results.contents ?? []) {
       const image = String(document.results.contents[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
       if (image) {
         CoC7Updater.mergeEmbeddedDocuments(document.results.contents[offset], documentUpdates, 'TableResult', packId, document.uuid, {
-          img: 'systems/CoC7/assets/icons/' + image[1]
+          img: 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
     }
@@ -991,7 +991,7 @@ export default class CoC7Updater {
     const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
     if (image) {
       CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Token', packId, parentUuid, {
-        img: 'systems/CoC7/assets/icons/' + image[1]
+        img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
   }

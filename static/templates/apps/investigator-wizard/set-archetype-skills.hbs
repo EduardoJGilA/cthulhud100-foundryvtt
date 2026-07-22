@@ -5,7 +5,7 @@
     <div class="skills flexcol">
       {{#each skillItems as |skill|}}
         {{#if (eq skill.group 'default')}}
-          {{> 'systems/CoC7/templates/apps/investigator-wizard/toggle-skill.hbs' skill=skill toggleKey='archetypeToggle'}}
+          {{> 'systems/cthulhud100/templates/apps/investigator-wizard/toggle-skill.hbs' skill=skill toggleKey='archetypeToggle'}}
         {{/if}}
       {{/each}}
     </div>
@@ -14,7 +14,7 @@
     <div class="skills flexcol">
       {{#each skillItems as |skill|}}
         {{#if (eq skill.group 'other')}}
-          {{> 'systems/CoC7/templates/apps/investigator-wizard/toggle-skill.hbs' skill=skill toggleKey='archetypeToggle'}}
+          {{> 'systems/cthulhud100/templates/apps/investigator-wizard/toggle-skill.hbs' skill=skill toggleKey='archetypeToggle'}}
         {{/if}}
       {{/each}}
     </div>

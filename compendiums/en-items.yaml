@@ -61,7 +61,7 @@ system:
    - Treasured Possessions
    - Traits
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.setup.s-setup
       lang: en
@@ -94,7 +94,7 @@ system:
    - i.skill.psychology
    - i.skill.spot-hidden
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.archetype.peacemaker
       lang: en
@@ -118,7 +118,7 @@ system:
     rngd: true
     slnt: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.example-death-ray-prototype
       lang: en
@@ -149,7 +149,7 @@ system:
     brst: true
     spcl: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.example-experimental-weapon
       lang: en
@@ -193,7 +193,7 @@ system:
       - i.skill.sleight-of-hand
   personal: 0
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.occupation.street-vendor
       lang: en
@@ -202,7 +202,7 @@ flags:
 _id: 3elxAwnv7WCUNwng
 name: Punch
 type: weapon
-img: systems/CoC7/assets/icons/skills/fighting_brawl.svg
+img: systems/cthulhud100/assets/icons/skills/fighting_brawl.svg
 system:
   skill:
     main:
@@ -218,7 +218,7 @@ system:
     rngd: false
     addb: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.weapon.brawl
       lang: en
@@ -233,7 +233,7 @@ system:
   type:
     physical: true
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.talent.example-talent
       lang: en
@@ -242,7 +242,7 @@ flags:
 _id: 4Rrff1sAoWh7NFkL
 name: Test Spell
 type: spell
-img: systems/CoC7/assets/icons/pentagram-rose.svg
+img: systems/cthulhud100/assets/icons/pentagram-rose.svg
 system:
   castingTime: 10 - 15 minutes
   costList:
@@ -303,7 +303,7 @@ system:
     gate: false
     summon: false
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: i.spell.test-spell
       lang: en

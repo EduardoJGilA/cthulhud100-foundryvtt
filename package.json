@@ -1,11 +1,11 @@
 {
-  "name": "fvtt-coc7",
-  "version": "2.0.0",
-  "description": "An implementation of the Call of Cthulhu 7th Edition game system for Foundry Virtual Tabletop.",
+  "name": "fvtt-cthulhud100",
+  "version": "0.1.0",
+  "description": "An unofficial, independent implementation of the Cthulhu d100 rules (Three Fourteen Games, 2011) for Foundry Virtual Tabletop.",
   "scripts": {
     "build": "webpack --mode production",
     "compendiums-build": "node scripts/compendiums-build.js",
-    "eslint": "eslint coc7/ scripts/",
+    "eslint": "eslint cthulhud100/ scripts/",
     "game-icons-build": "node scripts/game-icons-build.js",
     "init": "node scripts/init.js",
     "manuals-build": "node scripts/manuals-build.js",
@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT.git"
+    "url": "git+https://github.com/EduardoJGilA/cthulhud100-foundryvtt.git"
   },
   "keywords": [],
-  "author": "Miskatonic Investigative Society",
+  "author": "EduardoJGilA",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/issues"
+    "url": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt/issues"
   },
-  "homepage": "https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT#readme",
+  "homepage": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt#readme",
   "type": "module",
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.10.0",
@@ -39,6 +39,7 @@
     "mini-css-extract-plugin": "^2.0.0",
     "node-fetch": "^3.0.0",
     "remarkable": "^2.0.0",
+    "terser-webpack-plugin": "^5.6.1",
     "thread-loader": "^4.0.0",
     "webpack-cli": "^7.0.0",
     "webpackbar": "^7.0.0"

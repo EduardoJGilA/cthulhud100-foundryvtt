@@ -49,9 +49,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       case 'container':
         return 'icons/svg/chest.svg'
       case 'creature':
-        return 'systems/CoC7/assets/icons/floating-tentacles.svg'
+        return 'systems/cthulhud100/assets/icons/floating-tentacles.svg'
       case 'npc':
-        return 'systems/CoC7/assets/icons/cultist.svg'
+        return 'systems/cthulhud100/assets/icons/cultist.svg'
     }
   }
 
@@ -4179,7 +4179,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       was: 'actor.mythosHardened',
       until: 15
     })
-    return this.getFlag('CoC7', 'mythosHardened') || false
+    return this.getFlag(FOLDER_ID, 'mythosHardened') || false
   }
 
   /**
@@ -4200,7 +4200,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       was: 'actor.setMythosHardened()',
       until: 15
     })
-    await this.setFlag('CoC7', 'mythosHardened', true)
+    await this.setFlag(FOLDER_ID, 'mythosHardened', true)
   }
 
   /**

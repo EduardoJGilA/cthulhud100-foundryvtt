@@ -13,9 +13,9 @@
     <div class="actor-portrait right-portrait">
       {{#if obstacleDefined}}
         {{#if obstacle.barrier}}
-          <img src="systems/CoC7/assets/icons/barrier.svg">
+          <img src="systems/cthulhud100/assets/icons/barrier.svg">
         {{else}}
-          <img src="systems/CoC7/assets/icons/hazard-sign.svg">
+          <img src="systems/cthulhud100/assets/icons/hazard-sign.svg">
         {{/if}}
       {{/if}}
     </div>
@@ -32,7 +32,7 @@
       {{/if}}
       {{#if checkRolled}}
         <div class="roll-line">{{obstacle.checkName}}:</div>
-        {{~> 'systems/CoC7/templates/chat/roll-result.hbs' checkRevealed=true cardOpen=false}}
+        {{~> 'systems/cthulhud100/templates/chat/roll-result.hbs' checkRevealed=true cardOpen=false}}
         {{#if isSuccess}}
           <div>{{obstaclePassed}}</div>
         {{else}}

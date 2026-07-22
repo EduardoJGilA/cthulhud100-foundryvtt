@@ -5,56 +5,56 @@ description: 'See Keeper rulebook P160 for details'
 results:
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Acrophobia'
     documentId: 'p0t15enMtk3uTAlj'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Arachnophobia'
     documentId: 'qRnd6M1Tshzw76Ny'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Bibliophobia'
     documentId: '4AeOJTb8YE9wbaCe'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Eisoptrophobia'
     documentId: 'DciWR1txuAq4kWCy'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Hemaphobia'
     documentId: 'hSeCmtgrYGvZ32QS'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Necrophobia'
     documentId: 'N8GbNhQMLUx0dINh'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Odontophobia'
     documentId: 'zH0DG90l9NgTq0hr'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Pyrophobia'
     documentId: '5YXHhTzaSarN72DR'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Telephonophobia'
     documentId: 'z2HNXPNGHdr6IKzt'
   - type: pack
     img: icons/svg/aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Xenophobia'
     documentId: '0ITh5OlkMYtSLi9S'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: rt..system-sample-phobias
       lang: en
@@ -66,7 +66,7 @@ img: 'icons/svg/d20-grey.svg'
 description: 'See - Keeper Rulebook V7 - P157 for details'
 results:
   - type: pack
-    documentCollection: 'CoC7.en-wiki-roll-tables'
+    documentCollection: 'cthulhud100.en-wiki-roll-tables'
     range:
       - 1
       - 10
@@ -74,7 +74,7 @@ results:
     documentId: 'DGd9QwhMguct5kJr'
     img: 'icons/svg/d20-grey.svg'
   - type: pack
-    documentCollection: 'CoC7.sanity-tables-examples'
+    documentCollection: 'cthulhud100.sanity-tables-examples'
     range:
       - 11
       - 11
@@ -82,7 +82,7 @@ results:
     documentId: '6daRognwiyG5eoQd'
     img: 'icons/svg/d20-grey.svg'
   - type: pack
-    documentCollection: 'CoC7.sanity-tables-examples'
+    documentCollection: 'cthulhud100.sanity-tables-examples'
     range:
       - 12
       - 12
@@ -90,7 +90,7 @@ results:
     documentId: 'mWs2LZoSvSBqlqhW'
     img: 'icons/svg/d20-grey.svg'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: rt..system-bouts-of-madness-real-time
       lang: en
@@ -109,7 +109,7 @@ results:
       - 1
       - 8
   - type: pack
-    documentCollection: 'CoC7.sanity-tables-examples'
+    documentCollection: 'cthulhud100.sanity-tables-examples'
     range:
       - 9
       - 9
@@ -117,7 +117,7 @@ results:
     documentId: '6daRognwiyG5eoQd'
     img: 'icons/svg/d20-grey.svg'
   - type: pack
-    documentCollection: 'CoC7.sanity-tables-examples'
+    documentCollection: 'cthulhud100.sanity-tables-examples'
     range:
       - 10
       - 10
@@ -125,7 +125,7 @@ results:
     documentId: 'mWs2LZoSvSBqlqhW'
     img: 'icons/svg/d20-grey.svg'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: rt..system-bouts-of-madness-real-time
       lang: en
@@ -138,56 +138,56 @@ description: 'See Keeper rulebook P161 for details'
 results:
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Agathomania'
     documentId: 'RSBgVRZFUDDCNhXo'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Algomania'
     documentId: 'EaKLI16AeflyGtUy'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Amenomania'
     documentId: 'bewOYRIgOXcFVT48'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Bibliokleptomania'
     documentId: 'lVj5VQLKa3qNMO1N'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Dikemania'
     documentId: 'tfU5EJwc4jxU67Wp'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Geliomania'
     documentId: 'uXaBJzAGkgIiKbdE'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Klazomania'
     documentId: 'QrruiWO4YPYO4ND5'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Kleptomania'
     documentId: 'yVUmHYY5eCaxutZt'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Nosomania'
     documentId: 'y6ANMyrvi0eVH44f'
   - type: pack
     img: icons/svg/ice-aura.svg
-    documentCollection: 'CoC7.en-wiki-phobias-and-manias'
+    documentCollection: 'cthulhud100.en-wiki-phobias-and-manias'
     text: 'Pseudomania'
     documentId: 'mq9OFQH0asOgJ9YK'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: rt..system-sample-manias
       lang: en

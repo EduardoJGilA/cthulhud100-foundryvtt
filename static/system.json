@@ -1,11 +1,17 @@
 {
-  "id": "CoC7",
-  "title": "Call of Cthulhu 7th Edition",
-  "description": "An implementation of the Call of Cthulhu 7th Edition game system for Foundry Virtual Tabletop.",
-  "version": "8.14",
+  "id": "cthulhud100",
+  "title": "Cthulhu d100",
+  "description": "An unofficial, independent implementation of the Cthulhu d100 rules (Three Fourteen Games, 2011) for Foundry Virtual Tabletop. Not affiliated with Chaosium Inc.",
+  "version": "0.1.0",
   "authors": [
     {
-      "name": "Miskatonic Investigative Society"
+      "name": "EduardoJGilA"
+    },
+    {
+      "name": "Miskatonic Investigative Society",
+      "flags": {
+        "role": "Upstream CoC7-FoundryVTT code base"
+      }
     }
   ],
   "compatibility": {
@@ -57,63 +63,63 @@
       "type": "Item",
       "name": "skills",
       "path": "packs/en-skills",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "Items Examples",
       "type": "Item",
       "name": "items",
       "path": "packs/en-items",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "Examples",
       "type": "Actor",
       "name": "examples",
       "path": "packs/en-examples",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "Roll Requests",
       "type": "JournalEntry",
       "name": "roll-requests",
       "path": "packs/roll-requests",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "Sanity Roll Table",
       "type": "RollTable",
       "name": "sanity-tables-examples",
       "path": "packs/en-sanity-tables-examples",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "System manuals",
       "type": "JournalEntry",
       "name": "system-doc",
       "path": "packs/system-doc",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "Phobias and Manias | en",
       "type": "Item",
       "name": "en-wiki-phobias-and-manias",
       "path": "packs/en-wiki-phobias-and-manias",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "Roll Tables | en",
       "type": "RollTable",
       "name": "en-wiki-roll-tables",
       "path": "packs/en-wiki-roll-tables",
-      "system": "CoC7"
+      "system": "cthulhud100"
     },
     {
       "label": "Weapons | en",
       "type": "Item",
       "name": "en-wiki-weapons",
       "path": "packs/en-wiki-weapons",
-      "system": "CoC7"
+      "system": "cthulhud100"
     }
   ],
   "languages": [
@@ -195,21 +201,21 @@
   ],
   "socket": true,
   "grid": {
-    "distance": 5,
-    "units": "ft"
+    "distance": 1.5,
+    "units": "m"
   },
   "primaryTokenAttribute": "attribs.hp",
   "secondaryTokenAttribute": "attribs.san",
-  "url": "https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT",
-  "manifest": "https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/releases/latest/download/system.json",
-  "download": "https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/releases/download/8.14/system.zip",
+  "url": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt",
+  "manifest": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt/releases/latest/download/system.json",
+  "download": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt/releases/download/0.1.0/system.zip",
   "media": [
     {
       "type": "setup",
-      "thumbnail": "systems/CoC7/assets/images/system-thumbnail.jpg"
+      "thumbnail": "systems/cthulhud100/assets/images/system-thumbnail.jpg"
     }
   ],
-  "background": "systems/CoC7/assets/images/system-background.jpg",
+  "background": "systems/cthulhud100/assets/images/system-background.jpg",
   "documentTypes": {
     "Actor": {
       "character": {},
@@ -244,5 +250,7 @@
       "ChaosiumCanvasInterfaceToScene": {},
       "coc7ClickableEvents": {}
     }
-  }
+  },
+  "license": "LICENSE",
+  "readme": "README.md"
 }

@@ -38,7 +38,7 @@
 {{/if}}
 
 {{#each rollActors as |rollActor actorUuid|}}
-  {{~> 'systems/CoC7/templates/chat/parts/roll-container.hbs' changeParticipant=true participantLocked=../isRolling rollActor=rollActor actorUuid=actorUuid isTie=(and (not ../hasWinner) ../isTie) isAttacker=(eq ../advantageTypes.attacker rollActor.participant)}}
+  {{~> 'systems/cthulhud100/templates/chat/parts/roll-container.hbs' changeParticipant=true participantLocked=../isRolling rollActor=rollActor actorUuid=actorUuid isTie=(and (not ../hasWinner) ../isTie) isAttacker=(eq ../advantageTypes.attacker rollActor.participant)}}
 {{/each}}
 
 {{#if resultText}}

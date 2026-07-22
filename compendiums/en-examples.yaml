@@ -1,7 +1,7 @@
 _id: 'KgyqcEJZZztYfpEr'
 name: 'Goon'
 type: 'npc'
-img: 'systems/CoC7/assets/icons/cultist.svg'
+img: 'systems/cthulhud100/assets/icons/cultist.svg'
 system:
   characteristics:
     str:
@@ -41,7 +41,7 @@ system:
     displayFormula: false
 prototypeToken:
   texture:
-    src: systems/CoC7/assets/icons/cultist.svg
+    src: systems/cthulhud100/assets/icons/cultist.svg
 items:
   - name: 'Orders'
     type: 'item'
@@ -53,7 +53,7 @@ items:
     _id: '3GYcAo139cyCy9fA'
   - name: 'Be a pain'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills.svg'
+    img: 'systems/cthulhud100/assets/icons/skills.svg'
     _id: 'PSkJAIU89V7wn2Bb'
     system:
       base: '0'
@@ -65,7 +65,7 @@ items:
         push: true
   - name: 'Dodge'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/dodge.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/dodge.svg'
     _id: 'AvGHgRlHt0R3Ed4S'
     system:
       description:
@@ -76,14 +76,14 @@ items:
       skillName: 'Dodge'
       specialization: ''
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.dodge
           lang: en
           priority: 0
   - name: 'Fighting (Brawl)'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/fighting_brawl.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/fighting_brawl.svg'
     _id: 'PR4ptRvBvRso7GLJ'
     system:
       description:
@@ -98,14 +98,14 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.fighting-brawl
           lang: en
           priority: 0
   - name: 'Firearms (Rifle/Shotgun)'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/firearms_rifle_shotgun.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg'
     _id: '3fVH7wgc0f7cYPS6'
     system:
       description:
@@ -120,14 +120,14 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.firearms-rifle-shotgun
           lang: en
           priority: 0
   - name: 'Language (English)'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/language.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/language.svg'
     _id: 'aHoy9l8GnDaUZOYW'
     system:
       description:
@@ -143,14 +143,14 @@ items:
         requiresname: true
         keepbasevalue: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.language-own
           lang: en
           priority: 0
   - name: 'Receive orders'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills.svg'
+    img: 'systems/cthulhud100/assets/icons/skills.svg'
     _id: 'uPgX46VUlJXStTpn'
     system:
       base: '0'
@@ -162,7 +162,7 @@ items:
         push: true
   - name: 'Try hard'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills.svg'
+    img: 'systems/cthulhud100/assets/icons/skills.svg'
     _id: 'UoYy6krp3cyOCqSk'
     system:
       base: '0'
@@ -188,7 +188,7 @@ items:
         slnt: true
         stun: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.club
           lang: en
@@ -196,7 +196,7 @@ items:
     _id: 'Jlewd3ifpDQ8VBuI'
   - name: 'Punch'
     type: 'weapon'
-    img: 'systems/CoC7/assets/icons/skills/fighting_brawl.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/fighting_brawl.svg'
     system:
       skill:
         main:
@@ -208,7 +208,7 @@ items:
         rngd: false
         addb: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.brawl
           lang: en
@@ -230,14 +230,14 @@ items:
       properties:
         rngd: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.shotgun
           lang: en
           priority: 0
     _id: 'Hhs2rs3HsTO3opFQ'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: a.npc.goon
       lang: en
@@ -245,7 +245,7 @@ flags:
 ---
 name: 'Villain example'
 type: 'npc'
-img: 'systems/CoC7/assets/icons/cultist.svg'
+img: 'systems/cthulhud100/assets/icons/cultist.svg'
 system:
   characteristics:
     str:
@@ -294,13 +294,13 @@ system:
     displayFormula: false
 prototypeToken:
   texture:
-    src: 'systems/CoC7/assets/icons/cultist.svg'
+    src: 'systems/cthulhud100/assets/icons/cultist.svg'
 items:
   - name: 'Very mean sidekick'
     type: 'item'
     img: 'icons/svg/item-bag.svg'
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.item.very-mean-sidekick
           lang: en
@@ -310,7 +310,7 @@ items:
     type: 'item'
     img: 'icons/svg/item-bag.svg'
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.item.plan-to-enslave-humanity
           lang: en
@@ -318,9 +318,9 @@ items:
     _id: '8g01NwyUAwvTHb3E'
   - name: 'Bark orders'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills.svg'
+    img: 'systems/cthulhud100/assets/icons/skills.svg'
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.bark-orders
           lang: en
@@ -335,9 +335,9 @@ items:
         push: true
   - name: 'Be a pain'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills.svg'
+    img: 'systems/cthulhud100/assets/icons/skills.svg'
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.be-a-pain
           lang: en
@@ -352,7 +352,7 @@ items:
         push: true
   - name: 'Dodge'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/dodge.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/dodge.svg'
     _id: 'AvGHgRlHt0R3Ed4S'
     system:
       description:
@@ -363,14 +363,14 @@ items:
       skillName: 'Dodge'
       specialization: ''
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.dodge
           lang: en
           priority: 0
   - name: 'Fighting (Brawl)'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/fighting_brawl.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/fighting_brawl.svg'
     _id: 'PR4ptRvBvRso7GLJ'
     system:
       description:
@@ -385,14 +385,14 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.fighting-brawl
           lang: en
           priority: 0
   - name: 'Firearms (Rifle/Shotgun)'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/firearms_rifle_shotgun.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg'
     _id: '3fVH7wgc0f7cYPS6'
     system:
       description:
@@ -407,14 +407,14 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.firearms-rifle-shotgun
           lang: en
           priority: 0
   - name: 'Language (English)'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills/language.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/language.svg'
     _id: 'aHoy9l8GnDaUZOYW'
     system:
       description:
@@ -430,14 +430,14 @@ items:
         requiresname: true
         keepbasevalue: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.language-own
           lang: en
           priority: 0
   - name: 'Takeover the world'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills.svg'
+    img: 'systems/cthulhud100/assets/icons/skills.svg'
     _id: 'qPH6Yf5B82vN4RHu'
     system:
       adjustments:
@@ -445,14 +445,14 @@ items:
       skillName: 'Takeover the world'
       specialization: ''
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.takeover-the-world
           lang: en
           priority: 0
   - name: 'Torment the PC'
     type: 'skill'
-    img: 'systems/CoC7/assets/icons/skills.svg'
+    img: 'systems/cthulhud100/assets/icons/skills.svg'
     _id: 'CxqOOhOKLcEi2hRQ'
     system:
       adjustments:
@@ -462,14 +462,14 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.torment-the-pc
           lang: en
           priority: 0
   - name: 'Punch'
     type: 'weapon'
-    img: 'systems/CoC7/assets/icons/skills/fighting_brawl.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/fighting_brawl.svg'
     system:
       skill:
         main:
@@ -481,7 +481,7 @@ items:
         rngd: false
         addb: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.brawl
           lang: en
@@ -508,7 +508,7 @@ items:
         brst: true
         auto: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.my-test-weapon
           lang: en
@@ -516,7 +516,7 @@ items:
     _id: 'ZlhAHCkDQrp9cyxt'
 _id: 4kSvDc4n13oFx8RG
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: a.npc.villain-example
       lang: en
@@ -583,7 +583,7 @@ items:
   - _id: UOuN0gESXPp2HXwH
     name: Accounting
     type: skill
-    img: systems/CoC7/assets/icons/skills/accounting.svg
+    img: systems/cthulhud100/assets/icons/skills/accounting.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -595,7 +595,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.accounting
           lang: en
@@ -603,7 +603,7 @@ items:
   - _id: ovIp66Luwfwbq28F
     name: Anthropology
     type: skill
-    img: systems/CoC7/assets/icons/skills/anthropology.svg
+    img: systems/cthulhud100/assets/icons/skills/anthropology.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -615,7 +615,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.anthropology
           lang: en
@@ -623,7 +623,7 @@ items:
   - _id: wOs3gryeGRPkGoWD
     name: Appraise
     type: skill
-    img: systems/CoC7/assets/icons/skills/appraise.svg
+    img: systems/cthulhud100/assets/icons/skills/appraise.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -635,7 +635,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.appraise
           lang: en
@@ -643,7 +643,7 @@ items:
   - _id: GHhkcJUqjcP4lToY
     name: Archaeology
     type: skill
-    img: systems/CoC7/assets/icons/skills/archaeology.svg
+    img: systems/cthulhud100/assets/icons/skills/archaeology.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -655,7 +655,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.archaeology
           lang: en
@@ -663,7 +663,7 @@ items:
   - _id: m6V53lyfz7zh95FE
     name: Art/Craft (Acting)
     type: skill
-    img: systems/CoC7/assets/icons/skills/art_craft_acting.svg
+    img: systems/cthulhud100/assets/icons/skills/art_craft_acting.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -676,7 +676,7 @@ items:
         special: true
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.art-craft-acting
           lang: en
@@ -684,7 +684,7 @@ items:
   - _id: JgtxiN3KzooOWIQV
     name: Charm
     type: skill
-    img: systems/CoC7/assets/icons/skills/charm.svg
+    img: systems/cthulhud100/assets/icons/skills/charm.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -696,7 +696,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.charm
           lang: en
@@ -704,7 +704,7 @@ items:
   - _id: oh5eFj00Wohnx1My
     name: Climb
     type: skill
-    img: systems/CoC7/assets/icons/skills/climb.svg
+    img: systems/cthulhud100/assets/icons/skills/climb.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -716,7 +716,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.climb
           lang: en
@@ -724,7 +724,7 @@ items:
   - _id: vYrJ5h9cIQBzvw8E
     name: Credit Rating
     type: skill
-    img: systems/CoC7/assets/icons/skills/credit_rating.svg
+    img: systems/cthulhud100/assets/icons/skills/credit_rating.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -737,7 +737,7 @@ items:
         noxpgain: true
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.credit-rating
           lang: en
@@ -745,7 +745,7 @@ items:
   - _id: WJky66ezt2ef5ksH
     name: Cthulhu Mythos
     type: skill
-    img: systems/CoC7/assets/icons/skills/cthulhu_mythos.svg
+    img: systems/cthulhud100/assets/icons/skills/cthulhu_mythos.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -757,7 +757,7 @@ items:
       properties:
         noxpgain: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.cthulhu-mythos
           lang: en
@@ -765,7 +765,7 @@ items:
   - _id: gzNPM9gbx0EZffBV
     name: Disguise
     type: skill
-    img: systems/CoC7/assets/icons/skills/disguise.svg
+    img: systems/cthulhud100/assets/icons/skills/disguise.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -777,7 +777,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.disguise
           lang: en
@@ -785,7 +785,7 @@ items:
   - _id: wK8XxNj9QwXlGFEb
     name: Dodge
     type: skill
-    img: systems/CoC7/assets/icons/skills/dodge.svg
+    img: systems/cthulhud100/assets/icons/skills/dodge.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -795,7 +795,7 @@ items:
       skillName: 'Dodge'
       specialization: ''
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.dodge
           lang: en
@@ -803,7 +803,7 @@ items:
   - _id: Og2OWQH93aSDWAMZ
     name: Drive Auto
     type: skill
-    img: systems/CoC7/assets/icons/skills/drive_auto.svg
+    img: systems/cthulhud100/assets/icons/skills/drive_auto.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -815,7 +815,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.drive-auto
           lang: en
@@ -823,7 +823,7 @@ items:
   - _id: NBkq8oCGM1FjmsyF
     name: Electrical Repair
     type: skill
-    img: systems/CoC7/assets/icons/skills/electrical_repair.svg
+    img: systems/cthulhud100/assets/icons/skills/electrical_repair.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -835,7 +835,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.electrical-repair
           lang: en
@@ -843,7 +843,7 @@ items:
   - _id: ld78TITwKNFPpanQ
     name: Fast Talk
     type: skill
-    img: systems/CoC7/assets/icons/skills/fast_talk.svg
+    img: systems/cthulhud100/assets/icons/skills/fast_talk.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -855,7 +855,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.fast-talk
           lang: en
@@ -863,7 +863,7 @@ items:
   - _id: vS8bsPWFlwgOecoB
     name: Fighting (Brawl)
     type: skill
-    img: systems/CoC7/assets/icons/skills/fighting_brawl.svg
+    img: systems/cthulhud100/assets/icons/skills/fighting_brawl.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -877,7 +877,7 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.fighting-brawl
           lang: en
@@ -885,7 +885,7 @@ items:
   - _id: sWt5Q3ZXd6NlwhXU
     name: Throw
     type: skill
-    img: systems/CoC7/assets/icons/skills/fighting_throw.svg
+    img: systems/cthulhud100/assets/icons/skills/fighting_throw.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -897,7 +897,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.throw
           lang: en
@@ -905,7 +905,7 @@ items:
   - _id: KmDGtn7ukUFVb265
     name: Firearms (Handgun)
     type: skill
-    img: systems/CoC7/assets/icons/skills/firearms_handgun.svg
+    img: systems/cthulhud100/assets/icons/skills/firearms_handgun.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -919,7 +919,7 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.firearms-handgun
           lang: en
@@ -927,7 +927,7 @@ items:
   - _id: m2pYjKk4Gk3FcEBL
     name: Firearms (Rifle/Shotgun)
     type: skill
-    img: systems/CoC7/assets/icons/skills/firearms_rifle_shotgun.svg
+    img: systems/cthulhud100/assets/icons/skills/firearms_rifle_shotgun.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -941,7 +941,7 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.firearms-rifle-shotgun
           lang: en
@@ -949,7 +949,7 @@ items:
   - _id: nZ8rdL4PLb7A7f5B
     name: First Aid
     type: skill
-    img: systems/CoC7/assets/icons/skills/first_aid.svg
+    img: systems/cthulhud100/assets/icons/skills/first_aid.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -961,7 +961,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.first-aid
           lang: en
@@ -969,7 +969,7 @@ items:
   - _id: URo2NSSJSNdvOqXU
     name: History
     type: skill
-    img: systems/CoC7/assets/icons/skills/history.svg
+    img: systems/cthulhud100/assets/icons/skills/history.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -981,7 +981,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.history
           lang: en
@@ -989,7 +989,7 @@ items:
   - _id: hDr4eUbS398oniTa
     name: Intimidate
     type: skill
-    img: systems/CoC7/assets/icons/skills/intimidate.svg
+    img: systems/cthulhud100/assets/icons/skills/intimidate.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1001,7 +1001,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.intimidate
           lang: en
@@ -1009,7 +1009,7 @@ items:
   - _id: c5utlFbDM7J8TA8b
     name: Jump
     type: skill
-    img: systems/CoC7/assets/icons/skills/jump.svg
+    img: systems/cthulhud100/assets/icons/skills/jump.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1021,7 +1021,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.jump
           lang: en
@@ -1029,7 +1029,7 @@ items:
   - _id: Blk22r9FRJetJ0e8
     name: Language (English)
     type: skill
-    img: systems/CoC7/assets/icons/skills/language.svg
+    img: systems/cthulhud100/assets/icons/skills/language.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1044,7 +1044,7 @@ items:
         requiresname: true
         keepbasevalue: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.language-own
           lang: en
@@ -1052,7 +1052,7 @@ items:
   - _id: 64hnBZNC8FM7oTkg
     name: Law
     type: skill
-    img: systems/CoC7/assets/icons/skills/law.svg
+    img: systems/cthulhud100/assets/icons/skills/law.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1064,7 +1064,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.law
           lang: en
@@ -1072,7 +1072,7 @@ items:
   - _id: BcWHh8EhmyKj7bNk
     name: Library Use
     type: skill
-    img: systems/CoC7/assets/icons/skills/library_use.svg
+    img: systems/cthulhud100/assets/icons/skills/library_use.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1084,7 +1084,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.library-use
           lang: en
@@ -1092,7 +1092,7 @@ items:
   - _id: MoAB0NRNlpEc2qWr
     name: Listen
     type: skill
-    img: systems/CoC7/assets/icons/skills/listen.svg
+    img: systems/cthulhud100/assets/icons/skills/listen.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1104,7 +1104,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.listen
           lang: en
@@ -1112,7 +1112,7 @@ items:
   - _id: MRbFH52Zh9TzhLBh
     name: Locksmith
     type: skill
-    img: systems/CoC7/assets/icons/skills/locksmith.svg
+    img: systems/cthulhud100/assets/icons/skills/locksmith.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1124,7 +1124,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.locksmith
           lang: en
@@ -1132,7 +1132,7 @@ items:
   - _id: 0qCTuRFUCACSEsWj
     name: Mechanical Repair
     type: skill
-    img: systems/CoC7/assets/icons/skills/mechanical_repair.svg
+    img: systems/cthulhud100/assets/icons/skills/mechanical_repair.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1144,7 +1144,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.mechanical-repair
           lang: en
@@ -1152,7 +1152,7 @@ items:
   - _id: Xmg7oAy70DKpv4kq
     name: Medicine
     type: skill
-    img: systems/CoC7/assets/icons/skills/medicine.svg
+    img: systems/cthulhud100/assets/icons/skills/medicine.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1164,7 +1164,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.medicine
           lang: en
@@ -1172,7 +1172,7 @@ items:
   - _id: jTcu6Ni2ek7Yz5q3
     name: Natural World
     type: skill
-    img: systems/CoC7/assets/icons/skills/natural_world.svg
+    img: systems/cthulhud100/assets/icons/skills/natural_world.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1184,7 +1184,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.natural-world
           lang: en
@@ -1192,7 +1192,7 @@ items:
   - _id: 1c3fdvpQtvZf5YXK
     name: Navigate
     type: skill
-    img: systems/CoC7/assets/icons/skills/navigate.svg
+    img: systems/cthulhud100/assets/icons/skills/navigate.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1204,7 +1204,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.navigate
           lang: en
@@ -1212,7 +1212,7 @@ items:
   - _id: 6pSfZVS68jSHxa5T
     name: Occult
     type: skill
-    img: systems/CoC7/assets/icons/skills/occult.svg
+    img: systems/cthulhud100/assets/icons/skills/occult.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1224,7 +1224,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.occult
           lang: en
@@ -1232,7 +1232,7 @@ items:
   - _id: cuExWy1130KUwuWz
     name: Operate Heavy Machinery
     type: skill
-    img: systems/CoC7/assets/icons/skills/operate_heavy_machinery.svg
+    img: systems/cthulhud100/assets/icons/skills/operate_heavy_machinery.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1244,7 +1244,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.operate-heavy-machinery
           lang: en
@@ -1252,7 +1252,7 @@ items:
   - _id: uMzSNURmZqjxr7mU
     name: Persuade
     type: skill
-    img: systems/CoC7/assets/icons/skills/persuade.svg
+    img: systems/cthulhud100/assets/icons/skills/persuade.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1264,7 +1264,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.persuade
           lang: en
@@ -1272,7 +1272,7 @@ items:
   - _id: rXBU2GofiO2qOsGv
     name: Psychoanalysis
     type: skill
-    img: systems/CoC7/assets/icons/skills/psychoanalysis.svg
+    img: systems/cthulhud100/assets/icons/skills/psychoanalysis.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1284,7 +1284,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.psychoanalysis
           lang: en
@@ -1292,7 +1292,7 @@ items:
   - _id: MFR4eR79niGaLfph
     name: Psychology
     type: skill
-    img: systems/CoC7/assets/icons/skills/psychology.svg
+    img: systems/cthulhud100/assets/icons/skills/psychology.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1304,7 +1304,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.psychology
           lang: en
@@ -1312,7 +1312,7 @@ items:
   - _id: o7TdzbuSP7ticONf
     name: Ride
     type: skill
-    img: systems/CoC7/assets/icons/skills/ride.svg
+    img: systems/cthulhud100/assets/icons/skills/ride.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1324,7 +1324,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.ride
           lang: en
@@ -1332,7 +1332,7 @@ items:
   - _id: 8twBT7nbyh5dEp3J
     name: Science (Chemistry)
     type: skill
-    img: systems/CoC7/assets/icons/skills/science_chemistry.svg
+    img: systems/cthulhud100/assets/icons/skills/science_chemistry.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1345,7 +1345,7 @@ items:
         special: true
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.science-chemistry
           lang: en
@@ -1353,7 +1353,7 @@ items:
   - _id: KKFNX5M4LtEtiuxs
     name: Sleight of Hand
     type: skill
-    img: systems/CoC7/assets/icons/skills/sleight_of_hand.svg
+    img: systems/cthulhud100/assets/icons/skills/sleight_of_hand.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1365,7 +1365,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.sleight-of-hand
           lang: en
@@ -1373,7 +1373,7 @@ items:
   - _id: nHaWNwtW3Lg0sqYJ
     name: Spot Hidden
     type: skill
-    img: systems/CoC7/assets/icons/skills/spot_hidden.svg
+    img: systems/cthulhud100/assets/icons/skills/spot_hidden.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1385,7 +1385,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.spot-hidden
           lang: en
@@ -1393,7 +1393,7 @@ items:
   - _id: DcV524K0jNfjDEZC
     name: Stealth
     type: skill
-    img: systems/CoC7/assets/icons/skills/stealth.svg
+    img: systems/cthulhud100/assets/icons/skills/stealth.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1405,7 +1405,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.stealth
           lang: en
@@ -1413,7 +1413,7 @@ items:
   - _id: 8jAVwbgzWc0zRXGL
     name: Survival (Desert)
     type: skill
-    img: systems/CoC7/assets/icons/skills/survival_any.svg
+    img: systems/cthulhud100/assets/icons/skills/survival_any.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1426,7 +1426,7 @@ items:
         special: true
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.survival-desert
           lang: en
@@ -1434,7 +1434,7 @@ items:
   - _id: 1zSIeY0eat2AxQok
     name: Swim
     type: skill
-    img: systems/CoC7/assets/icons/skills/swim.svg
+    img: systems/cthulhud100/assets/icons/skills/swim.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1446,7 +1446,7 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.swim
           lang: en
@@ -1454,7 +1454,7 @@ items:
   - _id: AcUIbZFhfoXqQP2m
     name: Track
     type: skill
-    img: systems/CoC7/assets/icons/skills/track.svg
+    img: systems/cthulhud100/assets/icons/skills/track.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1466,14 +1466,14 @@ items:
       properties:
         push: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.track
           lang: en
           priority: 0
   - name: 'Punch'
     type: 'weapon'
-    img: 'systems/CoC7/assets/icons/skills/fighting_brawl.svg'
+    img: 'systems/cthulhud100/assets/icons/skills/fighting_brawl.svg'
     system:
       skill:
         main:
@@ -1485,7 +1485,7 @@ items:
         rngd: false
         addb: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.brawl
           lang: en
@@ -1493,7 +1493,7 @@ items:
     _id: 'kbiJM1yWKYP1tVdK'
 _id: 'JuI2aWDSEuQNKeUI'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: a.character.1920-character
       lang: en
@@ -1508,7 +1508,7 @@ prototypeToken:
     src: icons/svg/chest.svg
 _id: 'r7bDSY4OYKxQYEas'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: a.container.cupboard
       lang: en
@@ -1531,7 +1531,7 @@ items:
 ---
 name: 'Creature example'
 type: 'creature'
-img: systems/CoC7/assets/icons/floating-tentacles.svg
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   characteristics:
     str:
@@ -1586,7 +1586,7 @@ system:
       expanded: true
 prototypeToken:
   texture:
-    src: 'systems/CoC7/assets/icons/floating-tentacles.svg'
+    src: 'systems/cthulhud100/assets/icons/floating-tentacles.svg'
 _id: 'XE2vjLG03wGfnYLw'
 items:
   - _id: '0oDo0HjUAx36Grvo'
@@ -1594,7 +1594,7 @@ items:
     type: 'item'
     img: 'icons/svg/item-bag.svg'
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.item.pile-of-junk
           lang: en
@@ -1602,7 +1602,7 @@ items:
   - _id: vS8bsPWFlwgOecoB
     name: Fighting (Brawl)
     type: skill
-    img: systems/CoC7/assets/icons/skills/fighting_brawl.svg
+    img: systems/cthulhud100/assets/icons/skills/fighting_brawl.svg
     system:
       description:
         value: <p>See the Call of Cthulhu - 7th Ed Core Rulebook</p>
@@ -1616,14 +1616,14 @@ items:
         combat: true
         special: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.fighting-brawl
           lang: en
           priority: 0
   - name: Fighting (Slice PCs in small cubes)
     type: skill
-    img: systems/CoC7/assets/icons/skills.svg
+    img: systems/cthulhud100/assets/icons/skills.svg
     system:
       base: 0
       adjustments:
@@ -1635,7 +1635,7 @@ items:
         fighting: true
         combat: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.skill.fighting-slice-pcs-in-small-cubes
           lang: en
@@ -1657,7 +1657,7 @@ items:
         rngd: false
         spcl: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.deadly-beak
           lang: en
@@ -1680,14 +1680,14 @@ items:
         addb: true
         slnt: true
     flags:
-      CoC7:
+      cthulhud100:
         cocidFlag:
           id: i.weapon.innate-attack
           lang: en
           priority: 0
     _id: '0KsCeV1S9WmxNq5M'
 flags:
-  CoC7:
+  cthulhud100:
     cocidFlag:
       id: a.container.creature-example
       lang: en
