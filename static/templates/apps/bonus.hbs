@@ -34,6 +34,16 @@
   {{#if allowFlatThresholdModifier}}
     {{!-- Cthulhu d100 circumstance modifiers. A shortcut that fills in the
           threshold modifier below, which is the value actually submitted. --}}
+    {{!-- Illumination scales the skill: half in gloom, a quarter in near or
+          total darkness, with total darkness also capped at min(POD, INT) x3.
+          Worked out against the threshold when the dialog is submitted. --}}
+    <div class="form-group">
+      <label>{{localize 'CoC7.Illumination'}}</label>
+      <select name="illumination">
+        {{selectOptions illuminationLevels selected='normal' localize=true valueAttr='key' labelAttr='val'}}
+      </select>
+    </div>
+
     <div class="form-group">
       <label>{{localize 'CoC7.Circumstances'}}</label>
       <select name="circumstanceModifier" data-cd100-circumstance>

@@ -1841,5 +1841,10 @@
   "CoC7.MentalStability.Hint": "La tensión llena tres barras dimensionadas por POD. Pulsa una casilla para marcarla; pulsa la última marcada para borrarla.",
   "CoC7.MentalStability.Action": "Habilidades de Acción",
   "CoC7.MentalStability.Other": "Resto de habilidades",
-  "CoC7.MentalStability.UnderlyingMadness": "Locura Subyacente"
+  "CoC7.MentalStability.UnderlyingMadness": "Locura Subyacente",
+  "CoC7.Illumination": "Iluminación",
+  "CoC7.IlluminationNormal": "Luz normal",
+  "CoC7.IlluminationDim": "Penumbra (mitad)",
+  "CoC7.IlluminationNearDark": "Oscuridad casi total (un cuarto)",
+  "CoC7.IlluminationTotalDark": "Oscuridad total (un cuarto, con tope)"
 }

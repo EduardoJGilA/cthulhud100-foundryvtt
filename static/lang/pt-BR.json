@@ -1838,5 +1838,10 @@
   "CoC7.MentalStability.Hint": "Tension fills three bars sized from POD. Click a box to set it; click the last filled box to clear it.",
   "CoC7.MentalStability.Action": "Action skills",
   "CoC7.MentalStability.Other": "Other skills",
-  "CoC7.MentalStability.UnderlyingMadness": "Underlying madness"
+  "CoC7.MentalStability.UnderlyingMadness": "Underlying madness",
+  "CoC7.Illumination": "Illumination",
+  "CoC7.IlluminationNormal": "Normal light",
+  "CoC7.IlluminationDim": "Gloom (half)",
+  "CoC7.IlluminationNearDark": "Near total darkness (quarter)",
+  "CoC7.IlluminationTotalDark": "Total darkness (quarter, capped)"
 }

@@ -1,9 +1,30 @@
-/* global foundry game renderTemplate */
+/* global foundry fromUuid game renderTemplate */
 import { FOLDER_ID } from '../constants.js'
 import CoC7DicePool from './dice-pool.js'
 import CoC7RollNormalize from './roll-normalize.js'
 
 export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
+  /**
+   * Ceiling that total darkness puts on a check: min(POD x3, INT x3).
+   *
+   * Returns null when the actor cannot be resolved, in which case total
+   * darkness only quarters the skill and the Keeper caps it by hand.
+   * @param {string} actorUuid
+   * @returns {Promise<number|null>}
+   */
+  static async #darknessCap (actorUuid) {
+    if (!actorUuid) {
+      return null
+    }
+    const actor = await fromUuid(actorUuid)
+    const pow = actor?.system?.characteristics?.pow?.value
+    const int = actor?.system?.characteristics?.int?.value
+    if (typeof pow !== 'number' || typeof int !== 'number') {
+      return null
+    }
+    return Math.min(pow, int) * 3
+  }
+
   /**
    * Show User a roll dialog
    * @param {object} options
@@ -29,6 +50,16 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
           val: 'CoC7.RollDifficultyRegular'
         }
       ],
+      // Rulebook chapter 1: illumination scales the skill rather than shifting
+      // it, so the reduction is worked out from the threshold at submit time.
+      illuminationLevels: [
+        { key: 'normal', val: 'CoC7.IlluminationNormal' },
+        { key: 'dim', val: 'CoC7.IlluminationDim' },
+        { key: 'nearDark', val: 'CoC7.IlluminationNearDark' },
+        { key: 'totalDark', val: 'CoC7.IlluminationTotalDark' }
+      ],
+      // Total darkness also caps the result at min(POD x3, INT x3)
+      darknessCap: await CoC7RollDialog.#darknessCap(options.actorUuid),
       // Rulebook chapter 1: circumstance modifiers applied to the threshold
       circumstanceModifiers: [
         { key: 20, val: 'CoC7.CircumstanceVeryFavourable' },
@@ -96,6 +127,18 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
             const circumstance = parseInt(button.form.elements.circumstanceModifier?.value ?? 0, 10)
             if (!isNaN(circumstance) && circumstance !== 0) {
               data.options.flatThresholdModifier += circumstance
+            }
+            // Illumination halves or quarters the skill, so it is expressed as
+            // the difference from the current threshold and folded into the
+            // same additive modifier.
+            const illumination = button.form.elements.illumination?.value ?? 'normal'
+            const base = parseInt(data.options.threshold, 10)
+            if (illumination !== 'normal' && !isNaN(base)) {
+              let reduced = Math.floor(base / (illumination === 'dim' ? 2 : 4))
+              if (illumination === 'totalDark' && data.darknessCap !== null) {
+                reduced = Math.min(reduced, data.darknessCap)
+              }
+              data.options.flatThresholdModifier += reduced - base
             }
           }
           if (typeof button.form.elements.poolModifier !== 'undefined') {
