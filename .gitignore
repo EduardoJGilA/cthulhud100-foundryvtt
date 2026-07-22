@@ -23,3 +23,10 @@ yarn.lock
 /.agents/
 /.claude/
 /skills-lock.json
+
+# OS and temp files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
