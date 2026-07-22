@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-22 · **Fase actual:** F1, F2.1-F2.3, F3 (lógica) y F4 (tablas) hechas; F6 lista. Pendientes: F0.5, F2.4, cartas de chat de F3 y F4, F5
+> **Última actualización:** 2026-07-22 · **Fase actual:** toda la LÓGICA de reglas (F1-F4) implementada y verificada contra el manual. Falta la INTERFAZ: cartas de chat de F3 y F4, más F5, F2.4 y F0.5
 
 ---
 
@@ -627,15 +627,19 @@ Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Cr�
 - [ ] Resultados posibles: `Falla`, `Golpea`, `Empala`, `Máx. D`, `Pifia`
 - [ ] Reescribir `cthulhud100/apps/chat-combat-melee.js` y `chat-combat-ranged.js`
 
-### F4.3 — Reglas de combate
-- [ ] Empalar: ataque Especial → daño `×2`; armadura normal; esquiva/bloqueo especial o
-      crítico lo anula, éxito simple lo reduce a daño normal
-- [ ] Bloquear: máximo 1 por turno; el objeto recibe el daño original
-- [ ] Esquivar: múltiple, `-30%` acumulativo del segundo en adelante
-- [ ] Máximo 5 atacantes por objetivo
+### F4.3 — Reglas de combate 🟡 lógica hecha, falta cablearla
+- [x] Empalar: daño `×2` en `damageFormula()`
+- [x] Esquivar múltiple: `-30%` acumulativo (`dodgePenalty()`)
+- [x] Noquear (`knockout()`), Centrarse (`aimBonus()`), Presa (`escapeGrappleChance()`),
+      Defenderse `+20%`, Cubierto/tumbado `-20%`, cambio de acción declarada `-20%`
+      salvo si es a esquivar o bloquear — todo en `combatModifier()`
+- [x] Herida grave = **estrictamente más** de la mitad de los PV máximos
+- [ ] **Falta un estado "sorprendido".** `STATUS_EFFECTS` solo tiene `tempoInsane`,
+      `indefInsane`, `unconscious`, `criticalWounds`, `dying`, `prone`, `dead`.
+      `initiative()` ya acepta el parámetro, pero nadie se lo pasa.
+- [ ] Máximo 5 atacantes por objetivo (regla de mesa, quizá no valga automatizar)
 - [ ] Combate desarmado bloqueado por arma blanca → sufre el daño del arma
-- [ ] Noquear, Centrarse (`+10%` por 5 DES retrasados), Presa, Defenderse (`+20%`),
-      Esperar, Sorpresa (DES a la mitad el primer turno), Cubierto/tumbado (`-20%`)
+- [ ] Bloquear: límite de 1 por turno
 
 ### F4.4 — Distancia y armas de fuego 🟡
 - [x] Tabla de alcance en `rangeMultiplier()`, verificada en los 5 tramos y el corte
@@ -656,14 +660,19 @@ Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Cr�
 - [ ] Efectos a 0 o negativo, y efectos en o por debajo de `-X`, por localización
 - [ ] Muerte por hemorragia si no se trata en `ceil((CON+POD)/2)` turnos
 
-### F4.6 — Daño
-- [ ] Categorías: leve (≤50% PV), grave (>50% de una vez), mortal (PV a 0)
+### F4.6 — Daño 🟡 lógica y tablas hechas, falta cablearlas
+- [x] Herida grave = `>50%` de los PV máximos de un solo golpe (`isSevereWound()`)
+- [x] Tabla de **Heridas Graves** `1D100`, 14 entradas, como RollTable en
+      `packs/es-severe-wounds`. Cobertura 1-100 sin huecos, verificada en generación y
+      en el pack construido
+- [x] Tabla de pérdidas de Estabilidad Mental en `packs/es-sanity-losses`
+- [x] Recuperación semanal en `weeklyHealing()`; Medicina **no** se acumula con Primeros
+      Auxilios, es mejor cuidado, no adicional
+- [x] `apps/damage-sources.js`: ácido, fuego, asfixia, ahogamiento, caídas, conmoción,
+      explosiones, hambre/sed/intemperie. 20 comprobaciones verificadas
 - [ ] Herida grave → actúa tantos turnos como PV le queden, luego inconsciente 1 hora
-- [ ] Tabla de **Heridas Graves** `1D100`, 14 entradas, como RollTable
-- [ ] Recuperación `1D3` PV/semana, `+1D3` con Primeros Auxilios ≥30%, `+2D3` con Medicina
-- [ ] Blindaje: se resta antes de aplicar a PV
-- [ ] Otras fuentes: ácido, asfixia, ahogamiento, caídas, conmoción, explosiones, fuego,
-      enfermedades (POT vs CON), veneno, hambre/sed/intemperie
+- [ ] Enfermedades y venenos (POT vs CON): usan `resistanceChance()` de F1.5, falta la UI
+- [ ] Blindaje: ya se resta en `document-class.js`, revisar contra el manual
 
 ---
 
