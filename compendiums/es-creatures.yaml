@@ -1,24 +1,24 @@
 _id: tvEXWXkD7x0hYYgX
-name: 'Antiguo [Elder Thing]'
+name: Antiguo [Elder Thing]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 2/1D10</p><ul><li>Tentáculo / 20+2D6 % (50+2D6 los soldados) / 5D6</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad organizada y altamente avanzada tecnológicamente</p><p><strong>Referencias:</strong> The Dreams in the Witch-House, The Shadow Out of Time, At the Mountains of Madness</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 2/1D10</p><ul><li>Tentáculo / 20+2D6 % (50+2D6 los soldados) / 5D6</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad organizada y altamente avanzada tecnológicamente</p><p><strong>Referencias:</strong> The Dreams in the Witch-House, The Shadow Out of Time, At the Mountains of Madness</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '3D6*3'
+      formula: 3D6*3
     con:
-      formula: '3D6*2'
+      formula: 3D6*2
     dex:
-      formula: '2D6'
+      formula: 2D6
     siz:
-      formula: '4D6*2'
+      formula: 4D6*2
     int:
-      formula: '5D6'
+      formula: 5D6
     pow:
-      formula: '5D6'
+      formula: 5D6
     app:
       formula: ''
     edu:
@@ -36,26 +36,26 @@ flags:
       priority: 0
 ---
 _id: Uol1n2MvfiChZiyb
-name: 'Araña de Leng [Leng Spider]'
+name: Araña de Leng [Leng Spider]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D10</p><ul><li>Lucha (Armas naturales) / 30+3D6 % / 1D3 + veneno (POT igual a la CON de la araña)</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Arañas púrpura gigantes que habitan la meseta de Leng</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D10</p><ul><li>Lucha (Armas naturales) / 30+3D6 % / 1D3 + veneno (POT igual a la CON de la araña)</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Arañas púrpura gigantes que habitan la meseta de Leng</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '8D6'
+      formula: 8D6
     con:
-      formula: '5D6'
+      formula: 5D6
     dex:
-      formula: '3D6+6'
+      formula: 3D6+6
     siz:
-      formula: '10D6'
+      formula: 10D6
     int:
-      formula: '3D6'
+      formula: 3D6
     pow:
-      formula: '4D6'
+      formula: 4D6
     app:
       formula: ''
     edu:
@@ -73,26 +73,26 @@ flags:
       priority: 0
 ---
 _id: zbZ0yzUJpr1818yZ
-name: 'Bestia de la luna [Moon-Beast]'
+name: Bestia de la luna [Moon-Beast]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lanza / 20% / 1D10</li><li>Lucha (Armas naturales) / 20+2D6 % / 1D6</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Habitan la cara oculta de la luna de las Tierras del Sueño. Navegan en galeones y comercian con esclavos. También pueden utilizar armas blancas sencillas</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lanza / 20% / 1D10</li><li>Lucha (Armas naturales) / 20+2D6 % / 1D6</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Habitan la cara oculta de la luna de las Tierras del Sueño. Navegan en galeones y comercian con esclavos. También pueden utilizar armas blancas sencillas</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '4D6+6'
+      formula: 4D6+6
     con:
-      formula: '3D6'
+      formula: 3D6
     dex:
-      formula: '3D6'
+      formula: 3D6
     siz:
-      formula: '3D6+9'
+      formula: 3D6+9
     int:
-      formula: '2D6+6'
+      formula: 2D6+6
     pow:
-      formula: '3D6+3'
+      formula: 3D6+3
     app:
       formula: ''
     edu:
@@ -110,26 +110,26 @@ flags:
       priority: 0
 ---
 _id: 8wz6F40oLarIT3QA
-name: 'Biyaqui [Byakhee]'
+name: Biyaqui [Byakhee]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D10</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D6, con 25% de que la víctima reciba un mordisco y pierda 1D6 de FUE adicionalmente</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Servidores de Hastur, viven en el espacio exterior</p><p><strong>Referencias:</strong> The Festival</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D10</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D6, con 25% de que la víctima reciba un mordisco y pierda 1D6 de FUE adicionalmente</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Servidores de Hastur, viven en el espacio exterior</p><p><strong>Referencias:</strong> The Festival</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '5D6'
+      formula: 5D6
     con:
-      formula: '4D6'
+      formula: 4D6
     dex:
-      formula: '3D6+6'
+      formula: 3D6+6
     siz:
-      formula: '5D6'
+      formula: 5D6
     int:
-      formula: '3D6'
+      formula: 3D6
     pow:
-      formula: '4D6'
+      formula: 4D6
     app:
       formula: ''
     edu:
@@ -146,13 +146,50 @@ flags:
         standard: true
       priority: 0
 ---
-_id: 11zrQaQau6RfBz1C
-name: 'Dagon e Hydra'
+_id: xN14vB583mLpQ7w9
+name: Color surgido del espacio [Colour Out of Space]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 3/3D6</p><ul><li>Lucha (Armas naturales) / 85% / 1D6</li></ul><p><strong>Información:</strong> Vástagos estelares de Cthulhu adorados como deidades por los profundos. Características fijas, no se tiran</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D4</p><ul><li>Drenar / 86% / Drena 1D6 CON y POD</li></ul><p><strong>Incorpóreo.</strong> Inmune a todas las armas físicas normales.</p><p><strong>Información:</strong> Entidad alienígena de color iridiscente e indescriprible.</p><p><strong>Referencias:</strong> The Colour Out of Space</p>
+  leatherySkin: false
+  characteristics:
+    str:
+      formula: '0'
+    con:
+      formula: 6D6
+    dex:
+      formula: 3D6+6
+    siz:
+      formula: 6D6
+    int:
+      formula: 4D6
+    pow:
+      formula: 6D6
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '0'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.color-espacio
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: 11zrQaQau6RfBz1C
+name: Dagon e Hydra
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 3/3D6</p><ul><li>Lucha (Armas naturales) / 85% / 1D6</li></ul><p><strong>Información:</strong> Vástagos estelares de Cthulhu adorados como deidades por los profundos. Características fijas, no se tiran</p>
   leatherySkin: false
   characteristics:
     str:
@@ -184,26 +221,26 @@ flags:
       priority: 0
 ---
 _id: VjkQorxhmKPm5ETn
-name: 'Descarnado nocturno [Nightgaunt]'
+name: Descarnado nocturno [Nightgaunt]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / la víctima queda apresada como en una Presa. Normalmente el descarnado emprenderá el vuelo para dejarla caer desde una altura mortal</li></ul><p><strong>Información:</strong> Seres primarios que sirven a Nodens, habitan las Tierras del Sueño y sirven de montura a los gules</p><p><strong>Referencias:</strong> Night-Gaunts, The Dream-Quest of Unknown Kadath, The Strange High House in the Mist</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / la víctima queda apresada como en una Presa. Normalmente el descarnado emprenderá el vuelo para dejarla caer desde una altura mortal</li></ul><p><strong>Información:</strong> Seres primarios que sirven a Nodens, habitan las Tierras del Sueño y sirven de montura a los gules</p><p><strong>Referencias:</strong> Night-Gaunts, The Dream-Quest of Unknown Kadath, The Strange High House in the Mist</p>
   leatherySkin: false
   characteristics:
     str:
-      formula: '4D6+3'
+      formula: 4D6+3
     con:
-      formula: '4D6'
+      formula: 4D6
     dex:
-      formula: '3D6+10'
+      formula: 3D6+10
     siz:
-      formula: '3D6+3'
+      formula: 3D6+3
     int:
-      formula: '1D6'
+      formula: 1D6
     pow:
-      formula: '4D6'
+      formula: 4D6
     app:
       formula: ''
     edu:
@@ -221,7 +258,7 @@ flags:
       priority: 0
 ---
 _id: oeA4FXd899Uc1Juc
-name: 'Dol [Dhol]'
+name: Dol [Dhol]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
@@ -230,17 +267,17 @@ system:
   leatherySkin: false
   characteristics:
     str:
-      formula: '3D20*30'
+      formula: 3D20*30
     con:
-      formula: '3D20*4'
+      formula: 3D20*4
     dex:
-      formula: '1D6'
+      formula: 1D6
     siz:
-      formula: 'FUE+40'
+      formula: FUE+40
     int:
-      formula: '3D6'
+      formula: 3D6
     pow:
-      formula: '8D6'
+      formula: 8D6
     app:
       formula: ''
     edu:
@@ -258,26 +295,26 @@ flags:
       priority: 0
 ---
 _id: n5nt00DZX3c7eQjx
-name: 'Errante dimensional [Dimensional Shambler]'
+name: Errante dimensional [Dimensional Shambler]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D8, dos ataques por turno</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Enormes criaturas primarias que vagabundean entre planos</p><p><strong>Referencias:</strong> The Horror in the Museum</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D8, dos ataques por turno</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Enormes criaturas primarias que vagabundean entre planos</p><p><strong>Referencias:</strong> The Horror in the Museum</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '3D6*2'
+      formula: 3D6*2
     con:
-      formula: '5D6'
+      formula: 5D6
     dex:
-      formula: '4D6'
+      formula: 4D6
     siz:
-      formula: '3D6*2'
+      formula: 3D6*2
     int:
-      formula: '2D6'
+      formula: 2D6
     pow:
-      formula: '2D6'
+      formula: 2D6
     app:
       formula: ''
     edu:
@@ -295,26 +332,26 @@ flags:
       priority: 0
 ---
 _id: 2gI6cP6AMkgyoDy8
-name: 'Gast [Ghast]'
+name: Gast [Ghast]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 2/1D8</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D10</li></ul><p><strong>Información:</strong> Carnívoros muy agresivos que cazan en manadas, habitan cavernas en las Tierras del Sueño. La luz directa de un sol les mataría</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 2/1D8</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D10</li></ul><p><strong>Información:</strong> Carnívoros muy agresivos que cazan en manadas, habitan cavernas en las Tierras del Sueño. La luz directa de un sol les mataría</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>
   leatherySkin: false
   characteristics:
     str:
-      formula: '2D6*3'
+      formula: 2D6*3
     con:
-      formula: '5D6'
+      formula: 5D6
     dex:
-      formula: '4D6+3'
+      formula: 4D6+3
     siz:
-      formula: '3D6+15'
+      formula: 3D6+15
     int:
-      formula: '1D6'
+      formula: 1D6
     pow:
-      formula: '2D6'
+      formula: 2D6
     app:
       formula: ''
     edu:
@@ -332,26 +369,26 @@ flags:
       priority: 0
 ---
 _id: cqwugPeLNpRtWnNP
-name: 'Gran Raza de Yit [Great Race of Yith]'
+name: Gran Raza de Yit [Great Race of Yith]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 4/3D6</p><ul><li>Pinza / 25+3D6 % / 1D6</li><li>Armas de avanzada tecnología / 20+2D6 % (50+2D6 los soldados) / 1D10 o más</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad organizada muy desarrollada intelectual y psíquicamente. Capaces de proyectar sus mentes en el tiempo y habitar cuerpos de otras especies</p><p><strong>Referencias:</strong> The Shadow Out of Time</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 4/3D6</p><ul><li>Pinza / 25+3D6 % / 1D6</li><li>Armas de avanzada tecnología / 20+2D6 % (50+2D6 los soldados) / 1D10 o más</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad organizada muy desarrollada intelectual y psíquicamente. Capaces de proyectar sus mentes en el tiempo y habitar cuerpos de otras especies</p><p><strong>Referencias:</strong> The Shadow Out of Time</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '4D6*3'
+      formula: 4D6*3
     con:
-      formula: '4D6*2'
+      formula: 4D6*2
     dex:
-      formula: '2D6'
+      formula: 2D6
     siz:
-      formula: '8D6*2'
+      formula: 8D6*2
     int:
-      formula: '3D6+12'
+      formula: 3D6+12
     pow:
-      formula: '4D6+6'
+      formula: 4D6+6
     app:
       formula: ''
     edu:
@@ -369,26 +406,26 @@ flags:
       priority: 0
 ---
 _id: rBVlAPMiBAbHrF1y
-name: 'Gug'
+name: Gug
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lucha (Armas naturales) / 25+2D10 % / 3D6</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad primaria que habita su propia ciudad, en torno a la torre de Koth, en las Tierras del Sueño</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 2/2D6</p><ul><li>Lucha (Armas naturales) / 25+2D10 % / 3D6</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad primaria que habita su propia ciudad, en torno a la torre de Koth, en las Tierras del Sueño</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '4D6*3'
+      formula: 4D6*3
     con:
-      formula: '3D6*3'
+      formula: 3D6*3
     dex:
-      formula: '3D6+3'
+      formula: 3D6+3
     siz:
-      formula: '4D6*4'
+      formula: 4D6*4
     int:
-      formula: '3D6'
+      formula: 3D6
     pow:
-      formula: '4D6'
+      formula: 4D6
     app:
       formula: ''
     edu:
@@ -406,26 +443,26 @@ flags:
       priority: 0
 ---
 _id: WpTKwi0yvxl3JhmV
-name: 'Gul [Ghoul]'
+name: Gul [Ghoul]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D6</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D6, con 25% de infección (tratar como veneno de POT igual a la CON del Gul)</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad tribal</p><p><strong>Referencias:</strong> Pickman''s Model</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D6</p><ul><li>Lucha (Armas naturales) / 25+2D6 % / 1D6, con 25% de infección (tratar como veneno de POT igual a la CON del Gul)</li></ul><p><strong>Piel correosa.</strong> Además de los puntos de protección, las armas de fuego le hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Sociedad tribal</p><p><strong>Referencias:</strong> Pickman's Model</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '3D6+6'
+      formula: 3D6+6
     con:
-      formula: '4D6'
+      formula: 4D6
     dex:
-      formula: '4D6'
+      formula: 4D6
     siz:
-      formula: '2D6+6'
+      formula: 2D6+6
     int:
-      formula: '2D6+6'
+      formula: 2D6+6
     pow:
-      formula: '3D6'
+      formula: 3D6
     app:
       formula: ''
     edu:
@@ -443,26 +480,26 @@ flags:
       priority: 0
 ---
 _id: hS72kxP81mLqR9z0
-name: 'Hombre serpiente [Serpent Person]'
+name: Hombre serpiente [Serpent Person]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Mordisco / 35% / 1D8 + Veneno POT 14</li></ul><p><strong>Información:</strong> Antigua raza de reptiles humanoides eruditos y brujos.</p><p><strong>Referencias:</strong> The Nameless City, The Shadow Out of Time</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Mordisco / 35% / 1D8 + Veneno POT 14</li></ul><p><strong>Información:</strong> Antigua raza de reptiles humanoides eruditos y brujos.</p><p><strong>Referencias:</strong> The Nameless City, The Shadow Out of Time</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '3D6'
+      formula: 3D6
     con:
-      formula: '3D6'
+      formula: 4D6
     dex:
-      formula: '3D6+2'
+      formula: 3D6+3
     siz:
-      formula: '3D6'
+      formula: 3D6
     int:
-      formula: '4D6'
+      formula: 4D6
     pow:
-      formula: '4D6'
+      formula: 4D6
     app:
       formula: ''
     edu:
@@ -479,27 +516,167 @@ flags:
         standard: true
       priority: 0
 ---
-_id: kM39qWv28xLpT1n4
-name: 'Shantak'
+_id: SYhjEf0wEIn3dJmQ
+name: Mi-Go
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Mordisco / 30% / 2D6</li><li>Garra / 30% / 1D6</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Enormes corceles alados que vuelan por el espacio cósmico.</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 2/1D10</p><ul><li>Lucha (Armas naturales) / 25+2D6 % (50+3D6 los soldados) / 1D6</li></ul><p>Los Mi-Go pueden utilizar armas humanas o las propias de su tecnolog&iacute;a.</p><p><strong>Informaci&oacute;n:</strong> Civilizaci&oacute;n evolucionada con grandes conocimientos cient&iacute;ficos, especialmente en gen&eacute;tica.</p><p><strong>Referencias:</strong> The Whisperer in Darkness</p>
+  characteristics:
+    str:
+      formula: 3D6
+    con:
+      formula: 2D6+6
+    dex:
+      formula: 2D6+6
+    siz:
+      formula: 3D6+3
+    int:
+      formula: 3D6+10
+    pow:
+      formula: 3D6+6
+    app:
+      formula: ''
+    edu:
+      formula: ''
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.mi-go
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: wL92kP475mRzS3x1
+name: Profundo [Deep One]
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Garra / 25% / 1D6 + MD</li><li>Tridente / 25% / 1D8 + MD</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Anfibios antropomórficos inmortales al servicio de Dagon y Cthulhu.</p><p><strong>Referencias:</strong> The Shadow Over Innsmouth</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '6D6+12'
+      formula: 4D6
     con:
-      formula: '3D6+6'
+      formula: 4D6
     dex:
-      formula: '2D6+6'
+      formula: 3D6
     siz:
-      formula: '6D6+18'
+      formula: 3D6+3
     int:
-      formula: '2D6'
+      formula: 3D6
     pow:
-      formula: '3D6'
+      formula: 4D6
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '1'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.profundo
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: KQKhhJKvGIJNs0XD
+name: Prole Oscura de Shub Niggurath [Dark Young]
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 1D3/1D10</p><ul><li>Tent&aacute;culo / 85 % / 1D3 FUE</li><li>Lucha (Armas naturales) / 50+4D10 % / 2D6</li></ul><p><strong>Protecci&oacute;n:</strong> las armas de fuego les hacen el da&ntilde;o m&iacute;nimo. Inmunes al calor, los venenos y la electricidad.</p><p><strong>Informaci&oacute;n:</strong> Reto&ntilde;os de Shub-Niggurath que se asemejan a &aacute;rboles gigantescos.</p><p><strong>Referencias:</strong> The Last Test, Out of the Aeons, The Whisperer in Darkness</p>
+  characteristics:
+    str:
+      formula: 3D6+35
+    con:
+      formula: 4D6+10
+    dex:
+      formula: 4D6+10
+    siz:
+      formula: '@str'
+    int:
+      formula: 4D6
+    pow:
+      formula: 5D6
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  leatherySkin: true
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.prole-oscura
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: nMydgeaJUkALFhWf
+name: Pólipo volador [Flying Polyp]
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 1D3/1D20</p><ul><li>Tent&aacute;culo / 70+3D6 % / 1D10</li><li>Viento / el objetivo debe superar un chequeo de DESx5% para evitar el golpe / 6D6, restando 1D6 por cada 10 metros de distancia</li></ul><p><strong>Informaci&oacute;n:</strong> Sociedad organizada, habitan ciudades subterr&aacute;neas en la Tierra.</p><p><strong>Referencias:</strong> The Shadow Out of Time</p>
+  characteristics:
+    str:
+      formula: 3D6*4
+    con:
+      formula: 2D6*4
+    dex:
+      formula: 3D6
+    siz:
+      formula: 3D6*4
+    int:
+      formula: 4D6
+    pow:
+      formula: 5D6
+    app:
+      formula: ''
+    edu:
+      formula: ''
+  attribs:
+    armor:
+      value: '4'
+flags:
+  cthulhud100:
+    cocidFlag:
+      id: a.creature.polipo-volador
+      lang: es
+      eras:
+        standard: true
+      priority: 0
+---
+_id: kM39qWv28xLpT1n4
+name: Shantak
+type: creature
+img: systems/cthulhud100/assets/icons/floating-tentacles.svg
+system:
+  description:
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Mordisco / 30% / 2D6</li><li>Garra / 30% / 1D6</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Enormes corceles alados que vuelan por el espacio cósmico.</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>
+  leatherySkin: true
+  characteristics:
+    str:
+      formula: 4D6+20
+    con:
+      formula: 2D6+6
+    dex:
+      formula: 2D6+3
+    siz:
+      formula: 4D6+36
+    int:
+      formula: 1D6
+    pow:
+      formula: 3D6
     app:
       formula: ''
     edu:
@@ -517,26 +694,26 @@ flags:
       priority: 0
 ---
 _id: qR85tYn94zKmL2p7
-name: 'Shoggoth'
+name: Shoggoth
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 1D6/1D20</p><ul><li>Aplastamiento / 100% / MD + 8D6</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego y armas físicas sufren <strong>daño mínimo (1 pt)</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Masa protoplasmática negra de ojos móviles y pseudópodos.</p><p><strong>Referencias:</strong> At the Mountains of Madness, The Shadow Out of Time</p>'
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 1D6/1D20</p><ul><li>Aplastamiento / 100% / MD + 8D6</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego y armas físicas sufren <strong>daño mínimo (1 pt)</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Masa protoplasmática negra de ojos móviles y pseudópodos.</p><p><strong>Referencias:</strong> At the Mountains of Madness, The Shadow Out of Time</p>
   leatherySkin: true
   characteristics:
     str:
-      formula: '18D6'
+      formula: 1D20*1D6
     con:
-      formula: '12D6'
+      formula: '@str'
     dex:
-      formula: '3D6'
+      formula: 1D6
     siz:
-      formula: '24D6'
+      formula: '@str+4D6'
     int:
-      formula: '2D6'
+      formula: 1D6
     pow:
-      formula: '3D6+3'
+      formula: 2D6
     app:
       formula: ''
     edu:
@@ -553,114 +730,76 @@ flags:
         standard: true
       priority: 0
 ---
-_id: xN14vB583mLpQ7w9
-name: 'Color surgido del espacio [Colour Out of Space]'
+_id: i2pvaHtEBsVZDbax
+name: Terror Cazador [Hunting Horror]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D4</p><ul><li>Drenar / 86% / Drena 1D6 CON y POD</li></ul><p><strong>Incorpóreo.</strong> Inmune a todas las armas físicas normales.</p><p><strong>Información:</strong> Entidad alienígena de color iridiscente e indescriprible.</p><p><strong>Referencias:</strong> The Colour Out of Space</p>'
-  leatherySkin: false
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 4/3D6</p><ul><li>Coletazo / 80+3D6 % / la v&iacute;ctima queda inmovilizada como en una Presa</li><li>Lucha (Armas naturales) / 50+3D10 % / 1D6</li></ul><p><strong>Informaci&oacute;n:</strong> Cazadores al servicio de Nyarlathotep, no pueden soportar la luz del d&iacute;a.</p><p><strong>Referencias:</strong> The Dream-Quest of Unknown Kadath</p>
   characteristics:
     str:
-      formula: '0'
+      formula: 5D6+12
     con:
-      formula: '6D6'
+      formula: 3D6
     dex:
-      formula: '3D6+6'
+      formula: 3D6+3
     siz:
-      formula: '6D6'
+      formula: 5D6+24
     int:
-      formula: '4D6'
+      formula: 1D6+12
     pow:
-      formula: '6D6'
+      formula: 6D6
     app:
       formula: ''
     edu:
       formula: ''
-  attribs:
-    armor:
-      value: '0'
-flags:
-  cthulhud100:
-    cocidFlag:
-      id: a.creature.color-espacio
-      lang: es
-      eras:
-        standard: true
-      priority: 0
----
-_id: wL92kP475mRzS3x1
-name: 'Profundo [Deep One]'
-type: creature
-img: systems/cthulhud100/assets/icons/floating-tentacles.svg
-system:
-  description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 0/1D6</p><ul><li>Garra / 25% / 1D6 + MD</li><li>Tridente / 25% / 1D8 + MD</li></ul><p><strong>Piel correosa.</strong> Las armas de fuego hacen <strong>daño mínimo</strong> y <strong>no doblan daño por empalar</strong>.</p><p><strong>Información:</strong> Anfibios antropomórficos inmortales al servicio de Dagon y Cthulhu.</p><p><strong>Referencias:</strong> The Shadow Over Innsmouth</p>'
   leatherySkin: true
-  characteristics:
-    str:
-      formula: '4D6'
-    con:
-      formula: '3D6+3'
-    dex:
-      formula: '3D6'
-    siz:
-      formula: '3D6+3'
-    int:
-      formula: '3D6'
-    pow:
-      formula: '3D6'
-    app:
-      formula: ''
-    edu:
-      formula: ''
   attribs:
     armor:
-      value: '1'
+      value: '9'
 flags:
   cthulhud100:
     cocidFlag:
-      id: a.creature.profundo
+      id: a.creature.terror-cazador
       lang: es
       eras:
         standard: true
       priority: 0
 ---
-_id: zP41mL982xQkR7n3
-name: 'Perro de Tíndalos [Hound of Tindalos]'
+_id: 10yG9HXrvXvb7YaQ
+name: Vástago Estelar de Cthulhu [Star Spawn]
 type: creature
 img: systems/cthulhud100/assets/icons/floating-tentacles.svg
 system:
   description:
-    value: '<p><strong>Impacto a la Estabilidad Mental:</strong> 1/1D8</p><ul><li>Lengua / 90% / Drena 1D6 POD</li><li>Zarpazo / 30% / 1D6 + MD</li></ul><p><strong>Inmaterial.</strong> Solo le afectan armas mágicas o de fuego directo con daño reducido.</p><p><strong>Información:</strong> Depredadores del tiempo que emergen a través de ángulos agudos.</p><p><strong>Referencias:</strong> The Hounds of Tindalos (Frank Belknap Long)</p>'
-  leatherySkin: false
+    value: <p><strong>Impacto a la Estabilidad Mental:</strong> 1D6/2D10</p><ul><li>Lucha (Armas naturales) / 60+3D20 % / 1D6</li></ul><p><strong>Informaci&oacute;n:</strong> Seres similares al Gran Cthulhu, probablemente cong&eacute;neres de menor tama&ntilde;o.</p><p><strong>Referencias:</strong> At the Mountains of Madness</p>
   characteristics:
     str:
-      formula: '3D6+6'
+      formula: 3D6*6
     con:
-      formula: '3D6+6'
+      formula: 4D6*4
     dex:
-      formula: '3D6+6'
+      formula: 4D6+3
     siz:
-      formula: '3D6'
+      formula: 3D6*12
     int:
-      formula: '5D6'
+      formula: 4D6+12
     pow:
-      formula: '7D6'
+      formula: 4D6+12
     app:
       formula: ''
     edu:
       formula: ''
+  leatherySkin: true
   attribs:
     armor:
-      value: '2'
+      value: '10'
 flags:
   cthulhud100:
     cocidFlag:
-      id: a.creature.perro-tindalos
+      id: a.creature.vastago-estelar
       lang: es
       eras:
         standard: true
       priority: 0
-
