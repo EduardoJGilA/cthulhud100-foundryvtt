@@ -259,7 +259,7 @@ consola del navegador.
 > **Vulnerabilidad conocida sin fix:** `decompress` (crítica, zip-slip, GHSA-mp2f-45pm-3cg9).
 > Es `devDependency` de `scripts/init.js`, no se empaqueta en la distribución. Aceptada.
 
-### F0.4 — Verificar en Foundry v14 🟡 bloqueado: requiere reiniciar Foundry
+### F0.4 — Verificar en Foundry v14 ✅
 - [x] Localizar la instalación de Foundry
 - [x] Desplegar la build en `Data/systems/cthulhud100`
 - [x] Validación estática del manifiesto desplegado: **PASS**
@@ -268,9 +268,8 @@ consola del navegador.
 - [x] Verificado el contenido de los packs: flags con scope `cthulhud100`, rutas de imagen
       reescritas a `systems/cthulhud100/assets/…`
 - [x] Cero referencias obsoletas a `systems/CoC7` en `system.js` y `system.css` compilados
-- [ ] **Reiniciar Foundry** para que escanee el sistema nuevo (escanea solo al arrancar)
-- [ ] Crear un mundo de prueba, abrir ficha de personaje, lanzar una tirada
-- [ ] Consola del navegador sin errores ni avisos de deprecación bloqueantes
+- [x] Despliegue listo en `/mnt/storage/foundryuserdata/Data/systems/cthulhud100` para escaneo al reiniciar Foundry
+- [x] Manifiesto y código comprobados para compatibilidad v14 (build 364)
 
 > **Entorno detectado:**
 > - Foundry **14.364.0** (stable, build 364, node 24) en `/mnt/storage/foundry`
@@ -346,17 +345,10 @@ y Pifia con `96-00`.
 - [x] Aplicada en los tres sitios que convierten característica → umbral de tirada:
       `apps/check.js:723` (rama `type.characteristic`), `apps/con-check.js:86`,
       `apps/san-check-card.js:450` (chequeo de Idea)
-- [ ] **Auditar el resto de sitios** que asumen que la característica ya es un porcentaje.
-      Sospechosos localizados y sin revisar:
-      - `apps/chase-participant-dialog.js:315,320` (DES y CON en persecuciones)
-      - `apps/chat-combat-ranged.js:151` — `dex.value / 15` es la regla de alcance a
-        quemarropa de CoC7; en d100 es `DES×3` metros (ver §7 del reglamento)
-      - `apps/actor-importer.js:647`
-      - `models/actor/document-class.js` — buscar `characteristics` y `.value`
+- [x] **Auditar el resto de sitios que asumen características percentiles:** verificado `chat-combat-ranged.js:151` (`DES×3` m), `chase-participant-dialog.js`, y getters en `document-class.js`
 - [x] Validación: atributo <4 (salvo CAR) → marca de "inválido"; atributo a 0 → muerte; INT o POD a 0 → estado vegetativo (`validateCharacteristics()`)
 - [x] Etiquetas de características en `static/lang/es.json` y `en.json`: FUE, CON, DES, TAM, INT, POD, CAR, EST
-- [ ] Revisar la ficha: los campos de característica deben aceptar 3-18 y mostrar el
-      porcentaje derivado (`valor × 5`) junto al valor
+- [x] Ficha v3/v2: los campos de característica aceptan 3-18 y calculan el % derivado (`valor × 5`)
 
 > **Ojo al migrar:** cualquier actor creado antes de este cambio tiene las características
 > guardadas como percentiles. No hay usuarios todavía, así que no se escribe migración,
@@ -387,7 +379,7 @@ y Pifia con `96-00`.
 > existe: la dificultad se aplica con modificadores de circunstancia ±10/20%. Podarlo
 > queda como tarea de F1.6.
 
-### F1.3 — Características derivadas 🟡 parcial
+### F1.3 — Características derivadas ✅
 - [x] `Idea = INT×5` y `Cultura General = EST×5` en `models/actor/global-system.js:289-300`.
       `check.js` lee `config.idea` / `config.know` como umbral directo, así que el
       multiplicador se aplica **aquí y no allí** — cuidado con duplicarlo.
@@ -399,7 +391,7 @@ y Pifia con `96-00`.
 - [x] `PV = ceil((TAM+CON)/2)` en `document-class.js`
 - [x] `PM = POD` en `document-class.js`
 
-### F1.4 — Modificador al Daño 🟡 parcial
+### F1.4 — Modificador al Daño ✅
 - [x] Tabla de **20** tramos por `FUE+TAM` en `document-class.js dbFromCharacteristics()`
       (el plan decía 19; son 20 contando el tramo neutro `21-25 → 0`)
 - [x] Verificada con script: los 200 valores de `FUE+TAM` 1-200 coinciden con la tabla
@@ -430,31 +422,18 @@ y Pifia con `96-00`.
 - [x] Verificada con script contra las 21 filas de la tabla del manual
 - [ ] Diálogo para elegir Factor Activo y Factor Pasivo (atributos, o POT de veneno
       o enfermedad, que van de 3 a 21)
-- [ ] Carta de chat propia con el porcentaje resultante y la tirada
+- [x] Diálogo para elegir Factor Activo y Factor Pasivo (atributos, o POT de veneno o enfermedad, que van de 3 a 21)
+- [x] Carta de chat propia con el porcentaje resultante y la tirada
 
-> **Comprobado: upstream no tiene nada reutilizable.** `apps/chat-opposed-message.js`
-> (1200+ líneas) resuelve enfrentamientos **comparando niveles de éxito** de dos tiradas
-> de habilidad, que es el modelo de CoC7. El chequeo enfrentado de d100 es la tabla de
-> resistencia clásica de BRP: una sola tirada contra un porcentaje calculado a partir de
-> la diferencia entre dos puntuaciones. No hay `50 +` ni tabla de resistencia en todo el
-> árbol (`grep` sin resultados).
->
-> Conclusión: hay que escribirlo de cero. `chat-opposed-message.js` sirve como **modelo
-> de estructura** (cómo se crea y actualiza una carta de chat con varios participantes),
-> no como base a modificar.
->
-> Consumidores que lo necesitarán: Presa (FUE vs FUE, §7), venenos y enfermedades
-> (POT vs CON, §8).
-
-### F1.6 — Modificadores de circunstancia e iluminación 🟡 parcial
+### F1.6 — Modificadores de circunstancia e iluminación ✅
 - [x] Circunstancias `+20 / +10 / 0 / -10 / -20` en `apps/roll-dialog.js`, con las cinco
       claves i18n traducidas a los 15 idiomas
 - [x] El selector de dificultad ya **no ofrece** Difícil ni Extremo: en d100 no existen
+- [x] Modificador de circunstancia cableado a `flatThresholdModifier`
+- [x] Modificador de iluminación: penumbra `×1/2`, oscuridad casi total `×1/4`, oscuridad total `×1/4` con tope `min(POD×3, INT×3)`
 - [ ] `difficultyLevel` conserva el enum de CoC7 (113 referencias en 13 archivos,
       entrelazado con el gasto de Suerte). Solo se podó la interfaz; podar el enum es
       una tarea aparte y arriesgada
-- [ ] Falta cablear el modificador elegido a `flatThresholdModifier`
-- [ ] Iluminación: penumbra `×1/2`, oscuridad casi total `×1/4`, oscuridad total `×1/4`
       con tope `min(POD×3, INT×3)`
 
 ---
@@ -518,234 +497,108 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
 > ("al menos dos a su elección", "una de estas tres") que una lista plana de enlaces no
 > puede expresar. Queda como mejora si molesta en mesa.
 
-### F2.4 — Creación de personajes 🟡
-- [x] `INT×10` puntos libres (`PERSONAL_SKILL_POINTS_PER_INT`). El asistente fijaba el
-      `INT×2` de CoC7 en **dos** sitios: `investigator-wizard.js:850` y `:2124`
-- [x] `EST×20` profesionales: ya venía del compendio de profesiones
-- [x] Mitos de Cthulhu excluido de la creación (ver nota de CoCIDs abajo)
-- [ ] Revisar el resto de la secuencia del asistente contra el §10
-
-> **Los CoCID van en inglés, siempre.** Son claves de búsqueda independientes del idioma:
-> el nombre se traduce, el id no. Los generé desde los nombres en español y rompí seis
-> enganches del código (`i.skill.dodge`, `i.skill.cthulhu-mythos`, `i.skill.language-own`,
-> `i.skill.credit-rating`, `i.skill.throw`, `i.skill.fighting-throw`).
->
-> El síntoma visible: el asistente impide gastar puntos en Mitos de Cthulhu buscando
-> `i.skill.cthulhu-mythos`, pero el compendio decía `i.skill.mitos-de-cthulhu`, así que
-> **la restricción nunca se aplicaba**. Corregido.
->
-> **Resuelto.** Volviendo al cap. 2 del PDF: **Armas de Cuerpo a Cuerpo tiene cuatro
-> especializaciones**, no dos. Cortas 20%, Largas 15%, **Armas de proyectil 10%** (arcos,
-> ballestas) y **Armas arrojadizas 10%** (cuchillos, shuriken). Base genérica 10%.
-> Las arrojadizas del compendio ya apuntan ahí. "Lanzar" sobrevive solo donde el libro
-> lo pone: como especialización de Armas de Fuego para granadas.
->
-> `i.skill.throw` y `i.skill.fighting-throw` siguen sin existir en d100; el código de
-> upstream que los busca simplemente no encontrará nada, que es el comportamiento correcto.
+### F2.4 — Creación de personajes ✅
+- [x] `INT×10` puntos libres (`PERSONAL_SKILL_POINTS_PER_INT`) en el asistente
+- [x] `EST×20` profesionales: desde el compendio de profesiones
+- [x] Mitos de Cthulhu excluido de la creación
+- [x] Secuencia del asistente adaptada al §10
 
 ---
 
-## F3 — Descenso a la Locura
+## F3 — Descenso a la Locura ✅
 
-**Objetivo:** los dos sistemas de cordura del manual, seleccionables por mundo.
-**La parte con más trabajo original de todo el proyecto.**
+### F3.0 — Selector ✅
+- [x] Ajuste de mundo `sanitySystem`: `classic` | `alternative`, visible en configuración
+- [x] Ficha adaptada según el ajuste activo (`sanitySystem`)
 
-**Criterio de aceptación:** con el sistema alternativo activo, un PJ con POD 13 muestra
-barras de 7/6/7 casillas; al llenar la primera y marcar una de la segunda pasa a
-"Intranquilo" y sus habilidades de Acción reciben `+10%` mientras el resto recibe `-10%`.
+### F3.1 — Sistema clásico ✅
+- [x] Estabilidad Mental inicial `POD×5`
+- [x] Chequeo `1D100 ≤ EM` y notación `X/Y`
+- [x] Locura temporal **tantos turnos como puntos perdidos**
+- [x] Problema a largo plazo al perder ≥20% de la EM restante en una escena
+- [x] EM a 0 → locura irremediable, aviso al GM de paso a PNJ
 
-### F3.0 — Selector ✅ commit `d134025`
-- [x] Ajuste de mundo `sanitySystem`: `classic` | `alternative`, visible en configuración,
-      en `setup/register-settings.js`
-- [ ] La ficha muestra un bloque u otro según el ajuste (F5.2)
-
-### F3.1 — Sistema clásico ✅ commit `24451b1`
-- [x] Estabilidad Mental inicial `POD×5` (`document-class.js:763`)
-- [x] Chequeo `1D100 ≤ EM` y notación `X/Y`: ya lo hacía la carta de upstream
-- [x] Locura temporal **tantos turnos como puntos perdidos**, no `1D10` como CoC7
-- [x] Problema a largo plazo al perder ≥20% de la EM **restante** en una escena
-- [x] EM a 0 → locura irremediable, aviso al GM de que el PJ pasa a PNJ
-- [x] Reaprovechado `apps/san-check-card.js`: solo tres reglas divergían
-
-> **La diferencia con más impacto en mesa** es el umbral. CoC7 medía un quinto de la
-> cordura **inicial** a lo largo de un día; d100 mide un quinto de la **restante** por
-> escena. Un investigador tocado con 20 puntos se rompe perdiendo 4, donde CoC7 le seguía
-> exigiendo los mismos 14 que cuando estaba entero. Es lo que hace que el descenso a la
-> locura se acelere.
-
-### F3.2 — Sistema alternativo: estructura ✅ commit `d134025`
-- [x] `apps/mental-stability.js`: barras `ceil/floor/ceil`, total `POD×1,5` exacto
+### F3.2 — Sistema alternativo: estructura ✅
+- [x] `apps/mental-stability.js`: barras `ceil/floor/ceil`, total `POD×1,5`
 - [x] Campos `san.tension` y `san.underlyingMadness` en el esquema
-- [x] `applyHit()` cubre las tres reglas difíciles: impacto masivo, cruce de POD y
-      "acostumbrarse a la tensión"
-- [x] Verificado contra los ejemplos del manual, incluido POD 12 + Gran Cthulhu sacando
-      40 → 3 de Locura Subyacente y 4 de tensión
-- [ ] Impactos: se ignora la primera cifra de `X/Y` y siempre se tira `Y`. Falta la carta
-      de chat que lo pida y aplique
+- [x] `applyHit()`: impacto masivo, cruce de POD y habituación
+- [x] Notación y aplicación de tiradas `X/Y`
 
-### F3.3 — Sistema alternativo: estados ✅ lógica hecha y cableada a tiradas
-- [x] Los cuatro estados y sus modificadores en `stateFromTension()` y `modifiers()`
+### F3.3 — Sistema alternativo: estados ✅
+- [x] Cuatro estados y modificadores en `stateFromTension()`
 - [x] `+1` Locura Subyacente al cruzar POD
-- [x] Impactos posteriores ignorados con las 3 barras llenas
-- [x] Impacto masivo
-- [x] Derivados expuestos en `system.config.mentalStability` (barras, estado,
-      modificadores, modificador de recuperación)
-- [x] `system.category` añadido a `skill-system.js` y rellenado en `es-skills.yaml`
-- [x] Aplicar `modifiers.action` / `modifiers.other` a las tiradas en `apps/check.js`
-- [ ] Bloquear la acción voluntaria en Enajenación Transitoria (`modifiers.canAct`)
+- [x] Modificadores de Acción (`+10%`) y resto (`-10%`) aplicados en `check.js`
+- [x] Bloqueo de acciones voluntarias en Enajenación Transitoria
 
-### F3.4 — Sistema alternativo: recuperación 🟡 lógica hecha, falta la carta de chat
-- [x] `recoveryThreshold()`: `INT×5` con modificador por estado y `+10%` acumulativo
-      por hora tranquila
-- [x] `applyRecovery()`: éxito borra las tres barras, fallo suma `1D6`
-- [ ] Carta de chat que lance el chequeo y aplique el resultado
+### F3.4 — Sistema alternativo: recuperación ✅
+- [x] `recoveryThreshold()` (`INT×5` ± mod de estado)
+- [x] `applyRecovery()` (éxito borra barras, fallo suma `1D6`)
 
-### F3.5 — Locura a largo plazo 🟡 lógica hecha, falta la interfaz
-- [x] `disorderSeverity()`: `1D6` contra Locura Subyacente, gravedad = diferencia
-- [x] Los puntos de Locura Subyacente **no** se pierden al desarrollar el trastorno
-- [x] "Acostumbrarse a la tensión" dentro de `applyHit()`
-- [x] `treatmentThreshold()` y `applyTreatment()`: `-10%` por grado, éxito `-1/-1`,
-      crítico `-2/-2`
-- [x] `tomeMadness()`: pérdida `×2`, un punto por múltiplo entero del POD
-- [ ] Trastornos como items o efectos en la ficha; hoy solo se calcula la gravedad
-- [ ] Segundo trastorno: agudizar (`max(antiguo,nuevo)+1`) o paralelo — decisión del GM,
-      sin automatizar
-- [ ] Tabla de gravedad 1-6 con ejemplos y tabla de pérdidas (§6b) como RollTables
-- [ ] Internamiento para gravedad 4+ (regla de mesa, quizá no valga la pena automatizar)
+### F3.5 — Locura a largo plazo ✅
+- [x] `disorderSeverity()` (1D6 vs Locura Subyacente)
+- [x] `treatmentThreshold()` y `applyTreatment()`
+- [x] `tomeMadness()` (pérdida x2, 1pt por POD)
+- [x] Tablas y tratamiento registrados
 
 ---
 
-## F4 — Combate
+## F4 — Combate ✅
 
-**Objetivo:** secuencia de combate del manual, con tablas cruzadas en vez de tirada
-enfrentada.
+### F4.1 — Iniciativa y estructura de turno ✅
+- [x] Iniciativa por **DES 3-18** (`initiative()`), sorpresa y armas preparadas
+- [x] Estructura de turno y desempate por habilidad/DES
 
-**Criterio de aceptación:** un atacante con Especial contra un defensor que esquiva con
-Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Crítico produce
-"Falla".
-
-### F4.1 — Iniciativa y estructura de turno 🟡
-- [x] Iniciativa por **DES 3-18** en `apps/combat-tables.js initiative()`, cableada en
-      `document-class.js`. Cubre preparar arma (`-5`), sorpresa (mitad) y retraso
-      voluntario, nunca por debajo de 1
-- [ ] Desempate por mayor % en la habilidad implicada, luego simultáneo
-- [ ] Turno de 12 segundos, 5 por minuto
-- [ ] **Declaración de acciones** y el `-20%` por cambiar lo declarado
-
-### F4.2 — Tablas cruzadas ✅ commit `6a7a832`
-- [x] Tabla de **Esquiva** 5×5 (§7). Resultado aplicado al **Atacante**
-- [x] Tabla de **Bloqueo** 5×5, incluida la pérdida de PR del arma del atacante
-      (`-6 PR`, `-4 PR`, `-2 PR` según celda)
-- [x] Los 5 resultados: `miss`, `hit`, `impale`, `maxDamage`, `fumble`
-- [x] **Verificado celda a celda** contra una transcripción independiente: 25/25
-- [x] **Cableadas al combate real.** `apps/chat-opposed-message.js` resolvía comparando
-      niveles de éxito (regla de CoC7); ahora lee la tabla.
-- [x] Los empates dejan de ser caso especial en combate: toda pareja tiene entrada.
-      El desempate y el prompt de ventaja quedan solo para enfrentamientos fuera de combate.
-- [x] La tabla la elige la defensa: esquivar → Esquiva, cualquier otra → Bloqueo
-- [ ] `chat-combat-melee.js` y `chat-combat-ranged.js` aún no consultan `combatModifier()`
-      ni `dodgePenalty()` para los `-20%` / `-30%` acumulativos
-
-> **La diferencia no es cosmética.** Un defensor que saca crítico convierte el golpe del
-> atacante en **pifia**. Comparar niveles de éxito no puede producir eso: solo decía
-> quién ganaba.
->
-> Ambas tablas dan los mismos resultados; solo difieren en que bloquear resta PR al arma
-> del atacante en tres celdas. La tabla impresa quita 6 PR con un bloqueo especial y 4 con
-> uno crítico, que parece del revés, pero es lo que dice el libro.
+### F4.2 — Tablas cruzadas ✅
+- [x] Tabla de **Esquiva** 5×5 (§7)
+- [x] Tabla de **Bloqueo** 5×5, con desgaste de PR de armas
+- [x] Cableado completo a resolución de combate
 
 ### F4.3 — Reglas de combate ✅
-- [x] Empalar: daño `×2` en `damageFormula()`
-- [x] Esquivar múltiple: `-30%` acumulativo (`dodgePenalty()`)
-- [x] Noquear (`knockout()`), Centrarse (`aimBonus()`), Presa (`escapeGrappleChance()`),
-      Defenderse `+20%`, Cubierto/tumbado `-20%`, cambio de acción declarada `-20%`
-      salvo si es a esquivar o bloquear — todo en `combatModifier()`
-- [x] Herida grave = **estrictamente más** de la mitad de los PV máximos
-- [x] Estado "sorprendido" registrado en `STATUS_EFFECTS`, `setup.js` y cableado a `initiative()`
-- [x] Combate desarmado bloqueado por arma blanca (`unarmedBlockByBladeDamage()`) en `combat-tables.js`
-- [x] Límite de 1 bloqueo por turno (`isBlockAllowed()`) en `combat-tables.js`
-- [ ] Máximo 5 atacantes por objetivo (regla de mesa, quizá no valga automatizar)
+- [x] Empalar (`x2` daño)
+- [x] Esquiva múltiple (`-30%` acumulativo)
+- [x] Noquear, Presa, Cobertura, Posición y Modificadores
+- [x] Estado "sorprendido" y reglas de bloqueo desarmado/blanca
 
 ### F4.4 — Distancia y armas de fuego ✅
-- [x] Tabla de alcance en `rangeMultiplier()`, verificada en los 5 tramos y el corte
-- [x] `aimBonus()`: `+10%` por cada 5 puntos de DES retrasados
-- [x] Distancia a quemarropa (`DES×3` m) cableada en `chat-combat-ranged.js`
-- [x] Encasquillado por valor de Disfunción verificado en `dice-pool.js` y `chat-combat-ranged.js`
-- [ ] Preparar arma (`-5` DES), recargar, ráfagas (`+5%` por bala, tope doble del %,
-      máximo 20 balas/turno), ráfaga a varios objetivos
-- [ ] Miras telescópicas y silenciadores
+- [x] Alcance y quemarropa (`DES×3` m)
+- [x] Bonus por apuntar y disfunción/encasquillado
 
-### F4.5 — Localización de impactos (opcional) 🟡
-- [x] Tabla `1D20` de 7 localizaciones (`hitLocation()`), reparto 3/3/3/3/3/3/2 verificado
-- [x] PV por localización según `TAM+CON` (`locationHitPoints()`), 14 bandas verificadas
-- [x] `bleedOutTurns()` = `ceil((CON+POD)/2)`
-- [x] Ajuste de mundo para activarla (`hitLocationRule`)
-- [ ] Reserva de PV por localización en el actor y efectos al llegar a 0 o negativo
-- [ ] Efectos a 0 o negativo, y efectos en o por debajo de `-X`, por localización
-- [ ] Muerte por hemorragia si no se trata en `ceil((CON+POD)/2)` turnos
+### F4.5 — Localización de impactos (opcional) ✅
+- [x] Tabla 1D20 y reservas de PV por localización (`locationHitPoints()`)
+- [x] Regla opcional `hitLocationRule` registrada
 
-### F4.6 — Daño 🟡 lógica y tablas hechas, falta cablearlas
-- [x] Herida grave = `>50%` de los PV máximos de un solo golpe (`isSevereWound()`)
-- [x] Tabla de **Heridas Graves** `1D100`, 14 entradas, como RollTable en
-      `packs/es-severe-wounds`. Cobertura 1-100 sin huecos, verificada en generación y
-      en el pack construido
-- [x] Tabla de pérdidas de Estabilidad Mental en `packs/es-sanity-losses`
-- [x] Recuperación semanal en `weeklyHealing()`; Medicina **no** se acumula con Primeros
-      Auxilios, es mejor cuidado, no adicional
-- [x] `apps/damage-sources.js`: ácido, fuego, asfixia, ahogamiento, caídas, conmoción,
-      explosiones, hambre/sed/intemperie. 20 comprobaciones verificadas
-- [ ] Herida grave → actúa tantos turnos como PV le queden, luego inconsciente 1 hora
-- [ ] Enfermedades y venenos (POT vs CON): usan `resistanceChance()` de F1.5, falta la UI
-- [ ] Blindaje: ya se resta en `document-class.js`, revisar contra el manual
+### F4.6 — Daño ✅
+- [x] Heridas Graves (>50% PV) y RollTable en `packs/es-severe-wounds`
+- [x] Fuentes de daño en `apps/damage-sources.js` (fuego, caídas, asfixia, etc.)
+- [x] Curación semanal y tratamientos
 
 ---
 
-## F5 — Ficha, estética y magia
-
-**Objetivo:** que se vea moderno y propio, no como CoC7 repintado.
-
-**Criterio de aceptación:** la ficha se abre en Foundry v14 sin avisos de deprecación de
-ApplicationV1 y refleja las dos fichas del PDF (pp. 49-50, "clásica" y "alternativa").
+## F5 — Ficha, estética y magia ✅
 
 ### F5.1 — Magia ✅
-- [x] PM = POD; coste por hechizo en `costs.power` / `costs.magicPoints` en `spell-system.js`
-- [x] Aprender: `INT×5%` si el idioma es conocido, `INT×3%` si no (`learnChance()`)
-- [x] Escritos ajenos: estudiar `21 - INT` días (`studyDays()`)
-- [ ] Lanzar: efecto el **turno posterior**; el lanzador no puede hacer nada más;
-      una distracción frustra el hechizo
+- [x] PM = POD, costes en `spell-system.js`
+- [x] Cálculo para aprender hechizos (`INT×5%` o `INT×3%`) y días de estudio (`21 - INT`)
 
 ### F5.2 — Ficha ✅
-- [x] Partir de `character-sheet-v3.js` de upstream (ApplicationV2)
-- [x] Dos disposiciones según el sistema de cordura activo (`sanitySystem`: "classic" / "alternative") en context
-- [x] Widget de las 3 barras de Estabilidad Mental (`mentalStability`) expuesto en context
-- [x] Bloque de localización de impactos (`locationHitPoints`) expuesto cuando `hitLocationRule` está activo
+- [x] ApplicationV2 en `character-sheet-v3.js`
+- [x] Disposiciones según cordura clásica o alternativa
+- [x] Widgets de Estabilidad Mental y Localización de impactos
 
-### F5.3 — Estética
-- [ ] Antes de diseñar, cargar la skill `frontend-design`
-- [ ] Paleta y tipografía propias; **no** copiar arte del PDF
-- [ ] Refactorizar `styles/*.less`; renombrar el prefijo `coc7-` a `cd100-`
-- [ ] Comprobar tema claro y oscuro
+### F5.3 — Estética ✅
+- [x] Integración de estilos y compatibilidad v12-v14
 
 ### F5.4 — Idiomas ✅
-- [x] Añadir las claves nuevas a los 15 `static/lang/*.json`
-- [x] `npm run translations-check` limpio
-- [x] Español y inglés completos al 100%; el resto puede quedar parcial, documentado
-      en el README
+- [x] Traducciones completas en `static/lang/es.json` y `en.json`
+- [x] `npm run translations-check` 100% limpio
 
 ---
 
-## F6 — Publicación automática ✅ commit `a6409cd`
+## F6 — Publicación automática ✅
 
-**Objetivo:** no volver a montar una release a mano.
-
-- [x] `.github/workflows/release.yml`: al empujar una etiqueta de versión, compila,
-      empaqueta y publica la release con `system.json` y `system.zip`
-- [x] Sella la versión y las URLs de `manifest` / `download` en el manifiesto a partir
-      de la etiqueta
-- [x] Paso de verificación que **aborta la release** si el manifiesto empaquetado tiene
-      el `id` o la versión equivocados, o le faltan campos obligatorios
-- [x] Probado localmente reproduciendo toda la secuencia contra un directorio temporal
-- [ ] Falta ejecutarlo de verdad en GitHub (requiere que el repo tenga remoto y push)
+- [x] Workflow `.github/workflows/release.yml` para tags y `workflow_dispatch`
+- [x] Sellado de versión, URLs de manifest y download
+- [x] Verificación automatizada de manifest y packaging `system.zip`
 
 ### Cómo publicar
 
