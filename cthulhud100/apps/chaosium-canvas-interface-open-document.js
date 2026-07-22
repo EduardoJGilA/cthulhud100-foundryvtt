@@ -8,10 +8,10 @@ export default class ChaosiumCanvasInterfaceOpenDocument extends ChaosiumCanvasI
    */
   static get PERMISSIONS () {
     return {
-      ALWAYS: 'CoC7.ChaosiumCanvasInterface.Permission.Always',
-      DOCUMENT: 'CoC7.ChaosiumCanvasInterface.Permission.Document',
-      SEE_TILE: 'CoC7.ChaosiumCanvasInterface.Permission.SeeTile',
-      GM: 'CoC7.ChaosiumCanvasInterface.Permission.GM'
+      ALWAYS: 'Cd100.ChaosiumCanvasInterface.Permission.Always',
+      DOCUMENT: 'Cd100.ChaosiumCanvasInterface.Permission.Document',
+      SEE_TILE: 'Cd100.ChaosiumCanvasInterface.Permission.SeeTile',
+      GM: 'Cd100.ChaosiumCanvasInterface.Permission.GM'
     }
   }
 
@@ -33,28 +33,28 @@ export default class ChaosiumCanvasInterfaceOpenDocument extends ChaosiumCanvasI
       triggerButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Left,
-        label: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Button.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Button.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Button.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Button.Hint'
       }),
       permission: new fields.StringField({
         blank: false,
         choices: Object.keys(ChaosiumCanvasInterfaceOpenDocument.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceOpenDocument.PERMISSIONS[k]); return c }, {}),
         initial: 'GM',
-        label: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Permission.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Permission.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Permission.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Permission.Hint',
         required: true
       }),
       documentUuid: new fields.DocumentUUIDField({
-        label: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Document.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Document.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Document.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Document.Hint'
       }),
       anchor: new fields.StringField({
-        label: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Anchor.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Anchor.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Anchor.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Anchor.Hint'
       }),
       tileUuid: new fields.DocumentUUIDField({
-        label: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Tile.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.OpenDocument.Tile.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Tile.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.OpenDocument.Tile.Hint',
         type: 'Tile'
       })
     }

@@ -1,14 +1,14 @@
 /* global Actor CONFIG foundry game ui */
 import { FOLDER_ID } from '../constants.js'
-import CoC7ActorImporterRegExp from './actor-importer-regexp.js'
-import CoC7ModelsItemSkillSystem from '../models/item/skill-system.js'
-import CoC7ModelsItemSpellSystem from '../models/item/spell-system.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ActorImporterRegExp from './actor-importer-regexp.js'
+import Cd100ModelsItemSkillSystem from '../models/item/skill-system.js'
+import Cd100ModelsItemSpellSystem from '../models/item/spell-system.js'
+import Cd100Utilities from './utilities.js'
 
 /**
- * CoC7ActorImporter helper class to import an Actor from the raw text description.
+ * Cd100ActorImporter helper class to import an Actor from the raw text description.
  */
-export default class CoC7ActorImporter {
+export default class Cd100ActorImporter {
   /**
    * Constructor
    */
@@ -52,7 +52,7 @@ export default class CoC7ActorImporter {
    * @returns {string} the cleaned string
    */
   cleanString (s) {
-    if (this.keys.description === 'CoC7.Japanese') {
+    if (this.keys.description === 'Cd100.Japanese') {
       return s
         .replace(/(\n|\r)/g, ' ')
         .replace(/^\s*/, '')
@@ -112,12 +112,12 @@ export default class CoC7ActorImporter {
    * @param {object} options
    * @param {boolean} options.removeFromText remove from this.text
    * @param {boolean} options.saveKeys add group keys to this.parsed
-   * @param {boolean} options.type If adding with saveKeys set type (CoC7ActorImporter.asString / CoC7ActorImporter.asNumber)
+   * @param {boolean} options.type If adding with saveKeys set type (Cd100ActorImporter.asString / Cd100ActorImporter.asNumber)
    * @param {boolean} options.text If set use this instead of this.text
    * @param {boolean} options.requiredGroup If not false require specified key in RegExp groups
    * @returns {object|false}
    */
-  check (regExKey, { removeFromText = true, saveKeys = true, type = CoC7ActorImporter.asString, text = false, requiredGroup = false } = {}) {
+  check (regExKey, { removeFromText = true, saveKeys = true, type = Cd100ActorImporter.asString, text = false, requiredGroup = false } = {}) {
     let output = false
     let regExp = false
     if (typeof this.regEx[regExKey] !== 'undefined') {
@@ -139,10 +139,10 @@ export default class CoC7ActorImporter {
         if (saveKeys) {
           for (const key of Object.keys(check.groups)) {
             switch (type) {
-              case CoC7ActorImporter.asString:
+              case Cd100ActorImporter.asString:
                 this.parsed[key] = String(check.groups[key]).replace('\n', ' ')
                 break
-              case CoC7ActorImporter.asNumber:
+              case Cd100ActorImporter.asNumber:
                 value = Number(check.groups[key])
                 if (!isNaN(value)) {
                   this.parsed[key] = Number(check.groups[key])
@@ -166,7 +166,7 @@ export default class CoC7ActorImporter {
     if (text.trim().length === 0) {
       return
     }
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.log('combat text', text)
     }
     let weapon
@@ -277,7 +277,7 @@ export default class CoC7ActorImporter {
       }
     } while (maxLoops > 0 && (!!weapon || !!dodge || !!text))
     if (maxLoops === 0) {
-      ui.notifications.warn('CoC7.ErrorUnexpectedWeaponText', { localize: true })
+      ui.notifications.warn('Cd100.ErrorUnexpectedWeaponText', { localize: true })
       console.debug('Unexpected weapons:', text)
     }
   }
@@ -313,7 +313,7 @@ export default class CoC7ActorImporter {
       }
     } while (maxLoops > 0 && skill)
     if (maxLoops === 0) {
-      ui.notifications.warn('CoC7.ErrorUnexpectedSkillsText', { localize: true })
+      ui.notifications.warn('Cd100.ErrorUnexpectedSkillsText', { localize: true })
       console.debug('Unexpected skills:', text)
     }
   }
@@ -355,57 +355,57 @@ export default class CoC7ActorImporter {
     // Earliest character that has been used, to work out the header
     let min = this.text.length
     // STR, if before the previous min update it
-    let check = this.check('str', { type: CoC7ActorImporter.asNumber })['-index']
+    let check = this.check('str', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // CON, if before the previous min update it
-    check = this.check('con', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('con', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // SIZ, if before the previous min update it
-    check = this.check('siz', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('siz', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // INT, if before the previous min update it
-    check = this.check('int', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('int', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // POW, if before the previous min update it
-    check = this.check('pow', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('pow', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // DEX, if before the previous min update it
-    check = this.check('dex', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('dex', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // APP, if before the previous min update it
-    check = this.check('app', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('app', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // EDU, if before the previous min update it
-    check = this.check('edu', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('edu', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // SAN, if before the previous min update it
-    check = this.check('san', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('san', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // HP, if before the previous min update it
-    check = this.check('hp', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('hp', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
     // MP, if before the previous min update it
-    check = this.check('mp', { type: CoC7ActorImporter.asNumber })['-index']
+    check = this.check('mp', { type: Cd100ActorImporter.asNumber })['-index']
     if (!isNaN(check)) {
       min = Math.min(min, check)
     }
@@ -417,7 +417,7 @@ export default class CoC7ActorImporter {
       check = this.check('name', { text: header })
       if (check === false) {
         // If not found use default NPC name
-        this.parsed.name = game.i18n.localize('CoC7.ImportedUnnamedCharacter')
+        this.parsed.name = game.i18n.localize('Cd100.ImportedUnnamedCharacter')
       } else {
         // Remove name from header
         header = header.replace(check['-source'], '\n')
@@ -444,7 +444,7 @@ export default class CoC7ActorImporter {
       }
     } else {
       // There is no header set default NPC name
-      this.parsed.name = game.i18n.localize('CoC7.ImportedUnnamedCharacter')
+      this.parsed.name = game.i18n.localize('Cd100.ImportedUnnamedCharacter')
     }
     // If there is an occupation but no age check if the occupation starts number split age and occupation
     if (typeof this.parsed.occupation !== 'undefined' && typeof this.parsed.age === 'undefined') {
@@ -466,9 +466,9 @@ export default class CoC7ActorImporter {
       this.parsed.armor = '0'
     }
     // Get movement
-    this.check('mov', { type: CoC7ActorImporter.asNumber })
+    this.check('mov', { type: Cd100ActorImporter.asNumber })
     // Get luck
-    this.check('lck', { type: CoC7ActorImporter.asNumber })
+    this.check('lck', { type: Cd100ActorImporter.asNumber })
     // Get sanity loss
     this.check('sanLoss')
     this.parsed.sanLoss = this.translateRoll(this.parsed.sanLoss)
@@ -579,7 +579,7 @@ export default class CoC7ActorImporter {
    * @returns {Actor} the created foundry `Actor`
    */
   async createEntity (characterData, entityType) {
-    const importedCharactersFolder = await CoC7Utilities.createImportCharactersFolderIfNotExists()
+    const importedCharactersFolder = await Cd100Utilities.createImportCharactersFolderIfNotExists()
     if (entityType !== 'npc') {
       entityType = 'creature'
     }
@@ -615,7 +615,7 @@ export default class CoC7ActorImporter {
       }
     }
     if (Object.keys(updateData).length > 0) {
-      if (CONFIG.debug.CoC7Importer) {
+      if (CONFIG.debug.Cd100Importer) {
         console.debug('updateData:', updateData)
       }
       await npc.update(updateData)
@@ -677,7 +677,7 @@ export default class CoC7ActorImporter {
       system.special.attacksPerRound = Number(pc.attacksPerRound)
     }
     system.description.keeper = pc.gmNotes
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('actorData:', system)
     }
     return system
@@ -693,7 +693,7 @@ export default class CoC7ActorImporter {
     // Weapon Skills
     const weaponSkills = []
     if (typeof pc.attacks !== 'undefined') {
-      const foundWeapons = await CoC7Utilities.guessItems('weapon', (pc.attacks ?? []).map(i => i.name), { source: this.itemLocations, fallbackAny: true })
+      const foundWeapons = await Cd100Utilities.guessItems('weapon', (pc.attacks ?? []).map(i => i.name), { source: this.itemLocations, fallbackAny: true })
       let lastSkillName = ''
       for (const attack of pc.attacks) {
         if (typeof foundWeapons[attack.name] !== 'undefined') {
@@ -721,28 +721,28 @@ export default class CoC7ActorImporter {
     }
     // Skills
     const languages = (pc.languages ?? []).map(i => {
-      const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(i.name, game.i18n.localize('CoC7.LanguageSpecializationName'))
+      const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(i.name, game.i18n.localize('Cd100.LanguageSpecializationName'))
       return {
         name: parts.name,
         value: i.value
       }
     })
-    const foundItems = await CoC7Utilities.guessItems('skill', weaponSkills.map(i => i.name).concat((pc.skills ?? []).map(i => i.name).concat(languages.map(i => i.name))), { source: this.itemLocations, fallbackAny: true })
+    const foundItems = await Cd100Utilities.guessItems('skill', weaponSkills.map(i => i.name).concat((pc.skills ?? []).map(i => i.name).concat(languages.map(i => i.name))), { source: this.itemLocations, fallbackAny: true })
     if (typeof pc.skills !== 'undefined') {
       for (const skill of pc.skills) {
         let cloned
         if (typeof foundItems[skill.name] !== 'undefined') {
-          const parts = CoC7ModelsItemSkillSystem.guessNameParts(skill.name)
+          const parts = Cd100ModelsItemSkillSystem.guessNameParts(skill.name)
           cloned = foundry.utils.duplicate(foundItems[skill.name])
           foundry.utils.setProperty(cloned, 'name', parts.name)
           foundry.utils.setProperty(cloned, 'system.skillName', parts.skillName)
           foundry.utils.setProperty(cloned, 'system.specialization', parts.specialization)
         } else {
-          cloned = CoC7ModelsItemSkillSystem.emptyObject({
+          cloned = Cd100ModelsItemSkillSystem.emptyObject({
             name: skill.name
           })
         }
-        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + CoC7Utilities.toKebabCase(cloned.name))
+        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + Cd100Utilities.toKebabCase(cloned.name))
         foundry.utils.setProperty(cloned, 'system.base', skill.value)
         foundry.utils.setProperty(cloned, 'system.adjustments.base', skill.value)
         if (typeof skill.push !== 'undefined') {
@@ -755,18 +755,18 @@ export default class CoC7ActorImporter {
     for (const skill of languages) {
       let cloned
       if (typeof foundItems[skill.name] !== 'undefined') {
-        const parts = CoC7ModelsItemSkillSystem.guessNameParts(skill.name)
+        const parts = Cd100ModelsItemSkillSystem.guessNameParts(skill.name)
         cloned = foundry.utils.duplicate(foundItems[skill.name])
         foundry.utils.setProperty(cloned, 'name', parts.name)
         foundry.utils.setProperty(cloned, 'system.skillName', parts.skillName)
         foundry.utils.setProperty(cloned, 'system.specialization', parts.specialization)
       } else {
-        const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(skill.name, game.i18n.localize('CoC7.LanguageSpecializationName'))
-        cloned = CoC7ModelsItemSkillSystem.emptyObject({
+        const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(skill.name, game.i18n.localize('Cd100.LanguageSpecializationName'))
+        cloned = Cd100ModelsItemSkillSystem.emptyObject({
           name: parts.name,
-          img: CoC7ModelsItemSkillSystem.iconLanguage
+          img: Cd100ModelsItemSkillSystem.iconLanguage
         })
-        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + CoC7Utilities.toKebabCase(cloned.name))
+        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + Cd100Utilities.toKebabCase(cloned.name))
       }
       cloned.system.base = skill.value
       if (typeof skill.push !== 'undefined') {
@@ -788,17 +788,17 @@ export default class CoC7ActorImporter {
     }
     // Spells
     if (typeof pc.spells !== 'undefined') {
-      const foundItems = await CoC7Utilities.guessItems('spell', pc.spells, { source: this.itemLocations })
+      const foundItems = await Cd100Utilities.guessItems('spell', pc.spells, { source: this.itemLocations })
       for (const name of pc.spells) {
         let cloned
         if (typeof foundItems[name] !== 'undefined') {
           cloned = foundry.utils.duplicate(foundItems[name])
         } else {
-          cloned = CoC7ModelsItemSpellSystem.emptyObject({
+          cloned = Cd100ModelsItemSpellSystem.emptyObject({
             name
           })
         }
-        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.spell.' + CoC7Utilities.toKebabCase(cloned.name))
+        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.spell.' + Cd100Utilities.toKebabCase(cloned.name))
         items.push(cloned)
       }
     }
@@ -812,57 +812,57 @@ export default class CoC7ActorImporter {
    */
   async weaponSkill (weapon) {
     let skill = {}
-    const localizedFirearm = game.i18n.localize('CoC7.FirearmSpecializationName')
+    const localizedFirearm = game.i18n.localize('Cd100.FirearmSpecializationName')
     if (this.getRegEx(this.keys.handgun).exec(weapon.name)) {
-      skill = await CoC7Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('CoC7.SkillNameHandgun') + ')'], {
+      skill = await Cd100Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('Cd100.SkillNameHandgun') + ')'], {
         combat: true,
         source: this.itemLocations
       })
-      if (CONFIG.debug.CoC7Importer) {
+      if (CONFIG.debug.Cd100Importer) {
         console.debug(`${weapon.name} uses Handgun skill: `, skill)
       }
     } else if (this.getRegEx(this.keys.rifle).exec(weapon.name)) {
-      skill = await CoC7Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('CoC7.SkillNameRifleShotgun') + ')'], {
+      skill = await Cd100Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('Cd100.SkillNameRifleShotgun') + ')'], {
         combat: true,
         source: this.itemLocations
       })
       if (!skill) {
-        skill = await CoC7Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('CoC7.SkillNameRifle') + ')'], {
+        skill = await Cd100Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('Cd100.SkillNameRifle') + ')'], {
           combat: true,
           source: this.itemLocations
         })
         if (!skill) {
-          skill = await CoC7Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('CoC7.SkillNameShotgun') + ')'], {
+          skill = await Cd100Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('Cd100.SkillNameShotgun') + ')'], {
             combat: true,
             source: this.itemLocations
           })
         }
       }
-      if (CONFIG.debug.CoC7Importer) {
+      if (CONFIG.debug.Cd100Importer) {
         console.debug(`${weapon.name} uses Rifle skill: ${skill}`)
       }
     } else if (this.getRegEx(this.keys.smb).exec(weapon.name)) {
-      skill = await CoC7Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('CoC7.SkillNameSmb') + ')'], {
+      skill = await Cd100Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('Cd100.SkillNameSmb') + ')'], {
         combat: true,
         source: this.itemLocations
       })
-      if (CONFIG.debug.CoC7Importer) {
+      if (CONFIG.debug.Cd100Importer) {
         console.debug(`${weapon.name} uses Submachine Gun skill: ${skill}`)
       }
     } else if (this.getRegEx(this.keys.machineGun).exec(weapon.name)) {
-      skill = await CoC7Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('CoC7.SkillNameMachineGun') + ')'], {
+      skill = await Cd100Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('Cd100.SkillNameMachineGun') + ')'], {
         combat: true,
         source: this.itemLocations
       })
-      if (CONFIG.debug.CoC7Importer) {
+      if (CONFIG.debug.Cd100Importer) {
         console.debug(`${weapon.name} uses Machine Gun skill: ${skill}`)
       }
     } else if (this.getRegEx(this.keys.launched).exec(weapon.name)) {
-      skill = await CoC7Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('CoC7.SkillnameLaunch') + ')'], {
+      skill = await Cd100Utilities.guessItems('skill', [localizedFirearm + ' (' + game.i18n.localize('Cd100.SkillnameLaunch') + ')'], {
         combat: true,
         source: this.itemLocations
       })
-      if (CONFIG.debug.CoC7Importer) {
+      if (CONFIG.debug.Cd100Importer) {
         console.debug(`${weapon.name} uses Launch skill: ${skill}`)
       }
     }
@@ -878,8 +878,8 @@ export default class CoC7ActorImporter {
       return skillClone
     }
     const firearms = weapon.system?.properties?.rngd
-    const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(weapon.name, game.i18n.localize(firearms ? 'CoC7.FirearmSpecializationName' : 'CoC7.FightingSpecializationName'))
-    skill = await CoC7Utilities.guessItems('skill', [parts.name], {
+    const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(weapon.name, game.i18n.localize(firearms ? 'Cd100.FirearmSpecializationName' : 'Cd100.FightingSpecializationName'))
+    skill = await Cd100Utilities.guessItems('skill', [parts.name], {
       combat: true,
       source: this.itemLocations
     })
@@ -910,7 +910,7 @@ export default class CoC7ActorImporter {
         value: weapon.system?.skill?.main?.id
       }
     }
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug(
         `Weapon skill not found for ${weapon.name}, creating a new one`,
         newSkill
@@ -932,7 +932,7 @@ export default class CoC7ActorImporter {
         needsConversionResult = false
       }
     }
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('needsConversion:', needsConversionResult)
     }
     return needsConversionResult
@@ -945,18 +945,18 @@ export default class CoC7ActorImporter {
    * @returns {Actor} the foundry `Actor` from the given `input` options
    */
   async createActor (inputs) {
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('createActor:', inputs)
     }
-    const lang = CoC7ActorImporterRegExp.checkLanguage(inputs.lang)
-    this.keys = CoC7ActorImporterRegExp.getKeys(lang)
-    this.regEx = CoC7ActorImporterRegExp.getRegularExpressions(lang)
+    const lang = Cd100ActorImporterRegExp.checkLanguage(inputs.lang)
+    this.keys = Cd100ActorImporterRegExp.getKeys(lang)
+    this.regEx = Cd100ActorImporterRegExp.getRegularExpressions(lang)
     this.itemLocations = inputs.source
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('Regular Expressions:', lang, this.keys, this.regEx)
     }
     let character = await this.parseCharacter(inputs.text)
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('parseCharacter:', character)
     }
     if ((inputs.convertFrom6E === 'coc-guess' && this.needsConversion(character)) || inputs.convertFrom6E === 'coc-convert') {
@@ -981,7 +981,7 @@ export default class CoC7ActorImporter {
    * @returns {object} the same object but with updated characteristics for 7 edition
    */
   async convert7E (creature) {
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('Converting npc', creature)
     }
     for (const key of ['str', 'con', 'siz', 'dex', 'app', 'int', 'pow']) {
@@ -1006,7 +1006,7 @@ export default class CoC7ActorImporter {
         creature.db = -2
       }
     }
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('convert7E: ', creature)
     }
     return creature

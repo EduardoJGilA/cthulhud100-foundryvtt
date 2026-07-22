@@ -1,10 +1,10 @@
 /* global ChatMessage foundry fromUuid game renderTemplate Roll ui */
 import { FOLDER_ID } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ChatChaseObstacle {
+export default class Cd100ChatChaseObstacle {
   #asyncChase
   #breakOrNegotiateDefined
   #cardOpen
@@ -47,7 +47,7 @@ export default class CoC7ChatChaseObstacle {
     this.#checkThreshold = 1
     this.#closed = false
     this.#consumeBonusDice = true
-    this.#dicePool = CoC7DicePool.newPool({ })
+    this.#dicePool = Cd100DicePool.newPool({ })
     this.#failedConsequencesRolled = false
     this.#forward = false
     this.#hasBonusDice = false
@@ -99,7 +99,7 @@ export default class CoC7ChatChaseObstacle {
         const allParticipants = (await chase.system.allParticipants()).all
         const participant = allParticipants.find(l => l.uuid === participantId)
         if (location && participant) {
-          const check = new CoC7ChatChaseObstacle()
+          const check = new Cd100ChatChaseObstacle()
           check.chase = chaseUuid
           check.#breakOrNegotiateDefined = false
           check.#dicePool.poolModifier = participant.bonusDice
@@ -127,7 +127,7 @@ export default class CoC7ChatChaseObstacle {
         }
       }
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableRoll', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableRoll', { localize: true })
   }
 
   /**
@@ -180,7 +180,7 @@ export default class CoC7ChatChaseObstacle {
     switch (event.currentTarget?.dataset?.action) {
       case 'setValue':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             switch (event.currentTarget.dataset.set) {
               case 'obstacle.barrier':
@@ -216,13 +216,13 @@ export default class CoC7ChatChaseObstacle {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'defineObstacle':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             const name = document.querySelector('li.chat-message.message[data-message-id="' + message.id + '"] input[data-set="obstacle.name"]')
             if (name) {
@@ -236,39 +236,39 @@ export default class CoC7ChatChaseObstacle {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'tryToBreakDownObstacle':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#tryToNegotiate = false
             check.#tryToBreak = true
             check.#breakOrNegotiateDefined = true
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'tryToNegotiateObstacle':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#tryToNegotiate = true
             check.#tryToBreak = false
             check.#breakOrNegotiateDefined = true
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'cancelObstacleDefinition':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#obstacleDefined = false
             check.#tryToNegotiate = false
@@ -276,13 +276,13 @@ export default class CoC7ChatChaseObstacle {
             check.#breakOrNegotiateDefined = false
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'takeCautiousApproach':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             const chase = (await check.chase)
             const allParticipants = (await chase.system.allParticipants()).all
@@ -301,38 +301,38 @@ export default class CoC7ChatChaseObstacle {
               }
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'requestRoll':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#playerActionDefined = true
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'askRollObstacleDamage':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#playerActionDefined = true
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'rollObstacleDamage':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             const chase = (await check.chase)
             const allParticipants = (await chase.system.allParticipants()).all
@@ -350,14 +350,14 @@ export default class CoC7ChatChaseObstacle {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'rollSkillCheck':
         if (!event.currentTarget.classList.contains('disabled')) {
           event.currentTarget.classList.add('disabled')
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             await check.#dicePool.roll()
             check.#totalActionCost++
@@ -367,24 +367,24 @@ export default class CoC7ChatChaseObstacle {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'rollArmor':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             await check.rollArmor(message.id)
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'rollFailConsequences':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             if (check.#obstacle.hasDamage && !check.#dicePool.isSuccess) {
               const roll = await new Roll(check.#obstacle.failedCheckDamage.toString(), {}, { reason: 'failedCheckDamage' }).roll()
@@ -400,7 +400,7 @@ export default class CoC7ChatChaseObstacle {
             check.#cardResolved = true
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -408,7 +408,7 @@ export default class CoC7ChatChaseObstacle {
         {
           const luckSpend = event.currentTarget?.dataset?.luckSpend
           if (luckSpend) {
-            const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+            const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
             if (check) {
               const chase = (await check.chase)
               const allParticipants = (await chase.system.allParticipants()).all
@@ -420,13 +420,13 @@ export default class CoC7ChatChaseObstacle {
               }
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'validateCard':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             const chase = (await check.chase)
             const allParticipants = (await chase.system.allParticipants()).all
@@ -518,7 +518,7 @@ export default class CoC7ChatChaseObstacle {
               check.updateMessage()
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -534,7 +534,7 @@ export default class CoC7ChatChaseObstacle {
     switch (event.currentTarget?.dataset?.changeSet) {
       case 'check-name':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#obstacle.checkName = event.currentTarget.value
             if (check.#obstacle.checkName !== event.currentTarget.value) {
@@ -542,100 +542,100 @@ export default class CoC7ChatChaseObstacle {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'bonusDice':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#dicePool.poolModifier = event.target.value
-            CoC7Utilities.messageUpdatedThen(message.id, () => {
+            Cd100Utilities.messageUpdatedThen(message.id, () => {
               setTimeout(() => {
                 document.querySelector('[data-message-id="' + message.id + '"] input[type=range][name=bonusDice]').focus()
               }, 50)
             })
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'checkThreshold':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#checkThreshold = event.target.value
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'weapon-key':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#weaponKey = event.target.value
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'weaponOtherDamage':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#weaponOtherDamage = event.target.value
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'targetArmor':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#targetArmor = event.target.value
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'obstacle.failedActionCost':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#obstacle.failedActionCost = event.target.value
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'obstacle.failedCheckDamage':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#obstacle.failedCheckDamage = event.target.value
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'totalActionCost':
         {
-          const check = await CoC7ChatChaseObstacle.loadFromMessage(message)
+          const check = await Cd100ChatChaseObstacle.loadFromMessage(message)
           if (check) {
             check.#obstacle.totalActionCost = event.target.value
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
@@ -651,13 +651,13 @@ export default class CoC7ChatChaseObstacle {
    */
   static async _onRenderMessage (message, html, context, allowed) {
     html.querySelectorAll('[data-action]').forEach((element) => {
-      element.addEventListener('click', event => CoC7ChatChaseObstacle._onClickEvent(event, message))
+      element.addEventListener('click', event => Cd100ChatChaseObstacle._onClickEvent(event, message))
     })
     html.querySelectorAll('[data-change-set]').forEach((element) => {
-      element.addEventListener('change', event => CoC7ChatChaseObstacle._onChangeEvent(event, message))
+      element.addEventListener('change', event => Cd100ChatChaseObstacle._onChangeEvent(event, message))
     })
     html.querySelectorAll('input[type=range]').forEach((element) => {
-      element.addEventListener('change', event => CoC7ChatChaseObstacle._onChangeEvent(event, message))
+      element.addEventListener('change', event => Cd100ChatChaseObstacle._onChangeEvent(event, message))
     })
   }
 
@@ -677,9 +677,9 @@ export default class CoC7ChatChaseObstacle {
       actionLostText: '',
       actorImg: (actor ? (actor.isToken ? actor.token.texture.src : actor.img) : ''),
       actorName: (actor ? (actor.isToken ? actor.token.name : actor.name) : ''),
-      actorUuid: CoC7Utilities.getActorUuid(actor),
+      actorUuid: Cd100Utilities.getActorUuid(actor),
       bonusDice: Math.abs(this.#dicePool.poolModifier),
-      bonusType: game.i18n.localize(this.#dicePool.poolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus'),
+      bonusType: game.i18n.localize(this.#dicePool.poolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus'),
       breakOrNegotiateDefined: this.#breakOrNegotiateDefined,
       buttons: this.#dicePool.availableButtons({ luckAvailable: (actor?.isToken ? actor.token.actor : actor)?.system.attribs.lck.value ?? 0, isPushable: false }),
       canTakeCautiousApproach: false,
@@ -730,7 +730,7 @@ export default class CoC7ChatChaseObstacle {
       poolModifier: this.#dicePool.poolModifier,
       reflectObstacleChanges: this.#reflectObstacleChanges,
       statuses: [{
-        name: game.i18n.localize('CoC7.ActionCost') + ' :' + this.#totalActionCost
+        name: game.i18n.localize('Cd100.ActionCost') + ' :' + this.#totalActionCost
       }],
       targetArmor: this.#targetArmor,
       totalActionCost: this.#totalActionCost,
@@ -766,7 +766,7 @@ export default class CoC7ChatChaseObstacle {
       data.validObstacleDamage = (this.#obstacle.hasHitPoints && !isNaN(Number(this.#obstacle.HitPoints)) && Number(this.#obstacle.HitPoints) > 0 && Roll.validate(data.listWeapons[weaponIndex].damage))
     }
     data.weaponKey = this.#weaponKey
-    if (this.#dicePool.poolModifier < CoC7DicePool.maxDiceBonus && this.#totalActionCost < participant.actions) {
+    if (this.#dicePool.poolModifier < Cd100DicePool.maxDiceBonus && this.#totalActionCost < participant.actions) {
       data.canTakeCautiousApproach = true
     }
     if (this.#checkThreshold !== '' && !isNaN(Number(this.#checkThreshold))) {
@@ -775,28 +775,28 @@ export default class CoC7ChatChaseObstacle {
     if (this.#obstacleDefined) {
       if (this.#obstacle.isBarrier) {
         data.statuses.push({
-          name: game.i18n.localize('CoC7.Barrier')
+          name: game.i18n.localize('Cd100.Barrier')
         })
         if (this.#obstacle.hasHitPoints) {
           data.statuses.push({
-            name: game.i18n.localize('CoC7.Breakable')
+            name: game.i18n.localize('Cd100.Breakable')
           })
         }
       } else {
         data.statuses.push({
-          name: game.i18n.localize('CoC7.Hazard')
+          name: game.i18n.localize('Cd100.Hazard')
         })
       }
       if (this.#tryToBreak) {
-        let name = game.i18n.localize('CoC7.BreakDown')
+        let name = game.i18n.localize('Cd100.BreakDown')
         if (this.#obstacleDamageRolled) {
           const roll = this.message.rolls.find(r => r.options.reason === 'obstacleDamage')
           if (roll) {
             if (roll.total <= 0) {
-              data.obstacleDamage = game.i18n.localize('CoC7.NoDamageDealt')
+              data.obstacleDamage = game.i18n.localize('Cd100.NoDamageDealt')
             } else {
               data.obstacleDamageRoll = roll.toAnchor().outerHTML
-              data.obstacleDamage = game.i18n.format('CoC7.DamageDealt', {
+              data.obstacleDamage = game.i18n.format('Cd100.DamageDealt', {
                 value: data.obstacleDamageRoll
               })
               data.obstacleDamageTotal = roll.total
@@ -810,7 +810,7 @@ export default class CoC7ChatChaseObstacle {
       }
       if (this.#tryToNegotiate) {
         data.statuses.push({
-          name: game.i18n.localize('CoC7.Negotiate')
+          name: game.i18n.localize('Cd100.Negotiate')
         })
       }
       const location = chase.system.locations.list.find(l => l.uuid === this.#locationId)
@@ -827,30 +827,30 @@ export default class CoC7ChatChaseObstacle {
         data.obstacleDefinitionChanged = !Object.keys(this.#obstacle).every(k => location.obstacleDetails[k] === obstacle[k])
       }
       data.validFailedRolls = (this.#obstacle.isBarrier || !this.#obstacle.hasActionCost || Roll.validate(this.#obstacle.failedActionCost.toString())) && (!this.#obstacle.hasDamage || Roll.validate(this.#obstacle.failedCheckDamage.toString()))
-      data.obstacleDefinedText = game.i18n.format('CoC7.FacingObstacle', { type: game.i18n.localize(this.#obstacle.isBarrier ? 'CoC7.ABarrier' : 'CoC7.AHazard') })
+      data.obstacleDefinedText = game.i18n.format('Cd100.FacingObstacle', { type: game.i18n.localize(this.#obstacle.isBarrier ? 'Cd100.ABarrier' : 'Cd100.AHazard') })
       if (this.#obstacle.name) {
         data.obstacleDefinedText += ' (' + this.#obstacle.name + ')'
       }
       if (this.#playerActionDefined) {
         if (!this.#obstacle.isBarrier) {
-          data.playerIntentions = game.i18n.localize('CoC7.TryToNegotiateHazard')
+          data.playerIntentions = game.i18n.localize('Cd100.TryToNegotiateHazard')
         } else if (this.#tryToNegotiate) {
-          data.playerIntentions = game.i18n.localize('CoC7.TryToGetPastBarriers')
+          data.playerIntentions = game.i18n.localize('Cd100.TryToGetPastBarriers')
         } else if (this.#tryToBreak) {
-          data.playerIntentions = game.i18n.localize('CoC7.TryToBreak')
+          data.playerIntentions = game.i18n.localize('Cd100.TryToBreak')
         }
       }
 
       if (this.#totalCautiousApproach) {
         const cautiousStatus = {
-          name: game.i18n.localize('CoC7.Cautious'),
+          name: game.i18n.localize('Cd100.Cautious'),
           css: ''
         }
         if (this.#totalCautiousApproach > 1) {
           cautiousStatus.css = 'strong'
-          data.cautiousApproachType = game.i18n.localize('CoC7.BeingVeryCautious')
+          data.cautiousApproachType = game.i18n.localize('Cd100.BeingVeryCautious')
         } else {
-          data.cautiousApproachType = game.i18n.localize('CoC7.BeingCautious')
+          data.cautiousApproachType = game.i18n.localize('Cd100.BeingCautious')
         }
         if (this.#consumeBonusDice) {
           cautiousStatus.css += ' consume'
@@ -858,7 +858,7 @@ export default class CoC7ChatChaseObstacle {
         data.statuses.push(cautiousStatus)
       }
       if (this.#playerActionDefined && !data.checkRolled && !this.#tryToBreak) {
-        data.checkRollRequest = game.i18n.format('CoC7.AskRoll', {
+        data.checkRollRequest = game.i18n.format('Cd100.AskRoll', {
           name: this.#obstacle.checkName,
           value: data.checkThreshold
         })
@@ -874,25 +874,25 @@ export default class CoC7ChatChaseObstacle {
         }
         if (this.#dicePool.isSuccess) {
           this.#movePlayer = true
-          data.obstaclePassed = game.i18n.localize('CoC7.ObstaclePassed')
+          data.obstaclePassed = game.i18n.localize('Cd100.ObstaclePassed')
           if (this.#dicePool.luckSpent) {
-            data.obstaclePassed += ' (' + game.i18n.localize('CoC7.GotLucky') + ')'
+            data.obstaclePassed += ' (' + game.i18n.localize('Cd100.GotLucky') + ')'
           }
           data.statuses.push({
-            name: game.i18n.localize('CoC7.Success'),
+            name: game.i18n.localize('Cd100.Success'),
             css: 'success'
           })
         } else {
           if (this.#dicePool.isFumble) {
-            data.checkFailed = game.i18n.localize('CoC7.ObstacleFumble')
+            data.checkFailed = game.i18n.localize('Cd100.ObstacleFumble')
             data.statuses.push({
-              name: game.i18n.localize('CoC7.Fumble'),
+              name: game.i18n.localize('Cd100.Fumble'),
               css: 'fumble'
             })
           } else {
-            data.checkFailed = game.i18n.localize('CoC7.ObstacleFail')
+            data.checkFailed = game.i18n.localize('Cd100.ObstacleFail')
             data.statuses.push({
-              name: game.i18n.localize('CoC7.Failure'),
+              name: game.i18n.localize('Cd100.Failure'),
               css: 'failure'
             })
           }
@@ -900,12 +900,12 @@ export default class CoC7ChatChaseObstacle {
           if (roll) {
             data.failedCheckDamageRoll = roll.toAnchor().outerHTML
             if (this.#totalPlayerDamageTaken === 0) {
-              data.damageTaken = game.i18n.localize('CoC7.YouTakeNoDamage')
+              data.damageTaken = game.i18n.localize('Cd100.YouTakeNoDamage')
             } else {
-              data.damageTaken = game.i18n.format('CoC7.YouTakeSomeDamage', { amount: this.#totalPlayerDamageTaken })
+              data.damageTaken = game.i18n.format('Cd100.YouTakeSomeDamage', { amount: this.#totalPlayerDamageTaken })
             }
             data.statuses.push({
-              name: game.i18n.localize('CoC7.TotalDamage') + ' :' + this.#totalPlayerDamageTaken
+              name: game.i18n.localize('Cd100.TotalDamage') + ' :' + this.#totalPlayerDamageTaken
             })
           }
           if (!this.#obstacle.isBarrier && this.#obstacle.hasActionCost) {
@@ -913,21 +913,21 @@ export default class CoC7ChatChaseObstacle {
             if (roll) {
               data.failedActionCostRoll = roll.toAnchor().outerHTML
               data.actionLost = true
-              data.actionLostText = game.i18n.localize('CoC7.YouLostTime')
+              data.actionLostText = game.i18n.localize('Cd100.YouLostTime')
             }
           }
         }
       }
       if (this.#cardResolved) {
         data.statuses.push({
-          name: game.i18n.localize('CoC7.CardResolved')
+          name: game.i18n.localize('Cd100.CardResolved')
         })
       }
       if (this.#closed) {
         if (this.#movePlayer) {
-          data.finalOutcome = game.i18n.localize('CoC7.MoveToLocation')
+          data.finalOutcome = game.i18n.localize('Cd100.MoveToLocation')
         } else {
-          data.finalOutcome = game.i18n.localize('CoC7.NotMovingToLocation')
+          data.finalOutcome = game.i18n.localize('Cd100.NotMovingToLocation')
         }
       }
     }
@@ -944,7 +944,7 @@ export default class CoC7ChatChaseObstacle {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7ChatChaseObstacle',
+            as: 'Cd100ChatChaseObstacle',
             actorUuid: data.actorUuid,
             breakOrNegotiateDefined: this.#breakOrNegotiateDefined,
             cardOpen: this.#cardOpen,
@@ -994,9 +994,9 @@ export default class CoC7ChatChaseObstacle {
   }
 
   /**
-   * Create CoC7ChatCombatMelee from message
+   * Create Cd100ChatCombatMelee from message
    * @param {Document} message
-   * @returns {CoC7ChatCombatMelee}
+   * @returns {Cd100ChatCombatMelee}
    */
   static async loadFromMessage (message) {
     const keys = [
@@ -1030,8 +1030,8 @@ export default class CoC7ChatChaseObstacle {
       'weaponKey',
       'weaponOtherDamage'
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7ChatChaseObstacle' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && CoC7DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.dicePool)) {
-      const check = new CoC7ChatChaseObstacle()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100ChatChaseObstacle' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && Cd100DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.dicePool)) {
+      const check = new Cd100ChatChaseObstacle()
       check.message = message
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       check.chase = load.chaseUuid
@@ -1041,7 +1041,7 @@ export default class CoC7ChatChaseObstacle {
       check.#checkThreshold = load.checkThreshold
       check.#closed = load.closed
       check.#consumeBonusDice = load.consumeBonusDice
-      check.#dicePool = CoC7DicePool.fromObject(load.dicePool)
+      check.#dicePool = Cd100DicePool.fromObject(load.dicePool)
       check.#failedConsequencesRolled = load.failedConsequencesRolled
       check.#forward = load.forward
       check.#locationId = load.locationId
@@ -1066,8 +1066,8 @@ export default class CoC7ChatChaseObstacle {
       check.#weaponOtherDamage = load.weaponOtherDamage
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -1077,7 +1077,7 @@ export default class CoC7ChatChaseObstacle {
     if (this.message) {
       const diff = foundry.utils.diffObject(this.message.toObject(), await this.getChatData())
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -1106,7 +1106,7 @@ export default class CoC7ChatChaseObstacle {
       const chase = await fromUuid(dataSet.data.chaseUuid)
       const participant = chase.participants?.find(p => p.uuid === dataSet.data.participantUuid)
       const update = {
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatChaseObstacle',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatChaseObstacle',
         ['flags.' + FOLDER_ID + '.load.actorUuid']: participant?.docUuid ?? '',
         ['flags.' + FOLDER_ID + '.load.breakOrNegotiateDefined']: dataSet.data.states?.breakOrNegotiateDefined ?? false,
         ['flags.' + FOLDER_ID + '.load.cardOpen']: true,
@@ -1165,7 +1165,7 @@ export default class CoC7ChatChaseObstacle {
         ['flags.' + FOLDER_ID + '.load.weaponOtherDamage']: dataSet.data.customWeaponDamage ?? ''
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7ChatChaseObstacle.loadFromMessage(merged)
+      const check = await Cd100ChatChaseObstacle.loadFromMessage(merged)
       const data = await check.getTemplateData()
       update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/chase-obstacle.hbs', data)
       update._id = message.id

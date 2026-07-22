@@ -1,11 +1,11 @@
 /* global CONFIG DragDrop foundry fromUuid game ui */
 import { FOLDER_ID, TARGET_ALLOWED } from '../constants.js'
-import CoC7ChaseParticipant from '../models/chase/participant.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7RollNormalize from './roll-normalize.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ChaseParticipant from '../models/chase/participant.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100RollNormalize from './roll-normalize.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ChaseParticipantDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100ChaseParticipantDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -26,7 +26,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
     form: {
       submitOnChange: true,
       closeOnSubmit: false,
-      handler: CoC7ChaseParticipantDialog.#onSubmit
+      handler: Cd100ChaseParticipantDialog.#onSubmit
     },
     position: {
       width: 400
@@ -48,7 +48,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
    * @returns {string}
    */
   get title () {
-    return game.i18n.localize(this.coc7Config.isExisting ? 'CoC7.AddActorToChase' : 'CoC7.EditActorOnChase')
+    return game.i18n.localize(this.coc7Config.isExisting ? 'Cd100.AddActorToChase' : 'Cd100.EditActorOnChase')
   }
 
   /**
@@ -94,7 +94,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
     this.element.querySelectorAll('.item-control').forEach((element) => element.addEventListener('click', async (event) => {
       switch (event.currentTarget.dataset.action) {
         case 'resetParticipant':
-          this.coc7Config.participant = foundry.utils.duplicate(CoC7ChaseParticipantDialog.emptyParticipant)
+          this.coc7Config.participant = foundry.utils.duplicate(Cd100ChaseParticipantDialog.emptyParticipant)
           this.render()
           break
         case 'toggleChaser':
@@ -112,7 +112,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
             if (value) {
               const config = {
                 cardTypeFixed: true,
-                cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+                cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
                 chatMessage: false,
                 actor,
                 preventStandby: true
@@ -121,30 +121,30 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
               if (value.value) {
                 switch (value.type) {
                   case 'attribs':
-                    config.rollType = CoC7RollNormalize.ROLL_TYPE.ATTRIBUTE
+                    config.rollType = Cd100RollNormalize.ROLL_TYPE.ATTRIBUTE
                     config.attribute = value.key
                     break
                   case 'characteristics':
-                    config.rollType = CoC7RollNormalize.ROLL_TYPE.CHARACTERISTIC
+                    config.rollType = Cd100RollNormalize.ROLL_TYPE.CHARACTERISTIC
                     config.characteristic = value.key
                     break
                   case 'skill':
-                    config.rollType = CoC7RollNormalize.ROLL_TYPE.SKILL
+                    config.rollType = Cd100RollNormalize.ROLL_TYPE.SKILL
                     config.itemUuid = value.uuid
                     break
                 }
-                check = await CoC7RollNormalize.trigger(config)
+                check = await Cd100RollNormalize.trigger(config)
               } else {
-                config.rollType = CoC7RollNormalize.ROLL_TYPE.MANUAL
+                config.rollType = Cd100RollNormalize.ROLL_TYPE.MANUAL
                 config.threshold = this.coc7Config.participant.speedCheck.score
                 config.runRoll = false
-                const modified = await CoC7RollNormalize.trigger(config)
-                modified.flavor = game.i18n.format('CoC7.CheckResult', {
+                const modified = await Cd100RollNormalize.trigger(config)
+                modified.flavor = game.i18n.format('Cd100.CheckResult', {
                   name: value.name,
                   value: modified.threshold.toString() + (modified.flatThresholdModifier !== 0 ? (modified.flatThresholdModifier > 0 ? '+' : '') + modified.flatThresholdModifier.toString() : ''),
-                  difficulty: CoC7DicePool.difficultyString(modified.difficulty)
+                  difficulty: Cd100DicePool.difficultyString(modified.difficulty)
                 })
-                check = await CoC7RollNormalize.runRoll(modified)
+                check = await Cd100RollNormalize.runRoll(modified)
               }
               const chatData = await check.getChatData()
               delete chatData.content
@@ -166,7 +166,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
    */
   _onTokenSelectorDragStart (event) {
     const dragData = {
-      type: 'CoC7GetToken',
+      type: 'Cd100GetToken',
       appId: this.id,
       callback: 'addTokenToChase'
     }
@@ -206,7 +206,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
             context.speedCheckReadOnly = true
           }
         }
-        context.participant = new CoC7ChaseParticipant([this.coc7Config.participant], 0)
+        context.participant = new Cd100ChaseParticipant([this.coc7Config.participant], 0)
         context.runSpeedCheck = await context.participant.runSpeedCheck()
         break
       case 'footer':
@@ -218,7 +218,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
         }, {
           type: 'submit',
           action: 'update',
-          label: (this.coc7Config.isExisting ? 'CoC7.Update' : 'CoC7.Add'),
+          label: (this.coc7Config.isExisting ? 'Cd100.Update' : 'Cd100.Add'),
           icon: (this.coc7Config.isExisting ? 'fa-solid fa-user-edit' : 'fa-solid fa-user-plus')
         }]
         break
@@ -235,7 +235,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
     if (dataList?.type === 'Actor' && typeof dataList.uuid === 'string') {
       const document = await fromUuid(dataList.uuid)
       if (TARGET_ALLOWED.includes((document?.actor ?? document)?.type)) {
-        this.coc7Config.participant = await CoC7ChaseParticipantDialog.createParticipant(await CoC7Utilities.getActorUuid(document))
+        this.coc7Config.participant = await Cd100ChaseParticipantDialog.createParticipant(await Cd100Utilities.getActorUuid(document))
         await this.render()
       }
     }
@@ -248,10 +248,10 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
   async addTokenToChase (tokens) {
     const found = tokens.filter(doc => TARGET_ALLOWED.includes(doc.actor.type))
     if (found.length === 1) {
-      this.coc7Config.participant = await CoC7ChaseParticipantDialog.createParticipant(await CoC7Utilities.getActorUuid(found[0]))
+      this.coc7Config.participant = await Cd100ChaseParticipantDialog.createParticipant(await Cd100Utilities.getActorUuid(found[0]))
       await this.render()
     } else {
-      ui.notifications.warn(game.i18n.localize('CoC7.ErrorTokenIncorrect'))
+      ui.notifications.warn(game.i18n.localize('Cd100.ErrorTokenIncorrect'))
     }
   }
 
@@ -268,9 +268,9 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
         {
           const chase = await fromUuid(this.coc7Config.chaseUuid)
           if (chase) {
-            const participant = new CoC7ChaseParticipant([this.coc7Config.participant], 0)
+            const participant = new Cd100ChaseParticipant([this.coc7Config.participant], 0)
             if (participant.adjustedMov < 1) {
-              ui.notifications.warn('CoC7.DoesNotMeetMinimumReqToBeAdded', { localize: true })
+              ui.notifications.warn('Cd100.DoesNotMeetMinimumReqToBeAdded', { localize: true })
               return
             }
             await chase.system.addParticipant(this.coc7Config.participant, {
@@ -289,9 +289,9 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
     const replacements = {}
     for (const key in formData.object) {
       if (key === 'participant.speedCheck.name' && this.coc7Config.participant.speedCheck.name !== formData.object[key]) {
-        replacements['participant.speedCheck.score'] = await CoC7ChaseParticipant.getPercentValue(actor, listOptions, formData.object[key])
+        replacements['participant.speedCheck.score'] = await Cd100ChaseParticipant.getPercentValue(actor, listOptions, formData.object[key])
       } else if (key === 'participant.initiative' && this.coc7Config.participant.speedCheck.name !== formData.object[key]) {
-        replacements['participant.dex'] = await CoC7ChaseParticipant.getPercentValue(actor, listOptions, formData.object[key])
+        replacements['participant.dex'] = await Cd100ChaseParticipant.getPercentValue(actor, listOptions, formData.object[key])
       }
       foundry.utils.setProperty(this.coc7Config, key, formData.object[key])
     }
@@ -309,7 +309,7 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
   static async createParticipant (uuid) {
     const actor = await fromUuid(uuid)
     if (TARGET_ALLOWED.includes((actor?.actor ?? actor)?.type)) {
-      return foundry.utils.mergeObject(CoC7ChaseParticipantDialog.emptyParticipant, {
+      return foundry.utils.mergeObject(Cd100ChaseParticipantDialog.emptyParticipant, {
         docUuid: uuid,
         name: (actor?.actor ?? actor)?.name ?? '',
         dex: (actor?.actor ?? actor)?.system.characteristics.dex.value ?? 0,
@@ -341,14 +341,14 @@ export default class CoC7ChaseParticipantDialog extends foundry.applications.api
       if (!['Actor', 'Token'].includes(dropData.type)) {
         return
       }
-      participant = await CoC7ChaseParticipantDialog.createParticipant(dropData.uuid)
+      participant = await Cd100ChaseParticipantDialog.createParticipant(dropData.uuid)
       if (participant === false) {
         return
       }
     } else if (!isExisting) {
-      participant = foundry.utils.duplicate(CoC7ChaseParticipantDialog.emptyParticipant)
+      participant = foundry.utils.duplicate(Cd100ChaseParticipantDialog.emptyParticipant)
     }
-    new CoC7ChaseParticipantDialog({}, {}, {
+    new Cd100ChaseParticipantDialog({}, {}, {
       chaseUuid,
       isExisting,
       locationId,

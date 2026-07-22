@@ -25,7 +25,7 @@ faltan por extraer los capítulos 9 "Criaturas" pp. 38-43 y 10 "Tomos arcanos" p
 
 | Decisión | Valor | Motivo |
 |---|---|---|
-| Base del código | **Fork de CoC7-FoundryVTT 8.14** | Ya soporta Foundry v12-v14, LevelDB, UI moderna, mantenimiento activo |
+| Base del código | **Fork de Cd100-FoundryVTT 8.14** | Ya soporta Foundry v12-v14, LevelDB, UI moderna, mantenimiento activo |
 | Licencia | **GPL-3.0 (obligatoria)** | Upstream es GPL-3; es copyleft, todo derivado hereda |
 | Idiomas | **Multilingüe**, inglés por defecto | Upstream trae 15 idiomas |
 | Rama de trabajo | `develop` | |
@@ -33,7 +33,7 @@ faltan por extraer los capítulos 9 "Criaturas" pp. 38-43 y 10 "Tomos arcanos" p
 
 ### Por qué NO se porta el fork actual
 
-El árbol actual de `develop` es CoC7 `0.3.7`, commit de **diciembre 2020**, era Foundry
+El árbol actual de `develop` es Cd100 `0.3.7`, commit de **diciembre 2020**, era Foundry
 `0.7.x`. Inventario de deuda medido:
 
 - 445 llamadas a APIs eliminadas (`entityClass`, `.data.data`, `createEmbeddedEntity`…)
@@ -47,7 +47,7 @@ Portarlo cuesta más que forkear upstream y perder las mejoras de 6 años.
 
 ### ⚠️ Nota legal — leer antes de tocar `LICENSE` o `README`
 
-1. **La licencia MIT no es una opción.** El código deriva de CoC7-FoundryVTT, que es
+1. **La licencia MIT no es una opción.** El código deriva de Cd100-FoundryVTT, que es
    GPL-3.0 (`LICENSE`, y cabecera en `module/coc7.js:4`). La GPL-3 es copyleft: todo
    trabajo derivado debe distribuirse bajo GPL-3. Relicenciar a MIT sería relicenciar
    código ajeno sin permiso de sus autores.
@@ -67,7 +67,7 @@ Portarlo cuesta más que forkear upstream y perder las mejoras de 6 años.
 - Directorio de trabajo: `/mnt/storage/FoundryModulesDev/cthulhud100-foundryvtt`
 - Remoto: `https://github.com/EduardoJGilA/cthulhud100-foundryvtt`
 - Copia de upstream 8.14 para consulta: clonar con
-  `git clone --depth 1 --branch 8.14 https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT`
+  `git clone --depth 1 --branch 8.14 https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT`
 - Foundry **14.364.0** en `/mnt/storage/foundry`, servidor en el puerto 30000
 - `dataPath`: **`/mnt/storage/foundryuserdata`** → el sistema se despliega en
   `/mnt/storage/foundryuserdata/Data/systems/cthulhud100`
@@ -108,11 +108,11 @@ cthulhud100/manual/
 
 Build: `npm install` → `npm run build` (webpack, modo producción) o `npm run watch`.
 
-### Divergencias clave CoC7 → Cthulhu d100
+### Divergencias clave Cd100 → Cthulhu d100
 
 Esta tabla resume dónde duele. Detalle completo en `dev-docs/reglas-cthulhu-d100.md`.
 
-| Área | CoC7 | Cthulhu d100 | Punto de ataque |
+| Área | Cd100 | Cthulhu d100 | Punto de ataque |
 |---|---|---|---|
 | Atributos | percentil (3d6×5) | **escala 3-18** | `cthulhud100/models/actor/global-system.js:120` |
 | Niveles de éxito | regular / hard `/2` / extreme `/5` / crit `01` | éxito / **especial `/5`** / **crítico `/20`** | `cthulhud100/apps/dice-pool.js:1325` `#populateThresholdRanges()` |
@@ -124,8 +124,8 @@ Esta tabla resume dónde duele. Detalle completo en `dev-docs/reglas-cthulhu-d10
 | Cordura | SAN única | **dos sistemas seleccionables**; el "alternativo" no tiene equivalente | módulo nuevo |
 | Combate | tirada enfrentada | **tablas cruzadas 5×5** Esquiva/Bloqueo | `chat-combat-melee.js`, `-ranged.js` |
 | Iniciativa | DEX percentil | **DES 3-18** | `cthulhud100/apps/` combat |
-| Habilidades | lista CoC7 | lista distinta, 5 categorías | compendio nuevo |
-| Armas | campos CoC7 | + `PR`, `empalar`, `bloquear`, `disfunción` | `weapon-system.js` |
+| Habilidades | lista Cd100 | lista distinta, 5 categorías | compendio nuevo |
+| Armas | campos Cd100 | + `PR`, `empalar`, `bloquear`, `disfunción` | `weapon-system.js` |
 
 ---
 
@@ -177,15 +177,15 @@ Foundry solo escanea `Data/systems/` **al arrancar**. Hay que reiniciar el servi
 ### Problemas conocidos — no reportar como nuevos
 
 - **La Suerte no se puede gastar.** Es derivada (`POD×5`) y se recalcula en cada
-  `prepare`, así que los botones de gasto de CoC7 no persisten nada. Falta retirarlos
+  `prepare`, así que los botones de gasto de Cd100 no persisten nada. Falta retirarlos
   de la interfaz (F1.3).
 - **El selector de dificultad sigue ofreciendo Difícil/Extremo.** `difficultyLevel`
-  aún es el de CoC7; en d100 la dificultad se aplica con modificadores ±10/20% (F1.6).
-- **Las habilidades y armas son las de CoC7.** Los compendios propios son F2.
-- **La cordura es la de CoC7.** Los dos sistemas del manual son F3.
-- **El combate es el de CoC7.** Tablas cruzadas de Esquiva/Bloqueo, empalar y
+  aún es el de Cd100; en d100 la dificultad se aplica con modificadores ±10/20% (F1.6).
+- **Las habilidades y armas son las de Cd100.** Los compendios propios son F2.
+- **La cordura es la de Cd100.** Los dos sistemas del manual son F3.
+- **El combate es el de Cd100.** Tablas cruzadas de Esquiva/Bloqueo, empalar y
   localización de impactos son F4.
-- **13 idiomas conservan los nombres de CoC7** para CAR y EST. Solo español e inglés
+- **13 idiomas conservan los nombres de Cd100** para CAR y EST. Solo español e inglés
   están renombrados.
 - **Corpulencia (Build) sigue existiendo.** No es un concepto de d100.
 - **Persecuciones, arquetipos, eras y paquetes de experiencia** son funciones de
@@ -217,22 +217,22 @@ consola del navegador.
 > Resultado: 876 archivos, +128 305 / -39 036 líneas.
 
 ### F0.2 — Renombrar el sistema ✅ commit `2aea6c0`
-- [x] `static/system.json`: `id` de `CoC7` → `cthulhud100`
+- [x] `static/system.json`: `id` de `Cd100` → `cthulhud100`
 - [x] `static/system.json`: `title` → `Cthulhu d100`, `description`, `version` → `0.1.0`,
       `authors`, `url`, `manifest`, `download` apuntando a `EduardoJGilA/cthulhud100-foundryvtt`
-- [x] Sustituir `systems/CoC7/` → `systems/cthulhud100/` (277 ocurrencias en 32 archivos:
+- [x] Sustituir `systems/Cd100/` → `systems/cthulhud100/` (277 ocurrencias en 32 archivos:
       `.hbs`, `.less`, `.yaml`, `.js`, `.json`)
-- [x] **Decisión tomada: se mantiene el namespace JS `CoC7`** y las claves i18n `CoC7.*`.
+- [x] **Decisión tomada: se mantiene el namespace JS `Cd100`** y las claves i18n `Cd100.*`.
       Son identificadores de traducción, no scopes; renombrarlos tocaría los 15 archivos
       de idioma sin ganancia.
 - [x] `package.json`: `name` → `fvtt-cthulhud100`, versión, autor, repo, bugs, homepage
-- [x] Compendios: `flags.CoC7` → `flags.cthulhud100` (254 claves) y
-      `documentCollection: 'CoC7.*'` → `'cthulhud100.*'` en `compendiums/*.yaml`
+- [x] Compendios: `flags.Cd100` → `flags.cthulhud100` (254 claves) y
+      `documentCollection: 'Cd100.*'` → `'cthulhud100.*'` en `compendiums/*.yaml`
 
 > **Hallazgo crítico:** el id del paquete es el *scope* que Foundry valida para
 > `game.settings` y para los flags de documento. Está centralizado en `FOLDER_ID`
 > (`cthulhud100/constants.js:4`, 1350 usos en 121 archivos). Además había **13 literales
-> `'CoC7'`** sueltos usados como scope en `document-class.js`, `render-chat-message-html.js`,
+> `'Cd100'`** sueltos usados como scope en `document-class.js`, `render-chat-message-html.js`,
 > `combat.js`, `delayed-tooltip.js` y `clickable-events.js`; ahora usan `FOLDER_ID`.
 >
 > **Renombrado obligado del directorio fuente:** `scripts/webpack-config.js:96-99` resuelve
@@ -267,7 +267,7 @@ consola del navegador.
       `esmodules` y `styles` existentes en disco)
 - [x] Verificado el contenido de los packs: flags con scope `cthulhud100`, rutas de imagen
       reescritas a `systems/cthulhud100/assets/…`
-- [x] Cero referencias obsoletas a `systems/CoC7` en `system.js` y `system.css` compilados
+- [x] Cero referencias obsoletas a `systems/Cd100` en `system.js` y `system.css` compilados
 - [x] Despliegue listo en `/mnt/storage/foundryuserdata/Data/systems/cthulhud100` para escaneo al reiniciar Foundry
 - [x] Manifiesto y código comprobados para compatibilidad v14 (build 364)
 
@@ -288,7 +288,7 @@ Sustituye la petición original de licencia MIT, que es inviable (ver §0, Nota 
 
 - [x] `LICENSE`: mantener el texto GPL-3.0 de upstream. **No sustituir por MIT.**
 - [x] `NOTICE.md` nuevo, con las atribuciones:
-      - CoC7-FoundryVTT © Miskatonic Investigative Society, GPL-3.0 — código base
+      - Cd100-FoundryVTT © Miskatonic Investigative Society, GPL-3.0 — código base
       - *Cthulhu d100* © 2011 Three Fourteen Games — reglamento, usado con el permiso
         expreso del manual, sin ánimo de lucro
       - GORE © Daniel Proctor, OGL — sistema de origen
@@ -340,7 +340,7 @@ y Pifia con `96-00`.
       Solo cambian etiquetas, fórmulas y la escala. `document-class.js` (157 KB) intacto.
 - [x] Fórmulas por defecto en `models/item/setup-system.js:29-41`:
       `str con dex pow app` → `3D6`; `siz int` → `2D6+6`; `edu` (EST) → `3D6+3`.
-      Se elimina el `*5` de CoC7.
+      Se elimina el `*5` de Cd100.
 - [x] Constante `CHARACTERISTIC_MULTIPLIER = 5` en `cthulhud100/constants.js`
 - [x] Aplicada en los tres sitios que convierten característica → umbral de tirada:
       `apps/check.js:723` (rama `type.characteristic`), `apps/con-check.js:86`,
@@ -366,7 +366,7 @@ y Pifia con `96-00`.
 - [x] Referencias corregidas en `combat.js`, `chat-damage.js`, `chat-opposed-message.js`
 - [x] CSS: `.extreme-success` → `.special-success`; `.hard-success` y `.success-hard`
       eliminados de `coc7-all.less`, `coc7-v12.less`, `coc7-chat-message.less`
-- [x] Claves i18n `CoC7.SpecialSuccess` y `CoC7.RollDifficultySpecial` añadidas y
+- [x] Claves i18n `Cd100.SpecialSuccess` y `Cd100.RollDifficultySpecial` añadidas y
       traducidas en los 15 idiomas
 - [x] `npm run eslint` limpio, `npm run build` correcto
 
@@ -386,7 +386,7 @@ y Pifia con `96-00`.
 - [x] `Suerte = POD×5` derivada en `attribs.lck.value`
 - [x] `PV = ceil((TAM+CON)/2)` en `document-class.js hpFromCharacteristics()`
 - [x] `PM = POD` en `document-class.js mpFromCharacteristics()`
-- [x] **Neutralizar el gasto de Suerte de CoC7:** `spendLuck()` en `document-class.js` advierte y devuelve `false` ya que en d100 la Suerte es derivada (`POD×5`)
+- [x] **Neutralizar el gasto de Suerte de Cd100:** `spendLuck()` en `document-class.js` advierte y devuelve `false` ya que en d100 la Suerte es derivada (`POD×5`)
 - [x] Inconsciencia con 1-2 PV; 0 PV es herida mortal (`UNCONSCIOUS_HP_THRESHOLD`)
 - [x] `PV = ceil((TAM+CON)/2)` en `document-class.js`
 - [x] `PM = POD` en `document-class.js`
@@ -401,23 +401,23 @@ y Pifia con `96-00`.
       `-`. Todo MD positivo generaba `'++1D2'`, fórmula inválida. Ahora los positivos van
       sin signo, que es la convención que esperan los consumidores.
 - [x] **La aplicación diferenciada ya existe en el motor**, no hay que programarla: las
-      propiedades `addb` (MD completo) y `ahdb` (mitad, vía `CoC7Utilities.halfDB()`) del
+      propiedades `addb` (MD completo) y `ahdb` (mitad, vía `Cd100Utilities.halfDB()`) del
       item de arma la controlan. `halfDB` reduce el tamaño del dado y maneja negativos
       (`-1D8` → `-1D4`), así que sirve para los tramos de penalización de d100.
 - [x] **Tarea de datos (F2) completada:** `addb` en 10 cuerpo a cuerpo, `ahdb` en 6 arrojadizas y ninguna en 25 de fuego en `es-weapons.yaml`
 
-> A diferencia de CoC7, en d100 **no hay penalizadores planos**: los tramos bajos son
+> A diferencia de Cd100, en d100 **no hay penalizadores planos**: los tramos bajos son
 > dados que se restan (`-1D8` … `-1D2`), no `-1` / `-2`. `dbFromCharacteristics()`
 > devuelve cadenas con signo (`'-1D8'`, `'+2D6'`) y el número `0` en el tramo neutro.
 > Verificar que los consumidores de `attribs.db.value` toleran el signo al construir
 > la fórmula de daño.
 >
-> **`buildFromCharacteristics()` sigue con la lógica de CoC7.** La Corpulencia (Build) no
+> **`buildFromCharacteristics()` sigue con la lógica de Cd100.** La Corpulencia (Build) no
 > existe en d100. Decidir en F4 si se elimina o se deja inerte.
 
 ### F1.5 — Chequeos enfrentados 🟡 núcleo hecho, falta la interfaz
 - [x] Fórmula `50 + (activo - pasivo) × 5`, acotada a `[0,100]`, en
-      `apps/utilities.js CoC7Utilities.resistanceChance()`
+      `apps/utilities.js Cd100Utilities.resistanceChance()`
 - [x] `+10` o más → automático; `-10` o menos → imposible (sale solo del acotado)
 - [x] Verificada con script contra las 21 filas de la tabla del manual
 - [ ] Diálogo para elegir Factor Activo y Factor Pasivo (atributos, o POT de veneno
@@ -431,7 +431,7 @@ y Pifia con `96-00`.
 - [x] El selector de dificultad ya **no ofrece** Difícil ni Extremo: en d100 no existen
 - [x] Modificador de circunstancia cableado a `flatThresholdModifier`
 - [x] Modificador de iluminación: penumbra `×1/2`, oscuridad casi total `×1/4`, oscuridad total `×1/4` con tope `min(POD×3, INT×3)`
-- [ ] `difficultyLevel` conserva el enum de CoC7 (113 referencias en 13 archivos,
+- [ ] `difficultyLevel` conserva el enum de Cd100 (113 referencias en 13 archivos,
       entrelazado con el gasto de Suerte). Solo se podó la interfaz; podar el enum es
       una tarea aparte y arriesgada
       con tope `min(POD×3, INT×3)`
@@ -440,7 +440,7 @@ y Pifia con `96-00`.
 
 ## F2 — Habilidades, armas y profesiones
 
-**Objetivo:** compendios propios que sustituyan por completo a los de CoC7.
+**Objetivo:** compendios propios que sustituyan por completo a los de Cd100.
 
 **Criterio de aceptación:** crear un investigador desde cero usando solo los compendios del
 sistema, con reparto de `EST×20` + `INT×10` puntos.
@@ -455,7 +455,7 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
       `@edu*2`, `@dex*2`, `@dex+@str`. Se resuelven vía `parsedValues()` en
       `apps/utilities.js:938`, claves en minúscula
 - [x] **Mitos de Cthulhu** con `special` y `noxpgain`
-- [x] `push: false` en todas — empujar la tirada es mecánica de CoC7, no existe en d100
+- [x] `push: false` en todas — empujar la tirada es mecánica de Cd100, no existe en d100
 - [x] Cada icono verificado contra los archivos en disco; ninguno queda roto
 - [x] Registrado en `static/system.json` y desplegado: 33 documentos en `packs/es-skills`
 
@@ -478,7 +478,7 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
       25 de fuego), desplegado y verificado
 - [x] **MD diferenciado resuelto** (cerraba F1.4): 10 con `addb`, 6 con `ahdb`,
       25 sin ninguno
-- [x] Etiquetas `CoC7.WeaponParry` y `CoC7.WeaponResistance` en los 15 idiomas
+- [x] Etiquetas `Cd100.WeaponParry` y `Cd100.WeaponResistance` en los 15 idiomas
 - [ ] Objetos inanimados con PR y rotura a 0 PR: falta la lógica (F4)
 
 > **Dos bugs propios cazados al verificar el pack:**
@@ -662,7 +662,7 @@ distintos, así que no se pierde ningún documento.
 - [x] Cap. 9 "Criaturas de los Mitos" y cap. 10 "Tomos arcanos" extraídos.
       **La spec ya no tiene pendientes**: `reglas-cthulhu-d100.md` §12 y §13
 - [x] Compendio de tomos: 10 items en `packs/es-tomes`
-- [x] Hojear un libro (`CoC7MentalStability.skimTome()`): tiempo `/10`, EM `/4` redondeando
+- [x] Hojear un libro (`Cd100MentalStability.skimTome()`): tiempo `/10`, EM `/4` redondeando
       arriba; fallar significa no entender nada, **sin ganancia y sin pérdida**
 - [x] Campo `leatherySkin` en `models/actor/creature-system.js` — **no es armadura**:
       las armas de fuego hacen daño mínimo y no doblan por empalar
@@ -675,9 +675,9 @@ distintos, así que no se pierde ningún documento.
 > habilidad de Lucha como `425+2D6 %`. Es un error tipográfico por `25+2D6`, coherente
 > con todas las demás criaturas. Se ha corregido en el compendio.
 - [ ] Decidir si se conserva el sistema de **eras** (`cocidFlag.eras`) de upstream o se elimina
-- [x] **Contenido de CoC7 retirado** de los compendios: actores de ejemplo (tenían
+- [x] **Contenido de Cd100 retirado** de los compendios: actores de ejemplo (tenían
       características percentiles, FUE 50 en una escala que acaba en 18), las 50 armas de
-      CoC7 que duplicaban las nuestras, items de ejemplo y las tablas de arrebatos de
+      Cd100 que duplicaban las nuestras, items de ejemplo y las tablas de arrebatos de
       locura, que pertenecen a otro sistema de cordura.
       Se conservan fobias y manías (genéricas, sirven para los trastornos del sistema
       alternativo), `roll-requests` y `system-doc`.
@@ -718,7 +718,7 @@ Varias marcadas ✅ no se sostienen.
 | Magia | `21 - INT` días, PM = POD |
 | Modificadores de circunstancia | ±10 / ±20 en `roll-dialog.js` |
 | Compendios | armas 41 (10+6+25), profesiones 10, heridas graves 14, pérdidas EM 13 |
-| Referencias al id del paquete | sin restos de `CoC7` como id/uuid/ruta/scope |
+| Referencias al id del paquete | sin restos de `Cd100` como id/uuid/ruta/scope |
 
 ### Casillas ✅ que son falsas
 
@@ -737,12 +737,12 @@ Varias marcadas ✅ no se sostienen.
 
 ### Bugs corregidos en esta auditoría
 
-- Tirada de mejora daba `1D10` (CoC7) en vez de `1D3`; umbral de éxito automático 95 en
+- Tirada de mejora daba `1D10` (Cd100) en vez de `1D3`; umbral de éxito automático 95 en
   vez de 98. Los personajes subían a más del triple de velocidad
 - 7 claves i18n referenciadas y nunca definidas, salían crudas. La más visible, la
   etiqueta de la hoja de Profesión
-- UUID del manual con el id viejo (`Compendium.CoC7.system-doc`) — botón muerto
-- 3 emisiones de socket en canales muertos (`system.CoC7`, `system.coc7`)
+- UUID del manual con el id viejo (`Compendium.Cd100.system-doc`) — botón muerto
+- 3 emisiones de socket en canales muertos (`system.Cd100`, `system.coc7`)
 - Colores hardcodeados en la ficha v2, sin variables de tema
 
 ### Resuelto tras la auditoría
@@ -845,13 +845,13 @@ Corregido en esta revisión:
 - **Umbral de herida grave.** El manual dice "más del 50%"; el código usaba
   `>= ceil(PVmax/2)`, que con PV máximos **pares** es exactamente la mitad. Con 10 PV,
   un golpe de 5 disparaba herida grave cuando debía ser leve
-- **Muerte por daño masivo.** CoC7 mata si un golpe iguala los PV máximos. d100 **no tiene
+- **Muerte por daño masivo.** Cd100 mata si un golpe iguala los PV máximos. d100 **no tiene
   esa regla**: llegar a 0 es herida mortal, evitable con Primeros Auxilios antes de que
   acabe el turno siguiente
 - **Pérdida diaria de Cordura → regla de escena.** No existe límite diario en las 52
   páginas. La regla real es perder el 20% o más de la EM restante en una escena
 - **Iconos de resultado.** Se contaban estrellas por nivel sobre la dificultad pedida, un
-  concepto de CoC7. Ahora un icono por resultado
+  concepto de Cd100. Ahora un icono por resultado
 - **Terminología.** "Éxito normal" → "Éxito" y "Fracaso" → "Fallo", que es lo que dice
   el manual
 
@@ -862,7 +862,7 @@ Corregido en esta revisión:
       el tiempo se pierde. Es la única regla del manual sin implementar que he encontrado
 - [ ] **Campos personales de la ficha.** La hoja oficial (págs. 49-50) pide Edad, Sexo,
       Altura, Peso, Pelo, Ojos y Rasgos distintivos. La ficha tiene en su lugar Ocupación,
-      Pronombre, Residencia y Lugar de nacimiento, que son de CoC7
+      Pronombre, Residencia y Lugar de nacimiento, que son de Cd100
 - [ ] Interfaz de cordura alternativa solo en la ficha v3
 - [ ] Prefijo `coc7-` en las 16 hojas LESS
 - [ ] Tipos de item ajenos: `chase`, `archetype`, `experiencePackage`, `talent`
@@ -900,7 +900,7 @@ Corregido:
 ### Quinta revisión — mecánicas completas ajenas al manual
 
 Búsqueda en las 52 páginas: **cero menciones** a dados de bonificación/penalización y
-**cero** a repetir una tirada fallada. Ambas son de CoC7. El manual ajusta una tirada con
+**cero** a repetir una tirada fallada. Ambas son de Cd100. El manual ajusta una tirada con
 modificadores de circunstancia e iluminación, que mueven el umbral.
 
 - [x] **Tiradas forzadas (push) desactivadas.** Estaban activas incondicionalmente en toda
@@ -917,11 +917,11 @@ modificadores de circunstancia e iluminación, que mueven el umbral.
 ### Conflicto arquitectónico sin resolver
 
 - [ ] **`DICE_POOL_REASONS` compite con `combat-tables.js`.** `constants.js` mapea once
-      situaciones de combate a dados de bonificación/penalización al estilo CoC7
+      situaciones de combate a dados de bonificación/penalización al estilo Cd100
       (superado en número, sorpresa, objetivo grande/pequeño, cobertura, quemarropa, en
       melé, objetivo rápido, mano torpe, recargando). En d100 esas mismas situaciones se
       resuelven con **multiplicadores de umbral**, y ya están implementadas en
       `combat-tables.js` (`rangeMultiplier`, `combatModifier`, `initiative`).
       Son dos sistemas paralelos para lo mismo. Retirado el acceso desde el diálogo, pero
-      las tarjetas de combate pueden seguir aplicando los de CoC7. Requiere revisar
+      las tarjetas de combate pueden seguir aplicando los de Cd100. Requiere revisar
       `chat-combat-melee.js` y `chat-combat-ranged.js` a fondo

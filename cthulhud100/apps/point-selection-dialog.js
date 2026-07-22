@@ -1,7 +1,7 @@
 /* global foundry game */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7PointSelectionDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100PointSelectionDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -15,14 +15,14 @@ export default class CoC7PointSelectionDialog extends foundry.applications.api.H
     tag: 'form',
     classes: ['coc7', 'dialog'],
     window: {
-      title: 'CoC7.InvestigatorWizard.OccupationSkillPoints',
+      title: 'Cd100.InvestigatorWizard.OccupationSkillPoints',
       contentClasses: [
         'standard-form'
       ]
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7PointSelectionDialog.#onSubmit
+      handler: Cd100PointSelectionDialog.#onSubmit
     },
     position: {
       width: 360
@@ -122,7 +122,7 @@ export default class CoC7PointSelectionDialog extends foundry.applications.api.H
         context.buttons.push({
           type: 'submit',
           action: 'validate',
-          label: 'CoC7.Validate',
+          label: 'Cd100.Validate',
           icon: 'fa-solid fa-check'
         })
         break
@@ -140,7 +140,7 @@ export default class CoC7PointSelectionDialog extends foundry.applications.api.H
   static async create ({ characteristicFixed = [], characteristicOptional = [] } = {}) {
     const selected = characteristicOptional[0].key
     return await new Promise(resolve => {
-      new CoC7PointSelectionDialog({}, {}, {
+      new Cd100PointSelectionDialog({}, {}, {
         characteristicFixed,
         characteristicOptional,
         selected,

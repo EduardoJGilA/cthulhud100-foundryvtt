@@ -1,7 +1,7 @@
 {{#if (and cardOpen (not combinedFixed))}}
   <div class="keeper-only-block coc7-card-buttons flexrow">
-    <button class="{{#if (eq combinedType combinedTypes.any)}} switched-on{{/if}}" data-action="setValue" data-set="combinedType" data-value="{{combinedTypes.any}}" data-tooltip="CoC7.CombinedAnyHint">{{localize 'CoC7.Any'}}</button>
-    <button class="{{#if (eq combinedType combinedTypes.all)}} switched-on{{/if}}" data-action="setValue" data-set="combinedType" data-value="{{combinedTypes.all}}" data-tooltip="CoC7.CombinedAllHint">{{localize 'CoC7.All'}}</button>
+    <button class="{{#if (eq combinedType combinedTypes.any)}} switched-on{{/if}}" data-action="setValue" data-set="combinedType" data-value="{{combinedTypes.any}}" data-tooltip="Cd100.CombinedAnyHint">{{localize 'Cd100.Any'}}</button>
+    <button class="{{#if (eq combinedType combinedTypes.all)}} switched-on{{/if}}" data-action="setValue" data-set="combinedType" data-value="{{combinedTypes.all}}" data-tooltip="Cd100.CombinedAllHint">{{localize 'Cd100.All'}}</button>
   </div>
 {{/if}}
 {{#each rollActors as |rollActor actorUuid|}}
@@ -10,20 +10,20 @@
 
 {{#if (and stillToRoll (not allRollsCompleted))}}
   <div class="owner-and-keeper-block coc7-card-buttons flexrow" data-actor-uuid="{{actorUuid}}">
-    <button data-action="rollActor" data-actor-uuid="{{actorUuid}}">{{localize 'CoC7.RollDice'}}</button>
+    <button data-action="rollActor" data-actor-uuid="{{actorUuid}}">{{localize 'Cd100.RollDice'}}</button>
   </div>
 {{/if}}
 {{#if combinedSuccess}}
   <div class="dice-roll">
-    <h4 class="dice-total success-regular">{{localize 'CoC7.Success'}}{{#if wasPushed}} {{localize 'CoC7.PushedRoll'}}{{/if}}</h4>
+    <h4 class="dice-total success-regular">{{localize 'Cd100.Success'}}{{#if wasPushed}} {{localize 'Cd100.PushedRoll'}}{{/if}}</h4>
   </div>
 {{else if combinedFailure}}
   <div class="dice-roll">
-    <h4 class="dice-total failure">{{localize 'CoC7.Failure'}}{{#if wasPushed}} {{localize 'CoC7.PushedRoll'}}{{/if}}</h4>
+    <h4 class="dice-total failure">{{localize 'Cd100.Failure'}}{{#if wasPushed}} {{localize 'Cd100.PushedRoll'}}{{/if}}</h4>
   </div>
 {{/if}}
 {{#if (and cardOpen (or combinedSuccess combinedFailure))}}
   <div class="keeper-only-block coc7-card-buttons flexrow">
-    <button data-action="toggleValue" data-set="cardOpen">{{localize 'CoC7.CloseCard'}}</button>
+    <button data-action="toggleValue" data-set="cardOpen">{{localize 'Cd100.CloseCard'}}</button>
   </div>
 {{/if}}

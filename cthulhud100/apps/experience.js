@@ -5,7 +5,7 @@
  * skills live; this covers study and practice, which is downtime the Keeper
  * adjudicates rather than something the sheet tracks.
  */
-export default class CoC7Experience {
+export default class Cd100Experience {
   /**
    * Weeks of intensive study or practice needed to improve a skill.
    *

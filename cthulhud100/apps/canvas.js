@@ -1,7 +1,7 @@
 /* global foundry game */
-import CoC7Link from './link.js'
+import Cd100Link from './link.js'
 
-export default class CoC7Canvas {
+export default class Cd100Canvas {
   /**
    * Data dropped on canvas
    * @param {Canvas} canvas
@@ -9,7 +9,7 @@ export default class CoC7Canvas {
    * @param {DragEvent} event
    */
   static async onDropSomething (canvas, data, event) {
-    if (['CoC7Link', 'CoC7GetToken', 'CoC7Locator'].includes(data.type)) {
+    if (['Cd100Link', 'Cd100GetToken', 'Cd100Locator'].includes(data.type)) {
       const gridSize = canvas.scene.grid.size
       const x = data.x - gridSize / 2
       const y = data.y - gridSize / 2
@@ -26,15 +26,15 @@ export default class CoC7Canvas {
         dropTargetTokens = canvas.tokens.controlled // If no target whisper to selected token
       }
       switch (data.type) {
-        case 'CoC7Link':
-          if (data.check === CoC7Link.CHECK_TYPE.EFFECT) {
+        case 'Cd100Link':
+          if (data.check === Cd100Link.CHECK_TYPE.EFFECT) {
             if (dropTargetTokens.length) {
               for (const token of dropTargetTokens) {
-                CoC7Link._onLinkActorClick(token.actor, data)
+                Cd100Link._onLinkActorClick(token.actor, data)
               }
             }
           } else {
-            const link = await CoC7Link.fromDropData(data)
+            const link = await Cd100Link.fromDropData(data)
             if (dropTargetTokens.length) {
               link.toWhisperMessage(dropTargetTokens.filter(t => t.actor.owners.length).map(t => t.actor))
             } else {
@@ -42,7 +42,7 @@ export default class CoC7Canvas {
             }
           }
           break
-        case 'CoC7GetToken':
+        case 'Cd100GetToken':
           if (typeof data.appId === 'string' && typeof data.callback === 'string') {
             const app = foundry.applications.instances.get(data.appId)
             if (app && typeof app[data.callback] === 'function') {
@@ -50,7 +50,7 @@ export default class CoC7Canvas {
             }
           }
           break
-        case 'CoC7Locator':
+        case 'Cd100Locator':
           if (typeof data.appId === 'string' && typeof data.callback === 'string') {
             const app = foundry.applications.instances.get(data.appId)
             if (app && typeof app[data.callback] === 'function') {

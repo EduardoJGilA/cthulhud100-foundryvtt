@@ -1,10 +1,10 @@
 /* global ActiveEffectConfig canvas CONFIG CONST DragDrop FormDataExtended foundry game ui */
 import { FOLDER_ID } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7Link from './link.js'
-import CoC7Utilities from './utilities.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100Link from './link.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ContentLinkDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100ContentLinkDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -23,18 +23,18 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
       contentClasses: [
         'standard-form'
       ],
-      title: 'CoC7.CreateLink'
+      title: 'Cd100.CreateLink'
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7ContentLinkDialog.#onSubmit
+      handler: Cd100ContentLinkDialog.#onSubmit
     },
     position: {
       width: 570
     },
     actions: {
-      addChange: CoC7ContentLinkDialog.#onAddChange,
-      deleteChange: CoC7ContentLinkDialog.#onDeleteChange
+      addChange: Cd100ContentLinkDialog.#onAddChange,
+      deleteChange: Cd100ContentLinkDialog.#onDeleteChange
     }
   }
 
@@ -59,38 +59,38 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
       case 'form':
         context.checkType = [
           {
-            key: CoC7Link.CHECK_TYPE.CHECK,
-            label: game.i18n.localize('CoC7.Check')
+            key: Cd100Link.CHECK_TYPE.CHECK,
+            label: game.i18n.localize('Cd100.Check')
           },
           {
-            key: CoC7Link.CHECK_TYPE.SANLOSS,
-            label: game.i18n.localize('CoC7.SanityCheck')
+            key: Cd100Link.CHECK_TYPE.SANLOSS,
+            label: game.i18n.localize('Cd100.SanityCheck')
           },
           {
-            key: CoC7Link.CHECK_TYPE.ITEM,
-            label: game.i18n.localize('CoC7.ItemWeapon')
+            key: Cd100Link.CHECK_TYPE.ITEM,
+            label: game.i18n.localize('Cd100.ItemWeapon')
           },
           {
-            key: CoC7Link.CHECK_TYPE.EFFECT,
+            key: Cd100Link.CHECK_TYPE.EFFECT,
             label: game.i18n.localize('DOCUMENT.ActiveEffects')
           }
         ]
-        context.checkTypes = CoC7Link.CHECK_TYPE
+        context.checkTypes = Cd100Link.CHECK_TYPE
         context.linkType = [
           {
-            key: CoC7Link.LINK_TYPE.CHARACTERISTIC,
-            label: game.i18n.localize('CoC7.Characteristic')
+            key: Cd100Link.LINK_TYPE.CHARACTERISTIC,
+            label: game.i18n.localize('Cd100.Characteristic')
           },
           {
-            key: CoC7Link.LINK_TYPE.ATTRIBUTE,
-            label: game.i18n.localize('CoC7.Attribute')
+            key: Cd100Link.LINK_TYPE.ATTRIBUTE,
+            label: game.i18n.localize('Cd100.Attribute')
           },
           {
-            key: CoC7Link.LINK_TYPE.SKILL,
-            label: game.i18n.localize('CoC7.Skill')
+            key: Cd100Link.LINK_TYPE.SKILL,
+            label: game.i18n.localize('Cd100.Skill')
           }
         ]
-        context.linkTypes = CoC7Link.LINK_TYPE
+        context.linkTypes = Cd100Link.LINK_TYPE
         context.attributeType = []
         for (const [key, field] of CONFIG.Actor.dataModels.character.schema.getField('attribs').entries()) {
           if (['lck', 'san'].includes(key)) {
@@ -114,24 +114,24 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
         context.link = this.coc7Config.linkData
         context.rollDifficulties = [
           {
-            key: CoC7DicePool.difficultyLevel.unknown,
-            label: 'CoC7.RollDifficultyUnknownName'
+            key: Cd100DicePool.difficultyLevel.unknown,
+            label: 'Cd100.RollDifficultyUnknownName'
           },
           {
-            key: CoC7DicePool.difficultyLevel.regular,
-            label: 'CoC7.RollDifficultyRegular'
+            key: Cd100DicePool.difficultyLevel.regular,
+            label: 'Cd100.RollDifficultyRegular'
           },
           {
-            key: CoC7DicePool.difficultyLevel.hard,
-            label: 'CoC7.RollDifficultyHard'
+            key: Cd100DicePool.difficultyLevel.hard,
+            label: 'Cd100.RollDifficultyHard'
           },
           {
-            key: CoC7DicePool.difficultyLevel.extreme,
-            label: 'CoC7.RollDifficultyExtreme'
+            key: Cd100DicePool.difficultyLevel.extreme,
+            label: 'Cd100.RollDifficultyExtreme'
           },
           {
-            key: CoC7DicePool.difficultyLevel.critical,
-            label: 'CoC7.RollDifficultyCritical'
+            key: Cd100DicePool.difficultyLevel.critical,
+            label: 'Cd100.RollDifficultyCritical'
           }
         ]
         context.other = this.coc7Config.other
@@ -184,35 +184,35 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
           {
             id: 'difficulty',
             isEnabled: this.coc7Config.other.difficulty,
-            name: 'CoC7.RollDifficulty'
+            name: 'Cd100.RollDifficulty'
           },
           {
             id: 'poolModifier',
             isEnabled: this.coc7Config.other.poolModifier,
-            name: 'CoC7.BonusDice'
+            name: 'Cd100.BonusDice'
           },
           {
             id: 'blind',
             isEnabled: this.coc7Config.linkData.blind,
-            name: 'CoC7.Blind'
+            name: 'Cd100.Blind'
           },
           {
             id: 'pushing',
             isEnabled: this.coc7Config.linkData.pushing,
-            name: 'CoC7.Pushing'
+            name: 'Cd100.Pushing'
           },
           {
             id: 'label',
             isEnabled: this.coc7Config.other.label,
-            name: 'CoC7.Label'
+            name: 'Cd100.Label'
           },
           {
             id: 'icon',
             isEnabled: this.coc7Config.other.icon,
-            name: 'CoC7.Icon'
+            name: 'Cd100.Icon'
           }
         ]
-        if (this.coc7Config.linkData.check !== CoC7Link.CHECK_TYPE.CHECK) {
+        if (this.coc7Config.linkData.check !== Cd100Link.CHECK_TYPE.CHECK) {
           const index = context.modifiers.findIndex(m => m.id === 'pushing')
           if (index > -1) {
             context.modifiers.splice(index, 1)
@@ -267,7 +267,7 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
           this.coc7Config.linkData[propertyId] = !this.coc7Config.linkData[propertyId]
       }
       if (propertyId === 'difficulty' && this.coc7Config.other[propertyId] && typeof this.coc7Config.linkData.difficulty === 'undefined') {
-        this.coc7Config.linkData.difficulty = CoC7DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')]
+        this.coc7Config.linkData.difficulty = Cd100DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')]
       }
       event.currentTarget.closest('form').dispatchEvent(new SubmitEvent('submit'))
       this.render({ force: true })
@@ -347,7 +347,7 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
         case 'clipboard':
           await game.clipboard.copyPlainText(link._createDocumentLink(null))
           /* // FoundryVTT V12 */
-          ui.notifications.info(game.i18n.format('CoC7.WhatCopiedClipboard', { what: game.i18n.localize('CoC7.CreateLink') }), { console: false })
+          ui.notifications.info(game.i18n.format('Cd100.WhatCopiedClipboard', { what: game.i18n.localize('Cd100.CreateLink') }), { console: false })
           break
         case 'chat':
           link.toChatMessage()
@@ -357,7 +357,7 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
           break
         case 'whisper-selected':
           if (!canvas.ready || !canvas.tokens.controlled.length) {
-            ui.notifications.warn('CoC7.ErrorNoTokensSelected', { localize: true })
+            ui.notifications.warn('Cd100.ErrorNoTokensSelected', { localize: true })
             return
           }
           link.toWhisperMessage(canvas.tokens.controlled.filter(t => t.actor.owners.length).map(t => t.actor))
@@ -374,14 +374,14 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
   async _onDrop (event) {
     const dataString = event.dataTransfer.getData('text/plain')
     const data = JSON.parse(dataString)
-    if (data.type === 'CoC7Link') {
+    if (data.type === 'Cd100Link') {
       const actors = this.coc7Config.actors
-      this.coc7Config = CoC7ContentLinkDialog.createConfig(data)
+      this.coc7Config = Cd100ContentLinkDialog.createConfig(data)
       this.coc7Config.actors = actors
       this.render({ force: true })
     } else if (data.type === 'Folder' || ['Item', 'Actor'].includes(data.type)) {
       const documentType = (data.type === 'Folder' ? 'Actor' : data.type)
-      const droppedDocuments = (await CoC7Utilities.getDataFromDropEvent(event, documentType))
+      const droppedDocuments = (await Cd100Utilities.getDataFromDropEvent(event, documentType))
       if (documentType === 'Actor') {
         this.coc7Config.actors = droppedDocuments
         this.render({ force: true })
@@ -390,11 +390,11 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
         const key = (droppedDocuments[0].type === 'skill' ? 'skillName' : 'itemName')
         switch (key) {
           case 'itemName':
-            this.coc7Config.linkData.check = CoC7Link.CHECK_TYPE.ITEM
+            this.coc7Config.linkData.check = Cd100Link.CHECK_TYPE.ITEM
             break
           case 'skillName':
-            this.coc7Config.linkData.check = CoC7Link.CHECK_TYPE.CHECK
-            this.coc7Config.linkData.subtype = CoC7Link.LINK_TYPE.SKILL
+            this.coc7Config.linkData.check = Cd100Link.CHECK_TYPE.CHECK
+            this.coc7Config.linkData.subtype = Cd100Link.LINK_TYPE.SKILL
             break
         }
         if (id) {
@@ -412,8 +412,8 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
   }
 
   /**
-   * Create CoC7Link from config
-   * @returns {Promise<CoC7Link>}
+   * Create Cd100Link from config
+   * @returns {Promise<Cd100Link>}
    */
   async createLink () {
     const data = {
@@ -421,22 +421,22 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
     }
     let toggles = false
     switch (data.check) {
-      case CoC7Link.CHECK_TYPE.CHECK:
+      case Cd100Link.CHECK_TYPE.CHECK:
         data.subtype = this.coc7Config.linkData.subtype
         data.name = this.coc7Config.linkData.name
         toggles = true
         break
-      case CoC7Link.CHECK_TYPE.SANLOSS:
+      case Cd100Link.CHECK_TYPE.SANLOSS:
         data.sanMin = this.coc7Config.linkData.sanMin
         data.sanMax = this.coc7Config.linkData.sanMax
         data.sanReason = this.coc7Config.linkData.sanReason
         toggles = true
         break
-      case CoC7Link.CHECK_TYPE.ITEM:
+      case Cd100Link.CHECK_TYPE.ITEM:
         data.name = this.coc7Config.linkData.name
         toggles = true
         break
-      case CoC7Link.CHECK_TYPE.EFFECT:
+      case Cd100Link.CHECK_TYPE.EFFECT:
         data.object = this.coc7Config.linkData.object
         if (this.coc7Config.linkData.label.length) {
           data.label = this.coc7Config.linkData.label
@@ -453,7 +453,7 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
       if (this.coc7Config.linkData.blind) {
         data.blind = this.coc7Config.linkData.blind
       }
-      if (this.coc7Config.linkData.check === CoC7Link.CHECK_TYPE.CHECK) {
+      if (this.coc7Config.linkData.check === Cd100Link.CHECK_TYPE.CHECK) {
         if (this.coc7Config.linkData.pushing) {
           data.pushing = this.coc7Config.linkData.pushing
         }
@@ -465,7 +465,7 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
         data.label = this.coc7Config.linkData.label
       }
     }
-    return CoC7Link.fromDropData(data)
+    return Cd100Link.fromDropData(data)
   }
 
   /**
@@ -476,8 +476,8 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
   static createConfig (linkData = {}) {
     const coc7Config = {
       linkData: {
-        check: CoC7Link.CHECK_TYPE.CHECK,
-        subtype: CoC7Link.LINK_TYPE.CHARACTERISTIC,
+        check: Cd100Link.CHECK_TYPE.CHECK,
+        subtype: Cd100Link.LINK_TYPE.CHARACTERISTIC,
         name: 'str',
         sanMin: '',
         sanMax: '',
@@ -498,37 +498,37 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
       }
     }
     switch (linkData.check ?? '') {
-      case CoC7Link.CHECK_TYPE.CHECK:
+      case Cd100Link.CHECK_TYPE.CHECK:
         coc7Config.linkData.check = linkData.check
         switch (linkData.subtype ?? '') {
-          case CoC7Link.LINK_TYPE.ATTRIBUTE:
+          case Cd100Link.LINK_TYPE.ATTRIBUTE:
             coc7Config.linkData.subtype = linkData.subtype
             coc7Config.linkData.name = linkData.name
             coc7Config.other.attributeName = linkData.name
             break
-          case CoC7Link.LINK_TYPE.CHARACTERISTIC:
+          case Cd100Link.LINK_TYPE.CHARACTERISTIC:
             coc7Config.linkData.subtype = linkData.subtype
             coc7Config.linkData.name = linkData.name
             coc7Config.other.characteristicName = linkData.name
             break
-          case CoC7Link.LINK_TYPE.SKILL:
+          case Cd100Link.LINK_TYPE.SKILL:
             coc7Config.linkData.subtype = linkData.subtype
             coc7Config.linkData.name = linkData.name
             coc7Config.other.skillName = linkData.name
             break
         }
         break
-      case CoC7Link.CHECK_TYPE.SANLOSS:
+      case Cd100Link.CHECK_TYPE.SANLOSS:
         coc7Config.linkData.check = linkData.check
         coc7Config.linkData.sanMin = linkData.sanMin
         coc7Config.linkData.sanMax = linkData.sanMax
         coc7Config.linkData.sanReason = linkData.sanReason
         break
-      case CoC7Link.CHECK_TYPE.ITEM:
+      case Cd100Link.CHECK_TYPE.ITEM:
         coc7Config.linkData.check = linkData.check
         coc7Config.other.itemName = linkData.name
         break
-      case CoC7Link.CHECK_TYPE.EFFECT:
+      case Cd100Link.CHECK_TYPE.EFFECT:
         coc7Config.linkData.check = linkData.check
         if (typeof linkData.object === 'string') {
           coc7Config.linkData.object = JSON.parse(linkData.object)
@@ -541,7 +541,7 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
         break
     }
     switch (linkData.check ?? '') {
-      case CoC7Link.CHECK_TYPE.EFFECT:
+      case Cd100Link.CHECK_TYPE.EFFECT:
         break
       default:
         if (typeof linkData.blind !== 'undefined') {
@@ -575,8 +575,8 @@ export default class CoC7ContentLinkDialog extends foundry.applications.api.Hand
    * @param {object} linkData
    */
   static async create (linkData = {}) {
-    const coc7Config = CoC7ContentLinkDialog.createConfig(linkData)
+    const coc7Config = Cd100ContentLinkDialog.createConfig(linkData)
     coc7Config.actors = []
-    new CoC7ContentLinkDialog({}, {}, coc7Config).render({ force: true })
+    new Cd100ContentLinkDialog({}, {}, coc7Config).render({ force: true })
   }
 }

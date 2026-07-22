@@ -1,7 +1,7 @@
 /* global foundry game TextEditor */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7SkillPopup extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100SkillPopup extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   static DEFAULT_OPTIONS = {
     classes: ['coc7', 'dialog', 'item'],
     position: {
@@ -10,7 +10,7 @@ export default class CoC7SkillPopup extends foundry.applications.api.HandlebarsA
     },
     tag: 'div',
     window: {
-      title: 'CoC7.SkillDetailsWindow'
+      title: 'Cd100.SkillDetailsWindow'
     }
   }
 

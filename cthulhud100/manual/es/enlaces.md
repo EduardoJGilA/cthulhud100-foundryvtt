@@ -21,7 +21,7 @@
 - Los enlaces deben escribirse utilizando la [Herramienta de creación de enlaces](ventana_de_creacion_de_enlaces.md). La ventana de creación de enlaces es una herramienta para el GM. Se encuentra en la barra lateral izquierda.
 
 Enlaces para mensajes de chat y editores de hojas (PNJ, entradas de diario...).
-El formato del enlace es `@@coc7.TIPO_DE_SOLICITUD[OPCIONES]{TEXTO_A_MOSTRAR}`
+El formato del enlace es `@@cd100.TIPO_DE_SOLICITUD[OPCIONES]{TEXTO_A_MOSTRAR}`
 
 - `TIPO_DE_SOLICITUD`:
   - `sanloss`: activa una tirada de COR; al fallar, propondrá deducir la COR correspondiente.
@@ -45,12 +45,12 @@ El formato del enlace es `@@coc7.TIPO_DE_SOLICITUD[OPCIONES]{TEXTO_A_MOSTRAR}`
 
 | Enlace                                                                                                        | Resultado                                                           |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `@@coc7.sanloss[sanMax:1D6,sanMin:1,difficulty:++,modifier:-1]`                                               | {Pérdida de COR Extrema (-1) 1/1D6}                                 |
-| `@@coc7.check[type:charac,name:STR,difficulty:+,modifier:-1]`                                                 | {Tirada de FUE Difícil (-1)}                                        |
-| `@@coc7.check[type:attrib,name:lck,difficulty:+,modifier:-1]`                                                 | {Tirada de Suerte Difícil (-1)}                                     |
-| `@@coc7.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,difficulty:+,modifier:-1]` | {Tirada de Antropología Difícil (-1)} (con ícono)                   |
-| `@@coc7.sanloss[sanMax:1D6,sanMin:1]`                                                                         | {Pérdida de COR 1/1D6} (sin nombre, dificultad ni modificador)      |
-| `@@coc7.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,modifier:+1]`              | {Tirada de Antropología (+1)} (con ícono, sin nombre ni dificultad) |
+| `@@cd100.sanloss[sanMax:1D6,sanMin:1,difficulty:++,modifier:-1]`                                               | {Pérdida de COR Extrema (-1) 1/1D6}                                 |
+| `@@cd100.check[type:charac,name:STR,difficulty:+,modifier:-1]`                                                 | {Tirada de FUE Difícil (-1)}                                        |
+| `@@cd100.check[type:attrib,name:lck,difficulty:+,modifier:-1]`                                                 | {Tirada de Suerte Difícil (-1)}                                     |
+| `@@cd100.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,difficulty:+,modifier:-1]` | {Tirada de Antropología Difícil (-1)} (con ícono)                   |
+| `@@cd100.sanloss[sanMax:1D6,sanMin:1]`                                                                         | {Pérdida de COR 1/1D6} (sin nombre, dificultad ni modificador)      |
+| `@@cd100.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,modifier:+1]`              | {Tirada de Antropología (+1)} (con ícono, sin nombre ni dificultad) |
 
 ### Uso de enlaces
 

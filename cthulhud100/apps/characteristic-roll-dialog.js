@@ -1,8 +1,8 @@
 /* global ChatMessage CONFIG FormDataExtended foundry game Roll */
 import { FOLDER_ID } from '../constants.js'
-import CoC7Utilities from './utilities.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7CharacteristicRollDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100CharacteristicRollDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -22,7 +22,7 @@ export default class CoC7CharacteristicRollDialog extends foundry.applications.a
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7CharacteristicRollDialog.#onSubmit
+      handler: Cd100CharacteristicRollDialog.#onSubmit
     },
     position: {
       width: 360
@@ -66,12 +66,12 @@ export default class CoC7CharacteristicRollDialog extends foundry.applications.a
     }))
     this.element.querySelectorAll('.increase-characteristic').forEach((element) => element.addEventListener('click', async (event) => {
       const key = this.formKeyFromEvent(event)
-      this.coc7Config.values[key] = Math.min(100, this.coc7Config.values[key] + (CoC7Utilities.isCtrlKey(event) ? 10 : 1))
+      this.coc7Config.values[key] = Math.min(100, this.coc7Config.values[key] + (Cd100Utilities.isCtrlKey(event) ? 10 : 1))
       this.render({ force: true })
     }))
     this.element.querySelectorAll('.decrease-characteristic').forEach((element) => element.addEventListener('click', async (event) => {
       const key = this.formKeyFromEvent(event)
-      this.coc7Config.values[key] = Math.max(0, this.coc7Config.values[key] - (CoC7Utilities.isCtrlKey(event) ? 10 : 1))
+      this.coc7Config.values[key] = Math.max(0, this.coc7Config.values[key] - (Cd100Utilities.isCtrlKey(event) ? 10 : 1))
       this.render({ force: true })
     }))
     this.element.querySelectorAll('.reset-characteristic').forEach((element) => element.addEventListener('click', async (event) => {
@@ -89,8 +89,8 @@ export default class CoC7CharacteristicRollDialog extends foundry.applications.a
     if (key === 'luck' && this.coc7Config.attribs.luck.formula) {
       const roll = await new Roll(this.coc7Config.attribs.luck.formula).roll()
       roll.toMessage({
-        flavor: game.i18n.format('CoC7.MessageRollingCharacteristic', {
-          label: CoC7Utilities.getAttributeNames('lck')?.label,
+        flavor: game.i18n.format('Cd100.MessageRollingCharacteristic', {
+          label: Cd100Utilities.getAttributeNames('lck')?.label,
           formula: this.coc7Config.attribs.luck.formula
         })
       })
@@ -98,8 +98,8 @@ export default class CoC7CharacteristicRollDialog extends foundry.applications.a
     } else if (typeof this.coc7Config.characteristics[key] !== 'undefined' && this.coc7Config.characteristics[key].formula) {
       const roll = await new Roll(this.coc7Config.characteristics[key].formula).roll()
       roll.toMessage({
-        flavor: game.i18n.format('CoC7.MessageRollingCharacteristic', {
-          label: CoC7Utilities.getCharacteristicNames(key)?.label,
+        flavor: game.i18n.format('Cd100.MessageRollingCharacteristic', {
+          label: Cd100Utilities.getCharacteristicNames(key)?.label,
           formula: this.coc7Config.characteristics[key].formula
         })
       })
@@ -157,7 +157,7 @@ export default class CoC7CharacteristicRollDialog extends foundry.applications.a
    * @inheritdoc
    */
   get title () {
-    return game.i18n.localize(this.coc7Config.isPoints ? 'CoC7.SpendPoints' : 'CoC7.RollCharac')
+    return game.i18n.localize(this.coc7Config.isPoints ? 'Cd100.SpendPoints' : 'Cd100.RollCharac')
   }
 
   /**
@@ -229,14 +229,14 @@ export default class CoC7CharacteristicRollDialog extends foundry.applications.a
           context.buttons.push({
             type: 'roll',
             action: 'roll',
-            label: 'CoC7.RollDice',
+            label: 'Cd100.RollDice',
             icon: 'fa-solid fa-dice'
           })
         }
         context.buttons.push({
           type: 'submit',
           action: 'validate',
-          label: 'CoC7.Validate',
+          label: 'Cd100.Validate',
           icon: 'fa-solid fa-check'
         })
         break
@@ -278,7 +278,7 @@ export default class CoC7CharacteristicRollDialog extends foundry.applications.a
       values[key] = characteristics[key].value
     }
     return await new Promise(resolve => {
-      new CoC7CharacteristicRollDialog({}, {}, {
+      new Cd100CharacteristicRollDialog({}, {}, {
         attribs,
         characteristics,
         isPoints,

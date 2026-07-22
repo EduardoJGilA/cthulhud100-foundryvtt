@@ -4,7 +4,7 @@
       <div class="item-list flexcol">
         {{#if spellListEmpty}}
           <div class="item flexcol">
-            <label>{{localize 'CoC7.DragSpell'}}</label>
+            <label>{{localize 'Cd100.DragSpell'}}</label>
           </div>
         {{else}}
           {{#each spells as |item|}}
@@ -16,10 +16,10 @@
                   <a class="item-control" data-action="teach-spell"><i class="fa-solid fa-book-open"></i></a>
                 {{/if}}
                 {{#if (or ../isKeeper (contains item._id ../spellsLearned))}}
-                  <a class="item-control" data-action="itemEdit" data-tooltip="CoC7.EditItem"><i class="fa-solid fa-edit"></i></a>
+                  <a class="item-control" data-action="itemEdit" data-tooltip="Cd100.EditItem"><i class="fa-solid fa-edit"></i></a>
                 {{/if}}
                 {{#if ../isKeeper}}
-                  <a class="item-control" data-action="itemDelete" data-tooltip="CoC7.DeleteItem"><i class="fa-solid fa-trash"></i></a>
+                  <a class="item-control" data-action="itemDelete" data-tooltip="Cd100.DeleteItem"><i class="fa-solid fa-trash"></i></a>
                 {{/if}}
               </div>
             </div>

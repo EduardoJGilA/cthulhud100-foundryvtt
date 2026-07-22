@@ -348,7 +348,7 @@ try {
         html.push('<td><p style="text-align:center">' + roll2.name + '</p></td>')
 
         html.push('<td><p style="text-align:center">' + parameter.name + '</p></td>')
-        html.push('<td><p style="text-align:center">@coc7.check[subtype:' + roll1.subtype + ',name:' + roll2.name + ',difficulty:' + parameter.difficulty + ',poolModifier:' + parameter.poolModifier + ',icon:' + roll2.icon + ']{ ' + roll2.name + (parameter.code !== '' ? ' (' + parameter.code + ')' : '') + '}</p></td>')
+        html.push('<td><p style="text-align:center">@cd100.check[subtype:' + roll1.subtype + ',name:' + roll2.name + ',difficulty:' + parameter.difficulty + ',poolModifier:' + parameter.poolModifier + ',icon:' + roll2.icon + ']{ ' + roll2.name + (parameter.code !== '' ? ' (' + parameter.code + ')' : '') + '}</p></td>')
         html.push('</tr>')
       }
     }

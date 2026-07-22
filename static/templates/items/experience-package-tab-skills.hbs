@@ -2,23 +2,23 @@
   {{#if tabs.skills}}
     <fieldset class="flexcol">
       <div class="form-group flexrow">
-        <label>{{localize 'CoC7.BonusPoints'}}</label>
+        <label>{{localize 'Cd100.BonusPoints'}}</label>
         <input type="text" name="system.points" value="{{document.system.points}}" />
       </div>
     </fieldset>
     <fieldset class="flexcol drop-item" style="min-height: 6rem">
-      <legend>{{localize 'CoC7.CommonSkills'}}</legend>
+      <legend>{{localize 'Cd100.CommonSkills'}}</legend>
       <div class="item-list flexcol">
         {{#if skillListEmpty}}
           <div class="item flexcol">
-            <label>{{localize 'CoC7.EmptySkillList'}}</label>
+            <label>{{localize 'Cd100.EmptySkillList'}}</label>
           </div>
         {{else}}
           {{#each skills as |item|}}
-            <div class="item flexrow" data-uuid="{{item.uuid}}" data-id="{{item._id}}" data-cocid="{{item.flags.CoC7.cocidFlag.id}}">
+            <div class="item flexrow" data-uuid="{{item.uuid}}" data-id="{{item._id}}" data-cocid="{{item.flags.Cd100.cocidFlag.id}}">
               <div class="summary">{{item.name}} ({{item.system.base}}%)</div>
               <div class="item-controls">
-                <a class="item-control" data-action="item-delete" data-tooltip="CoC7.DeleteItem"><i class="fa-solid fa-trash"></i></a>
+                <a class="item-control" data-action="item-delete" data-tooltip="Cd100.DeleteItem"><i class="fa-solid fa-trash"></i></a>
               </div>
             </div>
           {{/each}}
@@ -26,7 +26,7 @@
       </div>
     </fieldset>
     <fieldset class="flexcol">
-      <legend>{{localize 'CoC7.OptionSkills'}}</legend>
+      <legend>{{localize 'Cd100.OptionSkills'}}</legend>
       <div class="flexrow">
         <label></label>
         <div class="item-controls">
@@ -36,8 +36,8 @@
       {{#each groups as |group index|}}
         <fieldset class="skill-group flexcol drop-item" style="min-height: 6rem" data-group="{{index}}">
           <div class="form-group flexrow">
-            <label>{{localize 'CoC7.Choose'}}</label>
-            <input class="small" type="text" name="system.groups.{{index}}.options" value="{{group.options}}" placeholder="{{localize 'CoC7.ChoiceNumber'}}" />
+            <label>{{localize 'Cd100.Choose'}}</label>
+            <input class="small" type="text" name="system.groups.{{index}}.options" value="{{group.options}}" placeholder="{{localize 'Cd100.ChoiceNumber'}}" />
             <div class="item-controls">
               <a class="item-control" data-action="group-remove"><i class="fa-regular fa-minus-circle"></i></a>
             </div>
@@ -45,14 +45,14 @@
           <div class="item-list flexcol">
             {{#if group.isEmpty}}
               <div class="item flexcol">
-                <label>{{localize 'CoC7.EmptySkillList'}}</label>
+                <label>{{localize 'Cd100.EmptySkillList'}}</label>
               </div>
             {{else}}
               {{#each group.skills as |item|}}
-                <div class="item flexrow" data-uuid="{{item.uuid}}" data-id="{{item._id}}" data-cocid="{{item.flags.CoC7.cocidFlag.id}}">
+                <div class="item flexrow" data-uuid="{{item.uuid}}" data-id="{{item._id}}" data-cocid="{{item.flags.Cd100.cocidFlag.id}}">
                   <div class="summary">{{item.name}} ({{item.system.base}}%)</div>
                   <div class="item-controls">
-                    <a class="item-control" data-action="item-delete" data-tooltip="CoC7.DeleteItem"><i class="fa-solid fa-trash"></i></a>
+                    <a class="item-control" data-action="item-delete" data-tooltip="Cd100.DeleteItem"><i class="fa-solid fa-trash"></i></a>
                   </div>
                 </div>
               {{/each}}

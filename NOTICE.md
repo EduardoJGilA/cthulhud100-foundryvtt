@@ -1,10 +1,10 @@
 # Notice and Legal Attributions
 
 ## 1. Upstream Code Base
-This project is a fork of **CoC7-FoundryVTT** (version 8.14), created by the **Miskatonic Investigative Society**.
+This project is a fork of **Cd100-FoundryVTT** (version 8.14), created by the **Miskatonic Investigative Society**.
 - **Copyright:** © Miskatonic Investigative Society
 - **License:** GNU General Public License v3.0 (GPL-3.0)
-- **Source Repository:** https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT
+- **Source Repository:** https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT
 
 ## 2. Game System & Rules
 This system implements the game mechanics of **Cthulhu d100** (2011), published by **Three Fourteen Games**.
@@ -64,7 +64,7 @@ The following text is the property of Wizards of the Coast, Inc. and is Copyrigh
     - Open Game License v 1.0 Copyright 2000, Wizards of the Coast, Inc.
     - GORE Copyright 2007, Daniel Proctor.
     - Cthulhu d100 Copyright 2011, Three Fourteen Games.
-    - CoC7-FoundryVTT Copyright 2020, Miskatonic Investigative Society.
+    - Cd100-FoundryVTT Copyright 2020, Miskatonic Investigative Society.
     - Cthulhu d100 Foundry VTT System Copyright 2026, EduardoJGilA.
 
 ---

@@ -11,9 +11,9 @@ import { CHARACTERISTIC_MULTIPLIER } from '../constants.js'
  * blunts concentration.
  *
  * This has no Call of Cthulhu 7e equivalent; the classic system in the same
- * chapter is the one that resembles CoC7 sanity.
+ * chapter is the one that resembles Cd100 sanity.
  */
-export default class CoC7MentalStability {
+export default class Cd100MentalStability {
   /**
    * The four states, in order of severity
    * @returns {object}
@@ -51,21 +51,21 @@ export default class CoC7MentalStability {
    * third has at least one; transitory insanity when all three are full.
    * @param {number} pow POD
    * @param {number} tension accumulated tension points
-   * @returns {string} one of CoC7MentalStability.state
+   * @returns {string} one of Cd100MentalStability.state
    */
   static stateFromTension (pow, tension) {
-    const bars = CoC7MentalStability.bars(pow)
+    const bars = Cd100MentalStability.bars(pow)
     const t = Math.max(0, parseInt(tension, 10) || 0)
     if (bars.total === 0 || t >= bars.total) {
-      return CoC7MentalStability.state.transitoryInsanity
+      return Cd100MentalStability.state.transitoryInsanity
     }
     if (t > bars.first + bars.second) {
-      return CoC7MentalStability.state.tense
+      return Cd100MentalStability.state.tense
     }
     if (t > bars.first) {
-      return CoC7MentalStability.state.uneasy
+      return Cd100MentalStability.state.uneasy
     }
-    return CoC7MentalStability.state.calm
+    return Cd100MentalStability.state.calm
   }
 
   /**
@@ -74,16 +74,16 @@ export default class CoC7MentalStability {
    * Action skills gain what everything else loses. Under transitory insanity
    * the character cannot act voluntarily at all, which no modifier expresses,
    * hence canAct.
-   * @param {string} state one of CoC7MentalStability.state
+   * @param {string} state one of Cd100MentalStability.state
    * @returns {object} action, other and canAct
    */
   static modifiers (state) {
     switch (state) {
-      case CoC7MentalStability.state.uneasy:
+      case Cd100MentalStability.state.uneasy:
         return { action: 10, other: -10, canAct: true }
-      case CoC7MentalStability.state.tense:
+      case Cd100MentalStability.state.tense:
         return { action: 20, other: -20, canAct: true }
-      case CoC7MentalStability.state.transitoryInsanity:
+      case Cd100MentalStability.state.transitoryInsanity:
         return { action: 0, other: 0, canAct: false }
       default:
         return { action: 0, other: 0, canAct: true }
@@ -93,16 +93,16 @@ export default class CoC7MentalStability {
   /**
    * Modifier applied to the INT x5 check that clears accumulated tension once
    * the stressor is gone.
-   * @param {string} state one of CoC7MentalStability.state
+   * @param {string} state one of Cd100MentalStability.state
    * @returns {number} percentage modifier
    */
   static recoveryModifier (state) {
     switch (state) {
-      case CoC7MentalStability.state.calm:
+      case Cd100MentalStability.state.calm:
         return 10
-      case CoC7MentalStability.state.tense:
+      case Cd100MentalStability.state.tense:
         return -10
-      case CoC7MentalStability.state.transitoryInsanity:
+      case Cd100MentalStability.state.transitoryInsanity:
         return -20
       default:
         return 0
@@ -129,7 +129,7 @@ export default class CoC7MentalStability {
    * @returns {object} tension and underlyingMadness after the hit
    */
   static applyHit ({ pow, tension = 0, underlyingMadness = 0, hit = 0 } = {}) {
-    const bars = CoC7MentalStability.bars(pow)
+    const bars = Cd100MentalStability.bars(pow)
     const p = Math.max(0, parseInt(pow, 10) || 0)
     let madness = Math.max(0, parseInt(underlyingMadness, 10) || 0)
     const before = Math.max(0, parseInt(tension, 10) || 0)
@@ -174,14 +174,14 @@ export default class CoC7MentalStability {
    * passes without a fresh impact.
    * @param {object} options
    * @param {number} options.int INT
-   * @param {string} options.state one of CoC7MentalStability.state
+   * @param {string} options.state one of Cd100MentalStability.state
    * @param {number} options.quietHours hours since the last impact
    * @returns {number} percentage to roll against
    */
   static recoveryThreshold ({ int, state, quietHours = 0 } = {}) {
     const base = (parseInt(int, 10) || 0) * CHARACTERISTIC_MULTIPLIER
     const hours = Math.max(0, parseInt(quietHours, 10) || 0)
-    return Math.max(0, Math.min(100, base + CoC7MentalStability.recoveryModifier(state) + hours * 10))
+    return Math.max(0, Math.min(100, base + Cd100MentalStability.recoveryModifier(state) + hours * 10))
   }
 
   /**
@@ -200,7 +200,7 @@ export default class CoC7MentalStability {
     if (success) {
       return 0
     }
-    const bars = CoC7MentalStability.bars(pow)
+    const bars = Cd100MentalStability.bars(pow)
     return Math.min(bars.total, Math.max(0, parseInt(tension, 10) || 0) + (parseInt(extraRoll, 10) || 0))
   }
 
@@ -291,10 +291,10 @@ export default class CoC7MentalStability {
 
   /**
    * Localised label for a state
-   * @param {string} state one of CoC7MentalStability.state
+   * @param {string} state one of Cd100MentalStability.state
    * @returns {string}
    */
   static label (state) {
-    return game.i18n.localize('CoC7.MentalStability.' + state)
+    return game.i18n.localize('Cd100.MentalStability.' + state)
   }
 }

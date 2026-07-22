@@ -1,9 +1,9 @@
 <div class="panel flexcol">
-  <h1>{{localize 'CoC7.InvestigatorWizard.TitleSelectArchetype'}}</h1>
+  <h1>{{localize 'Cd100.InvestigatorWizard.TitleSelectArchetype'}}</h1>
   <div class="scroll-section">
-    <p>{{localize 'CoC7.InvestigatorWizard.ArchetypePage'}}</p>
+    <p>{{localize 'Cd100.InvestigatorWizard.ArchetypePage'}}</p>
     <div class="form-group">
-      <label for="coc-archetype">{{localize 'CoC7.InvestigatorWizard.ArchetypeSelect'}}:</label>
+      <label for="coc-archetype">{{localize 'Cd100.InvestigatorWizard.ArchetypeSelect'}}:</label>
       <select name="coc-archetype">
         <option value="">&nbsp;</option>
         {{selectOptions archetypeOptions selected=coc7Config.archetype valueAttr='key' labelAttr='name'}}
@@ -12,10 +12,10 @@
     {{#if coc7Config.archetype}}
       {{{description}}}
       <ul>
-        <li>{{{localize 'CoC7.InvestigatorWizard.CoreCharacteristicName' coreCharacteristic=coreCharacteristic}}}</li>
-        <li>{{{localize 'CoC7.InvestigatorWizard.AddBonusPointsToSkills' bonusPoints=bonusPoints skills=skills}}}</li>
-        <li>{{{localize 'CoC7.InvestigatorWizard.SuggestedOccupations' suggested=suggestedOccupations}}}</li>
-        <li>{{{localize 'CoC7.InvestigatorWizard.SuggestedTraits' suggested=suggestedTraits}}}</li>
+        <li>{{{localize 'Cd100.InvestigatorWizard.CoreCharacteristicName' coreCharacteristic=coreCharacteristic}}}</li>
+        <li>{{{localize 'Cd100.InvestigatorWizard.AddBonusPointsToSkills' bonusPoints=bonusPoints skills=skills}}}</li>
+        <li>{{{localize 'Cd100.InvestigatorWizard.SuggestedOccupations' suggested=suggestedOccupations}}}</li>
+        <li>{{{localize 'Cd100.InvestigatorWizard.SuggestedTraits' suggested=suggestedTraits}}}</li>
       </ul>
     {{/if}}
   </div>

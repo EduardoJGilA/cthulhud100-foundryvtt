@@ -1,22 +1,22 @@
 /* global ChatMessage CONFIG foundry fromUuid game Roll TokenDocument ui */
 import { FOLDER_ID, CHARACTERISTIC_MULTIPLIER } from '../../constants.js'
-import CoC7ActiveEffect from '../../apps/active-effect.js'
-import CoC7ChatDamage from '../../apps/chat-damage.js'
-import CoC7ConCheck from '../../apps/con-check.js'
-import CoC7ContentLinkDialog from '../../apps/content-link-dialog.js'
-import CoC7DelayedTooltip from '../../apps/delayed-tooltip.js'
-import CoC7Link from '../../apps/link.js'
-import CoC7ModelsItemWeaponSystem from '../item/weapon-system.js'
-import CoC7RollNormalize from '../../apps/roll-normalize.js'
-import CoC7SkillPopup from '../../apps/skill-popup.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ActiveEffect from '../../apps/active-effect.js'
+import Cd100ChatDamage from '../../apps/chat-damage.js'
+import Cd100ConCheck from '../../apps/con-check.js'
+import Cd100ContentLinkDialog from '../../apps/content-link-dialog.js'
+import Cd100DelayedTooltip from '../../apps/delayed-tooltip.js'
+import Cd100Link from '../../apps/link.js'
+import Cd100ModelsItemWeaponSystem from '../item/weapon-system.js'
+import Cd100RollNormalize from '../../apps/roll-normalize.js'
+import Cd100SkillPopup from '../../apps/skill-popup.js'
+import Cd100Utilities from '../../apps/utilities.js'
 import deprecated from '../../deprecated.js'
 
-export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
+export default class Cd100ModelsActorGlobalSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ['coc7', 'sheet'],
     form: {
-      handler: CoC7ModelsActorGlobalSheet.#onSubmit,
+      handler: Cd100ModelsActorGlobalSheet.#onSubmit,
       submitOnChange: true
     }
   }
@@ -47,9 +47,9 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     }
     for (const itemType in context.itemsByType) {
       if (itemType === 'skill') {
-        context.itemsByType[itemType].sort(CoC7Utilities.sortSkillByNameWithOwn)
+        context.itemsByType[itemType].sort(Cd100Utilities.sortSkillByNameWithOwn)
       } else {
-        context.itemsByType[itemType].sort(CoC7Utilities.sortByNameKey)
+        context.itemsByType[itemType].sort(Cd100Utilities.sortByNameKey)
       }
     }
     context.meleeSkills = (context.itemsByType.skill ?? []).filter(doc => doc.system.properties.fighting === true)
@@ -67,7 +67,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
       context.hasInventory = this.hasInventory(context)
     }
 
-    context.effects = context.document.type === 'character' ? await CoC7ActiveEffect.prepareActiveEffectCategories(context.document) : await CoC7ActiveEffect.prepareNPCActiveEffectCategories(context.document)
+    context.effects = context.document.type === 'character' ? await Cd100ActiveEffect.prepareActiveEffectCategories(context.document) : await Cd100ActiveEffect.prepareNPCActiveEffectCategories(context.document)
 
     context.allowUnlock = this.allowUnlock
 
@@ -157,10 +157,10 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
 
     context._properties = [{
       id: 'melee',
-      name: 'CoC7.Weapon.Property.Melee',
+      name: 'Cd100.Weapon.Property.Melee',
       tooltip: ''
     }]
-    for (const [key, value] of CoC7ModelsItemWeaponSystem.schema.getField('properties').entries()) {
+    for (const [key, value] of Cd100ModelsItemWeaponSystem.schema.getField('properties').entries()) {
       context._properties.push({
         id: key,
         name: value.label,
@@ -245,15 +245,15 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
         }
         return
       }
-      if (CoC7Utilities.htmlElementToggled(outer)) {
-        CoC7Utilities.htmlElementToggleHide(outer)
+      if (Cd100Utilities.htmlElementToggled(outer)) {
+        Cd100Utilities.htmlElementToggleHide(outer)
         if (saveable) {
           this.document.update({ ['system.flags.' + key]: false }, { render: false })
         }
       } else {
         const div = outer.querySelector('.tab-group-tab')
         div.classList.remove('html-element-hidden')
-        CoC7Utilities.htmlElementToggleShow(outer, div)
+        Cd100Utilities.htmlElementToggleShow(outer, div)
         if (saveable) {
           this.document.update({ ['system.flags.' + key]: true }, { render: false })
         }
@@ -284,8 +284,8 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
         }
         const item = await fromUuid(li.dataset.itemUuid)
         if (item) {
-          if (CoC7Utilities.htmlElementToggled(li)) {
-            CoC7Utilities.htmlElementToggleHide(li, { remove: true })
+          if (Cd100Utilities.htmlElementToggled(li)) {
+            Cd100Utilities.htmlElementToggleHide(li, { remove: true })
             element.classList.remove('expanded')
           } else {
             let div = li.querySelector('.html-element-toggled')
@@ -293,10 +293,10 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
               div = document.createElement('div')
               div.style.gridArea = 'details'
               div.style.display = 'grid'
-              await CoC7Utilities.setItemSummaryHtml(div, item, this.document)
+              await Cd100Utilities.setItemSummaryHtml(div, item, this.document)
               li.append(div)
             }
-            CoC7Utilities.htmlElementToggleShow(li, div)
+            Cd100Utilities.htmlElementToggleShow(li, div)
             element.classList.add('expanded')
           }
         }
@@ -371,7 +371,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
           this._onItemEdit(event)
           break
         case 'item-trade':
-          CoC7Utilities.tradeItem(event.currentTarget.closest('.item')?.dataset.itemUuid)
+          Cd100Utilities.tradeItem(event.currentTarget.closest('.item')?.dataset.itemUuid)
           break
         case 'reset-counter':
           this.document.resetDailySanity()
@@ -396,7 +396,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
               if (newLuck >= 0 && await this.document.spendLuck(this.document.system.config.luckAvoidUnconsciousness) !== false) {
                 this.document.update({ 'system.config.luckAvoidUnconsciousness': this.document.system.config.luckAvoidUnconsciousness * 2 })
               } else {
-                ui.notifications.warn('CoC7.NotEnoughLuck', { localize: true })
+                ui.notifications.warn('Cd100.NotEnoughLuck', { localize: true })
               }
             })()
           }
@@ -409,11 +409,11 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
             (async () => {
               const newLuck = parseInt(this.document.system.attribs.lck.value ?? 0, 10) - 20
               if (newLuck >= 0 && await this.document.spendLuck(20) !== false) {
-                const roll = (await new Roll('1D6', {}, { flavor: game.i18n.localize('CoC7.Settings.PulpRules.LuckHeal.Name') }).roll())
+                const roll = (await new Roll('1D6', {}, { flavor: game.i18n.localize('Cd100.Settings.PulpRules.LuckHeal.Name') }).roll())
                 await this.document.setHp(parseInt(roll.total, 10) + parseInt(this.document.system.attribs.hp.value, 10))
                 roll.toMessage({ content: '' })
               } else {
-                ui.notifications.warn('CoC7.NotEnoughLuck', { localize: true })
+                ui.notifications.warn('Cd100.NotEnoughLuck', { localize: true })
               }
             })()
           }
@@ -422,11 +422,11 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
           (async () => {
             const oldLuck = parseInt(this.document.system.attribs.lck.value ?? 0, 10)
             if (oldLuck >= 30 && await this.document.spendLuck(this.document.system.attribs.lck.value) !== false) {
-              const roll = (await new Roll('1D6+1', {}, { flavor: game.i18n.localize('CoC7.Settings.PulpRules.LuckAvoidDeath.Name') }).roll())
+              const roll = (await new Roll('1D6+1', {}, { flavor: game.i18n.localize('Cd100.Settings.PulpRules.LuckAvoidDeath.Name') }).roll())
               await this.document.setHp(parseInt(roll.total, 10) + parseInt(this.document.system.attribs.hp.value, 10))
               roll.toMessage({ content: '' })
             } else {
-              ui.notifications.warn('CoC7.NotEnoughLuck', { localize: true })
+              ui.notifications.warn('Cd100.NotEnoughLuck', { localize: true })
             }
           })()
           break
@@ -476,7 +476,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     this.element.querySelectorAll('.npc-skill-score').forEach((element) => element.addEventListener('change', this._onSkillSetValue.bind(this)))
     this.element.querySelectorAll('.skill-adjustment').forEach((element) => element.addEventListener('change', this._onSkillSetAdjustment.bind(this)))
 
-    CoC7ActiveEffect._onRender(this.element, context.document)
+    Cd100ActiveEffect._onRender(this.element, context.document)
 
     this.element.querySelector('.luck-development')?.addEventListener('click', (event) => {
       if (!event.detail || event.detail === 1) {
@@ -517,7 +517,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
       element.addEventListener('contextmenu', this._onOpposedRoll.bind(this))
       element.addEventListener('dragstart', this._onDragAttribute.bind(this))
       if (typeof element.dataset.tooltip === 'undefined') {
-        CoC7DelayedTooltip.init(element, this.toolTipAttributeEnter.bind(this))
+        Cd100DelayedTooltip.init(element, this.toolTipAttributeEnter.bind(this))
       }
     })
     this.element.querySelectorAll('.characteristic-name.rollable').forEach((element) => {
@@ -525,14 +525,14 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
       element.addEventListener('contextmenu', this._onOpposedRoll.bind(this))
       element.addEventListener('dragstart', this._onDragCharacteristic.bind(this))
       if (typeof element.dataset.tooltip === 'undefined') {
-        CoC7DelayedTooltip.init(element, this.toolTipCharacteristicEnter.bind(this))
+        Cd100DelayedTooltip.init(element, this.toolTipCharacteristicEnter.bind(this))
       }
     })
     this.element.querySelectorAll('.skill-name.rollable').forEach((element) => {
       element.addEventListener('click', this._onRollSkillTest.bind(this))
       element.addEventListener('contextmenu', this._onOpposedRoll.bind(this))
       if (typeof element.dataset.tooltip === 'undefined') {
-        CoC7DelayedTooltip.init(element, this.toolTipSkillEnter.bind(this))
+        Cd100DelayedTooltip.init(element, this.toolTipSkillEnter.bind(this))
       }
     })
     this.element.querySelectorAll('.weapon-name.rollable').forEach((element) => {
@@ -574,12 +574,12 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
       special: Math.max(1, Math.round(value / 5)),
       critical: Math.max(1, Math.round(value / 20))
     }
-    const basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
-    let toolTip = game.i18n.format(isCombat ? 'CoC7.ToolTipCombat' : 'CoC7.ToolTipSkill', data)
+    const basicToolTip = game.i18n.format('Cd100.ToolTipShort', data)
+    let toolTip = game.i18n.format(isCombat ? 'Cd100.ToolTipCombat' : 'Cd100.ToolTipSkill', data)
     if (game.user.isGM) {
-      toolTip = toolTip + game.i18n.format('CoC7.ToolTipKeeperSkill', {
+      toolTip = toolTip + game.i18n.format('Cd100.ToolTipKeeperSkill', {
         other: game.settings.get(FOLDER_ID, 'stanbyGMRolls') && this.document.hasPlayerOwner
-          ? game.i18n.format('CoC7.ToolTipKeeperStandbySkill', {
+          ? game.i18n.format('Cd100.ToolTipKeeperStandbySkill', {
             name: this.document.name
           })
           : ''
@@ -598,22 +598,22 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     let basicToolTip = ''
     if (element.dataset.tooltipKey === 'know') {
       const data = {
-        skill: game.i18n.localize('CoC7.KnowCheck') + ' (' + game.i18n.localize(CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField('edu').label) + ')',
+        skill: game.i18n.localize('Cd100.KnowCheck') + ' (' + game.i18n.localize(CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField('edu').label) + ')',
         regular: (this.document.system.characteristics.edu.value ?? 0) * CHARACTERISTIC_MULTIPLIER,
         special: Math.max(1, Math.round((this.document.system.characteristics.edu.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 5)),
         critical: Math.max(1, Math.round((this.document.system.characteristics.edu.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 20))
       }
-      toolTip = toolTip + game.i18n.format('CoC7.ToolTipBasic', data)
-      basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
+      toolTip = toolTip + game.i18n.format('Cd100.ToolTipBasic', data)
+      basicToolTip = game.i18n.format('Cd100.ToolTipShort', data)
     } else if (element.dataset.tooltipKey === 'idea') {
       const data = {
-        skill: game.i18n.localize('CoC7.IdeaCheck') + ' (' + game.i18n.localize(CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField('int').label) + ')',
+        skill: game.i18n.localize('Cd100.IdeaCheck') + ' (' + game.i18n.localize(CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField('int').label) + ')',
         regular: (this.document.system.characteristics.int.value ?? 0) * CHARACTERISTIC_MULTIPLIER,
         special: Math.max(1, Math.round((this.document.system.characteristics.int.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 5)),
         critical: Math.max(1, Math.round((this.document.system.characteristics.int.value ?? 0) * CHARACTERISTIC_MULTIPLIER / 20))
       }
-      toolTip = toolTip + game.i18n.format('CoC7.ToolTipBasic', data)
-      basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
+      toolTip = toolTip + game.i18n.format('Cd100.ToolTipBasic', data)
+      basicToolTip = game.i18n.format('Cd100.ToolTipShort', data)
     } else if (typeof this.document.system.characteristics[element.dataset.tooltipKey] !== 'undefined') {
       const data = {
         skill: game.i18n.localize(CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField(element.dataset.tooltipKey).hint),
@@ -621,12 +621,12 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
         hard: Math.floor((this.document.system.characteristics[element.dataset.tooltipKey].value ?? 0) / 2),
         extreme: Math.floor((this.document.system.characteristics[element.dataset.tooltipKey].value ?? 0) / 5)
       }
-      toolTip = toolTip + game.i18n.format('CoC7.ToolTipSkill', data)
-      basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
+      toolTip = toolTip + game.i18n.format('Cd100.ToolTipSkill', data)
+      basicToolTip = game.i18n.format('Cd100.ToolTipShort', data)
       if (game.user.isGM) {
-        toolTip = toolTip + game.i18n.format('CoC7.ToolTipKeeperSkill', {
+        toolTip = toolTip + game.i18n.format('Cd100.ToolTipKeeperSkill', {
           other: game.settings.get(FOLDER_ID, 'stanbyGMRolls') && this.document.hasPlayerOwner
-            ? game.i18n.format('CoC7.ToolTipKeeperStandbySkill', {
+            ? game.i18n.format('Cd100.ToolTipKeeperStandbySkill', {
               name: this.document.name
             })
             : ''
@@ -653,12 +653,12 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
             hard: Math.floor((this.document.system.attribs[element.dataset.tooltipKey]?.value ?? 0) / 2),
             extreme: Math.floor((this.document.system.attribs[element.dataset.tooltipKey]?.value ?? 0) / 5)
           }
-          toolTip = toolTip + game.i18n.format('CoC7.ToolTipSkill', data)
-          basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
+          toolTip = toolTip + game.i18n.format('Cd100.ToolTipSkill', data)
+          basicToolTip = game.i18n.format('Cd100.ToolTipShort', data)
           if (game.user.isGM) {
-            toolTip = toolTip + game.i18n.format('CoC7.ToolTipKeeperSkill', {
+            toolTip = toolTip + game.i18n.format('Cd100.ToolTipKeeperSkill', {
               other: game.settings.get(FOLDER_ID, 'stanbyGMRolls') && this.document.hasPlayerOwner
-                ? game.i18n.format('CoC7.ToolTipKeeperStandbySkill', {
+                ? game.i18n.format('Cd100.ToolTipKeeperStandbySkill', {
                   name: this.document.name
                 })
                 : ''
@@ -674,12 +674,12 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
             hard: Math.floor((this.document.system.attribs[element.dataset.tooltipKey]?.value ?? 0) / 2),
             extreme: Math.floor((this.document.system.attribs[element.dataset.tooltipKey]?.value ?? 0) / 5)
           }
-          toolTip = toolTip + game.i18n.format('CoC7.ToolTipSanity', data)
-          basicToolTip = game.i18n.format('CoC7.ToolTipShort', data)
+          toolTip = toolTip + game.i18n.format('Cd100.ToolTipSanity', data)
+          basicToolTip = game.i18n.format('Cd100.ToolTipShort', data)
           if (game.user.isGM) {
-            toolTip = toolTip + game.i18n.format('CoC7.ToolTipKeeperSkill', {
-              other: game.i18n.localize('CoC7.ToolTipKeeperSanity') + (game.settings.get(FOLDER_ID, 'stanbyGMRolls') && this.document.hasPlayerOwner
-                ? game.i18n.format('CoC7.ToolTipKeeperStandbySkill', {
+            toolTip = toolTip + game.i18n.format('Cd100.ToolTipKeeperSkill', {
+              other: game.i18n.localize('Cd100.ToolTipKeeperSanity') + (game.settings.get(FOLDER_ID, 'stanbyGMRolls') && this.document.hasPlayerOwner
+                ? game.i18n.format('Cd100.ToolTipKeeperStandbySkill', {
                   name: this.document.name
                 })
                 : '')
@@ -707,8 +707,8 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
    */
   _onDragCharacteristic (event) {
     const data = {
-      check: CoC7Link.CHECK_TYPE.CHECK,
-      type: 'CoC7Link',
+      check: Cd100Link.CHECK_TYPE.CHECK,
+      type: 'Cd100Link',
       subtype: 'characteristic',
       name: event.currentTarget.closest('.attribute').dataset.characteristic
     }
@@ -721,8 +721,8 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
    */
   _onDragAttribute (event) {
     const data = {
-      check: CoC7Link.CHECK_TYPE.CHECK,
-      type: 'CoC7Link',
+      check: Cd100Link.CHECK_TYPE.CHECK,
+      type: 'Cd100Link',
       subtype: 'attribute',
       name: event.currentTarget.closest('.attribute').dataset.attrib
     }
@@ -735,8 +735,8 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
    */
   _onDragSanCheck (event) {
     const data = {
-      check: CoC7Link.CHECK_TYPE.SANLOSS,
-      type: 'CoC7Link',
+      check: Cd100Link.CHECK_TYPE.SANLOSS,
+      type: 'Cd100Link',
       sanMin: this.actor.system.special.sanLoss.checkPassed,
       sanMax: this.actor.system.special.sanLoss.checkFailled,
       sanReason: this.actor.system.infos.type
@@ -811,7 +811,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
    * @param {ClickEvent} event
    */
   async checkForDeath (event) {
-    await CoC7ConCheck.create(this.document, { stayAlive: true })
+    await Cd100ConCheck.create(this.document, { stayAlive: true })
   }
 
   /**
@@ -852,7 +852,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     if (itemUuid) {
       const document = await fromUuid(itemUuid)
       if (document) {
-        document.system.toggleProperty(property, key, { isCtrlKey: CoC7Utilities.isCtrlKey(event) })
+        document.system.toggleProperty(property, key, { isCtrlKey: Cd100Utilities.isCtrlKey(event) })
       }
     }
   }
@@ -915,17 +915,17 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     if (li.dataset.itemUuid) {
       const item = await fromUuid(li.dataset.itemUuid)
       if (item) {
-        if (CoC7Utilities.htmlElementToggled(li)) {
-          CoC7Utilities.htmlElementToggleHide(li, { remove: true })
+        if (Cd100Utilities.htmlElementToggled(li)) {
+          Cd100Utilities.htmlElementToggleHide(li, { remove: true })
         } else {
           let div = li.querySelector('.html-element-toggled')
           if (!div) {
             div = document.createElement('div')
             div.style.flexBasis = '100%'
-            await CoC7Utilities.setItemSummaryHtml(div, item)
+            await Cd100Utilities.setItemSummaryHtml(div, item)
             li.append(div)
           }
-          CoC7Utilities.htmlElementToggleShow(li, div)
+          Cd100Utilities.htmlElementToggleShow(li, div)
         }
       }
     }
@@ -940,7 +940,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     const itemUuid = event.target.closest('.item').dataset.itemUuid
     const document = await fromUuid(itemUuid)
     if (document) {
-      new CoC7SkillPopup({ document }, {}).render({ force: true, focus: true })
+      new Cd100SkillPopup({ document }, {}).render({ force: true, focus: true })
     }
   }
 
@@ -952,8 +952,8 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     event.preventDefault()
     const effectId = event.currentTarget.closest('li').dataset.effectId
     const effect = this.document.effects.get(effectId)
-    if (CoC7Utilities.isCtrlKey(event) && game.user.isGM) {
-      CoC7ContentLinkDialog.create({ type: 'CoC7Link', check: CoC7Link.CHECK_TYPE.EFFECT, object: effect })
+    if (Cd100Utilities.isCtrlKey(event) && game.user.isGM) {
+      Cd100ContentLinkDialog.create({ type: 'Cd100Link', check: Cd100Link.CHECK_TYPE.EFFECT, object: effect })
     }
   }
 
@@ -965,15 +965,15 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     event.preventDefault()
     const itemUuid = event.currentTarget.closest('.item').dataset.itemUuid
     const weapon = await fromUuid(itemUuid)
-    if (CoC7Utilities.isCtrlKey(event) && game.user.isGM) {
+    if (Cd100Utilities.isCtrlKey(event) && game.user.isGM) {
       const cocid = weapon.flags[FOLDER_ID]?.cocidFlag?.id
-      CoC7ContentLinkDialog.create({
-        check: CoC7Link.CHECK_TYPE.ITEM,
+      Cd100ContentLinkDialog.create({
+        check: Cd100Link.CHECK_TYPE.ITEM,
         name: cocid ?? weapon.name,
         label: (cocid ? weapon.name : undefined)
       })
     } else {
-      this.document.weaponRoll(weapon, CoC7Utilities.getActorUuid(this.document))
+      this.document.weaponRoll(weapon, Cd100Utilities.getActorUuid(this.document))
     }
   }
 
@@ -1015,7 +1015,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     const itemElement = event.currentTarget.closest('.item')
     const itemUuid = itemElement.dataset.itemUuid
     const damageRange = event.currentTarget.dataset.range
-    CoC7ChatDamage.createFromWeapon({ attackerUuid: this.document.uuid, weaponUuid: itemUuid, damageRange })
+    Cd100ChatDamage.createFromWeapon({ attackerUuid: this.document.uuid, weaponUuid: itemUuid, damageRange })
   }
 
   /**
@@ -1073,20 +1073,20 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
       return
     }
     const data = {
-      rollType: CoC7RollNormalize.ROLL_TYPE.SKILL,
-      cardType: CoC7RollNormalize.CARD_TYPE.OPPOSED,
+      rollType: Cd100RollNormalize.ROLL_TYPE.SKILL,
+      cardType: Cd100RollNormalize.CARD_TYPE.OPPOSED,
       event,
       actor: this.document
     }
     if (event.currentTarget.classList.contains('characteristic-name')) {
-      data.rollType = CoC7RollNormalize.ROLL_TYPE.CHARACTERISTIC
+      data.rollType = Cd100RollNormalize.ROLL_TYPE.CHARACTERISTIC
     } else if (event.currentTarget.classList.contains('attribute-name')) {
-      data.rollType = CoC7RollNormalize.ROLL_TYPE.ATTRIBUTE
+      data.rollType = Cd100RollNormalize.ROLL_TYPE.ATTRIBUTE
     }
     if (event.altKey) {
-      data.cardType = CoC7RollNormalize.CARD_TYPE.COMBINED
+      data.cardType = Cd100RollNormalize.CARD_TYPE.COMBINED
     }
-    CoC7RollNormalize.trigger(data)
+    Cd100RollNormalize.trigger(data)
   }
 
   /**
@@ -1108,9 +1108,9 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
    */
   async _onRollCharacteristicTest (event) {
     event.preventDefault()
-    CoC7RollNormalize.trigger({
-      rollType: CoC7RollNormalize.ROLL_TYPE.CHARACTERISTIC,
-      cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+    Cd100RollNormalize.trigger({
+      rollType: Cd100RollNormalize.ROLL_TYPE.CHARACTERISTIC,
+      cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
       event,
       actor: this.document
     })
@@ -1127,15 +1127,15 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
       const roll = new Roll(this.document.system.attribs.db.value.toString(), this.document.parsedValues())
       if (!roll.isDeterministic) {
         roll.toMessage({
-          flavor: game.i18n.localize('CoC7.BonusDamageRoll'),
+          flavor: game.i18n.localize('Cd100.BonusDamageRoll'),
           speaker: ChatMessage.getSpeaker()
         })
       }
       return
     }
-    const cardType = (attrib === 'san' && event.altKey ? CoC7RollNormalize.CARD_TYPE.SAN_CHECK : CoC7RollNormalize.CARD_TYPE.NORMAL)
-    CoC7RollNormalize.trigger({
-      rollType: CoC7RollNormalize.ROLL_TYPE.ATTRIBUTE,
+    const cardType = (attrib === 'san' && event.altKey ? Cd100RollNormalize.CARD_TYPE.SAN_CHECK : Cd100RollNormalize.CARD_TYPE.NORMAL)
+    Cd100RollNormalize.trigger({
+      rollType: Cd100RollNormalize.ROLL_TYPE.ATTRIBUTE,
       cardType,
       event,
       actor: this.document
@@ -1152,9 +1152,9 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
       const skillId = event.currentTarget.closest('.item').dataset.itemUuid
       this.document.developSkill(skillId, event.shiftKey)
     } else {
-      CoC7RollNormalize.trigger({
-        rollType: CoC7RollNormalize.ROLL_TYPE.SKILL,
-        cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+      Cd100RollNormalize.trigger({
+        rollType: Cd100RollNormalize.ROLL_TYPE.SKILL,
+        cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
         event,
         actor: this.document
       })
@@ -1175,7 +1175,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
     const value = event.target?.value
     if (name && typeof overrides[name] !== 'undefined') {
       /* // FoundryVTT V12 */
-      ui.notifications.warn(game.i18n.format('CoC7.EffectAppliedCantOverride', { name }))
+      ui.notifications.warn(game.i18n.format('Cd100.EffectAppliedCantOverride', { name }))
       return
     }
 
@@ -1212,7 +1212,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
           new Roll(value).evaluateSync({ maximize: true })
         } catch (e) {
           /* // FoundryVTT V12 */
-          ui.notifications.error(game.i18n.format('CoC7.ErrorInvalidFormula', { value }))
+          ui.notifications.error(game.i18n.format('Cd100.ErrorInvalidFormula', { value }))
         }
         break
     }
@@ -1350,7 +1350,7 @@ export default class CoC7ModelsActorGlobalSheet extends foundry.applications.api
           const newValue = parseInt(value, 10)
           if (newValue > occupation.system.creditRating.max || newValue < occupation.system.creditRating.min) {
             /* // FoundryVTT V12 */
-            ui.notifications.warn(game.i18n.format('CoC7.CreditOutOfRange', { min: occupation.system.creditRating.min, max: occupation.system.creditRating.max }))
+            ui.notifications.warn(game.i18n.format('Cd100.CreditOutOfRange', { min: occupation.system.creditRating.min, max: occupation.system.creditRating.max }))
           }
         }
       }

@@ -1,6 +1,6 @@
-import CoC7DecaderDie from './decader-die.js'
+import Cd100DecaderDie from './decader-die.js'
 
-export default class CoC7DecaderDieOther extends CoC7DecaderDie {
+export default class Cd100DecaderDieOther extends Cd100DecaderDie {
   /**
    * @inheritdoc
    */

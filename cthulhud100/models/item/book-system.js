@@ -1,14 +1,14 @@
 /* global ChatMessage CONST foundry game renderTemplate Roll ui */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7DicePool from '../../apps/dice-pool.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7ModelsItemSkillSystem from './skill-system.js'
-import CoC7RollNormalize from '../../apps/roll-normalize.js'
-import CoC7SanCheckCard from '../../apps/san-check-card.js'
-import CoC7SystemSocket from '../../apps/system-socket.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100DicePool from '../../apps/dice-pool.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100ModelsItemSkillSystem from './skill-system.js'
+import Cd100RollNormalize from '../../apps/roll-normalize.js'
+import Cd100SanCheckCard from '../../apps/san-check-card.js'
+import Cd100SystemSocket from '../../apps/system-socket.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemBookSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Default img
    * @returns {string}
@@ -43,7 +43,7 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
         occult: new fields.NumberField({ initial: 0 }),
         others: new fields.ArrayField(
           new fields.SchemaField({
-            name: new fields.StringField({ initial: game.i18n.localize('CoC7.NewSkillName') }),
+            name: new fields.StringField({ initial: game.i18n.localize('Cd100.NewSkillName') }),
             value: new fields.StringField({ initial: 'development' })
           })
         )
@@ -62,7 +62,7 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
         /* // FoundryVTT V13 - Moved to Actor
         progress: 0,
         */
-        units: new fields.StringField({ initial: 'CoC7.weeks' })
+        units: new fields.StringField({ initial: 'Cd100.weeks' })
       }),
       /* // FoundryVTT V13 - not required
       alternativeNames: [],
@@ -71,9 +71,9 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
       initialReading: false,
       */
       type: new fields.SchemaField({
-        mythos: new fields.BooleanField({ label: 'CoC7.Mythos', initial: false }),
-        occult: new fields.BooleanField({ label: 'CoC7.Occult', initial: false }),
-        other: new fields.BooleanField({ label: 'CoC7.Other', initial: false })
+        mythos: new fields.BooleanField({ label: 'Cd100.Mythos', initial: false }),
+        occult: new fields.BooleanField({ label: 'Cd100.Occult', initial: false }),
+        other: new fields.BooleanField({ label: 'Cd100.Other', initial: false })
       })
     }
   }
@@ -86,15 +86,15 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
   static convertDifficulty (difficulty) {
     switch (difficulty) {
       case 'hard':
-        return CoC7DicePool.difficultyLevel.hard
+        return Cd100DicePool.difficultyLevel.hard
       case 'extreme':
-        return CoC7DicePool.difficultyLevel.extreme
+        return Cd100DicePool.difficultyLevel.extreme
       case 'critical':
-        return CoC7DicePool.difficultyLevel.critical
+        return Cd100DicePool.difficultyLevel.critical
       case 'unreadable':
-        return CoC7DicePool.difficultyLevel.impossible
+        return Cd100DicePool.difficultyLevel.impossible
       default:
-        return CoC7DicePool.difficultyLevel.regular
+        return Cd100DicePool.difficultyLevel.regular
     }
   }
 
@@ -103,7 +103,7 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
    * Check callback to grantInitialReading
    */
   async attemptInitialReading () {
-    const difficulty = CoC7ModelsItemBookSystem.convertDifficulty(this.difficultyLevel)
+    const difficulty = Cd100ModelsItemBookSystem.convertDifficulty(this.difficultyLevel)
     const language = this.language
     const skill = this.parent.actor?.getSkillByName(language)
     if (!skill) {
@@ -112,20 +112,20 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
        * the language in which it was written
        */
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.UnknownLanguage', { actor: this.parent.actor?.name ?? '?' }))
+      ui.notifications.error(game.i18n.format('Cd100.UnknownLanguage', { actor: this.parent.actor?.name ?? '?' }))
       return
     }
     const config = {
-      rollType: CoC7RollNormalize.ROLL_TYPE.SKILL,
-      cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+      rollType: Cd100RollNormalize.ROLL_TYPE.SKILL,
+      cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
       cardTypeFixed: true,
       difficulty,
       actor: this.parent.actor,
       chatMessage: false,
       itemUuid: skill.uuid
     }
-    const check = await CoC7RollNormalize.trigger(config)
-    check.flavor = game.i18n.format('CoC7.ReadAttempt', {
+    const check = await Cd100RollNormalize.trigger(config)
+    check.flavor = game.i18n.format('Cd100.ReadAttempt', {
       book: this.parent.name,
       language,
       difficulty: this.difficultyLevel
@@ -140,14 +140,14 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
   async attemptReference () {
     const roll = await new Roll('1D4').roll()
     const config = {
-      cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+      cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
       cardTypeFixed: true,
       chatMessage: false,
       threshold: this.mythosRating
     }
-    const check = await CoC7RollNormalize.trigger(config)
+    const check = await Cd100RollNormalize.trigger(config)
     if (check) {
-      check.flavor = game.i18n.format('CoC7.ReferenceTomeFlavor', {
+      check.flavor = game.i18n.format('Cd100.ReferenceTomeFlavor', {
         book: this.parent.name,
         hours: roll.total,
         flavor: check.flavor
@@ -164,14 +164,14 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
   async alterProgress (modify) {
     if (!this.parent.isEmbedded) {
       /** This is not owned by any Actor */
-      ui.notifications.error('CoC7.NotOwned', { localize: true })
+      ui.notifications.error('Cd100.NotOwned', { localize: true })
       return
     }
     const knownBook = this.parent.actor?.system.getBook(this.parent)
     if (knownBook?.initialReading !== true) {
       /** Actor did not performed an initial reading first */
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.InitialReadingNeeded', { actor: this.parent.actor.name, book: this.parent.name }))
+      ui.notifications.error(game.i18n.format('Cd100.InitialReadingNeeded', { actor: this.parent.actor.name, book: this.parent.name }))
       return
     }
     if (modify < 0) {
@@ -210,13 +210,13 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
     }
     if (mythos.type && mythos.gains) {
       developments.push({
-        name: game.i18n.localize('CoC7.CoCIDFlag.keys.i.skill.cthulhu-mythos'),
+        name: game.i18n.localize('Cd100.CoCIDFlag.keys.i.skill.cthulhu-mythos'),
         gain: parseInt(mythos.gains)
       })
     }
     if (occult.type && occult.gains) {
       developments.push({
-        name: game.i18n.localize('CoC7.Occult'),
+        name: game.i18n.localize('Cd100.Occult'),
         gain: parseInt(occult.gains)
       })
     }
@@ -250,25 +250,25 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
   async grantSpellLearning (spellId) {
     if (!this.parent.isEmbedded) {
       /** This is not owned by any Actor */
-      ui.notifications.error('CoC7.NotOwned', { localize: true })
+      ui.notifications.error('Cd100.NotOwned', { localize: true })
       return
     }
     const knownBook = this.parent.actor?.system.getBook(this.parent)
     if (knownBook?.initialReading !== true) {
       /** Actor did not performed an initial reading first */
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.InitialReadingNeeded', { actor: this.parent.actor.name, book: this.parent.name }))
+      ui.notifications.error(game.i18n.format('Cd100.InitialReadingNeeded', { actor: this.parent.actor.name, book: this.parent.name }))
       return
     }
     const spell = (await this.items()).find(spell => spell._id === spellId)
     if (spell) {
       if (knownBook.spellsLearned.includes(spellId)) {
         /* // FoundryVTT V12 */
-        ui.notifications.warn(game.i18n.format('CoC7.SpellAlreadyLearned', { spell: spell.name, book: this.parent.name }))
+        ui.notifications.warn(game.i18n.format('Cd100.SpellAlreadyLearned', { spell: spell.name, book: this.parent.name }))
         return
       }
       /* // FoundryVTT V12 */
-      ui.notifications.info(game.i18n.format('CoC7.SpellSuccessfullyLearned', { spell: spell.name, book: this.parent.name }))
+      ui.notifications.info(game.i18n.format('Cd100.SpellSuccessfullyLearned', { spell: spell.name, book: this.parent.name }))
       await this.parent.actor.createEmbeddedDocuments('Item', [
         foundry.utils.duplicate(spell)
       ])
@@ -301,7 +301,7 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
           }
         } else {
           // Can't be added by cocid or name create empty
-          const newSkill = CoC7ModelsItemSkillSystem.emptyObject({ name: development.name })
+          const newSkill = Cd100ModelsItemSkillSystem.emptyObject({ name: development.name })
           if (development.gain === 'development') {
             newSkill.system.flags.developement = true
           } else {
@@ -358,11 +358,11 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
     if (!value || value === '') {
       return
     }
-    CoC7SanCheckCard.create(CoC7Utilities.getActorUuid(this.parent.actor), {
+    Cd100SanCheckCard.create(Cd100Utilities.getActorUuid(this.parent.actor), {
       skipSanRoll: true,
       sanMax: value,
       sanMin: value,
-      flavor: game.i18n.format('CoC7.ReadingMythosTome', {
+      flavor: game.i18n.format('Cd100.ReadingMythosTome', {
         book: this.parent.name
       })
     })
@@ -382,12 +382,12 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
       if (development.gain === 'development') {
         templateData.developments.push({
           name: development.name,
-          gain: game.i18n.localize('CoC7.MarkedForDevelopment')
+          gain: game.i18n.localize('Cd100.MarkedForDevelopment')
         })
       } else {
         templateData.developments.push({
           name: development.name,
-          gain: '+' + development.gain + ' ' + game.i18n.localize('CoC7.Points')
+          gain: '+' + development.gain + ' ' + game.i18n.localize('Cd100.Points')
         })
       }
     }
@@ -396,7 +396,7 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: this.parent.actor }),
-      flavor: game.i18n.format('CoC7.GainsForReading', { book: this.parent.name }),
+      flavor: game.i18n.format('Cd100.GainsForReading', { book: this.parent.name }),
       content: html
     }
     return await ChatMessage.create(chatData)
@@ -409,29 +409,29 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
   async attemptSpellLearning (id) {
     if (!this.parent.isEmbedded) {
       /** This is not owned by any Actor */
-      ui.notifications.error('CoC7.NotOwned', { localize: true })
+      ui.notifications.error('Cd100.NotOwned', { localize: true })
       return
     }
     const knownBook = this.parent.actor?.system.getBook(this.parent)
     if (knownBook?.initialReading !== true) {
       /** Actor did not performed an initial reading first */
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.InitialReadingNeeded', { actor: this.parent.actor.name, book: this.parent.name }))
+      ui.notifications.error(game.i18n.format('Cd100.InitialReadingNeeded', { actor: this.parent.actor.name, book: this.parent.name }))
       return
     }
     const spell = (await this.items()).find(spell => spell._id === id)
     if (spell) {
       const config = {
-        rollType: CoC7RollNormalize.ROLL_TYPE.CHARACTERISTIC,
-        cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+        rollType: Cd100RollNormalize.ROLL_TYPE.CHARACTERISTIC,
+        cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
         cardTypeFixed: true,
-        difficulty: CoC7DicePool.difficultyLevel.hard,
+        difficulty: Cd100DicePool.difficultyLevel.hard,
         actor: this.parent.actor,
         chatMessage: false,
         characteristic: 'int'
       }
-      const check = await CoC7RollNormalize.trigger(config)
-      check.flavor = game.i18n.format('CoC7.LearnSpellAttempt', {
+      const check = await Cd100RollNormalize.trigger(config)
+      check.flavor = game.i18n.format('Cd100.LearnSpellAttempt', {
         book: this.parent.name,
         spell: spell.name
       })
@@ -442,7 +442,7 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
 
   /**
    * Process callback
-   * @param {CoC7Check} check
+   * @param {Cd100Check} check
    */
   async updateRoll (check) {
     if (check.isSuccess) {
@@ -459,7 +459,7 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
         }
         throw new Error('Unexpected Book System call back')
       } else {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'callbackConCheck',
           messageId: check.message.id
         })
@@ -474,9 +474,9 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
    */
   static emptyObject (options) {
     const object = foundry.utils.mergeObject({
-      name: game.i18n.localize('CoC7.NewBookName'),
+      name: game.i18n.localize('Cd100.NewBookName'),
       type: 'book',
-      system: new CoC7ModelsItemBookSystem().toObject()
+      system: new Cd100ModelsItemBookSystem().toObject()
     }, options)
     return object
   }
@@ -524,6 +524,6 @@ export default class CoC7ModelsItemBookSystem extends CoC7ModelsItemGlobalSystem
    * @returns {Array}
    */
   async items () {
-    return CoC7Utilities.getEmbeddedItems(this.parent, 'system')
+    return Cd100Utilities.getEmbeddedItems(this.parent, 'system')
   }
 }

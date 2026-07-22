@@ -1,6 +1,6 @@
 /* global Actor Card CONFIG foundry game Item JournalEntry Macro Playlist RollTable Scene ui */
 import { FOLDER_ID, ERAS } from '../constants.js'
-import CoC7Utilities from './utilities.js'
+import Cd100Utilities from './utilities.js'
 import deprecated from '../deprecated.js'
 
 export default class CoCID {
@@ -19,7 +19,7 @@ export default class CoCID {
     CONFIG.Playlist.compendiumIndexFields.push('flags.' + FOLDER_ID + '.cocidFlag')
     CONFIG.RollTable.compendiumIndexFields.push('flags.' + FOLDER_ID + '.cocidFlag')
     CONFIG.Scene.compendiumIndexFields.push('flags.' + FOLDER_ID + '.cocidFlag')
-    game.CoC7.cocid = CoCID
+    game.Cd100.cocid = CoCID
   }
 
   /**
@@ -50,7 +50,7 @@ export default class CoCID {
    * @returns {string}
    */
   static guessId (document) {
-    return CoCID.getPrefix(document) + CoC7Utilities.toKebabCase(document.name)
+    return CoCID.getPrefix(document) + Cd100Utilities.toKebabCase(document.name)
   }
 
   /**
@@ -84,12 +84,12 @@ export default class CoCID {
    */
   static eraText (era) {
     if (era === false) {
-      return game.i18n.localize('CoC7.Any')
+      return game.i18n.localize('Cd100.Any')
     } else if (era === true) {
       era = game.settings.get(FOLDER_ID, 'worldEra')
     }
 
-    return game.i18n.format(ERAS[era]?.name ?? 'CoC7.CoCIDFlag.error.unknown-era', { era })
+    return game.i18n.format(ERAS[era]?.name ?? 'Cd100.CoCIDFlag.error.unknown-era', { era })
   }
 
   /**
@@ -124,7 +124,7 @@ export default class CoCID {
           era = game.settings.get(FOLDER_ID, 'worldEra')
         }
         /* // FoundryVTT V12 */
-        ui.notifications.warn(game.i18n.format('CoC7.CoCIDFlag.error.documents-not-found', { cocids: cocids.filter(x => !notMissing.includes(x)).join(', '), lang, era: CoCID.eraText(era) }))
+        ui.notifications.warn(game.i18n.format('Cd100.CoCIDFlag.error.documents-not-found', { cocids: cocids.filter(x => !notMissing.includes(x)).join(', '), lang, era: CoCID.eraText(era) }))
       }
       items = items.concat(all)
     }
@@ -227,9 +227,9 @@ export default class CoCID {
       }
       /* // FoundryVTT V12 */
       if (foundry.utils.isNewerVersion(game.version, 13)) {
-        progressBar.bar = ui.notifications.info('CoC7.CoCIDFlag.loading', { localize: true, progress: true, console: false })
+        progressBar.bar = ui.notifications.info('Cd100.CoCIDFlag.loading', { localize: true, progress: true, console: false })
       } else {
-        progressBar.bar = deprecated.displayProgressBar(game.i18n.localize('CoC7.CoCIDFlag.loading'))
+        progressBar.bar = deprecated.displayProgressBar(game.i18n.localize('Cd100.CoCIDFlag.loading'))
       }
     }
     return await CoCID.#onlyDocuments(candidates, progressBar)
@@ -261,7 +261,7 @@ export default class CoCID {
     if (lang === '') {
       lang = game.i18n.lang
     }
-    return CoCID.fromCoCIDRegexAll({ cocidRegExp: new RegExp('^' + CoC7Utilities.quoteRegExp(cocid) + '$'), type: parts[1], lang, era, scope, langFallback, showLoading })
+    return CoCID.fromCoCIDRegexAll({ cocidRegExp: new RegExp('^' + Cd100Utilities.quoteRegExp(cocid) + '$'), type: parts[1], lang, era, scope, langFallback, showLoading })
   }
 
   /**
@@ -297,9 +297,9 @@ export default class CoCID {
       }
       /* // FoundryVTT V12 */
       if (foundry.utils.isNewerVersion(game.version, 13)) {
-        progressBar.bar = ui.notifications.info('CoC7.CoCIDFlag.loading', { localize: true, progress: true, console: false })
+        progressBar.bar = ui.notifications.info('Cd100.CoCIDFlag.loading', { localize: true, progress: true, console: false })
       } else {
-        progressBar.bar = deprecated.displayProgressBar(game.i18n.localize('CoC7.CoCIDFlag.loading'))
+        progressBar.bar = deprecated.displayProgressBar(game.i18n.localize('Cd100.CoCIDFlag.loading'))
       }
     }
     return await CoCID.#onlyDocuments(documentList, progressBar)
@@ -317,7 +317,7 @@ export default class CoCID {
   static fromCoCID (cocid, lang = game.i18n.lang, era = true, langFallback = true, showLoading = false) {
     if (era === false) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.CoCIDFlag.error.unknown-era', { era: game.i18n.localize('CoC7.Any') }))
+      ui.notifications.error(game.i18n.format('Cd100.CoCIDFlag.error.unknown-era', { era: game.i18n.localize('Cd100.Any') }))
       return []
     }
     return CoCID.fromCoCIDBest({ cocid, lang, era, langFallback, showLoading })
@@ -339,11 +339,11 @@ export default class CoCID {
     }
     if (era === false) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.CoCIDFlag.error.unknown-era', { era: game.i18n.localize('CoC7.Any') }))
+      ui.notifications.error(game.i18n.format('Cd100.CoCIDFlag.error.unknown-era', { era: game.i18n.localize('Cd100.Any') }))
       return []
     }
     const type = cocid.split('.')[0]
-    const cocidRegExp = new RegExp('^' + CoC7Utilities.quoteRegExp(cocid) + '$')
+    const cocidRegExp = new RegExp('^' + Cd100Utilities.quoteRegExp(cocid) + '$')
     return CoCID.fromCoCIDRegexBest({ cocidRegExp, type, lang, era, langFallback, showLoading })
   }
 
@@ -527,8 +527,8 @@ export default class CoCID {
     const type = cocid.split('.')[0]
     const gameProperty = CoCID.#gamePropertyLookup[type]
     if (!gameProperty) {
-      ui.notifications.warn('CoC7.CoCIDFlag.error.incorrect.type', { localize: true })
-      console.log('CoC7 | ', cocid)
+      ui.notifications.warn('Cd100.CoCIDFlag.error.incorrect.type', { localize: true })
+      console.log('Cd100 | ', cocid)
       throw new Error()
     }
     return gameProperty
@@ -560,8 +560,8 @@ export default class CoCID {
     const type = cocid.split('.')[0]
     const documentType = CoCID.#documentNameLookup[type]
     if (!documentType) {
-      ui.notifications.warn('CoC7.CoCIDFlag.error.incorrect.type', { localize: true })
-      console.log('CoC7 | ', cocid)
+      ui.notifications.warn('Cd100.CoCIDFlag.error.incorrect.type', { localize: true })
+      console.log('Cd100 | ', cocid)
       throw new Error()
     }
     return documentType

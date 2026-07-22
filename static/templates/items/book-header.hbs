@@ -2,19 +2,19 @@
   <div class="flexrow item-header">
     <div class="flexcol item-property">
       <div class="flexrow">
-        <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'CoC7.Name'}}" />
+        <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'Cd100.Name'}}" />
       </div>
       {{#if (or isKeeper initialReading)}}
         <div class="flexrow">
-          <label>{{localize 'CoC7.Author'}}:</label>
+          <label>{{localize 'Cd100.Author'}}:</label>
           <input type="text" name="system.author" value="{{document.system.author}}" />
         </div>
         <div class="flexrow">
-          <label>{{localize 'CoC7.Date'}}:</label>
+          <label>{{localize 'Cd100.Date'}}:</label>
           <input type="text" name="system.date" value="{{document.system.date}}" />
         </div>
         <div class="flexrow">
-          <label>{{localize 'CoC7.language'}}:</label>
+          <label>{{localize 'Cd100.language'}}:</label>
           <input type="text" name="system.language" value="{{document.system.language}}" />
         </div>
       {{/if}}
@@ -22,23 +22,23 @@
     <div class="spell-casting flexcol">
       {{#if initialReading}}
         <div class="flexrow">
-          <label>{{localize 'CoC7.InitialReading'}}</label>
+          <label>{{localize 'Cd100.InitialReading'}}</label>
           <label><i class="fa-solid fa-check"></i></label>
         </div>
         {{#if mythos}}
           <div class="flexrow">
-            <label>{{localize 'CoC7.FullStudies'}}:</label>
+            <label>{{localize 'Cd100.FullStudies'}}:</label>
             <label>{{fullStudies}}</label>
             {{#if studyCompleted}}
-              <a class="item-control" data-action="redo-full-study" data-tooltip="CoC7.RedoFullStudy"><i class="fa-solid fa-redo"></i></a>
+              <a class="item-control" data-action="redo-full-study" data-tooltip="Cd100.RedoFullStudy"><i class="fa-solid fa-redo"></i></a>
             {{/if}}
           </div>
           <div class="flexrow">
-            <button class="item-control" data-action="attemptReference">{{localize 'CoC7.ReferenceTome'}}</button>
+            <button class="item-control" data-action="attemptReference">{{localize 'Cd100.ReferenceTome'}}</button>
           </div>
         {{/if}}
       {{else if (and isEmbedded (or isKeeper isOwner))}}
-        <button class="item-control" data-action="attemptInitialReading">{{localize 'CoC7.InitialReading'}}</button>
+        <button class="item-control" data-action="attemptInitialReading">{{localize 'Cd100.InitialReading'}}</button>
       {{/if}}
     </div>
     <img class="profile-img" src="{{document.img}}" data-action="editImage" data-edit="img" />
@@ -48,7 +48,7 @@
       {{#if isKeeper}}
         <a class="{{#if (lt progress necessary)}}item-control{{else}}item-control-disabled{{/if}}" data-action="decrease-progress"><i class="fa-regular fa-minus-circle"></i></a>
       {{/if}}
-      <progress name="system.study.progress" value="{{progress}}" max="{{necessary}}" data-label="{{localize 'CoC7.Progress'}}: {{progress}} / {{necessary}} {{localize units}}"></progress>
+      <progress name="system.study.progress" value="{{progress}}" max="{{necessary}}" data-label="{{localize 'Cd100.Progress'}}: {{progress}} / {{necessary}} {{localize units}}"></progress>
       {{#if isKeeper}}
         <a class="{{#if (lt progress necessary)}}item-control{{else}}item-control-disabled{{/if}}" data-action="increase-progress"><i class="fa-regular fa-plus-circle"></i></a>
       {{/if}}

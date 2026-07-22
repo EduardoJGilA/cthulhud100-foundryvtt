@@ -17,11 +17,11 @@
             {{#if participant.isActor}}
               {{participant.name}}
             {{else}}
-              <input type="text" data-set="participant.name" placeholder="{{localize 'CoC7.Name'}}" value="{{participant.name}}" />
+              <input type="text" data-set="participant.name" placeholder="{{localize 'Cd100.Name'}}" value="{{participant.name}}" />
             {{/if}}
           </div>
           <input class="right-text" type="text" data-set="participant.dex" placeholder="{{participant.initiative}}" value="{{participant.dex}}" />
-          <input class="right-text" type="text" data-set="participant.mov" placeholder="{{localize 'CoC7.Mov'}}" value="{{participant.mov}}" />
+          <input class="right-text" type="text" data-set="participant.mov" placeholder="{{localize 'Cd100.Mov'}}" value="{{participant.mov}}" />
           <select class="name" data-set="participant.speedCheck.name">
             {{selectOptions listOptions selected=participant.speedCheck.name localize=false valueAttr='name' labelAttr='name'}}
           </select>

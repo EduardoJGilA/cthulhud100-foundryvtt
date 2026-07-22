@@ -1,8 +1,8 @@
 /* global game */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsActorCharacterSheetV2 from './character-sheet-v2.js'
+import Cd100ModelsActorCharacterSheetV2 from './character-sheet-v2.js'
 
-export default class CoC7ModelsActorCharacterSheetSummarizedV2 extends CoC7ModelsActorCharacterSheetV2 {
+export default class Cd100ModelsActorCharacterSheetSummarizedV2 extends Cd100ModelsActorCharacterSheetV2 {
   static DEFAULT_OPTIONS = {
     classes: ['npc', 'investigator-summarized'],
     position: {

@@ -21,7 +21,7 @@ const SETTINGS = {
       basic: 'SETTINGS.InitiativeRuleBasic',
       optional: 'SETTINGS.InitiativeRuleOptional'
     },
-    onChange: rule => CoC7SettingsGameRules.setInitiativeOptions(rule)
+    onChange: rule => Cd100SettingsGameRules.setInitiativeOptions(rule)
   },
   developmentRollForLuck: {
     name: 'SETTINGS.developmentRollForLuck',
@@ -40,128 +40,128 @@ const SETTINGS = {
     type: Boolean
   },
   ddtRuleShootingWithOffHand: {
-    name: 'CoC7.Settings.DDTRules.ShootingWithOffHand.Name',
-    hint: 'CoC7.Settings.DDTRules.ShootingWithOffHand.Hint',
+    name: 'Cd100.Settings.DDTRules.ShootingWithOffHand.Name',
+    hint: 'Cd100.Settings.DDTRules.ShootingWithOffHand.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleDoubleMaxHealth: {
-    name: 'CoC7.Settings.PulpRules.DoubleMaxHealth.Name',
-    hint: 'CoC7.Settings.PulpRules.DoubleMaxHealth.Hint',
+    name: 'Cd100.Settings.PulpRules.DoubleMaxHealth.Name',
+    hint: 'Cd100.Settings.PulpRules.DoubleMaxHealth.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleDevelopmentRollLuck: {
-    name: 'CoC7.Settings.PulpRules.DevelopmentRollLuck.Name',
-    hint: 'CoC7.Settings.PulpRules.DevelopmentRollLuck.Hint',
+    name: 'Cd100.Settings.PulpRules.DevelopmentRollLuck.Name',
+    hint: 'Cd100.Settings.PulpRules.DevelopmentRollLuck.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleArchetype: {
-    name: 'CoC7.Settings.PulpRules.Archetype.Name',
-    hint: 'CoC7.Settings.PulpRules.Archetype.Hint',
+    name: 'Cd100.Settings.PulpRules.Archetype.Name',
+    hint: 'Cd100.Settings.PulpRules.Archetype.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleOrganization: {
-    name: 'CoC7.Settings.PulpRules.Organization.Name',
-    hint: 'CoC7.Settings.PulpRules.Organization.Hint',
+    name: 'Cd100.Settings.PulpRules.Organization.Name',
+    hint: 'Cd100.Settings.PulpRules.Organization.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleTalents: {
-    name: 'CoC7.Settings.PulpRules.Talents.Name',
-    hint: 'CoC7.Settings.PulpRules.Talents.Hint',
+    name: 'Cd100.Settings.PulpRules.Talents.Name',
+    hint: 'Cd100.Settings.PulpRules.Talents.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleFasterRecovery: {
-    name: 'CoC7.Settings.PulpRules.FasterRecovery.Name',
-    hint: 'CoC7.Settings.PulpRules.FasterRecovery.Hint',
+    name: 'Cd100.Settings.PulpRules.FasterRecovery.Name',
+    hint: 'Cd100.Settings.PulpRules.FasterRecovery.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleIgnoreMajorWounds: {
-    name: 'CoC7.Settings.PulpRules.IgnoreMajorWounds.Name',
-    hint: 'CoC7.Settings.PulpRules.IgnoreMajorWounds.Hint',
+    name: 'Cd100.Settings.PulpRules.IgnoreMajorWounds.Name',
+    hint: 'Cd100.Settings.PulpRules.IgnoreMajorWounds.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleIgnoreAgePenalties: {
-    name: 'CoC7.Settings.PulpRules.IgnoreAgePenalties.Name',
-    hint: 'CoC7.Settings.PulpRules.IgnoreAgePenalties.Hint',
+    name: 'Cd100.Settings.PulpRules.IgnoreAgePenalties.Name',
+    hint: 'Cd100.Settings.PulpRules.IgnoreAgePenalties.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleLuckMalfunction: {
-    name: 'CoC7.Settings.PulpRules.LuckMalfunction.Name',
-    hint: 'CoC7.Settings.PulpRules.LuckMalfunction.Hint',
+    name: 'Cd100.Settings.PulpRules.LuckMalfunction.Name',
+    hint: 'Cd100.Settings.PulpRules.LuckMalfunction.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleLuckHalfSanityLoss: {
-    name: 'CoC7.Settings.PulpRules.LuckHalfSanityLoss.Name',
-    hint: 'CoC7.Settings.PulpRules.LuckHalfSanityLoss.Hint',
+    name: 'Cd100.Settings.PulpRules.LuckHalfSanityLoss.Name',
+    hint: 'Cd100.Settings.PulpRules.LuckHalfSanityLoss.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleLuckUnconsciousness: {
-    name: 'CoC7.Settings.PulpRules.LuckUnconsciousness.Name',
-    hint: 'CoC7.Settings.PulpRules.LuckUnconsciousness.Hint',
+    name: 'Cd100.Settings.PulpRules.LuckUnconsciousness.Name',
+    hint: 'Cd100.Settings.PulpRules.LuckUnconsciousness.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleLuckHeal: {
-    name: 'CoC7.Settings.PulpRules.LuckHeal.Name',
-    hint: 'CoC7.Settings.PulpRules.LuckHeal.Hint',
+    name: 'Cd100.Settings.PulpRules.LuckHeal.Name',
+    hint: 'Cd100.Settings.PulpRules.LuckHeal.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleLuckAvoidDeath: {
-    name: 'CoC7.Settings.PulpRules.LuckAvoidDeath.Name',
-    hint: 'CoC7.Settings.PulpRules.LuckAvoidDeath.Hint',
+    name: 'Cd100.Settings.PulpRules.LuckAvoidDeath.Name',
+    hint: 'Cd100.Settings.PulpRules.LuckAvoidDeath.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleLuckSecondAttack: {
-    name: 'CoC7.Settings.PulpRules.LuckSecondAttack.Name',
-    hint: 'CoC7.Settings.PulpRules.LuckSecondAttack.Hint',
+    name: 'Cd100.Settings.PulpRules.LuckSecondAttack.Name',
+    hint: 'Cd100.Settings.PulpRules.LuckSecondAttack.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   pulpRuleLuckLookOutMaster: {
-    name: 'CoC7.Settings.PulpRules.LuckLookOutMaster.Name',
-    hint: 'CoC7.Settings.PulpRules.LuckLookOutMaster.Hint',
+    name: 'Cd100.Settings.PulpRules.LuckLookOutMaster.Name',
+    hint: 'Cd100.Settings.PulpRules.LuckLookOutMaster.Hint',
     scope: 'world',
     config: false,
     default: false,
@@ -169,7 +169,7 @@ const SETTINGS = {
   }
 }
 
-export default class CoC7SettingsGameRules extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100SettingsGameRules extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: 'rules-settings',
     tag: 'form',
@@ -181,13 +181,13 @@ export default class CoC7SettingsGameRules extends foundry.applications.api.Hand
     },
     form: {
       closeOnSubmit: true,
-      handler: CoC7SettingsGameRules.#onSubmit
+      handler: Cd100SettingsGameRules.#onSubmit
     },
     position: {
       width: 550
     },
     actions: {
-      reset: CoC7SettingsGameRules.#onReset
+      reset: Cd100SettingsGameRules.#onReset
     }
   }
 
@@ -277,9 +277,9 @@ export default class CoC7SettingsGameRules extends foundry.applications.api.Hand
           context.values.pulpRulesSetTo = (pulpRulesSetTo.true ? (pulpRulesSetTo.false ? 'some' : 'all') : 'none')
           context.fields.pulpRulesSetTo = new fields.StringField({
             choices: {
-              none: 'CoC7.Settings.PulpRules.None',
-              some: 'CoC7.Settings.PulpRules.Some',
-              all: 'CoC7.Settings.PulpRules.All'
+              none: 'Cd100.Settings.PulpRules.None',
+              some: 'Cd100.Settings.PulpRules.Some',
+              all: 'Cd100.Settings.PulpRules.All'
             },
             label: 'SETTINGS.PulpRules',
             hint: 'SETTINGS.PulpRulesHint',
@@ -317,7 +317,7 @@ export default class CoC7SettingsGameRules extends foundry.applications.api.Hand
     for (const [k, v] of Object.entries(SETTINGS)) {
       game.settings.register(FOLDER_ID, k, v)
     }
-    CoC7SettingsGameRules.setInitiativeOptions(game.settings.get(FOLDER_ID, 'initiativeRule'))
+    Cd100SettingsGameRules.setInitiativeOptions(game.settings.get(FOLDER_ID, 'initiativeRule'))
   }
 
   /**

@@ -10,7 +10,7 @@ import ChaosiumCanvasInterfaceToScene from './chaosium-canvas-interface-to-scene
 import ChaosiumCanvasInterfaceTileToggle from './chaosium-canvas-interface-tile-toggle.js'
 import ChaosiumCanvasInterface from './chaosium-canvas-interface.js'
 
-export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.RegionBehaviorType {
+export default class Cd100ClickableEvents extends foundry.data.regionBehaviors.RegionBehaviorType {
   /**
    * Set up Clickable Events and Chaosium Canvas Interface
    */
@@ -61,7 +61,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
     ]
 
     const dataModels = {
-      coc7ClickableEvents: CoC7ClickableEvents
+      coc7ClickableEvents: Cd100ClickableEvents
     }
     const typeIcons = {
       coc7ClickableEvents: 'fa-solid fa-computer-mouse'
@@ -106,7 +106,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
           if (typeof level === 'undefined' || region.levels.size === 0 || region.levels.has(level)) {
             /* // FoundryVTT V12 */
             const polygonTree = region.object?.document.polygonTree ?? region.object.polygonTree
-            const behaviors = region.behaviors.filter(b => !b.disabled && (b.system instanceof CoC7ClickableEvents || b.system instanceof ChaosiumCanvasInterface) && polygonTree.testPoint(destination))
+            const behaviors = region.behaviors.filter(b => !b.disabled && (b.system instanceof Cd100ClickableEvents || b.system instanceof ChaosiumCanvasInterface) && polygonTree.testPoint(destination))
             if (behaviors) {
               behaviors.map(async (b) => { if (await b.system._handleMouseOverEvent() === true && typeof b.system._handleLeftClickEvent === 'function') { await b.system._handleLeftClickEvent() } })
             }
@@ -127,7 +127,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
           if (typeof level === 'undefined' || region.levels.size === 0 || region.levels.has(level)) {
             /* // FoundryVTT V12 */
             const polygonTree = region.object?.document.polygonTree ?? region.object.polygonTree
-            const behaviors = region.behaviors.filter(b => !b.disabled && (b.system instanceof CoC7ClickableEvents || b.system instanceof ChaosiumCanvasInterface) && polygonTree.testPoint(destination))
+            const behaviors = region.behaviors.filter(b => !b.disabled && (b.system instanceof Cd100ClickableEvents || b.system instanceof ChaosiumCanvasInterface) && polygonTree.testPoint(destination))
             if (behaviors) {
               behaviors.map(async (b) => { if (await b.system._handleMouseOverEvent() === true && typeof b.system._handleRightClickEvent === 'function') { await b.system._handleRightClickEvent() } })
             }
@@ -151,7 +151,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
           if (typeof level === 'undefined' || region.levels.size === 0 || region.levels.has(level)) {
             /* // FoundryVTT V12 */
             const polygonTree = region.object?.document.polygonTree ?? region.object.polygonTree
-            const behaviors = region.behaviors.filter(b => !b.disabled && (b.system instanceof CoC7ClickableEvents || b.system instanceof ChaosiumCanvasInterface) && polygonTree.testPoint(destination))
+            const behaviors = region.behaviors.filter(b => !b.disabled && (b.system instanceof Cd100ClickableEvents || b.system instanceof ChaosiumCanvasInterface) && polygonTree.testPoint(destination))
             if (behaviors) {
               setPointer = (await Promise.all(behaviors.map(async (doc) => {
                 const r = await doc.system._handleMouseOverEvent()
@@ -185,18 +185,18 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
         async: true,
         gmOnly: true,
         initial: 'return false',
-        label: 'CoC7.ClickableEvents.MouseOver.Title',
-        hint: 'CoC7.ClickableEvents.MouseOver.Hint'
+        label: 'Cd100.ClickableEvents.MouseOver.Title',
+        hint: 'Cd100.ClickableEvents.MouseOver.Hint'
       }),
       leftClick: new foundry.data.fields.JavaScriptField({
         async: true,
         gmOnly: true,
-        label: 'CoC7.ClickableEvents.LeftClick.Title'
+        label: 'Cd100.ClickableEvents.LeftClick.Title'
       }),
       rightClick: new foundry.data.fields.JavaScriptField({
         async: true,
         gmOnly: true,
-        label: 'CoC7.ClickableEvents.RightClick.Title'
+        label: 'Cd100.ClickableEvents.RightClick.Title'
       })
     }
   }
@@ -238,7 +238,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
   static async ClickRegionLeftUuid (docUuid) {
     const doc = await fromUuid(docUuid)
     if (doc) {
-      doc.behaviors.filter(b => !b.disabled).filter(b => b.system instanceof CoC7ClickableEvents || b.system instanceof ChaosiumCanvasInterface).map(async (b) => { if (await b.system._handleMouseOverEvent() === true && typeof b.system._handleLeftClickEvent === 'function') { await b.system._handleLeftClickEvent() } })
+      doc.behaviors.filter(b => !b.disabled).filter(b => b.system instanceof Cd100ClickableEvents || b.system instanceof ChaosiumCanvasInterface).map(async (b) => { if (await b.system._handleMouseOverEvent() === true && typeof b.system._handleLeftClickEvent === 'function') { await b.system._handleLeftClickEvent() } })
     } else {
       console.error('RegionUuid ' + docUuid + ' not loaded')
     }
@@ -251,7 +251,7 @@ export default class CoC7ClickableEvents extends foundry.data.regionBehaviors.Re
   static async ClickRegionRightUuid (docUuid) {
     const doc = await fromUuid(docUuid)
     if (doc) {
-      doc.behaviors.filter(b => !b.disabled).filter(b => b.system instanceof CoC7ClickableEvents || b.system instanceof ChaosiumCanvasInterface).map(async (b) => { if (await b.system._handleMouseOverEvent() === true && typeof b.system._handleRightClickEvent === 'function') { await b.system._handleRightClickEvent() } })
+      doc.behaviors.filter(b => !b.disabled).filter(b => b.system instanceof Cd100ClickableEvents || b.system instanceof ChaosiumCanvasInterface).map(async (b) => { if (await b.system._handleMouseOverEvent() === true && typeof b.system._handleRightClickEvent === 'function') { await b.system._handleRightClickEvent() } })
     } else {
       console.error('RegionUuid ' + docUuid + ' not loaded')
     }

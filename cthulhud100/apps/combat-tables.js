@@ -6,7 +6,7 @@
  * always applied to the attacker, so a defender who blocks brilliantly can turn
  * the attacker's own swing into a fumble.
  */
-export default class CoC7CombatTables {
+export default class Cd100CombatTables {
   /**
    * Outcomes a table cell can produce
    * @returns {object}
@@ -37,7 +37,7 @@ export default class CoC7CombatTables {
    * @returns {object}
    */
   static get dodgeTable () {
-    const o = CoC7CombatTables.outcome
+    const o = Cd100CombatTables.outcome
     return {
       //          def: fumble    failure   success   special   critical
       fumble: [o.miss, o.miss, o.fumble, o.fumble, o.fumble],
@@ -57,7 +57,7 @@ export default class CoC7CombatTables {
    * @returns {object}
    */
   static get blockTable () {
-    const o = CoC7CombatTables.outcome
+    const o = Cd100CombatTables.outcome
     return {
       fumble: [o.miss, o.miss, o.fumble, o.fumble, o.fumble],
       failure: [o.miss, o.miss, o.miss, o.fumble, o.fumble],
@@ -82,8 +82,8 @@ export default class CoC7CombatTables {
 
   /**
    * Turn a numeric success level from the dice pool into the key the tables use.
-   * @param {number} successLevel value from CoC7DicePool.successLevel
-   * @returns {string} one of CoC7CombatTables.levels
+   * @param {number} successLevel value from Cd100DicePool.successLevel
+   * @returns {string} one of Cd100CombatTables.levels
    */
   static levelFromSuccessLevel (successLevel) {
     const value = parseInt(successLevel, 10)
@@ -96,11 +96,11 @@ export default class CoC7CombatTables {
 
   /**
    * Whether an outcome means the attack landed.
-   * @param {string} outcome one of CoC7CombatTables.outcome
+   * @param {string} outcome one of Cd100CombatTables.outcome
    * @returns {boolean}
    */
   static outcomeHits (outcome) {
-    const o = CoC7CombatTables.outcome
+    const o = Cd100CombatTables.outcome
     return [o.hit, o.impale, o.maxDamage].includes(outcome)
   }
 
@@ -113,15 +113,15 @@ export default class CoC7CombatTables {
    * @returns {object} outcome and resistance points lost by the attacker's weapon
    */
   static resolve ({ attacker, defender, blocking = false } = {}) {
-    const levels = CoC7CombatTables.levels
-    const row = (blocking ? CoC7CombatTables.blockTable : CoC7CombatTables.dodgeTable)[attacker]
+    const levels = Cd100CombatTables.levels
+    const row = (blocking ? Cd100CombatTables.blockTable : Cd100CombatTables.dodgeTable)[attacker]
     const column = levels.indexOf(defender)
     if (!row || column === -1) {
       throw new Error('Invalid combat roll levels: ' + attacker + ' vs ' + defender)
     }
     return {
       outcome: row[column],
-      weaponDamage: (blocking ? CoC7CombatTables.blockWeaponDamage[attacker + '/' + defender] ?? 0 : 0)
+      weaponDamage: (blocking ? Cd100CombatTables.blockWeaponDamage[attacker + '/' + defender] ?? 0 : 0)
     }
   }
 
@@ -280,7 +280,7 @@ export default class CoC7CombatTables {
     if (prone) {
       modifier -= 20
     }
-    modifier += CoC7CombatTables.dodgePenalty(dodgeAttempt)
+    modifier += Cd100CombatTables.dodgePenalty(dodgeAttempt)
     return modifier
   }
 
@@ -290,12 +290,12 @@ export default class CoC7CombatTables {
    * Impaling doubles the roll, and armour still applies. A maximum-damage
    * result takes every die at its highest.
    * @param {object} options
-   * @param {string} options.outcome one of CoC7CombatTables.outcome
+   * @param {string} options.outcome one of Cd100CombatTables.outcome
    * @param {string} options.formula the weapon's damage formula, modifier included
    * @returns {string|null} formula to roll, or null when nothing lands
    */
   static damageFormula ({ outcome, formula } = {}) {
-    const o = CoC7CombatTables.outcome
+    const o = Cd100CombatTables.outcome
     const base = (formula ?? '').toString().trim()
     if (base === '' || outcome === o.miss || outcome === o.fumble) {
       return null
@@ -305,7 +305,7 @@ export default class CoC7CombatTables {
       return '(' + base + ')*2'
     }
     if (outcome === o.maxDamage) {
-      return CoC7CombatTables.maximiseFormula(base)
+      return Cd100CombatTables.maximiseFormula(base)
     }
     return base
   }
@@ -354,7 +354,7 @@ export default class CoC7CombatTables {
    * @returns {object} whether it worked and how long they are out
    */
   static knockout ({ damage, maxHitPoints } = {}) {
-    if (CoC7CombatTables.isSevereWound(damage, maxHitPoints)) {
+    if (Cd100CombatTables.isSevereWound(damage, maxHitPoints)) {
       return { success: true, turnsUnconscious: '1D10+10' }
     }
     return { success: false, turnsUnconscious: 0, minimumDamageOnly: true }

@@ -1,7 +1,7 @@
 /* global CONFIG foundry game Roll */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7DicePool {
+export default class Cd100DicePool {
   #bonusCount
   #currentPoolModifier
   #difficulty
@@ -27,7 +27,7 @@ export default class CoC7DicePool {
   constructor () {
     this.#bonusCount = 0
     this.#currentPoolModifier = 0
-    this.#difficulty = CoC7DicePool.difficultyLevel.regular
+    this.#difficulty = Cd100DicePool.difficultyLevel.regular
     this.#flatDiceModifier = 0
     this.#flatThresholdModifier = 0
     this.#groups = []
@@ -129,15 +129,15 @@ export default class CoC7DicePool {
     if ((game.settings.get('core', 'diceConfiguration').d10 ?? '') === '' && game.settings.get(FOLDER_ID, 'hiddendevmenu')) {
       const bonusDice = []
       const penaltyDice = []
-      if (game.CoC7.dev.dice.alwaysCrit) {
+      if (game.Cd100.dev.dice.alwaysCrit) {
         for (let offset = 0; offset < this.#penaltyCount; offset++) {
           penaltyDice.push(10)
         }
         for (let offset = 0; offset < this.#bonusCount; offset++) {
           bonusDice.push(Math.ceil((1 - CONFIG.Dice.randomUniform()) * 10))
         }
-        rolls = CoC7DicePool.#createRollsFromResults({ baseDie: 10, bonusDice, penaltyDice, unitDie: 1 })
-      } else if (game.CoC7.dev.dice.alwaysFumble) {
+        rolls = Cd100DicePool.#createRollsFromResults({ baseDie: 10, bonusDice, penaltyDice, unitDie: 1 })
+      } else if (game.Cd100.dev.dice.alwaysFumble) {
         let value = 100
         if (this.#minimumFumbleFromThreshold() === 96) {
           value = 95 + Math.ceil((1 - CONFIG.Dice.randomUniform()) * 5)
@@ -150,7 +150,7 @@ export default class CoC7DicePool {
         for (let offset = 0; offset < this.#bonusCount; offset++) {
           bonusDice.push(baseDie)
         }
-        rolls = CoC7DicePool.#createRollsFromResults({ baseDie, bonusDice, penaltyDice, unitDie: (unitDie === 0 ? 10 : unitDie) })
+        rolls = Cd100DicePool.#createRollsFromResults({ baseDie, bonusDice, penaltyDice, unitDie: (unitDie === 0 ? 10 : unitDie) })
       }
     }
     if (rolls.length === 0) {
@@ -158,11 +158,11 @@ export default class CoC7DicePool {
         '1dt+1d10'
       ]
       if (this.#penaltyCount > 0) {
-        const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier: -this.#penaltyCount })
+        const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier: -this.#penaltyCount })
         dicePool.push('+' + this.#penaltyCount + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt'))
       }
       if (this.#bonusCount > 0) {
-        const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier: this.#bonusCount })
+        const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier: this.#bonusCount })
         dicePool.push('+' + this.#bonusCount + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt'))
       }
       rolls = [await new Roll(dicePool.join('')).roll()]
@@ -193,7 +193,7 @@ export default class CoC7DicePool {
     const dicePenalty = penaltyDice.map(v => Math.max(1, Math.min(10, parseInt(v, 10))))
     for (let offset = groups.length - 1; offset >= 0; offset--) {
       const count = groups[offset]
-      const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier: count })
+      const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier: count })
       const diceGroup = {
         formula: [Math.abs(count) + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt')],
         decaders: []
@@ -208,12 +208,12 @@ export default class CoC7DicePool {
       diceGroups.push(diceGroup)
     }
     if (dicePenalty.length > 0) {
-      const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier: -dicePenalty.length })
+      const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier: -dicePenalty.length })
       diceGroups[0].formula.push('+' + dicePenalty.length + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt'))
       diceGroups[0].decaders = diceGroups[0].decaders.concat(dicePenalty)
     }
     if (diceBonus.length > 0) {
-      const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier: diceBonus.length })
+      const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier: diceBonus.length })
       diceGroups[0].formula.push('+' + diceBonus.length + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt'))
       diceGroups[0].decaders = diceGroups[0].decaders.concat(diceBonus)
     }
@@ -222,7 +222,7 @@ export default class CoC7DicePool {
       const roll = new Roll(diceGroups[offsetDiceGroup].formula.join('+')).toJSON()
       const values = []
       for (const offsetRollTerm in roll.terms) {
-        if (['CoC7DecaderDie', 'CoC7DecaderDieOther'].includes(roll.terms[offsetRollTerm].class)) {
+        if (['Cd100DecaderDie', 'Cd100DecaderDieOther'].includes(roll.terms[offsetRollTerm].class)) {
           roll.terms[offsetRollTerm].evaluated = true
           for (let number = 0; number < roll.terms[offsetRollTerm].number; number++) {
             const nextDie = diceGroups[offsetDiceGroup].decaders.shift()
@@ -263,7 +263,7 @@ export default class CoC7DicePool {
       }
       if (!found) {
         for (const offset in roll.terms) {
-          if (['CoC7DecaderDie', 'CoC7DecaderDieOther'].includes(roll.terms[offset].class)) {
+          if (['Cd100DecaderDie', 'Cd100DecaderDieOther'].includes(roll.terms[offset].class)) {
             for (let number = 0; number < roll.terms[offset].number; number++) {
               const decader = (roll.terms[offset].results[0].result === 10 ? 0 : roll.terms[offset].results[0].result)
               if (decader === 0 && unit === 0) {
@@ -296,33 +296,33 @@ export default class CoC7DicePool {
   static difficultyString (difficultyLevel) {
     switch (!isNaN(Number(difficultyLevel)) ? Number(difficultyLevel) : difficultyLevel) {
       case '?':
-      case CoC7DicePool.difficultyLevel.unknown:
-        return game.i18n.localize('CoC7.UnknownDifficulty')
+      case Cd100DicePool.difficultyLevel.unknown:
+        return game.i18n.localize('Cd100.UnknownDifficulty')
       case 0:
-      case CoC7DicePool.difficultyLevel.regular:
-        return game.i18n.localize('CoC7.RegularDifficulty')
+      case Cd100DicePool.difficultyLevel.regular:
+        return game.i18n.localize('Cd100.RegularDifficulty')
       case '+':
-      case CoC7DicePool.difficultyLevel.hard:
-        return game.i18n.localize('CoC7.HardDifficulty')
+      case Cd100DicePool.difficultyLevel.hard:
+        return game.i18n.localize('Cd100.HardDifficulty')
       case '++':
-      case CoC7DicePool.difficultyLevel.extreme:
-        return game.i18n.localize('CoC7.ExtremeDifficulty')
+      case Cd100DicePool.difficultyLevel.extreme:
+        return game.i18n.localize('Cd100.ExtremeDifficulty')
       case '+++':
-      case CoC7DicePool.difficultyLevel.critical:
-        return game.i18n.localize('CoC7.CriticalDifficulty')
+      case Cd100DicePool.difficultyLevel.critical:
+        return game.i18n.localize('Cd100.CriticalDifficulty')
       default:
         return ''
     }
   }
 
   /**
-   * Create CoC7DicePool from exported object
+   * Create Cd100DicePool from exported object
    * @param {object} object
    * @returns {boolean}
    */
   static fromObject (object) {
-    if (CoC7DicePool.isValidPool(object)) {
-      const output = new CoC7DicePool()
+    if (Cd100DicePool.isValidPool(object)) {
+      const output = new Cd100DicePool()
       output.#bonusCount = object.bonusCount
       output.#currentPoolModifier = object.currentPoolModifier
       output.#difficulty = object.difficulty
@@ -339,7 +339,7 @@ export default class CoC7DicePool {
       output.#setSuccess = object.setSuccess
       const roll = object.rolledDice.findLast(r => r.rolled)
       if (roll) {
-        output.#rollsExisting = CoC7DicePool.#createRollsFromResults({
+        output.#rollsExisting = Cd100DicePool.#createRollsFromResults({
           baseDie: roll.baseDie,
           bonusDice: roll.bonusDice,
           groups: output.#groups,
@@ -356,7 +356,7 @@ export default class CoC7DicePool {
   }
 
   /**
-   * Check pool object is valid to create a CoC7DicePool
+   * Check pool object is valid to create a Cd100DicePool
    * @param {object} object
    * @returns {boolean}
    */
@@ -408,8 +408,8 @@ export default class CoC7DicePool {
     }
     const parsed = [...new Set(poolModifiers.map(v => parseInt(v, 10)))]
     // Check all keys are valid otherwise throw an error allow maximum bonus and penalty just in case
-    if (parsed.filter(v => isNaN(v) || v < -CoC7DicePool.maxDicePenalty || v > CoC7DicePool.maxDiceBonus).length) {
-      throw new Error('Invalid Pool Modifier should be a number between ' + (-CoC7DicePool.maxDicePenalty) + ' and ' + CoC7DicePool.maxDiceBonus)
+    if (parsed.filter(v => isNaN(v) || v < -Cd100DicePool.maxDicePenalty || v > Cd100DicePool.maxDiceBonus).length) {
+      throw new Error('Invalid Pool Modifier should be a number between ' + (-Cd100DicePool.maxDicePenalty) + ' and ' + Cd100DicePool.maxDiceBonus)
     }
     if (!parsed.includes(0)) {
       parsed.push(0)
@@ -428,7 +428,7 @@ export default class CoC7DicePool {
    * @returns {object|false}
    */
   static thresholdRanges (threshold, flatThresholdModifier) {
-    const output = new CoC7DicePool()
+    const output = new Cd100DicePool()
     if (isNaN(parseInt(threshold, 10))) {
       return false
     }
@@ -446,14 +446,14 @@ export default class CoC7DicePool {
    * @param {Array} options.poolModifiers
    * @param {integer|undefined} options.threshold
    * @param {integer|undefined} options.malfunctionThreshold
-   * @returns {CoC7DicePool}
+   * @returns {Cd100DicePool}
    */
-  static newPool ({ difficulty = CoC7DicePool.difficultyLevel.regular, flatDiceModifier = 0, flatThresholdModifier = 0, poolModifiers = [], threshold = undefined, malfunctionThreshold = undefined } = {}) {
-    const output = new CoC7DicePool()
-    const poolContents = CoC7DicePool.#parsePoolModifiers(poolModifiers)
+  static newPool ({ difficulty = Cd100DicePool.difficultyLevel.regular, flatDiceModifier = 0, flatThresholdModifier = 0, poolModifiers = [], threshold = undefined, malfunctionThreshold = undefined } = {}) {
+    const output = new Cd100DicePool()
+    const poolContents = Cd100DicePool.#parsePoolModifiers(poolModifiers)
     output.#difficulty = parseInt(difficulty, 10)
-    if (!Object.values(CoC7DicePool.difficultyLevel).includes(output.#difficulty)) {
-      throw new Error('Invalid difficulty should ' + Object.keys(CoC7DicePool.difficultyLevel).join(' / '))
+    if (!Object.values(Cd100DicePool.difficultyLevel).includes(output.#difficulty)) {
+      throw new Error('Invalid difficulty should ' + Object.keys(Cd100DicePool.difficultyLevel).join(' / '))
     }
     output.#flatDiceModifier = parseInt(flatDiceModifier, 10)
     if (isNaN(output.#flatDiceModifier)) {
@@ -507,10 +507,10 @@ export default class CoC7DicePool {
    * @param {integer} options.poolModifier
    * @param {integer|undefined} options.threshold
    * @param {integer|undefined} options.malfunctionThreshold
-   * @returns {CoC7DicePool}
+   * @returns {Cd100DicePool}
    */
-  static async rollNewPool ({ difficulty = CoC7DicePool.difficultyLevel.regular, flatDiceModifier = 0, flatThresholdModifier = 0, poolModifier = 0, threshold = undefined, malfunctionThreshold = undefined } = {}) {
-    return CoC7DicePool.rollNewMultiplePools({ difficulty, flatDiceModifier, flatThresholdModifier, poolModifiers: [poolModifier], threshold, malfunctionThreshold })
+  static async rollNewPool ({ difficulty = Cd100DicePool.difficultyLevel.regular, flatDiceModifier = 0, flatThresholdModifier = 0, poolModifier = 0, threshold = undefined, malfunctionThreshold = undefined } = {}) {
+    return Cd100DicePool.rollNewMultiplePools({ difficulty, flatDiceModifier, flatThresholdModifier, poolModifiers: [poolModifier], threshold, malfunctionThreshold })
   }
 
   /**
@@ -522,10 +522,10 @@ export default class CoC7DicePool {
    * @param {Array} options.poolModifiers
    * @param {integer|undefined} options.threshold
    * @param {integer|undefined} options.malfunctionThreshold
-   * @returns {CoC7DicePool}
+   * @returns {Cd100DicePool}
    */
-  static async rollNewMultiplePools ({ difficulty = CoC7DicePool.difficultyLevel.regular, flatDiceModifier = 0, flatThresholdModifier = 0, poolModifiers = [], threshold = undefined, malfunctionThreshold = undefined } = {}) {
-    const output = CoC7DicePool.newPool({ difficulty, flatDiceModifier, flatThresholdModifier, poolModifiers, threshold, malfunctionThreshold })
+  static async rollNewMultiplePools ({ difficulty = Cd100DicePool.difficultyLevel.regular, flatDiceModifier = 0, flatThresholdModifier = 0, poolModifiers = [], threshold = undefined, malfunctionThreshold = undefined } = {}) {
+    const output = Cd100DicePool.newPool({ difficulty, flatDiceModifier, flatThresholdModifier, poolModifiers, threshold, malfunctionThreshold })
     await output.roll()
     return output
   }
@@ -543,7 +543,7 @@ export default class CoC7DicePool {
    * @returns {string}
    */
   get bonusType () {
-    return game.i18n.localize(this.#currentPoolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus')
+    return game.i18n.localize(this.#currentPoolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus')
   }
 
   /**
@@ -640,60 +640,60 @@ export default class CoC7DicePool {
           }
           output.total = Math.max(1, Math.min(100, (output.total + this.#flatDiceModifier - this.#luckSpent)))
           const populateThresholdRanges = this.#populateThresholdRanges()
-          if (typeof populateThresholdRanges[CoC7DicePool.difficultyLevel.regular] !== 'undefined') {
-            output.luckRequiredRegular = Math.max(0, output.total - populateThresholdRanges[CoC7DicePool.difficultyLevel.regular][1])
+          if (typeof populateThresholdRanges[Cd100DicePool.difficultyLevel.regular] !== 'undefined') {
+            output.luckRequiredRegular = Math.max(0, output.total - populateThresholdRanges[Cd100DicePool.difficultyLevel.regular][1])
           }
-          if (typeof populateThresholdRanges[CoC7DicePool.difficultyLevel.hard] !== 'undefined') {
-            output.luckRequiredHard = Math.max(0, output.total - populateThresholdRanges[CoC7DicePool.difficultyLevel.hard][1])
+          if (typeof populateThresholdRanges[Cd100DicePool.difficultyLevel.hard] !== 'undefined') {
+            output.luckRequiredHard = Math.max(0, output.total - populateThresholdRanges[Cd100DicePool.difficultyLevel.hard][1])
           }
-          if (typeof populateThresholdRanges[CoC7DicePool.difficultyLevel.extreme] !== 'undefined') {
-            output.luckRequiredExtreme = Math.max(0, output.total - populateThresholdRanges[CoC7DicePool.difficultyLevel.extreme][1])
+          if (typeof populateThresholdRanges[Cd100DicePool.difficultyLevel.extreme] !== 'undefined') {
+            output.luckRequiredExtreme = Math.max(0, output.total - populateThresholdRanges[Cd100DicePool.difficultyLevel.extreme][1])
           }
-          if (typeof populateThresholdRanges[CoC7DicePool.difficultyLevel.critical] !== 'undefined') {
-            output.luckRequiredCritical = Math.max(0, output.total - populateThresholdRanges[CoC7DicePool.difficultyLevel.critical][1])
+          if (typeof populateThresholdRanges[Cd100DicePool.difficultyLevel.critical] !== 'undefined') {
+            output.luckRequiredCritical = Math.max(0, output.total - populateThresholdRanges[Cd100DicePool.difficultyLevel.critical][1])
           }
 
-          if (this.#difficulty !== CoC7DicePool.difficultyLevel.unknown) {
-            output.successRequired = game.i18n.format('CoC7.SuccessRequired', {
-              successRequired: CoC7DicePool.difficultyString(this.#difficulty)
+          if (this.#difficulty !== Cd100DicePool.difficultyLevel.unknown) {
+            output.successRequired = game.i18n.format('Cd100.SuccessRequired', {
+              successRequired: Cd100DicePool.difficultyString(this.#difficulty)
             })
             if (typeof this.#threshold !== 'undefined') {
               output.successLevel = parseInt(Object.keys(populateThresholdRanges).find(k => output.total <= populateThresholdRanges[k][1] && output.total >= populateThresholdRanges[k][0]), 10)
               switch (output.successLevel) {
-                case CoC7DicePool.successLevel.fumble:
-                  output.resultType = game.i18n.localize('CoC7.Fumble')
+                case Cd100DicePool.successLevel.fumble:
+                  output.resultType = game.i18n.localize('Cd100.Fumble')
                   output.isFumble = true
                   break
-                case CoC7DicePool.successLevel.failure:
-                  output.resultType = game.i18n.localize('CoC7.Failure')
+                case Cd100DicePool.successLevel.failure:
+                  output.resultType = game.i18n.localize('Cd100.Failure')
                   output.isRegularFailure = true
                   break
-                case CoC7DicePool.successLevel.regular:
-                  output.resultType = game.i18n.localize('CoC7.RegularSuccess')
+                case Cd100DicePool.successLevel.regular:
+                  output.resultType = game.i18n.localize('Cd100.RegularSuccess')
                   output.isRegularSuccess = true
                   break
-                case CoC7DicePool.successLevel.special:
-                  output.resultType = game.i18n.localize('CoC7.SpecialSuccess')
+                case Cd100DicePool.successLevel.special:
+                  output.resultType = game.i18n.localize('Cd100.SpecialSuccess')
                   output.isSpecialSuccess = true
                   break
-                case CoC7DicePool.successLevel.critical:
-                  output.resultType = game.i18n.localize('CoC7.CriticalSuccess')
+                case Cd100DicePool.successLevel.critical:
+                  output.resultType = game.i18n.localize('Cd100.CriticalSuccess')
                   output.isCritical = true
                   break
               }
               // Cthulhu d100 has five discrete outcomes, not a count of levels
-              // cleared above a requested difficulty. CoC7 drew one star per
+              // cleared above a requested difficulty. Cd100 drew one star per
               // level beyond the difficulty asked for, which here only ever
               // rendered as "two stars means special, three means critical" -
               // the tier restated as an unlabelled tally. One icon per outcome
               // instead, with the tier name as the tooltip.
-              output.isSuccess = output.successLevel >= CoC7DicePool.successLevel.regular
+              output.isSuccess = output.successLevel >= Cd100DicePool.successLevel.regular
               output.successLevelIcons.icons = [{
-                [CoC7DicePool.successLevel.critical]: 'trophy',
-                [CoC7DicePool.successLevel.special]: 'medal',
-                [CoC7DicePool.successLevel.regular]: 'star',
-                [CoC7DicePool.successLevel.failure]: 'spider',
-                [CoC7DicePool.successLevel.fumble]: 'skull'
+                [Cd100DicePool.successLevel.critical]: 'trophy',
+                [Cd100DicePool.successLevel.special]: 'medal',
+                [Cd100DicePool.successLevel.regular]: 'star',
+                [Cd100DicePool.successLevel.failure]: 'spider',
+                [Cd100DicePool.successLevel.fumble]: 'skull'
               }[output.successLevel]].filter(Boolean)
               output.successLevelIcons.hint = output.resultType
               output.isRolledSuccess = (output.isSuccess && this.#luckSpent === 0 && this.#bonusCount === 0 && this.#penaltyCount === 0)
@@ -716,7 +716,7 @@ export default class CoC7DicePool {
   set difficulty (value) {
     this.#rollResults = []
     const check = parseInt(value, 10)
-    if (!Object.values(CoC7DicePool.difficultyLevel).filter(v => v !== CoC7DicePool.difficultyLevel.impossible).includes(check)) {
+    if (!Object.values(Cd100DicePool.difficultyLevel).filter(v => v !== Cd100DicePool.difficultyLevel.impossible).includes(check)) {
       throw new Error('Difficult level is invalid')
     }
     this.#difficulty = check
@@ -956,8 +956,8 @@ export default class CoC7DicePool {
     if (hasRolled && (check < -this.#penaltyCount || check > this.#bonusCount)) {
       throw new Error('You can not set a pool modifier after rolling, try addDiceToPool')
     }
-    if (isNaN(check) || check < -CoC7DicePool.maxDicePenalty || check > CoC7DicePool.maxDiceBonus) {
-      throw new Error('Invalid Pool Modifier should be a number between ' + (-CoC7DicePool.maxDicePenalty) + ' and ' + CoC7DicePool.maxDiceBonus)
+    if (isNaN(check) || check < -Cd100DicePool.maxDicePenalty || check > Cd100DicePool.maxDiceBonus) {
+      throw new Error('Invalid Pool Modifier should be a number between ' + (-Cd100DicePool.maxDicePenalty) + ' and ' + Cd100DicePool.maxDiceBonus)
     }
     if (check < 0) {
       this.#penaltyCount = Math.abs(Math.min(this.#penaltyCount, check))
@@ -1114,19 +1114,19 @@ export default class CoC7DicePool {
     if (!this.isPushed) {
       const check = parseInt(quantity, 10)
       if (isNaN(check) || (check < 0 && this.poolModifier > 0) || (check > 0 && this.poolModifier < 0)) {
-        throw new Error(game.i18n.localize('CoC7.Errors.IncorrectPoolModifier'))
+        throw new Error(game.i18n.localize('Cd100.Errors.IncorrectPoolModifier'))
       }
       const poolModifier = this.poolModifier + check
-      if (poolModifier < -CoC7DicePool.maxDicePenalty || poolModifier > CoC7DicePool.maxDiceBonus) {
-        throw new Error('Invalid Pool Modifier should be a number between ' + (-CoC7DicePool.maxDicePenalty) + ' and ' + CoC7DicePool.maxDiceBonus)
+      if (poolModifier < -Cd100DicePool.maxDicePenalty || poolModifier > Cd100DicePool.maxDiceBonus) {
+        throw new Error('Invalid Pool Modifier should be a number between ' + (-Cd100DicePool.maxDicePenalty) + ' and ' + Cd100DicePool.maxDiceBonus)
       }
       let roll
       if (poolModifier < 0 && this.#penaltyCount < Math.abs(poolModifier)) {
-        const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier })
+        const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier })
         roll = await new Roll(Math.abs(check) + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt')).roll()
         this.#penaltyCount = Math.abs(poolModifier)
       } else if (poolModifier > 0 && this.#bonusCount < poolModifier) {
-        const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier })
+        const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier })
         roll = await new Roll(check + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt')).roll()
         this.#bonusCount = poolModifier
       }
@@ -1138,7 +1138,7 @@ export default class CoC7DicePool {
       }
       return true
     }
-    throw new Error(game.i18n.localize('CoC7.Errors.UnparsablePoolModifier'))
+    throw new Error(game.i18n.localize('Cd100.Errors.UnparsablePoolModifier'))
   }
 
   /**
@@ -1179,22 +1179,22 @@ export default class CoC7DicePool {
           }
           if (!this.isFumble && !isLuck && !isSanity && !this.isMalfunction) {
             const value = this.luckRequiredRegular
-            if (value > 0 && luckAvailable > value && this.#difficulty <= CoC7DicePool.difficultyLevel.regular) {
+            if (value > 0 && luckAvailable > value && this.#difficulty <= Cd100DicePool.difficultyLevel.regular) {
               buttons.luckRegular = value
             }
           }
         }
         if (!this.isFumble && !isLuck && !isSanity && !this.isMalfunction) {
           let value = this.luckRequiredHard
-          if (value > 0 && luckAvailable > value && this.#difficulty <= CoC7DicePool.difficultyLevel.hard) {
+          if (value > 0 && luckAvailable > value && this.#difficulty <= Cd100DicePool.difficultyLevel.hard) {
             buttons.luckHard = value
           }
           value = this.luckRequiredExtreme
-          if (value > 0 && luckAvailable > value && this.#difficulty <= CoC7DicePool.difficultyLevel.extreme) {
+          if (value > 0 && luckAvailable > value && this.#difficulty <= Cd100DicePool.difficultyLevel.extreme) {
             buttons.luckExtreme = value
           }
           value = this.luckRequiredCritical
-          if (value > 0 && luckAvailable > value && this.#difficulty <= CoC7DicePool.difficultyLevel.critical) {
+          if (value > 0 && luckAvailable > value && this.#difficulty <= Cd100DicePool.difficultyLevel.critical) {
             buttons.luckCritical = value
           }
         }
@@ -1236,7 +1236,7 @@ export default class CoC7DicePool {
       bonusDice.push(total === 0 ? 10 : total)
     }
     this.#rollResults = []
-    const rolls = CoC7DicePool.#createRollsFromResults({ baseDie: (base === 0 ? 10 : base), bonusDice, groups: this.#groups, rollMethod: this.#rollMethod, penaltyDice, unitDie: (unit === 0 ? 10 : unit) })
+    const rolls = Cd100DicePool.#createRollsFromResults({ baseDie: (base === 0 ? 10 : base), bonusDice, groups: this.#groups, rollMethod: this.#rollMethod, penaltyDice, unitDie: (unit === 0 ? 10 : unit) })
     if (this.#rollsExisting.length) {
       this.#rollsExisting = rolls
       this.#processRolls(this.#rolledDice.length - 1, [])
@@ -1285,8 +1285,8 @@ export default class CoC7DicePool {
     }
     const checkPenalty = parseInt(penaltyCount, 10)
     const checkBonus = parseInt(bonusCount, 10)
-    if (isNaN(checkPenalty) || isNaN(checkBonus) || checkPenalty > CoC7DicePool.maxDicePenalty || checkBonus > CoC7DicePool.maxDiceBonus) {
-      throw new Error('Invalid Pool Modifier should be a number between ' + (-CoC7DicePool.maxDicePenalty) + ' and ' + CoC7DicePool.maxDiceBonus)
+    if (isNaN(checkPenalty) || isNaN(checkBonus) || checkPenalty > Cd100DicePool.maxDicePenalty || checkBonus > Cd100DicePool.maxDiceBonus) {
+      throw new Error('Invalid Pool Modifier should be a number between ' + (-Cd100DicePool.maxDicePenalty) + ' and ' + Cd100DicePool.maxDiceBonus)
     }
     this.#penaltyCount = Math.abs(checkPenalty)
     this.#bonusCount = checkBonus
@@ -1297,11 +1297,11 @@ export default class CoC7DicePool {
    * @returns {object}
    */
   #populateThresholdRanges () {
-    if (typeof this.#ranges[CoC7DicePool.successLevel.fumble] === 'undefined') {
+    if (typeof this.#ranges[Cd100DicePool.successLevel.fumble] === 'undefined') {
       const ranges = {
         fumble: this.#minimumFumbleFromThreshold()
       }
-      if (typeof this.#threshold !== 'undefined' && this.#difficulty !== CoC7DicePool.difficultyLevel.impossible) {
+      if (typeof this.#threshold !== 'undefined' && this.#difficulty !== Cd100DicePool.difficultyLevel.impossible) {
         const regularSuccess = this.#threshold + this.#flatThresholdModifier
         // Cthulhu d100 success tiers: critical is a twentieth of the effective
         // score, special a fifth. There is no "hard" tier.
@@ -1331,15 +1331,15 @@ export default class CoC7DicePool {
       }
       let next = 1
       this.#ranges = {}
-      const keys = Object.keys(CoC7DicePool.successLevel).reverse()
+      const keys = Object.keys(Cd100DicePool.successLevel).reverse()
       for (const key of keys) {
         if (key === 'fumble') {
           if (next <= ranges[key] - 1) {
-            this.#ranges[CoC7DicePool.successLevel.failure] = [next, ranges[key] - 1]
+            this.#ranges[Cd100DicePool.successLevel.failure] = [next, ranges[key] - 1]
           }
-          this.#ranges[CoC7DicePool.successLevel[key]] = [ranges[key], 100]
+          this.#ranges[Cd100DicePool.successLevel[key]] = [ranges[key], 100]
         } else if (typeof ranges[key] !== 'undefined') {
-          this.#ranges[CoC7DicePool.successLevel[key]] = [next, ranges[key]]
+          this.#ranges[Cd100DicePool.successLevel[key]] = [next, ranges[key]]
           next = ranges[key] + 1
         }
       }
@@ -1401,11 +1401,11 @@ export default class CoC7DicePool {
       '1dt+1d10'
     ]
     if (this.#penaltyCount > 0) {
-      const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier: -this.#penaltyCount })
+      const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier: -this.#penaltyCount })
       dicePool.push('+' + this.#penaltyCount + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt'))
     }
     if (this.#bonusCount > 0) {
-      const alternativeDice = CoC7DicePool.#alternativeDice({ poolModifier: this.#bonusCount })
+      const alternativeDice = Cd100DicePool.#alternativeDice({ poolModifier: this.#bonusCount })
       dicePool.push('+' + this.#bonusCount + (alternativeDice !== '' ? 'do[' + alternativeDice + ']' : 'dt'))
     }
     const rolls = [await new Roll(dicePool.join('')).roll()]

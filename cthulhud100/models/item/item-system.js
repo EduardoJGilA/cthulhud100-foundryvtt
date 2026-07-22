@@ -1,8 +1,8 @@
 /* global foundry game */
 import { ERAS } from '../../constants.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsItemItemSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemItemSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -38,9 +38,9 @@ export default class CoC7ModelsItemItemSystem extends CoC7ModelsItemGlobalSystem
    */
   static emptyObject (options) {
     const object = foundry.utils.mergeObject({
-      name: game.i18n.localize('CoC7.NewItemName'),
+      name: game.i18n.localize('Cd100.NewItemName'),
       type: 'item',
-      system: new CoC7ModelsItemItemSystem().toObject()
+      system: new Cd100ModelsItemItemSystem().toObject()
     }, options)
     return object
   }

@@ -1,6 +1,6 @@
 # Systemdokumentation für Version 7.0
 
-Dieses Dokument ist ein in Arbeit befindlicher Überblick über das CoC7-System und stellt keine Anleitung zur Verwendung von FoundryVTT dar.
+Dieses Dokument ist ein in Arbeit befindlicher Überblick über das Cd100-System und stellt keine Anleitung zur Verwendung von FoundryVTT dar.
 
 Sie benötigen eines dieser folgenden Bücher, um das Spiel zu spielen:
 
@@ -12,11 +12,11 @@ Das System automatisiert die meisten üblichen Aufgaben und Regeln, welche benö
 
 Mehrere Teile des Charakterbogens haben auftauchende Tooltips, welche nach zwei Sekunden erscheinen, diese Verzögerung kann in den Einstellungen geändert werden.
 
-Dieses Dokument kann erneut geöffnet werden unter Spieleinstellungen -> Hilfe und Dokumentation -> CoC7 System Handbuch ansehen
+Dieses Dokument kann erneut geöffnet werden unter Spieleinstellungen -> Hilfe und Dokumentation -> Cd100 System Handbuch ansehen
 
 # Kürzliche Änderungen
 
-Für eine vollständige Liste der Änderungen überprüfen Sie das [Änderungsprotokoll](https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/blob/develop/.github/CHANGELOG.md) auf github
+Für eine vollständige Liste der Änderungen überprüfen Sie das [Änderungsprotokoll](https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/blob/develop/.github/CHANGELOG.md) auf github
 
 - Neuer Charakterbogen
 

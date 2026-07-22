@@ -1,6 +1,6 @@
 # バージョン7.14 システム資料
 
-この資料はCoC7システムの概略（作成中）であり、FVTTの操作説明に関するものではありません。
+この資料はCd100システムの概略（作成中）であり、FVTTの操作説明に関するものではありません。
 
 ゲームを遊ぶには、以下の内１つが必要です。
 
@@ -12,11 +12,11 @@
 
 アクターシートのいくつかの箇所で2秒間マウスオーバーすると、ツールチップがポップアップされます。表示されるまでの時間は設定で変更できます。
 
-このドキュメントは次の場所からも開くことができます：ゲーム設定 -> ヘルプ ドキュメント -> CoC7 システムマニュアルを閲覧
+このドキュメントは次の場所からも開くことができます：ゲーム設定 -> ヘルプ ドキュメント -> Cd100 システムマニュアルを閲覧
 
 # 最近の変更点
 
-変更点の全容についてはGithub上の[changelog](https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/blob/develop/.github/CHANGELOG.md) をご覧ください。
+変更点の全容についてはGithub上の[changelog](https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/blob/develop/.github/CHANGELOG.md) をご覧ください。
 
  - [Compendiums](compendiums.md) を使用しテキストを更新する
 

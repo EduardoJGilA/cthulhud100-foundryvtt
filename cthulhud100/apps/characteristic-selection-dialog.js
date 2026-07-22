@@ -1,7 +1,7 @@
 /* global foundry */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7CharacteristicSelectionDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100CharacteristicSelectionDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -83,7 +83,7 @@ export default class CoC7CharacteristicSelectionDialog extends foundry.applicati
    */
   static async create ({ characteristics = [], title = '' } = {}) {
     return await new Promise(resolve => {
-      new CoC7CharacteristicSelectionDialog({}, {}, {
+      new Cd100CharacteristicSelectionDialog({}, {}, {
         characteristics,
         title,
         resolve

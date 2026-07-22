@@ -1,7 +1,7 @@
 /* global foundry game */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7DropCoCID extends foundry.applications.api.DialogV2 {
+export default class Cd100DropCoCID extends foundry.applications.api.DialogV2 {
   /**
    * Process dialog form
    * @param {PointerEvent|SubmitEvent} event
@@ -39,21 +39,21 @@ export default class CoC7DropCoCID extends foundry.applications.api.DialogV2 {
     switch (dropCoCID) {
       case '':
         return new Promise(resolve => {
-          new CoC7DropCoCID({
+          new Cd100DropCoCID({
             classes: ['coc7', 'dialog'],
-            window: { title: game.i18n.localize('CoC7.Settings.DropCoCID.Name') },
-            content: '<p>' + game.i18n.localize('CoC7.Settings.DropCoCID.Dialog') + '</p><p><input type="checkbox" id="rememberThis" name="rememberThis" style="vertical-align: sub;"><label for="rememberThis">' + game.i18n.localize('CoC7.Settings.DropCoCID.Remember') + '</label></p>',
+            window: { title: game.i18n.localize('Cd100.Settings.DropCoCID.Name') },
+            content: '<p>' + game.i18n.localize('Cd100.Settings.DropCoCID.Dialog') + '</p><p><input type="checkbox" id="rememberThis" name="rememberThis" style="vertical-align: sub;"><label for="rememberThis">' + game.i18n.localize('Cd100.Settings.DropCoCID.Remember') + '</label></p>',
             buttons: [{
               action: 'yes',
               icon: 'fa-solid fa-check',
               label: game.i18n.localize('Yes'),
               default: true,
-              callback: (event, button, dialog) => CoC7DropCoCID.processForm(event, button, dialog, resolve)
+              callback: (event, button, dialog) => Cd100DropCoCID.processForm(event, button, dialog, resolve)
             }, {
               action: 'no',
               icon: 'fa-solid fa-times',
               label: game.i18n.localize('No'),
-              callback: (event, button, dialog) => CoC7DropCoCID.processForm(event, button, dialog, resolve)
+              callback: (event, button, dialog) => Cd100DropCoCID.processForm(event, button, dialog, resolve)
             }]
           }).render({ force: true })
         })

@@ -3,30 +3,30 @@
     <fieldset class="flexrow">
       <div class="columns flexrow">
         <div class="column-third flexrow">
-          <label>{{localize 'CoC7.WeaponMalfunction'}}:</label>
+          <label>{{localize 'Cd100.WeaponMalfunction'}}:</label>
           <input class="small" type="text" name="system.malfunction" value="{{document.system.malfunction}}" placeholder="-" />
         </div>
-        <div class="column-third flexrow" data-tooltip="CoC7.WeaponUsesPerRoundHint">
-          <label>{{localize 'CoC7.WeaponUsesPerRound'}}:</label>
+        <div class="column-third flexrow" data-tooltip="Cd100.WeaponUsesPerRoundHint">
+          <label>{{localize 'Cd100.WeaponUsesPerRound'}}:</label>
           <input class="small" type="text" name="system.usesPerRound.normal" value="{{document.system.usesPerRound.normal}}" placeholder="-" />
         </div>
         <div class="column-third flexrow">
-          <label>{{localize 'CoC7.WeaponMax'}}:</label>
+          <label>{{localize 'Cd100.WeaponMax'}}:</label>
           <input class="small" type="text" name="system.usesPerRound.max" value="{{document.system.usesPerRound.max}}" placeholder="-" />
         </div>
         <div class="column-third flexrow">
-          <label>{{localize 'CoC7.WeaponBulletsInMag'}}:</label>
+          <label>{{localize 'Cd100.WeaponBulletsInMag'}}:</label>
           <input class="small" type="text" name="system.bullets" value="{{document.system.bullets}}" placeholder="-" />
         </div>
         {{#if document.system.properties.brst}}
-          <div class="column-third flexrow" data-tooltip="CoC7.BurstSizeHint">
-            <label>{{localize 'CoC7.BurstSize'}}:</label>
+          <div class="column-third flexrow" data-tooltip="Cd100.BurstSizeHint">
+            <label>{{localize 'Cd100.BurstSize'}}:</label>
             <input class="small" type="text" name="system.usesPerRound.burst" value="{{document.system.usesPerRound.burst}}" placeholder="-" />
           </div>
         {{/if}}
         {{#if document.system.properties.blst}}
           <div class="column-third flexrow">
-            <label>{{localize 'CoC7.Weapon.BlastRadius'}}:</label>
+            <label>{{localize 'Cd100.Weapon.BlastRadius'}}:</label>
             <input type="text" name="system.blastRadius" value="{{document.system.blastRadius}}" placeholder="-" />
           </div>
         {{/if}}
@@ -34,7 +34,7 @@
     </fieldset>
     {{#if document.system.properties.spcl}}
       <fieldset class="flexrow">
-        <legend>{{localize 'CoC7.WeaponSpecial'}}</legend>
+        <legend>{{localize 'Cd100.WeaponSpecial'}}</legend>
         <prose-mirror name="system.description.special" value="{{document.system.description.special}}" data-document-uuid="{{document.uuid}}" toggled>{{{enrichedDescriptionSpecial}}}</prose-mirror>
       </fieldset>
     {{/if}}

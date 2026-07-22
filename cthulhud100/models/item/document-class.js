@@ -3,7 +3,7 @@
 import { FOLDER_ID } from '../../constants.js'
 import deprecated from '../../deprecated.js'
 
-export default class CoC7ModelsItemDocumentClass extends Item {
+export default class Cd100ModelsItemDocumentClass extends Item {
   /**
    * Create a content link for this document.
    * @param {object} eventData
@@ -17,7 +17,7 @@ export default class CoC7ModelsItemDocumentClass extends Item {
       // If dropping a skill/weapon from an Actor onto a Journal Entry Page convert to a check link
       const item = fromUuidSync(eventData.uuid)
       if (['skill', 'weapon'].includes(item.type)) {
-        return '@coc7.check[type:' + item.type + ',name:' + item.name + ']'
+        return '@cd100.check[type:' + item.type + ',name:' + item.name + ']'
       }
     }
     return super._createDocumentLink(eventData, { relativeTo, label })
@@ -117,7 +117,7 @@ export default class CoC7ModelsItemDocumentClass extends Item {
       return true
     }
     return [
-      game.i18n.localize('CoC7.AnySpecName').toLowerCase(),
+      game.i18n.localize('Cd100.AnySpecName').toLowerCase(),
       'any'
     ].includes(CONFIG.Item.dataModels.skill.guessNameParts(document.name).system.skillName.toLowerCase())
   }
@@ -205,7 +205,7 @@ export default class CoC7ModelsItemDocumentClass extends Item {
       updates['system.adjustments.' + flagName] = null
     } else if (flagName === 'developement') {
       if (!(game.settings.get(FOLDER_ID, 'xpEnabled') || game.user.isGM)) {
-        ui.notifications.info(game.i18n.localize('CoC7.SkillXpGainDisabled'))
+        ui.notifications.info(game.i18n.localize('Cd100.SkillXpGainDisabled'))
         return
       }
     }
@@ -541,7 +541,7 @@ export default class CoC7ModelsItemDocumentClass extends Item {
       )
     }
     if (object.type === 'weapon' && object.system.properties.rngd === false) {
-      output.properties.push(game.i18n.localize('CoC7.Weapon.Property.Melee'))
+      output.properties.push(game.i18n.localize('Cd100.Weapon.Property.Melee'))
     }
     for (const key in object.system.properties) {
       if (object.system.properties[key]) {
@@ -711,7 +711,7 @@ export default class CoC7ModelsItemDocumentClass extends Item {
     if (mode === 'increase' || mode === 'decrease') {
       deprecated.warningLogger({
         was: 'Item.changeProgress("' + mode + '")',
-        now: 'CoC7ModelsItemBookSystem.alterProgress(?)',
+        now: 'Cd100ModelsItemBookSystem.alterProgress(?)',
         until: 15
       })
       this.system.alterProgress(mode === 'increase' ? 1 : -1)

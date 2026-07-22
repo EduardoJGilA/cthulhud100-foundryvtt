@@ -1,5 +1,5 @@
 /* global game */
-import CoC7Utilities from './utilities.js'
+import Cd100Utilities from './utilities.js'
 
 /**
  * nameCharacters list of characters that can be part of a [] for character, skill, or weapon names used in bracket expression.
@@ -54,11 +54,11 @@ import CoC7Utilities from './utilities.js'
  *
  * If there is new functionality check for this string in the translations / keys for your language "NEW KEY BELOW - TRANSLATION REQUIRED"
  */
-const nameCharacters = '\\u3000\\u3400-\\u4DBF\\u3040-\\u30FF\\u4E00-\\u9FFF\\w\\(\\)\\-\\/&"\'･（）／' + CoC7Utilities.quoteRegExp('áéíóàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃĀÑÕäëïöüÿÄËÏÖÜŸàèçÇßØøÅåÆæœ“”«»ąćęłńóśźżĄĆĘŁŃÓŚŹŻ')
+const nameCharacters = '\\u3000\\u3400-\\u4DBF\\u3040-\\u30FF\\u4E00-\\u9FFF\\w\\(\\)\\-\\/&"\'･（）／' + Cd100Utilities.quoteRegExp('áéíóàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃĀÑÕäëïöüÿÄËÏÖÜŸàèçÇßØøÅåÆæœ“”«»ąćęłńóśźżĄĆĘŁŃÓŚŹŻ')
 
 const keys = {
   en: {
-    description: 'CoC7.English',
+    description: 'Cd100.English',
     dbNone: 'none',
     armorNone: 'none',
     attacksPerRoundNone: 'none',
@@ -83,7 +83,7 @@ const keys = {
       'Example Character, age 27\nSTR 75 CON 60 SIZ 80 DEX 70 APP 60 INT 80\nPOW 50 EDU 85 SAN 55 HP 14 DB: 1D4\nBuild: 1 Move: 7 MP: 10 Luck: 40 Armor: 1\nAttacks per round: 3 SAN loss: 1d4/1d8\nCombat\nBite 50% (25/10), damage 1D6\nBrawl 30% (15/6), damage 1D3\nDerringer 40% (20/8), damage 1D8+1\nDodge 50% (25/10)\nSkills\nAnimal Handling 55%, Charm 30%, First Aid 25%, Disguise 20%,\nListen 50%, Medicine 45%, Persuade 25%, Psychology 75%,\nScience (Astronomy) 90%, Science (Botany) 35%, Science (Zoology) 10%,\nSpot Hidden 35%, Stealth 10%\nLanguages: English 80%, Eklo 5%.\nSpells: Summon NPC, Dispel NPC.'
   },
   de: {
-    description: 'CoC7.German',
+    description: 'Cd100.German',
     dbNone: 'none',
     armorNone: 'none',
     attacksPerRoundNone: 'none',
@@ -111,7 +111,7 @@ const keys = {
       'Vorname Nachname\nAlter: 29\nBeruf: Ein Beruf\nST 50\nMA 60\nKO 60\nGE 60\nGR 55\nER 65\nIN 80\nBI 85\nTrefferpunkte: 11\nGeistige Stabilität: 60\nSchadensbonus: 0\nStatur: 0\nMagiepunkte: 12\nBewegungsweite: 8\n\nKampf\nAngriffe: 1\nHandgemenge 30% (15/6), Schaden 1D3\nMesser 30% (15/6), Schaden 1D4\nAusweichen 30% (15/6)\n\nFertigkeiten: Anthropologie 70% (35/14), Archäologie 30% (15/6), Bibliotheksnutzung 50% (25/10), Erste Hilfe 50% (25/10), Finanzkraft 40% (20/8), Geschichte 60% (30/12), Klettern 50% (25/10)\n\nSprachen: Englisch 85% (42/17); Deutsch 45% (22/9), Latein 45% (22/9)'
   },
   pl: {
-    description: 'CoC7.Polish',
+    description: 'Cd100.Polish',
     dbNone: 'brak',
     armorNone: 'brak',
     attacksPerRoundNone: 'brak',
@@ -139,7 +139,7 @@ const keys = {
       'Przykładowa postać, 27 lat\nBibliotekarz\nS 75 KON 60 BC 80 ZR 70 WYG 60 INT 80\nMOC 50 WYK 85 P 55 PW 14 MO: 1D4\nKrzepa: 1 Ruch: 7 PM: 10 Szczęście: 40 Pancerz: 1\nAtaki w rundzie: 3 Utrata Poczytalności: 1K4/1K8\nWalka\nUgryzienie 50% (25/10), obrażenia 1K6\nWalka 30% (15/6), obrażenia 1K3\nDerringer 40% (20/8), obrażenia 1K8+1\nUnik 50% (25/10)\nUmiejętności\nTresura Zwierząt 55%, Urok Osobisty 30%, Pierwsza Pomoc 25%, Ukrywanie 20%,\nNasłuchiwanie 50%, Medycyna 45%, Przekonywanie 25%, Psychologia 75%,\nNauka (Astronomia) 90%, Nauka (Botanika) 35%, Nauka (Zoologia) 10%,\nSpostrzegawczość 35%, Ukrywanie 10%\nJęzyki: Angielski 80%, Eklo 5%.\nZaklęcia: Przyzwanie NPC, Odesłanie NPC.'
   },
   fr: {
-    description: 'CoC7.French',
+    description: 'Cd100.French',
     dbNone: 'Acune',
     armorNone: '(?:Acune|aucune)',
     attacksPerRoundNone: 'Acune',
@@ -166,7 +166,7 @@ const keys = {
       'Example Character, 27 ans\nFOR 75 CON 60 TAI 80 DEX 70 APP 60 INT 80\nPOU 50 ÉDU 85 SAN 55 PV 14 BD: 1D4\nCarrure: 1 Mvt: 7 PM: 10 Chance: 40 Armure: 1\nAttaques par round 3 Perte de SAN: 1d4/1d8\nAttaques\nBite 50% (25/10), dommage 1D6\nBrawl 30% (15/6), dommage 1D3\nDerringer 40% (20/8), dommage 1D8+1\nEsquiver 50% (25/10)\nCompétences\nAnimal Handling 55%, Charm 30%, First Aid 25%, Disguise 20%,\nListen 50%, Medicine 45%, Persuade 25%, Psychology 75%,\nScience (Astronomy) 90%, Science (Botany) 35%, Science (Zoology) 10%,\nSpot Hidden 35%, Stealth 10%\nLangue: English 80%, Eklo 5%.\nSortilèges: Summon NPC, Dispel NPC.'
   },
   es: {
-    description: 'CoC7.Spanish',
+    description: 'Cd100.Spanish',
     dbNone: 'ninguna',
     armorNone: 'ninguna',
     attacksPerRoundNone: 'ninguno',
@@ -193,7 +193,7 @@ const keys = {
       'Example Character, 27 años\nFUE 75 CON 60 TAM 80 DES 70 APA 60 INT 80\nPOD 50 EDU 85 COR 55 PV 14 BD: 1D4\nCorpulencia: 1 Movimiento: 7 PM: 10 Suerte: 40 Armadura: 1\nNúmero de Ataques 3 Pérdida de cordura: 1d4/1d8\nCombate\nBite 50% (25/10), daño 1D6\nBrawl 30% (15/6), daño 1D3\nDerringer 40% (20/8), daño 1D8+1\nEsquivar 50% (25/10)\nHabilidades\nAnimal Handling 55%, Charm 30%, First Aid 25%, Disguise 20%,\nListen 50%, Medicine 45%, Persuade 25%, Psychology 75%,\nScience (Astronomy) 90%, Science (Botany) 35%, Science (Zoology) 10%,\nSpot Hidden 35%, Stealth 10%\nIdiomas: English 80%, Eklo 5%.\nConjuros: Summon NPC, Dispel NPC.'
   },
   'zh-TW': {
-    description: 'CoC7.TraditionalChinese',
+    description: 'Cd100.TraditionalChinese',
     dbNone: 'none',
     armorNone: 'none',
     attacksPerRoundNone: 'none',
@@ -223,7 +223,7 @@ const keys = {
       '示範角色, 年齡 27\n力量 75 體質 60 體型 80 敏捷 70 外貎 60 智力 80\n意志 50 教育 85 SAN 55 HP 14 DB: 1D4\n體格: 1 Move: 7 MP: 10 幸運: 40 護甲: 1\n攻擊次數: 3 理智喪失: 1d4/1d8\n戰鬥列表\n咬 50% (25/10), 傷害 1D6\n空手 30% (15/6), 傷害 1D3\n手槍 40% (20/8), 傷害 1D8+1\n閃避 50% (25/10)\n技能列表\n動物馴養 55%, 取悅 30%, 急救 25%, 潛行 20%,\n聆聽 50%, 藥學 45%, 精神分析 25%, 心理學 75%,\n科學 (司法科學) 90%, 科學 (密碼學) 35%, \n偵查 35%, 喬裝 10%\n語言: 粵語 80%, 讀唇 5%.\n咒文: 召喚 NPC, 指揮 NPC.'
   },
   ja: {
-    description: 'CoC7.Japanese',
+    description: 'Cd100.Japanese',
     dbNone: 'なし',
     armorNone: 'なし',
     attacksPerRoundNone: 'なし',
@@ -861,7 +861,7 @@ const translations = {
   }
 }
 
-export default class CoC7ActorImporterRegExp {
+export default class Cd100ActorImporterRegExp {
   /**
    * Check language exists, default to en if it doesn't
    * @param {string} lang

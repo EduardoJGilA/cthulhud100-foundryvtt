@@ -41,7 +41,7 @@ In this section you will create or edit [skills](item_skill.md)
     - On the _Details_ tab you can:
         - Select the _Cthulhu Flavors_ where this setup is valid
         - Define the biography sections and their names (click on the `+` to add extra Biography sections)
-        - Drag default items like @Compendium[CoC7.items.3elxAwnv7WCUNwng]{Punch}
+        - Drag default items like @Compendium[Cd100.items.3elxAwnv7WCUNwng]{Punch}
         - Show / Hide the _Characteristics_ tab with the _Enable characteristics_ checkbox
     - The _Characteristics_ tab allows you to define the formula to roll the dices for each characteristic
     - The _Skills_ tab allows you to define the default set of skills by dragging items of type _skill_ to the _common skills_ area.

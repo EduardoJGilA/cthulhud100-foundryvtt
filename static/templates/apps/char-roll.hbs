@@ -6,7 +6,7 @@
         {{#unless ../isRolls}}
           <a class="decrease-characteristic" style="flex: 0 0 1rem"><i class="fa-regular fa-minus-circle"></i></a>
         {{/unless}}
-        <input type="text" name="{{key}}" style="flex: 0 0 5rem; text-align: center" value="{{lookup ../values key}}" placeholder="{{localize 'CoC7.Value'}}" />
+        <input type="text" name="{{key}}" style="flex: 0 0 5rem; text-align: center" value="{{lookup ../values key}}" placeholder="{{localize 'Cd100.Value'}}" />
         {{#if ../isRolls}}
           <a class="roll-characteristic" style="flex: 0 0 1rem"><i class="fa-solid fa-dice"></i></a>
         {{else}}
@@ -19,20 +19,20 @@
       {{#unless isRolls}}
         <a class="reset-characteristic" style="flex: 0 0 1rem"><i class="fa-solid fa-eraser"></i></a>
       {{/unless}}
-      <input type="text" name="luck" style="flex: 0 0 5rem; text-align: center" value="{{lookup values 'luck'}}" placeholder="{{localize 'CoC7.Value'}}" />
+      <input type="text" name="luck" style="flex: 0 0 5rem; text-align: center" value="{{lookup values 'luck'}}" placeholder="{{localize 'Cd100.Value'}}" />
       <a class="roll-characteristic" style="flex: 0 0 1rem"><i class="fa-solid fa-dice"></i></a>
     </div>
   </div>
   {{#if isPoints}}
     <div class="flexrow points-summary{{#if pointsWarning}} warning{{/if}}" style="justify-content: center;">
-      <label style="flex: 0;white-space: nowrap">{{localize 'CoC7.CharacteristicsPoints'}} :</label>
+      <label style="flex: 0;white-space: nowrap">{{localize 'Cd100.CharacteristicsPoints'}} :</label>
       <span class="total-points" style="flex: 0 0 2rem; text-align: center">{{totalPoints}}</span>
       <span style="flex: 0 0 auto;">/</span>
       <span style="flex: 0 0 2rem; text-align: center">{{points}}</span>
     </div>
   {{else if isRolls}}
     <div class="flexrow points-summary{{#if pointsWarning}} warning{{/if}}" style="justify-content: center;">
-      <label style="flex: 0;white-space: nowrap">{{localize 'CoC7.CharacteristicsPoints'}} :</label>
+      <label style="flex: 0;white-space: nowrap">{{localize 'Cd100.CharacteristicsPoints'}} :</label>
       <span class="total-points" style="flex: 0 0 2rem; text-align: center">{{totalPoints}}</span>
     </div>
   {{/if}}

@@ -11,16 +11,16 @@ const SETTINGS = {
     type: Boolean
   },
   allowPushFumbles: {
-    name: 'CoC7.Settings.AllowPushFumbles.Name',
-    hint: 'CoC7.Settings.AllowPushFumbles.Hint',
+    name: 'Cd100.Settings.AllowPushFumbles.Name',
+    hint: 'Cd100.Settings.AllowPushFumbles.Hint',
     scope: 'world',
     config: false,
     default: false,
     type: Boolean
   },
   characteristicsOrder: {
-    name: 'CoC7.Settings.CharacteristicsOrder.Name',
-    hint: 'CoC7.Settings.CharacteristicsOrder.Hint',
+    name: 'Cd100.Settings.CharacteristicsOrder.Name',
+    hint: 'Cd100.Settings.CharacteristicsOrder.Hint',
     scope: 'world',
     config: false,
     type: Array,
@@ -28,7 +28,7 @@ const SETTINGS = {
   }
 }
 
-export default class CoC7SettingsHouseRules extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100SettingsHouseRules extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: 'rules-settings',
     tag: 'form',
@@ -40,13 +40,13 @@ export default class CoC7SettingsHouseRules extends foundry.applications.api.Han
     },
     form: {
       closeOnSubmit: true,
-      handler: CoC7SettingsHouseRules.#onSubmit
+      handler: Cd100SettingsHouseRules.#onSubmit
     },
     position: {
       width: 550
     },
     actions: {
-      reset: CoC7SettingsHouseRules.#onReset
+      reset: Cd100SettingsHouseRules.#onReset
     }
   }
 

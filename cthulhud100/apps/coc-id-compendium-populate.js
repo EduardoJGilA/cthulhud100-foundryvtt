@@ -19,7 +19,7 @@ export default class CoCIDCompendiumPopulate extends foundry.applications.api.Ha
       contentClasses: [
         'standard-form'
       ],
-      title: 'CoC7.CoCIDCompendiumPopulate'
+      title: 'Cd100.CoCIDCompendiumPopulate'
     },
     form: {
       closeOnSubmit: false,
@@ -78,7 +78,7 @@ export default class CoCIDCompendiumPopulate extends foundry.applications.api.Ha
       const included = this.coc7Config.types.filter(t => t.toggle).map(t => t.id)
       const destination = game.packs.get(this.coc7Config.packList)
       if (included.length && destination) {
-        const items = await game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: new RegExp('^i.(' + included.join('|') + ')'), type: 'i', showLoading: true })
+        const items = await game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: new RegExp('^i.(' + included.join('|') + ')'), type: 'i', showLoading: true })
         const folders = await [...new Set(items.map(d => d.type))].reduce(async (sc, t) => {
           const name = game.i18n.localize('TYPES.Item.' + t)
           let folder = destination.folders.find(d => d.name === name)
@@ -94,11 +94,11 @@ export default class CoCIDCompendiumPopulate extends foundry.applications.api.Ha
           c[t] = folder.id
           return c
         }, {})
-        const priority = 1 + items.map(d => d.flags.CoC7.cocidFlag.priority ?? 0).reduce((c, v) => { if (v > c) { c = v } return c }, 0)
+        const priority = 1 + items.map(d => d.flags.Cd100.cocidFlag.priority ?? 0).reduce((c, v) => { if (v > c) { c = v } return c }, 0)
         const newDocs = items.map(d => {
           const doc = d.toObject()
-          doc.flags.CoC7.cocidFlag.priority = priority
-          doc.flags.CoC7.cocidFlag.lang = game.i18n.lang
+          doc.flags.Cd100.cocidFlag.priority = priority
+          doc.flags.Cd100.cocidFlag.lang = game.i18n.lang
           doc.folder = folders[doc.type]
           return doc
         })
@@ -138,7 +138,7 @@ export default class CoCIDCompendiumPopulate extends foundry.applications.api.Ha
           context.buttons.push({
             type: 'submit',
             action: 'update',
-            label: 'CoC7.CoCIDCompendiumPopulateButton',
+            label: 'Cd100.CoCIDCompendiumPopulateButton',
             icon: 'fa-solid fa-check'
           })
         }

@@ -403,7 +403,7 @@ try {
 
       const mdFile = input
         .replace(/\[(fa[^ ]+ fa-[^\]]+|game-icon game-icon-[^\]]+)\]/g, '')
-        .replace(/@@coc7./g, '@coc7.')
+        .replace(/@@cd100./g, '@cd100.')
         .replace(/@Compendium\[[^\]]+\.[^\\.]+\]{([^}]+)}/g, '[_$1_]')
         .replace(/@UUID\[[^\]]+\.[^\\.]+\]{([^}]+)}/g, '[_$1_]')
         .replace(/\(..\/..\/..\/static\/assets\//g, '(../../static/assets/')
@@ -426,7 +426,7 @@ try {
         )
         .replace(/src="..\/..\/..\/static\/assets\//g, 'src="systems/' + folderId + '/assets/')
         .replace(/\n\s*/g, '\n')
-        .replace(/@@coc7./g, '<span>@</span>coc7.')
+        .replace(/@@cd100./g, '<span>@</span>coc7.')
 
       dbFile[journalKey].pages.push({
         name: sources[lang].pages[page].name,

@@ -1,11 +1,11 @@
 /* global CONFIG foundry game Hooks ui */
 // cSpell:words iwms wmis
 import { FOLDER_ID } from '../constants.js'
-import CoC7ActorImporter from './actor-importer.js'
-import CoC7ActorImporterRegExp from './actor-importer-regexp.js'
-import CoC7DholeHouseActorImporter from './dholehouse-importer.js'
+import Cd100ActorImporter from './actor-importer.js'
+import Cd100ActorImporterRegExp from './actor-importer-regexp.js'
+import Cd100DholeHouseActorImporter from './dholehouse-importer.js'
 
-export default class CoC7ActorImporterDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100ActorImporterDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -20,14 +20,14 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
     tag: 'form',
     classes: ['coc7', 'dialog'],
     window: {
-      title: 'CoC7.ActorImporter',
+      title: 'Cd100.ActorImporter',
       contentClasses: [
         'standard-form'
       ]
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7ActorImporterDialog.#onSubmit
+      handler: Cd100ActorImporterDialog.#onSubmit
     },
     position: {
       width: 600
@@ -64,9 +64,9 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
         switch (context.importType) {
           case 'npc':
           case 'creature':
-            context.languages = CoC7ActorImporterRegExp.getTranslations()
-            context.language = CoC7ActorImporterRegExp.checkLanguage(this.coc7Config.language)
-            context.placeholder = CoC7ActorImporterRegExp.getExampleText(context.language)
+            context.languages = Cd100ActorImporterRegExp.getTranslations()
+            context.language = Cd100ActorImporterRegExp.checkLanguage(this.coc7Config.language)
+            context.placeholder = Cd100ActorImporterRegExp.getExampleText(context.language)
             break
           case 'dholehouse':
             {
@@ -81,47 +81,47 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
         context.importTypeOptions = [
           {
             key: 'npc',
-            label: 'CoC7.NonPlayingCharacter'
+            label: 'Cd100.NonPlayingCharacter'
           },
           {
             key: 'creature',
-            label: 'CoC7.Creature'
+            label: 'Cd100.Creature'
           },
           {
             key: 'dholehouse',
-            label: 'CoC7.DholeHouseActorImporter'
+            label: 'Cd100.DholeHouseActorImporter'
           }
         ]
         context.convert6EOptions = [
           {
             key: 'coc-guess',
-            label: 'CoC7.Guess'
+            label: 'Cd100.Guess'
           },
           {
             key: 'coc-convert',
-            label: 'CoC7.Convert'
+            label: 'Cd100.Convert'
           },
           {
             key: 'coc-no-convert',
-            label: 'CoC7.NoConvert'
+            label: 'Cd100.NoConvert'
           }
         ]
         context.sourceOptions = [
           {
             key: '',
-            label: 'CoC7.ImportActorItemsNone'
+            label: 'Cd100.ImportActorItemsNone'
           },
           {
             key: 'i',
-            label: 'CoC7.ImportActorItemsItem'
+            label: 'Cd100.ImportActorItemsItem'
           },
           {
             key: 'iwms',
-            label: 'CoC7.ImportActorItemsItemWorldModuleSystem'
+            label: 'Cd100.ImportActorItemsItemWorldModuleSystem'
           },
           {
             key: 'wmis',
-            label: 'CoC7.ImportActorItemsWorldModuleItemSystem'
+            label: 'Cd100.ImportActorItemsWorldModuleItemSystem'
           }
         ]
         break
@@ -129,21 +129,21 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
         context.buttons = [{
           type: 'submit',
           action: 'close',
-          label: 'CoC7.Cancel',
+          label: 'Cd100.Cancel',
           icon: 'fa-solid fa-times'
         }]
         if (['npc', 'creature'].includes(this.coc7Config.importType)) {
           context.buttons.push({
             type: 'submit',
             action: 'getExampleNow',
-            label: 'CoC7.getTheExample',
+            label: 'Cd100.getTheExample',
             icon: 'fa-solid fa-info-circle'
           })
         }
         context.buttons.push({
           type: 'submit',
           action: 'import',
-          label: 'CoC7.Import',
+          label: 'Cd100.Import',
           icon: 'fa-solid fa-file-import'
         })
         break
@@ -180,14 +180,14 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
           } catch (e) {
             application.coc7Config.characterJSON = {}
             const prompt = application.element.querySelector('#coc-prompt')
-            prompt.innerHTML = game.i18n.localize('CoC7.TextFieldInvalidJSON')
+            prompt.innerHTML = game.i18n.localize('Cd100.TextFieldInvalidJSON')
             prompt.classList.add('warning')
             return
           }
           const personalDetails = application.coc7Config.characterJSON?.Investigator?.PersonalDetails
           if (!personalDetails) {
             application.coc7Config.characterJSON = {}
-            ui.notifications.error('CoC7.DholeHouseInvalidActor', { localize: true })
+            ui.notifications.error('Cd100.DholeHouseInvalidActor', { localize: true })
             return
           }
           application.render({ force: true })
@@ -200,7 +200,7 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
       pastedData.addEventListener('keyup', (event) => {
         const prompt = this.element.querySelector('#coc-prompt')
         if (event.currentTarget.value.match(/[\udbc0-\udbfe][\udc00-\udfff]/)) {
-          prompt.innerHTML = game.i18n.localize('CoC7.TextFieldInvalidCharacters')
+          prompt.innerHTML = game.i18n.localize('Cd100.TextFieldInvalidCharacters')
           prompt.classList.add('warning')
         } else {
           prompt.innerHTML = prompt.dataset.text
@@ -222,9 +222,9 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
     switch (event.submitter.dataset.action) {
       case 'getExampleNow':
         {
-          const content = CoC7ActorImporterRegExp.getExampleText(this.coc7Config.language)
+          const content = Cd100ActorImporterRegExp.getExampleText(this.coc7Config.language)
           game.clipboard.copyPlainText(content).then(() => {
-            ui.notifications.info('CoC7.Copied', { localize: true, console: false })
+            ui.notifications.info('Cd100.Copied', { localize: true, console: false })
           })
         }
         break
@@ -234,13 +234,13 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
         this.coc7Config.source = formData.object.source
         if (this.coc7Config.importType === 'dholehouse' && typeof this.coc7Config.characterJSON?.Investigator?.PersonalDetails !== 'undefined') {
           form.style.display = 'none'
-          const character = await CoC7DholeHouseActorImporter.createNPCFromDholeHouse(this.coc7Config.characterJSON, { source: this.coc7Config.source })
+          const character = await Cd100DholeHouseActorImporter.createNPCFromDholeHouse(this.coc7Config.characterJSON, { source: this.coc7Config.source })
           if (character !== false) {
-            if (CONFIG.debug.CoC7Importer) {
+            if (CONFIG.debug.Cd100Importer) {
               console.debug('character:', character)
             }
             /* // FoundryVTT V12 */
-            ui.notifications.info(game.i18n.format('CoC7.ActorImported', {
+            ui.notifications.info(game.i18n.format('Cd100.ActorImported', {
               actorType: game.i18n.localize('TYPES.Actor.character'),
               actorName: character.name
             }), { console: false })
@@ -251,7 +251,7 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
           }
         } else if (this.coc7Config.characterData !== '') {
           this.close()
-          CoC7ActorImporterDialog.importActor({
+          Cd100ActorImporterDialog.importActor({
             convertFrom6E: this.coc7Config.convert6E,
             entity: this.coc7Config.importType,
             lang: this.coc7Config.language,
@@ -277,14 +277,14 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
     if (inputs.text[inputs.text.length] !== '.') {
       inputs.text += '.' // Add a dot a the end to help the regex find the end
     }
-    const actor = new CoC7ActorImporter()
+    const actor = new Cd100ActorImporter()
     const createdActor = await actor.createActor(inputs)
     // Actor created, Notify the user and show the sheet.
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.debug('createdActor:', createdActor)
     }
     /* // FoundryVTT V12 */
-    ui.notifications.info(game.i18n.format('CoC7.ActorImported', {
+    ui.notifications.info(game.i18n.format('Cd100.ActorImported', {
       actorType: game.i18n.localize('TYPES.Actor.' + createdActor.type),
       actorName: createdActor.name
     }), { console: false })
@@ -317,19 +317,19 @@ export default class CoC7ActorImporterDialog extends foundry.applications.api.Ha
    * @param {string} options.source
    */
   static async create ({ characterData = '', convert6E = 'coc-guess', importType = 'npc', language = null, source = 'iwms' } = {}) {
-    new CoC7ActorImporterDialog({}, {}, {
+    new Cd100ActorImporterDialog({}, {}, {
       characterData,
       characterJSON: {},
       convert6E,
       importType,
-      language: CoC7ActorImporterRegExp.checkLanguage(language),
+      language: Cd100ActorImporterRegExp.checkLanguage(language),
       source
     }).render({ force: true })
   }
 }
 
 Hooks.once('ready', () => {
-  if (game.modules.get('CoC7-Importer-Tests')?.active) {
-    game.CoC7.actorImporter = CoC7ActorImporter
+  if (game.modules.get('Cd100-Importer-Tests')?.active) {
+    game.Cd100.actorImporter = Cd100ActorImporter
   }
 })

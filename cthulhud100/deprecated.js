@@ -1,21 +1,21 @@
 /* global ActiveEffect CONFIG DragDrop FilePicker foundry fromUuid game Hooks SceneNavigation */
 import { FOLDER_ID } from './constants.js'
-import CoC7CloseDocumentSheetConfig from './hooks/close-document-sheet-config.js'
-import CoC7CloseSettingsConfig from './hooks/close-settings-config.js'
-import CoC7GetChatLogEntryContext from './hooks/get-chat-log-entry-context.js'
-import CoC7GetJournalSheetHeaderButtons from './hooks/get-journal-sheet-header-buttons.js'
-import CoC7GetMacroConfigHeaderButtons from './hooks/get-macro-config-header-buttons.js'
-import CoC7GetPlaylistConfigHeaderButtons from './hooks/get-playlist-config-header-buttons.js'
-import CoC7GetRollTableConfigHeaderButtons from './hooks/get-roll-table-config-header-buttons.js'
-import CoC7GetSceneConfigHeaderButtons from './hooks/get-scene-config-header-buttons.js'
-import CoC7RenderChatMessage from './hooks/render-chat-message.js'
-import CoC7RenderCoC7DirectoryPicker from './hooks/render-coc7-directory-picker.js'
-import CoC7RenderDialog from './hooks/render-dialog.js'
-import CoC7RenderJournalSheet from './hooks/render-journal-sheet.js'
-import CoC7RenderJournalTextPageSheet from './hooks/render-journal-text-page-sheet.js'
-import CoC7RenderPause from './hooks/render-pause.js'
-import CoC7RenderPlayerList from './hooks/render-player-list.js'
-import CoC7RenderRegionBehaviorConfig from './hooks/render-region-behavior-config.js'
+import Cd100CloseDocumentSheetConfig from './hooks/close-document-sheet-config.js'
+import Cd100CloseSettingsConfig from './hooks/close-settings-config.js'
+import Cd100GetChatLogEntryContext from './hooks/get-chat-log-entry-context.js'
+import Cd100GetJournalSheetHeaderButtons from './hooks/get-journal-sheet-header-buttons.js'
+import Cd100GetMacroConfigHeaderButtons from './hooks/get-macro-config-header-buttons.js'
+import Cd100GetPlaylistConfigHeaderButtons from './hooks/get-playlist-config-header-buttons.js'
+import Cd100GetRollTableConfigHeaderButtons from './hooks/get-roll-table-config-header-buttons.js'
+import Cd100GetSceneConfigHeaderButtons from './hooks/get-scene-config-header-buttons.js'
+import Cd100RenderChatMessage from './hooks/render-chat-message.js'
+import Cd100RenderCd100DirectoryPicker from './hooks/render-coc7-directory-picker.js'
+import Cd100RenderDialog from './hooks/render-dialog.js'
+import Cd100RenderJournalSheet from './hooks/render-journal-sheet.js'
+import Cd100RenderJournalTextPageSheet from './hooks/render-journal-text-page-sheet.js'
+import Cd100RenderPause from './hooks/render-pause.js'
+import Cd100RenderPlayerList from './hooks/render-player-list.js'
+import Cd100RenderRegionBehaviorConfig from './hooks/render-region-behavior-config.js'
 
 class ActorAppV2DragDrop {
   #sheet
@@ -138,10 +138,10 @@ class DeprecatedWarningCoCID {
   static async documentsFromWorld ({ cocidRegExp, type, lang = game.i18n.lang, era = false, langFallback = true, progressBar = 0 } = {}) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.documentsFromWorld',
-      now: 'game.CoC7.cocid.fromCoCIDRegexAllMixed',
+      now: 'game.Cd100.cocid.fromCoCIDRegexAllMixed',
       until: 15
     })
-    return game.CoC7.cocid.fromCoCIDRegexAllMixed({ cocidRegExp, type, lang, era, scope: 'world', langFallback })
+    return game.Cd100.cocid.fromCoCIDRegexAllMixed({ cocidRegExp, type, lang, era, scope: 'world', langFallback })
   }
 
   /**
@@ -151,10 +151,10 @@ class DeprecatedWarningCoCID {
   static async documentsFromCompendia ({ cocidRegExp, type, lang = game.i18n.lang, era = false, langFallback = true, progressBar = 0 } = {}) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.documentsFromCompendia',
-      now: 'game.CoC7.cocid.fromCoCIDRegexAllMixed',
+      now: 'game.Cd100.cocid.fromCoCIDRegexAllMixed',
       until: 15
     })
-    return game.CoC7.cocid.fromCoCIDRegexAllMixed({ cocidRegExp, type, lang, era, scope: 'compendiums', langFallback })
+    return game.Cd100.cocid.fromCoCIDRegexAllMixed({ cocidRegExp, type, lang, era, scope: 'compendiums', langFallback })
   }
 
   /**
@@ -164,10 +164,10 @@ class DeprecatedWarningCoCID {
   static async eraToggle (document, era) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.eraToggle',
-      now: 'game.CoC7.cocid.eraToggle',
+      now: 'game.Cd100.cocid.eraToggle',
       until: 15
     })
-    return game.CoC7.cocid.eraToggle(document, era)
+    return game.Cd100.cocid.eraToggle(document, era)
   }
 
   /**
@@ -177,10 +177,10 @@ class DeprecatedWarningCoCID {
   static async expandItemArray ({ itemList, lang = game.i18n.lang, era = true, langFallback = true, showLoading = false } = {}) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.expandItemArray',
-      now: 'game.CoC7.cocid.expandItemArray',
+      now: 'game.Cd100.cocid.expandItemArray',
       until: 15
     })
-    return game.CoC7.cocid.expandItemArray({ itemList, lang, era, langFallback, showLoading })
+    return game.Cd100.cocid.expandItemArray({ itemList, lang, era, langFallback, showLoading })
   }
 
   /**
@@ -190,10 +190,10 @@ class DeprecatedWarningCoCID {
   static fromCoCID (cocid, lang = game.i18n.lang, era = true, langFallback = true) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.fromCoCID',
-      now: 'game.CoC7.cocid.fromCoCID',
+      now: 'game.Cd100.cocid.fromCoCID',
       until: 15
     })
-    return game.CoC7.cocid.fromCoCID(cocid, lang, era, langFallback)
+    return game.Cd100.cocid.fromCoCID(cocid, lang, era, langFallback)
   }
 
   /**
@@ -203,10 +203,10 @@ class DeprecatedWarningCoCID {
   static async fromCoCIDAll ({ cocid, lang = game.i18n.lang, era = false, scope = 'all', langFallback = true, showLoading = false } = {}) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.fromCoCIDAll',
-      now: 'game.CoC7.cocid.fromCoCIDAll',
+      now: 'game.Cd100.cocid.fromCoCIDAll',
       until: 15
     })
-    return game.CoC7.cocid.fromCoCIDAll({ cocid, lang, era, scope, langFallback, showLoading })
+    return game.Cd100.cocid.fromCoCIDAll({ cocid, lang, era, scope, langFallback, showLoading })
   }
 
   /**
@@ -216,10 +216,10 @@ class DeprecatedWarningCoCID {
   static fromCoCIDBest ({ cocid, lang = game.i18n.lang, era = true, langFallback = true, showLoading = false } = {}) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.fromCoCIDBest',
-      now: 'game.CoC7.cocid.fromCoCIDBest',
+      now: 'game.Cd100.cocid.fromCoCIDBest',
       until: 15
     })
-    return game.CoC7.cocid.fromCoCIDBest({ cocid, lang, era, langFallback, showLoading })
+    return game.Cd100.cocid.fromCoCIDBest({ cocid, lang, era, langFallback, showLoading })
   }
 
   /**
@@ -229,10 +229,10 @@ class DeprecatedWarningCoCID {
   static findCocIdInList (cocid, list) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.findCocIdInList',
-      now: 'game.CoC7.cocid.findCocIdInList',
+      now: 'game.Cd100.cocid.findCocIdInList',
       until: 15
     })
-    return game.CoC7.cocid.findCocIdInList(cocid, list)
+    return game.Cd100.cocid.findCocIdInList(cocid, list)
   }
 
   /**
@@ -242,10 +242,10 @@ class DeprecatedWarningCoCID {
   static async fromCoCIDRegexBest ({ cocidRegExp, type, lang = game.i18n.lang, era = true, langFallback = true, showLoading = false } = {}) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.fromCoCIDRegexBest',
-      now: 'game.CoC7.cocid.fromCoCIDRegexBest',
+      now: 'game.Cd100.cocid.fromCoCIDRegexBest',
       until: 15
     })
-    return game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp, type, lang, era, langFallback, showLoading })
+    return game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp, type, lang, era, langFallback, showLoading })
   }
 
   /**
@@ -255,10 +255,10 @@ class DeprecatedWarningCoCID {
   static getPrefix (document) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.getPrefix',
-      now: 'game.CoC7.cocid.getPrefix',
+      now: 'game.Cd100.cocid.getPrefix',
       until: 15
     })
-    return game.CoC7.cocid.getPrefix(document)
+    return game.Cd100.cocid.getPrefix(document)
   }
 
   /**
@@ -268,10 +268,10 @@ class DeprecatedWarningCoCID {
   static guessGroupFromDocument (document) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.guessGroupFromDocument',
-      now: 'game.CoC7.cocid.guessGroupFromDocument',
+      now: 'game.Cd100.cocid.guessGroupFromDocument',
       until: 15
     })
-    return game.CoC7.cocid.guessGroupFromDocument(document)
+    return game.Cd100.cocid.guessGroupFromDocument(document)
   }
 
   /**
@@ -281,10 +281,10 @@ class DeprecatedWarningCoCID {
   static guessGroupFromKey (document) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.guessGroupFromKey',
-      now: 'game.CoC7.cocid.guessGroupFromKey',
+      now: 'game.Cd100.cocid.guessGroupFromKey',
       until: 15
     })
-    return game.CoC7.cocid.guessGroupFromKey(document)
+    return game.Cd100.cocid.guessGroupFromKey(document)
   }
 
   /**
@@ -294,10 +294,10 @@ class DeprecatedWarningCoCID {
   static guessId (document) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.guessId',
-      now: 'game.CoC7.cocid.guessId',
+      now: 'game.Cd100.cocid.guessId',
       until: 15
     })
-    return game.CoC7.cocid.guessId(document)
+    return game.Cd100.cocid.guessId(document)
   }
 
   /**
@@ -307,20 +307,20 @@ class DeprecatedWarningCoCID {
   static makeGroupRegEx (document) {
     deprecated.warningLogger({
       was: 'game.system.api.cocid.makeGroupRegEx',
-      now: 'game.CoC7.cocid.makeGroupRegEx',
+      now: 'game.Cd100.cocid.makeGroupRegEx',
       until: 15
     })
-    return game.CoC7.cocid.makeGroupRegEx(document)
+    return game.Cd100.cocid.makeGroupRegEx(document)
   }
 }
 
-class DeprecatedWarningCoC7DamageCard {
+class DeprecatedWarningCd100DamageCard {
   /**
    * @inheritdoc
    * @deprecated No replacement
    */
   static get defaultOptions () { // eslint-disable-line getter-return
-    deprecated.noLongerAvailable({ was: 'game.CoC7.cards.CoC7DamageCard.defaultOptions()' })
+    deprecated.noLongerAvailable({ was: 'game.Cd100.cards.Cd100DamageCard.defaultOptions()' })
   }
 
   /**
@@ -329,7 +329,7 @@ class DeprecatedWarningCoC7DamageCard {
    * @param {jQuery} html
    */
   static async bindListeners (html) {
-    deprecated.noLongerAvailable({ was: 'game.CoC7.cards.CoC7DamageCard.bindListeners(?)' })
+    deprecated.noLongerAvailable({ was: 'game.Cd100.cards.Cd100DamageCard.bindListeners(?)' })
   }
 
   /**
@@ -338,7 +338,7 @@ class DeprecatedWarningCoC7DamageCard {
    * @param {string} messageId
    */
   static async fromMessageId (messageId) {
-    deprecated.noLongerAvailable({ was: 'game.CoC7.cards.CoC7DamageCard.fromMessageId(?)' })
+    deprecated.noLongerAvailable({ was: 'game.Cd100.cards.Cd100DamageCard.fromMessageId(?)' })
   }
 
   /**
@@ -347,7 +347,7 @@ class DeprecatedWarningCoC7DamageCard {
    * @param {object} message
    */
   static async fromMessage (message) {
-    deprecated.noLongerAvailable({ was: 'game.CoC7.cards.CoC7DamageCard.fromMessage(?)' })
+    deprecated.noLongerAvailable({ was: 'game.Cd100.cards.Cd100DamageCard.fromMessage(?)' })
   }
 
   /**
@@ -356,7 +356,7 @@ class DeprecatedWarningCoC7DamageCard {
    * @param {HtmlElement} card
    */
   static async fromHTMLCardElement (card) {
-    deprecated.noLongerAvailable({ was: 'game.CoC7.cards.CoC7DamageCard.fromHTMLCardElement(?)' })
+    deprecated.noLongerAvailable({ was: 'game.Cd100.cards.Cd100DamageCard.fromHTMLCardElement(?)' })
   }
 
   /**
@@ -365,7 +365,7 @@ class DeprecatedWarningCoC7DamageCard {
    * @param {object} data
    */
   static async fromData (data) {
-    deprecated.noLongerAvailable({ was: 'game.CoC7.cards.CoC7DamageCard.fromData(?)' })
+    deprecated.noLongerAvailable({ was: 'game.Cd100.cards.Cd100DamageCard.fromData(?)' })
   }
 }
 
@@ -509,22 +509,22 @@ export default class deprecated {
    */
   static init () {
     if (game.release.generation === 12) {
-      Hooks.on('closeDocumentSheetConfig', CoC7CloseDocumentSheetConfig)
-      Hooks.on('closeSettingsConfig', CoC7CloseSettingsConfig)
-      Hooks.on('getChatLogEntryContext', CoC7GetChatLogEntryContext)
-      Hooks.on('getJournalSheetHeaderButtons', CoC7GetJournalSheetHeaderButtons)
-      Hooks.on('getMacroConfigHeaderButtons', CoC7GetMacroConfigHeaderButtons)
-      Hooks.on('getPlaylistConfigHeaderButtons', CoC7GetPlaylistConfigHeaderButtons)
-      Hooks.on('getRollTableConfigHeaderButtons', CoC7GetRollTableConfigHeaderButtons)
-      Hooks.on('getSceneConfigHeaderButtons', CoC7GetSceneConfigHeaderButtons)
-      Hooks.on('renderChatMessage', CoC7RenderChatMessage)
-      Hooks.on('renderCoC7DirectoryPicker', CoC7RenderCoC7DirectoryPicker)
-      Hooks.on('renderDialog', CoC7RenderDialog)
-      Hooks.on('renderJournalSheet', CoC7RenderJournalSheet)
-      Hooks.on('renderJournalTextPageSheet', CoC7RenderJournalTextPageSheet)
-      Hooks.on('renderPause', CoC7RenderPause)
-      Hooks.on('renderPlayerList', CoC7RenderPlayerList)
-      Hooks.on('renderRegionBehaviorConfig', CoC7RenderRegionBehaviorConfig)
+      Hooks.on('closeDocumentSheetConfig', Cd100CloseDocumentSheetConfig)
+      Hooks.on('closeSettingsConfig', Cd100CloseSettingsConfig)
+      Hooks.on('getChatLogEntryContext', Cd100GetChatLogEntryContext)
+      Hooks.on('getJournalSheetHeaderButtons', Cd100GetJournalSheetHeaderButtons)
+      Hooks.on('getMacroConfigHeaderButtons', Cd100GetMacroConfigHeaderButtons)
+      Hooks.on('getPlaylistConfigHeaderButtons', Cd100GetPlaylistConfigHeaderButtons)
+      Hooks.on('getRollTableConfigHeaderButtons', Cd100GetRollTableConfigHeaderButtons)
+      Hooks.on('getSceneConfigHeaderButtons', Cd100GetSceneConfigHeaderButtons)
+      Hooks.on('renderChatMessage', Cd100RenderChatMessage)
+      Hooks.on('renderCd100DirectoryPicker', Cd100RenderCd100DirectoryPicker)
+      Hooks.on('renderDialog', Cd100RenderDialog)
+      Hooks.on('renderJournalSheet', Cd100RenderJournalSheet)
+      Hooks.on('renderJournalTextPageSheet', Cd100RenderJournalTextPageSheet)
+      Hooks.on('renderPause', Cd100RenderPause)
+      Hooks.on('renderPlayerList', Cd100RenderPlayerList)
+      Hooks.on('renderRegionBehaviorConfig', Cd100RenderRegionBehaviorConfig)
     }
   }
 
@@ -564,7 +564,7 @@ export default class deprecated {
       foundry.utils.setProperty(game.i18n.translations, 'TABLE.ACTIONS.DrawResult', game.i18n.localize('TABLE.Roll'))
       foundry.utils.setProperty(game.i18n.translations, 'TABLE.ACTIONS.ResetResults', game.i18n.localize('TABLE.Reset'))
     }
-    foundry.utils.setProperty(game.CoC7, 'cards.CoC7DamageCard', DeprecatedWarningCoC7DamageCard)
+    foundry.utils.setProperty(game.Cd100, 'cards.Cd100DamageCard', DeprecatedWarningCd100DamageCard)
   }
 
   /**

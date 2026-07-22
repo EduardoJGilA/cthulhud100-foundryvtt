@@ -26,6 +26,6 @@ Este sistema implementa el reglamento **Cthulhu d100** (Three Fourteen Games, 20
 
 ## Licencia y Atribución
 
-- **Licencia de Código:** GPL-3.0 (derivado de CoC7-FoundryVTT © Miskatonic Investigative Society).
+- **Licencia de Código:** GPL-3.0 (derivado de Cd100-FoundryVTT © Miskatonic Investigative Society).
 - **Reglamento:** Cthulhu d100 © 2011 Three Fourteen Games, usado sin ánimo de lucro al amparo del permiso del manual.
 - **Sistema Base:** GORE © Daniel Proctor, OGL.

@@ -1,7 +1,7 @@
 <section class="tab details flexcol scrollable {{tab.cssClass}}" data-group="primary" data-tab="details">
   {{#if tabs.details}}
     <fieldset class="flexrow">
-      <legend>{{localize 'CoC7.OccupationType'}}</legend>
+      <legend>{{localize 'Cd100.OccupationType'}}</legend>
       <div class="toggle-row flexrow">
         <div class="toggle-attributes flexrow" data-set="type">
           {{#each _type as |row|}}
@@ -11,7 +11,7 @@
       </div>
     </fieldset>
     <fieldset class="flexcol">
-      <legend>{{localize 'CoC7.OccupationPoints'}}</legend>
+      <legend>{{localize 'Cd100.OccupationPoints'}}</legend>
       {{#each _occupationSkillPoints as |row|}}
         <div class="form-group toggle-row flexrow" style="align-items: baseline;">
           <div class="toggle-attributes flexrow" data-set="occupationSkillPoints.{{row.id}}">
@@ -19,9 +19,9 @@
           </div>
           {{#if row.selected}}
             <div class="toggle-attributes flexrow" data-set="occupationSkillPoints.{{row.id}}">
-              <button class="toggle-switch{{#if row.optional}} switched-on{{/if}}" data-property="optional" type="button">{{localize 'CoC7.Optional'}}</button>
+              <button class="toggle-switch{{#if row.optional}} switched-on{{/if}}" data-property="optional" type="button">{{localize 'Cd100.Optional'}}</button>
             </div>
-            <input type="number" name="system.occupationSkillPoints.{{row.id}}.multiplier" value="{{row.multiplier}}" placeholder="{{localize 'CoC7.Multiplier'}}" />
+            <input type="number" name="system.occupationSkillPoints.{{row.id}}.multiplier" value="{{row.multiplier}}" placeholder="{{localize 'Cd100.Multiplier'}}" />
           {{else}}
             <div class="input-replacement-gap">&nbsp;</div>
           {{/if}}
@@ -29,10 +29,10 @@
       {{/each}}
     </fieldset>
     <fieldset class="flexrow">
-      <legend>{{localize 'CoC7.CoCIDFlag.keys.i.skill.credit-rating'}}</legend>
+      <legend>{{localize 'Cd100.CoCIDFlag.keys.i.skill.credit-rating'}}</legend>
       <div class="form-group flexrow">
-        <input type="number" name="system.creditRating.min" value="{{document.system.creditRating.min}}" placeholder="{{localize 'CoC7.Minimum'}}" />
-        <input type="number" name="system.creditRating.max" value="{{document.system.creditRating.max}}" placeholder="{{localize 'CoC7.Maximum'}}" />
+        <input type="number" name="system.creditRating.min" value="{{document.system.creditRating.min}}" placeholder="{{localize 'Cd100.Minimum'}}" />
+        <input type="number" name="system.creditRating.max" value="{{document.system.creditRating.max}}" placeholder="{{localize 'Cd100.Maximum'}}" />
       </div>
     </fieldset>
   {{/if}}

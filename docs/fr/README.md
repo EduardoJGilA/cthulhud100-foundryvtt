@@ -18,7 +18,7 @@
   * [protagoniste](#protagoniste) (npc)
   * [véhicule](#vehicule) (vehicle)
 
-_Cette documentation repose sur la dernière version du système CoC7 sur Foundry VTT v13_
+_Cette documentation repose sur la dernière version du système Cd100 sur Foundry VTT v13_
 
 * [Introduction aux règles](#introduction-aux-regles):
   * [1. Ambiance générale](#1-ambiance-generale)
@@ -31,7 +31,7 @@ _Cette documentation repose sur la dernière version du système CoC7 sur Foundr
 
 **Rappels Foundry VTT**
 
-* CoC7 est un **système** de jeu.
+* Cd100 est un **système** de jeu.
 * Call of Cthulhu 7th French est un **module**, apportant des modifications au système.
 * Votre partie est un **monde** dans lequel vous activerez ou non les modules que vous avez installés sur Foundry VTT.
 * le **token** est la représentation de votre personnage sur une scène.
@@ -254,7 +254,7 @@ Permet de créer un **lien** vers un **test** ou un **objet** pour l'envoyer ver
 * vers les tokens sélectionnés.
 * dans le chat.
 
-Voici le format: `@coc7.TYPE_OF_REQUEST[OPTIONS]{TEXT_TO_DISPLAY}`
+Voici le format: `@cd100.TYPE_OF_REQUEST[OPTIONS]{TEXT_TO_DISPLAY}`
 
 * TYPE_OF_REQUEST :
   * 'sanloss': test de SAN, si échoué, propose de réduire la SAN.
@@ -650,11 +650,11 @@ Et c'est parti !
 * Choisissez _character_.
 * Donnez lui un nom puis _Créer acteur_.
 * Vérifiez bien d'être (c'est au Gardien de la faire) en mode **création**  (outils du Gardien).
-* Allez dans le menu Compendium  de Foundry, dossier _CoC7-fr_, compendium _.création_, dossier _.Création_.
+* Allez dans le menu Compendium  de Foundry, dossier _Cd100-fr_, compendium _.création_, dossier _.Création_.
 * Choisissez **votre époque et votre mode de tirage** (par exemple: Investigateur/trice 20's Aléatoire), et faîtes-le glisser sur votre fiche de personnage encore vierge.
 * _La magie opère :)_
 * Lancez les dés pour les caracs puis Valider.
-* Retournez dans le menu Compendium  de Foundry, dossier _CoC7-fr_, compendium _.création_, dossier _Occupations_.
+* Retournez dans le menu Compendium  de Foundry, dossier _Cd100-fr_, compendium _.création_, dossier _Occupations_.
 * Choisissez votre **occupation** et faîtes-la glisser sur votre fiche.
 * Choisissez les **compétences**, répondez aux **choix** proposés.
 * Cliquez sur l'onglet  dans le ruban bleu en haut à gauche de la fiche.
@@ -671,7 +671,7 @@ Et c'est parti !
 * Donnez lui un nom puis _Créer acteur_.
 * Vérifiez bien d'être (c'est au Gardien de la faire) en mode **création**  ET en mode **développement** .
 * Ben....... remplissez toutes les valeurs à la main.
-* Pour les compétences, allez dans le menu Compendium  de Foundry, dossier _CoC7-fr_, compendium _.création_, dossier _Compétences_ et faîtes-les glisser une par une sur votre fiche.
+* Pour les compétences, allez dans le menu Compendium  de Foundry, dossier _Cd100-fr_, compendium _.création_, dossier _Compétences_ et faîtes-les glisser une par une sur votre fiche.
 * Mettez les valeurs.
 * Et voilà.
 

@@ -1,13 +1,13 @@
 /* global canvas CONFIG ContextMenu DragDrop foundry fromUuid game TextEditor TokenDocument ui */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ChaseParticipant from '../chase/participant.js'
-import CoC7ChaseParticipantDialog from '../../apps/chase-participant-dialog.js'
-import CoC7DicePool from '../../apps/dice-pool.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
-import CoC7RollNormalize from '../../apps/roll-normalize.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ChaseParticipant from '../chase/participant.js'
+import Cd100ChaseParticipantDialog from '../../apps/chase-participant-dialog.js'
+import Cd100DicePool from '../../apps/dice-pool.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100RollNormalize from '../../apps/roll-normalize.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemChaseSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     classes: ['chase'],
     position: {
@@ -48,18 +48,18 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
     const tabs = {
       setup: {
         icon: '',
-        label: 'CoC7.ChaseSetup'
+        label: 'Cd100.ChaseSetup'
       },
       participants: {
         icon: '',
-        label: 'CoC7.ParticipantsList'
+        label: 'Cd100.ParticipantsList'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -68,7 +68,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
     context.locations = await context.document.system.allLocations()
     const participants = await context.document.system.allParticipants()
     context.participants = participants.all
-    context.participants.sort(CoC7Utilities.sortByInitiative)
+    context.participants.sort(Cd100Utilities.sortByInitiative)
     const lastOffset = context.locations.length - 1
     for (const offset in context.locations) {
       if (context.locations[offset].participants.length) {
@@ -77,7 +77,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
           context.locations[offset].participants[offset2] = context.participants[offset3]
           context.participants[offset3].setFirstLast(Number(offset) === 0, Number(offset) === lastOffset)
         }
-        context.locations[offset].participants.sort(CoC7Utilities.sortByRollInitiative)
+        context.locations[offset].participants.sort(Cd100Utilities.sortByRollInitiative)
       }
     }
     context.isKeeper = game.user.isGM
@@ -100,11 +100,11 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
         context.activeLocation = context.document.system.activeLocation
         if (context.activeLocation) {
           context.activeLocation.title = (context.activeLocation.hasCoordinates
-            ? game.i18n.format('CoC7.LocationCoordinate', {
+            ? game.i18n.format('Cd100.LocationCoordinate', {
               x: context.activeLocation.coordinates.x,
               y: context.activeLocation.coordinates.y
             })
-            : game.i18n.localize('CoC7.DragOnCanvas'))
+            : game.i18n.localize('Cd100.DragOnCanvas'))
         }
         context.nextLocation = context.document.system.nextLocation
         context.listOptions = await CONFIG.Actor.documentClass.everyField()
@@ -338,7 +338,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
               actor = await fromUuid(participants[offset].docUuid)
             }
             const listOptions = await CONFIG.Actor.documentClass.everyField(actor)
-            participants[offset].speedCheck.score = await CoC7ChaseParticipant.getPercentValue(actor, listOptions, participants[offset].speedCheck.name)
+            participants[offset].speedCheck.score = await Cd100ChaseParticipant.getPercentValue(actor, listOptions, participants[offset].speedCheck.name)
             await this.document.update({ 'system.participants': participants })
           }
         }
@@ -452,7 +452,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
         await this.document.system.cautiousApproach(participantUuid)
         break
       case 'editParticipant':
-        CoC7ChaseParticipantDialog.create({ chaseUuid: this.document.uuid, participant: this.document.system.participants.find(p => p.uuid === participantUuid) })
+        Cd100ChaseParticipantDialog.create({ chaseUuid: this.document.uuid, participant: this.document.system.participants.find(p => p.uuid === participantUuid) })
         return
       case 'removeParticipant':
         await this.document.system.removeParticipant(participantUuid)
@@ -502,8 +502,8 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
         break
       case 'reset':
         new foundry.applications.api.DialogV2({
-          window: { title: 'CoC7.ConfirmResetChase' },
-          content: '<p>' + game.i18n.localize('CoC7.ConfirmResetChaseHint') + '</p>',
+          window: { title: 'Cd100.ConfirmResetChase' },
+          content: '<p>' + game.i18n.localize('Cd100.ConfirmResetChaseHint') + '</p>',
           buttons: [{
             action: 'cancel',
             label: 'No',
@@ -524,8 +524,8 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
       case 'cut2chase':
         if (this.document.system.allHaveSpeedRoll) {
           new foundry.applications.api.DialogV2({
-            window: { title: 'CoC7.ConfirmCut2Chase' },
-            content: '<p>' + game.i18n.localize('CoC7.ConfirmCut2ChaseHint') + '</p>',
+            window: { title: 'Cd100.ConfirmCut2Chase' },
+            content: '<p>' + game.i18n.localize('Cd100.ConfirmCut2ChaseHint') + '</p>',
             buttons: [{
               action: 'cancel',
               label: 'No',
@@ -540,7 +540,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
             }]
           }).render({ force: true })
         } else {
-          ui.notifications.warn('CoC7.NotAllHaveSpeedRoll', { localize: true })
+          ui.notifications.warn('Cd100.NotAllHaveSpeedRoll', { localize: true })
         }
         break
       case 'remove':
@@ -657,7 +657,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
           const participants = foundry.utils.duplicate(this.document.system.participants)
           const offset = participants.findIndex(l => l.uuid === uuid)
           if (offset > -1) {
-            const participant = new CoC7ChaseParticipant(participants, offset)
+            const participant = new Cd100ChaseParticipant(participants, offset)
             await participant.loadUuids()
             const listOptions = participant.listOptions
             const value = listOptions.find(row => row.name === participant.speedCheck.name)
@@ -666,7 +666,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
             if (value) {
               const config = {
                 cardTypeFixed: true,
-                cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+                cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
                 callbackUuid: this.document.uuid,
                 callbackContext: { type: 'speedCheck', participant: participants[offset].uuid },
                 actor: participant.actor,
@@ -676,30 +676,30 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
               if (value.value) {
                 switch (value.type) {
                   case 'attribs':
-                    config.rollType = CoC7RollNormalize.ROLL_TYPE.ATTRIBUTE
+                    config.rollType = Cd100RollNormalize.ROLL_TYPE.ATTRIBUTE
                     config.attribute = value.key
                     break
                   case 'characteristics':
-                    config.rollType = CoC7RollNormalize.ROLL_TYPE.CHARACTERISTIC
+                    config.rollType = Cd100RollNormalize.ROLL_TYPE.CHARACTERISTIC
                     config.characteristic = value.key
                     break
                   case 'skill':
-                    config.rollType = CoC7RollNormalize.ROLL_TYPE.SKILL
+                    config.rollType = Cd100RollNormalize.ROLL_TYPE.SKILL
                     config.itemUuid = value.uuid
                     break
                 }
-                CoC7RollNormalize.trigger(config)
+                Cd100RollNormalize.trigger(config)
               } else {
-                config.rollType = CoC7RollNormalize.ROLL_TYPE.MANUAL
+                config.rollType = Cd100RollNormalize.ROLL_TYPE.MANUAL
                 config.threshold = participants[offset].speedCheck.score
                 config.runRoll = false
-                const modified = await CoC7RollNormalize.trigger(config)
-                modified.flavor = game.i18n.format('CoC7.CheckResult', {
+                const modified = await Cd100RollNormalize.trigger(config)
+                modified.flavor = game.i18n.format('Cd100.CheckResult', {
                   name: value.name,
                   value: modified.threshold.toString() + (modified.flatThresholdModifier !== 0 ? (modified.flatThresholdModifier > 0 ? '+' : '') + modified.flatThresholdModifier.toString() : ''),
-                  difficulty: CoC7DicePool.difficultyString(modified.difficulty)
+                  difficulty: Cd100DicePool.difficultyString(modified.difficulty)
                 })
-                CoC7RollNormalize.runRoll(modified)
+                Cd100RollNormalize.runRoll(modified)
               }
             }
           }
@@ -707,8 +707,8 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
         break
       case 'restart':
         new foundry.applications.api.DialogV2({
-          window: { title: 'CoC7.ConfirmRestartChase' },
-          content: '<p>' + game.i18n.localize('CoC7.ConfirmRestartChaseHint') + '</p>',
+          window: { title: 'Cd100.ConfirmRestartChase' },
+          content: '<p>' + game.i18n.localize('Cd100.ConfirmRestartChaseHint') + '</p>',
           buttons: [{
             action: 'cancel',
             label: 'No',
@@ -727,15 +727,15 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
         {
           const location = this.document.system.locations.list.find(l => l.active)
           if (location) {
-            CoC7ChaseParticipantDialog.create({ chaseUuid: this.document.uuid, locationId: location.uuid })
+            Cd100ChaseParticipantDialog.create({ chaseUuid: this.document.uuid, locationId: location.uuid })
           }
         }
         break
       case 'nextRound':
         if (await this.document.system.nextActiveParticipant()) {
           new foundry.applications.api.DialogV2({
-            window: { title: 'CoC7.ConfirmNextChaseRound' },
-            content: '<p>' + game.i18n.localize('CoC7.ConfirmNextChaseRoundHint') + '</p>',
+            window: { title: 'Cd100.ConfirmNextChaseRound' },
+            content: '<p>' + game.i18n.localize('Cd100.ConfirmNextChaseRoundHint') + '</p>',
             buttons: [{
               action: 'cancel',
               label: 'No',
@@ -772,7 +772,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
     const dragIcon = event.currentTarget.querySelector('.pin-image')
     event.dataTransfer.setDragImage(dragIcon, 0, dragIcon.height)
     const data = {
-      type: 'CoC7Locator',
+      type: 'Cd100Locator',
       appId: this.id,
       callback: 'locatorDropped',
       locationId: this.document.system.activeLocation.uuid
@@ -786,7 +786,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
    */
   async _onDragStartParticipant (event) {
     const data = {
-      type: 'CoC7MoveLocation',
+      type: 'Cd100MoveLocation',
       id: event.currentTarget.dataset.uuid
     }
     event.dataTransfer.setData('text/plain', JSON.stringify(data))
@@ -800,7 +800,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
     const locationId = event.currentTarget.dataset.locationId
     const dataString = event.dataTransfer.getData('text/plain')
     const dropData = JSON.parse(dataString)
-    if (dropData?.type === 'CoC7MoveLocation') {
+    if (dropData?.type === 'Cd100MoveLocation') {
       await this.document.system.moveParticipantToLocation(dropData.id, locationId)
     }
   }
@@ -816,7 +816,7 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
       const dataString = event.dataTransfer.getData('text/plain')
       data.dropData = JSON.parse(dataString)
     }
-    CoC7ChaseParticipantDialog.create(data)
+    Cd100ChaseParticipantDialog.create(data)
   }
 
   /**
@@ -928,8 +928,8 @@ export default class CoC7ModelsItemChaseSheet extends CoC7ModelsItemGlobalSheet 
       } else {
         currentWidth = Number(context.document.sheet.element.style.width.replace('px', ''))
       }
-      const minWidth = CoC7Utilities.remToPx(40)
-      const participantWidth = CoC7Utilities.remToPx(context.document.system.participants.length * 12.25 + (context.document.system.participants.length - 1) * 0.5 + 1 + 1) // initiative-block each + each gap + padding on tab
+      const minWidth = Cd100Utilities.remToPx(40)
+      const participantWidth = Cd100Utilities.remToPx(context.document.system.participants.length * 12.25 + (context.document.system.participants.length - 1) * 0.5 + 1 + 1) // initiative-block each + each gap + padding on tab
       const maxWidth = document.body.clientWidth
       const newWidth = Math.min(maxWidth, Math.max(currentWidth, minWidth, participantWidth))
       if (typeof options.position?.width !== 'undefined') {

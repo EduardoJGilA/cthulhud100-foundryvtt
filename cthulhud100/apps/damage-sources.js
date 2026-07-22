@@ -4,7 +4,7 @@
  * Each of these is a small rule that is easy to misremember at the table, so
  * they live here as data rather than in the head of whoever is running the game.
  */
-export default class CoC7DamageSources {
+export default class Cd100DamageSources {
   /**
    * Corrosives, by strength. Damage is per turn.
    * @returns {object}
@@ -24,9 +24,9 @@ export default class CoC7DamageSources {
   static get fire () {
     return {
       candle: { damage: '1', note: '' },
-      torch: { damage: '1D6', note: 'CoC7.Fire.LuckOrClothesCatch' },
-      bonfire: { damage: '1D6+2', note: 'CoC7.Fire.ClothesAndHairCatch' },
-      burningRoom: { damage: '1D6+2', note: 'CoC7.Fire.LuckOrSuffocate' },
+      torch: { damage: '1D6', note: 'Cd100.Fire.LuckOrClothesCatch' },
+      bonfire: { damage: '1D6+2', note: 'Cd100.Fire.ClothesAndHairCatch' },
+      burningRoom: { damage: '1D6+2', note: 'Cd100.Fire.LuckOrSuffocate' },
       lava: { damage: '3D6', note: '' }
     }
   }

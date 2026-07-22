@@ -29,7 +29,7 @@ Haz clic en la pestaña Objetos, luego en Crear objeto, asígnale un nombre, por
 
 En la pestaña de Descripción, para establecer la descripción, haz clic en el botón  para obtener un editor.
 
-En la pestaña de Detalles, haz clic en el  en Secciones de transfondo para agregar cualquier sección que requieras del paso Crear un trasfondo de la creación del investigador. Haz clic en la pestaña Compendios, luego, bajo el encabezado Objetos, abre el objeto Ejemplos de objetos (CoC7) y arrastra [_Puñetazo_] a la configuración.
+En la pestaña de Detalles, haz clic en el  en Secciones de transfondo para agregar cualquier sección que requieras del paso Crear un trasfondo de la creación del investigador. Haz clic en la pestaña Compendios, luego, bajo el encabezado Objetos, abre el objeto Ejemplos de objetos (Cd100) y arrastra [_Puñetazo_] a la configuración.
 
 En la pestaña de Características, puedes personalizar cómo se tiran/compran las características del investigador.
 

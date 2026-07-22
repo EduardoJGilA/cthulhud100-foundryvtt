@@ -1,20 +1,20 @@
 /* global ChatMessage CONFIG CONST foundry fromUuid game Roll ui */
 // cSpell:words Uniki Unik
 import { FOLDER_ID } from '../constants.js'
-import CoC7ChatChaseObstacle from './chat-chase-obstacle.js'
-import CoC7ChatCombatMelee from './chat-combat-melee.js'
-import CoC7ChatCombatRanged from './chat-combat-ranged.js'
-import CoC7ChatCombinedMessage from './chat-combined-message.js'
-import CoC7ChatDamage from './chat-damage.js'
-import CoC7ChatOpposedMessage from './chat-opposed-message.js'
-import CoC7Check from './check.js'
-import CoC7ConCheck from '../apps/con-check.js'
-import CoC7SanCheckCard from '../apps/san-check-card.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ChatChaseObstacle from './chat-chase-obstacle.js'
+import Cd100ChatCombatMelee from './chat-combat-melee.js'
+import Cd100ChatCombatRanged from './chat-combat-ranged.js'
+import Cd100ChatCombinedMessage from './chat-combined-message.js'
+import Cd100ChatDamage from './chat-damage.js'
+import Cd100ChatOpposedMessage from './chat-opposed-message.js'
+import Cd100Check from './check.js'
+import Cd100ConCheck from '../apps/con-check.js'
+import Cd100SanCheckCard from '../apps/san-check-card.js'
+import Cd100Utilities from './utilities.js'
 import CoCIDBatch from './coc-id-batch.js'
 import deprecated from '../deprecated.js'
 
-export default class CoC7Updater {
+export default class Cd100Updater {
   /**
    * Check if update is needed for world including compendium for modules
    */
@@ -58,26 +58,26 @@ export default class CoC7Updater {
     if (runMigrate || Object.keys(currentModules).length > 0) {
       if (game.user.isGM) {
         new foundry.applications.api.DialogV2({
-          window: { title: 'CoC7.Migrate.Title' },
-          content: game.i18n.format(Object.keys(currentModules).length === 0 ? 'CoC7.Migrate.Message' : 'CoC7.Migrate.WithModulesMessage', {
+          window: { title: 'Cd100.Migrate.Title' },
+          content: game.i18n.format(Object.keys(currentModules).length === 0 ? 'Cd100.Migrate.Message' : 'Cd100.Migrate.WithModulesMessage', {
             version: game.system.version,
             modules: '<ul style="margin: 0"><li>' + Object.keys(currentModules).map(mod => game.modules.get(mod).title).join('</li><li>') + '</li></ul>'
           }),
           buttons: [{
             action: 'cancel',
-            label: 'CoC7.Migrate.ButtonSkip',
+            label: 'Cd100.Migrate.ButtonSkip',
             icon: 'fa-solid fa-ban'
           }, {
             action: 'ok',
-            label: 'CoC7.Migrate.ButtonUpdate',
+            label: 'Cd100.Migrate.ButtonUpdate',
             icon: 'fa-solid fa-check',
-            callback: (event, button, dialog) => CoC7Updater.update({ runMigrate, updatedModules, currentModules })
+            callback: (event, button, dialog) => Cd100Updater.update({ runMigrate, updatedModules, currentModules })
           }]
         }).render({ force: true })
       } else {
         foundry.applications.api.DialogV2.prompt({
-          window: { title: 'CoC7.Migrate.Title' },
-          content: game.i18n.format('CoC7.Migrate.GMRequired', {
+          window: { title: 'Cd100.Migrate.Title' },
+          content: game.i18n.format('Cd100.Migrate.GMRequired', {
             version: game.system.version
           }),
           rejectClose: false,
@@ -95,7 +95,7 @@ export default class CoC7Updater {
    * @param {object} options.currentModules
    */
   static async update ({ runMigrate, updatedModules, currentModules } = {}) {
-    await CoC7Updater.updateDocuments()
+    await Cd100Updater.updateDocuments()
 
     if (runMigrate) {
       // Migrate Settings if Pulp Rules is enabled turn on all rules
@@ -116,7 +116,7 @@ export default class CoC7Updater {
         game.settings.set(FOLDER_ID, 'pulpRuleLuckSecondAttack', true)
         game.settings.set(FOLDER_ID, 'pulpRuleLuckLookOutMaster', true)
       }
-      await CoC7Updater.migrateChatMessages()
+      await Cd100Updater.migrateChatMessages()
     }
 
     await CoCIDBatch.create('skill')
@@ -125,7 +125,7 @@ export default class CoC7Updater {
     game.settings.set(FOLDER_ID, 'systemUpdatedModuleVersion', settings)
     game.settings.set(FOLDER_ID, 'systemUpdateVersion', game.system.version)
 
-    ui.notifications.info('CoC7.Migrate.Complete', { localize: true, permanent: true })
+    ui.notifications.info('Cd100.Migrate.Complete', { localize: true, permanent: true })
   }
 
   /**
@@ -137,31 +137,31 @@ export default class CoC7Updater {
     console.log('PREPARE game.actors')
     // Migrate World Actors
     for (const document of game.actors.contents) {
-      CoC7Updater.migrateActorData({ document, documentUpdates, packId: '', parentUuid: '' })
+      Cd100Updater.migrateActorData({ document, documentUpdates, packId: '', parentUuid: '' })
     }
 
     console.log('PREPARE game.items')
     // Migrate World Items
     for (const document of game.items.contents) {
-      CoC7Updater.migrateItemData({ document, documentUpdates, packId: '', parentUuid: '' })
+      Cd100Updater.migrateItemData({ document, documentUpdates, packId: '', parentUuid: '' })
     }
 
     console.log('PREPARE game.macros')
     // Migrate World Macro
     for (const document of game.macros.contents) {
-      CoC7Updater.migrateMacroData({ document, documentUpdates, packId: '', parentUuid: '' })
+      Cd100Updater.migrateMacroData({ document, documentUpdates, packId: '', parentUuid: '' })
     }
 
     console.log('PREPARE game.tables')
     // Migrate World Tables
     for (const document of game.tables.contents) {
-      CoC7Updater.migrateTableData({ document, documentUpdates, packId: '', parentUuid: '' })
+      Cd100Updater.migrateTableData({ document, documentUpdates, packId: '', parentUuid: '' })
     }
 
     console.log('PREPARE game.scenes')
     // Migrate World Scenes [Token] Actors
     for (const document of game.scenes.contents) {
-      CoC7Updater.migrateSceneData({ document, documentUpdates, packId: '', parentUuid: '' })
+      Cd100Updater.migrateSceneData({ document, documentUpdates, packId: '', parentUuid: '' })
     }
 
     console.log('PREPARE game.packs')
@@ -172,19 +172,19 @@ export default class CoC7Updater {
         for (const document of documents) {
           switch (pack.metadata.type) {
             case 'Actor':
-              CoC7Updater.migrateActorData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
+              Cd100Updater.migrateActorData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
               break
             case 'Item':
-              CoC7Updater.migrateItemData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
+              Cd100Updater.migrateItemData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
               break
             case 'Macro':
-              CoC7Updater.migrateMacroData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
+              Cd100Updater.migrateMacroData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
               break
             case 'RollTable':
-              CoC7Updater.migrateTableData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
+              Cd100Updater.migrateTableData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
               break
             case 'Scene':
-              CoC7Updater.migrateSceneData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
+              Cd100Updater.migrateSceneData({ document, documentUpdates, packId: pack.collection, parentUuid: '' })
               break
           }
         }
@@ -259,14 +259,14 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static migrateActorData ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    CoC7Updater._migrateActorArtwork({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateActorSheetClasses({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateActorFlags({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateActorVehicleAttributes({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateActorBooks({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateActorArtwork({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateActorSheetClasses({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateActorFlags({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateActorVehicleAttributes({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateActorBooks({ document, documentUpdates, packId, parentUuid })
 
     for (const offset in document.items.contents ?? []) {
-      CoC7Updater.migrateItemData({ document: document.items.contents[offset], documentUpdates, packId, parentUuid: document.uuid })
+      Cd100Updater.migrateItemData({ document: document.items.contents[offset], documentUpdates, packId, parentUuid: document.uuid })
     }
   }
 
@@ -279,17 +279,17 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static migrateItemData ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    CoC7Updater._migrateItemArtwork({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateItemEmbeddedV10({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateItemSkillName({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateItemChases({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateItemSpells({ document, documentUpdates, packId, parentUuid })
-    CoC7Updater._migrateItemQuickHealer({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateItemArtwork({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateItemEmbeddedV10({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateItemSkillName({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateItemChases({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateItemSpells({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateItemQuickHealer({ document, documentUpdates, packId, parentUuid })
 
     for (const offset in document.effects?.contents ?? []) {
-      const image = String(document.effects.contents[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+      const image = String(document.effects.contents[offset].img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
       if (image) {
-        CoC7Updater.mergeEmbeddedDocuments(document.effects.contents[offset], documentUpdates, 'ActiveEffect', packId, document.uuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document.effects.contents[offset], documentUpdates, 'ActiveEffect', packId, document.uuid, {
           img: 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
@@ -305,7 +305,7 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static migrateMacroData ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    CoC7Updater._migrateMacroArtwork({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateMacroArtwork({ document, documentUpdates, packId, parentUuid })
   }
 
   /**
@@ -317,7 +317,7 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static migrateTableData ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    CoC7Updater._migrateTableArtwork({ document, documentUpdates, packId, parentUuid })
+    Cd100Updater._migrateTableArtwork({ document, documentUpdates, packId, parentUuid })
   }
 
   /**
@@ -331,8 +331,8 @@ export default class CoC7Updater {
   static migrateSceneData ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
     for (const token of document.tokens) {
       if (!token.actorLink && token.object?.actor) {
-        CoC7Updater._migrateTokenArtwork({ document: token, documentUpdates, packId, parentUuid })
-        CoC7Updater.migrateActorData({ document: token.object.actor, documentUpdates, packId, parentUuid: token.uuid })
+        Cd100Updater._migrateTokenArtwork({ document: token, documentUpdates, packId, parentUuid })
+        Cd100Updater.migrateActorData({ document: token.object.actor, documentUpdates, packId, parentUuid: token.uuid })
       }
     }
   }
@@ -346,9 +346,9 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static _migrateItemArtwork ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+    const image = String(document.img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
     if (image) {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
         img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
@@ -363,7 +363,7 @@ export default class CoC7Updater {
             if (typeof document.system.itemDocuments[offset] === 'string') {
               document.system.itemDocuments[offset] = JSON.parse(document.system.itemDocuments[offset])
             }
-            const image = String(document.system.itemDocuments[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+            const image = String(document.system.itemDocuments[offset].img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
             if (image) {
               document.system.itemDocuments[offset].img = 'systems/cthulhud100/assets/icons/' + image[1]
               changed = true
@@ -371,7 +371,7 @@ export default class CoC7Updater {
             document.system.itemDocuments[offset] = JSON.stringify(document.system.itemDocuments[offset])
           }
           if (changed) {
-            CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+            Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
               'system.itemDocuments': foundry.utils.duplicate(document.system.itemDocuments)
             })
           }
@@ -387,7 +387,7 @@ export default class CoC7Updater {
               if (typeof document.system.groups[offset2].itemDocuments[offset] === 'string') {
                 document.system.groups[offset2].itemDocuments[offset] = JSON.parse(document.system.groups[offset2].itemDocuments[offset])
               }
-              const image = String(document.system.groups[offset2].itemDocuments[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+              const image = String(document.system.groups[offset2].itemDocuments[offset].img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
               if (image) {
                 document.system.groups[offset2].itemDocuments[offset].img = 'systems/cthulhud100/assets/icons/' + image[1]
                 changed = true
@@ -396,7 +396,7 @@ export default class CoC7Updater {
             }
           }
           if (changed) {
-            CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+            Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
               'system.groups': foundry.utils.duplicate(document.system.groups)
             })
           }
@@ -433,7 +433,7 @@ export default class CoC7Updater {
             document.system.itemDocuments[offset] = JSON.stringify(document.system.itemDocuments[offset])
           }
           if (changed) {
-            CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+            Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
               'system.itemDocuments': foundry.utils.duplicate(document.system.itemDocuments)
             })
           }
@@ -458,7 +458,7 @@ export default class CoC7Updater {
             }
           }
           if (changed) {
-            CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+            Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
               'system.groups': foundry.utils.duplicate(document.system.groups)
             })
           }
@@ -484,7 +484,7 @@ export default class CoC7Updater {
         typeof document.system?.specialization?.group === 'string' ? document.system.specialization.group : (document.system?.specialization ?? '')
       )
       if (document.name !== parts.name || document.system.skillName !== parts.skillName || document.system.specialization !== parts.specialization) {
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
           name: parts.name,
           'system.skillName': parts.skillName,
           'system.specialization': parts.specialization
@@ -511,7 +511,7 @@ export default class CoC7Updater {
         }
       }
       if (changed) {
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
           'system.itemDocuments': itemDocuments
         })
       }
@@ -538,7 +538,7 @@ export default class CoC7Updater {
           }
         }
         if (changed) {
-          CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+          Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
             'system.groups': groups
           })
         }
@@ -558,7 +558,7 @@ export default class CoC7Updater {
     if (document.type === 'chase') {
       // Migrate Actor flag to dataModel field
       if (typeof document.flags?.[FOLDER_ID]?.started !== 'undefined') {
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
           'system.system.started': document.flags[FOLDER_ID].started === true,
           /* // FoundryVTT V13 */
           ['flags.' + FOLDER_ID + '.-=started']: null
@@ -584,8 +584,8 @@ export default class CoC7Updater {
               flags: {
                 [FOLDER_ID]: {
                   load: {
-                    as: 'CoC7Check',
-                    actorUuid: CoC7Utilities.oldStyleToUuid(json.actorKey),
+                    as: 'Cd100Check',
+                    actorUuid: Cd100Utilities.oldStyleToUuid(json.actorKey),
                     allowPush: json.canBePushed === 'true',
                     appliedDevelopment: json.flaggedForDevelopment === 'true',
                     cardOpen: false,
@@ -648,7 +648,7 @@ export default class CoC7Updater {
         }
       }
       if (changed) {
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
           'system.participants': participants
         })
       }
@@ -700,7 +700,7 @@ export default class CoC7Updater {
             })
           }
           if (costList.length > 0) {
-            CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+            Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
               'system.costList': costList,
               'system.costs.hitPoints': '',
               'system.costs.magicPoints': '',
@@ -724,11 +724,11 @@ export default class CoC7Updater {
    */
   static _migrateItemQuickHealer ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
     if (document.type === 'talent') {
-      if (document.name === game.i18n.localize('CoC7.quickHealer') && document.effects.size === 0) {
+      if (document.name === game.i18n.localize('Cd100.quickHealer') && document.effects.size === 0) {
         const effects = []
         if (game.release.generation < 14) {
           effects.push({
-            name: game.i18n.localize('CoC7.quickHealer'),
+            name: game.i18n.localize('Cd100.quickHealer'),
             img: 'icons/svg/aura.svg',
             changes: [
               {
@@ -740,7 +740,7 @@ export default class CoC7Updater {
           })
         } else {
           effects.push({
-            name: game.i18n.localize('CoC7.quickHealer'),
+            name: game.i18n.localize('Cd100.quickHealer'),
             img: 'icons/svg/aura.svg',
             system: {
               changes: [
@@ -754,7 +754,7 @@ export default class CoC7Updater {
           })
         }
         console.log(effects)
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Item', packId, parentUuid, {
           effects
         })
       }
@@ -770,24 +770,24 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static _migrateActorArtwork ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+    const image = String(document.img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
     if (image) {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
         img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
     if (typeof document.prototypeToken?.texture?.src !== 'undefined') {
-      const image = String(document.prototypeToken.texture.src).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+      const image = String(document.prototypeToken.texture.src).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
       if (image) {
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
           'prototypeToken.texture.src': 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
     }
     for (const offset in document.effects?.contents ?? []) {
-      const image = String(document.effects.contents[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+      const image = String(document.effects.contents[offset].img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
       if (image) {
-        CoC7Updater.mergeEmbeddedDocuments(document.effects.contents[offset], documentUpdates, 'ActiveEffect', packId, document.uuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document.effects.contents[offset], documentUpdates, 'ActiveEffect', packId, document.uuid, {
           img: 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
@@ -806,19 +806,19 @@ export default class CoC7Updater {
     // Rename custom sheetClass to new class names
     if (typeof document.flags?.core?.sheetClass !== 'undefined') {
       switch (document.flags.core.sheetClass) {
-        case 'CoC7.CoC7CharacterSheetMinimized':
-          CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
-            'flags.core.sheetClass': 'CoC7.CoC7ModelsActorCharacterSheetSummarizedV3'
+        case 'Cd100.Cd100CharacterSheetMinimized':
+          Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+            'flags.core.sheetClass': 'Cd100.Cd100ModelsActorCharacterSheetSummarizedV3'
           })
           break
-        case 'CoC7.CoC7CharacterSheetV3':
-          CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
-            'flags.core.sheetClass': 'CoC7.CoC7ModelsActorCharacterSheetV3'
+        case 'Cd100.Cd100CharacterSheetV3':
+          Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+            'flags.core.sheetClass': 'Cd100.Cd100ModelsActorCharacterSheetV3'
           })
           break
-        case 'CoC7.CoC7CharacterSheet':
-          CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
-            'flags.core.sheetClass': 'CoC7.CoC7ModelsActorCharacterSheetV2'
+        case 'Cd100.Cd100CharacterSheet':
+          Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+            'flags.core.sheetClass': 'Cd100.Cd100ModelsActorCharacterSheetV2'
           })
           break
       }
@@ -826,7 +826,7 @@ export default class CoC7Updater {
   }
 
   /**
-   * Migrate Actor.CoC7.flags to Actor.system.flags so they are part of the dataModel
+   * Migrate Actor.Cd100.flags to Actor.system.flags so they are part of the dataModel
    * @param {object} options
    * @param {object} options.document
    * @param {object} options.documentUpdates
@@ -836,7 +836,7 @@ export default class CoC7Updater {
   static _migrateActorFlags ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
     // Move Actor.flags mythosHardened to Actor.system.flags
     if (typeof document.flags?.[FOLDER_ID]?.mythosHardened !== 'undefined') {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
         'system.flags.mythosHardened': document.flags[FOLDER_ID].mythosHardened === true,
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=mythosHardened']: null
@@ -844,7 +844,7 @@ export default class CoC7Updater {
     }
     // Move Actor.flags mythosInsanityExperienced to Actor.system.flags
     if (typeof document.flags?.[FOLDER_ID]?.mythosInsanityExperienced !== 'undefined') {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
         'system.flags.mythosInsanityExperienced': document.flags[FOLDER_ID].mythosInsanityExperienced === true,
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=mythosInsanityExperienced']: null
@@ -852,7 +852,7 @@ export default class CoC7Updater {
     }
     // Move Actor.flags skillListMode to Actor.system.flags
     if (typeof document.flags?.[FOLDER_ID]?.skillListMode !== 'undefined') {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
         'system.flags.skillListMode': document.flags[FOLDER_ID].skillListMode === true,
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=skillListMode']: null
@@ -860,7 +860,7 @@ export default class CoC7Updater {
     }
     // Move Actor.flags skillShowUncommon to Actor.system.flags
     if (typeof document.flags?.[FOLDER_ID]?.skillShowUncommon !== 'undefined') {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
         'system.flags.skillShowUncommon': document.flags[FOLDER_ID].skillShowUncommon === true,
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=skillShowUncommon']: null
@@ -880,13 +880,13 @@ export default class CoC7Updater {
     if (document.type === 'vehicle') {
       // Move vehicle attribs to vehicle stats
       if (typeof document.system?.description?.notes !== 'undefined') {
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
           'system.description.keeper': document.system.description.notes,
           /* // FoundryVTT V13 */
           'system.description.-=notes': null
         })
       }
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
         /* // FoundryVTT V13 */
         'system.-=attribs': null
       })
@@ -914,7 +914,7 @@ export default class CoC7Updater {
             fullStudies: document.items[offset].system.fullStudies ?? 0,
             necessary: document.items[offset].system.study.necessary ?? 1,
             progress: document.items[offset].system.study.progress ?? 0,
-            units: document.items[offset].system.study.units ?? 'CoC7.weeks',
+            units: document.items[offset].system.study.units ?? 'Cd100.weeks',
             spellsLearned: []
           }
           for (const spellOffset in document.items[offset].system.spells) {
@@ -930,7 +930,7 @@ export default class CoC7Updater {
         }
       }
       if (books.length) {
-        CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Actor', packId, parentUuid, {
           'system.books': books
         })
       }
@@ -946,9 +946,9 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static _migrateMacroArtwork ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+    const image = String(document.img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
     if (image) {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Macro', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Macro', packId, parentUuid, {
         img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
@@ -963,16 +963,16 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static _migrateTableArtwork ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+    const image = String(document.img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
     if (image) {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'RollTable', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'RollTable', packId, parentUuid, {
         img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
     for (const offset in document.results.contents ?? []) {
-      const image = String(document.results.contents[offset].img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+      const image = String(document.results.contents[offset].img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
       if (image) {
-        CoC7Updater.mergeEmbeddedDocuments(document.results.contents[offset], documentUpdates, 'TableResult', packId, document.uuid, {
+        Cd100Updater.mergeEmbeddedDocuments(document.results.contents[offset], documentUpdates, 'TableResult', packId, document.uuid, {
           img: 'systems/cthulhud100/assets/icons/' + image[1]
         })
       }
@@ -988,9 +988,9 @@ export default class CoC7Updater {
    * @param {string} options.parentUuid
    */
   static _migrateTokenArtwork ({ document, documentUpdates, packId = '', parentUuid = '' } = {}) {
-    const image = String(document.img).match(/systems\/CoC7\/artwork\/icons\/(.+)/)
+    const image = String(document.img).match(/systems\/Cd100\/artwork\/icons\/(.+)/)
     if (image) {
-      CoC7Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Token', packId, parentUuid, {
+      Cd100Updater.mergeEmbeddedDocuments(document, documentUpdates, 'Token', packId, parentUuid, {
         img: 'systems/cthulhud100/assets/icons/' + image[1]
       })
     }
@@ -1021,75 +1021,75 @@ export default class CoC7Updater {
         // Merged into other message so delete
       } else if (message.flags?.[FOLDER_ID]?.type === 'rollCard' || message.flags?.[FOLDER_ID]?.GMSelfRoll === true) {
         try {
-          await CoC7Check.migrateOlderMessages({ offset, updates, deleteIds })
+          await Cd100Check.migrateOlderMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.flags?.[FOLDER_ID]?.type === 'combinedCard') {
         try {
-          await CoC7ChatCombinedMessage.migrateOlderMessagesRoll({ offset, updates, deleteIds })
+          await Cd100ChatCombinedMessage.migrateOlderMessagesRoll({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.flags?.[FOLDER_ID]?.['group-message']?.type === 'combined') {
         try {
-          await CoC7ChatCombinedMessage.migrateOlderMessagesLink({ offset, updates, deleteIds })
+          await Cd100ChatCombinedMessage.migrateOlderMessagesLink({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.flags?.[FOLDER_ID]?.type === 'opposedCard') {
         try {
-          await CoC7ChatOpposedMessage.migrateOlderMessagesRoll({ offset, updates, deleteIds })
+          await Cd100ChatOpposedMessage.migrateOlderMessagesRoll({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.flags?.[FOLDER_ID]?.['group-message']?.type === 'opposed') {
         try {
-          await CoC7ChatOpposedMessage.migrateOlderMessagesLink({ offset, updates, deleteIds })
+          await Cd100ChatOpposedMessage.migrateOlderMessagesLink({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.content.indexOf('coc7 chat-card con-check-card') > -1) {
         try {
-          await CoC7ConCheck.migrateOlderMessages({ offset, updates, deleteIds })
+          await Cd100ConCheck.migrateOlderMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.content.indexOf('coc7 chat-card chat-card-v2 san-loss-card') > -1) {
         try {
-          await CoC7SanCheckCard.migrateOlderMessages({ offset, updates, deleteIds })
+          await Cd100SanCheckCard.migrateOlderMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.content.indexOf('coc7 chat-card damage') > -1) {
         try {
-          await CoC7ChatDamage.migrateOlderMessages({ offset, updates, deleteIds })
+          await Cd100ChatDamage.migrateOlderMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.content.indexOf('coc7 chat-card range initiator') > -1) {
         try {
-          await CoC7ChatCombatRanged.migrateOlderMessages({ offset, updates, deleteIds })
+          await Cd100ChatCombatRanged.migrateOlderMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.content.indexOf('coc7 chat-card melee resolution') > -1) {
         try {
-          await CoC7ChatDamage.migrateOlderMeleeMessages({ offset, updates, deleteIds })
+          await Cd100ChatDamage.migrateOlderMeleeMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.content.indexOf('coc7 chat-card melee') > -1) {
         try {
-          await CoC7ChatCombatMelee.migrateOlderMessages({ offset, updates, deleteIds })
+          await Cd100ChatCombatMelee.migrateOlderMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       } else if (message.content.indexOf('coc7 chat-card chat-card-v2 enhanced-chat-card obstacle-card') > -1) {
         try {
-          await CoC7ChatChaseObstacle.migrateOlderMessages({ offset, updates, deleteIds })
+          await Cd100ChatChaseObstacle.migrateOlderMessages({ offset, updates, deleteIds })
         } catch (e) {
-          ui.notifications.error('CoC7.Errors.UnableToMigrateMessages', { localize: true })
+          ui.notifications.error('Cd100.Errors.UnableToMigrateMessages', { localize: true })
         }
       }
     }

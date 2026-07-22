@@ -1,13 +1,13 @@
 /* global Actor ChatMessage CONFIG CONST DragDrop foundry game Hooks renderTemplate Roll TextEditor ui */
 import { FOLDER_ID, ERAS, PERSONAL_SKILL_POINTS_PER_INT, CHARACTERISTIC_MULTIPLIER } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7ModelsActorDocumentClass from '../models/actor/document-class.js'
-import CoC7ModelsItemOccupationSystem from '../models/item/occupation-system.js'
-import CoC7SkillSpecializationSelectDialog from './skill-specialization-select-dialog.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100ModelsActorDocumentClass from '../models/actor/document-class.js'
+import Cd100ModelsItemOccupationSystem from '../models/item/occupation-system.js'
+import Cd100SkillSpecializationSelectDialog from './skill-specialization-select-dialog.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7InvestigatorWizard extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100InvestigatorWizard extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -25,11 +25,11 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       contentClasses: [
         'standard-form'
       ],
-      title: 'CoC7.InvestigatorWizard.Title'
+      title: 'Cd100.InvestigatorWizard.Title'
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7InvestigatorWizard.#onSubmit
+      handler: Cd100InvestigatorWizard.#onSubmit
     },
     position: {
       width: 540,
@@ -117,7 +117,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
    * @returns {object}
    */
   get pageOrder () {
-    const pages = CoC7InvestigatorWizard.PageList
+    const pages = Cd100InvestigatorWizard.PageList
     let pageOrder = [
       pages.PAGE_INTRODUCTION
     ]
@@ -157,10 +157,10 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
    */
   static async loadCacheItemByCoCID () {
     return new Promise((resolve, reject) => {
-      game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: /^i\./, type: 'i', showLoading: true }).then((items) => {
+      game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: /^i\./, type: 'i', showLoading: true }).then((items) => {
         const list = {}
         for (const item of items) {
-          list[item.flags.CoC7.cocidFlag.id] = item
+          list[item.flags.Cd100.cocidFlag.id] = item
         }
         resolve(list)
       })
@@ -204,9 +204,9 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
         }
       }
       if (missing.length) {
-        const era = game.i18n.format(ERAS[this.coc7Config.defaultEra]?.name ?? 'CoC7.CoCIDFlag.error.unknown-era', { era: this.coc7Config.defaultEra })
+        const era = game.i18n.format(ERAS[this.coc7Config.defaultEra]?.name ?? 'Cd100.CoCIDFlag.error.unknown-era', { era: this.coc7Config.defaultEra })
         /* // FoundryVTT V12 */
-        ui.notifications.warn(game.i18n.format('CoC7.CoCIDFlag.error.documents-not-found', { cocids: missing.join(', '), lang: game.i18n.lang, era }))
+        ui.notifications.warn(game.i18n.format('Cd100.CoCIDFlag.error.documents-not-found', { cocids: missing.join(', '), lang: game.i18n.lang, era }))
       }
     }
     return documents
@@ -277,24 +277,24 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
     const context = await super._prepareContext(options)
 
     context.isKeeper = game.user.isGM
-    context.pages = CoC7InvestigatorWizard.PageList
+    context.pages = Cd100InvestigatorWizard.PageList
     context.canNext = false
     context.createButton = false
     context.coc7Config = this.coc7Config
 
     switch (context.coc7Config.step) {
       case context.pages.PAGE_INTRODUCTION:
-        context.era = game.i18n.format(ERAS[context.coc7Config.defaultEra]?.name ?? 'CoC7.CoCIDFlag.error.unknown-era', { era: context.coc7Config.defaultEra })
+        context.era = game.i18n.format(ERAS[context.coc7Config.defaultEra]?.name ?? 'Cd100.CoCIDFlag.error.unknown-era', { era: context.coc7Config.defaultEra })
         context.canNext = true
         break
 
       case context.pages.PAGE_CONFIGURATION:
         if (game.user.isGM) {
           context.setups = await this.filterCacheItemByCoCID(/^i\.setup\./)
-          context.setupOptions = context.setups.reduce((c, d) => { c.push({ key: d.flags.CoC7.cocidFlag.id, name: d.name }); return c }, [])
+          context.setupOptions = context.setups.reduce((c, d) => { c.push({ key: d.flags.Cd100.cocidFlag.id, name: d.name }); return c }, [])
           context.occupations = await this.filterCacheItemByCoCID(/^i\.occupation\./)
           context.archetypes = await this.filterCacheItemByCoCID(/^i\.archetype\./)
-          const setup = context.setups.find(s => s.flags.CoC7.cocidFlag.id === context.coc7Config.defaultSetup)
+          const setup = context.setups.find(s => s.flags.Cd100.cocidFlag.id === context.coc7Config.defaultSetup)
           if (typeof setup === 'undefined') {
             context.coc7Config.defaultSetup = ''
             context.coc7Config.setup = ''
@@ -321,7 +321,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
               name: game.i18n.localize(era.name)
             })
           }
-          context.characteristicsMethods = CoC7InvestigatorWizard.CharacteristicsMethods
+          context.characteristicsMethods = Cd100InvestigatorWizard.CharacteristicsMethods
           context.characteristicsMethod = context.characteristicsMethods.METHOD_DEFAULT
           if (context.coc7Config.enforcePointBuy) {
             context.characteristicsMethod = context.characteristicsMethods.METHOD_POINTS
@@ -330,7 +330,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           } else if (context.coc7Config.quickFireValues.length) {
             context.characteristicsMethod = context.characteristicsMethods.METHOD_VALUES
           }
-          context._eras.sort(CoC7Utilities.sortByNameKey)
+          context._eras.sort(Cd100Utilities.sortByNameKey)
           context.hasArchetypes = game.settings.get(FOLDER_ID, 'pulpRuleArchetype')
           context.canNext = true
         }
@@ -339,10 +339,10 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       case context.pages.PAGE_SETUPS:
         if (context.coc7Config.defaultSetup === '') {
           context.setups = await this.filterCacheItemByCoCID(/^i\.setup\./)
-          context.setups.sort(CoC7Utilities.sortByNameKey)
-          context.setupOptions = context.setups.reduce((c, d) => { c.push({ key: d.flags.CoC7.cocidFlag.id, name: d.name }); return c }, [])
+          context.setups.sort(Cd100Utilities.sortByNameKey)
+          context.setupOptions = context.setups.reduce((c, d) => { c.push({ key: d.flags.Cd100.cocidFlag.id, name: d.name }); return c }, [])
           if (context.coc7Config.setup !== '') {
-            const setup = context.setups.find(s => s.flags.CoC7.cocidFlag.id === context.coc7Config.setup)
+            const setup = context.setups.find(s => s.flags.Cd100.cocidFlag.id === context.coc7Config.setup)
             if (typeof setup !== 'undefined') {
               /* // FoundryVTT V12 */
               context.description = await (foundry.applications.ux?.TextEditor.implementation ?? TextEditor).enrichHTML(
@@ -363,10 +363,10 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
         if (context.archetypes.length === 0) {
           context.canNext = true
         } else {
-          context.archetypes.sort(CoC7Utilities.sortByNameKey)
-          context.archetypeOptions = context.archetypes.reduce((c, d) => { c.push({ key: d.flags.CoC7.cocidFlag.id, name: d.name }); return c }, [])
+          context.archetypes.sort(Cd100Utilities.sortByNameKey)
+          context.archetypeOptions = context.archetypes.reduce((c, d) => { c.push({ key: d.flags.Cd100.cocidFlag.id, name: d.name }); return c }, [])
           if (context.coc7Config.archetype !== '') {
-            const archetype = context.archetypes.find(s => s.flags.CoC7.cocidFlag.id === context.coc7Config.archetype)
+            const archetype = context.archetypes.find(s => s.flags.Cd100.cocidFlag.id === context.coc7Config.archetype)
             if (typeof archetype !== 'undefined') {
               /* // FoundryVTT V12 */
               context.description = await (foundry.applications.ux?.TextEditor.implementation ?? TextEditor).enrichHTML(
@@ -388,7 +388,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
               } else if (coreCharacteristics.length === 1) {
                 this.coc7Config.coreCharacteristic = coreCharacteristics[0]
               }
-              context.coreCharacteristic = coreCharacteristics.map(c => c.toLocaleUpperCase()).join(' ' + game.i18n.localize('CoC7.Or') + ' ')
+              context.coreCharacteristic = coreCharacteristics.map(c => c.toLocaleUpperCase()).join(' ' + game.i18n.localize('Cd100.Or') + ' ')
               const skills = []
               archetype.system.skills = await this.mergeItemArrays(archetype.system.itemDocuments, archetype.system.itemKeys)
               for (const skill of archetype.system.skills) {
@@ -418,7 +418,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
         break
 
       case context.pages.PAGE_CHARACTERISTICS:
-        context.characteristicsMethods = CoC7InvestigatorWizard.CharacteristicsMethods
+        context.characteristicsMethods = Cd100InvestigatorWizard.CharacteristicsMethods
         context.characteristicsMethod = context.characteristicsMethods.METHOD_ROLL
         if (context.coc7Config.setup !== '') {
           const setup = await this.getCacheItemByCoCID(this.coc7Config.setup)
@@ -477,7 +477,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
               ],
               luck: {
                 roll: setup.system.characteristics.rolls.luck,
-                label: 'CoC7.Luck'
+                label: 'Cd100.Luck'
               }
             }
             context.coreCharacteristics = []
@@ -492,7 +492,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                     })
                   }
                 }
-                context.coreCharacteristics.sort(CoC7Utilities.sortByNameKey)
+                context.coreCharacteristics.sort(Cd100Utilities.sortByNameKey)
                 if (this.coc7Config.coreCharacteristic !== '') {
                   if (archetype.system.coreCharacteristicsFormula.enabled) {
                     context.setup.characteristics.find(c => c.key === this.coc7Config.coreCharacteristic).roll = archetype.system.coreCharacteristicsFormula.value
@@ -532,7 +532,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           context.points[key] = {
             value: parseInt(this.coc7Config.setupPoints[key], 10) + parseInt(this.coc7Config.setupModifiers[key], 10),
             min: -parseInt(this.coc7Config.setupPoints[key], 10) + 1,
-            label: CoC7Utilities.getCharacteristicNames(key).label
+            label: Cd100Utilities.getCharacteristicNames(key).label
           }
         }
         if (typeof this.coc7Config.requiresAgeAdjustments.edu !== 'undefined' && !this.coc7Config.requiresAgeAdjustments.edu.rolled) {
@@ -543,7 +543,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           for (const key of this.coc7Config.requiresAgeAdjustments.deduct.from) {
             context.deductTotal = context.deductTotal - parseInt(this.coc7Config.setupModifiers[key], 10)
           }
-          context.deductFrom = this.coc7Config.requiresAgeAdjustments.deduct.from.map(n => game.i18n.localize('CHARAC.' + n.toUpperCase())).join(', ').replace(/(, )([^,]+)$/, '$1' + game.i18n.localize('CoC7.Or') + ' $2').replace(/^([^,]+),([^,]+)$/, '$1$2')
+          context.deductFrom = this.coc7Config.requiresAgeAdjustments.deduct.from.map(n => game.i18n.localize('CHARAC.' + n.toUpperCase())).join(', ').replace(/(, )([^,]+)$/, '$1' + game.i18n.localize('Cd100.Or') + ' $2').replace(/^([^,]+),([^,]+)$/, '$1$2')
           if (context.deductTotal !== this.coc7Config.requiresAgeAdjustments.deduct.total) {
             context.canNext = false
           }
@@ -566,52 +566,52 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
             value: parseInt(this.coc7Config.setupPoints[key], 10) + parseInt(this.coc7Config.setupModifiers[key], 10),
             prefix: '',
             suffix: '%',
-            label: CoC7Utilities.getCharacteristicNames(key).label
+            label: Cd100Utilities.getCharacteristicNames(key).label
           }
         }
         context.points.db = {
-          value: CoC7ModelsActorDocumentClass.dbFromCharacteristics(context.points),
+          value: Cd100ModelsActorDocumentClass.dbFromCharacteristics(context.points),
           prefix: '',
           suffix: '',
-          label: 'CoC7.BonusDamage'
+          label: 'Cd100.BonusDamage'
         }
         if (isNaN(context.points.db.value) || Number(context.points.db.value) >= 0) {
           context.points.db.prefix = '+'
         }
         context.points.build = {
-          value: CoC7ModelsActorDocumentClass.buildFromCharacteristics(context.points),
+          value: Cd100ModelsActorDocumentClass.buildFromCharacteristics(context.points),
           prefix: '',
           suffix: '',
-          label: 'CoC7.Build'
+          label: 'Cd100.Build'
         }
         if (Number(context.points.build.value) >= 0) {
           context.points.build.prefix = '+'
         }
         context.points.hp = {
-          value: CoC7ModelsActorDocumentClass.hpFromCharacteristics(context.points, 'character'),
+          value: Cd100ModelsActorDocumentClass.hpFromCharacteristics(context.points, 'character'),
           prefix: '',
           suffix: '',
-          label: 'CoC7.HitPoints'
+          label: 'Cd100.HitPoints'
         }
         context.points.hp.prefix = context.points.hp.value + '/'
         context.points.mp = {
-          value: CoC7ModelsActorDocumentClass.mpFromCharacteristics(context.points),
+          value: Cd100ModelsActorDocumentClass.mpFromCharacteristics(context.points),
           prefix: '',
           suffix: '',
-          label: 'CoC7.MagicPoints'
+          label: 'Cd100.MagicPoints'
         }
         context.points.mp.prefix = context.points.mp.value + '/'
         context.points.san = {
           value: context.points.pow.value,
           prefix: '',
           suffix: '/99',
-          label: 'CoC7.Sanity'
+          label: 'Cd100.Sanity'
         }
         context.points.mov = {
-          value: CoC7ModelsActorDocumentClass.movFromCharacteristics(context.points, 'character', this.coc7Config.age),
+          value: Cd100ModelsActorDocumentClass.movFromCharacteristics(context.points, 'character', this.coc7Config.age),
           prefix: '',
           suffix: '',
-          label: 'CoC7.Movement'
+          label: 'Cd100.Movement'
         }
         this.coc7Config.parsedValues = {
           armor: 0,
@@ -628,10 +628,10 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
 
       case context.pages.PAGE_OCCUPATIONS:
         context.occupations = await this.filterCacheItemByCoCID(/^i\.occupation\./)
-        context.occupations.sort(CoC7Utilities.sortByNameKey)
-        context.occupationOptions = context.occupations.reduce((c, d) => { c.push({ key: d.flags.CoC7.cocidFlag.id, name: d.name }); return c }, [])
+        context.occupations.sort(Cd100Utilities.sortByNameKey)
+        context.occupationOptions = context.occupations.reduce((c, d) => { c.push({ key: d.flags.Cd100.cocidFlag.id, name: d.name }); return c }, [])
         if (context.coc7Config.occupation !== '') {
-          const occupation = context.occupations.find(s => s.flags.CoC7.cocidFlag.id === context.coc7Config.occupation)
+          const occupation = context.occupations.find(s => s.flags.Cd100.cocidFlag.id === context.coc7Config.occupation)
           if (typeof occupation !== 'undefined') {
             /* // FoundryVTT V12 */
             context.description = await (foundry.applications.ux?.TextEditor.implementation ?? TextEditor).enrichHTML(
@@ -641,7 +641,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                 secrets: game.user.isGM
               }
             )
-            context.occupationPointsString = CoC7ModelsItemOccupationSystem.getOccupationPointsString(occupation.system.occupationSkillPoints)
+            context.occupationPointsString = Cd100ModelsItemOccupationSystem.getOccupationPointsString(occupation.system.occupationSkillPoints)
             context.creditRating = occupation.system.creditRating
             context.personal = occupation.system.personal
             context.personalText = occupation.system.personalText
@@ -754,7 +754,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           }
         }
         context.max = (parseInt(context.default, 10) || 0) + (parseInt(context.coc7Config.personal, 10) || 0) + Object.values(context.coc7Config.occupationGroups).reduce((s, v) => s + (parseInt(v, 10) || 0), 0)
-        context.skillItems.sort(CoC7Utilities.sortByNameKey)
+        context.skillItems.sort(Cd100Utilities.sortByNameKey)
         if (context.selected === context.max) {
           context.canNext = true
         }
@@ -835,7 +835,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
             })
           }
         }
-        context.skillItems.sort(CoC7Utilities.sortByNameKey)
+        context.skillItems.sort(Cd100Utilities.sortByNameKey)
         if (context.selected === context.max) {
           context.canNext = true
         }
@@ -847,7 +847,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           context.creditRatingOkay = !(this.coc7Config.creditRating.max > 0)
           context.personal = {
             count: 0,
-            // Cthulhu d100 gives INT x10 free points, against CoC7's INT x2
+            // Cthulhu d100 gives INT x10 free points, against Cd100's INT x2
             total: PERSONAL_SKILL_POINTS_PER_INT * (parseInt(this.coc7Config.setupPoints.int, 10) + parseInt(this.coc7Config.setupModifiers.int, 10)),
             remaining: 0
           }
@@ -884,7 +884,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
             }
           }
           if (this.coc7Config.archetype !== '') {
-            const archetype = await game.CoC7.cocid.fromCoCID(this.coc7Config.archetype)
+            const archetype = await game.Cd100.cocid.fromCoCID(this.coc7Config.archetype)
             if (archetype.length === 1) {
               context.archetype.total = archetype[0].system.bonusPoints
             }
@@ -913,10 +913,10 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
               }
             }
             if (typeof skills[this.cocidCthulhuMythos + '.0'] !== 'undefined') {
-              await CoC7Utilities.setMultipleSkillBases(parsedValues, [skills[this.cocidCthulhuMythos + '.0']])
+              await Cd100Utilities.setMultipleSkillBases(parsedValues, [skills[this.cocidCthulhuMythos + '.0']])
               parsedValues.sanMax = Math.max(0, parsedValues.sanMax - skills[this.cocidCthulhuMythos + '.0'].system.adjustments.base)
             }
-            await CoC7Utilities.setMultipleSkillBases(parsedValues, skills)
+            await Cd100Utilities.setMultipleSkillBases(parsedValues, skills)
 
             for (const key in this.coc7Config.skillItems) {
               const skill = this.coc7Config.skillItems[key]
@@ -974,7 +974,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                 }
               }
             }
-            context.skills.sort(CoC7Utilities.sortByNameKey)
+            context.skills.sort(Cd100Utilities.sortByNameKey)
             if (context.creditRatingOkay) {
               context.canNext = true
             }
@@ -993,14 +993,14 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           context.own[key] = foundry.utils.duplicate(this.coc7Config.own[key])
           context.own[key].options = []
           for (const item of options) {
-            if (item.flags.CoC7.cocidFlag.id !== key && !item.system.properties.requiresname && !item.system.properties.picknameonly && !item.system.properties.own) {
+            if (item.flags.Cd100.cocidFlag.id !== key && !item.system.properties.requiresname && !item.system.properties.picknameonly && !item.system.properties.own) {
               context.own[key].options.push({
                 name: item.name,
-                key: item.flags.CoC7.cocidFlag.id
+                key: item.flags.Cd100.cocidFlag.id
               })
             }
           }
-          context.own[key].options.sort(CoC7Utilities.sortByNameKey)
+          context.own[key].options.sort(Cd100Utilities.sortByNameKey)
         }
         context.canNext = true
         break
@@ -1009,13 +1009,13 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
         {
           const allBackstories = await this.coc7Config.cacheBackstories
           context.backstories = {}
-          const bioSectionKeys = Object.entries(Object.assign(foundry.utils.flattenObject(game.i18n._fallback.CoC7?.CoCIDFlag?.keys ?? {}), foundry.utils.flattenObject(game.i18n.translations.CoC7?.CoCIDFlag?.keys ?? {}))).filter(e => e[0].startsWith('rt..'))
+          const bioSectionKeys = Object.entries(Object.assign(foundry.utils.flattenObject(game.i18n._fallback.Cd100?.CoCIDFlag?.keys ?? {}), foundry.utils.flattenObject(game.i18n.translations.Cd100?.CoCIDFlag?.keys ?? {}))).filter(e => e[0].startsWith('rt..'))
           for (let index = 0; index < this.coc7Config.bioSections.length; index++) {
             let rolls = ''
             if (this.coc7Config.bioSections[index].name.startsWith('rt..')) {
               rolls = this.coc7Config.bioSections[index].name
             } else {
-              const match = this.coc7Config.bioSections[index].name.match(/^CoC7\.CoCIDFlag\.keys\.(rt\.\..+)$/)
+              const match = this.coc7Config.bioSections[index].name.match(/^Cd100\.CoCIDFlag\.keys\.(rt\.\..+)$/)
               if (match) {
                 rolls = match[1]
               } else {
@@ -1028,7 +1028,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
             context.backstories[index] = {
               index,
               name: this.coc7Config.bioSections[index].name,
-              rolls: (rolls !== '' && game.CoC7.cocid.findCocIdInList(rolls, allBackstories).length ? rolls : ''),
+              rolls: (rolls !== '' && game.Cd100.cocid.findCocIdInList(rolls, allBackstories).length ? rolls : ''),
               value: this.coc7Config.bioSections[index].value
             }
           }
@@ -1062,7 +1062,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           context.buttons.push({
             type: 'submit',
             action: 'back',
-            label: 'CoC7.InvestigatorWizard.BackStep',
+            label: 'Cd100.InvestigatorWizard.BackStep',
             icon: 'fa-solid fa-backward'
           })
         } else {
@@ -1080,14 +1080,14 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           context.buttons.push({
             type: 'submit',
             action: 'next',
-            label: 'CoC7.InvestigatorWizard.CreateStep',
+            label: 'Cd100.InvestigatorWizard.CreateStep',
             icon: 'fa-solid fa-user'
           })
         } else {
           context.buttons.push({
             type: 'submit',
             action: 'next',
-            label: 'CoC7.InvestigatorWizard.NextStep',
+            label: 'Cd100.InvestigatorWizard.NextStep',
             icon: 'fa-solid fa-forward'
           })
         }
@@ -1129,22 +1129,22 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
               break
             case 'characteristics-method':
               switch (Number(event.currentTarget.dataset.value)) {
-                case CoC7InvestigatorWizard.CharacteristicsMethods.METHOD_DEFAULT:
+                case Cd100InvestigatorWizard.CharacteristicsMethods.METHOD_DEFAULT:
                   this.coc7Config.enforcePointBuy = false
                   this.coc7Config.chooseRolledValues = false
                   this.coc7Config.quickFireValues = []
                   break
-                case CoC7InvestigatorWizard.CharacteristicsMethods.METHOD_POINTS:
+                case Cd100InvestigatorWizard.CharacteristicsMethods.METHOD_POINTS:
                   this.coc7Config.enforcePointBuy = true
                   this.coc7Config.chooseRolledValues = false
                   this.coc7Config.quickFireValues = []
                   break
-                case CoC7InvestigatorWizard.CharacteristicsMethods.METHOD_VALUES:
+                case Cd100InvestigatorWizard.CharacteristicsMethods.METHOD_VALUES:
                   this.coc7Config.enforcePointBuy = false
                   this.coc7Config.chooseRolledValues = false
                   this.coc7Config.quickFireValues = (game.settings.get(FOLDER_ID, 'pulpRuleArchetype') ? [90, 80, 70, 60, 60, 50, 50, 40] : [80, 70, 60, 60, 50, 50, 50, 40])
                   break
-                case CoC7InvestigatorWizard.CharacteristicsMethods.METHOD_CHOOSE:
+                case Cd100InvestigatorWizard.CharacteristicsMethods.METHOD_CHOOSE:
                   this.coc7Config.enforcePointBuy = false
                   this.coc7Config.chooseRolledValues = true
                   this.coc7Config.quickFireValues = []
@@ -1184,8 +1184,8 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           form.querySelector('footer.form-footer').style.display = 'none'
           this.coc7Config.defaultEra = event.target.value
           await game.settings.set(FOLDER_ID, 'worldEra', this.coc7Config.defaultEra)
-          this.coc7Config.cacheCoCID = await CoC7InvestigatorWizard.loadCacheItemByCoCID()
-          this.coc7Config.cacheBackstories = game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: /^rt\.\.backstory-/, type: 'rt' })
+          this.coc7Config.cacheCoCID = await Cd100InvestigatorWizard.loadCacheItemByCoCID()
+          this.coc7Config.cacheBackstories = game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: /^rt\.\.backstory-/, type: 'rt' })
           // To prevent flashing show message for at least 500 ms
           const buffer = 500 - (Date.now() - started)
           // Don't bother if less than 10ms remaining
@@ -1282,7 +1282,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                 }
               }
               if (rollCharacteristicValues && (this.coc7Config.setupPoints.luck === '' || this.coc7Config.rerollsEnabled)) {
-                const roll = await new Roll(rollFormulas.luck.toString(), {}, { flavor: game.i18n.localize('CoC7.Luck') }).roll()
+                const roll = await new Roll(rollFormulas.luck.toString(), {}, { flavor: game.i18n.localize('Cd100.Luck') }).roll()
                 this.coc7Config.setupPoints.luck = Number(roll.total)
                 rolls.push(roll)
               }
@@ -1333,7 +1333,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                 if (formula) {
                   let hint = CONFIG.Actor.dataModels.character.schema.getField('characteristics').get(key)?.hint
                   if (typeof hint === 'undefined') {
-                    hint = (key === 'luck' ? 'CoC7.Luck' : '')
+                    hint = (key === 'luck' ? 'Cd100.Luck' : '')
                   }
                   const roll = await new Roll(formula.toString(), {}, { flavor: game.i18n.localize(hint) }).roll()
                   inputLine.querySelector('input').value = roll.total
@@ -1379,11 +1379,11 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
               let value = parseInt(this.coc7Config.setupPoints.edu, 10)
               const message = []
               for (let rolls = this.coc7Config.requiresAgeAdjustments.edu.total; rolls > 0; rolls--) {
-                const upgradeRoll = await CoC7DicePool.rollNewPool({ })
+                const upgradeRoll = await Cd100DicePool.rollNewPool({ })
                 if (upgradeRoll.total > value) {
                   const augmentDie = await new Roll('1d10').evaluate()
                   message.push(`<span class="coc7-upgrade-success">${game.i18n.format(
-                    'CoC7.DevSuccess',
+                    'Cd100.DevSuccess',
                     {
                       item: game.i18n.localize('CHARAC.Education'),
                       die: upgradeRoll.total,
@@ -1394,7 +1394,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                   value = value + parseInt(augmentDie.total, 10)
                 } else {
                   message.push(`<span class="coc7-upgrade-failed">${game.i18n.format(
-                    'CoC7.DevFailure',
+                    'Cd100.DevFailure',
                     {
                       item: game.i18n.localize('CHARAC.Education'),
                       die: upgradeRoll.total,
@@ -1404,7 +1404,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                 }
               }
               ChatMessage.create({
-                flavor: game.i18n.localize('CoC7.RollAll4Dev'),
+                flavor: game.i18n.localize('Cd100.RollAll4Dev'),
                 user: game.user.id,
                 speaker: {
                   alias: game.user.name
@@ -1445,7 +1445,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
             this.coc7Config.setupModifiers.luck = [die.total]
             /* // FoundryVTT V12 */
             const html = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)(Roll.CHAT_TEMPLATE, {
-              formula: game.i18n.localize('CoC7.InvestigatorWizard.RollTwiceForLuck') + ': ' + setup.system.characteristics.rolls.luck.toString(),
+              formula: game.i18n.localize('Cd100.InvestigatorWizard.RollTwiceForLuck') + ': ' + setup.system.characteristics.rolls.luck.toString(),
               tooltip: await die.getTooltip(),
               total: die.total
             })
@@ -1566,7 +1566,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           const index = button.dataset.index
           const key = button.dataset.key
           if (typeof this.coc7Config.bioSections[index] !== 'undefined') {
-            const table = await game.CoC7.cocid.fromCoCID(key)
+            const table = await game.Cd100.cocid.fromCoCID(key)
             if (table.length === 1) {
               const tableResults = await table[0].roll()
               for (const tableResult of tableResults.results) {
@@ -1611,13 +1611,13 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
    * @param {boolean} options.isCreditRating
    */
   addItemToList (item, { isOccupationDefault = false, inOccupationGroup = false, occupationToggle = false, isArchetypeDefault = false, archetypeToggle = false, isCreditRating = false } = {}) {
-    const key = (item.flags.CoC7?.cocidFlag?.id ?? item.name)
+    const key = (item.flags.Cd100?.cocidFlag?.id ?? item.name)
     if (item.type !== 'skill') {
       this.coc7Config.investigatorItems.push(item)
       return
     }
-    const isMultiple = (item.system.properties.special && !item.system.properties.own && key !== this.cocidLanguageOwn && (item.system.properties.requiresname || item.system.properties.picknameonly || item.system.skillName === game.i18n.format('CoC7.AnySpecName')))
-    const isCthulhuMythos = item.flags[FOLDER_ID]?.cocidFlag?.id === 'i.skill.cthulhu-mythos' || game.i18n.localize('CoC7.CoCIDFlag.keys.i.skill.cthulhu-mythos').toLowerCase() === item.name.toLowerCase()
+    const isMultiple = (item.system.properties.special && !item.system.properties.own && key !== this.cocidLanguageOwn && (item.system.properties.requiresname || item.system.properties.picknameonly || item.system.skillName === game.i18n.format('Cd100.AnySpecName')))
+    const isCthulhuMythos = item.flags[FOLDER_ID]?.cocidFlag?.id === 'i.skill.cthulhu-mythos' || game.i18n.localize('Cd100.CoCIDFlag.keys.i.skill.cthulhu-mythos').toLowerCase() === item.name.toLowerCase()
     const flags = {
       isOccupationDefault,
       inOccupationGroup,
@@ -1718,14 +1718,14 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
         }
       }
       if (Number(this.coc7Config.creditRating.max) > 0) {
-        const nameCreditRating = game.i18n.format('CoC7.CoCIDFlag.keys.' + this.cocidCreditRating)
+        const nameCreditRating = game.i18n.format('Cd100.CoCIDFlag.keys.' + this.cocidCreditRating)
         const flags = { isOccupationDefault: true, occupationToggle: true, isCreditRating: true }
         if (typeof this.coc7Config.skillItems[this.cocidCreditRating] !== 'undefined') {
           this.addItemToList(this.coc7Config.skillItems[this.cocidCreditRating].item, flags)
         } else if (typeof this.coc7Config.skillItems[nameCreditRating] !== 'undefined') {
           this.addItemToList(this.coc7Config.skillItems[nameCreditRating].item, flags)
         } else {
-          const skill = await game.CoC7.cocid.fromCoCID(this.cocidCreditRating)
+          const skill = await game.Cd100.cocid.fromCoCID(this.cocidCreditRating)
           if (skill.length) {
             this.addItemToList(skill[0], flags)
           }
@@ -1825,8 +1825,8 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       }
     } catch (err) {
     }
-    const dataList = await CoC7Utilities.getDataFromDropEvent(event, 'Item')
-    if ([CoC7InvestigatorWizard.PageList.PAGE_ARCHETYPE_SKILLS, CoC7InvestigatorWizard.PageList.PAGE_OCCUPATION_SKILLS].includes(this.coc7Config.step)) {
+    const dataList = await Cd100Utilities.getDataFromDropEvent(event, 'Item')
+    if ([Cd100InvestigatorWizard.PageList.PAGE_ARCHETYPE_SKILLS, Cd100InvestigatorWizard.PageList.PAGE_OCCUPATION_SKILLS].includes(this.coc7Config.step)) {
       for (const item of dataList) {
         if (item.type === 'skill') {
           this.addItemToList(item)
@@ -1878,16 +1878,16 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
         this.coc7Config.skillItems[key].rows[index].selected = false
       }
       let skillList = []
-      const group = game.CoC7.cocid.guessGroupFromKey(key)
+      const group = game.Cd100.cocid.guessGroupFromKey(key)
       if (group) {
-        skillList = (await game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: new RegExp('^' + CoC7Utilities.quoteRegExp(group) + '.+$'), type: 'i' })).filter(item => {
+        skillList = (await game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: new RegExp('^' + Cd100Utilities.quoteRegExp(group) + '.+$'), type: 'i' })).filter(item => {
           return !(item.system.properties?.special && !!(item.system.properties?.requiresname || item.system.properties?.picknameonly))
         })
         if (skillList.length > 1) {
-          skillList.sort(CoC7Utilities.sortByNameKey)
+          skillList.sort(Cd100Utilities.sortByNameKey)
         }
       }
-      const skillData = await CoC7SkillSpecializationSelectDialog.create({
+      const skillData = await Cd100SkillSpecializationSelectDialog.create({
         skills: skillList,
         allowCustom: (this.coc7Config.skillItems[key].item.system.properties?.requiresname ?? false),
         fixedBaseValue: true,
@@ -1969,14 +1969,14 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       }
     } else if (event.submitter?.dataset.action === 'next') {
       await this.coc7Config.cacheCoCID
-      if (this.coc7Config.step === CoC7InvestigatorWizard.PageList.PAGE_CREATE || (this.coc7Config.step === CoC7InvestigatorWizard.PageList.PAGE_BACKSTORY && game.user.hasPermission('ACTOR_CREATE'))) {
+      if (this.coc7Config.step === Cd100InvestigatorWizard.PageList.PAGE_CREATE || (this.coc7Config.step === Cd100InvestigatorWizard.PageList.PAGE_BACKSTORY && game.user.hasPermission('ACTOR_CREATE'))) {
         this.attemptToCreate()
         return
       } else {
         const pageNumber = this.getPageNumber(1)
         if (typeof pageNumber !== 'undefined') {
           switch (pageNumber) {
-            case CoC7InvestigatorWizard.PageList.PAGE_INVESTIGATOR:
+            case Cd100InvestigatorWizard.PageList.PAGE_INVESTIGATOR:
               {
                 const own = {}
                 for (const key in this.coc7Config.skillItems) {
@@ -1989,11 +1989,11 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
                         item = foundry.utils.duplicate(row.selected)
                       }
                       if (item.system.properties.own || key === this.cocidLanguageOwn) {
-                        const regEx = new RegExp('^' + CoC7Utilities.quoteRegExp(game.CoC7.cocid.guessGroupFromDocument(item)))
+                        const regEx = new RegExp('^' + Cd100Utilities.quoteRegExp(game.Cd100.cocid.guessGroupFromDocument(item)))
                         own[key] = {
                           name: item.name,
                           specialization: item.system.specialization,
-                          options: game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: regEx, type: 'i' }),
+                          options: game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: regEx, type: 'i' }),
                           selected: this.coc7Config.own[key]?.selected ?? '',
                           value: this.coc7Config.own[key]?.value ?? ''
                         }
@@ -2023,16 +2023,16 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
   async attemptToCreate () {
     const actorData = await this.normalizeCharacterData(this.coc7Config)
     if (game.user.hasPermission('ACTOR_CREATE')) {
-      const actor = await CoC7InvestigatorWizard.createCharacter(actorData)
+      const actor = await Cd100InvestigatorWizard.createCharacter(actorData)
       actor.sheet.render({ force: true })
       this.close()
     } else {
       actorData.document.ownership[game.user.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
-      if (CoC7SystemSocket.requestKeeperAction({
+      if (Cd100SystemSocket.requestKeeperAction({
         type: 'characterWizard',
         payload: actorData
       })) {
-        ui.notifications.info('CoC7.InvestigatorWizard.CreatingInvestigator', { localize: true })
+        ui.notifications.info('Cd100.InvestigatorWizard.CreatingInvestigator', { localize: true })
         this.close()
       }
     }
@@ -2077,7 +2077,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
           if (item.system.properties.own || key === this.cocidLanguageOwn) {
             if (data.own[key].selected !== '') {
               const options = await this.coc7Config.own[key].options
-              const newItem = options.find(doc => doc.flags.CoC7.cocidFlag.id === data.own[key].selected)
+              const newItem = options.find(doc => doc.flags.Cd100.cocidFlag.id === data.own[key].selected)
               if (newItem) {
                 const base = item.system.base
                 item = foundry.utils.duplicate(newItem)
@@ -2101,7 +2101,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
             row.newCoCId = true
           }
           if (row.newCoCId) {
-            item.flags.CoC7.cocidFlag.id = 'i.skill.' + CoC7Utilities.toKebabCase(item.name)
+            item.flags.Cd100.cocidFlag.id = 'i.skill.' + Cd100Utilities.toKebabCase(item.name)
           }
           embeddedItems.push(item)
         }
@@ -2126,14 +2126,14 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       archetype: 0
     }
     if (data.archetype !== '') {
-      const archetype = await game.CoC7.cocid.fromCoCID(data.archetype)
+      const archetype = await game.Cd100.cocid.fromCoCID(data.archetype)
       if (archetype.length === 1) {
         items.push(archetype[0].toObject())
         development.archetype = archetype[0].system.bonusPoints
       }
     }
     if (data.occupation !== '') {
-      const occupation = await game.CoC7.cocid.fromCoCID(data.occupation)
+      const occupation = await game.Cd100.cocid.fromCoCID(data.occupation)
       if (occupation.length === 1) {
         items.push(occupation[0].toObject())
         const options = []
@@ -2246,7 +2246,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
    * @param {object} actorData
    */
   static async createCharacterFromData (actorData) {
-    const actor = await CoC7InvestigatorWizard.createCharacter(actorData)
+    const actor = await Cd100InvestigatorWizard.createCharacter(actorData)
     const functionId = Hooks.on('renderActorSheetV2', (app, html, data) => {
       if (app.document.id === actor.id) {
         game.socket.emit('system.' + FOLDER_ID, {
@@ -2272,7 +2272,7 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
   }
 
   /**
-   * create it's the default way to create the CoC7CharacterWizard
+   * create it's the default way to create the Cd100CharacterWizard
    * @param {object} options
    */
   static async create (options = {}) {
@@ -2292,8 +2292,8 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       quickFireValues: game.settings.get(FOLDER_ID, 'InvestigatorWizardQuickFire'),
       chooseRolledValues: game.settings.get(FOLDER_ID, 'InvestigatorWizardChooseValues'),
       placeable: foundry.utils.duplicate(game.settings.get(FOLDER_ID, 'InvestigatorWizardQuickFire')),
-      cacheCoCID: CoC7InvestigatorWizard.loadCacheItemByCoCID(),
-      cacheBackstories: game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: /^rt\.\.backstory-/, type: 'rt' }),
+      cacheCoCID: Cd100InvestigatorWizard.loadCacheItemByCoCID(),
+      cacheBackstories: game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: /^rt\.\.backstory-/, type: 'rt' }),
       cacheItems: {},
       setup: game.settings.get(FOLDER_ID, 'InvestigatorWizardSetup'),
       skillItems: {},
@@ -2342,6 +2342,6 @@ export default class CoC7InvestigatorWizard extends foundry.applications.api.Han
       avatar: 'icons/svg/mystery-man.svg',
       token: 'icons/svg/mystery-man.svg'
     }, options)
-    new CoC7InvestigatorWizard({}, {}, options).render({ force: true })
+    new Cd100InvestigatorWizard({}, {}, options).render({ force: true })
   }
 }

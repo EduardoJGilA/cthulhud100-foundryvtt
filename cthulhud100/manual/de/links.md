@@ -20,7 +20,7 @@
 
 - Links sollten geschrieben werden durch die Nutzung des [Link Erstellungswerkzeuges](link_creation_window.md). Das Link Erstellungsfenster ist ein Werkzeug für die Spielleitung. Es befindet sich in der linken Seitenleiste.
 
-Links für Chatnachrichten und Bogeneditoren (NSC, Journaleinträge, ...) haben folgendes Format: `@coc7.TYPE_OF_REQUEST[OPTION]{TEXT_TO_DISPLAY}`
+Links für Chatnachrichten und Bogeneditoren (NSC, Journaleinträge, ...) haben folgendes Format: `@cd100.TYPE_OF_REQUEST[OPTION]{TEXT_TO_DISPLAY}`
 
 - `TYPE_OF_REQUEST`
 	- `sanloss`: löst eine geistige Stabilitätsprobe aus, bei Misserfolg wird vorgeschlagen die entsprechende geistige Stabilität abzuziehen.
@@ -44,12 +44,12 @@ Links für Chatnachrichten und Bogeneditoren (NSC, Journaleinträge, ...) haben 
 
 | Link                                                                                                         | Ergebnis                                                                          |
 |--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| `@coc7.sanloss[sanMax:1D6,sanMin:1,difficulty:++,modifier:-1]`                                               | {schwierige Probe geistige Stabilität (-1) 1/1D6}                                 |
-| `@coc7.check[type:charac,name:STR,difficulty:+,modifier:-1]`                                                 | {Schwierige Stärkeprobe (-1)}                                                     |
-| `@coc7.check[type:attrib,name:lck,difficulty:+,modifier:-1]`                                                 | {Schwierige Glücksprobe (-1)}                                                     |
-| `@coc7.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,difficulty:+,modifier:-1]` | {Schwierige Anthropologieprobe (-1)} (mit Icon)                                   |
-| `@coc7.sanloss[sanMax:1D6,sanMin:1]`                                                                         | {Probe geistige Stabilität 1/1D6} (ohne Name, Schwierigkeit und ohne Modifikator) |
-| `@coc7.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,modifier:+1]`              | {Anthropologieprobe (+1)} (mit Icon, ohne Name, Schwierigkeit, mit Bonuswürfel)   |
+| `@cd100.sanloss[sanMax:1D6,sanMin:1,difficulty:++,modifier:-1]`                                               | {schwierige Probe geistige Stabilität (-1) 1/1D6}                                 |
+| `@cd100.check[type:charac,name:STR,difficulty:+,modifier:-1]`                                                 | {Schwierige Stärkeprobe (-1)}                                                     |
+| `@cd100.check[type:attrib,name:lck,difficulty:+,modifier:-1]`                                                 | {Schwierige Glücksprobe (-1)}                                                     |
+| `@cd100.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,difficulty:+,modifier:-1]` | {Schwierige Anthropologieprobe (-1)} (mit Icon)                                   |
+| `@cd100.sanloss[sanMax:1D6,sanMin:1]`                                                                         | {Probe geistige Stabilität 1/1D6} (ohne Name, Schwierigkeit und ohne Modifikator) |
+| `@cd100.check[type:skill,icon:fa-solid fa-arrow-alt-circle-right,name:anthropology,modifier:+1]`              | {Anthropologieprobe (+1)} (mit Icon, ohne Name, Schwierigkeit, mit Bonuswürfel)   |
 
 ### Links benutzen
 

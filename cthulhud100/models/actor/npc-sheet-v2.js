@@ -1,13 +1,13 @@
 /* global ChatMessage CONFIG foundry fromUuid game renderTemplate Roll TextEditor ui */
 import { FOLDER_ID, CHAT_MESSAGE_MODE } from '../../constants.js'
-import CoC7DicePool from '../../apps/dice-pool.js'
-import CoC7Link from '../../apps/link.js'
-import CoC7ModelsActorGlobalSheet from './global-sheet.js'
-import CoC7RollNormalize from '../../apps/roll-normalize.js'
-import CoC7SanCheckCard from '../../apps/san-check-card.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100DicePool from '../../apps/dice-pool.js'
+import Cd100Link from '../../apps/link.js'
+import Cd100ModelsActorGlobalSheet from './global-sheet.js'
+import Cd100RollNormalize from '../../apps/roll-normalize.js'
+import Cd100SanCheckCard from '../../apps/san-check-card.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsActorNPCSheetV2 extends CoC7ModelsActorGlobalSheet {
+export default class Cd100ModelsActorNPCSheetV2 extends Cd100ModelsActorGlobalSheet {
   static DEFAULT_OPTIONS = {
     classes: ['npc'],
     position: {
@@ -126,7 +126,7 @@ export default class CoC7ModelsActorNPCSheetV2 extends CoC7ModelsActorGlobalShee
           alias: this.actor.name
         },
         content,
-        flavor: game.i18n.localize('CoC7.AttacksPerRound'),
+        flavor: game.i18n.localize('Cd100.AttacksPerRound'),
         whisper: [game.user.id]
       })
     })
@@ -150,7 +150,7 @@ export default class CoC7ModelsActorNPCSheetV2 extends CoC7ModelsActorGlobalShee
                   })
                 } else {
                   /* // FoundryVTT V12 */
-                  ui.notifications.error(game.i18n.format('CoC7.ErrorUnableToParseFormula', {
+                  ui.notifications.error(game.i18n.format('Cd100.ErrorUnableToParseFormula', {
                     value
                   }))
                   event.currentTarget.focus()
@@ -251,20 +251,20 @@ export default class CoC7ModelsActorNPCSheetV2 extends CoC7ModelsActorGlobalShee
     if (!this.document.system.special.sanLoss.checkPassed && !this.document.system.special.sanLoss.checkFailled) {
       return
     }
-    if (CoC7Utilities.isCtrlKey(event) && game.user.isGM) {
+    if (Cd100Utilities.isCtrlKey(event) && game.user.isGM) {
       let difficulty, poolModifier
       if (!event.shiftKey) {
         const options = {
           cardTypeFixed: true,
-          difficulty: CoC7DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
+          difficulty: Cd100DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
           disableFlatDiceModifier: true
         }
-        await CoC7RollNormalize.createRoll(options)
+        await Cd100RollNormalize.createRoll(options)
         difficulty = options.difficulty
         poolModifier = options.poolModifier
       }
-      const link = await CoC7Link.fromDropData({
-        check: CoC7Link.CHECK_TYPE.SANLOSS,
+      const link = await Cd100Link.fromDropData({
+        check: Cd100Link.CHECK_TYPE.SANLOSS,
         sanMax: this.document.system.special.sanLoss.checkFailled,
         sanMin: this.document.system.special.sanLoss.checkPassed,
         sanReason: this.document.system.infos.type?.length ? this.document.system.infos.type : this.document.name,
@@ -278,9 +278,9 @@ export default class CoC7ModelsActorNPCSheetV2 extends CoC7ModelsActorGlobalShee
         sanMax: this.document.system.special.sanLoss.checkFailled,
         sanMin: this.document.system.special.sanLoss.checkPassed,
         sanReason: this.document.system.infos.type?.length ? this.document.system.infos.type : this.document.name,
-        sourceUuid: CoC7Utilities.getActorUuid(this.document)
+        sourceUuid: Cd100Utilities.getActorUuid(this.document)
       }
-      CoC7SanCheckCard.checkTargets(sanData)
+      Cd100SanCheckCard.checkTargets(sanData)
     }
   }
 

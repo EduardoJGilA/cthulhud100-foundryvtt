@@ -1,15 +1,15 @@
 <h1 align="center">《克苏鲁的呼唤》第七版 (适用于 Foundry VTT)</h1>
 <p align="center">
-  <img src="https://img.shields.io/github/repo-size/Miskatonic-Investigative-Society/CoC7-FoundryVTT.svg">
-  <a href="https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/commits/develop">
-    <img src="https://img.shields.io/github/last-commit/Miskatonic-Investigative-Society/CoC7-FoundryVTT.svg">
+  <img src="https://img.shields.io/github/repo-size/Miskatonic-Investigative-Society/Cd100-FoundryVTT.svg">
+  <a href="https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/commits/develop">
+    <img src="https://img.shields.io/github/last-commit/Miskatonic-Investigative-Society/Cd100-FoundryVTT.svg">
   </a>
-  <a href="https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/issues">
-    <img src="https://img.shields.io/github/issues/Miskatonic-Investigative-Society/CoC7-FoundryVTT.svg">
+  <a href="https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/issues">
+    <img src="https://img.shields.io/github/issues/Miskatonic-Investigative-Society/Cd100-FoundryVTT.svg">
   </a>
-  <img src="https://img.shields.io/github/license/Miskatonic-Investigative-Society/CoC7-FoundryVTT.svg">
-  <img src="https://img.shields.io/github/downloads/Miskatonic-Investigative-Society/CoC7-FoundryVTT/latest/total">
-  <img src="https://img.shields.io/github/downloads/Miskatonic-Investigative-Society/CoC7-FoundryVTT/total">
+  <img src="https://img.shields.io/github/license/Miskatonic-Investigative-Society/Cd100-FoundryVTT.svg">
+  <img src="https://img.shields.io/github/downloads/Miskatonic-Investigative-Society/Cd100-FoundryVTT/latest/total">
+  <img src="https://img.shields.io/github/downloads/Miskatonic-Investigative-Society/Cd100-FoundryVTT/total">
 </p>
 <p align="center">
   <a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -21,9 +21,9 @@
 
 这是为 Foundry Virtual Tabletop (http://foundryvtt.com) 平台实现的《克苏鲁的呼唤》第七版游戏系统。除了提供角色卡和系统之外，还包含一些示例规则书。
 
-如果您有任何建议或反馈，请访问 Foundry Discord 服务器 (discord.gg/foundryvtt) 的 `#chaosium` 频道，或查看：[CONTRIBUTING](https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/blob/develop/.github/CONTRIBUTING.md)。
+如果您有任何建议或反馈，请访问 Foundry Discord 服务器 (discord.gg/foundryvtt) 的 `#chaosium` 频道，或查看：[CONTRIBUTING](https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/blob/develop/.github/CONTRIBUTING.md)。
 
-有关更新日志，详见: [CHANGELOG](https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/blob/develop/.github/CHANGELOG.md).
+有关更新日志，详见: [CHANGELOG](https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/blob/develop/.github/CHANGELOG.md).
 
 ### 免责声明
 
@@ -32,7 +32,7 @@
 ## 安装方法
 
 请在 Foundry VTT 的 “游戏系统 (Game Systems)” 标签页中，点击 “安装系统 (Install System)”，并使用下方清单 (Manifest) 地址：
-`https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/releases/latest/download/system.json`
+`https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/releases/latest/download/system.json`
 
 您也可以在安装包搜索 (Package Finder) 框中直接搜索 "Call of Cthulhu 7th edition" 进行安装。
 
@@ -49,8 +49,8 @@
 
 感谢所有贡献者的辛勤付出，是你们让这个系统的诞生与发展成为可能！
 
-<a href="https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Miskatonic-Investigative-Society/CoC7-FoundryVTT" />
+<a href="https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Miskatonic-Investigative-Society/Cd100-FoundryVTT" />
 </a>
 
 ## 法律免责与许可声明

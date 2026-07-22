@@ -1,10 +1,10 @@
 /* global CONFIG foundry game */
 import { FOLDER_ID, CHARACTERISTIC_MULTIPLIER } from '../../constants.js'
-import CoC7ModelsActorDocumentClass from './document-class.js'
-import CoC7MentalStability from '../../apps/mental-stability.js'
-import CoC7StringField from '../fields/string-field.js'
+import Cd100ModelsActorDocumentClass from './document-class.js'
+import Cd100MentalStability from '../../apps/mental-stability.js'
+import Cd100StringField from '../fields/string-field.js'
 
-export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDataModel {
+export default class Cd100ModelsActorGlobalSystem extends foundry.abstract.TypeDataModel {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -17,22 +17,22 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
         max: new fields.NumberField({ nullable: true, initial: null }),
         auto: new fields.BooleanField({ initial: true })
       }, {
-        label: 'CoC7.HP',
-        hint: 'CoC7.HitPoints'
+        label: 'Cd100.HP',
+        hint: 'Cd100.HitPoints'
       }),
       mp: new fields.SchemaField({
         value: new fields.NumberField({ nullable: true, initial: null }),
         max: new fields.NumberField({ nullable: true, initial: null }),
         auto: new fields.BooleanField({ initial: true })
       }, {
-        label: 'CoC7.MP',
-        hint: 'CoC7.MagicPoints'
+        label: 'Cd100.MP',
+        hint: 'Cd100.MagicPoints'
       }),
       lck: new fields.SchemaField({
         value: new fields.NumberField({ nullable: true, initial: null })
       }, {
-        label: 'CoC7.Lck',
-        hint: 'CoC7.Luck'
+        label: 'Cd100.Lck',
+        hint: 'Cd100.Luck'
       }),
       san: new fields.SchemaField({
         value: new fields.NumberField({ nullable: true, initial: null }),
@@ -46,8 +46,8 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
         tension: new fields.NumberField({ nullable: false, initial: 0, min: 0 }),
         underlyingMadness: new fields.NumberField({ nullable: false, initial: 0, min: 0 })
       }, {
-        label: 'CoC7.SAN',
-        hint: 'CoC7.Sanity'
+        label: 'Cd100.SAN',
+        hint: 'Cd100.Sanity'
       }),
       mov: new fields.SchemaField({
         value: new fields.NumberField({ nullable: true, initial: null }),
@@ -57,29 +57,29 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
           initial: 'walk'
         })
       }, {
-        label: 'CoC7.Mov',
-        hint: 'CoC7.Movement'
+        label: 'Cd100.Mov',
+        hint: 'Cd100.Movement'
       }),
       db: new fields.SchemaField({
-        value: new CoC7StringField({ nullable: true, initial: null }),
+        value: new Cd100StringField({ nullable: true, initial: null }),
         auto: new fields.BooleanField({ initial: true })
       }, {
-        label: 'CoC7.DB',
-        hint: 'CoC7.BonusDamage'
+        label: 'Cd100.DB',
+        hint: 'Cd100.BonusDamage'
       }),
       build: new fields.SchemaField({
         value: new fields.NumberField({ nullable: true, initial: null }),
         auto: new fields.BooleanField({ initial: true })
       }, {
-        label: 'CoC7.Build',
-        hint: 'CoC7.Build'
+        label: 'Cd100.Build',
+        hint: 'Cd100.Build'
       }),
       armor: new fields.SchemaField({
         notes: new fields.BooleanField({ initial: false }),
-        value: new CoC7StringField({ nullable: true, initial: null })
+        value: new Cd100StringField({ nullable: true, initial: null })
       }, {
-        label: 'CoC7.Armor',
-        hint: 'CoC7.Armor'
+        label: 'Cd100.Armor',
+        hint: 'Cd100.Armor'
       })
     })
   }
@@ -105,7 +105,7 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
         fullStudies: new fields.NumberField({ nullable: false, initial: 0 }),
         necessary: new fields.NumberField({ initial: 0 }),
         progress: new fields.NumberField({ initial: 0 }),
-        units: new fields.StringField({ initial: 'CoC7.weeks' }),
+        units: new fields.StringField({ initial: 'Cd100.weeks' }),
         spellsLearned: new fields.ArrayField(
           new fields.StringField({
             validate: value => {
@@ -270,30 +270,30 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
 
     if (typeof this.attribs !== 'undefined' && typeof this.characteristics !== 'undefined') {
       if (this.attribs.build.auto) {
-        this.attribs.build.value = CoC7ModelsActorDocumentClass.buildFromCharacteristics(this.characteristics)
+        this.attribs.build.value = Cd100ModelsActorDocumentClass.buildFromCharacteristics(this.characteristics)
       }
       if (this.attribs.db.auto) {
-        this.attribs.db.value = CoC7ModelsActorDocumentClass.dbFromCharacteristics(this.characteristics)
+        this.attribs.db.value = Cd100ModelsActorDocumentClass.dbFromCharacteristics(this.characteristics)
       }
       if (this.attribs.hp.auto) {
         const maxValue = (this.attribs.hp.value === this.attribs.hp.max)
-        this.attribs.hp.max = CoC7ModelsActorDocumentClass.hpFromCharacteristics(this.characteristics, this.parent.type)
+        this.attribs.hp.max = Cd100ModelsActorDocumentClass.hpFromCharacteristics(this.characteristics, this.parent.type)
         if (maxValue) {
           this.attribs.hp.value = this.attribs.hp.max
         }
       }
       if (this.attribs.mov.auto) {
-        this.attribs.mov.value = CoC7ModelsActorDocumentClass.movFromCharacteristics(this.characteristics, this.parent.type, this.infos.age)
+        this.attribs.mov.value = Cd100ModelsActorDocumentClass.movFromCharacteristics(this.characteristics, this.parent.type, this.infos.age)
       }
       if (this.attribs.mp.auto) {
         const maxValue = (this.attribs.mp.value === this.attribs.mp.max)
-        this.attribs.mp.max = CoC7ModelsActorDocumentClass.mpFromCharacteristics(this.characteristics, this.parent.type)
+        this.attribs.mp.max = Cd100ModelsActorDocumentClass.mpFromCharacteristics(this.characteristics, this.parent.type)
         if (maxValue) {
           this.attribs.mp.value = this.attribs.mp.max
         }
       }
       // Cthulhu d100 derived scores: Cultura General is EST x5 and Idea is INT x5.
-      // In CoC7 these were the raw characteristics, which were already percentiles.
+      // In Cd100 these were the raw characteristics, which were already percentiles.
       // check.js reads these values as thresholds directly, so the multiplier is
       // applied here and must not be applied again there.
       this.config.know = {
@@ -305,18 +305,18 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
         bonusDice: this.characteristics.int.bonusDice ?? 0
       }
       // Suerte is POD x5 and derived, not a pool that is rolled and spent as in
-      // CoC7. The Luck-spending machinery is still wired up elsewhere and has to
+      // Cd100. The Luck-spending machinery is still wired up elsewhere and has to
       // be neutralised separately.
       this.attribs.lck.value = this.characteristics.pow.value * CHARACTERISTIC_MULTIPLIER
       // Alternative madness system: bars, state and modifiers all derive from
       // POD and accumulated tension, so they are recomputed rather than stored.
       if (game.settings.get(FOLDER_ID, 'sanitySystem') === 'alternative') {
-        const state = CoC7MentalStability.stateFromTension(this.characteristics.pow.value, this.attribs.san.tension)
+        const state = Cd100MentalStability.stateFromTension(this.characteristics.pow.value, this.attribs.san.tension)
         this.config.mentalStability = {
-          bars: CoC7MentalStability.bars(this.characteristics.pow.value),
+          bars: Cd100MentalStability.bars(this.characteristics.pow.value),
           state,
-          modifiers: CoC7MentalStability.modifiers(state),
-          recoveryModifier: CoC7MentalStability.recoveryModifier(state)
+          modifiers: Cd100MentalStability.modifiers(state),
+          recoveryModifier: Cd100MentalStability.recoveryModifier(state)
         }
       }
       this.config.naturalHealing = (game.settings.get(FOLDER_ID, 'pulpRuleFasterRecovery') ? 2 : 1)
@@ -334,14 +334,14 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
       const overrides = foundry.utils.flattenObject(this.parent.overrides)
 
       if (this.attribs.build.auto && typeof overrides['system.attribs.build.value'] === 'undefined') {
-        this.attribs.build.value = CoC7ModelsActorDocumentClass.buildFromCharacteristics(this.characteristics)
+        this.attribs.build.value = Cd100ModelsActorDocumentClass.buildFromCharacteristics(this.characteristics)
       }
       if (this.attribs.db.auto && typeof overrides['system.attribs.db.value'] === 'undefined') {
-        this.attribs.db.value = CoC7ModelsActorDocumentClass.dbFromCharacteristics(this.characteristics)
+        this.attribs.db.value = Cd100ModelsActorDocumentClass.dbFromCharacteristics(this.characteristics)
       }
       if (this.attribs.hp.auto && typeof overrides['system.attribs.db.max'] === 'undefined') {
         const maxValue = (this.attribs.hp.value === this.attribs.hp.max)
-        this.attribs.hp.max = CoC7ModelsActorDocumentClass.hpFromCharacteristics(this.characteristics, this.parent.type)
+        this.attribs.hp.max = Cd100ModelsActorDocumentClass.hpFromCharacteristics(this.characteristics, this.parent.type)
         if (maxValue) {
           this.attribs.hp.value = this.attribs.hp.max
         }
@@ -350,11 +350,11 @@ export default class CoC7ModelsActorGlobalSystem extends foundry.abstract.TypeDa
         this.attribs.hp.value = this.attribs.hp.max
       }
       if (this.attribs.mov.auto && typeof overrides['system.attribs.mov.value'] === 'undefined') {
-        this.attribs.mov.value = CoC7ModelsActorDocumentClass.movFromCharacteristics(this.characteristics, this.parent.type, this.infos.age)
+        this.attribs.mov.value = Cd100ModelsActorDocumentClass.movFromCharacteristics(this.characteristics, this.parent.type, this.infos.age)
       }
       if (this.attribs.mp.auto && typeof overrides['system.attribs.mp.max'] === 'undefined') {
         const maxValue = (this.attribs.mp.value === this.attribs.mp.max)
-        this.attribs.mp.max = CoC7ModelsActorDocumentClass.mpFromCharacteristics(this.characteristics, this.parent.type)
+        this.attribs.mp.max = Cd100ModelsActorDocumentClass.mpFromCharacteristics(this.characteristics, this.parent.type)
         if (maxValue) {
           this.attribs.mp.value = this.attribs.mp.max
         }

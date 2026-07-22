@@ -37,7 +37,7 @@ function createFormGroup (rootId, type, key, title, value) {
   }
   const p = document.createElement('p')
   p.classList.add('hint')
-  p.innerText = game.i18n.localize('CoC7.Config.AdventureChangeHint')
+  p.innerText = game.i18n.localize('Cd100.Config.AdventureChangeHint')
   formFields.append(input)
   formGroup.append(label)
   formGroup.append(formFields)
@@ -60,14 +60,14 @@ export default function (application, element, context, options) {
       const fixedAdventureHeading = (application.object.getFlag(FOLDER_ID, 'fixed-adventure-heading') ?? false)
       const lastGroup = element.find('button')
       lastGroup.before(
-        '<div class="form-group"><label for="coc7-journal-css-adventure-entry">' + game.i18n.localize('CoC7.Config.AdventureCSS') + '</label><input type="checkbox" id="coc7-journal-css-adventure-entry" ' + (cssAdventureEntry ? ' checked="checked"' : '') + '><p class="notes">' + game.i18n.localize('CoC7.Config.AdventureChangeHint') + '</p></div>' +
-        '<div class="form-group"><label for="coc7-journal-fixed-adventure-heading">' + game.i18n.localize('CoC7.Config.FixedHeadingCSS') + '</label><input type="checkbox" id="coc7-journal-fixed-adventure-heading" ' + (fixedAdventureHeading ? ' checked="checked"' : '') + '><p class="notes">' + game.i18n.localize('CoC7.Config.AdventureChangeHint') + '</p></div>'
+        '<div class="form-group"><label for="coc7-journal-css-adventure-entry">' + game.i18n.localize('Cd100.Config.AdventureCSS') + '</label><input type="checkbox" id="coc7-journal-css-adventure-entry" ' + (cssAdventureEntry ? ' checked="checked"' : '') + '><p class="notes">' + game.i18n.localize('Cd100.Config.AdventureChangeHint') + '</p></div>' +
+        '<div class="form-group"><label for="coc7-journal-fixed-adventure-heading">' + game.i18n.localize('Cd100.Config.FixedHeadingCSS') + '</label><input type="checkbox" id="coc7-journal-fixed-adventure-heading" ' + (fixedAdventureHeading ? ' checked="checked"' : '') + '><p class="notes">' + game.i18n.localize('Cd100.Config.AdventureChangeHint') + '</p></div>'
       )
       application.setPosition({ height: 'auto' })
     } else if (application.object instanceof CONFIG.JournalEntryPage.documentClass && application.object.type === 'text') {
       const fixedAdventureSubheading = (application.object.getFlag(FOLDER_ID, 'fixed-adventure-subheading') ?? '').toString()
       const lastGroup = element.find('button')
-      lastGroup.before('<div class="form-group"><label for="coc7-journal-fixed-adventure-subheading">' + game.i18n.localize('CoC7.Config.AdventureSubheading') + '</label><input type="text" id="coc7-journal-fixed-adventure-subheading" value="' + fixedAdventureSubheading.replace(/"/g, '&quot;') + '"><p class="notes">' + game.i18n.localize('CoC7.Config.AdventureChangeHint') + '</p></div>')
+      lastGroup.before('<div class="form-group"><label for="coc7-journal-fixed-adventure-subheading">' + game.i18n.localize('Cd100.Config.AdventureSubheading') + '</label><input type="text" id="coc7-journal-fixed-adventure-subheading" value="' + fixedAdventureSubheading.replace(/"/g, '&quot;') + '"><p class="notes">' + game.i18n.localize('Cd100.Config.AdventureChangeHint') + '</p></div>')
       application.setPosition({ height: 'auto' })
     }
   } else {
@@ -78,14 +78,14 @@ export default function (application, element, context, options) {
       if (destination) {
         const fieldset = document.createElement('fieldset')
         const legend = document.createElement('legend')
-        legend.innerText = game.i18n.localize('CoC7.title')
+        legend.innerText = game.i18n.localize('Cd100.title')
         fieldset.append(legend)
         {
-          const formGroup = createFormGroup(application.id, 'checkbox', 'css-adventure-entry', 'CoC7.Config.AdventureCSS', cssAdventureEntry)
+          const formGroup = createFormGroup(application.id, 'checkbox', 'css-adventure-entry', 'Cd100.Config.AdventureCSS', cssAdventureEntry)
           fieldset.append(formGroup)
         }
         {
-          const formGroup = createFormGroup(application.id, 'checkbox', 'fixed-adventure-heading', 'CoC7.Config.FixedHeadingCSS', fixedAdventureHeading)
+          const formGroup = createFormGroup(application.id, 'checkbox', 'fixed-adventure-heading', 'Cd100.Config.FixedHeadingCSS', fixedAdventureHeading)
           fieldset.append(formGroup)
         }
         destination.append(fieldset)
@@ -114,10 +114,10 @@ export default function (application, element, context, options) {
       if (destination) {
         const fieldset = document.createElement('fieldset')
         const legend = document.createElement('legend')
-        legend.innerText = game.i18n.localize('CoC7.title')
+        legend.innerText = game.i18n.localize('Cd100.title')
         fieldset.append(legend)
         {
-          const formGroup = createFormGroup(application.id, 'text', 'fixed-adventure-subheading', 'CoC7.Config.AdventureSubheading', fixedAdventureSubheading)
+          const formGroup = createFormGroup(application.id, 'text', 'fixed-adventure-subheading', 'Cd100.Config.AdventureSubheading', fixedAdventureSubheading)
           fieldset.append(formGroup)
         }
         destination.append(fieldset)

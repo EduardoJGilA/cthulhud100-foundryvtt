@@ -11,7 +11,7 @@ import { FOLDER_ID } from '../constants.js'
  */
 export default function (message, data, options, userId) {
   // Prevent accidentally revealing fake rolls
-  if (userId === game.user.id && message.flags?.[FOLDER_ID]?.load?.as === 'CoC7ChatMessage' && message.content === '' && data.blind === false) {
+  if (userId === game.user.id && message.flags?.[FOLDER_ID]?.load?.as === 'Cd100ChatMessage' && message.content === '' && data.blind === false) {
     return false
   }
   return true

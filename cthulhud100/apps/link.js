@@ -1,18 +1,18 @@
 /* global canvas ChatMessage CONFIG foundry fromUuid game TextEditor */
 // cSpell:words combinedall combinedany
-import CoC7ActorPickerDialog from './actor-picker-dialog.js'
-import CoC7ChatCombinedMessage from './chat-combined-message.js'
-import CoC7ChatOpposedMessage from './chat-opposed-message.js'
-import CoC7ContentLinkDialog from './content-link-dialog.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SanCheckCard from './san-check-card.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ActorPickerDialog from './actor-picker-dialog.js'
+import Cd100ChatCombinedMessage from './chat-combined-message.js'
+import Cd100ChatOpposedMessage from './chat-opposed-message.js'
+import Cd100ContentLinkDialog from './content-link-dialog.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SanCheckCard from './san-check-card.js'
+import Cd100Utilities from './utilities.js'
 import deprecated from '../deprecated.js'
 
 /*
- * Allow for parsing of CoC7 elements in chat message and sheets.
+ * Allow for parsing of Cd100 elements in chat message and sheets.
  * Format is :
- * @coc7.TYPE_OF_REQUEST[OPTIONS]{DISPLAYED_NAME}
+ * @cd100.TYPE_OF_REQUEST[OPTIONS]{DISPLAYED_NAME}
  * TYPE_OF_REQUEST :
  * - sanloss: trigger a san check, upon failure will propose to deduct the corresponding SAN.
  * - check: trigger a check depending on the options.
@@ -41,7 +41,7 @@ import deprecated from '../deprecated.js'
  *   _createDocumentLink => Create @link from document data
  *   _onLinkActorClick => Process link
  */
-export default class CoC7Link {
+export default class Cd100Link {
   #blind
   #check
   #combat
@@ -94,27 +94,27 @@ export default class CoC7Link {
    * Set up Enricher, click, drag, and class
    */
   static init () {
-    CONFIG.CoC7Link = {
-      documentClass: CoC7Link
+    CONFIG.Cd100Link = {
+      documentClass: Cd100Link
     }
     /* // FoundryVTT V12 */
     if (game.release.generation === 12) {
       document.body.addEventListener('click', event => {
         if (event.target?.closest('a.coc7-link')) {
-          CoC7Link._onLinkClick(event)
+          Cd100Link._onLinkClick(event)
         }
       })
       document.body.addEventListener('dragstart', event => {
         if (event.target?.closest('a.coc7-link')) {
-          CoC7Link._onDragCoC7Link(event)
+          Cd100Link._onDragCd100Link(event)
         }
       })
     }
     CONFIG.TextEditor.enrichers.push({
       id: 'coc7-enricher',
       pattern: new RegExp('@(coc7)\\.' + '(check|effect|item|sanloss)' + '\\[((?:[^\\[\\]]*(?:\\[[^\\[\\]]*[^\\[\\]]*\\])*[^\\[\\]]*)*)\\]' + '(?:{([^}]+)})?', 'gi'),
-      enricher: CoC7Link._createLink,
-      onRender: CoC7Link.onRenderEnricher
+      enricher: Cd100Link._createLink,
+      onRender: Cd100Link.onRenderEnricher
     })
   }
 
@@ -127,12 +127,12 @@ export default class CoC7Link {
       element.dataset.hasEvents = true
       element.addEventListener('click', event => {
         if (event.target?.closest('a.coc7-link')) {
-          CoC7Link._onLinkClick(event)
+          Cd100Link._onLinkClick(event)
         }
       })
       element.addEventListener('dragstart', event => {
         if (event.target?.closest('a.coc7-link')) {
-          CoC7Link._onDragCoC7Link(event)
+          Cd100Link._onDragCd100Link(event)
         }
       })
     }
@@ -154,9 +154,9 @@ export default class CoC7Link {
    * Toggle document flag
    * @param {DragEvent} event
    */
-  static _onDragCoC7Link (event) {
+  static _onDragCd100Link (event) {
     event.stopPropagation()
-    const dragData = CoC7Link._linkDataFromEvent(event)
+    const dragData = Cd100Link._linkDataFromEvent(event)
     event.dataTransfer.setData('text/plain', JSON.stringify(dragData))
   }
 
@@ -178,10 +178,10 @@ export default class CoC7Link {
    * @param {string|boolean} data.combat optional
    * @param {string|boolean} data.pushing optional
    * @param {string} data.label optional
-   * @returns {CoC7Link}
+   * @returns {Cd100Link}
    */
   static async fromDropData (data) {
-    const cls = new CoC7Link()
+    const cls = new Cd100Link()
     cls.#check = data.check
     cls.#subtype = data.subtype
     cls.#name = data.name
@@ -243,7 +243,7 @@ export default class CoC7Link {
     const data = {
       cls: ['coc7-link'],
       dataset: {
-        type: 'CoC7Link',
+        type: 'Cd100Link',
         check: match[2]
       }
     }
@@ -252,14 +252,14 @@ export default class CoC7Link {
     let icon = 'fa-solid fa-dice'
     let img = ''
 
-    if (data.dataset.check === CoC7Link.CHECK_TYPE.EFFECT) {
+    if (data.dataset.check === Cd100Link.CHECK_TYPE.EFFECT) {
       const effect = JSON.parse(object)
       // Change old keys
       if (typeof effect.label !== 'undefined') {
         if (typeof effect.name === 'undefined') {
           deprecated.warningLogger({
-            was: '@coc7.effect[label:]',
-            now: '@coc7.effect[name:]',
+            was: '@cd100.effect[label:]',
+            now: '@cd100.effect[name:]',
             until: 15
           })
           effect.name = effect.label
@@ -269,8 +269,8 @@ export default class CoC7Link {
       if (typeof effect.icon !== 'undefined') {
         if (typeof effect.img === 'undefined') {
           deprecated.warningLogger({
-            was: '@coc7.effect[icon:]',
-            now: '@coc7.effect[img:]',
+            was: '@cd100.effect[icon:]',
+            now: '@cd100.effect[img:]',
             until: 15
           })
           effect.img = effect.icon
@@ -290,16 +290,16 @@ export default class CoC7Link {
         switch (key) {
           case 'modifier':
             deprecated.warningLogger({
-              was: '@coc7.check[modifier:]',
-              now: '@coc7.effect[poolModifier:]',
+              was: '@cd100.check[modifier:]',
+              now: '@cd100.effect[poolModifier:]',
               until: 15
             })
             key = 'poolModifier'
             break
           case 'type':
             deprecated.warningLogger({
-              was: '@coc7.check[type:]',
-              now: '@coc7.effect[subtype:]',
+              was: '@cd100.check[type:]',
+              now: '@cd100.effect[subtype:]',
               until: 15
             })
             key = 'subtype'
@@ -310,13 +310,13 @@ export default class CoC7Link {
         }
         if (typeof value === 'undefined') {
           if (key === 'blind') {
-            if ([CoC7Link.CHECK_TYPE.CHECK, CoC7Link.CHECK_TYPE.SANLOSS, CoC7Link.CHECK_TYPE.ITEM].includes(data.dataset.check.toLowerCase())) {
+            if ([Cd100Link.CHECK_TYPE.CHECK, Cd100Link.CHECK_TYPE.SANLOSS, Cd100Link.CHECK_TYPE.ITEM].includes(data.dataset.check.toLowerCase())) {
               value = true
             } else {
               continue
             }
           } else if (['combat', 'pushing'].includes(key)) {
-            if ([CoC7Link.CHECK_TYPE.CHECK].includes(data.dataset.check.toLowerCase())) {
+            if ([Cd100Link.CHECK_TYPE.CHECK].includes(data.dataset.check.toLowerCase())) {
               value = true
             } else {
               continue
@@ -325,21 +325,21 @@ export default class CoC7Link {
         }
         data.dataset[key] = value
       }
-      const difficulty = CoC7DicePool.difficultyString(data.dataset.difficulty)
+      const difficulty = Cd100DicePool.difficultyString(data.dataset.difficulty)
       switch (data.dataset.check.toLowerCase()) {
-        case CoC7Link.CHECK_TYPE.CHECK:
+        case Cd100Link.CHECK_TYPE.CHECK:
           {
             let humanName = name
             if (['attributes', 'attribute', 'attrib', 'attribs'].includes(data.dataset.subtype?.toLowerCase())) {
               if (['lck', 'san'].includes(data.dataset.name)) {
-                humanName = CoC7Utilities.getAttributeNames(data.dataset.name)?.label
+                humanName = Cd100Utilities.getAttributeNames(data.dataset.name)?.label
               }
             } else if (['charac', 'char', 'characteristic', 'characteristics'].includes(data.dataset.subtype?.toLowerCase())) {
-              humanName = CoC7Utilities.getCharacteristicNames(data.dataset.name)?.label
+              humanName = Cd100Utilities.getCharacteristicNames(data.dataset.name)?.label
             } else if (['skill'].includes(data.dataset.subtype?.toLowerCase())) {
               humanName = data.dataset.name
               if (data.dataset.name.match(/^.\.[^\\.]*\..+$/)) {
-                const cocIdName = (await game.CoC7.cocid.fromCoCID(data.dataset.name))?.[0]?.name
+                const cocIdName = (await game.Cd100.cocid.fromCoCID(data.dataset.name))?.[0]?.name
                 if (cocIdName) {
                   humanName = cocIdName
                 }
@@ -348,7 +348,7 @@ export default class CoC7Link {
               humanName = '?'
             }
             data.dataset.tooltip = game.i18n.format(
-              `CoC7.LinkCheck${!data.dataset.difficulty ? '' : 'Diff'}${!data.dataset.poolModifier ? '' : 'Modif'}${!data.dataset.pushing ? '' : 'Pushing'}`,
+              `Cd100.LinkCheck${!data.dataset.difficulty ? '' : 'Diff'}${!data.dataset.poolModifier ? '' : 'Modif'}${!data.dataset.pushing ? '' : 'Pushing'}`,
               {
                 difficulty,
                 modifier: data.dataset.poolModifier,
@@ -357,9 +357,9 @@ export default class CoC7Link {
             )
           }
           break
-        case CoC7Link.CHECK_TYPE.SANLOSS:
+        case Cd100Link.CHECK_TYPE.SANLOSS:
           data.dataset.tooltip = game.i18n.format(
-            `CoC7.LinkSanLoss${!data.dataset.difficulty ? '' : 'Diff'}${!data.dataset.poolModifier ? '' : 'Modif'}`,
+            `Cd100.LinkSanLoss${!data.dataset.difficulty ? '' : 'Diff'}${!data.dataset.poolModifier ? '' : 'Modif'}`,
             {
               difficulty,
               modifier: data.dataset.poolModifier,
@@ -368,17 +368,17 @@ export default class CoC7Link {
             }
           )
           break
-        case CoC7Link.CHECK_TYPE.ITEM:
+        case Cd100Link.CHECK_TYPE.ITEM:
           {
             let humanName = data.dataset.name
             if (humanName.match(/^.\.[^\\.]*\..+$/)) {
-              const cocIdName = (await game.CoC7.cocid.fromCoCID(humanName))?.[0]?.name
+              const cocIdName = (await game.Cd100.cocid.fromCoCID(humanName))?.[0]?.name
               if (cocIdName) {
                 humanName = cocIdName
               }
             }
             data.dataset.tooltip = game.i18n.format(
-              `CoC7.LinkItem${!data.dataset.difficulty ? '' : 'Diff'}${!data.dataset.poolModifier ? '' : 'Modif'}`,
+              `Cd100.LinkItem${!data.dataset.difficulty ? '' : 'Diff'}${!data.dataset.poolModifier ? '' : 'Modif'}`,
               {
                 difficulty,
                 modifier: data.dataset.poolModifier,
@@ -422,11 +422,11 @@ export default class CoC7Link {
     const options = []
     let toggles = false
     switch (this.#check?.toLowerCase()) {
-      case CoC7Link.CHECK_TYPE.CHECK:
-        // @coc7.check[subtype:charac,name:STR,difficulty:+,modifier:-1]{Hard STR check(-1)}
-        // @coc7.check[blind,subtype:characteristic,name:str,difficulty:1,modifier:0,icon:fa fa-link]{Strength}
-        // @coc7.check[blind,subtype:attribute,name:lck,difficulty:1,modifier:0,icon:fa fa-link]{Luck}
-        // @coc7.check[blind,subtype:skill,name:Law,difficulty:1,modifier:0,icon:fa fa-link]{Law}
+      case Cd100Link.CHECK_TYPE.CHECK:
+        // @cd100.check[subtype:charac,name:STR,difficulty:+,modifier:-1]{Hard STR check(-1)}
+        // @cd100.check[blind,subtype:characteristic,name:str,difficulty:1,modifier:0,icon:fa fa-link]{Strength}
+        // @cd100.check[blind,subtype:attribute,name:lck,difficulty:1,modifier:0,icon:fa fa-link]{Luck}
+        // @cd100.check[blind,subtype:skill,name:Law,difficulty:1,modifier:0,icon:fa fa-link]{Law}
         options.push('subtype:' + this.#subtype)
         if (this.#name) {
           options.push('name:' + this.#name)
@@ -436,8 +436,8 @@ export default class CoC7Link {
         }
         toggles = true
         break
-      case CoC7Link.CHECK_TYPE.SANLOSS:
-        // @coc7.sanloss[sanMax:1D6,sanMin:1,difficulty:++,modifier:-1]{Hard San Loss (-1) 1/1D6}
+      case Cd100Link.CHECK_TYPE.SANLOSS:
+        // @cd100.sanloss[sanMax:1D6,sanMin:1,difficulty:++,modifier:-1]{Hard San Loss (-1) 1/1D6}
         options.push('sanMin:' + this.#sanMin)
         options.push('sanMax:' + this.#sanMax)
         if (this.#sanReason) {
@@ -445,16 +445,16 @@ export default class CoC7Link {
         }
         toggles = true
         break
-      case CoC7Link.CHECK_TYPE.ITEM:
-        // @coc7.item[type:optional,name:Shotgun,difficulty:+,modifier:-1]{Hard Shotgun check(-1)}
+      case Cd100Link.CHECK_TYPE.ITEM:
+        // @cd100.item[type:optional,name:Shotgun,difficulty:+,modifier:-1]{Hard Shotgun check(-1)}
         if (this.#name) {
           options.push('name:' + this.#name)
         }
         toggles = true
         break
-      case CoC7Link.CHECK_TYPE.EFFECT:
+      case Cd100Link.CHECK_TYPE.EFFECT:
         {
-          // @coc7.effect[{"name":"Test","img":"icons/svg/aura.svg","changes":[{"key":"system.unknown.test","mode":2,"value":"5"}],"tint":"#e91616","duration":{"seconds":null,"rounds":6,"turns":null}}]{Testing}
+          // @cd100.effect[{"name":"Test","img":"icons/svg/aura.svg","changes":[{"key":"system.unknown.test","mode":2,"value":"5"}],"tint":"#e91616","duration":{"seconds":null,"rounds":6,"turns":null}}]{Testing}
           const json = foundry.utils.duplicate(this.#object)
           const parts = json.img.match(/^(https?):\/\/(.+)$/)
           if (parts) {
@@ -489,7 +489,7 @@ export default class CoC7Link {
         options.push(this.#pushing ? 'pushing' : '')
       }
     }
-    const link = '@coc7.' + this.#check?.toLowerCase() + '[' + options.join(',') + ']' + (this.#hasLabel ? '{' + this.#label + '}' : '')
+    const link = '@cd100.' + this.#check?.toLowerCase() + '[' + options.join(',') + ']' + (this.#hasLabel ? '{' + this.#label + '}' : '')
     return link
   }
 
@@ -506,7 +506,7 @@ export default class CoC7Link {
       actor = actor.actor
     }
     switch (options.check) {
-      case CoC7Link.CHECK_TYPE.CHECK:
+      case Cd100Link.CHECK_TYPE.CHECK:
         switch (options.subtype.toLowerCase()) {
           case 'charac':
           case 'char':
@@ -526,7 +526,7 @@ export default class CoC7Link {
           case 'combinedall':
           case 'combinedany':
           case 'combined':
-            CoC7ChatCombinedMessage.createGroupMessage({
+            Cd100ChatCombinedMessage.createGroupMessage({
               defaultActor: actor.uuid ?? null,
               isCombat: Boolean(options.combat ?? false),
               rollRequisites: options.rolls.split('&&'),
@@ -534,7 +534,7 @@ export default class CoC7Link {
             })
             break
           case 'opposed':
-            CoC7ChatOpposedMessage.createGroupMessage({
+            Cd100ChatOpposedMessage.createGroupMessage({
               defaultActor: actor.uuid ?? null,
               isCombat: Boolean(options.combat ?? false),
               rollRequisites: options.rolls.split('&&')
@@ -542,8 +542,8 @@ export default class CoC7Link {
             break
         }
         break
-      case CoC7Link.CHECK_TYPE.SANLOSS:
-        CoC7SanCheckCard.create(CoC7Utilities.getActorUuid(actor), {
+      case Cd100Link.CHECK_TYPE.SANLOSS:
+        Cd100SanCheckCard.create(Cd100Utilities.getActorUuid(actor), {
           sanMax: options.sanMax,
           sanMin: options.sanMin,
           sanReason: options.sanReason,
@@ -551,10 +551,10 @@ export default class CoC7Link {
           poolModifier: options.poolModifier
         })
         break
-      case CoC7Link.CHECK_TYPE.ITEM:
+      case Cd100Link.CHECK_TYPE.ITEM:
         await actor.weaponCheck(options, shiftKey)
         break
-      case CoC7Link.CHECK_TYPE.EFFECT:
+      case Cd100Link.CHECK_TYPE.EFFECT:
         await actor.createEmbeddedDocuments('ActiveEffect', [
           JSON.parse(options.object)
         ])
@@ -568,10 +568,10 @@ export default class CoC7Link {
   toChatMessage () {
     let content
     const link = this._createDocumentLink(null)
-    if (this.#check === CoC7Link.CHECK_TYPE.EFFECT) {
+    if (this.#check === Cd100Link.CHECK_TYPE.EFFECT) {
       content = `<div class="effect-message">${link}</div>`
     } else {
-      content = game.i18n.format('CoC7.MessageCheckRequestedWait', {
+      content = game.i18n.format('Cd100.MessageCheckRequestedWait', {
         check: link
       })
     }
@@ -593,10 +593,10 @@ export default class CoC7Link {
     for (const actor of actors) {
       let content
       const link = this._createDocumentLink(null)
-      if (this.#check === CoC7Link.CHECK_TYPE.EFFECT) {
+      if (this.#check === Cd100Link.CHECK_TYPE.EFFECT) {
         content = `<div class="effect-message">${link}</div>`
       } else {
-        content = game.i18n.format('CoC7.MessageTargetCheckRequested', {
+        content = game.i18n.format('Cd100.MessageTargetCheckRequested', {
           name: actor.name,
           check: link
         })
@@ -618,11 +618,11 @@ export default class CoC7Link {
    * @returns {string|object}
    */
   static async makeMacroData (data) {
-    const linkObj = await CoC7Link.fromDropData(data)
+    const linkObj = await Cd100Link.fromDropData(data)
     return {
       name: linkObj.#label,
       type: 'script',
-      command: 'game.CoC7.macros.linkMacro(' + JSON.stringify(data) + ')'
+      command: 'game.Cd100.macros.linkMacro(' + JSON.stringify(data) + ')'
     }
   }
 
@@ -631,7 +631,7 @@ export default class CoC7Link {
    * @param {object} data
    */
   static async linkMacro (data) {
-    const linkObj = await CoC7Link.fromDropData(data)
+    const linkObj = await Cd100Link.fromDropData(data)
     /* // FoundryVTT V12 */
     ;(foundry.applications.ux?.TextEditor.implementation ?? TextEditor).enrichHTML(
       linkObj._createDocumentLink(),
@@ -642,7 +642,7 @@ export default class CoC7Link {
     ).then(string => {
       const element = document.createElement('div')
       element.innerHTML = string
-      CoC7Link._onLinkClick({
+      Cd100Link._onLinkClick({
         target: element.querySelector('a')
       })
     })
@@ -653,33 +653,33 @@ export default class CoC7Link {
    * @param {ClickEvent} event
    */
   static async _onLinkClick (event) {
-    const options = CoC7Link._linkDataFromEvent(event)
+    const options = Cd100Link._linkDataFromEvent(event)
 
     if (game.user.isGM) {
-      if (CoC7Utilities.isCtrlKey(event)) {
-        CoC7ContentLinkDialog.create(options)
+      if (Cd100Utilities.isCtrlKey(event)) {
+        Cd100ContentLinkDialog.create(options)
         return
       }
       if (canvas.tokens.controlled.length) {
         for (const token of canvas.tokens.controlled) {
-          CoC7Link._onLinkActorClick(token.actor, options, { shiftKey: event.shiftKey })
+          Cd100Link._onLinkActorClick(token.actor, options, { shiftKey: event.shiftKey })
         }
         return
       }
       const speaker = ChatMessage.getSpeaker()
       const actor = ChatMessage.getSpeakerActor(speaker)
       if (actor) {
-        CoC7Link._onLinkActorClick(actor, options, { shiftKey: event.shiftKey })
+        Cd100Link._onLinkActorClick(actor, options, { shiftKey: event.shiftKey })
         return
       }
-      const link = await CoC7Link.fromDropData(options)
+      const link = await Cd100Link.fromDropData(options)
       link.toChatMessage()
     } else {
-      const actorUuid = await CoC7ActorPickerDialog.create()
+      const actorUuid = await Cd100ActorPickerDialog.create()
       if (actorUuid) {
         const actor = await fromUuid(actorUuid)
         if (actor) {
-          CoC7Link._onLinkActorClick(actor, options, { shiftKey: event.shiftKey })
+          Cd100Link._onLinkActorClick(actor, options, { shiftKey: event.shiftKey })
         }
       }
     }

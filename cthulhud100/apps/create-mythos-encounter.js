@@ -1,7 +1,7 @@
 /* global Actor foundry game */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7CreateMythosEncounter extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100CreateMythosEncounter extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -18,11 +18,11 @@ export default class CoC7CreateMythosEncounter extends foundry.applications.api.
       contentClasses: [
         'standard-form'
       ],
-      title: 'CoC7.SanityLossTypeDialogTitle'
+      title: 'Cd100.SanityLossTypeDialogTitle'
     },
     form: {
       closeOnSubmit: true,
-      handler: CoC7CreateMythosEncounter.#onSubmit
+      handler: Cd100CreateMythosEncounter.#onSubmit
     }
   }
 
@@ -52,11 +52,11 @@ export default class CoC7CreateMythosEncounter extends foundry.applications.api.
         context.encounterTypes = [
           {
             key: 'encounter',
-            label: 'CoC7.SanityLossEncounter'
+            label: 'Cd100.SanityLossEncounter'
           },
           {
             key: 'immunity',
-            label: 'CoC7.SanityLossImmunity'
+            label: 'Cd100.SanityLossImmunity'
           }
         ]
         context.name = this.coc7Config.name
@@ -67,12 +67,12 @@ export default class CoC7CreateMythosEncounter extends foundry.applications.api.
         context.buttons = [{
           type: 'submit',
           action: 'close',
-          label: 'CoC7.Cancel',
+          label: 'Cd100.Cancel',
           icon: 'fa-solid fa-ban'
         }, {
           type: 'submit',
           action: 'update',
-          label: 'CoC7.Add',
+          label: 'Cd100.Add',
           icon: 'fa-solid fa-check'
         }]
         break
@@ -144,7 +144,7 @@ export default class CoC7CreateMythosEncounter extends foundry.applications.api.
    */
   static async create ({ actor, type } = {}) {
     if (actor instanceof Actor && ['encounter', 'immunity'].includes(type)) {
-      new CoC7CreateMythosEncounter({}, {}, {
+      new Cd100CreateMythosEncounter({}, {}, {
         actor,
         type
       }).render({ force: true })

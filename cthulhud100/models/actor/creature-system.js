@@ -1,8 +1,8 @@
 /* global foundry */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsActorNPCSystem from './npc-system.js'
+import Cd100ModelsActorNPCSystem from './npc-system.js'
 
-export default class CoC7ModelsActorCreatureSystem extends CoC7ModelsActorNPCSystem {
+export default class Cd100ModelsActorCreatureSystem extends Cd100ModelsActorNPCSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -16,8 +16,8 @@ export default class CoC7ModelsActorCreatureSystem extends CoC7ModelsActorNPCSys
       // separately in attribs.armor as usual.
       leatherySkin: new fields.BooleanField({
         initial: false,
-        label: 'CoC7.CreatureLeatherySkin',
-        hint: 'CoC7.CreatureLeatherySkinHint'
+        label: 'Cd100.CreatureLeatherySkin',
+        hint: 'Cd100.CreatureLeatherySkinHint'
       })
     })
   }

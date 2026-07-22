@@ -1,7 +1,7 @@
 /* global DragDrop foundry fromUuid game Roll */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7ExperiencePackageDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100ExperiencePackageDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -15,14 +15,14 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
     tag: 'form',
     classes: ['coc7', 'dialog'],
     window: {
-      title: 'CoC7.ExperiencePackageDialogTitle',
+      title: 'Cd100.ExperiencePackageDialogTitle',
       contentClasses: [
         'standard-form'
       ]
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7ExperiencePackageDialog.#onSubmit
+      handler: Cd100ExperiencePackageDialog.#onSubmit
     },
     position: {
       width: 500
@@ -81,7 +81,7 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
                 break
               case 'status':
                 {
-                  const index = this.coc7Config.backstory.findIndex(doc => doc.type === 'CoC7.PromptAddStatus' && doc.value._id === itemId)
+                  const index = this.coc7Config.backstory.findIndex(doc => doc.type === 'Cd100.PromptAddStatus' && doc.value._id === itemId)
                   if (index > -1) {
                     this.coc7Config.backstory[index].value = false
                     this.render({ force: true })
@@ -96,7 +96,7 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
             const block = event.target.closest('.backstoryBlock')
             if (block) {
               const index = block.dataset.index
-              if (index && this.coc7Config.backstory[index].type === 'CoC7.AddSanityLossEncounter') {
+              if (index && this.coc7Config.backstory[index].type === 'Cd100.AddSanityLossEncounter') {
                 this.coc7Config.backstory[index].value.apply = !this.coc7Config.backstory[index].value.apply
                 this.render({ force: true })
               }
@@ -113,7 +113,7 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
    */
   async _onChangeBackstoryText (event) {
     const index = event.target.closest('.backstoryBlock').dataset.index
-    if (index && this.coc7Config.backstory[index].type === 'CoC7.PromptAddInjuryScar') {
+    if (index && this.coc7Config.backstory[index].type === 'Cd100.PromptAddInjuryScar') {
       this.coc7Config.backstory[index].value = event.target.value
     }
   }
@@ -125,7 +125,7 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
   async _onChangeBackstoryInput (event) {
     const index = event.target.closest('.backstoryBlock').dataset.index
     const key = event.target.dataset.name
-    if (index && this.coc7Config.backstory[index].type === 'CoC7.AddSanityLossEncounter') {
+    if (index && this.coc7Config.backstory[index].type === 'Cd100.AddSanityLossEncounter') {
       this.coc7Config.backstory[index].value[key] = event.target.value
     }
   }
@@ -151,7 +151,7 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
         const block = event.target.closest('.backstoryBlock')
         if (block) {
           const index = block.dataset.index
-          if (index && this.coc7Config.backstory[index].type === 'CoC7.PromptAddStatus') {
+          if (index && this.coc7Config.backstory[index].type === 'Cd100.PromptAddStatus') {
             if (!this.coc7Config.backstory.find(d => d.value._id === doc._id)) {
               this.coc7Config.backstory[index].value = doc
               this.render({ force: true })
@@ -172,13 +172,13 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
       this.coc7Config.backstory[index].type = event.currentTarget.value
       switch (this.coc7Config.backstory[index].type) {
         case '':
-        case 'CoC7.PromptAddStatus':
+        case 'Cd100.PromptAddStatus':
           this.coc7Config.backstory[index].value = false
           break
-        case 'CoC7.PromptAddInjuryScar':
+        case 'Cd100.PromptAddInjuryScar':
           this.coc7Config.backstory[index].value = ''
           break
-        case 'CoC7.AddSanityLossEncounter':
+        case 'Cd100.AddSanityLossEncounter':
           this.coc7Config.backstory[index].value = {
             reason: '',
             points: '',
@@ -203,13 +203,13 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
       })
     }
     const backstoryOptions = {
-      'CoC7.PromptAddInjuryScar': 'CoC7.PromptAddInjuryScar',
-      'CoC7.PromptAddStatus': 'CoC7.PromptAddStatus',
-      'CoC7.AddSanityLossEncounter': 'CoC7.AddSanityLossEncounter'
+      'Cd100.PromptAddInjuryScar': 'Cd100.PromptAddInjuryScar',
+      'Cd100.PromptAddStatus': 'Cd100.PromptAddStatus',
+      'Cd100.AddSanityLossEncounter': 'Cd100.AddSanityLossEncounter'
     }
 
     return await new Promise(resolve => {
-      new CoC7ExperiencePackageDialog({}, {}, {
+      new Cd100ExperiencePackageDialog({}, {}, {
         addSpells: system.addSpells,
         backstory,
         backstoryOptions,
@@ -269,7 +269,7 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
     }
     for (const type of this.coc7Config.backstory) {
       switch (type.type) {
-        case 'CoC7.PromptAddInjuryScar':
+        case 'Cd100.PromptAddInjuryScar':
           {
             const element = document.createElement('p')
             const value = document.createTextNode(type.value)
@@ -277,12 +277,12 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
             output.backstory.push(element.outerHTML)
           }
           break
-        case 'CoC7.PromptAddStatus':
+        case 'Cd100.PromptAddStatus':
           if (type.value) {
             output.items.push(type.value)
           }
           break
-        case 'CoC7.AddSanityLossEncounter':
+        case 'Cd100.AddSanityLossEncounter':
           output.encounters.push({
             type: type.value.reason,
             totalLoss: type.value.points,
@@ -331,7 +331,7 @@ export default class CoC7ExperiencePackageDialog extends foundry.applications.ap
           {
             type: 'submit',
             action: 'validate',
-            label: 'CoC7.Validate',
+            label: 'Cd100.Validate',
             icon: 'fa-solid fa-check'
           }
         ]

@@ -1,12 +1,12 @@
 <div class="panel flexcol">
-  <h1>{{localize 'CoC7.InvestigatorWizard.TitleAdjustCharacteristics'}}</h1>
+  <h1>{{localize 'Cd100.InvestigatorWizard.TitleAdjustCharacteristics'}}</h1>
   <div class="scroll-section">
     {{#unless pulpRuleIgnoreAgePenalties}}
       {{#if coc7Config.requiresAgeAdjustments.edu}}
         {{#if (eq 1 coc7Config.requiresAgeAdjustments.edu.total)}}
-          <h3 class="section-heading">{{localize 'CoC7.InvestigatorWizard.MakeEDUImprovementCheck' total=coc7Config.requiresAgeAdjustments.edu.total}}</h3>
+          <h3 class="section-heading">{{localize 'Cd100.InvestigatorWizard.MakeEDUImprovementCheck' total=coc7Config.requiresAgeAdjustments.edu.total}}</h3>
         {{else}}
-          <h3 class="section-heading">{{localize 'CoC7.InvestigatorWizard.MakeEDUImprovementChecks' total=coc7Config.requiresAgeAdjustments.edu.total}}</h3>
+          <h3 class="section-heading">{{localize 'Cd100.InvestigatorWizard.MakeEDUImprovementChecks' total=coc7Config.requiresAgeAdjustments.edu.total}}</h3>
         {{/if}}
         <div class="place-characteristics flexcol">
           <div></div>
@@ -19,7 +19,7 @@
           <div class="flexrow" style="min-height: calc(var(--button-size) + 4px);">
             <div class="flex2"></div>
             {{#unless coc7Config.requiresAgeAdjustments.edu.rolled}}
-              <button class="roll_edu">{{localize 'CoC7.RollDice'}}</button>
+              <button class="roll_edu">{{localize 'Cd100.RollDice'}}</button>
             {{/unless}}
             <div class="flex2"></div>
           </div>
@@ -27,7 +27,7 @@
         </div>
       {{/if}}
       {{#if coc7Config.requiresAgeAdjustments.deduct}}
-        <h3 class="section-heading">{{localize 'CoC7.InvestigatorWizard.DeductPointsFromCharacteristics' total=coc7Config.requiresAgeAdjustments.deduct.total from=deductFrom}}</h3>
+        <h3 class="section-heading">{{localize 'Cd100.InvestigatorWizard.DeductPointsFromCharacteristics' total=coc7Config.requiresAgeAdjustments.deduct.total from=deductFrom}}</h3>
         <div class="place-characteristics flexcol">
           <div></div>
           {{#each coc7Config.requiresAgeAdjustments.deduct.from as |characteristic|}}
@@ -46,7 +46,7 @@
           {{/each}}
           <div></div>
           <div class="flexrow">
-            <label class="flex2">{{localize 'CoC7.CharacteristicsPoints'}}:</label>
+            <label class="flex2">{{localize 'Cd100.CharacteristicsPoints'}}:</label>
             <div class="item-controls"></div>
             <div class="not-draggable">
               <span class='total'>{{deductTotal}}</span>
@@ -59,7 +59,7 @@
         </div>
       {{/if}}
       {{#if coc7Config.requiresAgeAdjustments.reduce}}
-        <h3 class="section-heading">{{localize 'CoC7.InvestigatorWizard.ReducePointsFromCharacteristic' total=coc7Config.requiresAgeAdjustments.reduce.total from=reduceFrom}}</h3>
+        <h3 class="section-heading">{{localize 'Cd100.InvestigatorWizard.ReducePointsFromCharacteristic' total=coc7Config.requiresAgeAdjustments.reduce.total from=reduceFrom}}</h3>
         <div class="place-characteristics flexcol">
           <div></div>
           <div class="flexrow">
@@ -72,11 +72,11 @@
         </div>
       {{/if}}
       {{#if coc7Config.requiresAgeAdjustments.luck}}
-        <h3 class="section-heading">{{localize 'CoC7.InvestigatorWizard.RollTwiceForLuck'}}</h3>
+        <h3 class="section-heading">{{localize 'Cd100.InvestigatorWizard.RollTwiceForLuck'}}</h3>
         <div class="place-characteristics flexcol">
           <div></div>
           <div class="flexrow">
-            <label class="flex2">{{localize 'CoC7.Luck'}} ({{coc7Config.setupPoints.luck}}% / {{coc7Config.setupModifiers.luck}}%):</label>
+            <label class="flex2">{{localize 'Cd100.Luck'}} ({{coc7Config.setupPoints.luck}}% / {{coc7Config.setupModifiers.luck}}%):</label>
             <div class="item-controls"></div>
             <div class="not-draggable">{{luckValue}}%</div>
             <div class="item-controls"></div>
@@ -84,7 +84,7 @@
           <div class="flexrow" style="min-height: calc(var(--button-size) + 4px);">
             <div class="flex2"></div>
             {{#unless coc7Config.setupModifiers.luck}}
-              <button class="roll_luck">{{localize 'CoC7.RollDice'}}</button>
+              <button class="roll_luck">{{localize 'Cd100.RollDice'}}</button>
             {{/unless}}
             <div class="flex2"></div>
           </div>

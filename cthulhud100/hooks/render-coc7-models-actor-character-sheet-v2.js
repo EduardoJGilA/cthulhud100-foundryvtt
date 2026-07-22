@@ -1,8 +1,8 @@
 /* global CONFIG */
 import { FOLDER_ID } from '../constants.js'
-import CoC7ModelsActorCharacterSheetSummarizedV2 from '../models/actor/character-sheet-summarized-v2.js'
-import CoC7ModelsActorCharacterSheetSummarizedV3 from '../models/actor/character-sheet-summarized-v3.js'
-import CoC7ModelsActorCharacterSheetV3 from '../models/actor/character-sheet-v3.js'
+import Cd100ModelsActorCharacterSheetSummarizedV2 from '../models/actor/character-sheet-summarized-v2.js'
+import Cd100ModelsActorCharacterSheetSummarizedV3 from '../models/actor/character-sheet-summarized-v3.js'
+import Cd100ModelsActorCharacterSheetV3 from '../models/actor/character-sheet-v3.js'
 
 /**
  * Render Hook
@@ -21,7 +21,7 @@ export default function (application, element, context, options) {
   }
 
   if (!context.document.isLimitedView) {
-    if (!(application instanceof CoC7ModelsActorCharacterSheetSummarizedV2) && !element.querySelector('button.header-control.fa-solid.fa-window-minimize')) {
+    if (!(application instanceof Cd100ModelsActorCharacterSheetSummarizedV2) && !element.querySelector('button.header-control.fa-solid.fa-window-minimize')) {
       application.options.actions.minimizeSheet = {
         handler: async (event, element) => {
           event.preventDefault()
@@ -29,7 +29,7 @@ export default function (application, element, context, options) {
           if (event.detail > 1) return // Ignore repeated clicks
           const defaultSheet = Object.values(CONFIG.Actor.sheetClasses.character).find(o => o.default).id
           let sheetClass = ''
-          const otherSheetClass = (application instanceof CoC7ModelsActorCharacterSheetV3 ? 'CoC7ModelsActorCharacterSheetSummarizedV3' : 'CoC7ModelsActorCharacterSheetSummarizedV2')
+          const otherSheetClass = (application instanceof Cd100ModelsActorCharacterSheetV3 ? 'Cd100ModelsActorCharacterSheetSummarizedV3' : 'Cd100ModelsActorCharacterSheetSummarizedV2')
           if (defaultSheet !== FOLDER_ID + '.' + otherSheetClass) {
             sheetClass = FOLDER_ID + '.' + otherSheetClass
           }
@@ -43,11 +43,11 @@ export default function (application, element, context, options) {
         button.type = 'button'
         button.classList = 'header-control fa-solid fa-window-minimize icon'
         button.dataset.action = 'minimizeSheet'
-        button.dataset.tooltip = 'CoC7.Summarize'
+        button.dataset.tooltip = 'Cd100.Summarize'
         toggleControlsButton.after(button)
       }
     }
-    if (application instanceof CoC7ModelsActorCharacterSheetSummarizedV2 && !element.querySelector('button.header-control.fa-solid.fa-window-maximize')) {
+    if (application instanceof Cd100ModelsActorCharacterSheetSummarizedV2 && !element.querySelector('button.header-control.fa-solid.fa-window-maximize')) {
       application.options.actions.maximizeSheet = {
         handler: async (event, element) => {
           event.preventDefault()
@@ -55,7 +55,7 @@ export default function (application, element, context, options) {
           if (event.detail > 1) return // Ignore repeated clicks
           const defaultSheet = Object.values(CONFIG.Actor.sheetClasses.character).find(o => o.default).id
           let sheetClass = ''
-          const otherSheetClass = (application instanceof CoC7ModelsActorCharacterSheetSummarizedV3 ? 'CoC7ModelsActorCharacterSheetV3' : 'CoC7ModelsActorCharacterSheetV2')
+          const otherSheetClass = (application instanceof Cd100ModelsActorCharacterSheetSummarizedV3 ? 'Cd100ModelsActorCharacterSheetV3' : 'Cd100ModelsActorCharacterSheetV2')
           if (defaultSheet !== FOLDER_ID + '.' + otherSheetClass) {
             sheetClass = FOLDER_ID + '.' + otherSheetClass
           }
@@ -69,7 +69,7 @@ export default function (application, element, context, options) {
         button.type = 'button'
         button.classList = 'header-control fa-solid fa-window-maximize icon'
         button.dataset.action = 'maximizeSheet'
-        button.dataset.tooltip = 'CoC7.Maximize'
+        button.dataset.tooltip = 'Cd100.Maximize'
         toggleControlsButton.after(button)
       }
     }

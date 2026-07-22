@@ -1,7 +1,7 @@
 <div class="flexrow item-header">
   <div class="flexcol item-property">
     <div class="flexrow">
-      <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'CoC7.Name'}}" />
+      <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'Cd100.Name'}}" />
       <div class="flexrow" style="flex: 2">
         {{#if document.isEmbedded}}
           <select name="system.skill.main.id" style="flex: 1">
@@ -19,9 +19,9 @@
             </select>
           {{/if}}
         {{else}}
-          <input style="flex: 1" type="text" name="system.skill.main.name" value="{{document.system.skill.main.name}}" placeholder="{{localize 'CoC7.WeaponSkillMain'}}" />
+          <input style="flex: 1" type="text" name="system.skill.main.name" value="{{document.system.skill.main.name}}" placeholder="{{localize 'Cd100.WeaponSkillMain'}}" />
           {{#if usesAlternateSkill}}
-            <input style="flex: 1" type="text" name="system.skill.alternativ.name" value="{{document.system.skill.alternativ.name}}" placeholder="{{localize 'CoC7.WeaponSkillAlt'}}" />
+            <input style="flex: 1" type="text" name="system.skill.alternativ.name" value="{{document.system.skill.alternativ.name}}" placeholder="{{localize 'Cd100.WeaponSkillAlt'}}" />
           {{/if}}
         {{/if}}
       </div>
@@ -29,15 +29,15 @@
     <div class="columns-two flexrow">
       {{#if document.system.properties.rngd}}
         <div class="column-row flexrow">
-          <label>{{localize 'CoC7.WeaponRange'}} (yd):</label>
-          <input class="item-skill" style="flex: 1;" type="text" name="system.range.normal.value" value="{{document.system.range.normal.value}}" placeholder="{{localize 'CoC7.rangeCombatCard.BaseRangeShort'}}" />
+          <label>{{localize 'Cd100.WeaponRange'}} (yd):</label>
+          <input class="item-skill" style="flex: 1;" type="text" name="system.range.normal.value" value="{{document.system.range.normal.value}}" placeholder="{{localize 'Cd100.rangeCombatCard.BaseRangeShort'}}" />
           {{#if document.system.properties.shotgun}}
-            <input class="item-skill" style="flex: 1;" type="text" name="system.range.long.value" value="{{document.system.range.long.value}}" placeholder="{{localize 'CoC7.rangeCombatCard.LongRangeShort'}}" />
-            <input class="item-skill" style="flex: 1;" type="text" name="system.range.extreme.value" value="{{document.system.range.extreme.value}}" placeholder="{{localize 'CoC7.rangeCombatCard.ExtremeRangeShort'}}" />
+            <input class="item-skill" style="flex: 1;" type="text" name="system.range.long.value" value="{{document.system.range.long.value}}" placeholder="{{localize 'Cd100.rangeCombatCard.LongRangeShort'}}" />
+            <input class="item-skill" style="flex: 1;" type="text" name="system.range.extreme.value" value="{{document.system.range.extreme.value}}" placeholder="{{localize 'Cd100.rangeCombatCard.ExtremeRangeShort'}}" />
           {{/if}}
         </div>
         <div class="column-row flexrow">
-          <label class="flex: 0 0 auto;">{{localize 'CoC7.WeaponDamage'}}:</label>
+          <label class="flex: 0 0 auto;">{{localize 'Cd100.WeaponDamage'}}:</label>
           <input class="item-skill" style="flex: 1;" type="text" name="system.range.normal.damage" value="{{document.system.range.normal.damage}}" placeholder="0" />
           {{#if document.system.properties.shotgun}}
             <input class="item-skill" style="flex: 1;" type="text" name="system.range.long.damage" value="{{document.system.range.long.damage}}" placeholder="0" />
@@ -45,9 +45,9 @@
           {{/if}}
         </div>
       {{else}}
-        <label class="column-row flexrow">{{localize 'CoC7.WeaponTouch'}}</label>
+        <label class="column-row flexrow">{{localize 'Cd100.WeaponTouch'}}</label>
         <div class="column-row flexrow">
-          <label class="flex: 0 0 auto;">{{localize 'CoC7.WeaponDamage'}}:</label>
+          <label class="flex: 0 0 auto;">{{localize 'Cd100.WeaponDamage'}}:</label>
           <input class="item-skill" style="flex: 1;" type="text" name="system.range.normal.damage" value="{{document.system.range.normal.damage}}" placeholder="0" />
         </div>
       {{/if}}

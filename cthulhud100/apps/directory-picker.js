@@ -2,7 +2,7 @@
 import { FOLDER_ID } from '../constants.js'
 
 /* // FoundryVTT V12 */
-export default class CoC7DirectoryPicker extends (foundry.applications.apps?.FilePicker ?? FilePicker) {
+export default class Cd100DirectoryPicker extends (foundry.applications.apps?.FilePicker ?? FilePicker) {
   /**
    * @inheritdoc
    */
@@ -19,7 +19,7 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
 
   static DEFAULT_OPTIONS = {
     form: {
-      handler: CoC7DirectoryPicker.#onSubmit
+      handler: Cd100DirectoryPicker.#onSubmit
     }
   }
 
@@ -31,7 +31,7 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
   static async #onSubmit (event) {
     if (this.options.tileSize) return
     if (!this.canCreateFolder) {
-      ui.notifications.error('CoC7.FileUploadError', { localize: true })
+      ui.notifications.error('Cd100.FileUploadError', { localize: true })
       return
     }
     const path = event.target.file?.value
@@ -60,7 +60,7 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
     const path = event.target.target.value
     const activeSource = this.activeSource
     const bucket = event.target.bucket ? event.target.bucket.value : null
-    this.field.value = CoC7DirectoryPicker.format({
+    this.field.value = Cd100DirectoryPicker.format({
       activeSource,
       bucket,
       path
@@ -120,13 +120,13 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
     for (const input of inputs) {
       input.setAttribute('readonly', true)
       if (!input.nextElementSibling) {
-        const picker = new CoC7DirectoryPicker({
+        const picker = new Cd100DirectoryPicker({
           field: input,
-          ...CoC7DirectoryPicker.parse(input.value)
+          ...Cd100DirectoryPicker.parse(input.value)
         })
         const pickerButton = document.createElement('button')
         pickerButton.classList.add('file-picker')
-        pickerButton.setAttribute('title', game.i18n.localize('CoC7.PickDirectory'))
+        pickerButton.setAttribute('title', game.i18n.localize('Cd100.PickDirectory'))
         /* // FoundryVTT v12 */
         if (foundry.utils.isNewerVersion(game.version, '13')) {
           pickerButton.setAttribute('style', 'flex: 0 0 auto;')
@@ -134,7 +134,7 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
         const pickerIcon = document.createElement('i')
         pickerIcon.classList.add('fa-solid', 'fa-file-import', 'fa-fw')
         pickerButton.append(pickerIcon)
-        CoC7DirectoryPicker.createDefaultDirectory()
+        Cd100DirectoryPicker.createDefaultDirectory()
         pickerButton.onclick = (event) => {
           event.preventDefault()
           /* // FoundryVTT V12 */
@@ -150,9 +150,9 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
    * @returns {boolean}
    */
   static async createDefaultDirectory () {
-    const parsed = CoC7DirectoryPicker.parse(game.settings.get(FOLDER_ID, 'dholeUploadDirectory'))
+    const parsed = Cd100DirectoryPicker.parse(game.settings.get(FOLDER_ID, 'dholeUploadDirectory'))
     try {
-      await CoC7DirectoryPicker.createDirectory(
+      await Cd100DirectoryPicker.createDirectory(
         parsed.activeSource,
         parsed.current,
         { bucket: parsed.bucket }
@@ -160,7 +160,7 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
       return true
     } catch (e) {
       if (!e.message.startsWith('EEXIST')) {
-        ui.notifications.error('CoC7.ActorImporterUploadError', { localize: true })
+        ui.notifications.error('Cd100.ActorImporterUploadError', { localize: true })
         return false
       }
     }
@@ -173,7 +173,7 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
    * @returns {string|false}
    */
   static async uploadToDefaultDirectory (file, filename) {
-    const parsed = CoC7DirectoryPicker.parse(game.settings.get(FOLDER_ID, 'dholeUploadDirectory'))
+    const parsed = Cd100DirectoryPicker.parse(game.settings.get(FOLDER_ID, 'dholeUploadDirectory'))
     /* // FoundryVTT V12 */
     const response = await (foundry.applications.apps?.FilePicker ?? FilePicker).upload(
       parsed.activeSource,
@@ -184,7 +184,7 @@ export default class CoC7DirectoryPicker extends (foundry.applications.apps?.Fil
       { bucket: parsed.bucket }
     )
     if (!response.path) {
-      ui.notifications.error('CoC7.FileUploadError', { localize: true })
+      ui.notifications.error('Cd100.FileUploadError', { localize: true })
       return false
     }
     return parsed.current + '/' + filename

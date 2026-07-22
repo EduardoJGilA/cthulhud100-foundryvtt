@@ -1,14 +1,14 @@
 /* global ChatMessage game */
 import { FOLDER_ID } from '../constants.js'
-import CoC7ChatCombinedMessage from './chat-combined-message.js'
-import CoC7ChatOpposedMessage from './chat-opposed-message.js'
-import CoC7Check from './check.js'
-import CoC7ChatCombatMelee from './chat-combat-melee.js'
-import CoC7ChatCombatRanged from './chat-combat-ranged.js'
+import Cd100ChatCombinedMessage from './chat-combined-message.js'
+import Cd100ChatOpposedMessage from './chat-opposed-message.js'
+import Cd100Check from './check.js'
+import Cd100ChatCombatMelee from './chat-combat-melee.js'
+import Cd100ChatCombatRanged from './chat-combat-ranged.js'
 
-export default class CoC7MessageResults {
+export default class Cd100MessageResults {
   /**
-   * Get CoC7DicePool from a message for third party to easily see results
+   * Get Cd100DicePool from a message for third party to easily see results
    * @param {Document|string} message
    * @returns {Array}
    * Array of
@@ -32,20 +32,20 @@ export default class CoC7MessageResults {
     if (message instanceof ChatMessage) {
       let check
       switch (message.flags?.[FOLDER_ID]?.load?.as) {
-        case 'CoC7ChatCombatMelee':
-          check = await CoC7ChatCombatMelee.loadFromMessage(message)
+        case 'Cd100ChatCombatMelee':
+          check = await Cd100ChatCombatMelee.loadFromMessage(message)
           break
-        case 'CoC7ChatCombatRanged':
-          check = await CoC7ChatCombatRanged.loadFromMessage(message)
+        case 'Cd100ChatCombatRanged':
+          check = await Cd100ChatCombatRanged.loadFromMessage(message)
           break
-        case 'CoC7ChatCombinedMessage':
-          check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+        case 'Cd100ChatCombinedMessage':
+          check = await Cd100ChatCombinedMessage.loadFromMessage(message)
           break
-        case 'CoC7ChatOpposedMessage':
-          check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+        case 'Cd100ChatOpposedMessage':
+          check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           break
-        case 'CoC7Check':
-          check = await CoC7Check.loadFromMessage(message)
+        case 'Cd100Check':
+          check = await Cd100Check.loadFromMessage(message)
           break
       }
       if (typeof check !== 'undefined') {

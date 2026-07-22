@@ -1,6 +1,6 @@
 /* global game */
 import { STATUS_EFFECTS } from '../constants.js'
-import CoC7ActiveEffect from '../apps/active-effect.js'
+import Cd100ActiveEffect from '../apps/active-effect.js'
 
 /**
  * Active Effect was deleted
@@ -10,7 +10,7 @@ import CoC7ActiveEffect from '../apps/active-effect.js'
  */
 export default function (document, options, userId) {
   if (game.userId === userId) {
-    const statusKey = CoC7ActiveEffect.getStatusKey(document)
+    const statusKey = Cd100ActiveEffect.getStatusKey(document)
     if (statusKey) {
       switch (statusKey) {
         case STATUS_EFFECTS.tempoInsane:

@@ -13,7 +13,7 @@ export default function (application, element, context, options) {
   if (game.user.isGM) {
     const buttonIcon = document.createElement('i')
     buttonIcon.classList.add('fa-solid', 'fa-books')
-    const buttonText = document.createTextNode(game.i18n.localize('CoC7.System.Documentation'))
+    const buttonText = document.createTextNode(game.i18n.localize('Cd100.System.Documentation'))
     const button = document.createElement('button')
     button.append(buttonIcon)
     button.append(buttonText)
@@ -21,7 +21,7 @@ export default function (application, element, context, options) {
       // The compendium UUID carries the package id, so it has to follow FOLDER_ID.
       // With the id hardcoded, fromUuid returned null and the optional chain
       // swallowed it, leaving the button silently doing nothing.
-      (await fromUuid('Compendium.' + FOLDER_ID + '.system-doc.JournalEntry.' + game.CoC7.Manual))?.sheet.render(true)
+      (await fromUuid('Compendium.' + FOLDER_ID + '.system-doc.JournalEntry.' + game.Cd100.Manual))?.sheet.render(true)
     })
     /* // FoundryVTT V12 */
     if (game.release.generation === 12) {
@@ -33,17 +33,17 @@ export default function (application, element, context, options) {
   if (game.user.isGM) {
     const buttonIcon = document.createElement('i')
     buttonIcon.classList.add('fa-solid', 'fa-wrench')
-    const buttonText = document.createTextNode(game.i18n.localize('CoC7.Migrate.TriggerButton'))
+    const buttonText = document.createTextNode(game.i18n.localize('Cd100.Migrate.TriggerButton'))
     const button = document.createElement('button')
     button.append(buttonIcon)
     button.append(buttonText)
     button.addEventListener('click', async () => {
       new foundry.applications.api.DialogV2({
-        window: { title: 'CoC7.Migrate.TriggerTitle' },
+        window: { title: 'Cd100.Migrate.TriggerTitle' },
         position: {
           width: 500
         },
-        content: game.i18n.localize('CoC7.Migrate.TriggerContents'),
+        content: game.i18n.localize('Cd100.Migrate.TriggerContents'),
         buttons: [{
           action: 'close',
           icon: 'fa-solid fa-ban',
@@ -52,7 +52,7 @@ export default function (application, element, context, options) {
         }, {
           action: 'migrate',
           icon: 'fa-solid fa-check',
-          label: 'CoC7.Migrate.TriggerRestart',
+          label: 'Cd100.Migrate.TriggerRestart',
           callback: async (event, button, dialog) => {
             await game.settings.set(FOLDER_ID, 'systemUpdateVersion', 0)
             foundry.utils.debouncedReload()

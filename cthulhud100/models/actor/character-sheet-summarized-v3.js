@@ -1,4 +1,4 @@
-import CoC7ModelsActorCharacterSheetSummarizedV2 from './character-sheet-summarized-v2.js'
+import Cd100ModelsActorCharacterSheetSummarizedV2 from './character-sheet-summarized-v2.js'
 
-export default class CoC7ModelsActorCharacterSheetSummarizedV3 extends CoC7ModelsActorCharacterSheetSummarizedV2 {
+export default class Cd100ModelsActorCharacterSheetSummarizedV3 extends Cd100ModelsActorCharacterSheetSummarizedV2 {
 }

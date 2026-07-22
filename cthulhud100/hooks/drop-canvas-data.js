@@ -1,6 +1,6 @@
 /* global fromUuidSync */
 import ChaosiumCanvasInterfacePlayer from '../apps/chaosium-canvas-interface-player.js'
-import CoC7Canvas from '../apps/canvas.js'
+import Cd100Canvas from '../apps/canvas.js'
 
 /**
  * Data dropped on canvas
@@ -24,5 +24,5 @@ export default function (canvas, data, event) {
       }
     }
   }
-  CoC7Canvas.onDropSomething(canvas, data, event)
+  Cd100Canvas.onDropSomething(canvas, data, event)
 }

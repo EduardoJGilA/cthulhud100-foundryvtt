@@ -8,8 +8,8 @@ export default class ChaosiumCanvasInterfacePlaySound extends ChaosiumCanvasInte
    */
   static get actionToggles () {
     const buttons = super.actionToggles
-    buttons[ChaosiumCanvasInterface.actionToggle.On] = 'CoC7.ChaosiumCanvasInterface.PlaySound.Action.Play'
-    buttons[ChaosiumCanvasInterface.actionToggle.Off] = 'CoC7.ChaosiumCanvasInterface.PlaySound.Action.Stop'
+    buttons[ChaosiumCanvasInterface.actionToggle.On] = 'Cd100.ChaosiumCanvasInterface.PlaySound.Action.Play'
+    buttons[ChaosiumCanvasInterface.actionToggle.Off] = 'Cd100.ChaosiumCanvasInterface.PlaySound.Action.Stop'
     return buttons
   }
 
@@ -31,24 +31,24 @@ export default class ChaosiumCanvasInterfacePlaySound extends ChaosiumCanvasInte
       triggerButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Left,
-        label: 'CoC7.ChaosiumCanvasInterface.PlaySound.Button.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.PlaySound.Button.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.PlaySound.Button.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.PlaySound.Button.Hint'
       }),
       action: new fields.NumberField({
         choices: ChaosiumCanvasInterfacePlaySound.actionToggles,
         initial: ChaosiumCanvasInterface.actionToggle.Off,
-        label: 'CoC7.ChaosiumCanvasInterface.PlaySound.Action.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.PlaySound.Action.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.PlaySound.Action.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.PlaySound.Action.Hint',
         required: true
       }),
       playlistUuid: new fields.DocumentUUIDField({
-        label: 'CoC7.ChaosiumCanvasInterface.PlaySound.Playlist.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.PlaySound.Playlist.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.PlaySound.Playlist.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.PlaySound.Playlist.Hint',
         type: 'Playlist'
       }),
       soundUuid: new fields.DocumentUUIDField({
-        label: 'CoC7.ChaosiumCanvasInterface.PlaySound.Sound.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.PlaySound.Sound.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.PlaySound.Sound.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.PlaySound.Sound.Hint',
         type: 'PlaylistSound'
       })
     }

@@ -1,9 +1,9 @@
 /* global foundry fromUuid game renderTemplate */
 import { FOLDER_ID } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7RollNormalize from './roll-normalize.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100RollNormalize from './roll-normalize.js'
 
-export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
+export default class Cd100RollDialog extends foundry.applications.api.DialogV2 {
   /**
    * Ceiling that total darkness puts on a check: min(POD x3, INT x3).
    *
@@ -35,38 +35,38 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
       allowFlatDiceModifier: game.settings.get(FOLDER_ID, 'allowFlatDiceModifier') && !options.disableFlatDiceModifier,
       allowFlatThresholdModifier: game.settings.get(FOLDER_ID, 'allowFlatThresholdModifier') && !options.disableFlatThresholdModifier,
       askValue: options.askValue ?? false,
-      cardTypes: CoC7RollNormalize.cardTypes(options),
-      difficulty: CoC7DicePool.difficultyLevel,
+      cardTypes: Cd100RollNormalize.cardTypes(options),
+      difficulty: Cd100DicePool.difficultyLevel,
       // Cthulhu d100 has no requested-difficulty tiers. A check is rolled against
       // the skill, and the situation is expressed with the circumstance
       // modifiers below (+/-20%, +/-10%), which adjust the threshold instead.
       difficultyTypes: [
         {
-          key: CoC7DicePool.difficultyLevel.unknown,
-          val: 'CoC7.RollDifficultyUnknownName'
+          key: Cd100DicePool.difficultyLevel.unknown,
+          val: 'Cd100.RollDifficultyUnknownName'
         },
         {
-          key: CoC7DicePool.difficultyLevel.regular,
-          val: 'CoC7.RollDifficultyRegular'
+          key: Cd100DicePool.difficultyLevel.regular,
+          val: 'Cd100.RollDifficultyRegular'
         }
       ],
       // Rulebook chapter 1: illumination scales the skill rather than shifting
       // it, so the reduction is worked out from the threshold at submit time.
       illuminationLevels: [
-        { key: 'normal', val: 'CoC7.IlluminationNormal' },
-        { key: 'dim', val: 'CoC7.IlluminationDim' },
-        { key: 'nearDark', val: 'CoC7.IlluminationNearDark' },
-        { key: 'totalDark', val: 'CoC7.IlluminationTotalDark' }
+        { key: 'normal', val: 'Cd100.IlluminationNormal' },
+        { key: 'dim', val: 'Cd100.IlluminationDim' },
+        { key: 'nearDark', val: 'Cd100.IlluminationNearDark' },
+        { key: 'totalDark', val: 'Cd100.IlluminationTotalDark' }
       ],
       // Total darkness also caps the result at min(POD x3, INT x3)
-      darknessCap: await CoC7RollDialog.#darknessCap(options.actorUuid),
+      darknessCap: await Cd100RollDialog.#darknessCap(options.actorUuid),
       // Rulebook chapter 1: circumstance modifiers applied to the threshold
       circumstanceModifiers: [
-        { key: 20, val: 'CoC7.CircumstanceVeryFavourable' },
-        { key: 10, val: 'CoC7.CircumstanceFavourable' },
-        { key: 0, val: 'CoC7.CircumstanceNormal' },
-        { key: -10, val: 'CoC7.CircumstanceUnfavourable' },
-        { key: -20, val: 'CoC7.CircumstanceVeryUnfavourable' }
+        { key: 20, val: 'Cd100.CircumstanceVeryFavourable' },
+        { key: 10, val: 'Cd100.CircumstanceFavourable' },
+        { key: 0, val: 'Cd100.CircumstanceNormal' },
+        { key: -10, val: 'Cd100.CircumstanceUnfavourable' },
+        { key: -20, val: 'Cd100.CircumstanceVeryUnfavourable' }
       ],
       hideDifficulty: options.hideDifficulty === true,
       poolModifiers: {
@@ -86,7 +86,7 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
     await this.prompt({
       classes: ['coc7', 'dialog', 'bonus-selection'],
       window: {
-        title: options.displayName ? game.i18n.format('CoC7.BonusSelectionWindowNamed', { name: options.displayName }) : game.i18n.localize('CoC7.BonusSelectionWindow')
+        title: options.displayName ? game.i18n.format('Cd100.BonusSelectionWindowNamed', { name: options.displayName }) : game.i18n.localize('Cd100.BonusSelectionWindow')
       },
       position: {
         width: 610
@@ -98,10 +98,10 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
         dialog.element.querySelector('select[name=cardType]')?.addEventListener('change', (event) => {
           const poolModifier = event.currentTarget.form.querySelector('input[name=poolModifier]')
           switch (event.currentTarget.value) {
-            case CoC7RollNormalize.CARD_TYPE.IDEA_CHECK:
+            case Cd100RollNormalize.CARD_TYPE.IDEA_CHECK:
               poolModifier.value = data.poolModifiers.idea
               break
-            case CoC7RollNormalize.CARD_TYPE.KNOW_CHECK:
+            case Cd100RollNormalize.CARD_TYPE.KNOW_CHECK:
               poolModifier.value = data.poolModifiers.know
               break
             default:
@@ -168,7 +168,7 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
       button.appendChild(i)
     }
     const span = document.createElement('span')
-    span.innerText = game.i18n.localize('CoC7.RollDice')
+    span.innerText = game.i18n.localize('Cd100.RollDice')
     button.appendChild(span)
     return button.outerHTML
   }

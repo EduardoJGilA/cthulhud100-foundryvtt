@@ -10,7 +10,7 @@ import { FOLDER_ID } from '../constants.js'
  */
 export default function (application, element, context, options) {
   let imageReplacement = 'systems/' + FOLDER_ID + '/assets/images/timetrap2.webp'
-  let textReplacement = game.i18n.localize('CoC7.PauseName')
+  let textReplacement = game.i18n.localize('Cd100.PauseName')
   if (game.settings.get(FOLDER_ID, 'overrideGameArtwork')) {
     if (game.settings.get(FOLDER_ID, 'artPauseImage').toLowerCase() === 'null') {
       imageReplacement = ''

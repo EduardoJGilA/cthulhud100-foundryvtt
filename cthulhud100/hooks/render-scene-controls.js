@@ -1,4 +1,4 @@
-import CoC7SceneControls from '../apps/scene-controls.js'
+import Cd100SceneControls from '../apps/scene-controls.js'
 
 /**
  * Render Hook
@@ -12,5 +12,5 @@ export default function (application, element, context, options) {
   if (typeof element.querySelector === 'function') {
     element.querySelector('button[data-tool="coc7dummy"]')?.closest('li').remove()
   }
-  CoC7SceneControls.renderControls(application, element, context, options)
+  Cd100SceneControls.renderControls(application, element, context, options)
 }

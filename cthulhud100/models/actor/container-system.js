@@ -1,7 +1,7 @@
 /* global foundry */
-import CoC7ModelsActorGlobalSystem from './global-system.js'
+import Cd100ModelsActorGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsActorContainerSystem extends CoC7ModelsActorGlobalSystem {
+export default class Cd100ModelsActorContainerSystem extends Cd100ModelsActorGlobalSystem {
   /**
    * Default img
    * @returns {string}

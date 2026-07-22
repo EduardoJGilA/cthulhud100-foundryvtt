@@ -1,9 +1,9 @@
 /* global DragDrop foundry game TextEditor */
 import { FOLDER_ID, ERAS, MONETARY_FORMATS, MONETARY_TYPES } from '../../constants.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemSetupSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemSetupSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 565,
@@ -242,28 +242,28 @@ export default class CoC7ModelsItemSetupSheet extends CoC7ModelsItemGlobalSheet 
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       },
       details: {
         icon: '',
-        label: 'CoC7.Details'
+        label: 'Cd100.Details'
       }
     }
     if (context.document.system.enableCharacterisitics) {
       tabs.characteristics = {
         icon: '',
-        label: 'CoC7.Characteristics'
+        label: 'Cd100.Characteristics'
       }
     }
     tabs.skills = {
       icon: '',
-      label: 'CoC7.Skills'
+      label: 'Cd100.Skills'
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -312,7 +312,7 @@ export default class CoC7ModelsItemSetupSheet extends CoC7ModelsItemGlobalSheet 
             isEnabled: (context.document.flags[FOLDER_ID]?.cocidFlag?.eras ?? {})[key] === true
           })
         }
-        context._eras.sort(CoC7Utilities.sortByNameKey)
+        context._eras.sort(Cd100Utilities.sortByNameKey)
         context.useEraIcons = game.settings.get(FOLDER_ID, 'sheetEraIcons')
         context._monetaryFormats = []
         for (const key in MONETARY_FORMATS) {

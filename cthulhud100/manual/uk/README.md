@@ -1,6 +1,6 @@
 # Документація системи для версії 7.0
 
-Цей документ розробляється для ознайомлення з системою CoC7 та не є посібник як використовувати FoundryVTT.
+Цей документ розробляється для ознайомлення з системою Cd100 та не є посібник як використовувати FoundryVTT.
 
 Для гри вам потрібна одна з приведених нижче книг
 
@@ -22,7 +22,7 @@ _АБО_ у перекладі від GEEKACH, які надали свій сл
 
 # Останні зміни
 
-У [changelog](https://github.com/Miskatonic-Investigative-Society/CoC7-FoundryVTT/blob/develop/.github/CHANGELOG.md) на GitHub Ви можете подивитися на повний список змін.
+У [changelog](https://github.com/Miskatonic-Investigative-Society/Cd100-FoundryVTT/blob/develop/.github/CHANGELOG.md) на GitHub Ви можете подивитися на повний список змін.
 
 - [CoC ID system](coc-id-system.md) - Priority now has more importance over location.
 

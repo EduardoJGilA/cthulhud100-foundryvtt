@@ -1,7 +1,7 @@
 <section class="tab details flexcol scrollable {{tab.cssClass}}" data-group="primary" data-tab="details">
   {{#if tabs.details}}
     <fieldset class="flexrow">
-      <legend>{{localize 'CoC7.TalentType'}}</legend>
+      <legend>{{localize 'Cd100.TalentType'}}</legend>
       <div class="toggle-row flexrow">
         <div class="toggle-attributes flexrow" data-set="type">
           {{#each _types as |row|}}
@@ -11,7 +11,7 @@
       </div>
     </fieldset>
     <fieldset class="flexcol" style="flex: 1">
-      <legend>{{localize 'CoC7.Notes'}}</legend>
+      <legend>{{localize 'Cd100.Notes'}}</legend>
       <prose-mirror name="system.description.notes" value="{{document.system.description.notes}}" data-document-uuid="{{document.uuid}}" toggled>{{{enrichedDescriptionNotes}}}</prose-mirror>
     </fieldset>
   {{/if}}

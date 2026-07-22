@@ -2,7 +2,7 @@
   {{#if allowSelect}}
     <div class="flexrow">
       <select name="existing-skill">
-        <option value="">{{localize 'CoC7.SkillPickNameOnly'}}</option>
+        <option value="">{{localize 'Cd100.SkillPickNameOnly'}}</option>
         {{selectOptions skills selected=selected valueAttr='id' labelAttr='name'}}
       </select>
     </div>
@@ -10,18 +10,18 @@
   {{#if (and allowCustom (eq selected ''))}}
     <div>
       <div class="form-group">
-        <label>{{localize 'CoC7.CustomSpecialisationLabel' specialisation=label}}</label>
+        <label>{{localize 'Cd100.CustomSpecialisationLabel' specialisation=label}}</label>
       </div>
       <div class="form-group">
-        <input name="new-skill-name" type="text" value="{{name}}" placeholder="{{localize 'CoC7.CreateNewSkill'}}" />
+        <input name="new-skill-name" type="text" value="{{name}}" placeholder="{{localize 'Cd100.CreateNewSkill'}}" />
       </div>
     </div>
 
     {{#unless fixedBaseValue}}
       <div class="form-group">
-        <label>{{localize 'CoC7.BaseSkillValue'}}</label>
+        <label>{{localize 'Cd100.BaseSkillValue'}}</label>
         <div class="form-fields">
-          <input name="base-value" type="text" value="{{baseValue}}" placeholder="{{localize 'CoC7.SkillBase'}}" />
+          <input name="base-value" type="text" value="{{baseValue}}" placeholder="{{localize 'Cd100.SkillBase'}}" />
         </div>
       </div>
     {{/unless}}

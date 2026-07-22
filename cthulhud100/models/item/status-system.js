@@ -1,7 +1,7 @@
 /* global foundry */
-import CoC7ModelsItemGlobalSystem from './global-system.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsItemStatusSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemStatusSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Default img
    * @returns {string}
@@ -36,8 +36,8 @@ export default class CoC7ModelsItemStatusSystem extends CoC7ModelsItemGlobalSyst
         keeper: new fields.HTMLField({ initial: '' })
       }),
       type: new fields.SchemaField({
-        mania: new fields.BooleanField({ label: 'CoC7.Mania', initial: false }),
-        phobia: new fields.BooleanField({ label: 'CoC7.Phobia', initial: false })
+        mania: new fields.BooleanField({ label: 'Cd100.Mania', initial: false }),
+        phobia: new fields.BooleanField({ label: 'Cd100.Phobia', initial: false })
       })
     }
   }

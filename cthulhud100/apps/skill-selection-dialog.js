@@ -1,7 +1,7 @@
 /* global foundry game */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7SkillSelectionDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100SkillSelectionDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -119,10 +119,10 @@ export default class CoC7SkillSelectionDialog extends foundry.applications.api.H
    */
   static async create ({ skills = [], optionsCount = 0, title = '' } = {}) {
     if (title === '') {
-      title = game.i18n.localize('CoC7.SkillSelectionWindow')
+      title = game.i18n.localize('Cd100.SkillSelectionWindow')
     }
     return await new Promise(resolve => {
-      new CoC7SkillSelectionDialog({}, {}, {
+      new Cd100SkillSelectionDialog({}, {}, {
         selected: {},
         optionsCount,
         resolve,

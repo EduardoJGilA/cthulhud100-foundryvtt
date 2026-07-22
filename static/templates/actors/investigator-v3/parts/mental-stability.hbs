@@ -6,9 +6,9 @@
   control here. Clicking a box sets tension to that box, clicking the last
   filled one clears it, which is the usual pencil-and-paper behaviour.
 --}}
-<div class="mental-stability" data-tooltip="CoC7.MentalStability.Hint">
+<div class="mental-stability" data-tooltip="Cd100.MentalStability.Hint">
   <div class="mental-stability-header">
-    <span class="mental-stability-title">{{localize 'CoC7.MentalStability.Title'}}</span>
+    <span class="mental-stability-title">{{localize 'Cd100.MentalStability.Title'}}</span>
     <span class="mental-stability-state state-{{mentalStability.state}}">{{mentalStability.stateLabel}}</span>
   </div>
 
@@ -26,15 +26,15 @@
 
   <div class="mental-stability-footer">
     <label class="mental-stability-modifier">
-      {{localize 'CoC7.MentalStability.Action'}}
+      {{localize 'Cd100.MentalStability.Action'}}
       <span class="value">{{numberFormat mentalStability.modifiers.action decimals=0 sign=true}}%</span>
     </label>
     <label class="mental-stability-modifier">
-      {{localize 'CoC7.MentalStability.Other'}}
+      {{localize 'Cd100.MentalStability.Other'}}
       <span class="value">{{numberFormat mentalStability.modifiers.other decimals=0 sign=true}}%</span>
     </label>
     <label class="mental-stability-madness">
-      {{localize 'CoC7.MentalStability.UnderlyingMadness'}}
+      {{localize 'Cd100.MentalStability.UnderlyingMadness'}}
       <input type="number" min="0" step="1"
              name="system.attribs.san.underlyingMadness"
              value="{{document.system.attribs.san.underlyingMadness}}"

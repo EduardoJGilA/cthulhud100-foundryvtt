@@ -1,10 +1,10 @@
 /* global ChatMessage CONFIG foundry game Item renderTemplate Roll ui */
 import { FOLDER_ID, CHAT_MESSAGE_MODE, SPELL_COST_TYPE_KEYS } from '../../constants.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7SpellVariablesDialog from '../../apps/spell-variables-dialog.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100SpellVariablesDialog from '../../apps/spell-variables-dialog.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemSpellSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Default img
    * @returns {string}
@@ -51,14 +51,14 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
       }),
       source: new fields.StringField({ initial: '' }),
       type: new fields.SchemaField({
-        bind: new fields.BooleanField({ label: 'CoC7.BindSpell', initial: false }),
-        call: new fields.BooleanField({ label: 'CoC7.CallSpell', initial: false }),
-        combat: new fields.BooleanField({ label: 'CoC7.CombatSpell', initial: false }),
-        contact: new fields.BooleanField({ label: 'CoC7.ContactSpell', initial: false }),
-        dismiss: new fields.BooleanField({ label: 'CoC7.DismissSpell', initial: false }),
-        enchantment: new fields.BooleanField({ label: 'CoC7.EnchantmentSpell', initial: false }),
-        gate: new fields.BooleanField({ label: 'CoC7.GateSpell', initial: false }),
-        summon: new fields.BooleanField({ label: 'CoC7.SummonSpell', initial: false })
+        bind: new fields.BooleanField({ label: 'Cd100.BindSpell', initial: false }),
+        call: new fields.BooleanField({ label: 'Cd100.CallSpell', initial: false }),
+        combat: new fields.BooleanField({ label: 'Cd100.CombatSpell', initial: false }),
+        contact: new fields.BooleanField({ label: 'Cd100.ContactSpell', initial: false }),
+        dismiss: new fields.BooleanField({ label: 'Cd100.DismissSpell', initial: false }),
+        enchantment: new fields.BooleanField({ label: 'Cd100.EnchantmentSpell', initial: false }),
+        gate: new fields.BooleanField({ label: 'Cd100.GateSpell', initial: false }),
+        summon: new fields.BooleanField({ label: 'Cd100.SummonSpell', initial: false })
       })
     }
   }
@@ -70,9 +70,9 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
    */
   static emptyObject (options) {
     const object = foundry.utils.mergeObject({
-      name: game.i18n.localize('CoC7.NewSpellName'),
+      name: game.i18n.localize('Cd100.NewSpellName'),
       type: 'spell',
-      system: new CoC7ModelsItemSpellSystem().toObject()
+      system: new Cd100ModelsItemSpellSystem().toObject()
     }, options)
     return object
   }
@@ -113,11 +113,11 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
       actor = this.parent.actor
     } else if (!game.user.isGM || !privateRoll) {
       /** This is not owned by any Actor */
-      ui.notifications.error('CoC7.NotOwned', { localize: true })
+      ui.notifications.error('Cd100.NotOwned', { localize: true })
       return
     }
     const costList = foundry.utils.duplicate(this.costList)
-    const availableCosts = CoC7ModelsItemSpellSystem.availableCosts().reduce((c, e) => { c[e.key] = e; return c }, {})
+    const availableCosts = Cd100ModelsItemSpellSystem.availableCosts().reduce((c, e) => { c[e.key] = e; return c }, {})
     const additionalInformation = []
     const automatedCosts = costList.length > 0
     const automatedLosses = []
@@ -129,7 +129,7 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
     const rolls = []
     const variables = []
     if (!automatedCosts) {
-      const text = game.i18n.localize('CoC7.Points')
+      const text = game.i18n.localize('Cd100.Points')
       for (const [key, loss] of Object.entries(this.costs)) {
         if (!loss || Number(loss) === 0) {
           continue
@@ -149,7 +149,7 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
             k = 'pow'
             break
           case 'others':
-            additionalInformation.push(game.i18n.localize('CoC7.OtherCosts') + ': ' + loss)
+            additionalInformation.push(game.i18n.localize('Cd100.OtherCosts') + ': ' + loss)
             break
         }
         if (k) {
@@ -179,7 +179,7 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
             case 'additionalCasterPromptAdd':
               promptRows.push({
                 type: 'additionalCasterPromptAdd',
-                key: CoC7ModelsItemSpellSystem.keyName(cost.config.variable),
+                key: Cd100ModelsItemSpellSystem.keyName(cost.config.variable),
                 label: cost.config.prompt,
                 min: cost.config.min,
                 step: cost.config.step,
@@ -192,7 +192,7 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
               {
                 const index = promptRows.findLastIndex(v => v.type === 'additionalCasterPromptAdd')
                 if (index === -1) {
-                  ui.notifications.warn('CoC7.Spell.ErrorUnableToFindAdditionalCasters', { localize: true })
+                  ui.notifications.warn('Cd100.Spell.ErrorUnableToFindAdditionalCasters', { localize: true })
                   console.warn('Unable to assign cost to variables', cost, promptRows)
                   return
                 }
@@ -207,20 +207,20 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
               {
                 const index = promptRows.findLastIndex(v => v.type === 'additionalCasterPromptAdd')
                 if (index === -1) {
-                  ui.notifications.warn('CoC7.Spell.ErrorUnableToFindAdditionalCasters', { localize: true })
+                  ui.notifications.warn('Cd100.Spell.ErrorUnableToFindAdditionalCasters', { localize: true })
                   console.warn('Unable to assign cost to variables', cost, promptRows)
                   return
                 }
                 promptRows[index].numbers.push({
                   type: 'number',
-                  key: CoC7ModelsItemSpellSystem.keyName(cost.config.variable),
+                  key: Cd100ModelsItemSpellSystem.keyName(cost.config.variable),
                   label: cost.config.prompt,
                   value: ''
                 })
               }
               break
             case 'castingTime':
-              castingTime = CoC7ModelsItemSpellSystem.keyReplacement(cost.config.value, variables)
+              castingTime = Cd100ModelsItemSpellSystem.keyReplacement(cost.config.value, variables)
               break
             case 'casterCost':
               {
@@ -233,19 +233,19 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
               }
               break
             case 'additionalInformation':
-              additionalInformation.push(CoC7ModelsItemSpellSystem.keyReplacement(cost.config.prompt, variables))
+              additionalInformation.push(Cd100ModelsItemSpellSystem.keyReplacement(cost.config.prompt, variables))
               break
             case 'promptToggleButton':
               promptRows.push({
                 type: 'toggle',
-                key: CoC7ModelsItemSpellSystem.keyName(cost.config.variable),
-                label: CoC7ModelsItemSpellSystem.keyReplacement(cost.config.prompt, variables),
+                key: Cd100ModelsItemSpellSystem.keyName(cost.config.variable),
+                label: Cd100ModelsItemSpellSystem.keyReplacement(cost.config.prompt, variables),
                 value: false
               })
               break
             case 'triggerPrompt':
               if (promptRows.length) {
-                const variableValues = await CoC7SpellVariablesDialog.create({ variables: promptRows })
+                const variableValues = await Cd100SpellVariablesDialog.create({ variables: promptRows })
                 for (const variableValue of variableValues) {
                   switch (variableValue.type) {
                     case 'additionalCasterPromptAdd':
@@ -302,21 +302,21 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
             case 'showVariable':
               promptRows.push({
                 type: 'show',
-                value: variables[CoC7ModelsItemSpellSystem.keyName(cost.config.variable)],
+                value: variables[Cd100ModelsItemSpellSystem.keyName(cost.config.variable)],
                 label: cost.config.prompt
               })
               break
             case 'promptRequireNumber':
               promptRows.push({
                 type: 'number',
-                key: CoC7ModelsItemSpellSystem.keyName(cost.config.variable),
+                key: Cd100ModelsItemSpellSystem.keyName(cost.config.variable),
                 label: cost.config.prompt,
                 value: ''
               })
               break
             case 'setVariable':
               {
-                const key = CoC7ModelsItemSpellSystem.keyName(cost.config.variable)
+                const key = Cd100ModelsItemSpellSystem.keyName(cost.config.variable)
                 const newRoll = await new Roll(cost.config.value.toString(), variables, { reason: key }).roll()
                 if (!newRoll.isDeterministic) {
                   rolls.push(newRoll)
@@ -328,7 +328,7 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
         }
       }
       if (promptRows.length) {
-        ui.notifications.warn('CoC7.Spell.ErrorPromptNotShown', { localize: true })
+        ui.notifications.warn('Cd100.Spell.ErrorPromptNotShown', { localize: true })
         return
       }
       if (actor) {
@@ -337,8 +337,8 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
             const convertedHitPoints = Number(casterCosts.mp) - Number(actor.system.attribs.mp.value)
             const convertToHp = await new Promise(resolve => {
               new foundry.applications.api.DialogV2({
-                window: { title: 'CoC7.HitPointsCost' },
-                content: game.i18n.format('CoC7.NotEnoughMagicPoints', {
+                window: { title: 'Cd100.HitPointsCost' },
+                content: game.i18n.format('Cd100.NotEnoughMagicPoints', {
                   actorMagicPoints: actor.system.attribs.mp.value,
                   convertedHitPoints,
                   originalMagicPoints: casterCosts.mp,
@@ -347,12 +347,12 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
                 buttons: [{
                   action: 'cancel',
                   icon: 'fa-solid fa-times',
-                  label: 'CoC7.Cancel',
+                  label: 'Cd100.Cancel',
                   callback: (event, button, dialog) => resolve(false)
                 }, {
                   action: 'proceed',
                   icon: 'fa-sold fa-check',
-                  label: 'CoC7.Proceed',
+                  label: 'Cd100.Proceed',
                   default: true,
                   callback: (event, button, dialog) => resolve(true)
                 }]
@@ -387,7 +387,7 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
           await actor.dealDamage(casterCosts.hp, { ignoreArmor: true })
         }
       }
-      const text = game.i18n.localize('CoC7.Points')
+      const text = game.i18n.localize('Cd100.Points')
       for (const k in casterCosts) {
         automatedLosses.push({
           name: availableCosts[k]?.name ?? k,
@@ -445,10 +445,10 @@ export default class CoC7ModelsItemSpellSystem extends CoC7ModelsItemGlobalSyste
         group: 'Attributes',
         section: 'attribs',
         key: field.name,
-        name: game.i18n.localize((field.name === 'san' ? 'CoC7.SanityPoints' : field.hint))
+        name: game.i18n.localize((field.name === 'san' ? 'Cd100.SanityPoints' : field.hint))
       })
     }
-    output.sort(CoC7Utilities.sortByNameKey)
+    output.sort(Cd100Utilities.sortByNameKey)
     return output
   }
 

@@ -1,9 +1,9 @@
 /* global DragDrop foundry game TextEditor */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
 import deprecated from '../../deprecated.js'
 
-export default class CoC7ModelsItemOccupationSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemOccupationSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 525,
@@ -138,24 +138,24 @@ export default class CoC7ModelsItemOccupationSheet extends CoC7ModelsItemGlobalS
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       }
     }
     if (!context.document.isEmbedded) {
       tabs.details = {
         icon: '',
-        label: 'CoC7.Details'
+        label: 'Cd100.Details'
       }
       tabs.skills = {
         icon: '',
-        label: 'CoC7.Skills'
+        label: 'Cd100.Skills'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 

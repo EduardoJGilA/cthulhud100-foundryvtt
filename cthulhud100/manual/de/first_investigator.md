@@ -6,7 +6,7 @@ Diese Seite erstellt einen Investigator unter Verwendung der bereitgestellten Ko
 
 # Fertigkeit
 
-Klicken Sie auf die Registerkarte Kompendium-Pakete und öffnen Sie dann unter der Überschrift Item das Item Fertigkeiten (CoC7). Hier finden Sie die Fertigkeiten, welche auf den Charakterbögen auf der Website von Chaosium zu finden sind.
+Klicken Sie auf die Registerkarte Kompendium-Pakete und öffnen Sie dann unter der Überschrift Item das Item Fertigkeiten (Cd100). Hier finden Sie die Fertigkeiten, welche auf den Charakterbögen auf der Website von Chaosium zu finden sind.
 
 - _Keine Anpassung_ - Keine persönlichen Fertigkeitspunkte können zugewiesen werden
 - _Kein Erfahrungsgewinn_ - Die Fertigkeit wird nicht markiert für eine Verbesserung bei einer erfolgreichen Probe.
@@ -28,7 +28,7 @@ Klicken Sie auf das Item-Verzeichnis und erstellen Sie anschließend ein Item, w
 
 Klicken Sie im Reiter Beschreibung auf die Taste, um einen Editor zu öffnen, um die Beschreibung zu verfassen.
 
-Klicken Sie im Reiter Details auf die Hintergrundgeschichte, um alle Abschnitte hinzuzufügen, welche Sie beim Erstellen der Hintergrundgeschichte des Investigators benötigen. Klicken Sie auf den Reiter Kompendium-Pakete und öffnen Sie dann unter der Überschrift Item das Item (CoC7) in den Beispielitems und ziehen Sie das [_Handgemenge_] auf das Setup.
+Klicken Sie im Reiter Details auf die Hintergrundgeschichte, um alle Abschnitte hinzuzufügen, welche Sie beim Erstellen der Hintergrundgeschichte des Investigators benötigen. Klicken Sie auf den Reiter Kompendium-Pakete und öffnen Sie dann unter der Überschrift Item das Item (Cd100) in den Beispielitems und ziehen Sie das [_Handgemenge_] auf das Setup.
 
 Im Reiter Charakteristiken können Sie anpassen, wie die Charakteristiken des Investigators ausgewürfelt, bzw. verteilt werden.
 

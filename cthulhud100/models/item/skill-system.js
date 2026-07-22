@@ -1,10 +1,10 @@
 /* global CONFIG foundry game */
 import { FOLDER_ID, FIGHTING_NAMES } from '../../constants.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100Utilities from '../../apps/utilities.js'
 import deprecated from '../../deprecated.js'
 
-export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemSkillSystem extends Cd100ModelsItemGlobalSystem {
   #bonusDice
   #value
 
@@ -40,7 +40,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
       category: new fields.StringField({
         initial: 'knowledge',
         choices: ['knowledge', 'vocational', 'sensory', 'social', 'action'],
-        label: 'CoC7.SkillCategory'
+        label: 'Cd100.SkillCategory'
       }),
       description: new fields.SchemaField({
         value: new fields.HTMLField({ initial: '' }),
@@ -66,17 +66,17 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
         experience: new fields.NumberField({ nullable: false, initial: 0 })
       }),
       properties: new fields.SchemaField({
-        noxpgain: new fields.BooleanField({ label: 'CoC7.SkillNoXpGain', hint: 'CoC7.SkillHintNoXpGain', initial: false }),
-        special: new fields.BooleanField({ label: 'CoC7.SkillSpecial', initial: false }),
-        rarity: new fields.BooleanField({ label: 'CoC7.SkillRarity', initial: false }),
-        push: new fields.BooleanField({ label: 'CoC7.SkillPush', hint: 'CoC7.SkillHintPush', initial: false }),
-        fighting: new fields.BooleanField({ label: 'CoC7.SkillFighting', hint: 'CoC7.SkillHintFighting', initial: false }),
-        firearm: new fields.BooleanField({ label: 'CoC7.SkillFirearm', hint: 'CoC7.SkillHintFirearm', initial: false }),
-        ranged: new fields.BooleanField({ label: 'CoC7.SkillRanged', hint: 'CoC7.SkillHintRanged', initial: false }),
-        requiresname: new fields.BooleanField({ label: 'CoC7.SkillRequiresName', hint: 'CoC7.SkillHintRequiresName', initial: false }),
-        picknameonly: new fields.BooleanField({ label: 'CoC7.SkillPickNameOnly', hint: 'CoC7.SkillHintPickNameOnly', initial: false }),
-        own: new fields.BooleanField({ label: 'CoC7.SkillOwn', hint: 'CoC7.SkillHintOwn', initial: false }),
-        keepbasevalue: new fields.BooleanField({ label: 'CoC7.SkillKeepBaseValue', hint: 'CoC7.SkillHintKeepBaseValue', initial: false })
+        noxpgain: new fields.BooleanField({ label: 'Cd100.SkillNoXpGain', hint: 'Cd100.SkillHintNoXpGain', initial: false }),
+        special: new fields.BooleanField({ label: 'Cd100.SkillSpecial', initial: false }),
+        rarity: new fields.BooleanField({ label: 'Cd100.SkillRarity', initial: false }),
+        push: new fields.BooleanField({ label: 'Cd100.SkillPush', hint: 'Cd100.SkillHintPush', initial: false }),
+        fighting: new fields.BooleanField({ label: 'Cd100.SkillFighting', hint: 'Cd100.SkillHintFighting', initial: false }),
+        firearm: new fields.BooleanField({ label: 'Cd100.SkillFirearm', hint: 'Cd100.SkillHintFirearm', initial: false }),
+        ranged: new fields.BooleanField({ label: 'Cd100.SkillRanged', hint: 'Cd100.SkillHintRanged', initial: false }),
+        requiresname: new fields.BooleanField({ label: 'Cd100.SkillRequiresName', hint: 'Cd100.SkillHintRequiresName', initial: false }),
+        picknameonly: new fields.BooleanField({ label: 'Cd100.SkillPickNameOnly', hint: 'Cd100.SkillHintPickNameOnly', initial: false }),
+        own: new fields.BooleanField({ label: 'Cd100.SkillOwn', hint: 'Cd100.SkillHintOwn', initial: false }),
+        keepbasevalue: new fields.BooleanField({ label: 'Cd100.SkillKeepBaseValue', hint: 'Cd100.SkillHintKeepBaseValue', initial: false })
       }),
       flags: new fields.SchemaField({
         archetype: new fields.BooleanField({ initial: false }),
@@ -114,9 +114,9 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
       const specialization = match[1].trim()
       output.system.specialization = specialization
       output.name = specialization + ' (' + output.system.skillName + ')'
-      output.system.properties.fighting = specialization === game.i18n.localize('CoC7.FightingSpecializationName')
-      output.system.properties.firearm = specialization === game.i18n.localize('CoC7.FirearmSpecializationName')
-      output.system.properties.ranged = specialization === game.i18n.localize('CoC7.RangedSpecializationName')
+      output.system.properties.fighting = specialization === game.i18n.localize('Cd100.FightingSpecializationName')
+      output.system.properties.firearm = specialization === game.i18n.localize('Cd100.FirearmSpecializationName')
+      output.system.properties.ranged = specialization === game.i18n.localize('Cd100.RangedSpecializationName')
     }
     return output
   }
@@ -128,9 +128,9 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
    */
   static emptyObject (options) {
     const object = foundry.utils.mergeObject({
-      name: game.i18n.localize('CoC7.NewSkillName'),
+      name: game.i18n.localize('Cd100.NewSkillName'),
       type: 'skill',
-      system: new CoC7ModelsItemSkillSystem().toObject()
+      system: new Cd100ModelsItemSkillSystem().toObject()
     }, {
       system: {
         properties: {
@@ -139,7 +139,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
       }
     })
     foundry.utils.mergeObject(object, options)
-    foundry.utils.mergeObject(object, CoC7ModelsItemSkillSystem.guessNameParts(object.name))
+    foundry.utils.mergeObject(object, Cd100ModelsItemSkillSystem.guessNameParts(object.name))
     if (typeof options.system?.properties?.push === 'undefined' && (object.system.properties.fighting || object.system.properties.firearm || object.system.properties.ranged)) {
       object.system.properties.push = false
     }
@@ -160,7 +160,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
         skillName
       }
     }
-    const specNameRegex = new RegExp('^(' + CoC7Utilities.quoteRegExp(specialization) + ')\\s*\\((.+)\\)$', 'i')
+    const specNameRegex = new RegExp('^(' + Cd100Utilities.quoteRegExp(specialization) + ')\\s*\\((.+)\\)$', 'i')
     const match = skillName.match(specNameRegex)
     if (match) {
       specialization = match[1]
@@ -213,7 +213,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
    */
   static _preCreateChanges (changes, data, options, user) {
     if (data.name) {
-      foundry.utils.mergeObject(changes, CoC7ModelsItemSkillSystem.guessNameParts(data.name))
+      foundry.utils.mergeObject(changes, Cd100ModelsItemSkillSystem.guessNameParts(data.name))
     }
   }
 
@@ -308,7 +308,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
     if (typeof this.parent.flags[FOLDER_ID]?.cocidFlag?.id === 'string') {
       return (this.parent.flags[FOLDER_ID]?.cocidFlag?.id === id)
     }
-    const check = game.i18n.localize('CoC7.CoCIDFlag.keys.' + id).toLowerCase()
+    const check = game.i18n.localize('Cd100.CoCIDFlag.keys.' + id).toLowerCase()
     if (this.parent.name.toLowerCase() === check) {
       return true
     }
@@ -327,7 +327,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
       return true
     }
     return [
-      game.i18n.localize('CoC7.AnySpecName').toLowerCase(),
+      game.i18n.localize('Cd100.AnySpecName').toLowerCase(),
       'any'
     ].includes(CONFIG.Item.dataModels.skill.guessNameParts(this.parent.name).system.skillName.toLowerCase())
   }
@@ -344,7 +344,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
     const changes = await super.prepareToggleUpdate(property, key, { isCtrlKey })
     if (property === 'properties' && key === 'special') {
       if (changes['system.properties.special']) {
-        const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(this.skillName, this.specialization)
+        const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(this.skillName, this.specialization)
         changes.name = parts.name
       } else {
         changes['system.properties.fighting'] = false
@@ -359,7 +359,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
       }
     } else if (property === 'properties' && ['fighting', 'firearm', 'ranged'].includes(key)) {
       const specialization = (isCtrlKey ? this.specialization : game.i18n.localize(FIGHTING_NAMES[key]))
-      const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(this.skillName, specialization)
+      const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(this.skillName, specialization)
       changes['system.properties.special'] = true
       changes['system.properties.fighting'] = (key === 'fighting')
       changes['system.properties.firearm'] = (key === 'firearm')
@@ -369,7 +369,7 @@ export default class CoC7ModelsItemSkillSystem extends CoC7ModelsItemGlobalSyste
       changes['system.specialization'] = parts.specialization
     } else if (property === 'properties' && ['requiresname', 'keepbasevalue', 'own', 'picknameonly'].includes(key) && !this.properties.special) {
       changes['system.properties.special'] = true
-      const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(this.skillName, this.specialization)
+      const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(this.skillName, this.specialization)
       changes.name = parts.name
     }
     return changes

@@ -1,9 +1,9 @@
 /* global foundry */
 import { MONETARY_FORMAT_KEYS, MONETARY_TYPE_KEYS } from '../../constants.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemSetupSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -76,7 +76,7 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
           {
             initial: [
               {
-                name: 'CoC7.MonetaryDefaultPenniless',
+                name: 'Cd100.MonetaryDefaultPenniless',
                 min: null,
                 max: 0,
                 cashType: MONETARY_TYPE_KEYS.value,
@@ -87,7 +87,7 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
                 spendingValue: 0.5
               },
               {
-                name: 'CoC7.MonetaryDefaultPoor',
+                name: 'Cd100.MonetaryDefaultPoor',
                 min: 1,
                 max: 9,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -98,7 +98,7 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
                 spendingValue: 2
               },
               {
-                name: 'CoC7.MonetaryDefaultAverage',
+                name: 'Cd100.MonetaryDefaultAverage',
                 min: 10,
                 max: 49,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -109,7 +109,7 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
                 spendingValue: 10
               },
               {
-                name: 'CoC7.MonetaryDefaultWealthy',
+                name: 'Cd100.MonetaryDefaultWealthy',
                 min: 50,
                 max: 89,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -120,7 +120,7 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
                 spendingValue: 50
               },
               {
-                name: 'CoC7.MonetaryDefaultRich',
+                name: 'Cd100.MonetaryDefaultRich',
                 min: 90,
                 max: 98,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -131,7 +131,7 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
                 spendingValue: 250
               },
               {
-                name: 'CoC7.MonetaryDefaultSuperRich',
+                name: 'Cd100.MonetaryDefaultSuperRich',
                 min: 99,
                 max: null,
                 cashType: MONETARY_TYPE_KEYS.value,
@@ -188,7 +188,7 @@ export default class CoC7ModelsItemSetupSystem extends CoC7ModelsItemGlobalSyste
    * @returns {Array}
    */
   async items () {
-    return CoC7Utilities.getEmbeddedItems(this.parent, 'system')
+    return Cd100Utilities.getEmbeddedItems(this.parent, 'system')
   }
 
   /**

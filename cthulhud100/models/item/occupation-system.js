@@ -1,8 +1,8 @@
 /* global foundry game */
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemOccupationSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemOccupationSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -16,10 +16,10 @@ export default class CoC7ModelsItemOccupationSystem extends CoC7ModelsItemGlobal
       }),
       source: new fields.StringField({ initial: '' }),
       type: new fields.SchemaField({
-        classic: new fields.BooleanField({ label: 'CoC7.Classic', initial: false }),
-        lovecraftian: new fields.BooleanField({ label: 'CoC7.Lovecraftian', initial: false }),
-        modern: new fields.BooleanField({ label: 'CoC7.Modern', initial: false }),
-        pulp: new fields.BooleanField({ label: 'CoC7.Pulp', initial: false })
+        classic: new fields.BooleanField({ label: 'Cd100.Classic', initial: false }),
+        lovecraftian: new fields.BooleanField({ label: 'Cd100.Lovecraftian', initial: false }),
+        modern: new fields.BooleanField({ label: 'Cd100.Modern', initial: false }),
+        pulp: new fields.BooleanField({ label: 'Cd100.Pulp', initial: false })
       }),
       /* // FoundryVTT V13 - not required
       related: null,
@@ -155,7 +155,7 @@ export default class CoC7ModelsItemOccupationSystem extends CoC7ModelsItemGlobal
       }
     }
     let occupationPointsString = ''
-    const orString = ` ${game.i18n.localize('CoC7.Or')} `
+    const orString = ` ${game.i18n.localize('Cd100.Or')} `
     if (mandatory.length) occupationPointsString += mandatory.join(' + ')
     if (optional.length && mandatory.length) {
       occupationPointsString += ` + (${optional.join(orString)})`
@@ -198,7 +198,7 @@ export default class CoC7ModelsItemOccupationSystem extends CoC7ModelsItemGlobal
    * @returns {string}
    */
   get occupationPointsString () {
-    return CoC7ModelsItemOccupationSystem.getOccupationPointsString(this.occupationSkillPoints)
+    return Cd100ModelsItemOccupationSystem.getOccupationPointsString(this.occupationSkillPoints)
   }
 
   /**
@@ -206,7 +206,7 @@ export default class CoC7ModelsItemOccupationSystem extends CoC7ModelsItemGlobal
    * @returns {Array}
    */
   async skillGroups () {
-    return CoC7Utilities.getEmbeddedGroupedSkills(this.parent)
+    return Cd100Utilities.getEmbeddedGroupedSkills(this.parent)
   }
 
   /**
@@ -214,6 +214,6 @@ export default class CoC7ModelsItemOccupationSystem extends CoC7ModelsItemGlobal
    * @returns {Array}
    */
   async items () {
-    return CoC7Utilities.getEmbeddedItems(this.parent, 'system')
+    return Cd100Utilities.getEmbeddedItems(this.parent, 'system')
   }
 }

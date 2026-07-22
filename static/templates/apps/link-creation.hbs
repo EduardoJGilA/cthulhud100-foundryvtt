@@ -1,7 +1,7 @@
 <div class="flexcol">
   <div class="link-header flexcol">
     <div class="form-group">
-      <label>{{localize 'CoC7.Type'}}:</label>
+      <label>{{localize 'Cd100.Type'}}:</label>
       <div class="form-fields">
         <select name="check">
           {{selectOptions checkType selected=link.check valueAttr='key' labelAttr='label'}}
@@ -10,7 +10,7 @@
     </div>
     {{#if (eq link.check checkTypes.CHECK)}}
       <div class="form-group">
-        <label>{{localize 'CoC7.Check'}}:</label>
+        <label>{{localize 'Cd100.Check'}}:</label>
         <div class="form-fields">
           <select name="subtype">
             {{selectOptions linkType selected=link.subtype valueAttr='key' labelAttr='label'}}
@@ -19,7 +19,7 @@
       </div>
       {{#if (eq link.subtype linkTypes.CHARACTERISTIC)}}
         <div class="form-group">
-          <label>{{localize 'CoC7.Characteristic'}}:</label>
+          <label>{{localize 'Cd100.Characteristic'}}:</label>
           <div class="form-fields">
             <select name="characteristicName">
               {{selectOptions characteristicType selected=other.characteristicName valueAttr='key' labelAttr='label'}}
@@ -28,7 +28,7 @@
         </div>
       {{else if (eq link.subtype linkTypes.ATTRIBUTE)}}
         <div class="form-group">
-          <label>{{localize 'CoC7.Attribute'}}:</label>
+          <label>{{localize 'Cd100.Attribute'}}:</label>
           <div class="form-fields">
             <select name="attributeName">
               {{selectOptions attributeType selected=other.attributeName valueAttr='key' labelAttr='label'}}
@@ -37,7 +37,7 @@
         </div>
       {{else if (eq link.subtype linkTypes.SKILL)}}
         <div class="form-group">
-          <label>{{localize 'CoC7.Name'}}:</label>
+          <label>{{localize 'Cd100.Name'}}:</label>
           <div class="form-fields">
             <input type="text" name="skillName" value="{{other.skillName}}" required="required" />
           </div>
@@ -45,45 +45,45 @@
       {{/if}}
     {{else if (eq link.check checkTypes.ITEM)}}
       <div class="form-group">
-        <label>{{localize 'CoC7.Name'}}:</label>
+        <label>{{localize 'Cd100.Name'}}:</label>
         <div class="form-fields">
           <input type="text" name="itemName" value="{{other.itemName}}" required="required" />
         </div>
       </div>
     {{else if (eq link.check checkTypes.SANLOSS)}}
       <div class="form-group">
-        <label>{{localize 'CoC7.MinSanloss'}}:</label>
+        <label>{{localize 'Cd100.MinSanloss'}}:</label>
         <div class="form-fields">
           <input type="text" name="sanMin" value="{{link.sanMin}}" required="required" />
         </div>
       </div>
       <div class="form-group">
-        <label>{{localize 'CoC7.MaxSanloss'}}:</label>
+        <label>{{localize 'Cd100.MaxSanloss'}}:</label>
         <div class="form-fields">
           <input type="text" name="sanMax" value="{{link.sanMax}}" required="required" />
         </div>
       </div>
       <div class="form-group">
-        <label>{{localize 'CoC7.SanityLossTypeReason'}}:</label>
+        <label>{{localize 'Cd100.SanityLossTypeReason'}}:</label>
         <div class="form-fields">
           <input type="text" name="sanReason" value="{{link.sanReason}}" />
         </div>
       </div>
     {{else if (eq link.check checkTypes.EFFECT)}}
       <div class="form-group">
-        <label>{{localize 'CoC7.Name'}}:</label>
+        <label>{{localize 'Cd100.Name'}}:</label>
         <div class="form-fields">
           <input type="text" name="object.name" value="{{link.object.name}}" required="required" />
         </div>
       </div>
       <div class="form-group">
-        <label>{{localize 'CoC7.Icon'}}:</label>
+        <label>{{localize 'Cd100.Icon'}}:</label>
         <div class="form-fields">
           <file-picker name="object.img" type="image" value="{{link.object.img}}"></file-picker>
         </div>
       </div>
       <div class="form-group">
-        <label>{{localize 'CoC7.Label'}}:</label>
+        <label>{{localize 'Cd100.Label'}}:</label>
         <div class="form-fields">
           <input type="text" name="label" value="{{link.label}}" />
         </div>
@@ -180,7 +180,7 @@
       </div>
       {{#if other.difficulty}}
         <div class="form-group">
-          <label>{{localize 'CoC7.Check'}}:</label>
+          <label>{{localize 'Cd100.Check'}}:</label>
           <div class="form-fields">
             <select name="difficulty">
               {{selectOptions rollDifficulties selected=link.difficulty localize=true valueAttr='key' labelAttr='label'}}
@@ -190,7 +190,7 @@
       {{/if}}
       {{#if other.poolModifier}}
         <div class="form-group bonus-penalty-selector">
-          <label>{{localize 'CoC7.BonusDice'}}</label>
+          <label>{{localize 'Cd100.BonusDice'}}</label>
           <div class="form-fields">
             <div class="bonus-penalty-box" style="padding: 0.5rem">
               <div class="flexrow bonus-penalty-labels">
@@ -214,7 +214,7 @@
       {{/if}}
       {{#if other.label}}
         <div class="form-group">
-          <label>{{localize 'CoC7.Label'}}:</label>
+          <label>{{localize 'Cd100.Label'}}:</label>
           <div class="form-fields">
             <input type="text" name="label" value="{{link.label}}" required="required" />
           </div>
@@ -222,7 +222,7 @@
       {{/if}}
       {{#if other.icon}}
         <div class="form-group">
-          <label>{{localize 'CoC7.Icon'}}:</label>
+          <label>{{localize 'Cd100.Icon'}}:</label>
           <div class="form-fields">
             <input type="text" name="icon" value="{{link.icon}}" />
           </div>
@@ -231,11 +231,11 @@
     </fieldset>
   {{/if}}
   <div class="link-buttons flexcol">
-    <button class="submit-button" type="submit" data-action="clipboard"><i class="fa-solid fa-clipboard"></i>{{localize 'CoC7.CopyToClipboard'}}</button>
-    <button class="submit-button" type="submit" data-action="whisper-selected"><i class="fa-regular fa-object-group"></i>{{localize 'CoC7.WhisperToSelection'}}</button>
+    <button class="submit-button" type="submit" data-action="clipboard"><i class="fa-solid fa-clipboard"></i>{{localize 'Cd100.CopyToClipboard'}}</button>
+    <button class="submit-button" type="submit" data-action="whisper-selected"><i class="fa-regular fa-object-group"></i>{{localize 'Cd100.WhisperToSelection'}}</button>
     {{#if actorNames}}
-      <button class="submit-button" type="submit" data-action="whisper-owner"><i class="fa-solid fa-user"></i>{{localize 'CoC7.WhisperTo'}}: {{actorNames}}</button>
+      <button class="submit-button" type="submit" data-action="whisper-owner"><i class="fa-solid fa-user"></i>{{localize 'Cd100.WhisperTo'}}: {{actorNames}}</button>
     {{/if}}
-    <button class="submit-button" type="submit" data-action="chat"><i class="fa-solid fa-comments"></i>{{localize 'CoC7.SendToChat'}}</button>
+    <button class="submit-button" type="submit" data-action="chat"><i class="fa-solid fa-comments"></i>{{localize 'Cd100.SendToChat'}}</button>
   </div>
 </div>

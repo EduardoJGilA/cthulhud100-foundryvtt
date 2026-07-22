@@ -1,8 +1,8 @@
 /* global foundry */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsActorGlobalSystem from './global-system.js'
+import Cd100ModelsActorGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsActorVehicleSystem extends CoC7ModelsActorGlobalSystem {
+export default class Cd100ModelsActorVehicleSystem extends Cd100ModelsActorGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}

@@ -9,6 +9,6 @@ import { FOLDER_ID } from '../constants.js'
  */
 export default function (document, options, userId) {
   if (document.flags?.[FOLDER_ID]?.cocidFlag?.id?.length) {
-    game.CoC7.skillNames.addItem(document.flags[FOLDER_ID].cocidFlag.id)
+    game.Cd100.skillNames.addItem(document.flags[FOLDER_ID].cocidFlag.id)
   }
 }

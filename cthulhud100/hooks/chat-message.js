@@ -1,8 +1,8 @@
 /* global fromUuid */
-import CoC7ActorPickerDialog from '../apps/actor-picker-dialog.js'
-import CoC7DicePool from '../apps/dice-pool.js'
-import CoC7RollNormalize from '../apps/roll-normalize.js'
-import CoC7Utilities from '../apps/utilities.js'
+import Cd100ActorPickerDialog from '../apps/actor-picker-dialog.js'
+import Cd100DicePool from '../apps/dice-pool.js'
+import Cd100RollNormalize from '../apps/roll-normalize.js'
+import Cd100Utilities from '../apps/utilities.js'
 import deprecated from '../deprecated.js'
 
 /**
@@ -26,9 +26,9 @@ export default function (chatLog, message, { speaker, user }) {
       let options = match[1].replace(/\s*/g, '')
       const config = {
         askValue: true,
-        cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+        cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
         cardTypeFixed: true,
-        difficulty: CoC7DicePool.difficultyLevel.regular,
+        difficulty: Cd100DicePool.difficultyLevel.regular,
         event: new Event('click'),
         fastForward: false,
         poolModifier: 0,
@@ -46,7 +46,7 @@ export default function (chatLog, message, { speaker, user }) {
         // [?], [+], [++], [+++] for a difficulty unknown, hard, extreme, critical
         const difficulty = options.match(/\[(\?|\+{1,3})\]/)
         if (difficulty) {
-          config.difficulty = CoC7Utilities.convertDifficulty(difficulty[1])
+          config.difficulty = Cd100Utilities.convertDifficulty(difficulty[1])
           options = options.replace(difficulty[0], '')
         }
         // +2, +1, -1, -2 for bonus / penalty dice
@@ -63,11 +63,11 @@ export default function (chatLog, message, { speaker, user }) {
           // Left over data
         }
       }
-      const actor = await CoC7ActorPickerDialog.create()
+      const actor = await Cd100ActorPickerDialog.create()
       if (actor) {
         config.actor = await fromUuid(actor)
       }
-      CoC7RollNormalize.trigger(config)
+      Cd100RollNormalize.trigger(config)
     }, 200)
     return false
   }

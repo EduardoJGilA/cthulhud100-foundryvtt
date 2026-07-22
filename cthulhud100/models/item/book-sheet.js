@@ -1,9 +1,9 @@
 /* global DragDrop foundry game TextEditor */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemBookSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemBookSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 525,
@@ -53,32 +53,32 @@ export default class CoC7ModelsItemBookSheet extends CoC7ModelsItemGlobalSheet {
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       }
     }
     if (game.user.isGM || (knownBook?.initialReading ?? false)) {
       tabs.content = {
         icon: '',
-        label: 'CoC7.Content'
+        label: 'Cd100.Content'
       }
     }
     if (game.user.isGM) {
       tabs.details = {
         icon: '',
-        label: 'CoC7.Details'
+        label: 'Cd100.Details'
       }
     }
     if ((context.document.system.type.mythos || context.document.system.type.occult) && (game.user.isGM || (knownBook?.initialReading ?? false))) {
       tabs.spells = {
         icon: '',
-        label: 'CoC7.Spells'
+        label: 'Cd100.Spells'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -137,47 +137,47 @@ export default class CoC7ModelsItemBookSheet extends CoC7ModelsItemGlobalSheet {
         context.difficultyLevels = [
           {
             key: 'regular',
-            label: 'CoC7.RollDifficultyRegular'
+            label: 'Cd100.RollDifficultyRegular'
           },
           {
             key: 'hard',
-            label: 'CoC7.RollDifficultyHard'
+            label: 'Cd100.RollDifficultyHard'
           },
           {
             key: 'extreme',
-            label: 'CoC7.RollDifficultyExtreme'
+            label: 'Cd100.RollDifficultyExtreme'
           },
           {
             key: 'critical',
-            label: 'CoC7.RollDifficultyCritical'
+            label: 'Cd100.RollDifficultyCritical'
           },
           {
             key: 'unreadable',
-            label: 'CoC7.Unreadable'
+            label: 'Cd100.Unreadable'
           }
         ]
         context.studyUnits = [
           {
-            key: 'CoC7.months',
-            label: 'CoC7.months'
+            key: 'Cd100.months',
+            label: 'Cd100.months'
           },
           {
-            key: 'CoC7.weeks',
-            label: 'CoC7.weeks'
+            key: 'Cd100.weeks',
+            label: 'Cd100.weeks'
           },
           {
-            key: 'CoC7.days',
-            label: 'CoC7.days'
+            key: 'Cd100.days',
+            label: 'Cd100.days'
           },
           {
-            key: 'CoC7.hours',
-            label: 'CoC7.hours'
+            key: 'Cd100.hours',
+            label: 'Cd100.hours'
           }
         ]
         context.otherGains = [
           {
             key: 'development',
-            label: 'CoC7.Development'
+            label: 'Cd100.Development'
           },
           {
             key: '1d6',
@@ -247,7 +247,7 @@ export default class CoC7ModelsItemBookSheet extends CoC7ModelsItemGlobalSheet {
           {
             const embeddedId = event.currentTarget.closest('.item').dataset.embeddedId
             if (embeddedId) {
-              CoC7Utilities.openEmbeddedItem(this.document, embeddedId)
+              Cd100Utilities.openEmbeddedItem(this.document, embeddedId)
             }
           }
           break
@@ -255,7 +255,7 @@ export default class CoC7ModelsItemBookSheet extends CoC7ModelsItemGlobalSheet {
           {
             const embeddedId = event.currentTarget.closest('.item').dataset.embeddedId
             if (embeddedId) {
-              CoC7Utilities.deleteEmbeddedItem(this.document, embeddedId)
+              Cd100Utilities.deleteEmbeddedItem(this.document, embeddedId)
             }
           }
           break
@@ -341,7 +341,7 @@ export default class CoC7ModelsItemBookSheet extends CoC7ModelsItemGlobalSheet {
    * @param {ClickEvent} event
    */
   async _onSkillItemDrop (event) {
-    const droppedItems = (await CoC7Utilities.getDataFromDropEvent(event, 'Item')).filter(doc => doc.type === 'skill')
+    const droppedItems = (await Cd100Utilities.getDataFromDropEvent(event, 'Item')).filter(doc => doc.type === 'skill')
     if (droppedItems.length) {
       const newGains = []
       for (const item of droppedItems) {
@@ -391,11 +391,11 @@ export default class CoC7ModelsItemBookSheet extends CoC7ModelsItemGlobalSheet {
       if (max > 1) {
         alter = await new Promise((resolve, reject) => {
           foundry.applications.api.DialogV2.prompt({
-            window: { title: 'CoC7.BookAlterProgress' },
+            window: { title: 'Cd100.BookAlterProgress' },
             form: { closeOnSubmit: false },
-            content: '<div class="flexrow"><label>' + game.i18n.format('CoC7.BookProgressValue', { max }) + ':</label><input type="number" value="" style="flex: 0 0 3rem" min="1" max="' + max + '" step="1" autofocus required name="alter">',
+            content: '<div class="flexrow"><label>' + game.i18n.format('Cd100.BookProgressValue', { max }) + ':</label><input type="number" value="" style="flex: 0 0 3rem" min="1" max="' + max + '" step="1" autofocus required name="alter">',
             ok: {
-              label: 'CoC7.Validate',
+              label: 'Cd100.Validate',
               icon: 'fa-solid fa-check',
               callback: (event, button, dialog) => {
                 if (!button.form.elements.alter.validity.valid) {

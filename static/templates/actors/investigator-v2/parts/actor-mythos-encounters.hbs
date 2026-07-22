@@ -1,7 +1,7 @@
 {{#if document.system.sanityLossEvents}}
   <section class="bio-section">
     <header class="section-header">
-      <h3 class="section-heading">{{localize 'CoC7.BackgroundEncounters'}}</h3>
+      <h3 class="section-heading">{{localize 'Cd100.BackgroundEncounters'}}</h3>
     </header>
     <div class="events">
       {{#each document.system.sanityLossEvents as |sanityLossEvent mythosOffset|}}
@@ -9,7 +9,7 @@
           <div class="title">{{sanityLossEvent.type}}</div>
           <div class="values">
             {{#if sanityLossEvent.immunity}}
-              <i class="fa-solid fa-shield-alt" data-tooltip="CoC7.SanityLossImmunity"></i>
+              <i class="fa-solid fa-shield-alt" data-tooltip="Cd100.SanityLossImmunity"></i>
             {{else}}
               {{sanityLossEvent.totalLoss}}
             {{/if}}

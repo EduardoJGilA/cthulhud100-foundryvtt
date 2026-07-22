@@ -1,31 +1,31 @@
 /* global Actor ChatMessage CONFIG CONST foundry fromUuid fromUuidSync game Hooks Roll TextEditor Token ui */
 import { FOLDER_ID, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER, PERSONAL_SKILL_POINTS_PER_INT, UNCONSCIOUS_HP_THRESHOLD } from '../../constants.js'
-import CoC7CombatTables from '../../apps/combat-tables.js'
-import CoC7AverageRoll from '../../apps/average-roll.js'
-import CoC7CharacteristicRollDialog from '../../apps/characteristic-roll-dialog.js'
-import CoC7CharacteristicSelectionDialog from '../../apps/characteristic-selection-dialog.js'
-import CoC7ChatCombatMelee from '../../apps/chat-combat-melee.js'
-import CoC7ChatCombatRanged from '../../apps/chat-combat-ranged.js'
-import CoC7Check from '../../apps/check.js'
-import CoC7ConCheck from '../../apps/con-check.js'
-import CoC7DicePool from '../../apps/dice-pool.js'
-import CoC7ExperiencePackageDialog from '../../apps/experience-package-dialog.js'
-import CoC7ModelsItemDocumentClass from '../item/document-class.js'
-import CoC7ModelsItemArmorSystem from '../item/armor-system.js'
-import CoC7ModelsItemBookSystem from '../item/book-system.js'
-import CoC7ModelsItemItemSystem from '../item/item-system.js'
-import CoC7ModelsItemSkillSystem from '../item/skill-system.js'
-import CoC7ModelsItemSpellSystem from '../item/spell-system.js'
-import CoC7ModelsItemWeaponSystem from '../item/weapon-system.js'
-import CoC7PointSelectionDialog from '../../apps/point-selection-dialog.js'
-import CoC7RollNormalize from '../../apps/roll-normalize.js'
-import CoC7SkillSelectionDialog from '../../apps/skill-selection-dialog.js'
-import CoC7SkillSpecializationSelectDialog from '../../apps/skill-specialization-select-dialog.js'
-import CoC7SpendLuckDialog from '../../apps/spend-luck-dialog.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100CombatTables from '../../apps/combat-tables.js'
+import Cd100AverageRoll from '../../apps/average-roll.js'
+import Cd100CharacteristicRollDialog from '../../apps/characteristic-roll-dialog.js'
+import Cd100CharacteristicSelectionDialog from '../../apps/characteristic-selection-dialog.js'
+import Cd100ChatCombatMelee from '../../apps/chat-combat-melee.js'
+import Cd100ChatCombatRanged from '../../apps/chat-combat-ranged.js'
+import Cd100Check from '../../apps/check.js'
+import Cd100ConCheck from '../../apps/con-check.js'
+import Cd100DicePool from '../../apps/dice-pool.js'
+import Cd100ExperiencePackageDialog from '../../apps/experience-package-dialog.js'
+import Cd100ModelsItemDocumentClass from '../item/document-class.js'
+import Cd100ModelsItemArmorSystem from '../item/armor-system.js'
+import Cd100ModelsItemBookSystem from '../item/book-system.js'
+import Cd100ModelsItemItemSystem from '../item/item-system.js'
+import Cd100ModelsItemSkillSystem from '../item/skill-system.js'
+import Cd100ModelsItemSpellSystem from '../item/spell-system.js'
+import Cd100ModelsItemWeaponSystem from '../item/weapon-system.js'
+import Cd100PointSelectionDialog from '../../apps/point-selection-dialog.js'
+import Cd100RollNormalize from '../../apps/roll-normalize.js'
+import Cd100SkillSelectionDialog from '../../apps/skill-selection-dialog.js'
+import Cd100SkillSpecializationSelectDialog from '../../apps/skill-specialization-select-dialog.js'
+import Cd100SpendLuckDialog from '../../apps/spend-luck-dialog.js'
+import Cd100Utilities from '../../apps/utilities.js'
 import deprecated from '../../deprecated.js'
 
-export default class CoC7ModelsActorDocumentClass extends Actor {
+export default class Cd100ModelsActorDocumentClass extends Actor {
   /**
    * Not required
    * @deprecated No replacement
@@ -78,7 +78,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   get getTempoInsaneDurationText () {
     if (this.system.conditions.tempoInsane.value && this.system.conditions.tempoInsane.duration > 0) {
-      return this.system.conditions.tempoInsane.duration + ' ' + game.i18n.localize(this.system.conditions.tempoInsane.realTime ? 'CoC7.rounds' : 'CoC7.hours')
+      return this.system.conditions.tempoInsane.duration + ' ' + game.i18n.localize(this.system.conditions.tempoInsane.realTime ? 'Cd100.rounds' : 'Cd100.hours')
     }
     return ''
   }
@@ -179,7 +179,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
                 delete itemData._id
                 await this.createEmbeddedDocuments('Item', [itemData])
               } else {
-                ui.notifications.error('CoC7.MessageBoutOfMadnessItemNotFound', { localize: true })
+                ui.notifications.error('Cd100.MessageBoutOfMadnessItemNotFound', { localize: true })
               }
               break
             case CONST.TABLE_RESULT_TYPES.TEXT:
@@ -193,7 +193,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           }
         }
       } else {
-        ui.notifications.error('CoC7.MessageBoutOfMadnessTableNotFound', { localize: true })
+        ui.notifications.error('Cd100.MessageBoutOfMadnessTableNotFound', { localize: true })
       }
     }
 
@@ -223,10 +223,10 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
   static emptySkill (skillName, value, { rarity = false, push = true, combat = false, img = false, specialization = false } = {}) {
     deprecated.warningLogger({
       was: 'Actor.emptySkill(?, ?, { ? })',
-      now: 'CoC7ModelsItemSkillSystem.emptyObject({ ? })',
+      now: 'Cd100ModelsItemSkillSystem.emptyObject({ ? })',
       until: 15
     })
-    return CoC7ModelsItemSkillSystem.emptyObject({
+    return Cd100ModelsItemSkillSystem.emptyObject({
       name: skillName,
       img: img ?? null,
       system: {
@@ -249,7 +249,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Promise<Item[]>}
    */
   async createSkill (name, value, showSheet = false) {
-    const data = CoC7ModelsItemSkillSystem.emptyObject({ name, system: { value } })
+    const data = Cd100ModelsItemSkillSystem.emptyObject({ name, system: { value } })
     const created = await this.createEmbeddedDocuments('Item', [data], {
       render: showSheet
     })
@@ -283,7 +283,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Promise<Item[]>}
    */
   async createItem (name, quantity = 1, showSheet = false) {
-    const data = CoC7ModelsItemItemSystem.emptyObject({ name, system: { quantity } })
+    const data = Cd100ModelsItemItemSystem.emptyObject({ name, system: { quantity } })
     const created = await this.createEmbeddedDocuments('Item', [data], {
       render: showSheet
     })
@@ -297,7 +297,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async createEmptyArmor (event = null) {
     const showSheet = event ? !event.shiftKey : true
-    const uniqueName = this.uniqueItemName(game.i18n.localize('CoC7.NewArmorName'), 'armor')
+    const uniqueName = this.uniqueItemName(game.i18n.localize('Cd100.NewArmorName'), 'armor')
     return this.createArmor(uniqueName, 1, showSheet)
   }
 
@@ -309,7 +309,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Promise<Item[]>}
    */
   async createArmor (name, value = 0, showSheet = false) {
-    const data = CoC7ModelsItemArmorSystem.emptyObject({
+    const data = Cd100ModelsItemArmorSystem.emptyObject({
       name,
       effects: [
         {
@@ -338,7 +338,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async createEmptyBook (event = null) {
     const showSheet = event ? !event.shiftKey : true
-    const uniqueName = this.uniqueItemName(game.i18n.localize('CoC7.NewBookName'), 'book')
+    const uniqueName = this.uniqueItemName(game.i18n.localize('Cd100.NewBookName'), 'book')
     return this.createBook(uniqueName, showSheet)
   }
 
@@ -349,7 +349,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Promise<Item[]>}
    */
   async createBook (name, showSheet = false) {
-    const data = CoC7ModelsItemBookSystem.emptyObject({ name })
+    const data = Cd100ModelsItemBookSystem.emptyObject({ name })
     const created = await this.createEmbeddedDocuments('Item', [data], {
       render: showSheet
     })
@@ -363,7 +363,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async createEmptySpell (event = null) {
     const showSheet = event ? !event.shiftKey : true
-    const uniqueName = this.uniqueItemName(game.i18n.localize('CoC7.NewSpellName'), 'spell')
+    const uniqueName = this.uniqueItemName(game.i18n.localize('Cd100.NewSpellName'), 'spell')
     return this.createSpell(uniqueName, showSheet)
   }
 
@@ -376,10 +376,10 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
   static emptySpell (itemName) {
     deprecated.warningLogger({
       was: 'Actor.emptySpell(?)',
-      now: 'CoC7ModelsItemSpellSystem.emptyObject({ ? })',
+      now: 'Cd100ModelsItemSpellSystem.emptyObject({ ? })',
       until: 15
     })
-    return CoC7ModelsItemSpellSystem.emptyObject({ name: itemName })
+    return Cd100ModelsItemSpellSystem.emptyObject({ name: itemName })
   }
 
   /**
@@ -389,7 +389,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Promise<Item[]>}
    */
   async createSpell (name, showSheet = false) {
-    const data = CoC7ModelsItemSpellSystem.emptyObject({ name })
+    const data = Cd100ModelsItemSpellSystem.emptyObject({ name })
     const created = await this.createEmbeddedDocuments('Item', [data], {
       render: showSheet
     })
@@ -403,7 +403,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async createEmptySkill (event = null) {
     const showSheet = event ? !event.shiftKey : true
-    const uniqueName = this.uniqueItemName(game.i18n.localize('CoC7.NewSkillName'), 'skill')
+    const uniqueName = this.uniqueItemName(game.i18n.localize('Cd100.NewSkillName'), 'skill')
     return this.createSkill(uniqueName, (this.type !== 'character' ? 1 : null), showSheet)
   }
 
@@ -414,7 +414,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async createEmptyItem (event = null) {
     const showSheet = event ? !event.shiftKey : true
-    const uniqueName = this.uniqueItemName(game.i18n.localize('CoC7.NewItemName'), 'item')
+    const uniqueName = this.uniqueItemName(game.i18n.localize('Cd100.NewItemName'), 'item')
     return this.createItem(uniqueName, 1, showSheet)
   }
 
@@ -425,7 +425,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async createEmptyWeapon (event = null) {
     const showSheet = event ? !event.shiftKey : true
-    const uniqueName = this.uniqueItemName(game.i18n.localize('CoC7.NewWeaponName'), 'weapon')
+    const uniqueName = this.uniqueItemName(game.i18n.localize('Cd100.NewWeaponName'), 'weapon')
     const rngd = (event.currentTarget?.dataset.rngd?.toString() === 'true' || (event.currentTarget?.dataset.melee?.toString() ?? 'true') !== 'true')
     return this.createWeapon(uniqueName, rngd, showSheet)
   }
@@ -438,7 +438,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Promise<Item[]>}
    */
   async createWeapon (name, rngd = false, showSheet = false) {
-    const data = CoC7ModelsItemWeaponSystem.emptyObject({ name, system: { properties: { rngd } } })
+    const data = Cd100ModelsItemWeaponSystem.emptyObject({ name, system: { properties: { rngd } } })
     const created = await this.createEmbeddedDocuments('Item', [data], {
       render: showSheet
     })
@@ -599,13 +599,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         processed = processed.concat(await super.createEmbeddedDocuments('Item', processedDataArray, operation))
       }
       if (archetype) {
-        Hooks.call('archetypeFinishedCoC7')
+        Hooks.call('archetypeFinishedCd100')
       }
       if (occupation) {
-        Hooks.call('occupationFinishedCoC7')
+        Hooks.call('occupationFinishedCd100')
       }
       if (setup) {
-        Hooks.call('setupFinishedCoC7')
+        Hooks.call('setupFinishedCd100')
       }
       return processed
     }
@@ -628,13 +628,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     for (const offset in skills) {
       const skill = skills[offset]
       const hasSkillFlag = skillFlags.some(flag => skill.system.flags?.[flag] === true)
-      let isAnySpec = CoC7ModelsItemDocumentClass.isAnySpec(skill)
+      let isAnySpec = Cd100ModelsItemDocumentClass.isAnySpec(skill)
       if (isAnySpec) {
         let skillList = []
         if (hasSkillFlag) {
           skillList = this.items.filter(d => d.type === 'skill' && d.system.properties?.special && d.system.specialization === skill.system.specialization && skillFlags.some(flag => skill.system.flags?.[flag] === true && d.system.flags?.[flag] === false))
         }
-        const group = game.CoC7.cocid.guessGroupFromDocument(skill)
+        const group = game.Cd100.cocid.guessGroupFromDocument(skill)
         if (group) {
           const existingKeys = skillList.reduce((c, d) => {
             c.push(d.name)
@@ -643,15 +643,15 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
             }
             return c
           }, [])
-          const others = (await game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: new RegExp('^' + CoC7Utilities.quoteRegExp(group) + '.+$'), type: 'i' })).filter(item => {
+          const others = (await game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: new RegExp('^' + Cd100Utilities.quoteRegExp(group) + '.+$'), type: 'i' })).filter(item => {
             return item.system.properties.special && !item.system.properties.requiresname && !item.system.properties.picknameonly
           })
           skillList = skillList.concat(others.filter(d => !existingKeys.includes(d.name) && (!d.flags[FOLDER_ID]?.cocidFlag?.id || !existingKeys.includes(d.flags[FOLDER_ID]?.cocidFlag?.id))))
         }
         if (skillList.length > 0) {
-          skillList.sort(CoC7Utilities.sortByNameKey)
+          skillList.sort(Cd100Utilities.sortByNameKey)
         }
-        const skillData = await CoC7SkillSpecializationSelectDialog.create({
+        const skillData = await Cd100SkillSpecializationSelectDialog.create({
           skills: skillList,
           allowCustom: (skill.system.properties?.requiresname ?? false),
           fixedBaseValue: (skill.system.properties?.keepbasevalue ?? false),
@@ -675,13 +675,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           isAnySpec = false
         } else {
           // Set name and base
-          const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(skillData.name, skill.system.specialization)
+          const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(skillData.name, skill.system.specialization)
           if (!skill.system.properties?.keepbasevalue) {
             skill.system.base = skillData.baseValue
           }
           skills[offset].name = parts.name
           skills[offset].system.skillName = parts.skillName
-          foundry.utils.setProperty(skills[offset], 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + CoC7Utilities.toKebabCase(skills[offset].name))
+          foundry.utils.setProperty(skills[offset], 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + Cd100Utilities.toKebabCase(skills[offset].name))
           foundry.utils.setProperty(skills[offset], 'system.properties.requiresname', false)
           foundry.utils.setProperty(skills[offset], 'system.properties.picknameonly', false)
           foundry.utils.setProperty(skills[offset], 'system.properties.keepbasevalue', false)
@@ -718,7 +718,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       skills.splice(offset, 1)
     }
     const parsedValues = this.parsedValues()
-    await CoC7Utilities.setMultipleSkillBases(parsedValues, skills)
+    await Cd100Utilities.setMultipleSkillBases(parsedValues, skills)
     return processed
   }
 
@@ -775,7 +775,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           value: this.system.characteristics[key].value
         }
       }
-      const rolled = await CoC7CharacteristicRollDialog.create(config)
+      const rolled = await Cd100CharacteristicRollDialog.create(config)
       updateDocument['system.attribs.lck.value'] = rolled.luck
       for (const key of this.system.schema.getField('characteristics').keys()) {
         if (key === 'luck') {
@@ -786,7 +786,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         }
       }
       const characteristics = foundry.utils.expandObject(updateDocument).system.characteristics
-      const hpMax = CoC7ModelsActorDocumentClass.hpFromCharacteristics(characteristics, this.type)
+      const hpMax = Cd100ModelsActorDocumentClass.hpFromCharacteristics(characteristics, this.type)
       updateDocument['system.attribs.hp.value'] = hpMax
       updateDocument['system.attribs.hp.max'] = hpMax
       updateDocument['system.attribs.san.value'] = updateDocument['system.characteristics.pow.value'] * CHARACTERISTIC_MULTIPLIER
@@ -817,7 +817,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       }
       updateDocument['system.monetary'] = foundry.utils.mergeObject(this.system.monetary, foundry.utils.duplicate(data.system.monetary))
     }
-    for (const item of await CoC7Utilities.getEmbeddedItems(data, 'system')) {
+    for (const item of await Cd100Utilities.getEmbeddedItems(data, 'system')) {
       if (typeof itemByType[item.type] === 'undefined') {
         itemByType[item.type] = []
       }
@@ -838,9 +838,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const replace = await foundry.applications.api.DialogV2.wait({
         classes: ['coc7', 'dialog'],
         window: {
-          title: game.i18n.localize('CoC7.ResetArchetype')
+          title: game.i18n.localize('Cd100.ResetArchetype')
         },
-        content: `<p>${game.i18n.format('CoC7.ResetArchetypeHint', { name: this.name })}</p>`,
+        content: `<p>${game.i18n.format('Cd100.ResetArchetypeHint', { name: this.name })}</p>`,
         buttons: [
           {
             action: 'no',
@@ -871,9 +871,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (coreCharacteristics.length === 1) {
       coreCharacteristic = coreCharacteristics[0]
     } else if (coreCharacteristics.length > 1) {
-      const key = await CoC7CharacteristicSelectionDialog.create({
+      const key = await Cd100CharacteristicSelectionDialog.create({
         characteristics: coreCharacteristics,
-        title: game.i18n.localize('CoC7.SelectCoreCharac')
+        title: game.i18n.localize('Cd100.SelectCoreCharac')
       })
       coreCharacteristic = coreCharacteristics.find(o => o.key === key)
     }
@@ -889,7 +889,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const roll = await new Roll(data.system.coreCharacteristicsFormula.value).roll()
       roll.toMessage({
         flavor: game.i18n.format(
-          'CoC7.MessageRollingCharacteristic',
+          'Cd100.MessageRollingCharacteristic',
           {
             label: game.i18n.localize(coreCharacteristic.label),
             formula: data.system.coreCharacteristicsFormula.value
@@ -903,7 +903,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         }
       }
     }
-    for (const item of await CoC7Utilities.getEmbeddedItems(data, 'system')) {
+    for (const item of await Cd100Utilities.getEmbeddedItems(data, 'system')) {
       const newItem = foundry.utils.duplicate(item)
       if (typeof itemByType[newItem.type] === 'undefined') {
         itemByType[newItem.type] = []
@@ -932,9 +932,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const replace = await foundry.applications.api.DialogV2.wait({
         classes: ['coc7', 'dialog'],
         window: {
-          title: game.i18n.localize('CoC7.ResetOccupation')
+          title: game.i18n.localize('Cd100.ResetOccupation')
         },
-        content: `<p>${game.i18n.format('CoC7.ResetOccupationHint', { name: this.name })}</p>`,
+        content: `<p>${game.i18n.format('Cd100.ResetOccupationHint', { name: this.name })}</p>`,
         buttons: [
           {
             action: 'no',
@@ -955,7 +955,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       }
     }
     const markedSkills = []
-    for (const item of await CoC7Utilities.getEmbeddedItems(data, 'system')) {
+    for (const item of await Cd100Utilities.getEmbeddedItems(data, 'system')) {
       const newItem = foundry.utils.duplicate(item)
       if (typeof itemByType[newItem.type] === 'undefined') {
         itemByType[newItem.type] = []
@@ -967,11 +967,11 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     }
     if (Number(data.system.creditRating.max) > 0) {
       // Occupations with a credit rating require a credit rating skill
-      const actorCreditRating = game.CoC7.cocid.findCocIdInList('i.skill.credit-rating', itemByType.skill ?? [])
+      const actorCreditRating = game.Cd100.cocid.findCocIdInList('i.skill.credit-rating', itemByType.skill ?? [])
       if (actorCreditRating.length === 0) {
-        const actorCreditRating = game.CoC7.cocid.findCocIdInList('i.skill.credit-rating', this.items)
+        const actorCreditRating = game.Cd100.cocid.findCocIdInList('i.skill.credit-rating', this.items)
         if (actorCreditRating.length === 0) {
-          const actorCreditRating = await game.CoC7.cocid.fromCoCID('i.skill.credit-rating')
+          const actorCreditRating = await game.Cd100.cocid.fromCoCID('i.skill.credit-rating')
           if (actorCreditRating.length) {
             const newItem = foundry.utils.duplicate(actorCreditRating[0])
             if (typeof itemByType.skill === 'undefined') {
@@ -1020,15 +1020,15 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       }
     }
     if (characteristicOptional.length > 0) {
-      const rolled = await CoC7PointSelectionDialog.create({ characteristicFixed, characteristicOptional })
+      const rolled = await Cd100PointSelectionDialog.create({ characteristicFixed, characteristicOptional })
       totalPoints += characteristicOptional.find(r => r.key === rolled).total
     }
     updateDocument['system.development.occupation'] = totalPoints
     for (const index in data.system.groups) {
-      const skills = await CoC7Utilities.getEmbeddedItems(data, 'system.groups.' + index)
+      const skills = await Cd100Utilities.getEmbeddedItems(data, 'system.groups.' + index)
       if (skills.length <= data.system.groups[index].options) {
         /* // FoundryVTT V12 */
-        ui.notifications.info(game.i18n.format('CoC7.InfoLessSkillThanOptions', {
+        ui.notifications.info(game.i18n.format('Cd100.InfoLessSkillThanOptions', {
           skillCount: skills.length,
           optionsCount: data.system.groups[index].options
         }))
@@ -1043,7 +1043,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           itemByType[newItem.type].push(newItem)
         }
       } else {
-        const rolled = await CoC7SkillSelectionDialog.create({ skills, optionsCount: data.system.groups[index].options })
+        const rolled = await Cd100SkillSelectionDialog.create({ skills, optionsCount: data.system.groups[index].options })
         for (const item of skills) {
           if (rolled[item._id] === true) {
             const newItem = foundry.utils.duplicate(item)
@@ -1068,7 +1068,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const skills = this.items.filter(d => d.type === 'skill' && !d.system.flags.occupation && !d.system.properties.noxpgain && !markedSkills.includes(d.name) && !markedSkills.includes(d.flags[FOLDER_ID]?.cocidFlag?.id))
       if (skills.length < data.system.personal) {
         /* // FoundryVTT V12 */
-        ui.notifications.info(game.i18n.format('CoC7.InfoLessSkillThanOptions', {
+        ui.notifications.info(game.i18n.format('Cd100.InfoLessSkillThanOptions', {
           skillCount: skills.length,
           optionsCount: data.system.personal
         }))
@@ -1083,9 +1083,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           itemByType[newItem.type].push(newItem)
         }
       } else {
-        skills.sort(CoC7Utilities.sortByNameKey)
-        const title = data.system.personal + ' ' + game.i18n.localize(data.system.personalText === '' ? 'CoC7.PersonalSpecialityPlaceholder' : data.system.personalText)
-        const rolled = await CoC7SkillSelectionDialog.create({ skills, optionsCount: data.system.personal, title })
+        skills.sort(Cd100Utilities.sortByNameKey)
+        const title = data.system.personal + ' ' + game.i18n.localize(data.system.personalText === '' ? 'Cd100.PersonalSpecialityPlaceholder' : data.system.personalText)
+        const rolled = await Cd100SkillSelectionDialog.create({ skills, optionsCount: data.system.personal, title })
         for (const item of skills) {
           if (rolled[item._id] === true) {
             const newItem = foundry.utils.duplicate(item)
@@ -1117,16 +1117,16 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (this.experiencePackage) {
       // NOP
     } else if (game.settings.get(FOLDER_ID, 'pulpRuleArchetype')) {
-      ui.notifications.error('CoC7.ErrorExperiencePackageArchetype', { localize: true })
+      ui.notifications.error('Cd100.ErrorExperiencePackageArchetype', { localize: true })
     } else if (this.type !== 'character') {
       // experience packages are only for PCs
-      ui.notifications.error('CoC7.ErrorExperiencePackageNotInvestigator', { localize: true })
+      ui.notifications.error('Cd100.ErrorExperiencePackageNotInvestigator', { localize: true })
     } else if (!game.user.isGM) {
-      ui.notifications.error('CoC7.ErrorExperiencePackageNotGM', { localize: true })
+      ui.notifications.error('Cd100.ErrorExperiencePackageNotGM', { localize: true })
     } else {
-      const rolled = await CoC7ExperiencePackageDialog.create(data.system)
+      const rolled = await Cd100ExperiencePackageDialog.create(data.system)
       if (rolled) {
-        for (const item of await CoC7Utilities.getEmbeddedItems(data, 'system')) {
+        for (const item of await Cd100Utilities.getEmbeddedItems(data, 'system')) {
           const newItem = foundry.utils.duplicate(item)
           if (typeof itemByType[newItem.type] === 'undefined') {
             itemByType[newItem.type] = []
@@ -1137,10 +1137,10 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           itemByType[newItem.type].push(newItem)
         }
         for (const index in data.system.groups) {
-          const skills = await CoC7Utilities.getEmbeddedItems(data, 'system.groups.' + index)
+          const skills = await Cd100Utilities.getEmbeddedItems(data, 'system.groups.' + index)
           if (skills.length <= data.system.groups[index].options) {
             /* // FoundryVTT V12 */
-            ui.notifications.info(game.i18n.format('CoC7.InfoLessSkillThanOptions', {
+            ui.notifications.info(game.i18n.format('Cd100.InfoLessSkillThanOptions', {
               skillCount: skills.length,
               optionsCount: data.system.groups[index].options
             }))
@@ -1155,7 +1155,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
               itemByType[newItem.type].push(newItem)
             }
           } else {
-            const rolled = await CoC7SkillSelectionDialog.create({ skills, optionsCount: data.system.groups[index].options })
+            const rolled = await Cd100SkillSelectionDialog.create({ skills, optionsCount: data.system.groups[index].options })
             for (const item of skills) {
               if (rolled[item._id] === true) {
                 const newItem = foundry.utils.duplicate(item)
@@ -1171,11 +1171,11 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           }
         }
         if (rolled['i.skill.cthulhu-mythos'] > 0) {
-          const cthulhuMythosSkill = game.CoC7.cocid.findCocIdInList('i.skill.cthulhu-mythos', itemByType.skill ?? [])
+          const cthulhuMythosSkill = game.Cd100.cocid.findCocIdInList('i.skill.cthulhu-mythos', itemByType.skill ?? [])
           if (cthulhuMythosSkill.length === 0) {
-            const cthulhuMythosSkill = game.CoC7.cocid.findCocIdInList('i.skill.cthulhu-mythos', this.items)
+            const cthulhuMythosSkill = game.Cd100.cocid.findCocIdInList('i.skill.cthulhu-mythos', this.items)
             if (cthulhuMythosSkill.length === 0) {
-              const cthulhuMythosSkill = await game.CoC7.cocid.fromCoCID('i.skill.cthulhu-mythos')
+              const cthulhuMythosSkill = await game.Cd100.cocid.fromCoCID('i.skill.cthulhu-mythos')
               if (cthulhuMythosSkill.length) {
                 const newItem = foundry.utils.duplicate(cthulhuMythosSkill[0])
                 if (typeof itemByType.skill === 'undefined') {
@@ -1205,7 +1205,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         }
         if (rolled.backstory.length > 0) {
           updateDocument['system.biography'] = this.system.biography
-          const name = game.i18n.localize('CoC7.CoCIDFlag.keys.rt..backstory-injuries-and-scars')
+          const name = game.i18n.localize('Cd100.CoCIDFlag.keys.rt..backstory-injuries-and-scars')
           const index = updateDocument['system.biography'].findIndex(b => b.title === name)
           if (index > -1) {
             updateDocument['system.biography'][index].value = updateDocument['system.biography'][index].value + rolled.backstory.join('')
@@ -1288,7 +1288,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Document|undefined}
    */
   getSkillByName (itemName) {
-    const parts = CoC7ModelsItemSkillSystem.guessNameParts(itemName)
+    const parts = Cd100ModelsItemSkillSystem.guessNameParts(itemName)
     const name = (parts.system.skillName ?? parts.name).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
     const found = this.items.find(d => d.type === 'skill' && (d.flags?.[FOLDER_ID]?.cocidFlag?.id === itemName || (d.system.skillName ?? d.name).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase() === name))
     return found
@@ -1400,9 +1400,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       until: 15
     })
     let key
-    if (['lck', 'luck', game.i18n.localize('CoC7.Luck').toLowerCase()].includes(attribName.toLowerCase())) {
+    if (['lck', 'luck', game.i18n.localize('Cd100.Luck').toLowerCase()].includes(attribName.toLowerCase())) {
       key = 'lck'
-    } else if (['san', game.i18n.localize('CoC7.SAN').toLowerCase(), game.i18n.localize('CoC7.Sanity').toLowerCase()].includes(attribName.toLowerCase())) {
+    } else if (['san', game.i18n.localize('Cd100.SAN').toLowerCase(), game.i18n.localize('Cd100.Sanity').toLowerCase()].includes(attribName.toLowerCase())) {
       key = 'san'
     }
     if (key) {
@@ -1433,13 +1433,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async runRoll (options = {}) {
     if (typeof options.cardType === 'undefined') {
-      options.cardType = CoC7RollNormalize.CARD_TYPE.NORMAL
+      options.cardType = Cd100RollNormalize.CARD_TYPE.NORMAL
     }
     if (typeof options.preventStandby === 'undefined') {
       options.preventStandby = true
     }
     options.actor = this
-    const check = await CoC7RollNormalize.trigger(options)
+    const check = await Cd100RollNormalize.trigger(options)
     return {
       result: check.total, // Final result
       successLevel: check.successLevel, // Success level
@@ -1563,7 +1563,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Promise<false>}
    */
   async spendLuck (amount) {
-    ui.notifications.warn('CoC7.LuckNotExpendable', { localize: true })
+    ui.notifications.warn('Cd100.LuckNotExpendable', { localize: true })
     return false
   }
 
@@ -1591,7 +1591,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         this.system.characteristics.siz.value != null &&
         this.system.characteristics.con.value != null
       ) {
-        return CoC7ModelsActorDocumentClass.hpFromCharacteristics(this.system.characteristics, this.type)
+        return Cd100ModelsActorDocumentClass.hpFromCharacteristics(this.system.characteristics, this.type)
       }
       if (this.system.attribs.hp.max) {
         return parseInt(this.system.attribs.hp.max)
@@ -1652,7 +1652,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         }
         skill.system.flags[flag] = true
       }
-      if (CoC7ModelsItemDocumentClass.isAnySpec(skill)) {
+      if (Cd100ModelsItemDocumentClass.isAnySpec(skill)) {
         processed.push(skill)
       } else {
         const itemId = this.getItemIdByName(skill.name)
@@ -1737,7 +1737,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     })
     if (this.system.attribs.mp.auto) {
       if (this.system.characteristics.pow.value != null) {
-        return CoC7ModelsActorDocumentClass.mpFromCharacteristics(this.system.characteristics)
+        return Cd100ModelsActorDocumentClass.mpFromCharacteristics(this.system.characteristics)
       } else return 0
     }
     return parseInt(this.system.attribs.mp.max)
@@ -2305,13 +2305,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         const luckValue = nameValue * 2
         const newLuck = parseInt(this.system.attribs.lck.value ?? 0, 10) - luckValue
         if (newLuck >= 0) {
-          const luckSpent = await CoC7SpendLuckDialog.create({ name: game.i18n.localize('CoC7.SANLoss'), luckValue, nameValue })
+          const luckSpent = await Cd100SpendLuckDialog.create({ name: game.i18n.localize('Cd100.SANLoss'), luckValue, nameValue })
           if (luckSpent > 0) {
             if (await this.spendLuck(luckValue) !== false) {
               difference = difference + nameValue
               changes['system.attribs.san.value'] = changes['system.attribs.san.value'] + nameValue
             } else {
-              ui.notifications.error('CoC7.Errors.UnparsableModification')
+              ui.notifications.error('Cd100.Errors.UnparsableModification')
               return
             }
           }
@@ -2322,7 +2322,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         await this.conditionsSet([STATUS_EFFECTS.tempoInsane])
       }
       // Cthulhu d100: losing a fifth or more of the Mental Stability still
-      // remaining, within a single scene, brings on a long-term disorder. CoC7
+      // remaining, within a single scene, brings on a long-term disorder. Cd100
       // instead capped loss per day at a fifth of starting sanity, which is not
       // a rule this game has.
       //
@@ -2418,7 +2418,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   static hpFromCharacteristics (characteristics, type) {
     // Cthulhu d100: hit points are the average of TAM and CON, rounded up.
-    // CoC7 divided the percentile sum by ten instead.
+    // Cd100 divided the percentile sum by ten instead.
     const sum = parseInt(characteristics.siz.value ?? 0, 10) + parseInt(characteristics.con.value ?? 0, 10)
     const hp = Math.ceil(sum / 2)
     return (game.settings.get(FOLDER_ID, 'pulpRuleDoubleMaxHealth') && type === 'character' ? hp * 2 : hp)
@@ -2431,7 +2431,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   static mpFromCharacteristics (characteristics) {
     // Cthulhu d100: the starting magic point pool equals POD outright.
-    // CoC7 divided POW by five because POW was a percentile there.
+    // Cd100 divided POW by five because POW was a percentile there.
     return parseInt(characteristics.pow.value ?? 0, 10)
   }
 
@@ -2472,7 +2472,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       this.system.attribs.build.auto = true
     }
     if (this.system.attribs.build.auto) {
-      return CoC7ModelsActorDocumentClass.buildFromCharacteristics(this.system.characteristics)
+      return Cd100ModelsActorDocumentClass.buildFromCharacteristics(this.system.characteristics)
     }
 
     return this.system.attribs.build.value
@@ -2507,7 +2507,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       this.system.attribs.db.auto = true
     }
     if (this.system.attribs.db.auto) {
-      return CoC7ModelsActorDocumentClass.dbFromCharacteristics(this.system.characteristics)
+      return Cd100ModelsActorDocumentClass.dbFromCharacteristics(this.system.characteristics)
     }
     return this.system.attribs.db.value
   }
@@ -2541,7 +2541,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       this.system.attribs.mov.auto = true
     }
     if (this.system.attribs.mov.auto) {
-      const MOV = CoC7ModelsActorDocumentClass.movFromCharacteristics(this.system.characteristics, this.system.type, this.system.infos.age)
+      const MOV = Cd100ModelsActorDocumentClass.movFromCharacteristics(this.system.characteristics, this.system.type, this.system.infos.age)
       if (MOV > 0) return MOV
     }
     return this.system.attribs.mov.value
@@ -2656,15 +2656,15 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     }
     if (typeof this.system.schema.getField('attribs')?.getField(attributeName.toLowerCase()) === 'undefined') {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ErrorNotFoundForActor', {
+      ui.notifications.error(game.i18n.format('Cd100.ErrorNotFoundForActor', {
         missing: attributeName,
         actor: this.name
       }))
       return
     }
     const config = {
-      rollType: CoC7RollNormalize.ROLL_TYPE.ATTRIBUTE,
-      cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+      rollType: Cd100RollNormalize.ROLL_TYPE.ATTRIBUTE,
+      cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
       attribute: attributeName.toLowerCase(),
       actor: this
     }
@@ -2672,13 +2672,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       config.poolModifier = options.poolModifier
     }
     if (typeof options.difficulty !== 'undefined') {
-      config.difficulty = CoC7Utilities.convertDifficulty(options.difficulty)
+      config.difficulty = Cd100Utilities.convertDifficulty(options.difficulty)
     }
     config.fastForward = fastForward
     if (typeof options.blind !== 'undefined') {
       config.isBlind = (options.blind === 'false' ? false : !!options.blind)
     }
-    CoC7RollNormalize.trigger(config)
+    Cd100RollNormalize.trigger(config)
   }
 
   /**
@@ -2702,15 +2702,15 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     }
     if (typeof this.system.schema.getField('characteristics')?.getField(characteristicName.toLowerCase()) === 'undefined') {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ErrorNotFoundForActor', {
+      ui.notifications.error(game.i18n.format('Cd100.ErrorNotFoundForActor', {
         missing: characteristicName,
         actor: this.name
       }))
       return
     }
     const config = {
-      rollType: CoC7RollNormalize.ROLL_TYPE.CHARACTERISTIC,
-      cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+      rollType: Cd100RollNormalize.ROLL_TYPE.CHARACTERISTIC,
+      cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
       characteristic: characteristicName.toLowerCase(),
       actor: this
     }
@@ -2718,13 +2718,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       config.poolModifier = options.poolModifier
     }
     if (typeof options.difficulty !== 'undefined') {
-      config.difficulty = CoC7Utilities.convertDifficulty(options.difficulty)
+      config.difficulty = Cd100Utilities.convertDifficulty(options.difficulty)
     }
     config.fastForward = fastForward
     if (typeof options.blind !== 'undefined') {
       config.isBlind = (options.blind === 'false' ? false : !!options.blind)
     }
-    CoC7RollNormalize.trigger(config)
+    Cd100RollNormalize.trigger(config)
   }
 
   /**
@@ -2747,7 +2747,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       // Attempt to load from actor by CoC ID
       let item = this.getFirstItemByCoCID(itemIdentifier)
       if (!item) {
-        const newItems = await game.CoC7.cocid.fromCoCIDBest({ cocid: itemIdentifier, showLoading: true })
+        const newItems = await game.Cd100.cocid.fromCoCIDBest({ cocid: itemIdentifier, showLoading: true })
         if (newItems.length === 1) {
           item = await this.getItemAdding(newItems[0], itemIdentifier)
         }
@@ -2776,7 +2776,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         if (item) {
           return item
         }
-        throw new Error(game.i18n.format('CoC7.ErrorNotFound', { missing: itemId }))
+        throw new Error(game.i18n.format('Cd100.ErrorNotFound', { missing: itemId }))
       }
     }
 
@@ -2785,7 +2785,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (item) {
       return item
     }
-    const parts = CoC7ModelsItemSkillSystem.guessNameParts(itemIdentifier)
+    const parts = Cd100ModelsItemSkillSystem.guessNameParts(itemIdentifier)
     const name = (parts.system.skillName ?? parts.name).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
     const era = game.settings.get(FOLDER_ID, 'worldEra')
     // Attempt to load item from world
@@ -2829,7 +2829,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (item) {
       if (item.type === 'skill') {
         /* // FoundryVTT V12 */
-        ui.notifications.info(game.i18n.format('CoC7.InfoSkillAddedAtBase', {
+        ui.notifications.info(game.i18n.format('Cd100.InfoSkillAddedAtBase', {
           name: item.name,
           percent: item.system.value
         }))
@@ -2870,7 +2870,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (item) {
         if (item.type === 'skill') {
           /* // FoundryVTT V12 */
-          ui.notifications.info(game.i18n.format('CoC7.InfoSkillAddedAtBase', {
+          ui.notifications.info(game.i18n.format('Cd100.InfoSkillAddedAtBase', {
             name: item.name,
             percent: item.system.value
           }))
@@ -2925,8 +2925,8 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       return
     }
     const config = {
-      rollType: CoC7RollNormalize.ROLL_TYPE.SKILL,
-      cardType: CoC7RollNormalize.CARD_TYPE.NORMAL,
+      rollType: Cd100RollNormalize.ROLL_TYPE.SKILL,
+      cardType: Cd100RollNormalize.CARD_TYPE.NORMAL,
       itemUuid: skill.uuid,
       actor: this
     }
@@ -2934,13 +2934,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       config.poolModifier = options.poolModifier
     }
     if (typeof options.difficulty !== 'undefined') {
-      config.difficulty = CoC7Utilities.convertDifficulty(options.difficulty)
+      config.difficulty = Cd100Utilities.convertDifficulty(options.difficulty)
     }
     config.fastForward = fastForward
     if (typeof options.blind !== 'undefined') {
       config.isBlind = (options.blind === 'false' ? false : !!options.blind)
     }
-    CoC7RollNormalize.trigger(config)
+    Cd100RollNormalize.trigger(config)
   }
 
   /**
@@ -2988,9 +2988,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       await found.system.reload()
     }
     if (typeof found === 'undefined') {
-      ui.notifications.warn('CoC7.WarnMacroNoItemFound', { localize: true })
+      ui.notifications.warn('Cd100.WarnMacroNoItemFound', { localize: true })
     }
-    this.weaponRoll(found, CoC7Utilities.getActorUuid(this))
+    this.weaponRoll(found, Cd100Utilities.getActorUuid(this))
   }
 
   /**
@@ -3003,21 +3003,21 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (!proceedWithoutTarget && game.user.targets.size <= 0) {
       proceedWithoutTarget = await foundry.applications.api.DialogV2.wait({
         window: {
-          title: 'CoC7.NoTargetTitle'
+          title: 'Cd100.NoTargetTitle'
         },
-        content: game.i18n.format('CoC7.NoTargetSelected', {
+        content: game.i18n.format('Cd100.NoTargetSelected', {
           weapon: weapon.name
         }),
         buttons: [{
           action: 'cancel',
           icon: 'fa-solid fa-times',
-          label: 'CoC7.Cancel',
+          label: 'Cd100.Cancel',
           default: true,
           callback: (event, button, dialog) => false
         }, {
           action: 'proceed',
           icon: 'fa-solid fa-check',
-          label: 'CoC7.Proceed',
+          label: 'Cd100.Proceed',
           callback: (event, button, dialog) => true
         }],
         position: {
@@ -3029,12 +3029,12 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (game.user.targets.size > 0 || proceedWithoutTarget) {
       if (!weapon.system.properties.rngd) {
         if (game.user.targets.size > 1) {
-          ui.notifications.warn('CoC7.WarnTooManyTarget', { localize: true })
+          ui.notifications.warn('Cd100.WarnTooManyTarget', { localize: true })
         }
-        CoC7ChatCombatMelee.createMessage({ attackerUuid, itemUuid: weapon.uuid, targetUuid: CoC7Utilities.getActorUuid(Array.from(game.user.targets)[0]) })
+        Cd100ChatCombatMelee.createMessage({ attackerUuid, itemUuid: weapon.uuid, targetUuid: Cd100Utilities.getActorUuid(Array.from(game.user.targets)[0]) })
       } else {
-        const targets = [...game.user.targets].map(doc => CoC7Utilities.getActorUuid(doc))
-        CoC7ChatCombatRanged.createMessage({ attackerUuid, itemUuid: weapon.uuid, targetUuids: targets })
+        const targets = [...game.user.targets].map(doc => Cd100Utilities.getActorUuid(doc))
+        Cd100ChatCombatRanged.createMessage({ attackerUuid, itemUuid: weapon.uuid, targetUuids: targets })
       }
     }
   }
@@ -3048,12 +3048,12 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     switch (game.settings.get(FOLDER_ID, 'initiativeRule')) {
       case 'optional':
         {
-          const check = new CoC7Check()
+          const check = new Cd100Check()
           check.actor = this.uuid
           if (hasGun) {
             check.poolModifier = 1
           }
-          check.flavor = game.i18n.localize('CoC7.InitiativeRoll')
+          check.flavor = game.i18n.localize('Cd100.InitiativeRoll')
           await check.rollCharacteristic('dex')
           if (game.settings.get(FOLDER_ID, 'displayInitDices') === false) {
             check.suppressRollData()
@@ -3065,13 +3065,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         }
         break // eslint-disable-line no-unreachable
       default:
-        // Cthulhu d100 orders combat purely by DES on the 3-18 scale. CoC7 added
+        // Cthulhu d100 orders combat purely by DES on the 3-18 scale. Cd100 added
         // 50 for a readied firearm; that rule does not exist here, and on this
         // scale it would swamp every other value.
         // Surprise halves this for the first turn and readying a weapon costs
         // five, but neither has a status effect to read yet, so they are passed
         // explicitly by the combat app rather than guessed here (F4.3).
-        return CoC7CombatTables.initiative({
+        return Cd100CombatTables.initiative({
           dex: this.system.characteristics.dex.value,
           surprised: this.hasConditionStatus(STATUS_EFFECTS.surprised)
         })
@@ -3267,7 +3267,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         s.system.properties?.special &&
         s.system.specialization?.toLocaleLowerCase() ===
           game.i18n
-            .localize('CoC7.PilotSpecializationName')
+            .localize('Cd100.PilotSpecializationName')
             ?.toLocaleLowerCase()
       )
     })
@@ -3288,7 +3288,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         s.system.properties?.special &&
         s.system.specialization?.toLocaleLowerCase() ===
           game.i18n
-            .localize('CoC7.DriveSpecializationName')
+            .localize('Cd100.DriveSpecializationName')
             ?.toLocaleLowerCase()
       )
     })
@@ -3434,7 +3434,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         keyPairs[key] = formula
       }
     }
-    await CoC7Utilities.setMultipleActorValues(this, keyPairs, fnKeyToDotted, fnRoll)
+    await Cd100Utilities.setMultipleActorValues(this, keyPairs, fnKeyToDotted, fnRoll)
   }
 
   /**
@@ -3442,7 +3442,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    */
   async averageCharacteristicsValue () {
     this.generateCharacteristicValues(async (formula, parsed) => {
-      return (await new CoC7AverageRoll('(' + formula + ')', parsed).evaluateSync({ minimize: true, maximize: true })).total
+      return (await new Cd100AverageRoll('(' + formula + ')', parsed).evaluateSync({ minimize: true, maximize: true })).total
     })
   }
 
@@ -3540,12 +3540,12 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     rolls.push(...development.rolls)
     for (const messageRow of development.messageRows) {
       if (messageRow.success) {
-        message += '<div class="coc7-upgrade-success">' + game.i18n.format('CoC7.DevSuccessDetails', {
+        message += '<div class="coc7-upgrade-success">' + game.i18n.format('Cd100.DevSuccessDetails', {
           item: messageRow.name,
           augment: messageRow.augment
         }) + '</div>'
         if (messageRow.master) {
-          message += '<div class="coc7-upgrade-success">' + game.i18n.format('CoC7.SanGained', {
+          message += '<div class="coc7-upgrade-success">' + game.i18n.format('Cd100.SanGained', {
             results: messageRow.dieOne + ' + ' + messageRow.dieTwo,
             sanGained: messageRow.sanity,
             skill: messageRow.name,
@@ -3553,7 +3553,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           }) + '</div>'
         }
       } else {
-        message += '<div class="coc7-upgrade-failed">' + game.i18n.format('CoC7.DevFailureDetails', {
+        message += '<div class="coc7-upgrade-failed">' + game.i18n.format('Cd100.DevFailureDetails', {
           item: messageRow.name
         }) + '</div>'
       }
@@ -3576,11 +3576,11 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     }
     if (changed) {
       development.actorUpdate['system.sanityLossEvents'] = sanityLossEvents
-      message += '<p>' + game.i18n.format('CoC7.ReduceSanityLimits') + '</p>'
+      message += '<p>' + game.i18n.format('Cd100.ReduceSanityLimits') + '</p>'
     }
     if (!fastForward) {
       const messageData = {
-        flavor: development.messageRows.length ? game.i18n.localize('CoC7.RollAll4Dev') : '',
+        flavor: development.messageRows.length ? game.i18n.localize('Cd100.RollAll4Dev') : '',
         speaker: {
           actor: this.id
         },
@@ -3620,7 +3620,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
   async developLuck (fastForward = false) {
     const currentLuck = parseInt(this.system.attribs.lck.value, 10)
     const pulpRuleDevelopmentRollLuck = game.settings.get(FOLDER_ID, 'pulpRuleDevelopmentRollLuck')
-    const upgradeRoll = await CoC7DicePool.rollNewPool({ })
+    const upgradeRoll = await Cd100DicePool.rollNewPool({ })
     const rolls = []
     if (!fastForward) {
       rolls.push(...upgradeRoll.newRolls)
@@ -3641,13 +3641,13 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const augmentValue = await new Roll(augmentRoll).evaluate()
       rolls.push(augmentValue)
       const newValue = await this.setLuck(currentLuck + parseInt(augmentValue.total, 10))
-      message = '<div class="coc7-upgrade-success">' + game.i18n.format('CoC7.LuckIncreased', {
+      message = '<div class="coc7-upgrade-success">' + game.i18n.format('Cd100.LuckIncreased', {
         die: upgradeRoll.total,
         score: currentLuck,
         augment: newValue - currentLuck
       }) + '</div>'
     } else {
-      message = '<div class="coc7-upgrade-failed">' + game.i18n.format('CoC7.LuckNotIncreased', {
+      message = '<div class="coc7-upgrade-failed">' + game.i18n.format('Cd100.LuckNotIncreased', {
         die: upgradeRoll.total,
         score: currentLuck
       }) + '</div>'
@@ -3657,7 +3657,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         message += await roll.render()
       }
       const messageData = {
-        flavor: game.i18n.localize('CoC7.RollLuck4Dev'),
+        flavor: game.i18n.localize('Cd100.RollLuck4Dev'),
         speaker: {
           actor: this.id
         },
@@ -3679,12 +3679,12 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (development.messageRows[0]?.success === true || development.messageRows[0]?.success === false) {
       const messageRow = development.messageRows[0]
       if (messageRow.success) {
-        message = '<div class="coc7-upgrade-success">' + game.i18n.format('CoC7.DevSuccessDetails', {
+        message = '<div class="coc7-upgrade-success">' + game.i18n.format('Cd100.DevSuccessDetails', {
           item: messageRow.name,
           augment: messageRow.augment
         }) + '</div>'
         if (messageRow.master) {
-          message += '<div class="coc7-upgrade-success">' + game.i18n.format('CoC7.SanGained', {
+          message += '<div class="coc7-upgrade-success">' + game.i18n.format('Cd100.SanGained', {
             results: messageRow.dieOne + ' + ' + messageRow.dieTwo,
             sanGained: messageRow.sanity,
             skill: messageRow.name,
@@ -3692,11 +3692,11 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           }) + '</div>'
         }
       } else {
-        message = '<div class="coc7-upgrade-failed">' + game.i18n.format('CoC7.DevFailureDetails', {
+        message = '<div class="coc7-upgrade-failed">' + game.i18n.format('Cd100.DevFailureDetails', {
           item: messageRow.name
         }) + '</div>'
       }
-      const title = game.i18n.format('CoC7.DevRollTitle', {
+      const title = game.i18n.format('Cd100.DevRollTitle', {
         item: messageRow.name,
         die: messageRow.roll,
         score: messageRow.value
@@ -3738,7 +3738,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     for (const uuid of uuids) {
       const item = await fromUuid(uuid)
       if (item && item.type === 'skill' && item.system.flags.developement) {
-        const upgradeRoll = await CoC7DicePool.rollNewPool({ })
+        const upgradeRoll = await Cd100DicePool.rollNewPool({ })
         if (!fastForward) {
           rolls.push(...upgradeRoll.newRolls)
         }
@@ -3785,7 +3785,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (updateSanity > 0) {
       actorUpdate['system.attribs.san.value'] = this.system.attribs.san.value + updateSanity
     }
-    messageRows.sort(CoC7Utilities.sortByNameKey)
+    messageRows.sort(Cd100Utilities.sortByNameKey)
     return {
       actorUpdate,
       messageRows,
@@ -3823,9 +3823,9 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const duration = this.hasConditionValue(conditionName, 'duration')
       if (typeof duration !== 'undefined') {
         if (realTime === true) {
-          return duration + ' ' + game.i18n.localize('CoC7.rounds')
+          return duration + ' ' + game.i18n.localize('Cd100.rounds')
         } else if (realTime === false) {
-          return duration + ' ' + game.i18n.localize('CoC7.hours')
+          return duration + ' ' + game.i18n.localize('Cd100.hours')
         }
       }
       return ''
@@ -3961,7 +3961,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (conditionNames.includes(STATUS_EFFECTS.criticalWounds)) {
         await this.conditionsSet([STATUS_EFFECTS.prone])
         if (!this.hasConditionStatus(STATUS_EFFECTS.unconscious) && !this.hasConditionStatus(STATUS_EFFECTS.dead)) {
-          await CoC7ConCheck.create(this)
+          await Cd100ConCheck.create(this)
         }
       }
       if (conditionNames.includes(STATUS_EFFECTS.dead)) {
@@ -4063,7 +4063,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       }
     }
 
-    skillList.sort(CoC7Utilities.sortByNameKey)
+    skillList.sort(Cd100Utilities.sortByNameKey)
 
     return skillList
   }
@@ -4087,7 +4087,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       }
     }
 
-    weaponList.sort(CoC7Utilities.sortByNameKey)
+    weaponList.sort(Cd100Utilities.sortByNameKey)
 
     return weaponList
   }
@@ -4104,12 +4104,12 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     })
     const skillList = []
     for (const value of this.items) {
-      if (value.type === 'skill' && (value.system.properties.firearm || value.system.properties.ranged || value.flags.CoC7?.cocidFlag?.id === 'i.skill.fighting-throw')) {
+      if (value.type === 'skill' && (value.system.properties.firearm || value.system.properties.ranged || value.flags.Cd100?.cocidFlag?.id === 'i.skill.fighting-throw')) {
         skillList.push(value)
       }
     }
 
-    skillList.sort(CoC7Utilities.sortByNameKey)
+    skillList.sort(Cd100Utilities.sortByNameKey)
 
     return skillList
   }
@@ -4124,19 +4124,19 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     for (const item of this.items) {
       if (item.type === 'skill') {
         let sort = 3
-        let group = game.i18n.localize('CoC7.Skills')
+        let group = game.i18n.localize('Cd100.Skills')
         let name = item.name
         if (item.system.properties.fighting) {
           sort = (rangedFirst ? 2 : 0)
-          group = game.i18n.localize('CoC7.SkillFighting')
+          group = game.i18n.localize('Cd100.SkillFighting')
           name = item.system.skillName
         } else if (item.system.properties.firearm) {
           sort = (rangedFirst ? 0 : 1)
-          group = game.i18n.localize('CoC7.SkillFirearm')
+          group = game.i18n.localize('Cd100.SkillFirearm')
           name = item.system.skillName
         } else if (item.system.properties.ranged) {
           sort = (rangedFirst ? 1 : 2)
-          group = game.i18n.localize('CoC7.SkillRanged')
+          group = game.i18n.localize('Cd100.SkillRanged')
           name = item.system.skillName
         }
         skills.push({
@@ -4147,7 +4147,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         })
       }
     }
-    skills.sort(CoC7Utilities.sortBySortThenNameKey)
+    skills.sort(Cd100Utilities.sortBySortThenNameKey)
     return skills
   }
 
@@ -4184,7 +4184,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       return skill
     }
     const skillList = this.getSkillsByName(
-      game.i18n.localize('CoC7.CoCIDFlag.keys.i.skill.dodge')
+      game.i18n.localize('Cd100.CoCIDFlag.keys.i.skill.dodge')
     )
     if (skillList.length !== 0) return skillList[0]
     return null
@@ -4199,7 +4199,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (skill) {
       return skill
     }
-    return this.items.getName(game.i18n.localize('CoC7.CoCIDFlag.keys.i.skill.credit-rating'))
+    return this.items.getName(game.i18n.localize('Cd100.CoCIDFlag.keys.i.skill.credit-rating'))
   }
 
   /**
@@ -4211,7 +4211,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
     if (skill) {
       return skill
     }
-    return this.items.getName(game.i18n.localize('CoC7.CoCIDFlag.keys.i.skill.cthulhu-mythos'))
+    return this.items.getName(game.i18n.localize('Cd100.CoCIDFlag.keys.i.skill.cthulhu-mythos'))
   }
 
   /**
@@ -4384,7 +4384,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (value.type === 'skill') skillList.push(value)
     }
 
-    skillList.sort(CoC7Utilities.sortByNameKey)
+    skillList.sort(Cd100Utilities.sortByNameKey)
 
     return skillList
   }
@@ -4454,7 +4454,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       await this.update({ 'system.attribs.hp.value': hpNew })
       return hpNew
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
     throw new Error('HALT')
   }
 
@@ -4471,7 +4471,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       const damageValue = parseInt(amount, 10)
       if (isNaN(damageValue)) {
         /* // FoundryVTT V12 */
-        ui.notifications.warn(game.i18n.format('CoC7.ErrorUnableToParseArmorFormula', { value: amount }))
+        ui.notifications.warn(game.i18n.format('Cd100.ErrorUnableToParseArmorFormula', { value: amount }))
         return 0
       }
       let armorValue = 0
@@ -4490,7 +4490,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
           armorValue = parseInt((await new Roll(armorFormula.toString()).roll()).total, 10)
         } catch (e) {
           /* // FoundryVTT V12 */
-          ui.notifications.warn(game.i18n.format('CoC7.ErrorUnableToParseArmorFormula', { value: armorValue }))
+          ui.notifications.warn(game.i18n.format('Cd100.ErrorUnableToParseArmorFormula', { value: armorValue }))
           armorValue = 0
         }
       }
@@ -4498,20 +4498,20 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       if (damageTotal <= 0) return 0
       const hpNew = await this.#modifyHp(-damageTotal)
       const hpMax = (this.system.attribs.hp.max ?? 0)
-      // CoC7 killed outright when a single blow matched the maximum hit points.
+      // Cd100 killed outright when a single blow matched the maximum hit points.
       // Cthulhu d100 has no massive-damage rule: reaching 0 is a "herida
       // mortal", and death is still avoidable with first aid or medical
       // treatment before the end of the next turn. So a blow that big now falls
       // through to the dying branch below rather than setting dead.
       if (game.settings.get(FOLDER_ID, 'pulpRuleIgnoreMajorWounds')) {
         // Cthulhu d100: 0 hit points is a mortal wound, and 1 or 2 remaining
-        // means the character passes out. CoC7 only went unconscious at 0.
+        // means the character passes out. Cd100 only went unconscious at 0.
         if (hpNew === 0) {
           this.conditionsSet([STATUS_EFFECTS.dying, STATUS_EFFECTS.unconscious])
         } else if (hpNew <= UNCONSCIOUS_HP_THRESHOLD) {
           this.conditionsSet([STATUS_EFFECTS.unconscious])
         } else if (damageTotal * 2 > hpMax) {
-          await CoC7ConCheck.create(this)
+          await Cd100ConCheck.create(this)
         }
       } else {
         // "Herida grave": strictly more than half the maximum hit points from a
@@ -4533,7 +4533,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
       }
       return damageTotal
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
     return 0
   }
 
@@ -4824,7 +4824,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
    * @returns {Document|undefined}
    */
   getItemByName (itemName, type = '') {
-    const parts = CoC7ModelsItemSkillSystem.guessNameParts(itemName)
+    const parts = Cd100ModelsItemSkillSystem.guessNameParts(itemName)
     const name = (parts.system.skillName ?? parts.name).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
     const found = this.items.find(d => (type === '' || d.type === type) && (d.flags?.[FOLDER_ID]?.cocidFlag?.id === itemName || (d.system.skillName ?? d.name).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase() === name))
     return found
@@ -4880,7 +4880,7 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         value: actor?.system.characteristics[field.name].value
       }
     }
-    for (const item of Object.values(await game.CoC7.skillNames.getList())) {
+    for (const item of Object.values(await game.Cd100.skillNames.getList())) {
       if (!item.system.isAnySkill) {
         listOptions[item.name] = {
           type: 'cocid',
@@ -4904,6 +4904,6 @@ export default class CoC7ModelsActorDocumentClass extends Actor {
         }
       }
     }
-    return Object.values(listOptions).sort(CoC7Utilities.sortByNameKey)
+    return Object.values(listOptions).sort(Cd100Utilities.sortByNameKey)
   }
 }

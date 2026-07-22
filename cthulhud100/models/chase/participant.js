@@ -1,10 +1,10 @@
 /* global CONFIG foundry fromUuid game renderTemplate */
 import { FOLDER_ID, TARGET_ALLOWED } from '../../constants.js'
-import CoC7Check from '../../apps/check.js'
-import CoC7DicePool from '../../apps/dice-pool.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100Check from '../../apps/check.js'
+import Cd100DicePool from '../../apps/dice-pool.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ChaseParticipant {
+export default class Cd100ChaseParticipant {
   #actionsOffset
   #actor
   #canAssist
@@ -148,8 +148,8 @@ export default class CoC7ChaseParticipant {
    * @returns {integer}
    */
   get movAdjustment () {
-    if (CoC7DicePool.isValidPool(this.#participant.speedCheck?.checkData?.flags?.[FOLDER_ID].load?.dicePool)) {
-      const dicePool = CoC7DicePool.fromObject(this.#participant.speedCheck.checkData.flags[FOLDER_ID].load.dicePool)
+    if (Cd100DicePool.isValidPool(this.#participant.speedCheck?.checkData?.flags?.[FOLDER_ID].load?.dicePool)) {
+      const dicePool = Cd100DicePool.fromObject(this.#participant.speedCheck.checkData.flags[FOLDER_ID].load.dicePool)
       if (dicePool.isCritical || dicePool.isSpecialSuccess) {
         return 1
       } else if (!dicePool.isSuccess) {
@@ -329,7 +329,7 @@ export default class CoC7ChaseParticipant {
     if (this.rolledSpeedCheck) {
       const merged = foundry.utils.duplicate(this.#participant.speedCheck.checkData)
       merged.id = 'X'
-      const check = await CoC7Check.loadFromMessage(merged)
+      const check = await Cd100Check.loadFromMessage(merged)
       const data = await check.getTemplateData()
       data.messageFlavor = check.flavor
       return {
@@ -379,7 +379,7 @@ export default class CoC7ChaseParticipant {
           }
         }
       ]
-      await CoC7Utilities.setMultipleSkillBases(parsedValues, skills)
+      await Cd100Utilities.setMultipleSkillBases(parsedValues, skills)
       output = {
         exiting: false,
         value: skills[0].system.adjustments.base
@@ -405,7 +405,7 @@ export default class CoC7ChaseParticipant {
         damageFormula = damageFormula + '+' + (this.#actor.system.attribs.db.value || '0')
       }
       if (doc.system.properties.ahdb) {
-        damageFormula = damageFormula + CoC7Utilities.halfDB((this.#actor.system.attribs.db.value || '0'))
+        damageFormula = damageFormula + Cd100Utilities.halfDB((this.#actor.system.attribs.db.value || '0'))
       }
       return {
         name: doc.name,
@@ -417,29 +417,29 @@ export default class CoC7ChaseParticipant {
         uuid: doc.uuid
       }
     })
-    weapons.sort(CoC7Utilities.sortByNameKey)
+    weapons.sort(Cd100Utilities.sortByNameKey)
 
-    const unarmedName = game.i18n.localize('CoC7.UnarmedWeaponName').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
+    const unarmedName = game.i18n.localize('Cd100.UnarmedWeaponName').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
     const unarmedIndex = weapons.findIndex(w => w.cocidFlagId === 'i.weapon.brawl' || w.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase() === unarmedName)
     if (unarmedIndex === -1) {
       const damageFormula = '1D3' + '+' + (this.#actor?.system.attribs.db.value || '0')
       weapons.unshift({
-        name: game.i18n.localize('CoC7.UnarmedWeaponName'),
+        name: game.i18n.localize('Cd100.UnarmedWeaponName'),
         cocidFlagId: 'i.weapon.brawl',
         damage: damageFormula,
         editableDamage: false,
-        label: game.i18n.localize('CoC7.UnarmedWeaponName') + ' (' + damageFormula + ')',
+        label: game.i18n.localize('Cd100.UnarmedWeaponName') + ' (' + damageFormula + ')',
         value: 'unarmed',
         uuid: ''
       })
     }
 
     weapons.push({
-      name: game.i18n.localize('CoC7.Other'),
+      name: game.i18n.localize('Cd100.Other'),
       cocidFlagId: '',
       damage: otherDamage,
       editableDamage: true,
-      label: game.i18n.localize('CoC7.Other'),
+      label: game.i18n.localize('Cd100.Other'),
       value: 'other',
       uuid: ''
     })
@@ -470,7 +470,7 @@ export default class CoC7ChaseParticipant {
           }
         }
       ]
-      await CoC7Utilities.setMultipleSkillBases(parsedValues, skills)
+      await Cd100Utilities.setMultipleSkillBases(parsedValues, skills)
       output = skills[0].system.adjustments.base
     }
     return output

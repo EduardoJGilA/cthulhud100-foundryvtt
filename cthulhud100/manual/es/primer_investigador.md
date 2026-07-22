@@ -20,7 +20,7 @@ Puedes crear un nuevo Compendio de objetos y copiar las habilidades que requiera
 
 ## Configuración
 
-Una vez que hayas configurado tus habilidades, crea una Configuración. Aquí tienes un ejemplo del compendio Ejemplos de objetos: @Compendium[CoC7.items.CcH7CdXGtGTjMSCg]{Ejemplo de configuración de los años 20}
+Una vez que hayas configurado tus habilidades, crea una Configuración. Aquí tienes un ejemplo del compendio Ejemplos de objetos: @Compendium[Cd100.items.CcH7CdXGtGTjMSCg]{Ejemplo de configuración de los años 20}
 
 Las Configuraciones te permiten estandarizar con qué habilidades, objetos, secciones de biografía y características comienzan los investigadores.
 
@@ -28,7 +28,7 @@ Haz clic en la pestaña [fa-solid fa-suitcase]Objetos, luego en Crear objeto, as
 
 En la pestaña de Descripción, para establecer la descripción, haz clic en el botón [fa-solid fa-edit] para obtener un editor.
 
-En la pestaña de Detalles, haz clic en el [fa-regular fa-plus-circle] en Secciones de transfondo para agregar cualquier sección que requieras del paso Crear un trasfondo de la creación del investigador. Haz clic en la pestaña [fa-solid fa-atlas]Compendios, luego, bajo el encabezado Objetos, abre el objeto Ejemplos de objetos (CoC7) y arrastra @Compendium[CoC7.items.3elxAwnv7WCUNwng]{Puñetazo} a la configuración.
+En la pestaña de Detalles, haz clic en el [fa-regular fa-plus-circle] en Secciones de transfondo para agregar cualquier sección que requieras del paso Crear un trasfondo de la creación del investigador. Haz clic en la pestaña [fa-solid fa-atlas]Compendios, luego, bajo el encabezado Objetos, abre el objeto Ejemplos de objetos (Cd100) y arrastra @Compendium[Cd100.items.3elxAwnv7WCUNwng]{Puñetazo} a la configuración.
 
 En la pestaña de Características, puedes personalizar cómo se tiran/compran las características del investigador.
 
@@ -38,7 +38,7 @@ Todas las hojas de actor y objeto tienen una pestaña [game-icon game-icon-tenta
 
 ## Ocupación
 
-Las ocupaciones te permiten establecer cuántos puntos de ocupación, el rango de Crédito y las habilidades con las que comienza el investigador. Aquí tienes un ejemplo del compendio Ejemplos de objetos: @Compendium[CoC7.items.NOsh6EdNSjpjahDF]{Ejemplo de Ocupación}
+Las ocupaciones te permiten establecer cuántos puntos de ocupación, el rango de Crédito y las habilidades con las que comienza el investigador. Aquí tienes un ejemplo del compendio Ejemplos de objetos: @Compendium[Cd100.items.NOsh6EdNSjpjahDF]{Ejemplo de Ocupación}
 
 Haz clic en la pestaña de [fa-solid fa-suitcase]Objetos, luego en Crear objeto, asígnale un nombre, por ejemplo, Conductor, y establece el Tipo como Ocupación.
 
@@ -56,9 +56,9 @@ Para completar tu personaje, necesitas tener una escena activa, que se puede cre
 
 Haz clic en la pestaña de [fa-solid fa-users]Actores, luego en Crear actor, asígnale un nombre, por ejemplo, Nuevo investigador, y establece el Tipo como Personaje.
 
-Puedes arrastrar tu configuración creada anteriormente al personaje para la configuración inicial o arrastrar este ejemplo en su lugar: @Compendium[CoC7.items.CcH7CdXGtGTjMSCg]{Ejemplo de configuración de los años 20}
+Puedes arrastrar tu configuración creada anteriormente al personaje para la configuración inicial o arrastrar este ejemplo en su lugar: @Compendium[Cd100.items.CcH7CdXGtGTjMSCg]{Ejemplo de configuración de los años 20}
 
-A continuación, arrastra tu ocupación creada anteriormente al personaje o arrastra este ejemplo en su lugar: @Compendium[CoC7.items.NOsh6EdNSjpjahDF]{Ejemplo de ocupación}
+A continuación, arrastra tu ocupación creada anteriormente al personaje o arrastra este ejemplo en su lugar: @Compendium[Cd100.items.NOsh6EdNSjpjahDF]{Ejemplo de ocupación}
 
 En la barra de menú de la izquierda, selecciona [game-icon game-icon-tentacle-strike]Herramientas del Guardián y luego selecciona el [fa-solid fa-user-edit]Modo de creación de personajes.
 

@@ -1,9 +1,9 @@
 /* global CONFIG foundry */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsActorCharacterSystem from './character-system.js'
-import CoC7ModelsActorGlobalSystem from './global-system.js'
+import Cd100ModelsActorCharacterSystem from './character-system.js'
+import Cd100ModelsActorGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsActorNPCSystem extends CoC7ModelsActorGlobalSystem {
+export default class Cd100ModelsActorNPCSystem extends Cd100ModelsActorGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -11,10 +11,10 @@ export default class CoC7ModelsActorNPCSystem extends CoC7ModelsActorGlobalSyste
   static defineSchema () {
     const fields = foundry.data.fields
     return {
-      characteristics: CoC7ModelsActorCharacterSystem.defineSchemaCharacteristics(),
-      attribs: CoC7ModelsActorCharacterSystem.defineSchemaAttribs(),
-      conditions: CoC7ModelsActorCharacterSystem.defineSchemaConditions(),
-      books: CoC7ModelsActorCharacterSystem.defineSchemaBooks(),
+      characteristics: Cd100ModelsActorCharacterSystem.defineSchemaCharacteristics(),
+      attribs: Cd100ModelsActorCharacterSystem.defineSchemaAttribs(),
+      conditions: Cd100ModelsActorCharacterSystem.defineSchemaConditions(),
+      books: Cd100ModelsActorCharacterSystem.defineSchemaBooks(),
       biography: new fields.SchemaField({
         personalDescription: new fields.SchemaField({
           value: new fields.HTMLField({ initial: '' })
@@ -44,7 +44,7 @@ export default class CoC7ModelsActorNPCSystem extends CoC7ModelsActorGlobalSyste
           })
         )
       }),
-      config: CoC7ModelsActorCharacterSystem.defineSchemaConfig(),
+      config: Cd100ModelsActorCharacterSystem.defineSchemaConfig(),
       infos: new fields.SchemaField({
         type: new fields.StringField({ initial: '' }),
         occupation: new fields.StringField({ initial: '' }),

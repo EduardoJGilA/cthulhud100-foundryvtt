@@ -1,15 +1,15 @@
 <div class="flexrow item-header">
   <div class="flexcol item-property">
     <div class="flexrow">
-      <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'CoC7.Name'}}" />
+      <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'Cd100.Name'}}" />
     </div>
     {{#if isKeeper}}
       <div class="flexrow">
-        <label>{{localize 'CoC7.Source'}}:</label>
+        <label>{{localize 'Cd100.Source'}}:</label>
         <input type="text" name="system.source" value="{{document.system.source}}" />
       </div>
       <div class="flexrow">
-        <label>{{localize 'CoC7.SpellCastingTime'}}:</label>
+        <label>{{localize 'Cd100.SpellCastingTime'}}:</label>
         <input type="text" name="system.castingTime" value="{{document.system.castingTime}}" />
       </div>
     {{/if}}
@@ -17,14 +17,14 @@
   <div class="spell-casting flexcol">
     {{#if automatedCast}}
       {{#if (and isEmbedded (or isKeeper isOwner))}}
-        <button class="item-control" data-action="castSpell">{{localize 'CoC7.Cast'}}</button>
-        <button class="item-control" data-action="castSpell" data-property="hidden">{{localize 'CoC7.CastHidden'}}</button>
+        <button class="item-control" data-action="castSpell">{{localize 'Cd100.Cast'}}</button>
+        <button class="item-control" data-action="castSpell" data-property="hidden">{{localize 'Cd100.CastHidden'}}</button>
       {{else isKeeper}}
-        <button class="item-control" data-action="castSpell" data-property="hidden">{{localize 'CoC7.CastTesting'}}</button>
+        <button class="item-control" data-action="castSpell" data-property="hidden">{{localize 'Cd100.CastTesting'}}</button>
       {{/if}}
     {{else if (and isEmbedded (or isKeeper isOwner))}}
-      <button class="item-control" data-action="castSpell">{{localize 'CoC7.MessageCast'}}</button>
-      <button class="item-control" data-action="castSpell" data-property="hidden">{{localize 'CoC7.MessageCastHidden'}}</button>
+      <button class="item-control" data-action="castSpell">{{localize 'Cd100.MessageCast'}}</button>
+      <button class="item-control" data-action="castSpell" data-property="hidden">{{localize 'Cd100.MessageCastHidden'}}</button>
     {{/if}}
   </div>
   <img class="profile-img" src="{{document.img}}" data-action="editImage" data-edit="img" />

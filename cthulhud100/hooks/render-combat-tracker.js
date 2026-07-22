@@ -1,4 +1,4 @@
-import CoC7Combat from '../apps/combat.js'
+import Cd100Combat from '../apps/combat.js'
 
 /**
  * Render Hook
@@ -8,5 +8,5 @@ import CoC7Combat from '../apps/combat.js'
  * @param {ApplicationRenderOptions} options
  */
 export default function (application, element, context, options) {
-  CoC7Combat.renderCombatTracker(application, element, context, options)
+  Cd100Combat.renderCombatTracker(application, element, context, options)
 }

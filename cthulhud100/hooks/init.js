@@ -1,18 +1,18 @@
 /* global Combat CONFIG CONST foundry fromUuid game Hooks TextEditor */
 import { ERAS } from '../constants.js'
-import CoC7ClickableEvents from '../apps/clickable-events.js'
-import CoC7Combat from '../apps/combat.js'
-import CoC7CompendiumFilter from '../setup/compendium-filter.js'
-import CoC7DiceSoNiceReadyLast from './dice-so-nice-ready-last.js'
-import CoC7HandlebarsHelper from '../setup/handlebars-helper.js'
-import CoC7Link from '../apps/link.js'
-import CoC7LoadTemplates from '../setup/load-templates.js'
-import CoC7MessageResults from '../apps/message-results.js'
-import CoC7ModelsConfigureDocuments from '../setup/configure-documents.js'
-import CoC7ModelsRegisterSheets from '../setup/register-sheets.js'
-import CoC7RegisterDice from '../setup/register-dice.js'
-import CoC7RegisterSettings from '../setup/register-settings.js'
-import CoC7Utilities from '../apps/utilities.js'
+import Cd100ClickableEvents from '../apps/clickable-events.js'
+import Cd100Combat from '../apps/combat.js'
+import Cd100CompendiumFilter from '../setup/compendium-filter.js'
+import Cd100DiceSoNiceReadyLast from './dice-so-nice-ready-last.js'
+import Cd100HandlebarsHelper from '../setup/handlebars-helper.js'
+import Cd100Link from '../apps/link.js'
+import Cd100LoadTemplates from '../setup/load-templates.js'
+import Cd100MessageResults from '../apps/message-results.js'
+import Cd100ModelsConfigureDocuments from '../setup/configure-documents.js'
+import Cd100ModelsRegisterSheets from '../setup/register-sheets.js'
+import Cd100RegisterDice from '../setup/register-dice.js'
+import Cd100RegisterSettings from '../setup/register-settings.js'
+import Cd100Utilities from '../apps/utilities.js'
 import CoCID from '../apps/coc-id.js'
 import CoCIDSkillCache from '../setup/coc-id-skill-cache.js'
 import deprecated from '../deprecated.js'
@@ -31,12 +31,12 @@ export default function () {
     document.body.classList.add('running-v12')
   }
 
-  game.CoC7 = {
+  game.Cd100 = {
     macros: {
-      skillCheck: CoC7Utilities.skillCheckMacro,
-      weaponCheck: CoC7Utilities.weaponCheckMacro,
-      check: CoC7Utilities.checkMacro,
-      linkMacro: CoC7Link.linkMacro
+      skillCheck: Cd100Utilities.skillCheckMacro,
+      weaponCheck: Cd100Utilities.weaponCheckMacro,
+      check: Cd100Utilities.checkMacro,
+      linkMacro: Cd100Link.linkMacro
     },
     dev: {
       dice: {
@@ -52,30 +52,31 @@ export default function () {
     },
     skillNames: new CoCIDSkillCache(),
     // Manual,
-    messageResults: CoC7MessageResults.loadMessage,
+    messageResults: Cd100MessageResults.loadMessage,
     messagePermissionQueue: [],
-    ClickRegionLeftUuid: CoC7ClickableEvents.ClickRegionLeftUuid,
-    ClickRegionRightUuid: CoC7ClickableEvents.ClickRegionRightUuid,
-    hasPermissionDocument: CoC7ClickableEvents.hasPermissionDocument,
-    InSceneRelativeTeleport: CoC7ClickableEvents.InSceneRelativeTeleport,
-    MapPinToggle: CoC7ClickableEvents.MapPinToggle,
-    openDocument: CoC7ClickableEvents.openDocument,
-    toggleTileJournalPages: CoC7ClickableEvents.toggleTileJournalPages,
-    toScene: CoC7ClickableEvents.toScene
+    ClickRegionLeftUuid: Cd100ClickableEvents.ClickRegionLeftUuid,
+    ClickRegionRightUuid: Cd100ClickableEvents.ClickRegionRightUuid,
+    hasPermissionDocument: Cd100ClickableEvents.hasPermissionDocument,
+    InSceneRelativeTeleport: Cd100ClickableEvents.InSceneRelativeTeleport,
+    MapPinToggle: Cd100ClickableEvents.MapPinToggle,
+    openDocument: Cd100ClickableEvents.openDocument,
+    toggleTileJournalPages: Cd100ClickableEvents.toggleTileJournalPages,
+    toScene: Cd100ClickableEvents.toScene
   }
-  Combat.prototype.rollInitiative = CoC7Combat.rollInitiative
+  Object.defineProperty(game, 'CoC7', { get: () => game.Cd100, configurable: true })
+  Combat.prototype.rollInitiative = Cd100Combat.rollInitiative
 
-  CoC7ModelsConfigureDocuments()
-  CoC7LoadTemplates()
-  CoC7RegisterSettings()
-  CoC7ModelsRegisterSheets()
-  CoC7HandlebarsHelper()
-  CoC7CompendiumFilter()
+  Cd100ModelsConfigureDocuments()
+  Cd100LoadTemplates()
+  Cd100RegisterSettings()
+  Cd100ModelsRegisterSheets()
+  Cd100HandlebarsHelper()
+  Cd100CompendiumFilter()
   CoCID.init()
-  CoC7RegisterDice()
-  CoC7Link.init()
-  Hooks.once('diceSoNiceReady', CoC7DiceSoNiceReadyLast)
-  CoC7ClickableEvents.initSelf()
+  Cd100RegisterDice()
+  Cd100Link.init()
+  Hooks.once('diceSoNiceReady', Cd100DiceSoNiceReadyLast)
+  Cd100ClickableEvents.initSelf()
 
   deprecated.CoCID()
   deprecated.init()

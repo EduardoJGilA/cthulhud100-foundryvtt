@@ -1,8 +1,8 @@
 /* global foundry */
 import { FOLDER_ID, MONETARY_FORMAT_KEYS, MONETARY_TYPE_KEYS } from '../../constants.js'
-import CoC7ModelsActorGlobalSystem from './global-system.js'
+import Cd100ModelsActorGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGlobalSystem {
+export default class Cd100ModelsActorCharacterSystem extends Cd100ModelsActorGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -11,10 +11,10 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
     const fields = foundry.data.fields
     const monetaryTypes = Object.keys(MONETARY_TYPE_KEYS)
     return {
-      characteristics: CoC7ModelsActorCharacterSystem.defineSchemaCharacteristics(),
-      attribs: CoC7ModelsActorCharacterSystem.defineSchemaAttribs(),
-      conditions: CoC7ModelsActorCharacterSystem.defineSchemaConditions(),
-      books: CoC7ModelsActorCharacterSystem.defineSchemaBooks(),
+      characteristics: Cd100ModelsActorCharacterSystem.defineSchemaCharacteristics(),
+      attribs: Cd100ModelsActorCharacterSystem.defineSchemaAttribs(),
+      conditions: Cd100ModelsActorCharacterSystem.defineSchemaConditions(),
+      books: Cd100ModelsActorCharacterSystem.defineSchemaBooks(),
       infos: new fields.SchemaField({
         occupation: new fields.StringField({ initial: '' }),
         age: new fields.StringField({ initial: '' }),
@@ -33,7 +33,7 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
         skillListMode: new fields.BooleanField({ initial: false }),
         skillShowUncommon: new fields.BooleanField({ initial: true })
       }),
-      config: CoC7ModelsActorCharacterSystem.defineSchemaConfig(),
+      config: Cd100ModelsActorCharacterSystem.defineSchemaConfig(),
       monetary: new fields.SchemaField({
         format: new fields.StringField({
           choices: Object.keys(MONETARY_FORMAT_KEYS),
@@ -55,7 +55,7 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
           {
             initial: [
               {
-                name: 'CoC7.MonetaryDefaultPenniless',
+                name: 'Cd100.MonetaryDefaultPenniless',
                 min: null,
                 max: 0,
                 cashType: MONETARY_TYPE_KEYS.value,
@@ -66,7 +66,7 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
                 spendingValue: 0.5
               },
               {
-                name: 'CoC7.MonetaryDefaultPoor',
+                name: 'Cd100.MonetaryDefaultPoor',
                 min: 1,
                 max: 9,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -77,7 +77,7 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
                 spendingValue: 2
               },
               {
-                name: 'CoC7.MonetaryDefaultAverage',
+                name: 'Cd100.MonetaryDefaultAverage',
                 min: 10,
                 max: 49,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -88,7 +88,7 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
                 spendingValue: 10
               },
               {
-                name: 'CoC7.MonetaryDefaultWealthy',
+                name: 'Cd100.MonetaryDefaultWealthy',
                 min: 50,
                 max: 89,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -99,7 +99,7 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
                 spendingValue: 50
               },
               {
-                name: 'CoC7.MonetaryDefaultRich',
+                name: 'Cd100.MonetaryDefaultRich',
                 min: 90,
                 max: 98,
                 cashType: MONETARY_TYPE_KEYS.multiplier,
@@ -110,7 +110,7 @@ export default class CoC7ModelsActorCharacterSystem extends CoC7ModelsActorGloba
                 spendingValue: 250
               },
               {
-                name: 'CoC7.MonetaryDefaultSuperRich',
+                name: 'Cd100.MonetaryDefaultSuperRich',
                 min: 99,
                 max: null,
                 cashType: MONETARY_TYPE_KEYS.value,

@@ -17,31 +17,31 @@ export default function () {
   statusEffects.unshift(
     {
       id: STATUS_EFFECTS.surprised,
-      name: 'CoC7.Surprised',
+      name: 'Cd100.Surprised',
       img: 'systems/' + FOLDER_ID + '/assets/icons/lightning-branches.svg',
       sort: 1
     },
     {
       id: STATUS_EFFECTS.tempoInsane,
-      name: 'CoC7.BoutOfMadnessName',
+      name: 'Cd100.BoutOfMadnessName',
       img: 'systems/' + FOLDER_ID + '/assets/icons/hanging-spider.svg',
       sort: 1
     },
     {
       id: STATUS_EFFECTS.indefInsane,
-      name: 'CoC7.InsanityName',
+      name: 'Cd100.InsanityName',
       img: 'systems/' + FOLDER_ID + '/assets/icons/tentacles-skull.svg',
       sort: 1
     },
     {
       id: STATUS_EFFECTS.criticalWounds,
-      name: 'CoC7.CriticalWounds',
+      name: 'Cd100.CriticalWounds',
       img: 'systems/' + FOLDER_ID + '/assets/icons/arm-sling.svg',
       sort: 1
     },
     {
       id: STATUS_EFFECTS.dying,
-      name: 'CoC7.Dying',
+      name: 'Cd100.Dying',
       img: 'systems/' + FOLDER_ID + '/assets/icons/heart-beats.svg',
       sort: 1
     }

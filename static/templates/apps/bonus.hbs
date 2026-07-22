@@ -1,7 +1,7 @@
 <div class="flexcol">
   {{#if cardTypes}}
     <div class="form-group">
-      <label>{{localize 'CoC7.CardType'}}</label>
+      <label>{{localize 'Cd100.CardType'}}</label>
       <select name="cardType">
         {{selectOptions cardTypes selected=options.cardType localize=true}}
       </select>
@@ -10,14 +10,14 @@
 
   {{#if askValue}}
     <div class="form-group">
-      <label>{{localize 'CoC7.RollThreshold'}}</label>
+      <label>{{localize 'Cd100.RollThreshold'}}</label>
       <input type="number" name="threshold" value="{{options.threshold}}" />
     </div>
   {{/if}}
 
   {{#unless hideDifficulty}}
     <div class="form-group">
-      <label>{{localize 'CoC7.RollDifficulty'}}</label>
+      <label>{{localize 'Cd100.RollDifficulty'}}</label>
       <select name="difficulty">
         {{selectOptions difficultyTypes selected=options.difficulty localize=true valueAttr='key' labelAttr='val'}}
       </select>
@@ -26,7 +26,7 @@
 
   {{#if allowFlatDiceModifier}}
     <div class="form-group">
-      <label>{{localize 'CoC7.FlatDiceModifier'}}</label>
+      <label>{{localize 'Cd100.FlatDiceModifier'}}</label>
       <input type="number" name="flatDiceModifier" value="{{options.flatDiceModifier}}" />
     </div>
   {{/if}}
@@ -38,21 +38,21 @@
           total darkness, with total darkness also capped at min(POD, INT) x3.
           Worked out against the threshold when the dialog is submitted. --}}
     <div class="form-group">
-      <label>{{localize 'CoC7.Illumination'}}</label>
+      <label>{{localize 'Cd100.Illumination'}}</label>
       <select name="illumination">
         {{selectOptions illuminationLevels selected='normal' localize=true valueAttr='key' labelAttr='val'}}
       </select>
     </div>
 
     <div class="form-group">
-      <label>{{localize 'CoC7.Circumstances'}}</label>
+      <label>{{localize 'Cd100.Circumstances'}}</label>
       <select name="circumstanceModifier" data-cd100-circumstance>
         {{selectOptions circumstanceModifiers selected=0 localize=true valueAttr='key' labelAttr='val'}}
       </select>
     </div>
 
     <div class="form-group">
-      <label>{{localize 'CoC7.FlatModifier'}}</label>
+      <label>{{localize 'Cd100.FlatModifier'}}</label>
       <input type="number" name="flatThresholdModifier" value="{{options.flatThresholdModifier}}" />
     </div>
   {{/if}}

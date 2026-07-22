@@ -1,33 +1,33 @@
 <section class="sheet-header flexrow">
   <div class="token-extras flexrow">
     {{#if canDragToken}}
-      <div draggable="true" class="token-drag-handle" data-tooltip="CoC7.ActorIsTokenHint" data-token-uuid="{{tokenUuid}}"><i class="fa-solid fa-user-circle"></i></div>
+      <div draggable="true" class="token-drag-handle" data-tooltip="Cd100.ActorIsTokenHint" data-token-uuid="{{tokenUuid}}"><i class="fa-solid fa-user-circle"></i></div>
     {{/if}}
     {{#if linkedActor}}
-      <div data-tooltip="CoC7.ActorDataLinked"><i class="fa-solid fa-link"></i></div>
+      <div data-tooltip="Cd100.ActorDataLinked"><i class="fa-solid fa-link"></i></div>
     {{else}}
-      <div data-tooltip="CoC7.ActorDataNotLinked"><i class="fa-solid fa-unlink"></i></div>
+      <div data-tooltip="Cd100.ActorDataNotLinked"><i class="fa-solid fa-unlink"></i></div>
     {{/if}}
     {{#if isToken}}
-      <div data-tooltip="CoC7.ActorIsSyntheticActor"><i class="game-icon game-icon-backup"></i></div>
+      <div data-tooltip="Cd100.ActorIsSyntheticActor"><i class="game-icon game-icon-backup"></i></div>
     {{/if}}
   </div>
   <div class="flexrow item-header">
     <img class="profile-img" src="{{document.img}}" data-action="editImage" data-edit="img" />
     <div class="profile-details flexcol">
-      <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'CoC7.Name'}}" />
-      <input type="text" name="system.infos.type" value="{{document.system.infos.type}}" placeholder="{{localize 'CoC7.Type'}}" />
-      <input type="text" name="system.infos.origin" value="{{document.system.infos.origin}}" placeholder="{{localize 'CoC7.Origin'}}" />
+      <input type="text" name="name" value="{{document.name}}" placeholder="{{localize 'Cd100.Name'}}" />
+      <input type="text" name="system.infos.type" value="{{document.system.infos.type}}" placeholder="{{localize 'Cd100.Type'}}" />
+      <input type="text" name="system.infos.origin" value="{{document.system.infos.origin}}" placeholder="{{localize 'Cd100.Origin'}}" />
       <div class="flexrow">
-        <label>{{localize 'CoC7.Crew'}}</label>
+        <label>{{localize 'Cd100.Crew'}}</label>
         <input type="text" name="system.crew.total" value="{{document.system.crew.total}}" />
       </div>
     </div>
     <div class="profile-details flexcol">
       <div class="flexrow">
-        <label>{{localize 'CoC7.Movement'}}</label>
+        <label>{{localize 'Cd100.Movement'}}</label>
         <div>{{document.system.stats.mov}}</div>
-        <label>{{localize 'CoC7.Build'}}</label>
+        <label>{{localize 'Cd100.Build'}}</label>
         <div class="flexrow">
           <input type="text" name="system.stats.build.current" value="{{document.system.stats.build.current}}" />
           <div class="separator">/</div>
@@ -35,7 +35,7 @@
         </div>
       </div>
       {{#if document.system.stats.armor.localized}}
-        <label>{{localize 'CoC7.ArmourPlating'}}</label>
+        <label>{{localize 'Cd100.ArmourPlating'}}</label>
         <div class="armor-locations flexrow">
           {{#each document.system.stats.armor.locations as |location|}}
             <div>{{location.name}}</div>
@@ -48,7 +48,7 @@
         </div>
       {{else}}
         <div class="flexrow">
-          <label>{{localize "CoC7.Armor"}}</label>
+          <label>{{localize "Cd100.Armor"}}</label>
           <span>{{document.system.stats.armor.value}}</span>
         </div>
       {{/if}}

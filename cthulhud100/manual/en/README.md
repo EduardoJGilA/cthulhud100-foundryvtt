@@ -25,6 +25,6 @@ This system implements the **Cthulhu d100** roleplaying game rules (Three Fourte
 
 ## License & Legal Attributions
 
-- **Code License:** GPL-3.0 (forked from CoC7-FoundryVTT © Miskatonic Investigative Society).
+- **Code License:** GPL-3.0 (forked from Cd100-FoundryVTT © Miskatonic Investigative Society).
 - **Ruleset:** Cthulhu d100 © 2011 Three Fourteen Games, used non-commercially under explicit manual authorization.
 - **System Origin:** GORE © Daniel Proctor, OGL.

@@ -1,7 +1,7 @@
 /* global foundry game */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7SpendLuckDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100SpendLuckDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -21,7 +21,7 @@ export default class CoC7SpendLuckDialog extends foundry.applications.api.Handle
     },
     form: {
       closeOnSubmit: true,
-      handler: CoC7SpendLuckDialog.#onSubmit
+      handler: Cd100SpendLuckDialog.#onSubmit
     },
     position: {
       width: 360
@@ -57,7 +57,7 @@ export default class CoC7SpendLuckDialog extends foundry.applications.api.Handle
    * @inheritdoc
    */
   get title () {
-    return game.i18n.format('CoC7.UseLuckForReduceLoss', { name: this.coc7Config.name })
+    return game.i18n.format('Cd100.UseLuckForReduceLoss', { name: this.coc7Config.name })
   }
 
   /**
@@ -132,7 +132,7 @@ export default class CoC7SpendLuckDialog extends foundry.applications.api.Handle
    */
   static async create ({ name = '?', fixed = true, luckValue = 0, nameValue = 0 } = {}) {
     return await new Promise(resolve => {
-      new CoC7SpendLuckDialog({}, {}, {
+      new Cd100SpendLuckDialog({}, {}, {
         name,
         fixed,
         luckValue,

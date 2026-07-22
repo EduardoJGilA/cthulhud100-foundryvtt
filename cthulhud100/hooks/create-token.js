@@ -22,18 +22,18 @@ export default async function (document, options, userId) {
       tokenDropMode = await new Promise(resolve => {
         new foundry.applications.api.DialogV2({
           window: {
-            title: 'CoC7.TokenCreationRoll.Title'
+            title: 'Cd100.TokenCreationRoll.Title'
           },
-          content: game.i18n.localize('CoC7.TokenCreationRoll.Prompt'),
+          content: game.i18n.localize('Cd100.TokenCreationRoll.Prompt'),
           buttons: [{
             action: 'roll',
-            label: 'CoC7.TokenCreationRoll.ButtonRoll'
+            label: 'Cd100.TokenCreationRoll.ButtonRoll'
           }, {
             action: 'average',
-            label: 'CoC7.TokenCreationRoll.ButtonAverage'
+            label: 'Cd100.TokenCreationRoll.ButtonAverage'
           }, {
             action: 'ignore',
-            label: 'CoC7.Migrate.ButtonSkip',
+            label: 'Cd100.Migrate.ButtonSkip',
             default: true
           }],
           submit: result => {
@@ -46,14 +46,14 @@ export default async function (document, options, userId) {
       case 'roll':
         await document.actor.rollCharacteristicsValue()
         /* // FoundryVTT V12 */
-        ui.notifications.info(game.i18n.format('CoC7.TokenCreationRoll.Rolled', { name: document.actor.name }))
+        ui.notifications.info(game.i18n.format('Cd100.TokenCreationRoll.Rolled', { name: document.actor.name }))
         document.actor.update({ 'system.flags.locked': true })
         break
 
       case 'average':
         await document.actor.averageCharacteristicsValue()
         /* // FoundryVTT V12 */
-        ui.notifications.info(game.i18n.format('CoC7.TokenCreationRoll.Averaged', { name: document.actor.name }))
+        ui.notifications.info(game.i18n.format('Cd100.TokenCreationRoll.Averaged', { name: document.actor.name }))
         document.actor.update({ 'system.flags.locked': true })
         break
 

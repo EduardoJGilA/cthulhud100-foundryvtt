@@ -1,16 +1,16 @@
 /* global $ fromUuid game TokenDocument */
 import { FOLDER_ID } from '../constants.js'
-import CoC7ChatChaseObstacle from '../apps/chat-chase-obstacle.js'
-import CoC7ChatCombatMelee from '../apps/chat-combat-melee.js'
-import CoC7ChatCombatRanged from '../apps/chat-combat-ranged.js'
-import CoC7ChatDamage from '../apps/chat-damage.js'
-import CoC7ChatMessage from '../apps/chat-message.js'
-import CoC7ChatCombinedMessage from '../apps/chat-combined-message.js'
-import CoC7ChatOpposedMessage from '../apps/chat-opposed-message.js'
-import CoC7Check from '../apps/check.js'
-import CoC7ConCheck from '../apps/con-check.js'
-import CoC7SanCheckCard from '../apps/san-check-card.js'
-import CoC7Utilities from '../apps/utilities.js'
+import Cd100ChatChaseObstacle from '../apps/chat-chase-obstacle.js'
+import Cd100ChatCombatMelee from '../apps/chat-combat-melee.js'
+import Cd100ChatCombatRanged from '../apps/chat-combat-ranged.js'
+import Cd100ChatDamage from '../apps/chat-damage.js'
+import Cd100ChatMessage from '../apps/chat-message.js'
+import Cd100ChatCombinedMessage from '../apps/chat-combined-message.js'
+import Cd100ChatOpposedMessage from '../apps/chat-opposed-message.js'
+import Cd100Check from '../apps/check.js'
+import Cd100ConCheck from '../apps/con-check.js'
+import Cd100SanCheckCard from '../apps/san-check-card.js'
+import Cd100Utilities from '../apps/utilities.js'
 
 /**
  * Render Hook
@@ -40,7 +40,7 @@ export default async function (message, html, context) {
     }, 500)
   }
   if (typeof message.flags[FOLDER_ID]?.load?.as !== 'undefined') {
-    const allowed = await CoC7Utilities.canModifyActor({ message })
+    const allowed = await Cd100Utilities.canModifyActor({ message })
     html.querySelectorAll('.owner-and-keeper-block').forEach((element) => {
       if (!game.user.isGM && !trustedViewer && !allowed.includes(element.dataset.actorUuid)) {
         element.remove()
@@ -72,35 +72,35 @@ export default async function (message, html, context) {
       }
     })
     switch (message.flags[FOLDER_ID].load.as) {
-      case 'CoC7ChatCombatMelee':
-        CoC7ChatCombatMelee._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ChatCombatMelee':
+        Cd100ChatCombatMelee._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7ChatCombatRanged':
-        CoC7ChatCombatRanged._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ChatCombatRanged':
+        Cd100ChatCombatRanged._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7ChatChaseObstacle':
-        CoC7ChatChaseObstacle._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ChatChaseObstacle':
+        Cd100ChatChaseObstacle._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7ChatDamage':
-        CoC7ChatDamage._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ChatDamage':
+        Cd100ChatDamage._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7Check':
-        CoC7Check._onRenderMessage(message, html, context, allowed)
+      case 'Cd100Check':
+        Cd100Check._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7ChatCombinedMessage':
-        CoC7ChatCombinedMessage._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ChatCombinedMessage':
+        Cd100ChatCombinedMessage._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7ChatMessage':
-        CoC7ChatMessage._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ChatMessage':
+        Cd100ChatMessage._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7ChatOpposedMessage':
-        CoC7ChatOpposedMessage._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ChatOpposedMessage':
+        Cd100ChatOpposedMessage._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7ConCheck':
-        CoC7ConCheck._onRenderMessage(message, html, context, allowed)
+      case 'Cd100ConCheck':
+        Cd100ConCheck._onRenderMessage(message, html, context, allowed)
         break
-      case 'CoC7SanCheckCard':
-        CoC7SanCheckCard._onRenderMessage(message, html, context, allowed)
+      case 'Cd100SanCheckCard':
+        Cd100SanCheckCard._onRenderMessage(message, html, context, allowed)
         break
     }
   }

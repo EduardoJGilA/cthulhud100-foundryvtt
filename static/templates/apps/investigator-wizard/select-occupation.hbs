@@ -1,9 +1,9 @@
 <div class="panel flexcol">
-  <h1>{{localize 'CoC7.InvestigatorWizard.TitleSelectOccupation'}}</h1>
+  <h1>{{localize 'Cd100.InvestigatorWizard.TitleSelectOccupation'}}</h1>
   <div class="scroll-section">
-    <p>{{localize 'CoC7.InvestigatorWizard.OccupationPage'}}</p>
+    <p>{{localize 'Cd100.InvestigatorWizard.OccupationPage'}}</p>
     <div class="form-group">
-      <label for="coc-occupation">{{localize 'CoC7.InvestigatorWizard.OccupationSelect'}}:</label>
+      <label for="coc-occupation">{{localize 'Cd100.InvestigatorWizard.OccupationSelect'}}:</label>
       <select name="coc-occupation">
         <option value="">&nbsp;</option>
         {{selectOptions occupationOptions selected=coc7Config.occupation valueAttr='key' labelAttr='name'}}
@@ -13,15 +13,15 @@
       {{{description}}}
       <div class="occupation-group flexcol">
         <div class="form-group">
-          <label>{{localize 'CoC7.InvestigatorWizard.OccupationCreditRating'}}:</label>
+          <label>{{localize 'Cd100.InvestigatorWizard.OccupationCreditRating'}}:</label>
           <div style="flex: 2;">{{creditRating.min}} - {{creditRating.max}}</div>
         </div>
         <div class="form-group">
-          <label>{{localize 'CoC7.InvestigatorWizard.OccupationSkillPoints'}}:</label>
+          <label>{{localize 'Cd100.InvestigatorWizard.OccupationSkillPoints'}}:</label>
           <div style="flex: 2;">{{occupationPointsString}}: {{points}}</div>
         </div>
         <div class="form-group" style="align-items: baseline;">
-          <label>{{localize 'CoC7.InvestigatorWizard.OccupationSkills'}}:</label>
+          <label>{{localize 'Cd100.InvestigatorWizard.OccupationSkills'}}:</label>
           <div class="occupation-skills flexcol">
             <div>
               {{#each skills as |skill|}}
@@ -29,7 +29,7 @@
               {{/each}}
             </div>
             {{#each groups as |group|}}
-              <div class="form-group">{{localize 'CoC7.InvestigatorWizard.OccupationPickThisMany' count=group.options}}</div>
+              <div class="form-group">{{localize 'Cd100.InvestigatorWizard.OccupationPickThisMany' count=group.options}}</div>
               <div style="margin-left: 1rem;">
                 {{#each group.skills as |set|}}
                   <div>{{set.name}}</div>
@@ -40,7 +40,7 @@
               {{#if personalText}}
                 <div>{{personal}} {{personalText}}</div>
               {{else}}
-                <div>{{localize 'CoC7.InvestigatorWizard.OccupationPersonalThisMany' count=personal}}</div>
+                <div>{{localize 'Cd100.InvestigatorWizard.OccupationPersonalThisMany' count=personal}}</div>
               {{/if}}
             {{/if}}
           </div>

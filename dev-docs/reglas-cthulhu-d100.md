@@ -11,9 +11,9 @@ que la implementa.
 
 ## 1. Atributos
 
-Ocho atributos en escala **3–18** (no percentil, a diferencia de CoC7).
+Ocho atributos en escala **3–18** (no percentil, a diferencia de Cd100).
 
-| Atributo | Abrev. | Tirada | Equivalente CoC7 |
+| Atributo | Abrev. | Tirada | Equivalente Cd100 |
 |---|---|---|---|
 | Fuerza | FUE | 3D6 | STR |
 | Constitución | CON | 3D6 | CON |
@@ -46,7 +46,7 @@ estadísticamente equivalentes; el sistema usa el percentil.
 | Puntos de Magia (PM) | `POD` |
 | Modificador al Daño (MD) | tabla por `FUE + TAM` |
 
-> Nota: en CoC7 la Suerte es una reserva tirada aparte. Aquí es **derivada** de POD.
+> Nota: en Cd100 la Suerte es una reserva tirada aparte. Aquí es **derivada** de POD.
 
 ### Tabla de Modificador al Daño (MD)
 
@@ -87,7 +87,7 @@ Casos automáticos:
 - `01` → siempre éxito crítico automático.
 - `00` → siempre fallo y pifia.
 
-> Divergencia clave con CoC7: CoC7 tiene 4 niveles (regular / hard `/2` / extreme `/5` /
+> Divergencia clave con Cd100: Cd100 tiene 4 niveles (regular / hard `/2` / extreme `/5` /
 > critical `01`) y la pifia depende de si el umbral es <50. Aquí son 3 niveles de éxito
 > (`éxito` / `especial` `/5` / `crítico` `/20`) y la pifia es **siempre 96–00**.
 
@@ -232,7 +232,7 @@ El manual ofrece dos mecánicas completas. El sistema debe permitir elegir una p
 
 ### 6b. Sistema "alternativo" (Tensión / Estabilidad Mental)
 
-Mecánica original del manual, **sin equivalente en CoC7**. Es la parte con más trabajo.
+Mecánica original del manual, **sin equivalente en Cd100**. Es la parte con más trabajo.
 
 **Estructura de datos**: tres barras de casillas.
 - Barra 1: `ceil(POD/2)` casillas

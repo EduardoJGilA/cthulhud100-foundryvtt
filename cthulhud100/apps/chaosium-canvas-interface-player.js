@@ -20,58 +20,58 @@ export default class ChaosiumCanvasInterfacePlayer extends ChaosiumCanvasInterfa
       triggerButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Right,
-        label: 'CoC7.ChaosiumCanvasInterface.Player.Button.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.Player.Button.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.Player.Button.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.Player.Button.Hint'
       }),
       imageTiles: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'Tile'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.Player.ImageDrop.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.Player.ImageDrop.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.Player.ImageDrop.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.Player.ImageDrop.Hint'
         }
       ),
       imagePlaceholder: new fields.FilePathField({
         categories: ['IMAGE', 'VIDEO'],
         blank: true,
         initial: '',
-        label: 'CoC7.ChaosiumCanvasInterface.Player.ImagePlaceholder.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.Player.ImagePlaceholder.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.Player.ImagePlaceholder.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.Player.ImagePlaceholder.Hint'
       }),
       nameDrawings: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'Drawing'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.Player.NameDrop.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.Player.NameDrop.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.Player.NameDrop.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.Player.NameDrop.Hint'
         }
       ),
       namePlaceholder: new fields.StringField({
-        label: 'CoC7.ChaosiumCanvasInterface.Player.NamePlaceholder.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.Player.NamePlaceholder.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.Player.NamePlaceholder.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.Player.NamePlaceholder.Hint'
       }),
       occupationDrawings: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'Drawing'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.Player.OccupationDrop.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.Player.OccupationDrop.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.Player.OccupationDrop.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.Player.OccupationDrop.Hint'
         }
       ),
       occupationPlaceholder: new fields.StringField({
-        label: 'CoC7.ChaosiumCanvasInterface.Player.OccupationPlaceholder.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.Player.OccupationPlaceholder.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.Player.OccupationPlaceholder.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.Player.OccupationPlaceholder.Hint'
       }),
       otherRegions: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'Region'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.Player.OtherRegions.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.Player.OtherRegions.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.Player.OtherRegions.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.Player.OtherRegions.Hint'
         }
       )
     }

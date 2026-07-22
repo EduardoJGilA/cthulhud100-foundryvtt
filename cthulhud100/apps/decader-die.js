@@ -1,5 +1,5 @@
 /* global foundry */
-export default class CoC7DecaderDie extends foundry.dice.terms.Die {
+export default class Cd100DecaderDie extends foundry.dice.terms.Die {
   /**
    * @inheritdoc
    */

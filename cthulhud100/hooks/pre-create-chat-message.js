@@ -14,7 +14,7 @@ export default async function (message, data, options, userId) {
     el.innerHTML = message.content
     if (!el.childElementCount) {
       message.updateSource({
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatMessage'
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatMessage'
       })
     }
   }

@@ -1,11 +1,11 @@
 {{#if automatedCosts}}
   {{#if castingTime}}
-    <label>{{localize 'CoC7.SpellCastingTime'}}: {{castingTime}}</label>
+    <label>{{localize 'Cd100.SpellCastingTime'}}: {{castingTime}}</label>
   {{/if}}
   {{#if automatedLosses}}
     <div class="coc7-book-gains flexcol">
       <div class="coc7-spell-gains-header">
-        <div>{{localize 'CoC7.Spell.Cost.CasterCost'}}</div>
+        <div>{{localize 'Cd100.Spell.Cost.CasterCost'}}</div>
       </div>
       {{#each automatedLosses as |loss key|}}
         <div class="coc7-book-gains-row">
@@ -17,7 +17,7 @@
     {{#if additionalInformation}}
       <div class="coc7-book-gains flexcol">
         <div class="coc7-spell-gains-header">
-          <div>{{localize 'CoC7.Spell.Cost.AdditionalInformation'}}</div>
+          <div>{{localize 'Cd100.Spell.Cost.AdditionalInformation'}}</div>
         </div>
         {{#each additionalInformation as |loss|}}
           <div class="coc7-spell-gains-row">
@@ -64,7 +64,7 @@
 {{/each}}
 <div class="keeper-only-block" style="margin-top: 0.5rem">
   <div class="coc7-card-buttons flexrow">
-    <button data-action="toggleBlock" data-offset="{{casterGroups.length}}">{{localize 'CoC7.Description'}}</button>
+    <button data-action="toggleBlock" data-offset="{{casterGroups.length}}">{{localize 'Cd100.Description'}}</button>
   </div>
   <div class="coc7-chat-toggled coc7-formatted-text">
     {{{description}}}

@@ -1,14 +1,14 @@
 /* global ChatMessage foundry fromUuid game renderTemplate TokenDocument ui */
 import { FOLDER_ID } from '../constants.js'
-import CoC7CombatTables from './combat-tables.js'
-import CoC7ActorPickerDialog from './actor-picker-dialog.js'
-import CoC7ChatDamage from './chat-damage.js'
-import CoC7Check from './check.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100CombatTables from './combat-tables.js'
+import Cd100ActorPickerDialog from './actor-picker-dialog.js'
+import Cd100ChatDamage from './chat-damage.js'
+import Cd100Check from './check.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ChatOpposedMessage {
+export default class Cd100ChatOpposedMessage {
   #actorRolls
   #advantage
   #cardOpen
@@ -21,7 +21,7 @@ export default class CoC7ChatOpposedMessage {
    */
   constructor () {
     this.#actorRolls = {}
-    this.#advantage = CoC7ChatOpposedMessage.participant.none
+    this.#advantage = Cd100ChatOpposedMessage.participant.none
     this.#cardOpen = true
     this.#isCombat = false
     this.#isRolling = false
@@ -55,18 +55,18 @@ export default class CoC7ChatOpposedMessage {
 
     const defaultUuid = options.defaultActor ?? false
     for (const offset in options.rollRequisites) {
-      const parsedRoll = await CoC7ChatOpposedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true, defaultUuid })
+      const parsedRoll = await Cd100ChatOpposedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true, defaultUuid })
       if (!parsedRoll) {
-        ui.notifications.warn('CoC7.Errors.UnparsableRoll', { localize: true })
+        ui.notifications.warn('Cd100.Errors.UnparsableRoll', { localize: true })
         return
       }
       config.actorRolls[parsedRoll.actorUuid] = parsedRoll
       delete config.actorRolls[parsedRoll.actorUuid].actorUuid
     }
     if (game.user.isGM) {
-      CoC7ChatOpposedMessage.newGroupMessage(config)
+      Cd100ChatOpposedMessage.newGroupMessage(config)
     } else {
-      CoC7SystemSocket.requestKeeperAction({
+      Cd100SystemSocket.requestKeeperAction({
         type: 'chatOpposedMessageNew',
         config
       })
@@ -80,7 +80,7 @@ export default class CoC7ChatOpposedMessage {
    */
   static async getActor (identifier) {
     if (identifier.match(/^a\./)) {
-      return ((await game.CoC7.cocid.fromCoCID(identifier))?.[0]) ?? null
+      return ((await game.Cd100.cocid.fromCoCID(identifier))?.[0]) ?? null
     }
     if (identifier.indexOf('.') > -1) {
       return await fromUuid(identifier)
@@ -96,14 +96,14 @@ export default class CoC7ChatOpposedMessage {
    */
   static async joinGroupMessage (options) {
     if (game.user.isGM) {
-      let messages = ui.chat.collection.filter(message => message.flags.CoC7?.load?.as === 'CoC7ChatOpposedMessage' && message.flags.CoC7?.load?.cardOpen === true)
+      let messages = ui.chat.collection.filter(message => message.flags.Cd100?.load?.as === 'Cd100ChatOpposedMessage' && message.flags.Cd100?.load?.cardOpen === true)
       if (messages.length) {
         // Old messages can't be used if message is more than a day old
         const timestamp = new Date(messages[messages.length - 1].timestamp)
         const now = new Date()
         const timeDiffSec = (now - timestamp) / 1000
         if (24 * 60 * 60 < timeDiffSec) {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(messages[messages.length - 1])
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(messages[messages.length - 1])
           if (check) {
             check.#cardOpen = false
             check.updateMessage()
@@ -112,13 +112,13 @@ export default class CoC7ChatOpposedMessage {
         }
       }
       if (messages.length) {
-        const check = await CoC7ChatOpposedMessage.loadFromMessage(messages[messages.length - 1])
+        const check = await Cd100ChatOpposedMessage.loadFromMessage(messages[messages.length - 1])
         if (check) {
           if (!check.#isRolling) {
             for (const offset in options.rollRequisites) {
-              const parsedRoll = await CoC7ChatOpposedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true })
+              const parsedRoll = await Cd100ChatOpposedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true })
               if (!parsedRoll) {
-                ui.notifications.warn('CoC7.Errors.UnparsableRoll', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableRoll', { localize: true })
                 return
               }
               const actorUuid = parsedRoll.actorUuid
@@ -133,10 +133,10 @@ export default class CoC7ChatOpposedMessage {
           }
         }
       } else {
-        CoC7ChatOpposedMessage.createGroupMessage(options)
+        Cd100ChatOpposedMessage.createGroupMessage(options)
       }
     } else {
-      CoC7SystemSocket.requestKeeperAction({
+      Cd100SystemSocket.requestKeeperAction({
         type: 'chatOpposedMessageJoin',
         options
       })
@@ -144,10 +144,10 @@ export default class CoC7ChatOpposedMessage {
   }
 
   /**
-   * Create CoC7ChatOpposedMessage from message
+   * Create Cd100ChatOpposedMessage from message
    * @param {Document} message
    * @param {boolean} isMigratingMessage
-   * @returns {CoC7ChatOpposedMessage}
+   * @returns {Cd100ChatOpposedMessage}
    */
   static async loadFromMessage (message, isMigratingMessage = false) {
     const keys = [
@@ -157,8 +157,8 @@ export default class CoC7ChatOpposedMessage {
       'isCombat',
       'isRolling'
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7ChatOpposedMessage' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined')) {
-      const check = new CoC7ChatOpposedMessage()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100ChatOpposedMessage' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined')) {
+      const check = new Cd100ChatOpposedMessage()
       check.message = message
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       check.#actorRolls = Object.keys(load.actorRolls).reduce((c, k) => { c[k.replace(/\//g, '.')] = load.actorRolls[k]; return c }, {})
@@ -169,17 +169,17 @@ export default class CoC7ChatOpposedMessage {
       for (const actorUuid in check.#actorRolls) {
         const actor = await fromUuid(actorUuid)
         if (actor || isMigratingMessage) {
-          check.#actorRolls[actorUuid].dicePool = CoC7DicePool.fromObject(check.#actorRolls[actorUuid].dicePool)
+          check.#actorRolls[actorUuid].dicePool = Cd100DicePool.fromObject(check.#actorRolls[actorUuid].dicePool)
           check.#actorRolls[actorUuid].playerOwnersOnline = game.users.filter(u => !u.isGM && u.active && actor?.canUserModify(u, 'update')).map(u => { return u.uuid })
         } else {
-          ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+          ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
           return false
         }
       }
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -190,7 +190,7 @@ export default class CoC7ChatOpposedMessage {
    */
   static async newGroupMessage (config) {
     if (['actorRolls', 'isCombat'].every(k => typeof config[k] !== 'undefined')) {
-      const check = new CoC7ChatOpposedMessage()
+      const check = new Cd100ChatOpposedMessage()
       check.#actorRolls = {}
       check.#cardOpen = true
       check.#isCombat = config.isCombat
@@ -201,18 +201,18 @@ export default class CoC7ChatOpposedMessage {
       }
       // If there are two occupants on setup first is attacker and other is defender
       if (Object.keys(check.#actorRolls).length === 2) {
-        let hasDefender = typeof Object.keys(check.#actorRolls).find(k => check.#actorRolls[k].participant === CoC7ChatOpposedMessage.participant.defender) !== 'undefined'
+        let hasDefender = typeof Object.keys(check.#actorRolls).find(k => check.#actorRolls[k].participant === Cd100ChatOpposedMessage.participant.defender) !== 'undefined'
         if (!hasDefender) {
-          const actorUuid = Object.keys(check.#actorRolls).findLast(k => check.#actorRolls[k].participant === CoC7ChatOpposedMessage.participant.none)
+          const actorUuid = Object.keys(check.#actorRolls).findLast(k => check.#actorRolls[k].participant === Cd100ChatOpposedMessage.participant.none)
           if (actorUuid) {
-            check.#actorRolls[actorUuid].participant = CoC7ChatOpposedMessage.participant.defender
+            check.#actorRolls[actorUuid].participant = Cd100ChatOpposedMessage.participant.defender
             hasDefender = true
           }
         }
         if (hasDefender) {
           for (const actorUuid in check.#actorRolls) {
-            if (check.#actorRolls[actorUuid].participant === CoC7ChatOpposedMessage.participant.none) {
-              check.#actorRolls[actorUuid].participant = CoC7ChatOpposedMessage.participant.attacker
+            if (check.#actorRolls[actorUuid].participant === Cd100ChatOpposedMessage.participant.none) {
+              check.#actorRolls[actorUuid].participant = Cd100ChatOpposedMessage.participant.attacker
             }
           }
         }
@@ -221,8 +221,8 @@ export default class CoC7ChatOpposedMessage {
       await ChatMessage.create(chatData)
       return
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -236,32 +236,32 @@ export default class CoC7ChatOpposedMessage {
         {
           const quantity = event.currentTarget.dataset.quantity
           if (quantity) {
-            const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+            const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
             try {
               const actorUuid = Object.keys(check.#actorRolls)[0] ?? ''
               if (await check.#actorRolls[actorUuid].dicePool.addDiceToPool(quantity)) {
                 check.updateMessage()
               } else {
-                ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
               }
             } catch (err) {
               ui.notifications.warn(err.message)
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'participant':
         {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           const actorUuid = event.currentTarget.closest('.actor-portrait')?.dataset.actorUuid
           if (check && actorUuid && typeof check.#actorRolls[actorUuid] !== 'undefined') {
-            if (check.#actorRolls[actorUuid].participant === CoC7ChatOpposedMessage.participant.attacker) {
-              Object.keys(check.#actorRolls).forEach(actorUuid => { check.#actorRolls[actorUuid].participant = CoC7ChatOpposedMessage.participant.attacker })
-              check.#actorRolls[actorUuid].participant = CoC7ChatOpposedMessage.participant.defender
+            if (check.#actorRolls[actorUuid].participant === Cd100ChatOpposedMessage.participant.attacker) {
+              Object.keys(check.#actorRolls).forEach(actorUuid => { check.#actorRolls[actorUuid].participant = Cd100ChatOpposedMessage.participant.attacker })
+              check.#actorRolls[actorUuid].participant = Cd100ChatOpposedMessage.participant.defender
             } else {
-              check.#actorRolls[actorUuid].participant = CoC7ChatOpposedMessage.participant.attacker
+              check.#actorRolls[actorUuid].participant = Cd100ChatOpposedMessage.participant.attacker
             }
             check.updateMessage()
           }
@@ -269,7 +269,7 @@ export default class CoC7ChatOpposedMessage {
         break
       case 'removeRoll':
         {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           const actorUuid = event.currentTarget.dataset.actorUuid
           if (check && actorUuid && typeof check.#actorRolls[actorUuid] !== 'undefined') {
             delete check.#actorRolls[actorUuid]
@@ -280,7 +280,7 @@ export default class CoC7ChatOpposedMessage {
         break
       case 'rollActor':
         {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           const actorUuid = event.currentTarget.dataset.actorUuid
           if (check && actorUuid) {
             await check.rollForActor(actorUuid)
@@ -290,7 +290,7 @@ export default class CoC7ChatOpposedMessage {
         break
       case 'rollDamage':
         {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           await check.flagForDevelopment()
           const templateData = await check.getTemplateData()
           const winnerUuid = Object.keys(templateData.rollActors).find(r => templateData.rollActors[r].isWinner)
@@ -299,19 +299,19 @@ export default class CoC7ChatOpposedMessage {
           const item = winner.getItemByName(check.#actorRolls[winnerUuid].key, 'weapon')
           const loser = await fromUuid(loserUuid)
           let isCritical = false
-          if (check.#actorRolls[winnerUuid].dicePool.difficulty < CoC7DicePool.successLevel.special && check.#actorRolls[winnerUuid].dicePool.successLevel >= CoC7DicePool.successLevel.special) {
+          if (check.#actorRolls[winnerUuid].dicePool.difficulty < Cd100DicePool.successLevel.special && check.#actorRolls[winnerUuid].dicePool.successLevel >= Cd100DicePool.successLevel.special) {
             isCritical = true
-          } else if (check.#actorRolls[winnerUuid].dicePool.difficulty === CoC7DicePool.successLevel.special && check.#actorRolls[winnerUuid].dicePool.isCritical) {
+          } else if (check.#actorRolls[winnerUuid].dicePool.difficulty === Cd100DicePool.successLevel.special && check.#actorRolls[winnerUuid].dicePool.isCritical) {
             isCritical = true
           }
-          CoC7ChatDamage.createFromActors({ attacker: winner, weapon: item, isCritical, target: loser })
+          Cd100ChatDamage.createFromActors({ attacker: winner, weapon: item, isCritical, target: loser })
           check.#cardOpen = false
           check.updateMessage()
         }
         break
       case 'rollNoPlayers':
         {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           if (check) {
             check.#isRolling = true
             for (const actorUuid in check.#actorRolls) {
@@ -325,14 +325,14 @@ export default class CoC7ChatOpposedMessage {
         break
       case 'setValue':
         {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           const value = event.currentTarget.dataset.value
           if (check && set && value) {
             switch (set) {
               case 'advantage':
                 if (check.#advantage === value) {
-                  check.#advantage = CoC7ChatOpposedMessage.participant.none
+                  check.#advantage = Cd100ChatOpposedMessage.participant.none
                 } else {
                   check.#advantage = value
                 }
@@ -340,17 +340,17 @@ export default class CoC7ChatOpposedMessage {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'toggleValue':
         {
-          const check = await CoC7ChatOpposedMessage.loadFromMessage(message)
+          const check = await Cd100ChatOpposedMessage.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           if (check && set) {
             switch (set) {
@@ -364,11 +364,11 @@ export default class CoC7ChatOpposedMessage {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -386,7 +386,7 @@ export default class CoC7ChatOpposedMessage {
     if (game.user.isGM || allowed) {
       html.querySelectorAll('[data-action]:not(.not-allowed)').forEach((element) => {
         if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-          element.addEventListener('click', event => CoC7ChatOpposedMessage._onClickEvent(event, message))
+          element.addEventListener('click', event => Cd100ChatOpposedMessage._onClickEvent(event, message))
         }
       })
     }
@@ -412,7 +412,7 @@ export default class CoC7ChatOpposedMessage {
         actorUuid: 'x',
         build: 0,
         dicePool: {
-          difficulty: ((difficulty ?? '').toString() === '0' ? CoC7DicePool.difficultyLevel.unknown : (difficulty ? parseInt(difficulty, 10) : (game.settings.get(FOLDER_ID, 'defaultCheckDifficulty') === 'unknown' ? CoC7DicePool.difficultyLevel.unknown : CoC7DicePool.difficultyLevel.regular))),
+          difficulty: ((difficulty ?? '').toString() === '0' ? Cd100DicePool.difficultyLevel.unknown : (difficulty ? parseInt(difficulty, 10) : (game.settings.get(FOLDER_ID, 'defaultCheckDifficulty') === 'unknown' ? Cd100DicePool.difficultyLevel.unknown : Cd100DicePool.difficultyLevel.regular))),
           // flatDiceModifier: 0,
           // flatThresholdModifier: 0,
           poolModifier,
@@ -424,7 +424,7 @@ export default class CoC7ChatOpposedMessage {
         isPushable: false,
         key: match.groups.key,
         name: '-',
-        participant: (attacker && !defender ? CoC7ChatOpposedMessage.participant.attacker : (!attacker && defender ? CoC7ChatOpposedMessage.participant.defender : CoC7ChatOpposedMessage.participant.none)),
+        participant: (attacker && !defender ? Cd100ChatOpposedMessage.participant.attacker : (!attacker && defender ? Cd100ChatOpposedMessage.participant.defender : Cd100ChatOpposedMessage.participant.none)),
         playerOwnersOnline: [],
         portrait: '',
         shortName: '-',
@@ -436,16 +436,16 @@ export default class CoC7ChatOpposedMessage {
         match.groups.actor = defaultUuid + '#'
       }
       if (match.groups.actor) {
-        actor = await CoC7ChatOpposedMessage.getActor(match.groups.actor.substring(0, match.groups.actor.length - 1))
+        actor = await Cd100ChatOpposedMessage.getActor(match.groups.actor.substring(0, match.groups.actor.length - 1))
         if (!actor) {
           return null
         }
         parsedRoll.actorUuid = actor.uuid
         parsedRoll.playerOwnersOnline = game.users.filter(u => !u.isGM && u.active && actor.canUserModify(u, 'update')).map(u => { return u.uuid })
       } else {
-        parsedRoll.actorUuid = await CoC7ActorPickerDialog.create()
+        parsedRoll.actorUuid = await Cd100ActorPickerDialog.create()
         if (!parsedRoll.actorUuid) {
-          ui.notifications.warn('CoC7.WarnNoControlledActor', { localize: true })
+          ui.notifications.warn('Cd100.WarnNoControlledActor', { localize: true })
           return null
         }
         actor = await fromUuid(parsedRoll.actorUuid)
@@ -476,7 +476,7 @@ export default class CoC7ChatOpposedMessage {
       this.#actorRolls[actorUuid].portrait = (actor instanceof TokenDocument ? actor.texture.src : actor.portrait)
       this.#actorRolls[actorUuid].build = actor.system.attribs.build.value ?? 0
       this.#actorRolls[actorUuid].name = actor.name
-      this.#actorRolls[actorUuid].participant = CoC7ChatOpposedMessage.participant.none
+      this.#actorRolls[actorUuid].participant = Cd100ChatOpposedMessage.participant.none
       this.#actorRolls[actorUuid].tags = []
       this.#actorRolls[actorUuid].shortName = '-'
       this.#actorRolls[actorUuid].isDodge = false
@@ -485,32 +485,32 @@ export default class CoC7ChatOpposedMessage {
       this.#actorRolls[actorUuid].isPushable = false
       this.#actorRolls[actorUuid].skillUuid = false
       switch (this.#actorRolls[actorUuid].type) {
-        case CoC7Check.type.characteristic:
-          this.#actorRolls[actorUuid].shortName = CoC7Utilities.getCharacteristicNames(this.#actorRolls[actorUuid].key)?.short ?? '-'
+        case Cd100Check.type.characteristic:
+          this.#actorRolls[actorUuid].shortName = Cd100Utilities.getCharacteristicNames(this.#actorRolls[actorUuid].key)?.short ?? '-'
           if (this.#actorRolls[actorUuid].shortName === '-') {
-            ui.notifications.warn('CoC7.Errors.UnknownCharacteristic', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnknownCharacteristic', { localize: true })
             return false
           }
-          this.#actorRolls[actorUuid].fullName = CoC7Utilities.getCharacteristicNames(this.#actorRolls[actorUuid].key)?.label ?? '-'
+          this.#actorRolls[actorUuid].fullName = Cd100Utilities.getCharacteristicNames(this.#actorRolls[actorUuid].key)?.label ?? '-'
           this.#actorRolls[actorUuid].tags.push(this.#actorRolls[actorUuid].shortName)
           this.#actorRolls[actorUuid].dicePool.threshold = actor.system?.characteristics[this.#actorRolls[actorUuid].key]?.value ?? 1
           break
-        case CoC7Check.type.attribute:
+        case Cd100Check.type.attribute:
           if (['lck', 'san'].includes(this.#actorRolls[actorUuid].key)) {
-            this.#actorRolls[actorUuid].shortName = CoC7Utilities.getAttributeNames(this.#actorRolls[actorUuid].key)?.short ?? '-'
+            this.#actorRolls[actorUuid].shortName = Cd100Utilities.getAttributeNames(this.#actorRolls[actorUuid].key)?.short ?? '-'
             if (this.#actorRolls[actorUuid].shortName === '-') {
-              ui.notifications.warn('CoC7.Errors.UnknownAttribute', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnknownAttribute', { localize: true })
               return false
             }
-            this.#actorRolls[actorUuid].fullName = CoC7Utilities.getAttributeNames(this.#actorRolls[actorUuid].key)?.label ?? '-'
+            this.#actorRolls[actorUuid].fullName = Cd100Utilities.getAttributeNames(this.#actorRolls[actorUuid].key)?.label ?? '-'
             this.#actorRolls[actorUuid].tags.push(this.#actorRolls[actorUuid].shortName)
             this.#actorRolls[actorUuid].dicePool.threshold = actor.system?.attribs[this.#actorRolls[actorUuid].key]?.value ?? 1
           } else {
-            ui.notifications.warn('CoC7.Errors.IncorrectAttribute', { localize: true })
+            ui.notifications.warn('Cd100.Errors.IncorrectAttribute', { localize: true })
             return false
           }
           break
-        case CoC7Check.type.skill:
+        case Cd100Check.type.skill:
           {
             const skill = await actor.getItemOrAdd(this.#actorRolls[actorUuid].key, 'skill')
             if (skill?.type === 'skill') {
@@ -521,12 +521,12 @@ export default class CoC7ChatOpposedMessage {
               this.#actorRolls[actorUuid].isPushable = (skill.system.properties?.push ?? false)
               this.#actorRolls[actorUuid].skillUuid = skill.uuid ?? false
             } else {
-              ui.notifications.warn('CoC7.Errors.UnknownSkill', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnknownSkill', { localize: true })
               return false
             }
           }
           break
-        case CoC7Check.type.item:
+        case Cd100Check.type.item:
           {
             const item = await actor.getItemOrAdd(this.#actorRolls[actorUuid].key, 'weapon')
             if (item?.type === 'weapon') {
@@ -542,39 +542,39 @@ export default class CoC7ChatOpposedMessage {
                 this.#actorRolls[actorUuid].isPushable = (skill.system.properties?.push ?? false)
                 this.#actorRolls[actorUuid].skillUuid = skill.uuid ?? false
               } else {
-                ui.notifications.warn('CoC7.Errors.UnknownSkill', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnknownSkill', { localize: true })
                 return false
               }
             } else {
-              ui.notifications.warn('CoC7.Errors.UnknownWeapon', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnknownWeapon', { localize: true })
               return false
             }
           }
           break
       }
       if (this.#actorRolls[actorUuid].dicePool.poolModifier < 0) {
-        this.#actorRolls[actorUuid].tags.push(Math.abs(this.#actorRolls[actorUuid].dicePool.poolModifier) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty'))
+        this.#actorRolls[actorUuid].tags.push(Math.abs(this.#actorRolls[actorUuid].dicePool.poolModifier) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty'))
       } else if (this.#actorRolls[actorUuid].dicePool.poolModifier > 0) {
-        this.#actorRolls[actorUuid].tags.push(this.#actorRolls[actorUuid].dicePool.poolModifier + ' ' + game.i18n.localize('CoC7.DiceModifierBonus'))
+        this.#actorRolls[actorUuid].tags.push(this.#actorRolls[actorUuid].dicePool.poolModifier + ' ' + game.i18n.localize('Cd100.DiceModifierBonus'))
       }
       switch (this.#actorRolls[actorUuid].dicePool.difficulty) {
-        case CoC7DicePool.difficultyLevel.regular:
-          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('CoC7.RollDifficultyRegularTitle'))
+        case Cd100DicePool.difficultyLevel.regular:
+          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('Cd100.RollDifficultyRegularTitle'))
           break
-        case CoC7DicePool.difficultyLevel.hard:
-          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('CoC7.RollDifficultyHardTitle'))
+        case Cd100DicePool.difficultyLevel.hard:
+          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('Cd100.RollDifficultyHardTitle'))
           break
-        case CoC7DicePool.difficultyLevel.extreme:
-          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('CoC7.RollDifficultyExtremeTitle'))
+        case Cd100DicePool.difficultyLevel.extreme:
+          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('Cd100.RollDifficultyExtremeTitle'))
           break
-        case CoC7DicePool.difficultyLevel.critical:
-          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('CoC7.RollDifficultyCriticalTitle'))
+        case Cd100DicePool.difficultyLevel.critical:
+          this.#actorRolls[actorUuid].tags.push(game.i18n.localize('Cd100.RollDifficultyCriticalTitle'))
           break
       }
-      this.#actorRolls[actorUuid].dicePool = CoC7DicePool.newPool(this.#actorRolls[actorUuid].dicePool)
+      this.#actorRolls[actorUuid].dicePool = Cd100DicePool.newPool(this.#actorRolls[actorUuid].dicePool)
       return true
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
     return false
   }
 
@@ -584,9 +584,9 @@ export default class CoC7ChatOpposedMessage {
    */
   async getTemplateData () {
     const data = {
-      advantageAttacker: this.#advantage === CoC7ChatOpposedMessage.participant.attacker,
-      advantageDefender: this.#advantage === CoC7ChatOpposedMessage.participant.defender,
-      advantageTypes: CoC7ChatOpposedMessage.participant,
+      advantageAttacker: this.#advantage === Cd100ChatOpposedMessage.participant.attacker,
+      advantageDefender: this.#advantage === Cd100ChatOpposedMessage.participant.defender,
+      advantageTypes: Cd100ChatOpposedMessage.participant,
       allRollsAssigned: false,
       allRollsComplete: false,
       canAdvantage: false,
@@ -607,7 +607,7 @@ export default class CoC7ChatOpposedMessage {
     let allRollsComplete = true
     let anySuccess = true
     const checks = {
-      [CoC7ChatOpposedMessage.participant.attacker]: {
+      [Cd100ChatOpposedMessage.participant.attacker]: {
         actorName: '',
         isDodge: false,
         isManeuver: false,
@@ -615,7 +615,7 @@ export default class CoC7ChatOpposedMessage {
         isWinner: false,
         result: undefined
       },
-      [CoC7ChatOpposedMessage.participant.defender]: {
+      [Cd100ChatOpposedMessage.participant.defender]: {
         actorName: '',
         isDodge: false,
         isManeuver: false,
@@ -625,20 +625,20 @@ export default class CoC7ChatOpposedMessage {
       }
     }
     const rollsAssigned = {
-      [CoC7ChatOpposedMessage.participant.attacker]: 0,
-      [CoC7ChatOpposedMessage.participant.defender]: 0,
-      [CoC7ChatOpposedMessage.participant.none]: 0
+      [Cd100ChatOpposedMessage.participant.attacker]: 0,
+      [Cd100ChatOpposedMessage.participant.defender]: 0,
+      [Cd100ChatOpposedMessage.participant.none]: 0
     }
 
     for (const actorUuid in this.#actorRolls) {
       const roll = this.#actorRolls[actorUuid]
       const diceGroup = this.#actorRolls[actorUuid].dicePool.diceGroups.pop() ?? {}
       diceGroup.bonusDice = Math.abs(this.#actorRolls[actorUuid].dicePool.poolModifier)
-      diceGroup.bonusType = game.i18n.localize(this.#actorRolls[actorUuid].dicePool.poolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus')
-      diceGroup.flavor = game.i18n.format('CoC7.CheckResult', {
+      diceGroup.bonusType = game.i18n.localize(this.#actorRolls[actorUuid].dicePool.poolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus')
+      diceGroup.flavor = game.i18n.format('Cd100.CheckResult', {
         name: (roll.fullName !== '-' ? roll.fullName : (roll.shortName ?? '')),
         value: this.#actorRolls[actorUuid].dicePool.threshold,
-        difficulty: CoC7DicePool.difficultyString(this.#actorRolls[actorUuid].dicePool.difficulty)
+        difficulty: Cd100DicePool.difficultyString(this.#actorRolls[actorUuid].dicePool.difficulty)
       })
       diceGroup.isPushed = this.#actorRolls[actorUuid].dicePool.isPushed
       diceGroup.key = roll.key
@@ -666,12 +666,12 @@ export default class CoC7ChatOpposedMessage {
         skillUuid: roll.skillUuid,
         type: roll.type
       }
-      if (rollActors[actorUuid].isDodge && rollActors[actorUuid].participant === CoC7ChatOpposedMessage.participant.defender) {
+      if (rollActors[actorUuid].isDodge && rollActors[actorUuid].participant === Cd100ChatOpposedMessage.participant.defender) {
         data.defenderIsDodging = true
       }
       if (diceGroup.rolled) {
-        anySuccess = anySuccess && diceGroup.successLevel >= CoC7DicePool.difficultyLevel.regular
-        if ([CoC7ChatOpposedMessage.participant.attacker, CoC7ChatOpposedMessage.participant.defender].includes(roll.participant)) {
+        anySuccess = anySuccess && diceGroup.successLevel >= Cd100DicePool.difficultyLevel.regular
+        if ([Cd100ChatOpposedMessage.participant.attacker, Cd100ChatOpposedMessage.participant.defender].includes(roll.participant)) {
           checks[roll.participant].result = diceGroup.successLevel
         }
       } else {
@@ -680,7 +680,7 @@ export default class CoC7ChatOpposedMessage {
       rollsAssigned[roll.participant]++
     }
     // Currently only one attacker and one defender (XXXX Physical Human Limits, Know Roll, Idea Roll)
-    data.allRollsAssigned = (rollsAssigned[CoC7ChatOpposedMessage.participant.attacker] === 1 && rollsAssigned[CoC7ChatOpposedMessage.participant.defender] === 1 && rollsAssigned[CoC7ChatOpposedMessage.participant.none] === 0)
+    data.allRollsAssigned = (rollsAssigned[Cd100ChatOpposedMessage.participant.attacker] === 1 && rollsAssigned[Cd100ChatOpposedMessage.participant.defender] === 1 && rollsAssigned[Cd100ChatOpposedMessage.participant.none] === 0)
 
     if (data.allRollsAssigned && allRollsComplete) {
       data.allRollsComplete = true
@@ -689,25 +689,25 @@ export default class CoC7ChatOpposedMessage {
         // comparing success levels, so a defender who rolls well can turn the
         // attacker's own swing into a fumble. Ties are meaningless here: every
         // pair of results has an entry.
-        const attacker = CoC7CombatTables.levelFromSuccessLevel(checks[CoC7ChatOpposedMessage.participant.attacker].result)
-        const defender = CoC7CombatTables.levelFromSuccessLevel(checks[CoC7ChatOpposedMessage.participant.defender].result)
-        const blocking = !(checks[CoC7ChatOpposedMessage.participant.defender].isDodge ?? false)
-        const resolution = CoC7CombatTables.resolve({ attacker, defender, blocking })
+        const attacker = Cd100CombatTables.levelFromSuccessLevel(checks[Cd100ChatOpposedMessage.participant.attacker].result)
+        const defender = Cd100CombatTables.levelFromSuccessLevel(checks[Cd100ChatOpposedMessage.participant.defender].result)
+        const blocking = !(checks[Cd100ChatOpposedMessage.participant.defender].isDodge ?? false)
+        const resolution = Cd100CombatTables.resolve({ attacker, defender, blocking })
         data.combatOutcome = resolution.outcome
         data.attackerWeaponDamage = resolution.weaponDamage
-        if (CoC7CombatTables.outcomeHits(resolution.outcome)) {
-          checks[CoC7ChatOpposedMessage.participant.attacker].isWinner = true
+        if (Cd100CombatTables.outcomeHits(resolution.outcome)) {
+          checks[Cd100ChatOpposedMessage.participant.attacker].isWinner = true
         } else {
-          checks[CoC7ChatOpposedMessage.participant.defender].isWinner = true
+          checks[Cd100ChatOpposedMessage.participant.defender].isWinner = true
         }
         data.hasWinner = true
-      } else if (checks[CoC7ChatOpposedMessage.participant.attacker].result === checks[CoC7ChatOpposedMessage.participant.defender].result) {
+      } else if (checks[Cd100ChatOpposedMessage.participant.attacker].result === checks[Cd100ChatOpposedMessage.participant.defender].result) {
         data.isTie = true
-      } else if (checks[CoC7ChatOpposedMessage.participant.defender].result < checks[CoC7ChatOpposedMessage.participant.attacker].result) {
-        checks[CoC7ChatOpposedMessage.participant.attacker].isWinner = true
+      } else if (checks[Cd100ChatOpposedMessage.participant.defender].result < checks[Cd100ChatOpposedMessage.participant.attacker].result) {
+        checks[Cd100ChatOpposedMessage.participant.attacker].isWinner = true
         data.hasWinner = true
       } else {
-        checks[CoC7ChatOpposedMessage.participant.defender].isWinner = true
+        checks[Cd100ChatOpposedMessage.participant.defender].isWinner = true
         data.hasWinner = true
       }
       for (const actorUuid in rollActors) {
@@ -723,30 +723,30 @@ export default class CoC7ChatOpposedMessage {
         }
       }
       if (data.isCombat) {
-        if (checks[CoC7ChatOpposedMessage.participant.attacker].isWinner === checks[CoC7ChatOpposedMessage.participant.defender].isWinner) {
-          data.resultText = game.i18n.localize('CoC7.NoWinner')
-        } else if (checks[CoC7ChatOpposedMessage.participant.attacker].isWinner) {
-          if (checks[CoC7ChatOpposedMessage.participant.attacker].isManeuver) {
-            data.resultText = game.i18n.format('CoC7.ManeuverSuccess', {
-              name: checks[CoC7ChatOpposedMessage.participant.attacker].actorName
+        if (checks[Cd100ChatOpposedMessage.participant.attacker].isWinner === checks[Cd100ChatOpposedMessage.participant.defender].isWinner) {
+          data.resultText = game.i18n.localize('Cd100.NoWinner')
+        } else if (checks[Cd100ChatOpposedMessage.participant.attacker].isWinner) {
+          if (checks[Cd100ChatOpposedMessage.participant.attacker].isManeuver) {
+            data.resultText = game.i18n.format('Cd100.ManeuverSuccess', {
+              name: checks[Cd100ChatOpposedMessage.participant.attacker].actorName
             })
           } else {
-            data.resultText = game.i18n.format('CoC7.AttackSuccess', {
-              name: checks[CoC7ChatOpposedMessage.participant.attacker].actorName
+            data.resultText = game.i18n.format('Cd100.AttackSuccess', {
+              name: checks[Cd100ChatOpposedMessage.participant.attacker].actorName
             })
           }
         } else {
-          if (checks[CoC7ChatOpposedMessage.participant.defender].isManeuver) {
-            data.resultText = game.i18n.format('CoC7.ManeuverSuccess', {
-              name: checks[CoC7ChatOpposedMessage.participant.defender].actorName
+          if (checks[Cd100ChatOpposedMessage.participant.defender].isManeuver) {
+            data.resultText = game.i18n.format('Cd100.ManeuverSuccess', {
+              name: checks[Cd100ChatOpposedMessage.participant.defender].actorName
             })
-          } else if (checks[CoC7ChatOpposedMessage.participant.defender].isDodge) {
-            data.resultText = game.i18n.format('CoC7.DodgeSuccess', {
-              name: checks[CoC7ChatOpposedMessage.participant.defender].actorName
+          } else if (checks[Cd100ChatOpposedMessage.participant.defender].isDodge) {
+            data.resultText = game.i18n.format('Cd100.DodgeSuccess', {
+              name: checks[Cd100ChatOpposedMessage.participant.defender].actorName
             })
           } else {
-            data.resultText = game.i18n.format('CoC7.AttackSuccess', {
-              name: checks[CoC7ChatOpposedMessage.participant.defender].actorName
+            data.resultText = game.i18n.format('Cd100.AttackSuccess', {
+              name: checks[Cd100ChatOpposedMessage.participant.defender].actorName
             })
           }
         }
@@ -788,7 +788,7 @@ export default class CoC7ChatOpposedMessage {
         data.rollActors[key] = foundry.utils.duplicate(rollActors[key])
         if (isManeuver) {
           for (const roll of data.rollActors[key].rolls) {
-            roll.tags.push(game.i18n.localize('CoC7.WeaponManeuver') + ' (' + game.i18n.localize('CoC7.Build') + ': ' + rollActors[key].build + ')')
+            roll.tags.push(game.i18n.localize('Cd100.WeaponManeuver') + ' (' + game.i18n.localize('Cd100.Build') + ': ' + rollActors[key].build + ')')
           }
         }
       }
@@ -808,7 +808,7 @@ export default class CoC7ChatOpposedMessage {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7ChatOpposedMessage',
+            as: 'Cd100ChatOpposedMessage',
             actorRolls: Object.keys(this.#actorRolls).reduce((c, k) => {
               c[k.replace(/\./g, '/')] = Object.keys(this.#actorRolls[k]).reduce((c, k2) => {
                 if (k2 === 'dicePool') {
@@ -832,7 +832,7 @@ export default class CoC7ChatOpposedMessage {
         c.concat(this.#actorRolls[k].dicePool.newRolls)
         return c
       }, [])),
-      speaker: { alias: game.i18n.localize('CoC7.OpposedRollCard') },
+      speaker: { alias: game.i18n.localize('Cd100.OpposedRollCard') },
       /* // FoundryVTT V12 */
       content: await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/opposed-roll.hbs', data)
     }
@@ -865,7 +865,7 @@ export default class CoC7ChatOpposedMessage {
         }
       }
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -937,7 +937,7 @@ export default class CoC7ChatOpposedMessage {
       const actorRolls = {}
       const actorDecaders = {}
       for (const roll of dataSet.rolls) {
-        const uuid = CoC7Utilities.oldStyleToUuid(roll.actorKey)
+        const uuid = Cd100Utilities.oldStyleToUuid(roll.actorKey)
         if (actorUuid === '') {
           actorUuid = uuid
         }
@@ -958,14 +958,14 @@ export default class CoC7ChatOpposedMessage {
         if (typeof roll.characteristic === 'string') {
           currentRoll.type = 'characteristic'
           currentRoll.key = roll.characteristic
-          currentRoll.shortName = CoC7Utilities.getCharacteristicNames(roll.characteristic)?.short ?? '-'
-          currentRoll.fullName = CoC7Utilities.getCharacteristicNames(roll.characteristic)?.label ?? '-'
+          currentRoll.shortName = Cd100Utilities.getCharacteristicNames(roll.characteristic)?.short ?? '-'
+          currentRoll.fullName = Cd100Utilities.getCharacteristicNames(roll.characteristic)?.label ?? '-'
           currentRoll.tags.push(currentRoll.shortName)
         } else if (typeof roll.attribute === 'string') {
           currentRoll.type = 'attribute'
           currentRoll.key = roll.attribute
-          currentRoll.shortName = CoC7Utilities.getAttributeNames(roll.attribute)?.short ?? '-'
-          currentRoll.fullName = CoC7Utilities.getAttributeNames(roll.attribute)?.label ?? '-'
+          currentRoll.shortName = Cd100Utilities.getAttributeNames(roll.attribute)?.short ?? '-'
+          currentRoll.fullName = Cd100Utilities.getAttributeNames(roll.attribute)?.label ?? '-'
           currentRoll.tags.push(currentRoll.shortName)
         } else {
           currentRoll.type = 'skill'
@@ -977,26 +977,26 @@ export default class CoC7ChatOpposedMessage {
           }
         }
         if (currentRoll.poolModifier < 0) {
-          currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty'))
+          currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty'))
         } else if (currentRoll.poolModifier > 0) {
-          currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('CoC7.DiceModifierBonus'))
+          currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('Cd100.DiceModifierBonus'))
         }
         switch (currentRoll.difficulty) {
-          case CoC7DicePool.difficultyLevel.regular:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyRegularTitle'))
+          case Cd100DicePool.difficultyLevel.regular:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyRegularTitle'))
             break
-          case CoC7DicePool.difficultyLevel.hard:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyHardTitle'))
+          case Cd100DicePool.difficultyLevel.hard:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyHardTitle'))
             break
-          case CoC7DicePool.difficultyLevel.extreme:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyExtremeTitle'))
+          case Cd100DicePool.difficultyLevel.extreme:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyExtremeTitle'))
             break
-          case CoC7DicePool.difficultyLevel.critical:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyCriticalTitle'))
+          case Cd100DicePool.difficultyLevel.critical:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyCriticalTitle'))
             break
         }
         if (currentRoll.isPushable) {
-          currentRoll.tags.push(game.i18n.localize('CoC7.Pushing'))
+          currentRoll.tags.push(game.i18n.localize('Cd100.Pushing'))
         }
         if (typeof roll.dices?.tens !== 'undefined') {
           if (typeof actorDecaders[uuidAsKey] === 'undefined') {
@@ -1034,7 +1034,7 @@ export default class CoC7ChatOpposedMessage {
           isManeuver: currentRoll.isManeuver,
           isPushable: currentRoll.isPushable,
           key: currentRoll.key,
-          participant: CoC7ChatOpposedMessage.participant.attacker,
+          participant: Cd100ChatOpposedMessage.participant.attacker,
           shortName: currentRoll.shortName,
           tags: currentRoll.tags,
           type: currentRoll.type,
@@ -1056,7 +1056,7 @@ export default class CoC7ChatOpposedMessage {
           actorRolls[uuidAsKey].dicePool.rolledDice[0].bonusDice.push(actorDecaders[uuidAsKey][b])
         }
       }
-      actorRolls[actorUuid.replace(/\./g, '/')].participant = CoC7ChatOpposedMessage.participant.defender
+      actorRolls[actorUuid.replace(/\./g, '/')].participant = Cd100ChatOpposedMessage.participant.defender
       const update = {
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=type']: null,
@@ -1064,16 +1064,16 @@ export default class CoC7ChatOpposedMessage {
         ['flags.' + FOLDER_ID + '.-=state']: null,
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=initiator']: null,
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatOpposedMessage',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatOpposedMessage',
         ['flags.' + FOLDER_ID + '.load.actorRolls']: actorRolls,
         ['flags.' + FOLDER_ID + '.load.actorUuids']: Object.keys(actorRolls).map(k => k.replace(/\//g, '.')),
-        ['flags.' + FOLDER_ID + '.load.advantage']: (dataSet._aa === true ? CoC7ChatOpposedMessage.participant.attacker : (dataSet._ad === true ? CoC7ChatOpposedMessage.participant.defender : CoC7ChatOpposedMessage.participant.none)),
+        ['flags.' + FOLDER_ID + '.load.advantage']: (dataSet._aa === true ? Cd100ChatOpposedMessage.participant.attacker : (dataSet._ad === true ? Cd100ChatOpposedMessage.participant.defender : Cd100ChatOpposedMessage.participant.none)),
         ['flags.' + FOLDER_ID + '.load.cardOpen']: Object.values(actorRolls)[0].dicePool.rolledDice[0].rolled,
         ['flags.' + FOLDER_ID + '.load.isCombat']: (dataSet.combat === true),
         ['flags.' + FOLDER_ID + '.load.isRolling']: rolled
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7ChatOpposedMessage.loadFromMessage(merged, true)
+      const check = await Cd100ChatOpposedMessage.loadFromMessage(merged, true)
       if (check) {
         const data = await check.getTemplateData()
         update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/opposed-roll.hbs', data)
@@ -1097,7 +1097,7 @@ export default class CoC7ChatOpposedMessage {
     let uuidAsKey = ''
     for (const rollStatus of Object.keys(message.flags[FOLDER_ID]['group-message'].rollStatuses)) {
       const currentRoll = {
-        difficulty: CoC7DicePool.difficultyLevel.regular,
+        difficulty: Cd100DicePool.difficultyLevel.regular,
         flatDiceModifier: 0,
         flatThresholdModifier: 0,
         fullName: '-',
@@ -1136,12 +1136,12 @@ export default class CoC7ChatOpposedMessage {
         actor = null
       }
       if (currentRoll.type === 'characteristic') {
-        currentRoll.shortName = CoC7Utilities.getCharacteristicNames(currentRoll.key)?.short ?? '-'
-        currentRoll.fullName = CoC7Utilities.getCharacteristicNames(currentRoll.key)?.label ?? '-'
+        currentRoll.shortName = Cd100Utilities.getCharacteristicNames(currentRoll.key)?.short ?? '-'
+        currentRoll.fullName = Cd100Utilities.getCharacteristicNames(currentRoll.key)?.label ?? '-'
         currentRoll.tags.push(currentRoll.shortName)
       } else if (currentRoll.type === 'attribute') {
-        currentRoll.shortName = CoC7Utilities.getAttributeNames(currentRoll.key)?.short ?? '-'
-        currentRoll.fullName = CoC7Utilities.getAttributeNames(currentRoll.key)?.label ?? '-'
+        currentRoll.shortName = Cd100Utilities.getAttributeNames(currentRoll.key)?.short ?? '-'
+        currentRoll.fullName = Cd100Utilities.getAttributeNames(currentRoll.key)?.label ?? '-'
         currentRoll.tags.push(currentRoll.shortName)
       } else {
         currentRoll.shortName = message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].shortName ?? '-'
@@ -1149,26 +1149,26 @@ export default class CoC7ChatOpposedMessage {
         currentRoll.tags.push(currentRoll.shortName)
       }
       if (currentRoll.poolModifier < 0) {
-        currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty'))
+        currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty'))
       } else if (currentRoll.poolModifier > 0) {
-        currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('CoC7.DiceModifierBonus'))
+        currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('Cd100.DiceModifierBonus'))
       }
       switch (currentRoll.difficulty) {
-        case CoC7DicePool.difficultyLevel.regular:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyRegularTitle'))
+        case Cd100DicePool.difficultyLevel.regular:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyRegularTitle'))
           break
-        case CoC7DicePool.difficultyLevel.hard:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyHardTitle'))
+        case Cd100DicePool.difficultyLevel.hard:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyHardTitle'))
           break
-        case CoC7DicePool.difficultyLevel.extreme:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyExtremeTitle'))
+        case Cd100DicePool.difficultyLevel.extreme:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyExtremeTitle'))
           break
-        case CoC7DicePool.difficultyLevel.critical:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyCriticalTitle'))
+        case Cd100DicePool.difficultyLevel.critical:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyCriticalTitle'))
           break
       }
       if (currentRoll.isPushable) {
-        currentRoll.tags.push(game.i18n.localize('CoC7.Pushing'))
+        currentRoll.tags.push(game.i18n.localize('Cd100.Pushing'))
       }
       if (typeof message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].completed?.dices.tens !== 'undefined') {
         if (typeof actorDecaders[uuidAsKey] === 'undefined') {
@@ -1206,7 +1206,7 @@ export default class CoC7ChatOpposedMessage {
         isManeuver: message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].isManeuver,
         isPushable: message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].isPushable,
         key: currentRoll.key,
-        participant: (message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].isAttacker ? CoC7ChatOpposedMessage.participant.attacker : CoC7ChatOpposedMessage.participant.defender),
+        participant: (message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].isAttacker ? Cd100ChatOpposedMessage.participant.attacker : Cd100ChatOpposedMessage.participant.defender),
         shortName: currentRoll.shortName,
         tags: currentRoll.tags,
         type: currentRoll.type,
@@ -1229,16 +1229,16 @@ export default class CoC7ChatOpposedMessage {
     const update = {
       /* // FoundryVTT V13 */
       ['flags.' + FOLDER_ID + '.-=group-message']: null,
-      ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatOpposedMessage',
+      ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatOpposedMessage',
       ['flags.' + FOLDER_ID + '.load.actorRolls']: actorRolls,
       ['flags.' + FOLDER_ID + '.load.actorUuids']: Object.keys(actorRolls).map(k => k.replace(/\//g, '.')),
-      ['flags.' + FOLDER_ID + '.load.advantage']: (message.flags[FOLDER_ID]['group-message'].advantageAttacker === true ? CoC7ChatOpposedMessage.participant.attacker : (message.flags[FOLDER_ID]['group-message'].advantageDefender === true ? CoC7ChatOpposedMessage.participant.defender : CoC7ChatOpposedMessage.participant.none)),
+      ['flags.' + FOLDER_ID + '.load.advantage']: (message.flags[FOLDER_ID]['group-message'].advantageAttacker === true ? Cd100ChatOpposedMessage.participant.attacker : (message.flags[FOLDER_ID]['group-message'].advantageDefender === true ? Cd100ChatOpposedMessage.participant.defender : Cd100ChatOpposedMessage.participant.none)),
       ['flags.' + FOLDER_ID + '.load.cardOpen']: message.flags[FOLDER_ID]['group-message'].isEditable,
       ['flags.' + FOLDER_ID + '.load.isCombat']: message.flags[FOLDER_ID]['group-message'].isCombat,
       ['flags.' + FOLDER_ID + '.load.isRolling']: message.flags[FOLDER_ID]['group-message'].allRollsCompleted
     }
     const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-    const check = await CoC7ChatOpposedMessage.loadFromMessage(merged, true)
+    const check = await Cd100ChatOpposedMessage.loadFromMessage(merged, true)
     if (check) {
       const data = await check.getTemplateData()
       update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/opposed-roll.hbs', data)

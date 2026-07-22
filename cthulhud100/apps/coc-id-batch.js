@@ -1,6 +1,6 @@
 /* global foundry fromUuid game Item */
 import { FOLDER_ID } from '../constants.js'
-import CoC7Utilities from './utilities.js'
+import Cd100Utilities from './utilities.js'
 
 export default class CoCIDBatch extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
@@ -10,14 +10,14 @@ export default class CoCIDBatch extends foundry.applications.api.HandlebarsAppli
     const coc7Config = args.pop()
     super(...args)
     this.coc7Config = coc7Config
-    this.coc7Config.cocidRegExp = new RegExp('^' + CoC7Utilities.quoteRegExp(this.coc7Config.idPrefix))
+    this.coc7Config.cocidRegExp = new RegExp('^' + Cd100Utilities.quoteRegExp(this.coc7Config.idPrefix))
   }
 
   static DEFAULT_OPTIONS = {
     tag: 'form',
     classes: ['coc7', 'dialog'],
     window: {
-      title: 'CoC7.CoCIDBatch.title',
+      title: 'Cd100.CoCIDBatch.title',
       contentClasses: [
         'standard-form'
       ]
@@ -66,17 +66,17 @@ export default class CoCIDBatch extends foundry.applications.api.HandlebarsAppli
         context.foundKeys = Object.keys(this.coc7Config.foundKeys).reduce((out, key) => {
           out.push({ name: key, key: this.coc7Config.foundKeys[key] })
           return out
-        }, []).sort(CoC7Utilities.sortByNameKey)
+        }, []).sort(Cd100Utilities.sortByNameKey)
         context.missingNames = Object.keys(this.coc7Config.missingNames).reduce((out, key) => {
           out.push({ key: this.coc7Config.foundKeys[key] ?? '', name: key, custom: this.coc7Config.missingNames[key], suffix: this.coc7Config.missingNames[key].replace(this.coc7Config.cocidRegExp, '') })
           return out
-        }, []).sort(CoC7Utilities.sortByNameKey)
+        }, []).sort(Cd100Utilities.sortByNameKey)
         break
       case 'footer':
         context.buttons = [{
           type: 'submit',
           action: 'okay',
-          label: 'CoC7.Migrate.ButtonUpdate',
+          label: 'Cd100.Migrate.ButtonUpdate',
           icon: 'fa-solid fa-check'
         }]
         break
@@ -100,7 +100,7 @@ export default class CoCIDBatch extends foundry.applications.api.HandlebarsAppli
             {
               const name = event.currentTarget.closest('.item').dataset.name
               if (name) {
-                this.coc7Config.missingNames[name] = this.coc7Config.idPrefix + CoC7Utilities.toKebabCase(name)
+                this.coc7Config.missingNames[name] = this.coc7Config.idPrefix + Cd100Utilities.toKebabCase(name)
                 this.render()
               }
             }
@@ -111,7 +111,7 @@ export default class CoCIDBatch extends foundry.applications.api.HandlebarsAppli
               for (const row of rows) {
                 const name = row.dataset.name
                 if (name && this.coc7Config.missingNames[name] === '') {
-                  this.coc7Config.missingNames[name] = this.coc7Config.idPrefix + CoC7Utilities.toKebabCase(name)
+                  this.coc7Config.missingNames[name] = this.coc7Config.idPrefix + Cd100Utilities.toKebabCase(name)
                 }
               }
               this.render()
@@ -409,14 +409,14 @@ export default class CoCIDBatch extends foundry.applications.api.HandlebarsAppli
       }
     }
     if (Object.keys(missingNames).filter(key => missingNames[key] === '').length > 0) {
-      const cocidRegExp = new RegExp('^' + CoC7Utilities.quoteRegExp(idPrefix))
-      const items = await game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp, type: idType, era: false, showLoading: true })
+      const cocidRegExp = new RegExp('^' + Cd100Utilities.quoteRegExp(idPrefix))
+      const items = await game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp, type: idType, era: false, showLoading: true })
       for (const item of items) {
-        foundKeys[item.name] = item.flags.CoC7.cocidFlag.id
+        foundKeys[item.name] = item.flags.Cd100.cocidFlag.id
       }
-      const CoCIDKeys = Object.assign(foundry.utils.flattenObject(game.i18n._fallback.CoC7?.CoCIDFlag?.keys ?? {}), foundry.utils.flattenObject(game.i18n.translations.CoC7?.CoCIDFlag?.keys ?? {}))
+      const CoCIDKeys = Object.assign(foundry.utils.flattenObject(game.i18n._fallback.Cd100?.CoCIDFlag?.keys ?? {}), foundry.utils.flattenObject(game.i18n.translations.Cd100?.CoCIDFlag?.keys ?? {}))
       for (const key in CoCIDKeys) {
-        foundKeys[game.i18n.format('CoC7.CoCIDFlag.keys.' + key)] = key
+        foundKeys[game.i18n.format('Cd100.CoCIDFlag.keys.' + key)] = key
       }
       for (const name in missingNames) {
         if (typeof foundKeys[name] !== 'undefined') {
@@ -700,15 +700,15 @@ export default class CoCIDBatch extends foundry.applications.api.HandlebarsAppli
     if ((Object.keys(foundActor).length + foundItem.length + Object.keys(foundToken).length + Object.keys(foundCompendiumActor).length + Object.keys(foundCompendiumItem).length) > 0) {
       const migrate = await new Promise(resolve => {
         new foundry.applications.api.DialogV2({
-          window: { title: 'CoC7.CoCIDBatch.title' },
-          content: game.i18n.localize('CoC7.CoCIDBatch.ThrowSkillChange'),
+          window: { title: 'Cd100.CoCIDBatch.title' },
+          content: game.i18n.localize('Cd100.CoCIDBatch.ThrowSkillChange'),
           buttons: [{
             action: 'cancel',
-            label: 'CoC7.Migrate.ButtonSkip',
+            label: 'Cd100.Migrate.ButtonSkip',
             icon: 'fa-solid fa-ban'
           }, {
             action: 'ok',
-            label: 'CoC7.Migrate.ButtonUpdate',
+            label: 'Cd100.Migrate.ButtonUpdate',
             icon: 'fa-solid fa-check'
           }],
           submit: result => {

@@ -1,9 +1,9 @@
 /* global foundry game ui */
 import { FOLDER_ID } from '../constants.js'
-import CoC7RegisterTours from '../setup/register-tours.js'
-import CoC7SystemSocket from '../apps/system-socket.js'
-import CoC7Updater from '../apps/updater.js'
-import CoC7Utilities from '../apps/utilities.js'
+import Cd100RegisterTours from '../setup/register-tours.js'
+import Cd100SystemSocket from '../apps/system-socket.js'
+import Cd100Updater from '../apps/updater.js'
+import Cd100Utilities from '../apps/utilities.js'
 import deprecated from '../deprecated.js'
 
 export default function () {
@@ -22,19 +22,19 @@ export default function () {
   if (typeof readMe[lang] === 'undefined') {
     lang = 'en'
   }
-  game.CoC7.Manual = readMe[lang]
+  game.Cd100.Manual = readMe[lang]
   if (foundry.utils.isNewerVersion(game.system.version, instructionsVersion ?? '0')) {
-    game.packs.get(FOLDER_ID + '.system-doc').getDocument(game.CoC7.Manual).then((doc) => {
+    game.packs.get(FOLDER_ID + '.system-doc').getDocument(game.Cd100.Manual).then((doc) => {
       /* // FoundryVTT V12 */
       doc.sheet.render(true)
       game.settings.set(FOLDER_ID, 'showInstructions', game.system.version)
     })
   }
 
-  CoC7RegisterTours()
-  game.CoC7.skillNames.refreshList()
+  Cd100RegisterTours()
+  game.Cd100.skillNames.refreshList()
   game.socket.on('system.' + FOLDER_ID, async data => {
-    CoC7SystemSocket.callSocket(data)
+    Cd100SystemSocket.callSocket(data)
   })
 
   /* // FoundryVTT V12 */
@@ -62,9 +62,9 @@ export default function () {
     game.settings.set(FOLDER_ID, 'boutOfMadnessRealTimeTable', 'RollTable.' + game.settings.get(FOLDER_ID, 'boutOfMadnessRealTimeTable'))
   }
 
-  CoC7Utilities.updateBoutTableChoices()
+  Cd100Utilities.updateBoutTableChoices()
   deprecated.ready()
-  CoC7Updater.checkForUpdate()
+  Cd100Updater.checkForUpdate()
 
   if (game.modules.get('dice-so-nice')?.version === '5.3.0') {
     ui.notifications.error('Dice So Nice 5.3.0 is not compatible with the system, please update to 5.3.2', { localize: false, permanent: true, console: false })

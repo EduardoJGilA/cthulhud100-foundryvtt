@@ -1,9 +1,9 @@
 <section class="tab details scrollable {{tabs.details.cssClass}}" data-group="primary" data-tab="details">
   <fieldset class="flexcol">
-    <legend>{{localize 'CoC7.Armor'}}</legend>
+    <legend>{{localize 'Cd100.Armor'}}</legend>
     <div class="toggle-row flexrow">
       <div class="toggle-attributes" data-set="stats.armor">
-        <button class="toggle-switch{{#if document.system.stats.armor.localized}} switched-on{{/if}}" data-property="localized">{{localize 'CoC7.ArmourPlating'}}</button>
+        <button class="toggle-switch{{#if document.system.stats.armor.localized}} switched-on{{/if}}" data-property="localized">{{localize 'Cd100.ArmourPlating'}}</button>
       </div>
       {{#if document.system.stats.armor.localized}}
         <div class="item-controls">
@@ -14,8 +14,8 @@
     {{#if document.system.stats.armor.localized}}
       {{#each document.system.stats.armor.locations as |location offset|}}
         <div class="flexrow">
-          <input type="text" name="system.stats.armor.locations.{{offset}}.name" value="{{location.name}}" placeholder="{{localize 'CoC7.Location'}}" />
-          <input type="text" name="system.stats.armor.locations.{{offset}}.value" value="{{location.value}}" placeholder="{{localize 'CoC7.Armor'}}" />
+          <input type="text" name="system.stats.armor.locations.{{offset}}.name" value="{{location.name}}" placeholder="{{localize 'Cd100.Location'}}" />
+          <input type="text" name="system.stats.armor.locations.{{offset}}.value" value="{{location.value}}" placeholder="{{localize 'Cd100.Armor'}}" />
           <div class="item-controls">
             <a class="item-control" data-action="armor-remove" data-offset="{{offset}}"><i class="fa-regular fa-minus-circle"></i></a>
           </div>
@@ -23,27 +23,27 @@
       {{/each}}
     {{else}}
       <div class="flexrow">
-        <label>{{localize 'CoC7.Armor'}}</label>
+        <label>{{localize 'Cd100.Armor'}}</label>
         <input type="text" name="system.stats.armor.value" value="{{document.system.stats.armor.value}}" />
       </div>
     {{/if}}
   </fieldset>
   <fieldset class="flexcol">
-    <legend>{{localize 'CoC7.Attributes'}}</legend>
+    <legend>{{localize 'Cd100.Attributes'}}</legend>
     <div class="flexrow">
-      <label>{{localize 'CoC7.Movement'}}</label>
+      <label>{{localize 'Cd100.Movement'}}</label>
       <input type="text" name="system.stats.mov" value="{{document.system.stats.mov}}" />
     </div>
     <div class="flexrow">
-      <label>{{localize 'CoC7.Build'}}</label>
+      <label>{{localize 'Cd100.Build'}}</label>
       <input type="text" name="system.stats.build.value" value="{{document.system.stats.build.value}}" />
     </div>
   </fieldset>
   <fieldset class="flexcol">
-    <legend>{{localize 'CoC7.Properties'}}</legend>
+    <legend>{{localize 'Cd100.Properties'}}</legend>
     <div class="toggle-row">
       <div class="toggle-attributes" data-set="properties">
-        <button class="toggle-switch{{#if document.system.properties.armed}} switched-on{{/if}}" data-property="armed">{{localize 'CoC7.ArmedVehicle'}}</button>
+        <button class="toggle-switch{{#if document.system.properties.armed}} switched-on{{/if}}" data-property="armed">{{localize 'Cd100.ArmedVehicle'}}</button>
       </div>
     </div>
   </fieldset>

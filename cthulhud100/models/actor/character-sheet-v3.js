@@ -1,10 +1,10 @@
 /* global foundry game */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsActorCharacterSheetV2 from './character-sheet-v2.js'
-import CoC7CombatTables from '../../apps/combat-tables.js'
-import CoC7MentalStability from '../../apps/mental-stability.js'
+import Cd100ModelsActorCharacterSheetV2 from './character-sheet-v2.js'
+import Cd100CombatTables from '../../apps/combat-tables.js'
+import Cd100MentalStability from '../../apps/mental-stability.js'
 
-export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorCharacterSheetV2 {
+export default class Cd100ModelsActorCharacterSheetV3 extends Cd100ModelsActorCharacterSheetV2 {
   static DEFAULT_OPTIONS = {
     classes: ['investigator'],
     position: {
@@ -54,28 +54,28 @@ export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorChar
       background: {
         cssClass: 'tab background',
         icon: '',
-        label: 'CoC7.Background'
+        label: 'Cd100.Background'
       },
       possessions: {
         cssClass: 'tab possessions',
         icon: '',
-        label: 'CoC7.Possessions'
+        label: 'Cd100.Possessions'
       },
       combat: {
         cssClass: 'tab combat',
         icon: '',
-        label: 'CoC7.Combat'
+        label: 'Cd100.Combat'
       },
       skills: {
         cssClass: 'tab skills',
         icon: '',
-        label: 'CoC7.Skills'
+        label: 'Cd100.Skills'
       },
       activeEffects: {
         cssClass: 'tab effects small-ribbon',
         icon: 'game-icon game-icon-aura',
         label: '',
-        tooltip: 'CoC7.Effects'
+        tooltip: 'Cd100.Effects'
       }
     }
     if (context.showDevPanel) {
@@ -83,7 +83,7 @@ export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorChar
         cssClass: 'tab development small-ribbon',
         icon: 'fa-solid fa-cogs',
         label: '',
-        tooltip: 'CoC7.CharacterDevelopment'
+        tooltip: 'Cd100.CharacterDevelopment'
       }
     }
     if (game.user.isGM) {
@@ -91,7 +91,7 @@ export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorChar
         cssClass: 'tab keeper small-ribbon',
         icon: 'game-icon game-icon-tentacles-skull',
         label: '',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
     if (!context.document.system.flags.locked) {
@@ -124,7 +124,7 @@ export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorChar
       let value = 0
       context.mentalStability = {
         ...mentalStability,
-        stateLabel: CoC7MentalStability.label(mentalStability.state),
+        stateLabel: Cd100MentalStability.label(mentalStability.state),
         barBoxes: sizes.map((size, index) => ({
           index: index + 1,
           boxes: Array.from({ length: size }, () => {
@@ -135,7 +135,7 @@ export default class CoC7ModelsActorCharacterSheetV3 extends CoC7ModelsActorChar
       }
     }
     if (context.hitLocationRule) {
-      context.locationHitPoints = CoC7CombatTables.locationHitPoints(
+      context.locationHitPoints = Cd100CombatTables.locationHitPoints(
         context.document.system.characteristics?.siz?.value,
         context.document.system.characteristics?.con?.value
       )

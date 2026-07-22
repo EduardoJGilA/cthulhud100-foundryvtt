@@ -7,7 +7,7 @@ This page creates an investigator using the provided compendiums, if you are rea
 
 # Skill
 
-Click on the Compendium Packs tab then under the Item heading open up the Skills Item (CoC7). Here you will find the skills shown on the characters sheets available from Chaosium's website.
+Click on the Compendium Packs tab then under the Item heading open up the Skills Item (Cd100). Here you will find the skills shown on the characters sheets available from Chaosium's website.
 
 - _No adjustment_ - Can not be assigned personal skill points.
 - _No XP gain_ - You do not mark this skill for improvement on a success.
@@ -29,7 +29,7 @@ Click on the Items Directory tab then Create Item give this a name e.g. New Inve
 
 On the Description tab to set the description click the button to get an editor.
 
-On the Details tab click the on the Biography Sections to add any sections you require from the Create a Backstory step of investigator creation. Click on the Compendium Packs tab then under the Item heading open up the Items Examples Item (CoC7) and drag the [_Punch_] onto the setup.
+On the Details tab click the on the Biography Sections to add any sections you require from the Create a Backstory step of investigator creation. Click on the Compendium Packs tab then under the Item heading open up the Items Examples Item (Cd100) and drag the [_Punch_] onto the setup.
 
 On the Characteristics tab you can customise how investigator characteristics are rolled / bought
 

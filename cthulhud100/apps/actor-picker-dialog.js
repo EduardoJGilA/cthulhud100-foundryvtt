@@ -1,8 +1,8 @@
 /* global canvas CONST foundry fromUuid game TokenDocument ui */
 import { FOLDER_ID, TARGET_ALLOWED } from '../constants.js'
-import CoC7Utilities from './utilities.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ActorPickerDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100ActorPickerDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -16,21 +16,21 @@ export default class CoC7ActorPickerDialog extends foundry.applications.api.Hand
     tag: 'form',
     classes: ['coc7', 'dialog'],
     window: {
-      title: 'CoC7.PickWhichActorTitle',
+      title: 'Cd100.PickWhichActorTitle',
       contentClasses: [
         'standard-form'
       ]
     },
     form: {
       closeOnSubmit: true,
-      handler: CoC7ActorPickerDialog.#onSubmit
+      handler: Cd100ActorPickerDialog.#onSubmit
     },
     position: {
       width: 430,
       height: 400
     },
     actions: {
-      actorPicked: CoC7ActorPickerDialog.#onActorPicked
+      actorPicked: Cd100ActorPickerDialog.#onActorPicked
     }
   }
 
@@ -160,7 +160,7 @@ export default class CoC7ActorPickerDialog extends foundry.applications.api.Hand
           canPing: isTokenDocument
         })
       }
-      options.sort(CoC7Utilities.sortByNameKey)
+      options.sort(Cd100Utilities.sortByNameKey)
 
       if (!selected) {
         selected = options[0].uuid
@@ -172,7 +172,7 @@ export default class CoC7ActorPickerDialog extends foundry.applications.api.Hand
         }
       }
       return await new Promise(resolve => {
-        new CoC7ActorPickerDialog({}, {}, {
+        new Cd100ActorPickerDialog({}, {}, {
           allowNoActor,
           highlighted: null,
           options,
@@ -181,7 +181,7 @@ export default class CoC7ActorPickerDialog extends foundry.applications.api.Hand
         }).render({ force: true })
       })
     }
-    ui.notifications.warn('CoC7.WarnNoControlledActor', { localize: true })
+    ui.notifications.warn('Cd100.WarnNoControlledActor', { localize: true })
     return null
   }
 
@@ -206,14 +206,14 @@ export default class CoC7ActorPickerDialog extends foundry.applications.api.Hand
           context.buttons.push({
             type: 'submit',
             action: 'clear',
-            label: 'CoC7.NoTarget',
+            label: 'Cd100.NoTarget',
             icon: 'fa-solid fa-bullseye'
           })
         }
         context.buttons.push({
           type: 'submit',
           action: 'pick',
-          label: 'CoC7.SelectActor',
+          label: 'Cd100.SelectActor',
           icon: 'fa-solid fa-check'
         })
         break

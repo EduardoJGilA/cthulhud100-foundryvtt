@@ -1,14 +1,14 @@
 /* global canvas CONST foundry fromUuid game PIXI ui */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ChaseParticipant from '../chase/participant.js'
-import CoC7ChatChaseObstacle from '../../apps/chat-chase-obstacle.js'
-import CoC7DicePool from '../../apps/dice-pool.js'
-import CoC7ModelsItemChaseSheet from './chase-sheet.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7SystemSocket from '../../apps/system-socket.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ChaseParticipant from '../chase/participant.js'
+import Cd100ChatChaseObstacle from '../../apps/chat-chase-obstacle.js'
+import Cd100DicePool from '../../apps/dice-pool.js'
+import Cd100ModelsItemChaseSheet from './chase-sheet.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100SystemSocket from '../../apps/system-socket.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemChaseSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Default img
    * @returns {string}
@@ -114,7 +114,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
    */
   async allParticipants () {
     const participants = await Promise.all(this.participants.map(async (p, offset) => {
-      const participant = new CoC7ChaseParticipant(this.participants, offset)
+      const participant = new Cd100ChaseParticipant(this.participants, offset)
       await participant.loadUuids()
       return participant
     }))
@@ -163,8 +163,8 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
    */
   get allHaveSpeedRoll () {
     for (const participant of this.participants) {
-      if (CoC7DicePool.isValidPool(participant.speedCheck?.checkData?.flags?.[FOLDER_ID]?.load?.dicePool)) {
-        const dicePool = CoC7DicePool.fromObject(participant.speedCheck.checkData.flags[FOLDER_ID].load.dicePool)
+      if (Cd100DicePool.isValidPool(participant.speedCheck?.checkData?.flags?.[FOLDER_ID]?.load?.dicePool)) {
+        const dicePool = Cd100DicePool.fromObject(participant.speedCheck.checkData.flags[FOLDER_ID].load.dicePool)
         if (!dicePool.isRolled) {
           return false
         }
@@ -198,7 +198,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
   async progressToNextRound () {
     const participants = foundry.utils.duplicate(this.participants)
     const participantsAll = await this.allParticipants()
-    participantsAll.all.sort(CoC7Utilities.sortByInitiative)
+    participantsAll.all.sort(Cd100Utilities.sortByInitiative)
     for (const offset in participants) {
       const offset2 = participantsAll.all.findIndex(p => p.uuid === participants[offset].uuid)
       if (offset2 > -1) {
@@ -218,7 +218,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
       return undefined
     }
     const participants = await this.allParticipants()
-    participants.all.sort(CoC7Utilities.sortByInitiative)
+    participants.all.sort(Cd100Utilities.sortByInitiative)
     const participantUuid = participants.all.find(p => p.currentMovementActions > 0)
     return participantUuid?.uuid
   }
@@ -233,17 +233,17 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
     const assistantIndex = participants.findIndex(p => p.uuid === assistantUuid)
     const beneficiaryIndex = participants.findIndex(p => p.uuid === beneficiaryUuid)
     if (assistantIndex === -1 || beneficiaryIndex === -1) {
-      ui.notifications.error('CoC7.ParticipantNotFound', { localize: true })
+      ui.notifications.error('Cd100.ParticipantNotFound', { localize: true })
       return
     }
-    if (participants[beneficiaryIndex].bonusDice >= CoC7DicePool.maxDiceBonus) {
+    if (participants[beneficiaryIndex].bonusDice >= Cd100DicePool.maxDiceBonus) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ErrorBeneficiaryAtMaxBonus', { name: participants[beneficiaryIndex].name }))
+      ui.notifications.error(game.i18n.format('Cd100.ErrorBeneficiaryAtMaxBonus', { name: participants[beneficiaryIndex].name }))
       return
     }
     if (participants[assistantIndex].currentMovementActions < 1) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ParticipantNotEnoughMovement', { assistantUuid, actions: participants[assistantIndex].currentMovementActions }))
+      ui.notifications.error(game.i18n.format('Cd100.ParticipantNotEnoughMovement', { assistantUuid, actions: participants[assistantIndex].currentMovementActions }))
       return
     }
     participants[beneficiaryIndex].bonusDice++
@@ -288,17 +288,17 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
     const offset = participants.findIndex(p => p.uuid === participantUuid)
     if (offset === -1) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ParticipantUuidNotFound', { participantUuid }))
+      ui.notifications.error(game.i18n.format('Cd100.ParticipantUuidNotFound', { participantUuid }))
       return
     }
-    if (participants[offset].bonusDice >= CoC7DicePool.maxDiceBonus) {
+    if (participants[offset].bonusDice >= Cd100DicePool.maxDiceBonus) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ErrorBeneficiaryAtMaxBonus', { name: participants[offset].name }))
+      ui.notifications.error(game.i18n.format('Cd100.ErrorBeneficiaryAtMaxBonus', { name: participants[offset].name }))
       return
     }
     if (participants[offset].currentMovementActions < 1) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ParticipantNotEnoughMovement', { assistantUuid: participantUuid, actions: participants[offset].currentMovementActions }))
+      ui.notifications.error(game.i18n.format('Cd100.ParticipantNotEnoughMovement', { assistantUuid: participantUuid, actions: participants[offset].currentMovementActions }))
       return
     }
     participants[offset].bonusDice++
@@ -316,7 +316,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
     const offset = participants.findIndex(p => p.uuid === participantUuid)
     if (offset === -1) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ParticipantUuidNotFound', { participantUuid }))
+      ui.notifications.error(game.i18n.format('Cd100.ParticipantUuidNotFound', { participantUuid }))
       return
     }
     participants[offset].bonusDice--
@@ -328,12 +328,12 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
    * @param {string} locationId
    */
   activeParticipantObstacleCheck (locationId) {
-    CoC7ChatChaseObstacle.createMessage({ chaseUuid: this.parent.uuid, locationId, participantId: this.participants.find(p => p.active).uuid, forward: locationId !== this.activeLocation.uuid })
+    Cd100ChatChaseObstacle.createMessage({ chaseUuid: this.parent.uuid, locationId, participantId: this.participants.find(p => p.active).uuid, forward: locationId !== this.activeLocation.uuid })
   }
 
   /**
    * Process callback
-   * @param {CoC7Check} check
+   * @param {Cd100Check} check
    */
   async updateRoll (check) {
     if (check.isRolled) {
@@ -356,7 +356,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
             break
         }
       } else {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'callbackCheck',
           messageId: check.message.id
         })
@@ -465,7 +465,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
    */
   async cutToTheChase () {
     if (!this.allHaveSpeedRoll) {
-      ui.notifications.warn('CoC7.NotAllHaveSpeedRoll', { localize: true })
+      ui.notifications.warn('Cd100.NotAllHaveSpeedRoll', { localize: true })
       return
     }
     const participants = await this.allParticipants()
@@ -478,10 +478,10 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
       movementActions[participant.uuid] = participant.actions
       hasChaserAndPrey[participant.chaser ? 'chaser' : 'prey'] = true
     }
-    participants.all.sort(CoC7Utilities.sortByInitiative)
+    participants.all.sort(Cd100Utilities.sortByInitiative)
     const firstParticipantId = participants.all[0].uuid
     if (!Object.values(hasChaserAndPrey).reduce((c, b) => c && b, true)) {
-      ui.notifications.warn('CoC7.NeedMin2Participants', { localize: true })
+      ui.notifications.warn('Cd100.NeedMin2Participants', { localize: true })
       return
     }
     if (this.allHaveValidMov) {
@@ -494,10 +494,10 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
       await this.parent.update({ 'system.started': true, 'system.locations.list': locations, 'system.participants': participants })
       // Resize and select tab for this sheet
       for (const instances of foundry.applications.instances) {
-        if (instances[1] instanceof CoC7ModelsItemChaseSheet && instances[1].document.uuid === this.parent.uuid) {
+        if (instances[1] instanceof Cd100ModelsItemChaseSheet && instances[1].document.uuid === this.parent.uuid) {
           const currentWidth = instances[1].position.width
-          const minWidth = CoC7Utilities.remToPx(40)
-          const participantWidth = CoC7Utilities.remToPx(participants.length * 12.25 + (participants.length - 1) * 0.5 + 1 + 1) + 1 // initiative-block each + each gap + padding on tab + 1px
+          const minWidth = Cd100Utilities.remToPx(40)
+          const participantWidth = Cd100Utilities.remToPx(participants.length * 12.25 + (participants.length - 1) * 0.5 + 1 + 1) + 1 // initiative-block each + each gap + padding on tab + 1px
           const maxWidth = document.body.clientWidth
           instances[1].render({ tab: { primary: 'setup' }, position: { width: Math.min(maxWidth, Math.max(currentWidth, minWidth, participantWidth)) } })
         }
@@ -525,7 +525,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
     await this.parent.update({ 'system.started': false, 'system.locations.list': locations, 'system.participants': participants })
     // Resize and select tab for this sheet
     for (const instances of foundry.applications.instances) {
-      if (instances[1] instanceof CoC7ModelsItemChaseSheet && instances[1].document.uuid === this.parent.uuid) {
+      if (instances[1] instanceof Cd100ModelsItemChaseSheet && instances[1].document.uuid === this.parent.uuid) {
         instances[1].render({ position: { width: instances[1].options.position.width } })
       }
     }
@@ -540,8 +540,8 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
     const offset = participants.findIndex(p => p.uuid === participantUuid)
     if (offset > -1) {
       new foundry.applications.api.DialogV2({
-        window: { title: 'CoC7.RemoveParticipant' },
-        content: '<p>' + game.i18n.format('CoC7.RemoveParticipantHint', { name: participants[offset].name }) + '</p>',
+        window: { title: 'Cd100.RemoveParticipant' },
+        content: '<p>' + game.i18n.format('Cd100.RemoveParticipantHint', { name: participants[offset].name }) + '</p>',
         buttons: [{
           action: 'cancel',
           label: 'No',
@@ -609,7 +609,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
     const offset = locations.findIndex(l => l.participants.includes(participantId))
     if (offset === -1) {
       /* // FoundryVTT V12 */
-      ui.notifications.error(game.i18n.format('CoC7.ParticipantUuidNotFound', { participantUuid: participantId }))
+      ui.notifications.error(game.i18n.format('Cd100.ParticipantUuidNotFound', { participantUuid: participantId }))
       return
     }
     const newLocation = Math.min(Math.max(0, offset + locationsMoved), locations.length - 1)
@@ -619,7 +619,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
       const participantIndex = participants.findIndex(p => p.uuid === participantId)
       if (participants[participantIndex].currentMovementActions < totalMove) {
         /* // FoundryVTT V12 */
-        ui.notifications.error(game.i18n.format('CoC7.ParticipantNotEnoughMovement', { assistantUuid: participantId, actions: participants[participantIndex].currentMovementActions }))
+        ui.notifications.error(game.i18n.format('Cd100.ParticipantNotEnoughMovement', { assistantUuid: participantId, actions: participants[participantIndex].currentMovementActions }))
         return
       }
       const offset2 = locations[offset].participants.findIndex(p => participantId)
@@ -679,7 +679,7 @@ export default class CoC7ModelsItemChaseSystem extends CoC7ModelsItemGlobalSyste
           return
         }
         if (token.parent.uuid !== canvas.scene.uuid) {
-          ui.notifications.error('CoC7.ErrorTokenNotOnScene', { localize: true })
+          ui.notifications.error('Cd100.ErrorTokenNotOnScene', { localize: true })
           return
         }
         const targetRect = new PIXI.Rectangle(

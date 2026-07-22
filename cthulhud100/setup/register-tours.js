@@ -1,20 +1,20 @@
 /* global game */
 import { FOLDER_ID } from '../constants.js'
-import CoC7EnableVariantRulesEn from '../tours/enable-variant-rules-en.js'
-import CoC7EnableVariantRulesEs from '../tours/enable-variant-rules-es.js'
-import CoC7EnableVariantRulesFr from '../tours/enable-variant-rules-fr.js'
+import Cd100EnableVariantRulesEn from '../tours/enable-variant-rules-en.js'
+import Cd100EnableVariantRulesEs from '../tours/enable-variant-rules-es.js'
+import Cd100EnableVariantRulesFr from '../tours/enable-variant-rules-fr.js'
 
 export default function () {
   let lang = game.i18n.lang
   const tours = {
     en: {
-      'enable-variant-rules': CoC7EnableVariantRulesEn
+      'enable-variant-rules': Cd100EnableVariantRulesEn
     },
     es: {
-      'enable-variant-rules': CoC7EnableVariantRulesEs
+      'enable-variant-rules': Cd100EnableVariantRulesEs
     },
     fr: {
-      'enable-variant-rules': CoC7EnableVariantRulesFr
+      'enable-variant-rules': Cd100EnableVariantRulesFr
     }
   }
   if (typeof tours[lang] === 'undefined') {

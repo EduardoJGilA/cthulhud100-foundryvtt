@@ -1,6 +1,6 @@
 /* global Compendium CONFIG foundry game Hooks SearchFilter */
 import { FOLDER_ID, ERAS } from '../constants.js'
-import CoC7Utilities from '../apps/utilities.js'
+import Cd100Utilities from '../apps/utilities.js'
 
 /* // FoundryVTT v12 */
 let oldSearchFilter
@@ -209,20 +209,20 @@ export default function () {
       const types = [...new Set(app.collection.index.map(item => item.type))]
       const selectTypes = []
       const selectEras = []
-      const selectedType = (app.options.filterCoC7?.type ?? '')
-      const selectedEra = (app.options.filterCoC7?.era ?? '')
-      selectTypes.push('<option value="">' + game.i18n.localize('CoC7.All') + '</option>')
+      const selectedType = (app.options.filterCd100?.type ?? '')
+      const selectedEra = (app.options.filterCd100?.era ?? '')
+      selectTypes.push('<option value="">' + game.i18n.localize('Cd100.All') + '</option>')
       for (const typeLabel in CONFIG.Item.typeLabels) {
         if (types.includes(typeLabel)) {
           selectTypes.push('<option value="' + typeLabel + '"' + (selectedType === typeLabel ? ' selected="selected"' : '') + '>' + game.i18n.localize(CONFIG.Item.typeLabels[typeLabel]) + '</option>')
         }
       }
-      selectEras.push('<option value="">' + game.i18n.localize('CoC7.All') + '</option>')
-      for (const era of Object.entries(ERAS).map(e => { return { id: e[0], name: game.i18n.localize(e[1].name) } }).sort(CoC7Utilities.sortByNameKey)) {
+      selectEras.push('<option value="">' + game.i18n.localize('Cd100.All') + '</option>')
+      for (const era of Object.entries(ERAS).map(e => { return { id: e[0], name: game.i18n.localize(e[1].name) } }).sort(Cd100Utilities.sortByNameKey)) {
         selectEras.push('<option value="' + era.id + '"' + (selectedEra === era.id ? ' selected="selected"' : '') + '>' + era.name + '</option>')
       }
-      let uncommon = game.i18n.localize('CoC7.SkillRarityShort')
-      if (uncommon === 'CoC7.SkillRarityShort') {
+      let uncommon = game.i18n.localize('Cd100.SkillRarityShort')
+      if (uncommon === 'Cd100.SkillRarityShort') {
         uncommon = '??'
       }
       /* // FoundryVTT v12 */

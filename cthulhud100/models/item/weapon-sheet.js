@@ -1,9 +1,9 @@
 /* global foundry game TextEditor */
 import { FOLDER_ID, ERAS } from '../../constants.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemWeaponSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemWeaponSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 600,
@@ -47,23 +47,23 @@ export default class CoC7ModelsItemWeaponSheet extends CoC7ModelsItemGlobalSheet
     const tabs = {
       details: {
         icon: '',
-        label: 'CoC7.ItemDetails'
+        label: 'Cd100.ItemDetails'
       },
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       },
       prices: {
         cssClass: 'icon-only-tab',
         icon: 'fa-solid fa-tag',
-        tooltip: 'CoC7.ItemPrice'
+        tooltip: 'Cd100.ItemPrice'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -86,7 +86,7 @@ export default class CoC7ModelsItemWeaponSheet extends CoC7ModelsItemGlobalSheet
       case 'header':
         context._properties = [{
           id: 'melee',
-          name: 'CoC7.Weapon.Property.Melee',
+          name: 'Cd100.Weapon.Property.Melee',
           tooltip: '',
           isEnabled: context.document.system.properties.rngd !== true
         }]
@@ -135,7 +135,7 @@ export default class CoC7ModelsItemWeaponSheet extends CoC7ModelsItemGlobalSheet
             isEnabled
           })
         }
-        context._eras.sort(CoC7Utilities.sortByNameKey)
+        context._eras.sort(Cd100Utilities.sortByNameKey)
         context.useEraIcons = game.settings.get(FOLDER_ID, 'sheetEraIcons')
         break
       case 'keeper':

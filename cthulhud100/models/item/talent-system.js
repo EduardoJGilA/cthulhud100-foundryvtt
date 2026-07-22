@@ -1,8 +1,8 @@
 /* global foundry */
 import { TALENT_ADJUSTMENT_TYPES } from '../../constants.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsItemTalentSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemTalentSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -20,13 +20,13 @@ export default class CoC7ModelsItemTalentSystem extends CoC7ModelsItemGlobalSyst
         keeper: new fields.HTMLField({ initial: '' })
       }),
       type: new fields.SchemaField({
-        physical: new fields.BooleanField({ label: 'CoC7.PhysicalTalent', initial: false }),
-        mental: new fields.BooleanField({ label: 'CoC7.MentalTalent', initial: false }),
-        combat: new fields.BooleanField({ label: 'CoC7.CombatTalent', initial: false }),
-        miscellaneous: new fields.BooleanField({ label: 'CoC7.MiscellaneousTalent', initial: false }),
-        basic: new fields.BooleanField({ label: 'CoC7.BasicTalent', initial: false }),
-        insane: new fields.BooleanField({ label: 'CoC7.InsaneTalent', initial: false }),
-        other: new fields.BooleanField({ label: 'CoC7.OtherTalent', initial: false })
+        physical: new fields.BooleanField({ label: 'Cd100.PhysicalTalent', initial: false }),
+        mental: new fields.BooleanField({ label: 'Cd100.MentalTalent', initial: false }),
+        combat: new fields.BooleanField({ label: 'Cd100.CombatTalent', initial: false }),
+        miscellaneous: new fields.BooleanField({ label: 'Cd100.MiscellaneousTalent', initial: false }),
+        basic: new fields.BooleanField({ label: 'Cd100.BasicTalent', initial: false }),
+        insane: new fields.BooleanField({ label: 'Cd100.InsaneTalent', initial: false }),
+        other: new fields.BooleanField({ label: 'Cd100.OtherTalent', initial: false })
       }),
       adjustments: new fields.ArrayField(
         new fields.SchemaField({

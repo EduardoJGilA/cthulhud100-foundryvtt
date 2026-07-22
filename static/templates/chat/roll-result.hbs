@@ -24,7 +24,7 @@
                 {{/each}}
               </span>
             {{else}}
-              1D% {{#if ../bonusDice}}{{../bonusDice}} {{../bonusType}} {{localize 'CoC7.Dice'}}{{/if}}
+              1D% {{#if ../bonusDice}}{{../bonusDice}} {{../bonusType}} {{localize 'Cd100.Dice'}}{{/if}}
             {{/if}}
           {{/if}}
         </div>
@@ -41,9 +41,9 @@
                 {{/if}}
                 <span class="part-formula">
                   {{#if (eq 1 diceGroup.decaders.length)}}
-                    1 {{localize 'CoC7.TensDie'}}
+                    1 {{localize 'Cd100.TensDie'}}
                   {{else}}
-                    {{diceGroup.decaders.length}} {{localize 'CoC7.TensDice'}} ({{../bonusType}})
+                    {{diceGroup.decaders.length}} {{localize 'Cd100.TensDice'}} ({{../bonusType}})
                   {{/if}}
                 </span>
                 <span class="part-total">{{diceGroup.decader}}</span>
@@ -64,7 +64,7 @@
                   </span>
                 {{/if}}
                 <span class="part-formula">
-                  {{localize 'CoC7.UnitsDie'}}
+                  {{localize 'Cd100.UnitsDie'}}
                 </span>
                 <span class="part-total">{{diceGroup.unit}}</span>
               </header>
@@ -81,31 +81,31 @@
           {{#if @last}}
             <div class="owner-and-keeper-block coc7-card-buttons flexrow" data-actor-uuid="{{../actorUuid}}">
               {{#if ../buttons.pushRoll}}
-                <button data-action="push">{{localize 'CoC7.PushSkill'}}</button>
+                <button data-action="push">{{localize 'Cd100.PushSkill'}}</button>
               {{/if}}
               {{#if ../buttons.luckRegular}}
-                <button data-action="luck" data-luck-spend="{{../buttons.luckRegular}}">{{localize 'CoC7.SpendLuck' luckNeededValue=../buttons.luckRegular}}</button>
+                <button data-action="luck" data-luck-spend="{{../buttons.luckRegular}}">{{localize 'Cd100.SpendLuck' luckNeededValue=../buttons.luckRegular}}</button>
               {{/if}}
               {{#if ../buttons.luckHard}}
-                <button data-action="luck" data-luck-spend="{{../buttons.luckHard}}">{{localize 'CoC7.IncreaseSuccessLevel'}}: {{localize 'CoC7.HardDifficulty'}} - {{../buttons.luckHard}} {{localize 'CoC7.Luck'}}.</button>
+                <button data-action="luck" data-luck-spend="{{../buttons.luckHard}}">{{localize 'Cd100.IncreaseSuccessLevel'}}: {{localize 'Cd100.HardDifficulty'}} - {{../buttons.luckHard}} {{localize 'Cd100.Luck'}}.</button>
               {{/if}}
               {{#if ../buttons.luckExtreme}}
-                <button data-action="luck" data-luck-spend="{{../buttons.luckExtreme}}">{{localize 'CoC7.IncreaseSuccessLevel'}}: {{localize 'CoC7.ExtremeDifficulty'}} - {{../buttons.luckExtreme}} {{localize 'CoC7.Luck'}}.</button>
+                <button data-action="luck" data-luck-spend="{{../buttons.luckExtreme}}">{{localize 'Cd100.IncreaseSuccessLevel'}}: {{localize 'Cd100.ExtremeDifficulty'}} - {{../buttons.luckExtreme}} {{localize 'Cd100.Luck'}}.</button>
               {{/if}}
               {{#if ../buttons.luckCritical}}
-                <button data-action="luck" data-luck-spend="{{../buttons.luckCritical}}">{{localize 'CoC7.IncreaseSuccessLevel'}}: {{localize 'CoC7.CriticalDifficulty'}} - {{../buttons.luckCritical}} {{localize 'CoC7.Luck'}}.</button>
+                <button data-action="luck" data-luck-spend="{{../buttons.luckCritical}}">{{localize 'Cd100.IncreaseSuccessLevel'}}: {{localize 'Cd100.CriticalDifficulty'}} - {{../buttons.luckCritical}} {{localize 'Cd100.Luck'}}.</button>
               {{/if}}
               {{#if ../buttons.addBonus2}}
-                <button data-action="bonus" data-quantity="2">{{localize 'CoC7.PoolAddTwoBonus'}}</button>
+                <button data-action="bonus" data-quantity="2">{{localize 'Cd100.PoolAddTwoBonus'}}</button>
               {{/if}}
               {{#if ../buttons.addBonus1}}
-                <button data-action="bonus" data-quantity="1">{{localize 'CoC7.PoolAddOneBonus'}}</button>
+                <button data-action="bonus" data-quantity="1">{{localize 'Cd100.PoolAddOneBonus'}}</button>
               {{/if}}
               {{#if ../buttons.addPenalty1}}
-                <button data-action="bonus" data-quantity="-1">{{localize 'CoC7.PoolAddOnePenalty'}}</button>
+                <button data-action="bonus" data-quantity="-1">{{localize 'Cd100.PoolAddOnePenalty'}}</button>
               {{/if}}
               {{#if ../buttons.addPenalty2}}
-                <button data-action="bonus" data-quantity="-2">{{localize 'CoC7.PoolAddTwoPenalty'}}</button>
+                <button data-action="bonus" data-quantity="-2">{{localize 'Cd100.PoolAddTwoPenalty'}}</button>
               {{/if}}
             </div>
           {{/if}}
@@ -115,7 +115,7 @@
         {{#if ../customResult}}
           {{localize ../customResult}}
         {{else}}
-          {{diceGroup.total}}{{#if ../flatDiceModifier}} ({{#if (gt ../flatDiceModifier 0)}}+{{/if}}{{../flatDiceModifier}}){{/if}}{{#unless @last}} {{localize 'CoC7.PushedRoll'}}{{/unless}}{{#if ../luckSpent}} - {{localize 'CoC7.LuckSpentAlt'}} ({{../luckSpent}}){{/if}}
+          {{diceGroup.total}}{{#if ../flatDiceModifier}} ({{#if (gt ../flatDiceModifier 0)}}+{{/if}}{{../flatDiceModifier}}){{/if}}{{#unless @last}} {{localize 'Cd100.PushedRoll'}}{{/unless}}{{#if ../luckSpent}} - {{localize 'Cd100.LuckSpentAlt'}} ({{../luckSpent}}){{/if}}
         {{/if}}
       </h4>
     </div>
@@ -125,27 +125,27 @@
 {{#if isBlind}}
   <div class="coc7-card-buttons flexrow" style="order: 3">
     {{#if buttons.revealCheck}}
-      <button data-action="revealCheck">{{localize 'CoC7.RevealCheck'}}</button>
+      <button data-action="revealCheck">{{localize 'Cd100.RevealCheck'}}</button>
     {{/if}}
     {{#if buttons.forcePass}}
-      <button data-action="forcePass">{{localize 'CoC7.check.ForcePass'}}</button>
+      <button data-action="forcePass">{{localize 'Cd100.check.ForcePass'}}</button>
     {{/if}}
     {{#if buttons.forceFail}}
-      <button data-action="forceFail">{{localize 'CoC7.check.ForceFail'}}</button>
+      <button data-action="forceFail">{{localize 'Cd100.check.ForceFail'}}</button>
     {{/if}}
     {{#if buttons.increaseSuccessLevel}}
-      <button data-action="increaseSuccessLevel">{{localize 'CoC7.IncreaseSuccessLevel'}}</button>
+      <button data-action="increaseSuccessLevel">{{localize 'Cd100.IncreaseSuccessLevel'}}</button>
     {{/if}}
     {{#if buttons.decreaseSuccessLevel}}
-      <button data-action="decreaseSuccessLevel">{{localize 'CoC7.check.DecreaseSuccessLevel'}}</button>
+      <button data-action="decreaseSuccessLevel">{{localize 'Cd100.check.DecreaseSuccessLevel'}}</button>
     {{/if}}
     {{#if buttons.flagForDevelopment}}
-      <button data-action="flagForDevelopment">{{localize 'CoC7.check.FlagForDevelopment'}}</button>
+      <button data-action="flagForDevelopment">{{localize 'Cd100.check.FlagForDevelopment'}}</button>
     {{/if}}
   </div>
 {{/if}}
 {{#if cardOpen}}
   <div class="keeper-only-block coc7-card-buttons flexrow">
-    <button data-action="toggleValue" data-set="cardOpen">{{localize 'CoC7.CloseCard'}}</button>
+    <button data-action="toggleValue" data-set="cardOpen">{{localize 'Cd100.CloseCard'}}</button>
   </div>
 {{/if}}

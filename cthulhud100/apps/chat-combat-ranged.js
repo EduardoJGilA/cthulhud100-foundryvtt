@@ -1,10 +1,10 @@
 /* global canvas ChatMessage CONFIG foundry fromUuid game Hooks renderTemplate Roll TextEditor ui */
 import { FOLDER_ID, CHAT_MESSAGE_MODE, DICE_POOL_REASONS, TARGET_ALLOWED } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ChatCombatRanged {
+export default class Cd100ChatCombatRanged {
   #aiming
   #asyncAttacker
   #asyncItem
@@ -69,14 +69,14 @@ export default class CoC7ChatCombatRanged {
    */
   static async createMessage ({ attackerUuid, itemUuid, targetUuids } = {}) {
     if (attackerUuid) {
-      const check = new CoC7ChatCombatRanged()
+      const check = new Cd100ChatCombatRanged()
       check.attacker = attackerUuid
       check.item = itemUuid
       check.#sceneUuid = canvas.scene?.uuid ?? ''
       const attacker = (await check.attacker)
       const item = (await check.item)
       if (attacker && item) {
-        check.#volleySize = check.#volleyMax = Math.max(CoC7DicePool.minVolleySize, Math.floor((item.system.skillAlternative?.system.value ?? 0) / 10))
+        check.#volleySize = check.#volleyMax = Math.max(Cd100DicePool.minVolleySize, Math.floor((item.system.skillAlternative?.system.value ?? 0) / 10))
         if (item.system.singleShot) {
           check.#singleShot = true
         } else if (item.system.properties.auto) {
@@ -90,7 +90,7 @@ export default class CoC7ChatCombatRanged {
             poolModifier += skill.system?.bonusDice ?? 0
           }
         }
-        poolModifier = Math.clamp(poolModifier, -CoC7DicePool.maxDicePenalty, CoC7DicePool.maxDiceBonus)
+        poolModifier = Math.clamp(poolModifier, -Cd100DicePool.maxDicePenalty, Cd100DicePool.maxDiceBonus)
         const baseRange = await item.system.baseRange()
         const longRange = await item.system.longRange()
         const extremeRange = await item.system.extremeRange()
@@ -103,7 +103,7 @@ export default class CoC7ChatCombatRanged {
           img: '',
           name: '',
           uuid: '',
-          unit: canvas.grid?.units ?? game.i18n.localize('CoC7.DistanceUnitFeet'),
+          unit: canvas.grid?.units ?? game.i18n.localize('Cd100.DistanceUnitFeet'),
           poolDisabled: [],
           poolKeys: [],
           poolModifier,
@@ -112,10 +112,10 @@ export default class CoC7ChatCombatRanged {
           extremeRange: false,
           outOfRange: false,
           mov: 8,
-          size: CoC7ChatCombatRanged.TARGET_SIZE.normal,
+          size: Cd100ChatCombatRanged.TARGET_SIZE.normal,
           targetTalent: []
         }
-        const dicePoolReasons = CoC7Utilities.dicePoolReasons({ forRanged: true })
+        const dicePoolReasons = Cd100Utilities.dicePoolReasons({ forRanged: true })
         const attackerKeys = Object.keys(dicePoolReasons).filter(k => dicePoolReasons[k].ifAttacker)
         const attackerTalents = attacker?.items?.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool' && attackerKeys.includes(row.config.disable))) ?? []
         const attackerPoolDisabled = attackerTalents.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool')).reduce((c, doc) => { c = c.concat(doc.system.adjustments.filter(row => row.type === 'disableCombatPool' && attackerKeys.includes(row.config.disable)).map(doc => doc.config.disable)); return c }, [])
@@ -133,12 +133,12 @@ export default class CoC7ChatCombatRanged {
             const targetTalents = target?.items?.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool' && targetKeys.includes(row.config.disable)))
             const targetPoolDisabled = targetTalents.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool')).reduce((c, doc) => { c = c.concat(doc.system.adjustments.filter(row => row.type === 'disableCombatPool' && targetKeys.includes(row.config.disable)).map(doc => doc.config.disable)); return c }, [])
             if (target.system.attribs.build.value <= -2) {
-              targetData.size = CoC7ChatCombatRanged.TARGET_SIZE.small
+              targetData.size = Cd100ChatCombatRanged.TARGET_SIZE.small
               if (!attackerPoolDisabled.includes('sizeSmall') && !targetPoolDisabled.includes('sizeSmall')) {
                 targetData.poolKeys.push('sizeSmall')
               }
             } else if (target.system.attribs.build.value >= 4) {
-              targetData.size = CoC7ChatCombatRanged.TARGET_SIZE.big
+              targetData.size = Cd100ChatCombatRanged.TARGET_SIZE.big
               if (!attackerPoolDisabled.includes('sizeBig') && !targetPoolDisabled.includes('sizeBig')) {
                 targetData.poolKeys.push('sizeBig')
               }
@@ -146,10 +146,10 @@ export default class CoC7ChatCombatRanged {
             active = false
             const targetToken = target.getDependentTokens({ scene: canvas.scene }).find(doc => doc.object)
             if (targetToken && attackerToken) {
-              const distanceBetweenTokens = CoC7Utilities.distanceBetweenTokens(attackerToken, targetToken)
+              const distanceBetweenTokens = Cd100Utilities.distanceBetweenTokens(attackerToken, targetToken)
               targetData.roundedDistance = distanceBetweenTokens.roundedDistance
               // Cthulhu d100 "objetivo cercano": DES x3 metres, inside which the
-              // skill is doubled. CoC7 used percentile DEX / 15 yards, which is
+              // skill is doubled. Cd100 used percentile DEX / 15 yards, which is
               // meaningless on the 3-18 scale. The grid is configured in metres,
               // so this distance is already in the right unit.
               const pbRangeInYd = (attacker.system.characteristics.dex.value ?? 0) * 3
@@ -178,14 +178,14 @@ export default class CoC7ChatCombatRanged {
           check.#targets.push(targetSource)
         }
         if (distanceError && !game.settings.get(FOLDER_ID, 'distanceTheatreOfTheMind')) {
-          ui.notifications.warn('CoC7.MessageDistanceCalculationFailure', { localize: true })
+          ui.notifications.warn('Cd100.MessageDistanceCalculationFailure', { localize: true })
         }
         const chatData = await check.getChatData()
         await ChatMessage.create(chatData)
         return
       }
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableRoll', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableRoll', { localize: true })
   }
 
   /**
@@ -202,7 +202,7 @@ export default class CoC7ChatCombatRanged {
       extremeRange: activeTarget.extremeRange,
       targetUuid: activeTarget.uuid,
       actorName: activeTarget.name,
-      dicePool: CoC7DicePool.newPool({
+      dicePool: Cd100DicePool.newPool({
         difficulty: activeTarget.difficulty,
         flatDiceModifier: 0,
         flatThresholdModifier: 0,
@@ -231,7 +231,7 @@ export default class CoC7ChatCombatRanged {
           } else {
             tokenThis = tokenThis.getDependentTokens({ scene }).find(doc => doc.object)
           }
-          const distanceBetweenTokens = CoC7Utilities.distanceBetweenTokens(tokenLast, tokenThis)
+          const distanceBetweenTokens = Cd100Utilities.distanceBetweenTokens(tokenLast, tokenThis)
           shot.transitBullets = Math.floor(distanceBetweenTokens.yards)
           if (shot.transitBullets >= bulletLeft && !game.settings.get(FOLDER_ID, 'disregardAmmo')) {
             shot.transitBullets = bulletLeft
@@ -241,7 +241,7 @@ export default class CoC7ChatCombatRanged {
           }
         }
       }
-      shot.bulletsShot = Math.min(Math.max(CoC7DicePool.minVolleySize, this.#volleySize), this.#volleyMax)
+      shot.bulletsShot = Math.min(Math.max(Cd100DicePool.minVolleySize, this.#volleySize), this.#volleyMax)
       if (shot.bulletsShot >= bulletLeft && !game.settings.get(FOLDER_ID, 'disregardAmmo')) {
         shot.bulletsShot = bulletLeft
         bulletLeft = 0
@@ -281,7 +281,7 @@ export default class CoC7ChatCombatRanged {
         }
       }
       if (anyRolledSuccess) {
-        await CoC7Utilities.messageRollFlagForDevelopment(this.message.id, itemSkill, true)
+        await Cd100Utilities.messageRollFlagForDevelopment(this.message.id, itemSkill, true)
       }
     } else {
       const activeTarget = data.targets.find(t => t.active)
@@ -293,7 +293,7 @@ export default class CoC7ChatCombatRanged {
           extremeRange: activeTarget.extremeRange,
           targetUuid: activeTarget.uuid,
           actorName: activeTarget.name,
-          dicePool: await CoC7DicePool.rollNewPool({
+          dicePool: await Cd100DicePool.rollNewPool({
             difficulty: activeTarget.difficulty,
             flatDiceModifier: 0,
             flatThresholdModifier: 0,
@@ -305,7 +305,7 @@ export default class CoC7ChatCombatRanged {
           transitBullets: 0
         }
         if (shot.dicePool.isRolledSuccess) {
-          await CoC7Utilities.messageRollFlagForDevelopment(this.message.id, itemSkill, true)
+          await Cd100Utilities.messageRollFlagForDevelopment(this.message.id, itemSkill, true)
         }
         if (shot.dicePool.isMalfunction || shot.dicePool.isFumble) {
           this.#badConsequence = true
@@ -338,7 +338,7 @@ export default class CoC7ChatCombatRanged {
           damageFormula = damageFormula + '+' + (attacker.system.attribs.db.value || '0')
         }
         if (item.system.properties.ahdb) {
-          damageFormula = damageFormula + CoC7Utilities.halfDB((attacker.system.attribs.db.value || '0'))
+          damageFormula = damageFormula + Cd100Utilities.halfDB((attacker.system.attribs.db.value || '0'))
         }
         const maxDamage = new Roll(damageFormula).evaluateSync({ maximize: true }).total
         const criticalDamageFormula = (item.system.properties.impl ? damageWithoutDB + ' + ' : '') + maxDamage
@@ -349,8 +349,8 @@ export default class CoC7ChatCombatRanged {
         if (this.#fullAuto || this.#burst) {
           successfulShots = Math.max(1, Math.floor(shot.bulletsShot / 2))
         }
-        if (shot.dicePool.successLevel >= CoC7DicePool.difficultyLevel.extreme) {
-          if (shot.dicePool.successLevel === CoC7DicePool.difficultyLevel.critical || !shot.extremeRange) {
+        if (shot.dicePool.successLevel >= Cd100DicePool.difficultyLevel.extreme) {
+          if (shot.dicePool.successLevel === Cd100DicePool.difficultyLevel.critical || !shot.extremeRange) {
             impalingShots = successfulShots
             critical = true
           }
@@ -392,17 +392,17 @@ export default class CoC7ChatCombatRanged {
         if (item.system?.properties?.blst ?? false) {
           const blastRadius = parseInt(item.system.blastRadius)
           if (!isNaN(blastRadius)) {
-            blastRangeDamage.push(game.i18n.format('CoC7.rangeCombatBlastDamage', {
+            blastRangeDamage.push(game.i18n.format('Cd100.rangeCombatBlastDamage', {
               min: 0,
               max: blastRadius,
               total
             }))
-            blastRangeDamage.push(game.i18n.format('CoC7.rangeCombatBlastDamage', {
+            blastRangeDamage.push(game.i18n.format('Cd100.rangeCombatBlastDamage', {
               min: blastRadius,
               max: 2 * blastRadius,
               total: Math.floor(total / 2)
             }))
-            blastRangeDamage.push(game.i18n.format('CoC7.rangeCombatBlastDamage', {
+            blastRangeDamage.push(game.i18n.format('Cd100.rangeCombatBlastDamage', {
               min: 2 * blastRadius,
               max: 3 * blastRadius,
               total: Math.floor(total / 4)
@@ -414,7 +414,7 @@ export default class CoC7ChatCombatRanged {
           dealt: false,
           actorName: shot.actorName,
           targetUuid: shot.targetUuid,
-          resultString: game.i18n.format('CoC7.rangeCombatDamage', {
+          resultString: game.i18n.format('Cd100.rangeCombatDamage', {
             name: shot.actorName,
             total
           }),
@@ -433,7 +433,7 @@ export default class CoC7ChatCombatRanged {
     for (const offset in this.#damage) {
       const actor = await fromUuid(this.#damage[offset].targetUuid)
       if (!actor) {
-        ui.notifications.error('CoC7.NoTargetToDamage', { localize: true })
+        ui.notifications.error('Cd100.NoTargetToDamage', { localize: true })
       } else {
         let totalTaken = 0
         let totalAbsorbed = 0
@@ -443,7 +443,7 @@ export default class CoC7ChatCombatRanged {
           totalAbsorbed += part.total - dealtAmount
         }
         this.#damage[offset].dealt = true
-        this.#damage[offset].resultString = game.i18n.format('CoC7.rangeCombatDamageArmor', {
+        this.#damage[offset].resultString = game.i18n.format('Cd100.rangeCombatDamageArmor', {
           name: this.#damage[offset].actorName,
           total: totalTaken,
           armor: totalAbsorbed
@@ -454,9 +454,9 @@ export default class CoC7ChatCombatRanged {
   }
 
   /**
-   * Create CoC7ChatCombatRanged from message
+   * Create Cd100ChatCombatRanged from message
    * @param {Document} message
-   * @returns {CoC7ChatCombatRanged}
+   * @returns {Cd100ChatCombatRanged}
    */
   static async loadFromMessage (message) {
     const keys = [
@@ -479,8 +479,8 @@ export default class CoC7ChatCombatRanged {
       'volleySize',
       'weaponRolled'
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7ChatCombatRanged' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && message.flags[FOLDER_ID].load.shots.every(s => CoC7DicePool.isValidPool(s.dicePool))) {
-      const check = new CoC7ChatCombatRanged()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100ChatCombatRanged' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && message.flags[FOLDER_ID].load.shots.every(s => Cd100DicePool.isValidPool(s.dicePool))) {
+      const check = new Cd100ChatCombatRanged()
       check.message = message
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       if (typeof load.badConsequence !== 'undefined') {
@@ -497,7 +497,7 @@ export default class CoC7ChatCombatRanged {
       check.#multipleShots = load.multipleShots
       check.#sceneUuid = load.sceneUuid
       check.#shots = load.shots.reduce((c, s) => {
-        s.dicePool = CoC7DicePool.fromObject(s.dicePool)
+        s.dicePool = Cd100DicePool.fromObject(s.dicePool)
         c.push(s)
         return c
       }, [])
@@ -509,8 +509,8 @@ export default class CoC7ChatCombatRanged {
       check.#weaponRolled = load.weaponRolled
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -522,7 +522,7 @@ export default class CoC7ChatCombatRanged {
     switch (event.currentTarget?.dataset?.action) {
       case 'toggleValue':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           if (check && set) {
             switch (set) {
@@ -560,40 +560,40 @@ export default class CoC7ChatCombatRanged {
                 }
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 return
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'volley-size-decrease':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           if (check) {
-            check.#volleySize = Math.max(CoC7DicePool.minVolleySize, check.#volleySize - 1)
+            check.#volleySize = Math.max(Cd100DicePool.minVolleySize, check.#volleySize - 1)
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'volley-size-increase':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           if (check) {
             check.#volleySize = Math.min(check.#volleyMax, check.#volleySize + 1)
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'toggleTargetValue':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           const offset = event.currentTarget.closest('.ranged-targets-option').dataset.offset
           if (check && set && typeof offset !== 'undefined') {
@@ -621,13 +621,13 @@ export default class CoC7ChatCombatRanged {
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'toggleTargetKey':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           const offset = event.currentTarget.closest('.ranged-targets-option').dataset.offset
           if (check && set && typeof offset !== 'undefined') {
@@ -657,7 +657,7 @@ export default class CoC7ChatCombatRanged {
                     check.#targets[offset].poolKeys.splice(index, 1)
                   }
                 } else if (set === 'fast' && check.#targets[offset].mov < 8) {
-                  ui.notifications.warn(game.i18n.format('CoC7.WarnFastTargetWithWrongMOV', { mov: check.#targets[offset].mov }))
+                  ui.notifications.warn(game.i18n.format('Cd100.WarnFastTargetWithWrongMOV', { mov: check.#targets[offset].mov }))
                 }
               } else {
                 check.#targets[offset].poolKeys.splice(index, 1)
@@ -667,27 +667,27 @@ export default class CoC7ChatCombatRanged {
               }
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'range-initiator-roll':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           if (check) {
             await check.rollCard()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'luck':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           const luckSpend = event.currentTarget.dataset.luckSpend
           const shotOffset = event.currentTarget.dataset.shotOffset
           if (check && luckSpend && typeof shotOffset !== 'undefined' && typeof check.#shots[shotOffset] !== 'undefined') {
@@ -700,13 +700,13 @@ export default class CoC7ChatCombatRanged {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'range-initiator-shoot':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           const offset = event.currentTarget.closest('.ranged-targets-option').dataset.offset
           if (check && typeof offset !== 'undefined') {
             const oldActive = check.#targets.findIndex(t => t.active)
@@ -717,46 +717,46 @@ export default class CoC7ChatCombatRanged {
             await check.addShotAtCurrentTarget()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'roll-range-damage':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           if (check) {
             await check.rollDamage()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'deal-range-damage':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           if (check) {
             await check.dealDamage()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'useLuckForWeaponFailure':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           if (check) {
             const attacker = (await check.attacker)
             const newLuck = parseInt(attacker?.system.attribs.lck.value ?? 0, 10) - 10
             if (newLuck >= 0 && await attacker.spendLuck(10) !== false) {
               check.#badConsequence = false
             } else {
-              ui.notifications.warn('CoC7.NotEnoughLuck', { localize: true })
+              ui.notifications.warn('Cd100.NotEnoughLuck', { localize: true })
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -777,7 +777,7 @@ export default class CoC7ChatCombatRanged {
       messageHtml.querySelector('.ranged-targets-option[data-offset="' + offset + '"]').classList.add('active')
       return
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
   }
 
   /**
@@ -789,7 +789,7 @@ export default class CoC7ChatCombatRanged {
     switch (event.target?.type) {
       case 'range':
         {
-          const check = await CoC7ChatCombatRanged.loadFromMessage(message)
+          const check = await Cd100ChatCombatRanged.loadFromMessage(message)
           const set = event.target.dataset.set
           const offset = event.target.closest('.ranged-targets-option').dataset.offset
           if (check && set && typeof offset !== 'undefined') {
@@ -799,7 +799,7 @@ export default class CoC7ChatCombatRanged {
             }
             check.#targets[offset].active = true
             check.#targets[offset].poolModifier = event.target.value
-            CoC7Utilities.messageUpdatedThen(message.id, () => {
+            Cd100Utilities.messageUpdatedThen(message.id, () => {
               setTimeout(() => {
                 document.querySelector('[data-message-id="' + message.id + '"] .ranged-targets-option[data-offset="' + offset + '"] input[type=range][data-set="' + set + '"]').focus()
               }, 50)
@@ -822,18 +822,18 @@ export default class CoC7ChatCombatRanged {
     if (game.user.isGM || allowed) {
       html.querySelectorAll('[data-action]').forEach((element) => {
         if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-          element.addEventListener('click', event => CoC7ChatCombatRanged._onClickEvent(event, message))
+          element.addEventListener('click', event => Cd100ChatCombatRanged._onClickEvent(event, message))
         }
       })
       html.querySelectorAll('.switch-target').forEach((element) => {
         if (game.user.isGM || allowed.includes(element.dataset.actorUuid)) {
-          element.addEventListener('click', async event => CoC7ChatCombatRanged._onSwitchTargetEvent(event))
+          element.addEventListener('click', async event => Cd100ChatCombatRanged._onSwitchTargetEvent(event))
         }
       })
     }
     if (game.user.isGM) {
       html.querySelectorAll('input[type=range]').forEach((element) => {
-        element.addEventListener('change', event => CoC7ChatCombatRanged._onChangeEvent(event, message))
+        element.addEventListener('change', event => Cd100ChatCombatRanged._onChangeEvent(event, message))
       })
     }
     html.querySelectorAll('.coc7-formatted-text').forEach((element) => {
@@ -901,7 +901,7 @@ export default class CoC7ChatCombatRanged {
       attackerImg: (attacker?.isToken ? attacker.token.texture.src : attacker?.img),
       attackerName: (attacker?.isToken ? attacker.token.name : attacker?.name),
       attackerTalent: [],
-      attackerUuid: CoC7Utilities.getActorUuid(attacker),
+      attackerUuid: Cd100Utilities.getActorUuid(attacker),
       badConsequence: this.#badConsequence,
       burst: this.#burst,
       canLuckAwayConsequences: game.settings.get(FOLDER_ID, 'pulpRuleLuckMalfunction'),
@@ -928,7 +928,7 @@ export default class CoC7ChatCombatRanged {
       itemImg: item?.img,
       itemName: item?.name,
       itemUuid: item?.uuid,
-      malfunctionTxt: game.i18n.format('CoC7.Malfunction', {
+      malfunctionTxt: game.i18n.format('Cd100.Malfunction', {
         itemName: item?.name
       }),
       maxShots: (this.#fullAuto ? '∞' : (isNaN(usesPerRoundMax) ? '1' : usesPerRoundMax)),
@@ -952,27 +952,27 @@ export default class CoC7ChatCombatRanged {
       shotFired: this.#shots.length,
       singleShot: this.#singleShot,
       sizeTooltip: {
-        [CoC7ChatCombatRanged.TARGET_SIZE.big]: game.i18n.localize('CoC7.rangeCombatCard.BigTargetTitle'),
-        [CoC7ChatCombatRanged.TARGET_SIZE.small]: game.i18n.localize('CoC7.rangeCombatCard.SmallTargetTitle'),
-        [CoC7ChatCombatRanged.TARGET_SIZE.normal]: game.i18n.localize('CoC7.rangeCombatCard.NormalTargetTitle')
+        [Cd100ChatCombatRanged.TARGET_SIZE.big]: game.i18n.localize('Cd100.rangeCombatCard.BigTargetTitle'),
+        [Cd100ChatCombatRanged.TARGET_SIZE.small]: game.i18n.localize('Cd100.rangeCombatCard.SmallTargetTitle'),
+        [Cd100ChatCombatRanged.TARGET_SIZE.normal]: game.i18n.localize('Cd100.rangeCombatCard.NormalTargetTitle')
       },
       sizeLabel: {
-        [CoC7ChatCombatRanged.TARGET_SIZE.big]: game.i18n.localize('CoC7.rangeCombatCard.BigTarget'),
-        [CoC7ChatCombatRanged.TARGET_SIZE.small]: game.i18n.localize('CoC7.combatCard.SmallTarget'),
-        [CoC7ChatCombatRanged.TARGET_SIZE.normal]: game.i18n.localize('CoC7.rangeCombatCard.NormalTarget')
+        [Cd100ChatCombatRanged.TARGET_SIZE.big]: game.i18n.localize('Cd100.rangeCombatCard.BigTarget'),
+        [Cd100ChatCombatRanged.TARGET_SIZE.small]: game.i18n.localize('Cd100.combatCard.SmallTarget'),
+        [Cd100ChatCombatRanged.TARGET_SIZE.normal]: game.i18n.localize('Cd100.rangeCombatCard.NormalTarget')
       },
       targets: foundry.utils.duplicate(this.#targets),
       totalAmmo: item?.system.ammo ?? 0,
       totalBulletsFired: this.#totalBulletsFired,
       volleyMax: this.#volleyMax,
-      volleyMin: CoC7DicePool.minVolleySize,
+      volleyMin: Cd100DicePool.minVolleySize,
       volleySize: this.#volleySize,
       weaponRolled: this.#weaponRolled
     }
     if (!game.settings.get(FOLDER_ID, 'disregardUsePerRound') && data.maxShots !== '∞' && this.#shots.length >= data.maxShots) {
       data.outOfShots = true
     }
-    const dicePoolReasons = CoC7Utilities.dicePoolReasons({ forRanged: true })
+    const dicePoolReasons = Cd100Utilities.dicePoolReasons({ forRanged: true })
     const attackerKeys = Object.keys(dicePoolReasons).filter(k => dicePoolReasons[k].ifAttacker)
     const attackerTalents = attacker?.items?.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool' && attackerKeys.includes(row.config.disable))) ?? []
     const attackerPoolDisabled = attackerTalents.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool')).reduce((c, doc) => { c = c.concat(doc.system.adjustments.filter(row => row.type === 'disableCombatPool' && attackerKeys.includes(row.config.disable)).map(doc => doc.config.disable)); return c }, [])
@@ -1000,15 +1000,15 @@ export default class CoC7ChatCombatRanged {
         data.targets[offset].targetTalent = await Promise.all(targetTalents.map(async (doc) => await (foundry.applications.ux?.TextEditor.implementation ?? TextEditor).enrichHTML(doc.link, { async: true }) ))
         data.targets[offset].poolDisabled = attackerPoolDisabled.concat(targetPoolDisabled)
       }
-      let difficulty = CoC7DicePool.difficultyLevel.regular
+      let difficulty = Cd100DicePool.difficultyLevel.regular
       let poolModifier = data.targets[offset].poolModifier
       let damage = item?.system.range.normal.damage
       if (!item?.system.properties.shotgun) {
         if (data.targets[offset].longRange) {
-          difficulty = CoC7DicePool.difficultyLevel.hard
+          difficulty = Cd100DicePool.difficultyLevel.hard
           damage = item?.system.range.long.damage
         } else if (data.targets[offset].extremeRange) {
-          difficulty = CoC7DicePool.difficultyLevel.extreme
+          difficulty = Cd100DicePool.difficultyLevel.extreme
           damage = item?.system.range.extreme.damage
         }
       }
@@ -1032,41 +1032,41 @@ export default class CoC7ChatCombatRanged {
           poolModifier--
         }
       }
-      if (poolModifier > CoC7DicePool.maxDiceBonus) {
+      if (poolModifier > Cd100DicePool.maxDiceBonus) {
         data.excessBonusDice = poolModifier
-        poolModifier = CoC7DicePool.maxDiceBonus
-      } else if (poolModifier < -CoC7DicePool.maxDicePenalty) {
+        poolModifier = Cd100DicePool.maxDiceBonus
+      } else if (poolModifier < -Cd100DicePool.maxDicePenalty) {
         data.excessPenaltyDice = -poolModifier
         const excess = Math.abs(poolModifier + 2)
         difficulty += excess
-        if (difficulty > CoC7DicePool.difficultyLevel.critical) {
-          difficulty = CoC7DicePool.difficultyLevel.impossible
+        if (difficulty > Cd100DicePool.difficultyLevel.critical) {
+          difficulty = Cd100DicePool.difficultyLevel.impossible
         }
-        poolModifier = -CoC7DicePool.maxDicePenalty
+        poolModifier = -Cd100DicePool.maxDicePenalty
       }
       if (data.targets[offset].outOfRange) {
-        difficulty = CoC7DicePool.difficultyLevel.impossible
+        difficulty = Cd100DicePool.difficultyLevel.impossible
       }
       data.targets[offset].damage = String(damage || '0')
       data.targets[offset].difficulty = difficulty
       data.targets[offset].finalPoolModifier = poolModifier
       data.targets[offset].absolutePoolModifier = Math.abs(poolModifier)
-      data.targets[offset].impossible = (difficulty === CoC7DicePool.difficultyLevel.impossible)
+      data.targets[offset].impossible = (difficulty === Cd100DicePool.difficultyLevel.impossible)
       switch (difficulty) {
-        case CoC7DicePool.difficultyLevel.regular:
-          data.targets[offset].difficultyName = game.i18n.localize('CoC7.RollDifficultyRegularTitle')
+        case Cd100DicePool.difficultyLevel.regular:
+          data.targets[offset].difficultyName = game.i18n.localize('Cd100.RollDifficultyRegularTitle')
           break
-        case CoC7DicePool.difficultyLevel.hard:
-          data.targets[offset].difficultyName = game.i18n.localize('CoC7.RollDifficultyHardTitle')
+        case Cd100DicePool.difficultyLevel.hard:
+          data.targets[offset].difficultyName = game.i18n.localize('Cd100.RollDifficultyHardTitle')
           break
-        case CoC7DicePool.difficultyLevel.extreme:
-          data.targets[offset].difficultyName = game.i18n.localize('CoC7.RollDifficultyExtremeTitle')
+        case Cd100DicePool.difficultyLevel.extreme:
+          data.targets[offset].difficultyName = game.i18n.localize('Cd100.RollDifficultyExtremeTitle')
           break
-        case CoC7DicePool.difficultyLevel.critical:
-          data.targets[offset].difficultyName = game.i18n.localize('CoC7.RollDifficultyCriticalTitle')
+        case Cd100DicePool.difficultyLevel.critical:
+          data.targets[offset].difficultyName = game.i18n.localize('Cd100.RollDifficultyCriticalTitle')
           break
-        case CoC7DicePool.difficultyLevel.impossible:
-          data.targets[offset].difficultyName = game.i18n.localize('CoC7.RollDifficultyImpossibleTitle')
+        case Cd100DicePool.difficultyLevel.impossible:
+          data.targets[offset].difficultyName = game.i18n.localize('Cd100.RollDifficultyImpossibleTitle')
           break
       }
     }
@@ -1092,7 +1092,7 @@ export default class CoC7ChatCombatRanged {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7ChatCombatRanged',
+            as: 'Cd100ChatCombatRanged',
             actorUuid: data.attackerUuid,
             aiming: this.#aiming,
             badConsequence: this.#badConsequence,
@@ -1155,7 +1155,7 @@ export default class CoC7ChatCombatRanged {
     if (this.message) {
       const diff = foundry.utils.diffObject(this.message.toObject(), await this.getChatData())
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -1163,7 +1163,7 @@ export default class CoC7ChatCombatRanged {
         })
       } else {
         await this.message.update(diff)
-        Hooks.call('messageUpdatedCoC7', this.message.id)
+        Hooks.call('messageUpdatedCd100', this.message.id)
       }
     }
   }
@@ -1199,7 +1199,7 @@ export default class CoC7ChatCombatRanged {
     div.innerHTML = message.content
     const contents = div.children[0]
     if (contents) {
-      const actorUuid = CoC7Utilities.oldStyleToUuid(contents.dataset.actorKey)
+      const actorUuid = Cd100Utilities.oldStyleToUuid(contents.dataset.actorKey)
       const targetsHtml = contents.querySelectorAll('.targets')
       const targets = []
       for (const targetHtml of targetsHtml) {
@@ -1240,7 +1240,7 @@ export default class CoC7ChatCombatRanged {
           roundedDistance: Number(tab.dataset.roundedDistance) || 0,
           img: img.src,
           name: img.alt,
-          uuid: CoC7Utilities.oldStyleToUuid(tab.dataset.actorKey),
+          uuid: Cd100Utilities.oldStyleToUuid(tab.dataset.actorKey),
           unit: tab.dataset.distanceUnit,
           poolKeys,
           poolModifier,
@@ -1249,7 +1249,7 @@ export default class CoC7ChatCombatRanged {
           extremeRange: tab.dataset.extremeRange === 'true',
           outOfRange: tab.dataset.outOfRange === 'true',
           mov: 10, // Default
-          size: (tab.dataset.small === 'true' ? CoC7ChatCombatRanged.TARGET_SIZE.small : (tab.dataset.big === 'true' ? CoC7ChatCombatRanged.TARGET_SIZE.big : CoC7ChatCombatRanged.TARGET_SIZE.normal))
+          size: (tab.dataset.small === 'true' ? Cd100ChatCombatRanged.TARGET_SIZE.small : (tab.dataset.big === 'true' ? Cd100ChatCombatRanged.TARGET_SIZE.big : Cd100ChatCombatRanged.TARGET_SIZE.normal))
         })
       }
       const shots = []
@@ -1264,7 +1264,7 @@ export default class CoC7ChatCombatRanged {
             bulletsShot: shotHtml.dataset.bulletsShot,
             damage: shotHtml.dataset.damage,
             extremeRange: false, // Default
-            targetUuid: (shotHtml.dataset.actorKey === '' ? '' : CoC7Utilities.oldStyleToUuid(shotHtml.dataset.actorKey)),
+            targetUuid: (shotHtml.dataset.actorKey === '' ? '' : Cd100Utilities.oldStyleToUuid(shotHtml.dataset.actorKey)),
             actorName: shotHtml.dataset.actorName,
             dicePool: {
               bonusCount: Math.max(0, poolModifier),
@@ -1330,14 +1330,14 @@ export default class CoC7ChatCombatRanged {
           isCritical: diceResult.dataset.critical === 'true',
           dealt: diceResult.dataset.dealt === 'true',
           actorName: diceResult.dataset.targetName,
-          targetUuid: CoC7Utilities.oldStyleToUuid(diceResult.dataset.targetKey),
+          targetUuid: Cd100Utilities.oldStyleToUuid(diceResult.dataset.targetKey),
           resultString: (blastRangeDamage.length > 1 ? '' : blastRangeDamage.pop()),
           blastRangeDamage,
           parts
         })
       }
       const update = {
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatCombatRanged',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatCombatRanged',
         ['flags.' + FOLDER_ID + '.load.actorUuid']: actorUuid,
         ['flags.' + FOLDER_ID + '.load.aiming']: contents.dataset.aiming === 'true',
         ['flags.' + FOLDER_ID + '.load.burst']: contents.dataset.burst === 'true',
@@ -1358,7 +1358,7 @@ export default class CoC7ChatCombatRanged {
         ['flags.' + FOLDER_ID + '.load.weaponRolled']: contents.dataset.rolled === 'true'
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7ChatCombatRanged.loadFromMessage(merged)
+      const check = await Cd100ChatCombatRanged.loadFromMessage(merged)
       const data = await check.getTemplateData()
       data.attackerUuid = update['flags.' + FOLDER_ID + '.load.actorUuid']
       {
@@ -1372,7 +1372,7 @@ export default class CoC7ChatCombatRanged {
         data.itemImg = html.src
         data.itemName = html.title
         data.itemUuid = update['flags.' + FOLDER_ID + '.load.itemUuid']
-        data.malfunctionTxt = game.i18n.format('CoC7.Malfunction', {
+        data.malfunctionTxt = game.i18n.format('Cd100.Malfunction', {
           itemName: data.itemName
         })
       }

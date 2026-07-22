@@ -1,6 +1,6 @@
-import CoC7EnableVariantRulesEn from './enable-variant-rules-en.js'
+import Cd100EnableVariantRulesEn from './enable-variant-rules-en.js'
 
-export default class CoC7EnableVariantRulesFr extends CoC7EnableVariantRulesEn {
+export default class Cd100EnableVariantRulesFr extends Cd100EnableVariantRulesEn {
   /**
    * Tour configuration
    * @param {object} config

@@ -20,7 +20,7 @@ You can create a new Item Compendium and copy the skills you require into it all
 
 ## Setup
 
-Once you have set up your skills next create up a Setup, here is an example from the Items Examples compendium @Compendium[CoC7.items.CcH7CdXGtGTjMSCg]{1920's Setup Example}
+Once you have set up your skills next create up a Setup, here is an example from the Items Examples compendium @Compendium[Cd100.items.CcH7CdXGtGTjMSCg]{1920's Setup Example}
 
 Setups allow to you standardize what skills, items, biography sections, and characteristics the investigators start with.
 
@@ -28,7 +28,7 @@ Click on the [fa-solid fa-suitcase]Items Directory tab then Create Item give thi
 
 On the Description tab to set the description click the [fa-solid fa-edit]button to get an editor.
 
-On the Details tab click the [fa-regular fa-plus-circle]on the Biography Sections to add any sections you require from the Create a Backstory step of investigator creation. Click on the [fa-solid fa-atlas]Compendium Packs tab then under the Item heading open up the Items Examples Item (CoC7) and drag the @Compendium[CoC7.items.3elxAwnv7WCUNwng]{Punch} onto the setup.
+On the Details tab click the [fa-regular fa-plus-circle]on the Biography Sections to add any sections you require from the Create a Backstory step of investigator creation. Click on the [fa-solid fa-atlas]Compendium Packs tab then under the Item heading open up the Items Examples Item (Cd100) and drag the @Compendium[Cd100.items.3elxAwnv7WCUNwng]{Punch} onto the setup.
 
 On the Characteristics tab you can customize how investigator characteristics are rolled / bought
 
@@ -38,7 +38,7 @@ All actor and item sheets have a [game-icon game-icon-tentacles-skull]tab which 
 
 ## Occupation
 
-Occupations allow you set how many the occupation points, credit rating range, and skills the investigator starts with. Here is an example from the Items Examples compendium @Compendium[CoC7.items.NOsh6EdNSjpjahDF]{Occupation Example}
+Occupations allow you set how many the occupation points, credit rating range, and skills the investigator starts with. Here is an example from the Items Examples compendium @Compendium[Cd100.items.NOsh6EdNSjpjahDF]{Occupation Example}
 
 Click on the [fa-solid fa-suitcase]Items Directory tab then Create Item give this a name e.g. Driver and set the Type to Occupation
 
@@ -56,9 +56,9 @@ To complete your character you need to have an active scene which can be created
 
 Click on the [fa-solid fa-users]Actors Directory tab then Create Item give this a name e.g. New Investigator and set the Type to Character.
 
-You can drag your setup created above on to the character for the initial setup or drag this example instead @Compendium[CoC7.items.CcH7CdXGtGTjMSCg]{1920's Setup Example}
+You can drag your setup created above on to the character for the initial setup or drag this example instead @Compendium[Cd100.items.CcH7CdXGtGTjMSCg]{1920's Setup Example}
 
-Next drag your occupation created above on to the character or drag this example instead @Compendium[CoC7.items.NOsh6EdNSjpjahDF]{Occupation Example}
+Next drag your occupation created above on to the character or drag this example instead @Compendium[Cd100.items.NOsh6EdNSjpjahDF]{Occupation Example}
 
 On the left hand menu bar select [game-icon game-icon-tentacle-strike]Keeper's tools then select [fa-solid fa-user-edit]Character creation mode.
 

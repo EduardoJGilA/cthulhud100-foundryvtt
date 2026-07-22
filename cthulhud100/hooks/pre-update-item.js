@@ -10,6 +10,6 @@ import { FOLDER_ID } from '../constants.js'
  */
 export default function (document, changed, options, userId) {
   if (typeof changed.flags?.[FOLDER_ID]?.cocidFlag?.id === 'string' && document.flags?.[FOLDER_ID]?.cocidFlag?.id?.length) {
-    game.CoC7.skillNames.removeItem(document.flags[FOLDER_ID].cocidFlag.id)
+    game.Cd100.skillNames.removeItem(document.flags[FOLDER_ID].cocidFlag.id)
   }
 }

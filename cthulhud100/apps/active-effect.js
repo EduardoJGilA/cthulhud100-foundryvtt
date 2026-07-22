@@ -2,7 +2,7 @@
 import { STATUS_EFFECTS } from '../constants.js'
 import deprecated from '../deprecated.js'
 
-export default class CoC7ActiveEffect {
+export default class Cd100ActiveEffect {
   /**
    * Manage Active Effect instances through the Actor Sheet via effect control buttons.
    * @param {ClickEvent} event
@@ -18,7 +18,7 @@ export default class CoC7ActiveEffect {
       case 'create':
         return owner.createEmbeddedDocuments('ActiveEffect', [
           {
-            name: game.i18n.localize('CoC7.EffectNew'),
+            name: game.i18n.localize('Cd100.EffectNew'),
             img: 'icons/svg/aura.svg',
             origin: owner.uuid,
             'duration.rounds': li.dataset.effectType === 'temporary' ? 1 : undefined,
@@ -43,7 +43,7 @@ export default class CoC7ActiveEffect {
     // Active Effects
     element.querySelectorAll('.effect-control').forEach((element2) => element2.addEventListener('click', (event) => {
       element.dispatchEvent(new Event('change')) // Submit any unsaved changes
-      CoC7ActiveEffect.#onManageActiveEffect(event, owner)
+      Cd100ActiveEffect.#onManageActiveEffect(event, owner)
     }))
   }
 
@@ -119,11 +119,11 @@ export default class CoC7ActiveEffect {
               case 'config':
                 switch (match[2]) {
                   case 'idea':
-                    name = game.i18n.localize('CoC7.IdeaCheck')
+                    name = game.i18n.localize('Cd100.IdeaCheck')
                     unit = '%'
                     break
                   case 'know':
-                    name = game.i18n.localize('CoC7.KnowCheck')
+                    name = game.i18n.localize('Cd100.KnowCheck')
                     unit = '%'
                     break
                 }
@@ -135,10 +135,10 @@ export default class CoC7ActiveEffect {
               what = 'value'
               switch (match[1]) {
                 case 'luckRecovery':
-                  name = game.i18n.localize('CoC7.RecoverLuckPoints')
+                  name = game.i18n.localize('Cd100.RecoverLuckPoints')
                   break
                 case 'naturalHealing':
-                  name = game.i18n.localize('CoC7.ActorConfig.NaturalHealing')
+                  name = game.i18n.localize('Cd100.ActorConfig.NaturalHealing')
                   break
               }
             }
@@ -149,15 +149,15 @@ export default class CoC7ActiveEffect {
             what = (changeType === 'add' ? (change.value < 0 ? '' : '+') : '=') + change.value + unit
             break
           case 'max':
-            what = (changeType === 'add' ? (change.value < 0 ? '' : '+') : '=') + change.value + ' ' + game.i18n.localize('CoC7.Maximum')
+            what = (changeType === 'add' ? (change.value < 0 ? '' : '+') : '=') + change.value + ' ' + game.i18n.localize('Cd100.Maximum')
             break
           case 'bonusDice':
             if (change.value < 0) {
-              what = (changeType === 'add' ? '+' : '=') + Math.abs(change.value) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty') + ' ' + game.i18n.localize('CoC7.Dice')
+              what = (changeType === 'add' ? '+' : '=') + Math.abs(change.value) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty') + ' ' + game.i18n.localize('Cd100.Dice')
             } else if (change.value > 0) {
-              what = (changeType === 'add' ? '+' : '=') + Math.abs(change.value) + ' ' + game.i18n.localize('CoC7.DiceModifierBonus') + ' ' + game.i18n.localize('CoC7.Dice')
+              what = (changeType === 'add' ? '+' : '=') + Math.abs(change.value) + ' ' + game.i18n.localize('Cd100.DiceModifierBonus') + ' ' + game.i18n.localize('Cd100.Dice')
             } else {
-              what = (changeType === 'add' ? '+' : '=') + Math.abs(change.value) + ' ' + game.i18n.localize('CoC7.DiceModifierBonus') + ' ' + game.i18n.localize('CoC7.Dice')
+              what = (changeType === 'add' ? '+' : '=') + Math.abs(change.value) + ' ' + game.i18n.localize('Cd100.DiceModifierBonus') + ' ' + game.i18n.localize('Cd100.Dice')
             }
             break
         }
@@ -196,24 +196,24 @@ export default class CoC7ActiveEffect {
     const categories = {
       temporary: {
         type: 'temporary',
-        label: game.i18n.localize('CoC7.Temporary'),
+        label: game.i18n.localize('Cd100.Temporary'),
         effects: []
       },
       passive: {
         type: 'passive',
-        label: game.i18n.localize('CoC7.Passive'),
+        label: game.i18n.localize('Cd100.Passive'),
         effects: []
       },
       inactive: {
         type: 'inactive',
-        label: game.i18n.localize('CoC7.Inactive'),
+        label: game.i18n.localize('Cd100.Inactive'),
         effects: []
       },
       suppressed: {
         type: 'suppressed',
-        label: game.i18n.localize('CoC7.Suppressed'),
+        label: game.i18n.localize('Cd100.Suppressed'),
         effects: [],
-        info: [game.i18n.localize('CoC7.Unavailable')]
+        info: [game.i18n.localize('Cd100.Unavailable')]
       }
     }
 
@@ -226,10 +226,10 @@ export default class CoC7ActiveEffect {
     }
     // Iterate over active effects, classifying them into categories
     for (const e of document.effects ?? []) {
-      const effect = await CoC7ActiveEffect.effectData(e, { embeddedItem: false })
+      const effect = await Cd100ActiveEffect.effectData(e, { embeddedItem: false })
       if (effect.isSuppressed) {
         categories.suppressed.effects.push(effect)
-      } else if (CoC7ActiveEffect.getStatusKey(e) && status) {
+      } else if (Cd100ActiveEffect.getStatusKey(e) && status) {
         categories.status.effects.push(effect)
       } else if (effect.disabled) {
         categories.inactive.effects.push(effect)
@@ -241,10 +241,10 @@ export default class CoC7ActiveEffect {
     }
     for (const i of document.items ?? []) {
       for (const e of i.effects) {
-        const effect = await CoC7ActiveEffect.effectData(e, { embeddedItem: true })
+        const effect = await Cd100ActiveEffect.effectData(e, { embeddedItem: true })
         if (effect.isSuppressed) {
           categories.suppressed.effects.push(effect)
-        } else if (CoC7ActiveEffect.getStatusKey(e) && status) {
+        } else if (Cd100ActiveEffect.getStatusKey(e) && status) {
           categories.status.effects.push(effect)
         } else if (effect.disabled) {
           categories.inactive.effects.push(effect)
@@ -281,7 +281,7 @@ export default class CoC7ActiveEffect {
     }
     // Iterate over active effects, classifying them into categories
     for (const e of document.effects ?? []) {
-      const effect = await CoC7ActiveEffect.effectData(e, { embeddedItem: false })
+      const effect = await Cd100ActiveEffect.effectData(e, { embeddedItem: false })
       if (effect.isSuppressed || effect.disabled) {
         categories.inactive.effects.push(effect)
       } else {
@@ -290,7 +290,7 @@ export default class CoC7ActiveEffect {
     }
     for (const i of document.items ?? []) {
       for (const e of i.effects) {
-        const effect = await CoC7ActiveEffect.effectData(e, { embeddedItem: true })
+        const effect = await Cd100ActiveEffect.effectData(e, { embeddedItem: true })
         if (effect.isSuppressed || effect.disabled) {
           categories.inactive.effects.push(effect)
         } else {

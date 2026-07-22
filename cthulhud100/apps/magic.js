@@ -7,7 +7,7 @@ import { CHARACTERISTIC_MULTIPLIER } from '../constants.js'
  * the players, so the rules are deliberately thin: a pool equal to POD, a check
  * to memorise a spell, and a casting turn during which the caster is helpless.
  */
-export default class CoC7Magic {
+export default class Cd100Magic {
   /**
    * Starting magic point pool, which is POD outright.
    *
@@ -28,7 +28,7 @@ export default class CoC7Magic {
    * @returns {number} points that regenerate
    */
   static regeneratingMagicPoints ({ current, pow } = {}) {
-    const cap = CoC7Magic.maximumMagicPoints(pow)
+    const cap = Cd100Magic.maximumMagicPoints(pow)
     return Math.min(Math.max(0, parseInt(current, 10) || 0), cap)
   }
 
@@ -118,7 +118,7 @@ export default class CoC7Magic {
    * @returns {object} the new cap and the points now beyond it
    */
   static afterPowLoss ({ pow, currentMagicPoints = 0 } = {}) {
-    const cap = CoC7Magic.maximumMagicPoints(pow)
+    const cap = Cd100Magic.maximumMagicPoints(pow)
     const current = Math.max(0, parseInt(currentMagicPoints, 10) || 0)
     return {
       maximum: cap,

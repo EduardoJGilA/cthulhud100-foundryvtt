@@ -5,8 +5,8 @@ import * as path from 'path'
  * Guard against a translation file that FoundryVTT will silently discard.
  *
  * Foundry runs every language file through expandObject(), which turns keys
- * such as "CoC7.Creature.LeatherySkin" into nested objects. If a shorter key
- * ("CoC7.Creature") already holds a string, the expansion tries to create a
+ * such as "Cd100.Creature.LeatherySkin" into nested objects. If a shorter key
+ * ("Cd100.Creature") already holds a string, the expansion tries to create a
  * property on that string and throws:
  *
  *   Cannot create property 'LeatherySkin' on string 'Creature'

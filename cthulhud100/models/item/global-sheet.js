@@ -1,15 +1,15 @@
 /* global foundry fromUuid game Item ui */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ActiveEffect from '../../apps/active-effect.js'
-import CoC7DropCoCID from '../../apps/drop-coc-id.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ActiveEffect from '../../apps/active-effect.js'
+import Cd100DropCoCID from '../../apps/drop-coc-id.js'
+import Cd100Utilities from '../../apps/utilities.js'
 import deprecated from '../../deprecated.js'
 
-export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+export default class Cd100ModelsItemGlobalSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ['coc7', 'sheet', 'dialog', 'item'],
     form: {
-      handler: CoC7ModelsItemGlobalSheet.#onSubmit,
+      handler: Cd100ModelsItemGlobalSheet.#onSubmit,
       submitOnChange: true
     },
     window: {
@@ -27,7 +27,7 @@ export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.
     if (!this.isEditable) return
     if (this.document.parent instanceof Item) {
       const submitData = this._prepareSubmitData(event, form, formData)
-      await CoC7Utilities.editEmbeddedItem(this.document.parent, this.document.id, submitData)
+      await Cd100Utilities.editEmbeddedItem(this.document.parent, this.document.id, submitData)
       foundry.utils.mergeObject(this.document, submitData)
       this.render({ force: true })
       return
@@ -79,7 +79,7 @@ export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.
     this.element.dispatchEvent(new Event('change')) // Submit any unsaved changes
     const property = event.currentTarget.closest('.toggle-attributes').dataset.set
     const key = event.currentTarget.dataset.property
-    this.document.system.toggleProperty(property, key, { isCtrlKey: CoC7Utilities.isCtrlKey(event) })
+    this.document.system.toggleProperty(property, key, { isCtrlKey: Cd100Utilities.isCtrlKey(event) })
   }
 
   /**
@@ -124,11 +124,11 @@ export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.
     event.stopPropagation()
     this.element.dispatchEvent(new Event('change')) // Submit any unsaved changes
 
-    const droppedItems = (await CoC7Utilities.getDataFromDropEvent(event, 'Item')).filter(doc => allowedTypes.includes(doc.type))
+    const droppedItems = (await Cd100Utilities.getDataFromDropEvent(event, 'Item')).filter(doc => allowedTypes.includes(doc.type))
 
     if (droppedItems.length) {
-      const useCoCID = await CoC7DropCoCID.create()
-      const embeddedItems = await CoC7Utilities.getEmbeddedItems(this.document, source)
+      const useCoCID = await Cd100DropCoCID.create()
+      const embeddedItems = await Cd100Utilities.getEmbeddedItems(this.document, source)
       let collectionName
       const updates = {}
       const names = []
@@ -139,7 +139,7 @@ export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.
           }
         }
         names.push(document.name)
-        const newEntry = CoC7DropCoCID.processItem(useCoCID, document)
+        const newEntry = Cd100DropCoCID.processItem(useCoCID, document)
         if (typeof newEntry === 'string') {
           collectionName = 'itemKeys'
         } else {
@@ -152,7 +152,7 @@ export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.
       }
       if (names.length) {
         /* // FoundryVTT V12 */
-        ui.notifications.info(game.i18n.format('CoC7.AddedEmbeddedItems', { names: '"' + names.join('" / "') + '"' }))
+        ui.notifications.info(game.i18n.format('Cd100.AddedEmbeddedItems', { names: '"' + names.join('" / "') + '"' }))
         const object = foundry.utils.expandObject(updates)
         const parts = source.match(/\.([^\\.]+)\.\d+$/)
         if (parts) {
@@ -178,17 +178,17 @@ export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.
       item = foundry.utils.getProperty(this.document, source).itemDocuments.find(doc => doc._id === li.dataset.id)
     }
     if (item) {
-      if (CoC7Utilities.htmlElementToggled(li)) {
-        CoC7Utilities.htmlElementToggleHide(li, { remove: true })
+      if (Cd100Utilities.htmlElementToggled(li)) {
+        Cd100Utilities.htmlElementToggleHide(li, { remove: true })
       } else {
         let div = li.querySelector('.html-element-toggled')
         if (!div) {
           div = document.createElement('div')
           div.classList.add('item-summary')
-          await CoC7Utilities.setItemSummaryHtml(div, item)
+          await Cd100Utilities.setItemSummaryHtml(div, item)
           li.append(div)
         }
-        CoC7Utilities.htmlElementToggleShow(li, div)
+        Cd100Utilities.htmlElementToggleShow(li, div)
       }
     }
   }
@@ -213,7 +213,7 @@ export default class CoC7ModelsItemGlobalSheet extends foundry.applications.api.
       }))
     }
 
-    CoC7ActiveEffect._onRender(this.element, context.document)
+    Cd100ActiveEffect._onRender(this.element, context.document)
   }
 
   /**

@@ -1,6 +1,6 @@
 /* global foundry game Tour ui */
 /* // FoundryVTT V12 */
-export default class CoC7Tour extends (foundry.nue?.Tour ?? Tour) {
+export default class Cd100Tour extends (foundry.nue?.Tour ?? Tour) {
   /**
    * Wait for Html element to appear on body
    * @param {string} selector

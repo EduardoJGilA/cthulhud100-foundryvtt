@@ -1,5 +1,5 @@
 /* global fromUuid */
-import CoC7Link from '../apps/link.js'
+import Cd100Link from '../apps/link.js'
 
 /**
  * Useful data is dropped onto an ActorSheet.
@@ -29,7 +29,7 @@ export default async function (actor, sheet, data) {
         }
     }
     item.actor.deleteEmbeddedDocuments('Item', [item._id])
-  } else if (data.type === 'CoC7Link' && data.check === CoC7Link.CHECK_TYPE.EFFECT) {
-    CoC7Link._onLinkActorClick(actor, data)
+  } else if (data.type === 'Cd100Link' && data.check === Cd100Link.CHECK_TYPE.EFFECT) {
+    Cd100Link._onLinkActorClick(actor, data)
   }
 }

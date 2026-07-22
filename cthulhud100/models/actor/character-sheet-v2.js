@@ -1,11 +1,11 @@
 /* global foundry fromUuid game renderTemplate TextEditor */
 import { FOLDER_ID, MONETARY_FORMATS, MONETARY_TYPES } from '../../constants.js'
-import CoC7CreateMythosEncounter from '../../apps/create-mythos-encounter.js'
-import CoC7ModelsActorGlobalSheet from './global-sheet.js'
-import CoC7SystemSocket from '../../apps/system-socket.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100CreateMythosEncounter from '../../apps/create-mythos-encounter.js'
+import Cd100ModelsActorGlobalSheet from './global-sheet.js'
+import Cd100SystemSocket from '../../apps/system-socket.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlobalSheet {
+export default class Cd100ModelsActorCharacterSheetV2 extends Cd100ModelsActorGlobalSheet {
   static DEFAULT_OPTIONS = {
     classes: ['coc7', 'sheetV2', 'actor', 'character'],
     position: {
@@ -138,13 +138,13 @@ export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlob
           previousSpec = check
           context.skillList.push({
             isSpecialization: true,
-            name: skill.system.specialization + (skill.system.properties.own ? ' - ' + game.i18n.localize('CoC7.SkillOwn') : '')
+            name: skill.system.specialization + (skill.system.properties.own ? ' - ' + game.i18n.localize('Cd100.SkillOwn') : '')
           })
         }
       }
       context.skillList.push(skill)
     }
-    context.skillsByValue = [...skills].sort(CoC7Utilities.sortByValueThenNameKey)
+    context.skillsByValue = [...skills].sort(Cd100Utilities.sortByValueThenNameKey)
     context.displayPlayerName = game.settings.get(FOLDER_ID, 'displayPlayerNameOnSheet')
     if (context.displayPlayerName && context.document.system.infos.playername.length === 0) {
       const user = context.document.userOwner
@@ -177,7 +177,7 @@ export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlob
 
     context.showPartValues = !game.settings.get(FOLDER_ID, 'hidePartValues')
 
-    if (this.constructor.name === 'CoC7ModelsActorCharacterSheetV2') {
+    if (this.constructor.name === 'Cd100ModelsActorCharacterSheetV2') {
       let tabs = {}
       if (context.showDevPanel) {
         tabs = {
@@ -185,7 +185,7 @@ export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlob
           ...{
             development: {
               icon: '',
-              label: 'CoC7.CharacterDevelopment'
+              label: 'Cd100.CharacterDevelopment'
             }
           }
         }
@@ -195,19 +195,19 @@ export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlob
         ...{
           skills: {
             icon: '',
-            label: 'CoC7.Skills'
+            label: 'Cd100.Skills'
           },
           combat: {
             icon: '',
-            label: 'CoC7.Combat'
+            label: 'Cd100.Combat'
           },
           possession: {
             icon: '',
-            label: 'CoC7.Possessions'
+            label: 'Cd100.Possessions'
           },
           background: {
             icon: '',
-            label: 'CoC7.Background'
+            label: 'Cd100.Background'
           }
         }
       }
@@ -216,18 +216,18 @@ export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlob
           cssClass: 'icon-only-tab',
           icon: 'game-icon game-icon-aura',
           label: '',
-          tooltip: 'CoC7.Effects'
+          tooltip: 'Cd100.Effects'
         }
         tabs.keeper = {
           cssClass: 'icon-only-tab',
           icon: 'game-icon game-icon-tentacles-skull',
-          tooltip: 'CoC7.GmNotes'
+          tooltip: 'Cd100.GmNotes'
         }
       }
       tabs.locked = {
         cssClass: 'icon-only-tab ' + (this.allowUnlock ? 'unlock-control' : 'unlock-control-disabled'),
         icon: (context.document.system.flags.locked ? 'fa-solid fa-lock' : 'fa-solid fa-lock-open'),
-        tooltip: (context.document.system.flags.locked ? 'CoC7.UnlockActor' : 'CoC7.LockActor')
+        tooltip: (context.document.system.flags.locked ? 'Cd100.UnlockActor' : 'Cd100.LockActor')
       }
 
       context.tabs = this.getTabs('primary', (context.showDevPanel ? 'development' : 'skills'), tabs)
@@ -352,7 +352,7 @@ export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlob
    */
   async _onSanityLossReasonAdd (event) {
     event.preventDefault()
-    CoC7CreateMythosEncounter.create({
+    Cd100CreateMythosEncounter.create({
       actor: this.actor,
       type: event.currentTarget.dataset.type
     })
@@ -457,7 +457,7 @@ export default class CoC7ModelsActorCharacterSheetV2 extends CoC7ModelsActorGlob
         books.splice(index, 1)
         await this.document.update({ 'system.books': books })
         if (uuid) {
-          CoC7SystemSocket.triggerSocket({
+          Cd100SystemSocket.triggerSocket({
             type: 'refreshOpenDocumentSheet',
             uuid
           })

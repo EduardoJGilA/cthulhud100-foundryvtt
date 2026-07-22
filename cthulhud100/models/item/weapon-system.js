@@ -1,9 +1,9 @@
 /* global foundry game Roll */
 // cSpell:words dbrl brst slnt
 import { FOLDER_ID, ERAS } from '../../constants.js'
-import CoC7ModelsItemGlobalSystem from './global-system.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemWeaponSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Default img
    * @returns {string}
@@ -77,26 +77,26 @@ export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSyst
       // The block table also strips PR from the attacker's weapon on some results.
       resistance: new fields.NumberField({ nullable: true, initial: null }),
       properties: new fields.SchemaField({
-        rngd: new fields.BooleanField({ label: 'CoC7.WeaponRanged', initial: false }),
-        mnvr: new fields.BooleanField({ label: 'CoC7.WeaponManeuver', initial: false }),
-        thrown: new fields.BooleanField({ label: 'CoC7.Weapon.Property.Thrown', initial: false }),
-        shotgun: new fields.BooleanField({ label: 'CoC7.Weapon.Property.Shotgun', initial: false }),
-        dbrl: new fields.BooleanField({ label: 'CoC7.WeaponDualBarrel', initial: false }),
-        impl: new fields.BooleanField({ label: 'CoC7.WeaponImpl', initial: false }),
+        rngd: new fields.BooleanField({ label: 'Cd100.WeaponRanged', initial: false }),
+        mnvr: new fields.BooleanField({ label: 'Cd100.WeaponManeuver', initial: false }),
+        thrown: new fields.BooleanField({ label: 'Cd100.Weapon.Property.Thrown', initial: false }),
+        shotgun: new fields.BooleanField({ label: 'Cd100.Weapon.Property.Shotgun', initial: false }),
+        dbrl: new fields.BooleanField({ label: 'Cd100.WeaponDualBarrel', initial: false }),
+        impl: new fields.BooleanField({ label: 'Cd100.WeaponImpl', initial: false }),
         // Cthulhu d100: whether this weapon can be used to block an attack.
         // The rulebook lists it per weapon alongside impaling.
-        parry: new fields.BooleanField({ label: 'CoC7.WeaponParry', initial: false }),
-        brst: new fields.BooleanField({ label: 'CoC7.WeaponBurst', initial: false }),
-        auto: new fields.BooleanField({ label: 'CoC7.WeaponAuto', initial: false }),
-        ahdb: new fields.BooleanField({ label: 'CoC7.WeaponAddHalfDb', initial: false }),
-        addb: new fields.BooleanField({ label: 'CoC7.WeaponAddDb', initial: false }),
-        slnt: new fields.BooleanField({ label: 'CoC7.WeaponSilent', initial: false }),
-        spcl: new fields.BooleanField({ label: 'CoC7.WeaponSpecial', initial: false }),
-        mont: new fields.BooleanField({ label: 'CoC7.WeaponMont', initial: false }),
-        blst: new fields.BooleanField({ label: 'CoC7.WeaponBlast', initial: false }),
-        stun: new fields.BooleanField({ label: 'CoC7.WeaponStun', initial: false }),
-        rare: new fields.BooleanField({ label: 'CoC7.WeaponRare', initial: false }),
-        burn: new fields.BooleanField({ label: 'CoC7.Weapon.Property.Burn', initial: false })
+        parry: new fields.BooleanField({ label: 'Cd100.WeaponParry', initial: false }),
+        brst: new fields.BooleanField({ label: 'Cd100.WeaponBurst', initial: false }),
+        auto: new fields.BooleanField({ label: 'Cd100.WeaponAuto', initial: false }),
+        ahdb: new fields.BooleanField({ label: 'Cd100.WeaponAddHalfDb', initial: false }),
+        addb: new fields.BooleanField({ label: 'Cd100.WeaponAddDb', initial: false }),
+        slnt: new fields.BooleanField({ label: 'Cd100.WeaponSilent', initial: false }),
+        spcl: new fields.BooleanField({ label: 'Cd100.WeaponSpecial', initial: false }),
+        mont: new fields.BooleanField({ label: 'Cd100.WeaponMont', initial: false }),
+        blst: new fields.BooleanField({ label: 'Cd100.WeaponBlast', initial: false }),
+        stun: new fields.BooleanField({ label: 'Cd100.WeaponStun', initial: false }),
+        rare: new fields.BooleanField({ label: 'Cd100.WeaponRare', initial: false }),
+        burn: new fields.BooleanField({ label: 'Cd100.Weapon.Property.Burn', initial: false })
       }),
       /* // FoundryVTT V12 */
       price: (foundry.utils.isNewerVersion(game.version, 13)
@@ -117,9 +117,9 @@ export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSyst
    */
   static emptyObject (options) {
     const object = foundry.utils.mergeObject({
-      name: game.i18n.localize('CoC7.NewWeaponName'),
+      name: game.i18n.localize('Cd100.NewWeaponName'),
       type: 'weapon',
-      system: new CoC7ModelsItemWeaponSystem().toObject()
+      system: new Cd100ModelsItemWeaponSystem().toObject()
     }, options)
     return object
   }
@@ -134,29 +134,29 @@ export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSyst
    */
   static async getChatData (object, output, { editable = false, actor = null } = {}) {
     const skills = []
-    await CoC7ModelsItemWeaponSystem.#getChatDataSkill(object.system.skill?.main, skills, actor)
-    await CoC7ModelsItemWeaponSystem.#getChatDataSkill(object.system.skill?.alternativ, skills, actor)
+    await Cd100ModelsItemWeaponSystem.#getChatDataSkill(object.system.skill?.main, skills, actor)
+    await Cd100ModelsItemWeaponSystem.#getChatDataSkill(object.system.skill?.alternativ, skills, actor)
 
     if (skills.length) {
       output.labels.push({
-        name: game.i18n.localize((skills.length === 1 ? 'CoC7.Skill' : 'CoC7.Skills')),
+        name: game.i18n.localize((skills.length === 1 ? 'Cd100.Skill' : 'Cd100.Skills')),
         value: skills.join('/')
       })
     }
 
     output.labels.push({
-      name: game.i18n.localize('CoC7.WeaponUsesPerRound'),
-      value: CoC7ModelsItemWeaponSystem.usesPerRoundString(object)
+      name: game.i18n.localize('Cd100.WeaponUsesPerRound'),
+      value: Cd100ModelsItemWeaponSystem.usesPerRoundString(object)
     })
 
     output.labels.push({
-      name: game.i18n.localize('CoC7.WeaponMalfunction'),
+      name: game.i18n.localize('Cd100.WeaponMalfunction'),
       value: object.system.malfunction ? object.system.malfunction : '-'
     })
 
     if (object.system.bullets) {
       output.labels.push({
-        name: game.i18n.localize('CoC7.WeaponBulletsInMag'),
+        name: game.i18n.localize('Cd100.WeaponBulletsInMag'),
         value: object.system.bullets
       })
     }
@@ -183,7 +183,7 @@ export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSyst
     if (!found && object.name) {
       // get main skill for coc id
       if (object.name.match(/^i\.skill\..+$/)) {
-        const skill = await game.CoC7.cocid.fromCoCIDBest({ cocid: object.name })
+        const skill = await game.Cd100.cocid.fromCoCIDBest({ cocid: object.name })
         if (skill.length) {
           skills.push(skill[0].system.skillName)
           found = true
@@ -212,10 +212,10 @@ export default class CoC7ModelsItemWeaponSystem extends CoC7ModelsItemGlobalSyst
       usesPerRound += `(${object.system.usesPerRound.max})`
     }
     if (object.system.properties.auto) {
-      usesPerRound += ` ${game.i18n.localize('CoC7.WeaponAuto')}`
+      usesPerRound += ` ${game.i18n.localize('Cd100.WeaponAuto')}`
     }
     if (object.system.properties.brst) {
-      usesPerRound += ` ${game.i18n.localize('CoC7.WeaponBurst')}`
+      usesPerRound += ` ${game.i18n.localize('Cd100.WeaponBurst')}`
       if (object.system.usesPerRound.burst) {
         usesPerRound += `(${object.system.usesPerRound.burst})`
       }

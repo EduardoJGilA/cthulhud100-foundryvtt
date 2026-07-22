@@ -1,12 +1,12 @@
 /* global Actor CONFIG foundry game ui */
 // cSpell:words injurues malf subskill skillname
 import { FOLDER_ID } from '../constants.js'
-import CoC7ModelsItemSkillSystem from '../models/item/skill-system.js'
-import CoC7DirectoryPicker from './directory-picker.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ModelsItemSkillSystem from '../models/item/skill-system.js'
+import Cd100DirectoryPicker from './directory-picker.js'
+import Cd100Utilities from './utilities.js'
 import deprecated from '../deprecated.js'
 
-export default class CoC7DholeHouseActorImporter {
+export default class Cd100DholeHouseActorImporter {
   /**
    * Convert backstory key into html
    * @param {object} backstoryJSON
@@ -55,11 +55,11 @@ export default class CoC7DholeHouseActorImporter {
    * @returns {object}
    */
   static async convertDholeHouseCharacterData (dholeHouseData, options, progressBar) {
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.log('Source:', dholeHouseData)
     }
     dholeHouseData = dholeHouseData.Investigator
-    const backstories = CoC7DholeHouseActorImporter.getBackstory(dholeHouseData.Backstory ?? {})
+    const backstories = Cd100DholeHouseActorImporter.getBackstory(dholeHouseData.Backstory ?? {})
     const cData = {
       name: dholeHouseData.PersonalDetails.Name,
       actor: {
@@ -102,11 +102,11 @@ export default class CoC7DholeHouseActorImporter {
         backstory: backstories.block,
         biography: backstories.sections,
         description: {
-          keeper: game.i18n.localize('CoC7.DholeHouseActorImporterSource')
+          keeper: game.i18n.localize('Cd100.DholeHouseActorImporterSource')
         }
       },
-      skills: await CoC7DholeHouseActorImporter.extractSkills(dholeHouseData.Skills.Skill ?? [], options, progressBar),
-      possessions: await CoC7DholeHouseActorImporter.extractPossessions(dholeHouseData.Possessions?.item ?? [], options, progressBar)
+      skills: await Cd100DholeHouseActorImporter.extractSkills(dholeHouseData.Skills.Skill ?? [], options, progressBar),
+      possessions: await Cd100DholeHouseActorImporter.extractPossessions(dholeHouseData.Possessions?.item ?? [], options, progressBar)
     }
     return cData
   }
@@ -153,7 +153,7 @@ export default class CoC7DholeHouseActorImporter {
       if (skill.subskill === 'None') {
         continue
       }
-      const parts = CoC7DholeHouseActorImporter.makeSkillName(skill.name, skill.subskill ?? '')
+      const parts = Cd100DholeHouseActorImporter.makeSkillName(skill.name, skill.subskill ?? '')
       lookFor.push({
         isOwn: parts.isOwn,
         skillName: parts.skillName,
@@ -163,7 +163,7 @@ export default class CoC7DholeHouseActorImporter {
         occupation: (skill.occupation === true || skill.occupation === 'true')
       })
     }
-    const foundItems = await CoC7Utilities.guessItems('skill', lookFor.map(i => i.name), { source: options.source, fallbackAny: true })
+    const foundItems = await Cd100Utilities.guessItems('skill', lookFor.map(i => i.name), { source: options.source, fallbackAny: true })
     const skills = []
     for (const skill of lookFor) {
       progressBar.bar.update({ pct: progressBar.current / progressBar.max })
@@ -174,7 +174,7 @@ export default class CoC7DholeHouseActorImporter {
         foundry.utils.setProperty(cloned, 'name', skill.name)
         foundry.utils.setProperty(cloned, 'system.skillName', skill.skillName)
         foundry.utils.setProperty(cloned, 'system.specialization', skill.specialization)
-        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + CoC7Utilities.toKebabCase(skill.name))
+        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + Cd100Utilities.toKebabCase(skill.name))
         if (cloned.system.properties?.requiresname ?? false) {
           foundry.utils.setProperty(cloned, 'system.properties.requiresname', false)
         }
@@ -183,7 +183,7 @@ export default class CoC7DholeHouseActorImporter {
         }
         foundry.utils.setProperty(cloned, 'system.base', parseInt(skill.value ?? 0, 10))
       } else {
-        cloned = CoC7ModelsItemSkillSystem.emptyObject({
+        cloned = Cd100ModelsItemSkillSystem.emptyObject({
           name: skill.name
         })
         if (skill.specialization === 'Fighting') {
@@ -195,12 +195,12 @@ export default class CoC7DholeHouseActorImporter {
         } else if (skill.skillName === 'Dodge') {
           foundry.utils.setProperty(cloned, 'system.properties.push', false)
         }
-        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + CoC7Utilities.toKebabCase(cloned.name))
+        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + Cd100Utilities.toKebabCase(cloned.name))
       }
       if (cloned.system.skillName === 'Any') {
         foundry.utils.setProperty(cloned, 'name', cloned.name.replace(' (Any)', ' (None)'))
         foundry.utils.setProperty(cloned, 'system.skillName', 'None')
-        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + CoC7Utilities.toKebabCase(cloned.name))
+        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.skill.' + Cd100Utilities.toKebabCase(cloned.name))
       }
       foundry.utils.setProperty(cloned, 'system.base', parseInt(skill.value ?? 0, 10))
       foundry.utils.setProperty(cloned, 'system.flags.occupation', (skill.occupation === true || skill.occupation === 'true'))
@@ -234,7 +234,7 @@ export default class CoC7DholeHouseActorImporter {
    * @returns {Array}
    */
   static async extractPossessions (dholehousePossessions, options, progressBar) {
-    const foundItems = await CoC7Utilities.guessItems('item', dholehousePossessions.map(i => i.description), { source: options.source })
+    const foundItems = await Cd100Utilities.guessItems('item', dholehousePossessions.map(i => i.description), { source: options.source })
     const items = []
     if (!Array.isArray(dholehousePossessions) && dholehousePossessions != null) {
       dholehousePossessions = [dholehousePossessions]
@@ -252,7 +252,7 @@ export default class CoC7DholeHouseActorImporter {
         }
       }
       foundry.utils.setProperty(cloned, 'name', item.description)
-      foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.item.' + CoC7Utilities.toKebabCase(item.description))
+      foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.item.' + Cd100Utilities.toKebabCase(item.description))
       items.push(cloned)
     }
     return items
@@ -268,7 +268,7 @@ export default class CoC7DholeHouseActorImporter {
    * @returns {Array}
    */
   static async extractWeapons (dholehouseWeapons, character, options, progressBar) {
-    const foundItems = await CoC7Utilities.guessItems('weapon', dholehouseWeapons.map(i => i.name), { source: options.source })
+    const foundItems = await Cd100Utilities.guessItems('weapon', dholehouseWeapons.map(i => i.name), { source: options.source })
     const weapons = []
     if (!Array.isArray(dholehouseWeapons)) {
       dholehouseWeapons = [dholehouseWeapons]
@@ -276,7 +276,7 @@ export default class CoC7DholeHouseActorImporter {
     for (const weapon of dholehouseWeapons) {
       progressBar.bar.update({ pct: progressBar.current / progressBar.max })
       progressBar.current++
-      const skill = CoC7DholeHouseActorImporter.findWeaponSkillId(weapon.skillname, character)
+      const skill = Cd100DholeHouseActorImporter.findWeaponSkillId(weapon.skillname, character)
       const damage = weapon.damage.replace(/\+DB/i, '')
       const addb = damage !== weapon.damage
       let cloned = null
@@ -295,7 +295,7 @@ export default class CoC7DholeHouseActorImporter {
         cloned.system.properties.rngd = skill?.system.properties?.firearm ?? false
         cloned.system.properties.addb = addb
         foundry.utils.setProperty(cloned, 'name', weapon.name)
-        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.weapon.' + CoC7Utilities.toKebabCase(weapon.name))
+        foundry.utils.setProperty(cloned, 'flags.' + FOLDER_ID + '.cocidFlag.id', 'i.weapon.' + Cd100Utilities.toKebabCase(weapon.name))
       } else {
         cloned = {
           name: weapon.name,
@@ -324,7 +324,7 @@ export default class CoC7DholeHouseActorImporter {
           flags: {
             [FOLDER_ID]: {
               cocidFlag: {
-                id: 'i.weapon.' + CoC7Utilities.toKebabCase(weapon.name)
+                id: 'i.weapon.' + Cd100Utilities.toKebabCase(weapon.name)
               }
             }
           }
@@ -344,7 +344,7 @@ export default class CoC7DholeHouseActorImporter {
   static async savePortrait (base64Portrait, fileName) {
     const base64Response = await fetch('data:image/png;base64,' + base64Portrait)
     const imageBlob = await base64Response.blob()
-    const filePath = CoC7DirectoryPicker.uploadToDefaultDirectory(
+    const filePath = Cd100DirectoryPicker.uploadToDefaultDirectory(
       imageBlob,
       fileName
     )
@@ -360,7 +360,7 @@ export default class CoC7DholeHouseActorImporter {
    */
   static async createNPCFromDholeHouse (dholeHouseCharacterData, options) {
     if (!game.user?.can('FILES_UPLOAD')) {
-      ui.notifications.error('CoC7.ActorImporterUploadError', { localize: true })
+      ui.notifications.error('Cd100.ActorImporterUploadError', { localize: true })
       return false
     }
     // Normalize Skills, Possessions, and Weapons
@@ -394,16 +394,16 @@ export default class CoC7DholeHouseActorImporter {
     }
     /* // FoundryVTT V12 */
     if (foundry.utils.isNewerVersion(game.version, 13)) {
-      progressBar.bar = ui.notifications.info('CoC7.CoCIDFlag.loading', { localize: true, progress: true, console: false })
+      progressBar.bar = ui.notifications.info('Cd100.CoCIDFlag.loading', { localize: true, progress: true, console: false })
     } else {
-      progressBar.bar = deprecated.displayProgressBar(game.i18n.localize('CoC7.CoCIDFlag.loading'))
+      progressBar.bar = deprecated.displayProgressBar(game.i18n.localize('Cd100.CoCIDFlag.loading'))
     }
-    const characterData = await CoC7DholeHouseActorImporter.convertDholeHouseCharacterData(dholeHouseCharacterData, options, progressBar)
-    if (CONFIG.debug.CoC7Importer) {
+    const characterData = await Cd100DholeHouseActorImporter.convertDholeHouseCharacterData(dholeHouseCharacterData, options, progressBar)
+    if (CONFIG.debug.Cd100Importer) {
       console.log('Character Data:', characterData)
     }
-    const importedCharactersFolder = await CoC7Utilities.createImportCharactersFolderIfNotExists()
-    if (!CoC7DirectoryPicker.createDefaultDirectory()) {
+    const importedCharactersFolder = await Cd100Utilities.createImportCharactersFolderIfNotExists()
+    if (!Cd100DirectoryPicker.createDefaultDirectory()) {
       return false
     }
     const actorData = {
@@ -416,7 +416,7 @@ export default class CoC7DholeHouseActorImporter {
     // If possible upload the image portrait
     if (dholeHouseCharacterData.Investigator.PersonalDetails.Portrait?.length > 10) {
       const fileName = 'avatar-' + npc.id + '.png'
-      const portrait = await CoC7DholeHouseActorImporter.savePortrait(
+      const portrait = await Cd100DholeHouseActorImporter.savePortrait(
         dholeHouseCharacterData.Investigator.PersonalDetails.Portrait,
         fileName
       )
@@ -426,7 +426,7 @@ export default class CoC7DholeHouseActorImporter {
         })
       }
     }
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.log('Skills: ', characterData.skills)
     }
     if (characterData.skills.length > 0) {
@@ -434,7 +434,7 @@ export default class CoC7DholeHouseActorImporter {
         renderSheet: false
       })
     }
-    if (CONFIG.debug.CoC7Importer) {
+    if (CONFIG.debug.Cd100Importer) {
       console.log('Possessions: ', characterData.possessions)
     }
     if (characterData.possessions.length > 0) {
@@ -442,8 +442,8 @@ export default class CoC7DholeHouseActorImporter {
         renderSheet: false
       })
     }
-    const weapons = await CoC7DholeHouseActorImporter.extractWeapons(dholeHouseCharacterData.Investigator.Weapons?.weapon ?? [], npc, options, progressBar)
-    if (CONFIG.debug.CoC7Importer) {
+    const weapons = await Cd100DholeHouseActorImporter.extractWeapons(dholeHouseCharacterData.Investigator.Weapons?.weapon ?? [], npc, options, progressBar)
+    if (CONFIG.debug.Cd100Importer) {
       console.log('Weapons: ', weapons)
     }
     if (weapons.length > 0) {

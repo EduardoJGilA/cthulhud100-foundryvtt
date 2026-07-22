@@ -51,13 +51,13 @@ For complete technical specifications, see [`dev-docs/reglas-cthulhu-d100.md`](d
 - **Independent & Unofficial:** This project is an independent, community-driven open-source system. It is **not** affiliated with, endorsed, sponsored, or approved by Chaosium Inc., Edge Studio, Shadowlands, or any official publisher of Call of Cthulhu.
 - **Trademarks:** "Call of Cthulhu" and "La Llamada de Cthulhu" are registered trademarks of Chaosium Inc. This project does not contain copyrighted ambient text, artwork, or modules from Call of Cthulhu 7th Edition or Chaosium publications.
 - **Ruleset Source & Attribution:** This system implements mechanics from the **Cthulhu d100** ruleset published by Three Fourteen Games (2011). It is distributed non-commercially under explicit authorization from the Cthulhu d100 manual (*"Puede crearse material adicional utilizando el reglamento aquí presentado siempre que se haga referencia a la fuente original y que no se realice con afán de lucro"*).
-- **Software License:** All code in this repository is distributed under the **GNU General Public License v3.0 (GPL-3.0)**, deriving from CoC7-FoundryVTT © Miskatonic Investigative Society. See [`LICENSE`](LICENSE) and [`NOTICE.md`](NOTICE.md).
+- **Software License:** All code in this repository is distributed under the **GNU General Public License v3.0 (GPL-3.0)**, deriving from Cd100-FoundryVTT © Miskatonic Investigative Society. See [`LICENSE`](LICENSE) and [`NOTICE.md`](NOTICE.md).
 
 ### Español
 - **Independiente y No Oficial:** Este proyecto es un sistema de código abierto independiente creado por la comunidad. **No** está afiliado, patrocinado, respaldado ni aprobado por Chaosium Inc., Edge Studio, Shadowlands ni ninguna editorial oficial de La Llamada de Cthulhu.
 - **Marcas Registradas:** "Call of Cthulhu" y "La Llamada de Cthulhu" son marcas registradas de Chaosium Inc. Este proyecto no contiene texto de ambientación, arte ni módulos protegidos por derechos de autor de La Llamada de Cthulhu 7ª Edición o publicaciones de Chaosium.
 - **Origen del Reglamento y Atribución:** Este sistema implementa las mecánicas del reglamento **Cthulhu d100** publicado por Three Fourteen Games (2011). Se distribuye sin ánimo de lucro al amparo de la autorización expresa del propio manual (*"Puede crearse material adicional utilizando el reglamento aquí presentado siempre que se haga referencia a la fuente original y que no se realice con afán de lucro"*).
-- **Licencia de Software:** Todo el código de este repositorio se distribuye bajo la licencia **GNU General Public License v3.0 (GPL-3.0)**, al ser un trabajo derivado de CoC7-FoundryVTT © Miskatonic Investigative Society. Consulta [`LICENSE`](LICENSE) y [`NOTICE.md`](NOTICE.md).
+- **Licencia de Software:** Todo el código de este repositorio se distribuye bajo la licencia **GNU General Public License v3.0 (GPL-3.0)**, al ser un trabajo derivado de Cd100-FoundryVTT © Miskatonic Investigative Society. Consulta [`LICENSE`](LICENSE) y [`NOTICE.md`](NOTICE.md).
 
 ---
 

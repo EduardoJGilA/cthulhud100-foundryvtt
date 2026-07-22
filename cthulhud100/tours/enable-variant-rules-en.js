@@ -1,7 +1,7 @@
 /* global foundry game */
-import CoC7Tour from '../apps/tour.js'
+import Cd100Tour from '../apps/tour.js'
 
-export default class CoC7EnableVariantRulesEn extends CoC7Tour {
+export default class Cd100EnableVariantRulesEn extends Cd100Tour {
   /**
    * Tour configuration
    * @param {object} config
@@ -38,7 +38,7 @@ export default class CoC7EnableVariantRulesEn extends CoC7Tour {
         },
         {
           id: 'goto-game-rules',
-          selector: '[data-category="system"] [data-key="CoC7.gameRules"]',
+          selector: '[data-category="system"] [data-key="Cd100.gameRules"]',
           title: 'COC7.Tour.GotoGameRulesTitle',
           content: 'COC7.Tour.GotoGameRulesContent',
           action: 'click'

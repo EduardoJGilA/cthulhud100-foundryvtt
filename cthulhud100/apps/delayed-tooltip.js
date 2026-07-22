@@ -1,7 +1,7 @@
 /* global foundry game */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7DelayedTooltip {
+export default class Cd100DelayedTooltip {
   /**
    * If FoundryVTT tooltip is already shown wait before showing the next
    * @param {HTMLElement} element

@@ -1,7 +1,7 @@
 /* global foundry game Roll */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7SpellVariablesDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100SpellVariablesDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -15,14 +15,14 @@ export default class CoC7SpellVariablesDialog extends foundry.applications.api.H
     tag: 'form',
     classes: ['coc7', 'dialog', 'spell-variables'],
     window: {
-      title: 'CoC7.SpellCosts',
+      title: 'Cd100.SpellCosts',
       contentClasses: [
         'standard-form'
       ]
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7SpellVariablesDialog.#onSubmit
+      handler: Cd100SpellVariablesDialog.#onSubmit
     },
     position: {
       width: 410
@@ -121,7 +121,7 @@ export default class CoC7SpellVariablesDialog extends foundry.applications.api.H
         context.buttons = [{
           type: 'submit',
           action: 'validate',
-          label: 'CoC7.Validate',
+          label: 'Cd100.Validate',
           icon: 'fa-solid fa-check'
         }]
         break
@@ -198,7 +198,7 @@ export default class CoC7SpellVariablesDialog extends foundry.applications.api.H
    */
   static async create ({ variables = [] } = {}) {
     return await new Promise(resolve => {
-      new CoC7SpellVariablesDialog({}, {}, {
+      new Cd100SpellVariablesDialog({}, {}, {
         variables,
         resolve
       }).render({ force: true })

@@ -7,7 +7,7 @@
         {{/if}}
       </div>
       <div class="card-title">
-        {{localize 'CoC7.SanityCheck'}}
+        {{localize 'Cd100.SanityCheck'}}
       </div>
       <div class="actor-portrait right-portrait" data-actor-uuid="{{sourceUuid}}">
         {{#if sourceUuid}}
@@ -19,91 +19,91 @@
 {{/unless}}
 <div class="coc7-chat-description">
   {{#if sanRolled}}
-    <div class="coc7-chat-description">{{localize 'CoC7.SanityCheckPerformed'}}</div>
+    <div class="coc7-chat-description">{{localize 'Cd100.SanityCheckPerformed'}}</div>
     {{#if diceGroup}}
       {{~> 'systems/cthulhud100/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true}}
     {{/if}}
     {{#if involuntaryActionPerformed}}
       {{#unless sanCheckPassed}}
-        <div class="tag">{{localize 'CoC7.InvoluntaryActionPerformed'}}</div>
+        <div class="tag">{{localize 'Cd100.InvoluntaryActionPerformed'}}</div>
       {{/unless}}
       {{#if sanLossRolled}}
         {{#if sanLossApplied}}
           {{#if actorLostSan}}
             {{#if sanLossRoll}}
-              <div class="coc7-chat-description">{{localize 'CoC7.SanityLost'}}</div>
+              <div class="coc7-chat-description">{{localize 'Cd100.SanityLost'}}</div>
               {{{sanLossRoll}}}
             {{else}}
-              <div class="tag">{{localize 'CoC7.SanityLost'}}: {{rolledSanLoss}}</div>
+              <div class="tag">{{localize 'Cd100.SanityLost'}}: {{rolledSanLoss}}</div>
             {{/if}}
             {{#if limitedLossToCreature}}
-              <div class="tag">{{localize 'CoC7.GrowingAccustomedToAwfulness'}}: {{preHardenedSanLoss}}</div>
+              <div class="tag">{{localize 'Cd100.GrowingAccustomedToAwfulness'}}: {{preHardenedSanLoss}}</div>
             {{/if}}
             {{#if actorUseMythosHardened}}
-              <div class="tag">{{localize 'CoC7.BackgroundFlagsMythosHardened'}}: {{preHardenedSanLoss}} / 2 = {{sanLossFinal}}</div>
+              <div class="tag">{{localize 'Cd100.BackgroundFlagsMythosHardened'}}: {{preHardenedSanLoss}} / 2 = {{sanLossFinal}}</div>
             {{/if}}
           {{else}}
             {{#if immuneAlreadyInBout}}
-              <div class="tag">{{localize 'CoC7.AlreadyInABout'}}</div>
+              <div class="tag">{{localize 'Cd100.AlreadyInABout'}}</div>
             {{/if}}
             {{#if immuneToCreature}}
-              <div class="tag">{{localize 'CoC7.ImmuneToAwfulness'}}</div>
+              <div class="tag">{{localize 'Cd100.ImmuneToAwfulness'}}</div>
             {{/if}}
           {{/if}}
           {{#if intRolled}}
             {{#if memoryRepressed}}
-              <div class="coc7-chat-description">{{localize 'CoC7.MemoryRepressed'}}</div>
+              <div class="coc7-chat-description">{{localize 'Cd100.MemoryRepressed'}}</div>
               {{~> 'systems/cthulhud100/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true flavor='' diceGroup=intDiceGroup bonusDice=intBonusDice bonusType=intBonusType buttons=[]}}
             {{/if}}
             {{#if temporaryInsane}}
-              <div class="coc7-chat-description">{{localize 'CoC7.RememberEverything'}}</div>
+              <div class="coc7-chat-description">{{localize 'Cd100.RememberEverything'}}</div>
               {{~> 'systems/cthulhud100/templates/chat/parts/roll-no-formula-dice.hbs' checkRevealed=true flavor='' diceGroup=intDiceGroup bonusDice=intBonusDice bonusType=intBonusType buttons=[]}}
             {{/if}}
             {{#if hasInsanity}}
               {{#unless boutOfMadnessOver}}
-                <div class="tag">{{localize 'CoC7.EnteringBoutOfMadness'}}{{#if (and boutOfMadnessResolved actorTempoInsaneDurationText)}} ({{actorTempoInsaneDurationText}}){{/if}}</div>
+                <div class="tag">{{localize 'Cd100.EnteringBoutOfMadness'}}{{#if (and boutOfMadnessResolved actorTempoInsaneDurationText)}} ({{actorTempoInsaneDurationText}}){{/if}}</div>
               {{/unless}}
               {{#if permanentlyInsane}}
-                <div class="tag">{{localize 'CoC7.GoodForAsylum'}}</div>
+                <div class="tag">{{localize 'Cd100.GoodForAsylum'}}</div>
               {{/if}}
               {{#if boutOfMadnessResolved}}
                 {{#if boutResult.phobia}}
-                  <div class="tag">{{localize 'CoC7.PhobiaGained'}}: {{boutResult.name}}</div>
+                  <div class="tag">{{localize 'Cd100.PhobiaGained'}}: {{boutResult.name}}</div>
                 {{/if}}
 
                 {{#if boutResult.mania}}
-                  <div class="tag">{{localize 'CoC7.ManiaGained'}}: {{boutResult.name}}</div>
+                  <div class="tag">{{localize 'Cd100.ManiaGained'}}: {{boutResult.name}}</div>
                 {{/if}}
 
                 {{#if boutOfMadnessOver}}
-                  <div class="tag">{{localize 'CoC7.BoutOfMadnessLasted'}} {{boutDuration}} {{#if boutRealTime}}{{localize 'CoC7.rounds'}}{{/if}}{{#if boutSummary}}{{localize 'CoC7.hours'}}{{/if}}</div>
+                  <div class="tag">{{localize 'Cd100.BoutOfMadnessLasted'}} {{boutDuration}} {{#if boutRealTime}}{{localize 'Cd100.rounds'}}{{/if}}{{#if boutSummary}}{{localize 'Cd100.hours'}}{{/if}}</div>
 
                   {{#if indefinitelyInsane}}
-                    <div class="tag">{{localize 'CoC7.IndefinitelyInsane'}}</div>
+                    <div class="tag">{{localize 'Cd100.IndefinitelyInsane'}}</div>
                   {{/if}}
                   {{#if temporaryInsane}}
-                    <div class="tag">{{localize 'CoC7.TemporaryInsane'}}</div>
+                    <div class="tag">{{localize 'Cd100.TemporaryInsane'}}</div>
                   {{/if}}
                 {{/if}}
               {{/if}}
             {{/if}}
           {{else}}
             <div class="owner-and-keeper-block coc7-card-buttons flexrow" data-actor-uuid="{{actorUuid}}">
-              <button data-action="roll-int-check">{{localize 'CoC7.IntCheck'}}: ({{actorInt}}%)</button>
+              <button data-action="roll-int-check">{{localize 'Cd100.IntCheck'}}: ({{actorInt}}%)</button>
             </div>
           {{/if}}
         {{/if}}
       {{else}}
         <div class="owner-and-keeper-block coc7-card-buttons flexrow" data-actor-uuid="{{actorUuid}}">
-          <button data-action="roll-san-loss">{{localize 'CoC7.Roll'}} {{localize 'CoC7.SANLoss'}}: {{sanLossFormula}}</button>
+          <button data-action="roll-san-loss">{{localize 'Cd100.Roll'}} {{localize 'Cd100.SANLoss'}}: {{sanLossFormula}}</button>
         </div>
       {{/if}}
     {{/if}}
   {{else if permanentlyInsane}}
-    <div class="coc7-important">{{localize 'CoC7.PlayerPermanentlyInsane'}}</div>
+    <div class="coc7-important">{{localize 'Cd100.PlayerPermanentlyInsane'}}</div>
   {{else}}
     <div class="owner-and-keeper-block coc7-card-buttons flexrow" data-actor-uuid="{{actorUuid}}">
-      <button data-action="rollSanCheck">{{localize 'CoC7.SanityCheck'}}: ({{actorSan}}%)</button>
+      <button data-action="rollSanCheck">{{localize 'Cd100.SanityCheck'}}: ({{actorSan}}%)</button>
     </div>
   {{/if}}
 
@@ -113,88 +113,88 @@
 </div>
 <div class="keeper-only-block coc7-tags">
   {{#if alreadyInsane}}
-    <div class="tag">{{localize 'CoC7.AlreadyUnderlyingInsanity'}}</div>
+    <div class="tag">{{localize 'Cd100.AlreadyUnderlyingInsanity'}}</div>
   {{/if}}
   {{#if boutOfMadnessResolved}}
     {{#if boutResult.phobia}}
-      <div class="tag">{{localize 'CoC7.InvestigatorPhobiaGained'}}</div>
+      <div class="tag">{{localize 'Cd100.InvestigatorPhobiaGained'}}</div>
     {{/if}}
     {{#if boutResult.mania}}
-      <div class="tag">{{localize 'CoC7.InvestigatorManiaGained'}}</div>
+      <div class="tag">{{localize 'Cd100.InvestigatorManiaGained'}}</div>
     {{/if}}
     <div class="bout-info">{{{boutResult.description}}}</div>
     {{#unless boutOfMadnessOver}}
       <div class="coc7-card-buttons flexrow">
-        <button data-action="boutOfMadnessOver">{{localize 'CoC7.EndBoutOfMadness'}}</button>
+        <button data-action="boutOfMadnessOver">{{localize 'Cd100.EndBoutOfMadness'}}</button>
       </div>
     {{/unless}}
   {{/if}}
   {{#if hasInsanity}}
     {{#if permanentlyInsane}}
-      <div class="tag important">{{localize 'CoC7.PlayerPermanentlyInsane'}}</div>
+      <div class="tag important">{{localize 'Cd100.PlayerPermanentlyInsane'}}</div>
     {{else}}
       {{#unless boutOfMadnessResolved}}
         <div class="coc7-card-buttons flexrow">
-          <button data-action="enterBoutOfMadnessRealTime">{{localize 'CoC7.BoutRealTime'}}</button>
-          <button data-action="enterBoutOfMadnessSummary">{{localize 'CoC7.BoutSummary'}}</button>
+          <button data-action="enterBoutOfMadnessRealTime">{{localize 'Cd100.BoutRealTime'}}</button>
+          <button data-action="enterBoutOfMadnessSummary">{{localize 'Cd100.BoutSummary'}}</button>
         </div>
       {{/unless}}
     {{/if}}
   {{/if}}
   {{#if (and sanCheckFailed (not involuntaryActionPerformed))}}
     <div class="coc7-card-buttons flexrow">
-      <button data-action="involuntaryActionPerformed">{{localize 'CoC7.PerformInvoluntaryAction'}}</button>
+      <button data-action="involuntaryActionPerformed">{{localize 'Cd100.PerformInvoluntaryAction'}}</button>
     </div>
   {{/if}}
 
   {{#if (and sanLossRolled (not sanLossApplied))}}
     <div class="coc7-card-buttons flexrow">
-      <button data-action="sanLossApplied">{{localize 'CoC7.Apply'}}: {{sanLossFinal}}</button>
+      <button data-action="sanLossApplied">{{localize 'Cd100.Apply'}}: {{sanLossFinal}}</button>
     </div>
   {{/if}}
 
   {{#if actorHasTempoInsane}}
-    <div class="tag">{{localize 'CoC7.BoutActive'}}</div>
+    <div class="tag">{{localize 'Cd100.BoutActive'}}</div>
   {{/if}}
 
   {{#if actorUseMythosHardened}}
-    <div class="tag">{{localize 'CoC7.BackgroundFlagsMythosHardened'}}</div>
+    <div class="tag">{{localize 'Cd100.BackgroundFlagsMythosHardened'}}</div>
   {{/if}}
 
   {{#if sanReason}}
     {{#if (and hasInsanity sanLossFinal (not cthulhuMythosAwarded))}}
       <div class="coc7-card-buttons flexrow">
         {{#if firstEncounter}}
-          <button data-action="cthulhuMythosAwarded">{{localize 'CoC7.MythosFirstEncounter'}}</button>
+          <button data-action="cthulhuMythosAwarded">{{localize 'Cd100.MythosFirstEncounter'}}</button>
         {{else}}
-          <button data-action="cthulhuMythosAwarded">{{localize 'CoC7.MythosAlreadyEncountered'}}</button>
+          <button data-action="cthulhuMythosAwarded">{{localize 'Cd100.MythosAlreadyEncountered'}}</button>
         {{/if}}
-        <button data-action="noMythosGained">{{localize 'CoC7.DisregardMythosGain'}}</button>
+        <button data-action="noMythosGained">{{localize 'Cd100.DisregardMythosGain'}}</button>
       </div>
     {{/if}}
 
     {{#if sanLossReasonEncountered}}
-      <div class="tag">{{localize 'CoC7.AlreadyEncountered'}} "{{sanReason}}"</div>
-      <div class="tag">{{localize 'CoC7.AlreadyLost'}}: {{sanLostToReason}}</div>
-      <div class="tag">{{localize 'CoC7.CreatureMaxLoss'}}: {{maxRollableSanLoss}}</div>
+      <div class="tag">{{localize 'Cd100.AlreadyEncountered'}} "{{sanReason}}"</div>
+      <div class="tag">{{localize 'Cd100.AlreadyLost'}}: {{sanLostToReason}}</div>
+      <div class="tag">{{localize 'Cd100.CreatureMaxLoss'}}: {{maxRollableSanLoss}}</div>
     {{/if}}
-    <div class="tag">{{localize 'CoC7.MaxSanloss'}}: {{maxPossibleSanLoss}}</div>
+    <div class="tag">{{localize 'Cd100.MaxSanloss'}}: {{maxPossibleSanLoss}}</div>
     {{#if (and (not keepCreatureSanData) sanLossReasonEncountered)}}
       <div class="coc7-card-buttons flexrow">
-        <button data-action="reset-creature-san-data">{{localize 'CoC7.ResetCreatureSan'}}</button>
-        <button data-action="keepCreatureSanData">{{localize 'CoC7.KeepData'}}</button>
+        <button data-action="reset-creature-san-data">{{localize 'Cd100.ResetCreatureSan'}}</button>
+        <button data-action="keepCreatureSanData">{{localize 'Cd100.KeepData'}}</button>
       </div>
     {{/if}}
   {{else}}
-    <div class="tag">{{localize 'CoC7.MaxSanloss'}}: {{maxRollableSanLoss}}</div>
+    <div class="tag">{{localize 'Cd100.MaxSanloss'}}: {{maxRollableSanLoss}}</div>
   {{/if}}
 
   {{#if mythosGained}}
-    <div class="tag important">{{localize 'CoC7.MythosGain'}}: {{mythosGained}}%</div>
+    <div class="tag important">{{localize 'Cd100.MythosGain'}}: {{mythosGained}}%</div>
   {{/if}}
 
   {{#unless cardOpen}}
-    <div class="tag">{{localize 'CoC7.CardResolved'}}</div>
+    <div class="tag">{{localize 'Cd100.CardResolved'}}</div>
   {{/unless}}
 </div>
 {{#if (eq @root.foundryGeneration 13)}}<div class="never-expand" data-action="expandRoll"></div>{{/if}}

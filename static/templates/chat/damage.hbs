@@ -20,9 +20,9 @@
 </div>
 {{#if rollDamage}}
   {{#if targetUuid}}
-    <div class="coc7-chat-content">{{targetName}} {{localize 'CoC7.meleeCombatDamageTakes'}} {{weaponDamage}}{{#if weaponAddFullDB}}{{localize 'CoC7.WeaponAddDb'}}{{/if}}{{#if weaponAddHalfDB}}{{localize 'CoC7.WeaponAddHalfDb'}}{{/if}} {{localize 'CoC7.meleeCombatDamageFrom'}} {{itemName}}</div>
+    <div class="coc7-chat-content">{{targetName}} {{localize 'Cd100.meleeCombatDamageTakes'}} {{weaponDamage}}{{#if weaponAddFullDB}}{{localize 'Cd100.WeaponAddDb'}}{{/if}}{{#if weaponAddHalfDB}}{{localize 'Cd100.WeaponAddHalfDb'}}{{/if}} {{localize 'Cd100.meleeCombatDamageFrom'}} {{itemName}}</div>
   {{else}}
-    <div class="coc7-chat-content">{{attackerName}} {{localize 'CoC7.meleeCombatDamageDeals'}} {{weaponDamage}}{{#if weaponAddFullDB}}{{localize 'CoC7.WeaponAddDb'}}{{/if}}{{#if weaponAddHalfDB}}{{localize 'CoC7.WeaponAddHalfDb'}}{{/if}} {{localize 'CoC7.meleeCombatDamageWith'}} {{itemName}}</div>
+    <div class="coc7-chat-content">{{attackerName}} {{localize 'Cd100.meleeCombatDamageDeals'}} {{weaponDamage}}{{#if weaponAddFullDB}}{{localize 'Cd100.WeaponAddDb'}}{{/if}}{{#if weaponAddHalfDB}}{{localize 'Cd100.WeaponAddHalfDb'}}{{/if}} {{localize 'Cd100.meleeCombatDamageWith'}} {{itemName}}</div>
   {{/if}}
 {{/if}}
 {{#if (or enrichedItemDescriptionValue hasWeaponSpecial)}}
@@ -33,7 +33,7 @@
     {{#if hasWeaponSpecial}}
       <div class="coc7-formatted-text">
         <div class="coc7-tags">
-          <span class="tag">{{localize 'CoC7.WeaponSpecial'}}</span>
+          <span class="tag">{{localize 'Cd100.WeaponSpecial'}}</span>
         </div>
         {{{enrichedWeaponDescriptionSpecial}}}
       </div>
@@ -44,16 +44,16 @@
   <div class="{{#unless rollHtml}}not-keeper-block {{/unless}}flexrow">
     <div class="coc7-tags">
       {{#if isCritical}}
-        <span class="tag" data-tooltip="CoC7.CriticalTitle">{{localize 'CoC7.Critical'}}</span>
+        <span class="tag" data-tooltip="Cd100.CriticalTitle">{{localize 'Cd100.Critical'}}</span>
         {{#if isImpale}}
-          <span class="tag" data-tooltip="CoC7.ImpaleTitle">{{localize 'CoC7.Impale'}}</span>
+          <span class="tag" data-tooltip="Cd100.ImpaleTitle">{{localize 'Cd100.Impale'}}</span>
         {{/if}}
       {{/if}}
     </div>
     {{#if targetUuid}}
       {{#unless ignoreArmor}}
         <div class="{{#unless rollHtml}}owner-and-keeper-block {{else}}keeper-only-block {{/unless}}flexrow" style="flex: 0 0 auto;" data-actor-uuid="{{targetUuid}}">
-          <label style="flex: 0 0 auto;">{{localize 'CoC7.Armor'}}:</label>
+          <label style="flex: 0 0 auto;">{{localize 'Cd100.Armor'}}:</label>
           <span style="flex: 0 0 auto;">{{targetArmor}}</span>
         </div>
       {{/unless}}
@@ -61,9 +61,9 @@
   </div>
   {{#unless rollHtml}}
     <div class="keeper-only-block as-whisper-block coc7-card-buttons coc7-half-buttons flexrow">
-      <button class="keeper-only-control{{#if isCritical}} switched-on{{/if}}" data-action="toggleValue" data-set="isCritical" data-tooltip="CoC7.CriticalTitle">{{localize 'CoC7.Critical'}}</button>
+      <button class="keeper-only-control{{#if isCritical}} switched-on{{/if}}" data-action="toggleValue" data-set="isCritical" data-tooltip="Cd100.CriticalTitle">{{localize 'Cd100.Critical'}}</button>
       {{#if isCritical}}
-        <button class="keeper-only-control{{#if isImpale}} switched-on{{/if}}" data-action="toggleValue" data-set="isImpale" data-tooltip="CoC7.ImpaleTitle">{{localize 'CoC7.Impale'}}</button>
+        <button class="keeper-only-control{{#if isImpale}} switched-on{{/if}}" data-action="toggleValue" data-set="isImpale" data-tooltip="Cd100.ImpaleTitle">{{localize 'Cd100.Impale'}}</button>
       {{else}}
         <div class="coc7-button-area"></div>
       {{/if}}
@@ -73,7 +73,7 @@
         <div></div>
         <button class="keeper-only-control coc7-short-button{{#if ignoreArmor}} switched-on{{/if}}"data-action="toggleValue" data-set="ignoreArmor">{{#if ignoreArmor}}<i class="game-icon game-icon-armor-downgrade"></i>{{else}}<i class="game-icon game-icon-armor-upgrade"></i>{{/if}}</button>
         {{#unless ignoreArmor}}
-          <label style="flex: 0 0 auto;">{{localize 'CoC7.Armor'}}:</label>
+          <label style="flex: 0 0 auto;">{{localize 'Cd100.Armor'}}:</label>
           <input type="text" value="{{targetArmor}}">
           {{#if isArmorFormula}}
             <button class="keeper-only-control coc7-short-button" data-action="rollArmor"><i class="fa-solid fa-dice"></i></button>
@@ -83,7 +83,7 @@
     {{/if}}
     {{#unless isDamageOnlyNumbers}}
       <div class="owner-and-keeper-block coc7-card-buttons flexrow" data-actor-uuid="{{attackerUuid}}">
-        <button data-action="rollDamage">{{localize 'CoC7.RollDamage'}}: {{damageFormula}}</button>
+        <button data-action="rollDamage">{{localize 'Cd100.RollDamage'}}: {{damageFormula}}</button>
       </div>
     {{/unless}}
   {{else}}
@@ -92,16 +92,16 @@
   {{#if isDamageOnlyNumbers}}
     {{#if targetUuid}}
       {{#if isDamageInflicted}}
-        <div class="coc7-faux-button" style="margin-top: 4px;">{{localize 'CoC7.DamageInflicted'}}: {{inflictDamageText}}</div>
+        <div class="coc7-faux-button" style="margin-top: 4px;">{{localize 'Cd100.DamageInflicted'}}: {{inflictDamageText}}</div>
       {{else}}
         <div class="keeper-only-block coc7-card-buttons flexrow">
-          <button data-action="dealDamage">{{localize 'CoC7.InflictPain'}} ({{inflictDamageText}})</button>
+          <button data-action="dealDamage">{{localize 'Cd100.InflictPain'}} ({{inflictDamageText}})</button>
         </div>
       {{/if}}
     {{else}}
-      <div class="coc7-faux-button" style="margin-top: 4px;">{{localize 'CoC7.TotalDamage'}}: {{inflictDamageText}}</div>
+      <div class="coc7-faux-button" style="margin-top: 4px;">{{localize 'Cd100.TotalDamage'}}: {{inflictDamageText}}</div>
       <div class="coc7-card-buttons flexrow">
-        <button data-action="applyValue">{{localize 'CoC7.InflictPain'}}</button>
+        <button data-action="applyValue">{{localize 'Cd100.InflictPain'}}</button>
       </div>
     {{/if}}
   {{/if}}

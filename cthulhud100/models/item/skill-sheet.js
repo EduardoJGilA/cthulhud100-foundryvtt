@@ -1,10 +1,10 @@
 /* global foundry game TextEditor */
 import { FOLDER_ID, ERAS } from '../../constants.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
-import CoC7ModelsItemSkillSystem from './skill-system.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100ModelsItemSkillSystem from './skill-system.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemSkillSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemSkillSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 530,
@@ -40,14 +40,14 @@ export default class CoC7ModelsItemSkillSheet extends CoC7ModelsItemGlobalSheet 
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -69,7 +69,7 @@ export default class CoC7ModelsItemSkillSheet extends CoC7ModelsItemGlobalSheet 
     switch (partId) {
       case 'header':
         context.isSpecialized = context.document.system.properties.special
-        context.canModifySpec = !((context.document.system.properties.firearm && context.document.system.specialization === game.i18n.localize('CoC7.FirearmSpecializationName')) || (context.document.system.properties.fighting && context.document.system.specialization === game.i18n.localize('CoC7.FightingSpecializationName')) || (context.document.system.properties.ranged && context.document.system.specialization === game.i18n.localize('CoC7.RangedSpecializationName')))
+        context.canModifySpec = !((context.document.system.properties.firearm && context.document.system.specialization === game.i18n.localize('Cd100.FirearmSpecializationName')) || (context.document.system.properties.fighting && context.document.system.specialization === game.i18n.localize('Cd100.FightingSpecializationName')) || (context.document.system.properties.ranged && context.document.system.specialization === game.i18n.localize('Cd100.RangedSpecializationName')))
         context.hasNonCharacterOwner = (context.document.isEmbedded && context.document.actor?.type !== 'character')
         context._properties = []
         for (const [key, value] of context.document.system.schema.getField('properties').entries()) {
@@ -89,7 +89,7 @@ export default class CoC7ModelsItemSkillSheet extends CoC7ModelsItemGlobalSheet 
             isEnabled: (context.document.flags[FOLDER_ID]?.cocidFlag?.eras ?? {})[key] === true
           })
         }
-        context._eras.sort(CoC7Utilities.sortByNameKey)
+        context._eras.sort(Cd100Utilities.sortByNameKey)
         context.useEraIcons = game.settings.get(FOLDER_ID, 'sheetEraIcons')
         break
       case 'description':
@@ -127,7 +127,7 @@ export default class CoC7ModelsItemSkillSheet extends CoC7ModelsItemGlobalSheet 
     const object = super._processFormData(event, form, formData)
     const skillName = object.system.skillName || this.document.system.skillName
     const specialization = (typeof object.system.specialization === 'undefined' ? this.document.system.specialization : object.system.specialization)
-    const parts = CoC7ModelsItemSkillSystem.getNamePartsSpec(skillName, specialization)
+    const parts = Cd100ModelsItemSkillSystem.getNamePartsSpec(skillName, specialization)
     object.name = parts.name
     if (this.document.isEmbedded && typeof formData.object['system.value'] !== 'undefined' && formData.object['system.value'] !== '' && !isNaN(Number(formData.object['system.value'])) && formData.object['system.value'] !== this.document.system.value) {
       // If Embedded and system.value is a number set as an experience adjustment

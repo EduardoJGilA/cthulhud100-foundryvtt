@@ -8,9 +8,9 @@ export default class ChaosiumCanvasInterfaceToScene extends ChaosiumCanvasInterf
    */
   static get PERMISSIONS () {
     return {
-      ALWAYS: 'CoC7.ChaosiumCanvasInterface.Permission.Always',
-      GM: 'CoC7.ChaosiumCanvasInterface.Permission.GM',
-      SEE_TILE: 'CoC7.ChaosiumCanvasInterface.Permission.SeeTile'
+      ALWAYS: 'Cd100.ChaosiumCanvasInterface.Permission.Always',
+      GM: 'Cd100.ChaosiumCanvasInterface.Permission.GM',
+      SEE_TILE: 'Cd100.ChaosiumCanvasInterface.Permission.SeeTile'
     }
   }
 
@@ -32,25 +32,25 @@ export default class ChaosiumCanvasInterfaceToScene extends ChaosiumCanvasInterf
       triggerButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Left,
-        label: 'CoC7.ChaosiumCanvasInterface.ToScene.Button.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.ToScene.Button.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.ToScene.Button.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.ToScene.Button.Hint'
       }),
       permission: new fields.StringField({
         blank: false,
         choices: Object.keys(ChaosiumCanvasInterfaceToScene.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceToScene.PERMISSIONS[k]); return c }, {}),
         initial: 'GM',
-        label: 'CoC7.ChaosiumCanvasInterface.ToScene.Permission.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.ToScene.Permission.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.ToScene.Permission.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.ToScene.Permission.Hint',
         required: true
       }),
       sceneUuid: new fields.DocumentUUIDField({
-        label: 'CoC7.ChaosiumCanvasInterface.ToScene.Scene.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.ToScene.Scene.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.ToScene.Scene.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.ToScene.Scene.Hint',
         type: 'Scene'
       }),
       tileUuid: new fields.DocumentUUIDField({
-        label: 'CoC7.ChaosiumCanvasInterface.ToScene.Tile.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.ToScene.Tile.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.ToScene.Tile.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.ToScene.Tile.Hint',
         type: 'Tile'
       })
     }

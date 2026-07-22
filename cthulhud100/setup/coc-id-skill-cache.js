@@ -23,7 +23,7 @@ export default class CoCIDSkillCache {
    */
   async refreshList () {
     this.#cache = new Promise((resolve, reject) => {
-      game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: /^i\.skill\./, type: 'i', showLoading: true }).then((items) => {
+      game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: /^i\.skill\./, type: 'i', showLoading: true }).then((items) => {
         this.#list = {}
         for (const item of items) {
           this.#list[item.flags[FOLDER_ID].cocidFlag.id] = item
@@ -44,7 +44,7 @@ export default class CoCIDSkillCache {
       return
     }
     return new Promise((resolve, reject) => {
-      game.CoC7.cocid.fromCoCIDBest({ cocid, type: 'i' }).then((items) => {
+      game.Cd100.cocid.fromCoCIDBest({ cocid, type: 'i' }).then((items) => {
         if (typeof this.#list === 'undefined') {
           // If not already cached add it when doing a full cache
           this.getList().then((items) => {

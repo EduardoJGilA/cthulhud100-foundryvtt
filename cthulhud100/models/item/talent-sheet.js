@@ -1,9 +1,9 @@
 /* global foundry game TextEditor */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ActiveEffect from '../../apps/active-effect.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100ActiveEffect from '../../apps/active-effect.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
 
-export default class CoC7ModelsItemTalentSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemTalentSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 525,
@@ -47,29 +47,29 @@ export default class CoC7ModelsItemTalentSheet extends CoC7ModelsItemGlobalSheet
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       },
       details: {
         icon: '',
-        label: 'CoC7.Details'
+        label: 'Cd100.Details'
       },
       activeEffects: {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-aura',
-        tooltip: 'CoC7.Effects'
+        tooltip: 'Cd100.Effects'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
     context.tabs = this.getTabs('primary', 'description', tabs)
 
-    context.effects = await CoC7ActiveEffect.prepareActiveEffectCategories(context.document, { status: false })
+    context.effects = await Cd100ActiveEffect.prepareActiveEffectCategories(context.document, { status: false })
 
     return context
   }

@@ -1,6 +1,6 @@
 /* global CONFIG foundry game TextEditor ui */
 import { FOLDER_ID, ERAS } from '../constants.js'
-import CoC7Utilities from './utilities.js'
+import Cd100Utilities from './utilities.js'
 
 export default class CoCIDEditor extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.DocumentSheetV2) {
   #showLoading
@@ -53,8 +53,8 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
 
     context.supportedLanguages = CONFIG.supportedLanguages
 
-    context.guessCode = game.CoC7.cocid.guessId(context.document)
-    context.idPrefix = game.CoC7.cocid.getPrefix(context.document)
+    context.guessCode = game.Cd100.cocid.guessId(context.document)
+    context.idPrefix = game.Cd100.cocid.getPrefix(context.document)
 
     const cocidFlag = context.document.flags?.[FOLDER_ID]?.cocidFlag ?? {}
 
@@ -70,16 +70,16 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
         isEnabled: (cocidFlag.eras ?? {})[key] === true
       })
     }
-    context._eras.sort(CoC7Utilities.sortByNameKey)
+    context._eras.sort(Cd100Utilities.sortByNameKey)
 
-    const CoCIDKeys = Object.assign(foundry.utils.flattenObject(game.i18n._fallback.CoC7?.CoCIDFlag?.keys ?? {}), foundry.utils.flattenObject(game.i18n.translations.CoC7?.CoCIDFlag?.keys ?? {}))
-    const prefix = new RegExp('^' + CoC7Utilities.quoteRegExp(context.idPrefix))
+    const CoCIDKeys = Object.assign(foundry.utils.flattenObject(game.i18n._fallback.Cd100?.CoCIDFlag?.keys ?? {}), foundry.utils.flattenObject(game.i18n.translations.Cd100?.CoCIDFlag?.keys ?? {}))
+    const prefix = new RegExp('^' + Cd100Utilities.quoteRegExp(context.idPrefix))
     context.existingKeys = Object.keys(CoCIDKeys).reduce((obj, k) => {
       if (k.match(prefix)) {
         obj.push({ k, name: CoCIDKeys[k] })
       }
       return obj
-    }, []).sort(CoC7Utilities.sortByNameKey)
+    }, []).sort(Cd100Utilities.sortByNameKey)
 
     context.isSystemID = (typeof CoCIDKeys[context.id] !== 'undefined')
     const match = context.id.match(/^([^\\.]+)\.([^\\.]*)\.(.+)/)
@@ -106,7 +106,7 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
           name: game.i18n.localize(era.name)
         })
       }
-      context.usedEras.sort(CoC7Utilities.sortByNameKey)
+      context.usedEras.sort(Cd100Utilities.sortByNameKey)
       context.compendiumDocumentInfo = context.compendiumDocumentInfo.reduce((c, o) => {
         const sortKey = []
         for (const s of context.usedEras) {
@@ -161,7 +161,7 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
       if (text) {
         game.clipboard.copyPlainText(text).then(() => {
           /* // FoundryVTT V12 */
-          ui.notifications.info(game.i18n.format('CoC7.WhatCopiedClipboard', { what: text }), { console: false })
+          ui.notifications.info(game.i18n.format('Cd100.WhatCopiedClipboard', { what: text }), { console: false })
         })
       }
     }))
@@ -171,14 +171,14 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
 
     form.querySelectorAll('.toggle-switch').forEach((element) => element.addEventListener('click', async (event) => {
       const era = event.currentTarget.dataset.property
-      await game.CoC7.cocid.eraToggle(this.document, era, { isCtrlKey: CoC7Utilities.isCtrlKey(event) })
+      await game.Cd100.cocid.eraToggle(this.document, era, { isCtrlKey: Cd100Utilities.isCtrlKey(event) })
     }))
 
     form.querySelector('input[name=_existing')?.addEventListener('change', (event) => {
       let value = event.target.value
       const prefix = event.target.dataset.prefix
       if (value !== '') {
-        value = prefix + CoC7Utilities.toKebabCase(value)
+        value = prefix + Cd100Utilities.toKebabCase(value)
       }
       const element = form.querySelector('input[name=id]')
       element.value = value
@@ -222,7 +222,7 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
             if (event.button === 2 && (application.document.flags[FOLDER_ID]?.cocidFlag?.id ?? false)) {
               game.clipboard.copyPlainText(application.document.flags[FOLDER_ID].cocidFlag.id).then(() => {
                 /* // FoundryVTT V12 */
-                ui.notifications.info(game.i18n.format('CoC7.WhatCopiedClipboard', { what: game.i18n.localize('CoC7.CoCIDFlag.key') }), { console: false })
+                ui.notifications.info(game.i18n.format('Cd100.WhatCopiedClipboard', { what: game.i18n.localize('Cd100.CoCIDFlag.key') }), { console: false })
               })
             } else {
               new CoCIDEditor({ document: application.document }, {}).render({ force: true, focus: true })
@@ -239,7 +239,7 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
             button.classList.add('invalid-coc-id')
           }
           button.dataset.action = 'cocid'
-          button.dataset.tooltip = 'CoC7.CoCIDFlag.id'
+          button.dataset.tooltip = 'Cd100.CoCIDFlag.id'
           copyUuidButton.after(button)
         }
       }
@@ -258,7 +258,7 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
       const noId = (typeof sheetCoCID === 'undefined' || typeof sheetCoCID.id === 'undefined' || sheetCoCID.id === '')
       const CoCIDEditorButton = {
         class: (noId ? 'invalid-coc-id' : 'valid-coc-id'),
-        label: 'CoC7.CoCIDFlag.id',
+        label: 'Cd100.CoCIDFlag.id',
         icon: 'fa-solid fa-fingerprint',
         onclick: () => {
           new CoCIDEditor({ document: application.document }, {}).render(true, { focus: true })
@@ -278,7 +278,7 @@ export default class CoCIDEditor extends foundry.applications.api.HandlebarsAppl
    * @returns {object}
    */
   async getDocumentsInScope (usedEras, cocid, lang, scope) {
-    const documents = await game.CoC7.cocid.fromCoCIDAll({
+    const documents = await game.Cd100.cocid.fromCoCIDAll({
       cocid,
       lang,
       scope,

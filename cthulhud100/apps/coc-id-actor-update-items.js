@@ -19,7 +19,7 @@ export default class CoCIDActorUpdateItems extends foundry.applications.api.Hand
       contentClasses: [
         'standard-form'
       ],
-      title: 'CoC7.ActorCoCIDItemsBest'
+      title: 'Cd100.ActorCoCIDItemsBest'
     },
     form: {
       closeOnSubmit: false,
@@ -70,7 +70,7 @@ export default class CoCIDActorUpdateItems extends foundry.applications.api.Hand
           context.lang = CONFIG.supportedLanguages[game.i18n.lang] ?? '?'
           const defaultEra = game.settings.get(FOLDER_ID, 'worldEra')
           context.isEn = game.i18n.lang === 'en'
-          context.era = game.i18n.format(ERAS[defaultEra]?.name ?? 'CoC7.CoCIDFlag.error.unknown-era', { era: defaultEra })
+          context.era = game.i18n.format(ERAS[defaultEra]?.name ?? 'Cd100.CoCIDFlag.error.unknown-era', { era: defaultEra })
         }
         break
       case 'footer':
@@ -84,7 +84,7 @@ export default class CoCIDActorUpdateItems extends foundry.applications.api.Hand
         context.buttons.push({
           type: 'submit',
           action: 'update',
-          label: 'CoC7.ActorCoCIDItemsUpdate',
+          label: 'Cd100.ActorCoCIDItemsUpdate',
           icon: 'fa-solid fa-check'
         })
         break
@@ -140,8 +140,8 @@ export default class CoCIDActorUpdateItems extends foundry.applications.api.Hand
   getUpdateData (item) {
     const output = {
       flags: {
-        CoC7: {
-          cocidFlag: item.flags.CoC7.cocidFlag
+        Cd100: {
+          cocidFlag: item.flags.Cd100.cocidFlag
         }
       },
       name: item.name,
@@ -194,21 +194,21 @@ export default class CoCIDActorUpdateItems extends foundry.applications.api.Hand
     const anySkills = {}
     for (const actor of actorList) {
       for (const item of actor.items.contents) {
-        if (typeof item.flags?.CoC7?.cocidFlag?.id === 'string') {
-          if (!any && item.flags.CoC7.cocidFlag.id.match(/-any$/)) {
-            if (typeof anySkills[item.flags.CoC7.cocidFlag.id] === 'undefined') {
-              anySkills[item.flags.CoC7.cocidFlag.id] = []
+        if (typeof item.flags?.Cd100?.cocidFlag?.id === 'string') {
+          if (!any && item.flags.Cd100.cocidFlag.id.match(/-any$/)) {
+            if (typeof anySkills[item.flags.Cd100.cocidFlag.id] === 'undefined') {
+              anySkills[item.flags.Cd100.cocidFlag.id] = []
             }
-            anySkills[item.flags.CoC7.cocidFlag.id].push(actor.name)
+            anySkills[item.flags.Cd100.cocidFlag.id].push(actor.name)
           } else {
-            ids[item.flags.CoC7.cocidFlag.id] = {}
+            ids[item.flags.Cd100.cocidFlag.id] = {}
           }
         }
       }
     }
-    const found = await game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: game.CoC7.cocid.makeGroupRegEx(Object.keys(ids)), type: 'i', showLoading: true })
+    const found = await game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: game.Cd100.cocid.makeGroupRegEx(Object.keys(ids)), type: 'i', showLoading: true })
     for (const item of found) {
-      ids[item.flags.CoC7.cocidFlag.id] = this.getUpdateData(item.toObject())
+      ids[item.flags.Cd100.cocidFlag.id] = this.getUpdateData(item.toObject())
     }
     if (Object.keys(anySkills).length) {
       console.log('Invalid any keys on Actors', anySkills)
@@ -218,10 +218,10 @@ export default class CoCIDActorUpdateItems extends foundry.applications.api.Hand
     for (const actor of actorList) {
       const updates = []
       for (const item of actor.items.contents) {
-        if (typeof ids[item.flags?.CoC7?.cocidFlag?.id] !== 'undefined' && Object.keys(ids[item.flags.CoC7.cocidFlag.id]).length) {
+        if (typeof ids[item.flags?.Cd100?.cocidFlag?.id] !== 'undefined' && Object.keys(ids[item.flags.Cd100.cocidFlag.id]).length) {
           updates.push(foundry.utils.mergeObject({
             _id: item.id
-          }, ids[item.flags.CoC7.cocidFlag.id]))
+          }, ids[item.flags.Cd100.cocidFlag.id]))
         }
       }
       if (updates.length) {

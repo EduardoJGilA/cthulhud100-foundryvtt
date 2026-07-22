@@ -1,11 +1,11 @@
 /* global ChatMessage foundry fromUuid game renderTemplate Roll TokenDocument ui */
 import { FOLDER_ID, CHAT_MESSAGE_MODE, STATUS_EFFECTS, CHARACTERISTIC_MULTIPLIER } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 import deprecated from '../deprecated.js'
 
-export default class CoC7SanCheckCard {
+export default class Cd100SanCheckCard {
   #actorLostSan
   #alreadyInsane
   #asyncActor
@@ -59,15 +59,15 @@ export default class CoC7SanCheckCard {
     this.#boutResult = false
     this.#cardOpen = true
     this.#cthulhuMythosAwarded = false
-    this.#diceIntPool = CoC7DicePool.newPool({
-      difficulty: CoC7DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
+    this.#diceIntPool = Cd100DicePool.newPool({
+      difficulty: Cd100DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
       flatDiceModifier: 0,
       flatThresholdModifier: 0,
       poolModifiers: [0],
       threshold: undefined
     })
-    this.#diceSanPool = CoC7DicePool.newPool({
-      difficulty: CoC7DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
+    this.#diceSanPool = Cd100DicePool.newPool({
+      difficulty: Cd100DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
       flatDiceModifier: 0,
       flatThresholdModifier: 0,
       poolModifiers: [0],
@@ -148,18 +148,18 @@ export default class CoC7SanCheckCard {
     switch (event.currentTarget?.dataset?.action) {
       case 'keepCreatureSanData':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             check.#keepCreatureSanData = true
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'involuntaryActionPerformed':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             check.#involuntaryActionPerformed = true
             if (!await check.isActorLosingSan()) {
@@ -167,28 +167,28 @@ export default class CoC7SanCheckCard {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'sanLossApplied':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             await check.applySanLoss()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'enterBoutOfMadnessRealTime':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             const actor = (await check.actor)
             // Cthulhu d100: the bout lasts as many turns as points of Mental
-            // Stability were lost, not the 1D10 rounds CoC7 rolls for
+            // Stability were lost, not the 1D10 rounds Cd100 rolls for
             check.#boutDuration = Math.max(1, check.#sanLossFinal)
             check.#boutRealTime = true
             check.#boutSummary = false
@@ -197,13 +197,13 @@ export default class CoC7SanCheckCard {
             check.#boutOfMadnessOver = false
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'enterBoutOfMadnessSummary':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             const actor = (await check.actor)
             check.#boutDuration = Math.max(1, check.#sanLossFinal)
@@ -214,38 +214,38 @@ export default class CoC7SanCheckCard {
             await check.triggerInsanity()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'boutOfMadnessOver':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             const actor = (await check.actor)
             await actor.conditionsUnset([STATUS_EFFECTS.tempoInsane])
             await check.triggerInsanity()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'noMythosGained':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             check.#cthulhuMythosAwarded = true
             check.#mythosGained = 0
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'cthulhuMythosAwarded':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             const actor = (await check.actor)
             let amountGained = 1
@@ -263,51 +263,51 @@ export default class CoC7SanCheckCard {
             check.#mythosGained = amountGained
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'roll-int-check':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             await check.rollInt()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'roll-san-loss':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             await check.rollSanLoss()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'rollSanCheck':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             await check.rollSan()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'reset-creature-san-data':
         {
-          const check = await CoC7SanCheckCard.loadFromMessage(message)
+          const check = await Cd100SanCheckCard.loadFromMessage(message)
           if (check) {
             await check.clearSanLossReason()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -437,7 +437,7 @@ export default class CoC7SanCheckCard {
     }
 
     // Cthulhu d100: losing a fifth or more of the Mental Stability still left
-    // during one scene brings on a long-term problem. CoC7 measured a fifth of
+    // during one scene brings on a long-term problem. Cd100 measured a fifth of
     // the starting score across a whole day instead, so a battered investigator
     // was no easier to break than a fresh one.
     const remaining = (actor.system.attribs.san.value ?? 0) + actor.system.attribs.san.dailyLoss
@@ -482,7 +482,7 @@ export default class CoC7SanCheckCard {
     // left to notice a zero on the sheet.
     if ((actor?.system?.attribs?.san?.value ?? 1) <= 0) {
       await actor.conditionsSet([STATUS_EFFECTS.indefInsane])
-      ui.notifications.warn(game.i18n.format('CoC7.MentalStabilityDepleted', { name: actor.name }))
+      ui.notifications.warn(game.i18n.format('Cd100.MentalStabilityDepleted', { name: actor.name }))
     }
     this.#cardOpen = false
   }
@@ -511,10 +511,10 @@ export default class CoC7SanCheckCard {
     const targets = [...game.user.targets]
     if (targets.length) {
       for (const target of targets) {
-        CoC7SanCheckCard.create(CoC7Utilities.getActorUuid(target), sanData)
+        Cd100SanCheckCard.create(Cd100Utilities.getActorUuid(target), sanData)
       }
     } else {
-      ui.notifications.warn('CoC7.WarnNoTargetsSanCheck', { localize: true })
+      ui.notifications.warn('Cd100.WarnNoTargetsSanCheck', { localize: true })
     }
   }
 
@@ -541,7 +541,7 @@ export default class CoC7SanCheckCard {
       sanDataNormalized.poolModifier = sanDataNormalized.modifier ?? 0
       delete sanDataNormalized.modifier
     }
-    const chatCard = new CoC7SanCheckCard()
+    const chatCard = new Cd100SanCheckCard()
     chatCard.actor = actorUuid
     chatCard.source = sanDataNormalized.sourceUuid
     chatCard.#sanMax = sanDataNormalized.sanMax
@@ -623,10 +623,10 @@ export default class CoC7SanCheckCard {
       actorSan: actor?.system.attribs.san.value,
       actorTempoInsaneDurationText: actor?.getTempoInsaneDurationText,
       actorUseMythosHardened: actor?.useMythosHardened,
-      actorUuid: CoC7Utilities.getActorUuid(actor),
+      actorUuid: Cd100Utilities.getActorUuid(actor),
       alreadyInsane: this.#alreadyInsane,
       bonusDice: Math.abs(this.#diceSanPool.poolModifier),
-      bonusType: game.i18n.localize(this.#diceSanPool.poolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus'),
+      bonusType: game.i18n.localize(this.#diceSanPool.poolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus'),
       boutDuration: this.#boutDuration,
       boutOfMadnessOver: this.#boutOfMadnessOver,
       boutOfMadnessResolved: this.#boutOfMadnessResolved,
@@ -637,17 +637,17 @@ export default class CoC7SanCheckCard {
       cthulhuMythosAwarded: this.#cthulhuMythosAwarded,
       diceGroup: this.#diceSanPool.diceGroups[0],
       firstEncounter: !actor?.mythosInsanityExperienced,
-      flavor: game.i18n.format('CoC7.CheckResult', {
-        name: CoC7Utilities.getAttributeNames('san')?.label ?? '?',
+      flavor: game.i18n.format('Cd100.CheckResult', {
+        name: Cd100Utilities.getAttributeNames('san')?.label ?? '?',
         value: this.#diceSanPool.thresholdString,
-        difficulty: CoC7DicePool.difficultyString(this.#diceSanPool.difficulty)
+        difficulty: Cd100DicePool.difficultyString(this.#diceSanPool.difficulty)
       }),
       foundryGeneration: game.release.generation,
       hasInsanity: this.#hasInsanity,
       immuneAlreadyInBout: this.#immuneAlreadyInBout,
       immuneToCreature: this.#immuneToCreature,
       intBonusDice: Math.abs(this.#diceIntPool.poolModifier),
-      intBonusType: game.i18n.localize(this.#diceIntPool.poolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus'),
+      intBonusType: game.i18n.localize(this.#diceIntPool.poolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus'),
       intDiceGroup: this.#diceIntPool.diceGroups[0],
       intRolled: this.#intRolled,
       indefinitelyInsane: this.#indefinitelyInsane,
@@ -677,9 +677,9 @@ export default class CoC7SanCheckCard {
       skipSanRoll: this.#skipSanRoll,
       sourceImg: (source ? (source.isToken ? source.token.texture.src : (source instanceof TokenDocument ? source.texture.src : source.img)) : ''),
       sourceName: (source ? (source.isToken ? source.token.name : source.name) : ''),
-      sourceUuid: CoC7Utilities.getActorUuid(source),
+      sourceUuid: Cd100Utilities.getActorUuid(source),
       temporaryInsane: this.#temporaryInsane,
-      youGainCthulhuMythosString: (this.#mythosGained ? game.i18n.format('CoC7.YouGainedCthulhuMythos', { value: this.#mythosGained }) : '')
+      youGainCthulhuMythosString: (this.#mythosGained ? game.i18n.format('Cd100.YouGainedCthulhuMythos', { value: this.#mythosGained }) : '')
     }
     return data
   }
@@ -694,7 +694,7 @@ export default class CoC7SanCheckCard {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7SanCheckCard',
+            as: 'Cd100SanCheckCard',
             actorUuid: data.actorUuid,
             actorLostSan: this.#actorLostSan,
             alreadyInsane: this.#alreadyInsane,
@@ -736,7 +736,7 @@ export default class CoC7SanCheckCard {
       },
       rolls: (this.message?.rolls ?? []).concat(this.#diceSanPool.newRolls).concat(this.#diceIntPool.newRolls),
       /* // FoundryVTT V12 */
-      content: await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)(CoC7SanCheckCard.template, data)
+      content: await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)(Cd100SanCheckCard.template, data)
     }
     if (typeof this.message?.whisper === 'undefined') {
       if ([CHAT_MESSAGE_MODE.GM].includes(game.settings.get('core', 'rollMode') ?? game.settings.get('core', 'messageMode'))) {
@@ -750,9 +750,9 @@ export default class CoC7SanCheckCard {
   }
 
   /**
-   * Create CoC7SanCheckCard from message
+   * Create Cd100SanCheckCard from message
    * @param {Document} message
-   * @returns {CoC7SanCheckCard}
+   * @returns {Cd100SanCheckCard}
    */
   static async loadFromMessage (message) {
     const keys = [
@@ -791,8 +791,8 @@ export default class CoC7SanCheckCard {
       // 'sourceUuid' - Not always required
       'temporaryInsane'
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7SanCheckCard' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && CoC7DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.diceIntPool) && CoC7DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.diceSanPool)) {
-      const check = new CoC7SanCheckCard()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100SanCheckCard' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && Cd100DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.diceIntPool) && Cd100DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.diceSanPool)) {
+      const check = new Cd100SanCheckCard()
       check.message = message
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       check.actor = load.actorUuid
@@ -806,8 +806,8 @@ export default class CoC7SanCheckCard {
       check.#boutResult = load.boutResult
       check.#cardOpen = load.cardOpen
       check.#cthulhuMythosAwarded = load.cthulhuMythosAwarded
-      check.#diceIntPool = CoC7DicePool.fromObject(load.diceIntPool)
-      check.#diceSanPool = CoC7DicePool.fromObject(load.diceSanPool)
+      check.#diceIntPool = Cd100DicePool.fromObject(load.diceIntPool)
+      check.#diceSanPool = Cd100DicePool.fromObject(load.diceSanPool)
       check.#hasInsanity = load.hasInsanity
       check.#immuneAlreadyInBout = load.immuneAlreadyInBout
       check.#immuneToCreature = load.immuneToCreature
@@ -833,8 +833,8 @@ export default class CoC7SanCheckCard {
       check.#temporaryInsane = load.temporaryInsane
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -857,7 +857,7 @@ export default class CoC7SanCheckCard {
     if (this.message) {
       const diff = foundry.utils.diffObject(this.message.toObject(), await this.getChatData())
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -879,7 +879,7 @@ export default class CoC7SanCheckCard {
   static async _onRenderMessage (message, html, context, allowed) {
     html.querySelectorAll('[data-action]').forEach((element) => {
       if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-        element.addEventListener('click', event => CoC7SanCheckCard._onClickEvent(event, message))
+        element.addEventListener('click', event => Cd100SanCheckCard._onClickEvent(event, message))
       }
     })
   }
@@ -902,7 +902,7 @@ export default class CoC7SanCheckCard {
       if (actor) {
         actorUuid = actor.uuid
       } else {
-        actorUuid = CoC7Utilities.oldStyleToUuid(message.speaker)
+        actorUuid = Cd100Utilities.oldStyleToUuid(message.speaker)
       }
       const dataSet = JSON.parse(decodeURIComponent(contents.dataset.object))
       const intPoolModifier = dataSet.intCheck?._diceModifier ?? 0
@@ -910,7 +910,7 @@ export default class CoC7SanCheckCard {
       const sanPoolModifier = dataSet.sanCheck?._diceModifier ?? 0
       const sanRolls = dataSet.sanCheck?.dices?.tens ?? []
       const update = {
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7SanCheckCard',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100SanCheckCard',
         ['flags.' + FOLDER_ID + '.load.actorUuid']: actorUuid,
         ['flags.' + FOLDER_ID + '.load.actorLostSan']: dataSet.state?.sanLossApplied ?? false,
         ['flags.' + FOLDER_ID + '.load.alreadyInsane']: dataSet.state?.alreadyInsane ?? false,
@@ -924,7 +924,7 @@ export default class CoC7SanCheckCard {
         ['flags.' + FOLDER_ID + '.load.cthulhuMythosAwarded']: typeof dataSet.mythosGain !== 'undefined',
         ['flags.' + FOLDER_ID + '.load.diceIntPool.bonusCount']: Math.min(0, intPoolModifier),
         ['flags.' + FOLDER_ID + '.load.diceIntPool.currentPoolModifier']: intPoolModifier,
-        ['flags.' + FOLDER_ID + '.load.diceIntPool.difficulty']: dataSet.intCheck?.dices?.difficulty ?? CoC7DicePool.difficultyLevel.regular,
+        ['flags.' + FOLDER_ID + '.load.diceIntPool.difficulty']: dataSet.intCheck?.dices?.difficulty ?? Cd100DicePool.difficultyLevel.regular,
         ['flags.' + FOLDER_ID + '.load.diceIntPool.flatDiceModifier']: dataSet.intCheck?.flatDiceModifier ?? 0,
         ['flags.' + FOLDER_ID + '.load.diceIntPool.flatThresholdModifier']: dataSet.intCheck?.flatThresholdModifier ?? 0,
         ['flags.' + FOLDER_ID + '.load.diceIntPool.luckSpent']: 0,
@@ -942,7 +942,7 @@ export default class CoC7SanCheckCard {
         ['flags.' + FOLDER_ID + '.load.diceIntPool.suppressRollData']: false,
         ['flags.' + FOLDER_ID + '.load.diceSanPool.bonusCount']: Math.min(0, sanPoolModifier),
         ['flags.' + FOLDER_ID + '.load.diceSanPool.currentPoolModifier']: sanPoolModifier,
-        ['flags.' + FOLDER_ID + '.load.diceSanPool.difficulty']: dataSet.sanCheck?.dices?.difficulty ?? CoC7DicePool.difficultyLevel.regular,
+        ['flags.' + FOLDER_ID + '.load.diceSanPool.difficulty']: dataSet.sanCheck?.dices?.difficulty ?? Cd100DicePool.difficultyLevel.regular,
         ['flags.' + FOLDER_ID + '.load.diceSanPool.flatDiceModifier']: dataSet.sanCheck?.flatDiceModifier ?? 0,
         ['flags.' + FOLDER_ID + '.load.diceSanPool.flatThresholdModifier']: dataSet.sanCheck?.flatThresholdModifier ?? 0,
         ['flags.' + FOLDER_ID + '.load.diceSanPool.luckSpent']: 0,
@@ -984,10 +984,10 @@ export default class CoC7SanCheckCard {
       }
       const matches = dataSet.sanData?.tokenKey.match(/^([^.]+)/)
       if (matches) {
-        update['flags.' + FOLDER_ID + '.load.sourceUuid'] = CoC7Utilities.oldStyleToUuid(dataSet.sanData?.tokenKey)
+        update['flags.' + FOLDER_ID + '.load.sourceUuid'] = Cd100Utilities.oldStyleToUuid(dataSet.sanData?.tokenKey)
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7SanCheckCard.loadFromMessage(merged)
+      const check = await Cd100SanCheckCard.loadFromMessage(merged)
       const data = await check.getTemplateData()
       data.actorHasTempoInsane = update['flags.' + FOLDER_ID + '.load.temporaryInsane']
       data.actorImg = ''
@@ -1000,7 +1000,7 @@ export default class CoC7SanCheckCard {
         data.actorSan = dataSet.sanCheck?._rawValue ?? 0
       }
       data.actorUseMythosHardened = (dataSet.sanLoss ?? 0) < (dataSet.preHardenedSanLoss ?? 0)
-      update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)(CoC7SanCheckCard.template, data)
+      update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)(Cd100SanCheckCard.template, data)
       update._id = message.id
       updates.push(update)
     }

@@ -50,7 +50,7 @@ Para ver la especificación técnica completa, consulta [`dev-docs/reglas-cthulh
 - **Independiente y No Oficial:** Este proyecto es un sistema de código abierto independiente creado por la comunidad. **No** está afiliado, patrocinado, respaldado ni aprobado por Chaosium Inc., Edge Studio, Shadowlands ni ninguna editorial oficial de La Llamada de Cthulhu.
 - **Marcas Registradas:** "Call of Cthulhu" y "La Llamada de Cthulhu" son marcas registradas de Chaosium Inc. Este proyecto no contiene texto de ambientación, arte ni módulos protegidos por derechos de autor de La Llamada de Cthulhu 7ª Edición o publicaciones de Chaosium.
 - **Origen del Reglamento y Atribución:** Este sistema implementa las mecánicas del reglamento **Cthulhu d100** publicado por Three Fourteen Games (2011). Se distribuye sin ánimo de lucro al amparo de la autorización expresa del propio manual (*"Puede crearse material adicional utilizando el reglamento aquí presentado siempre que se haga referencia a la fuente original y que no se realice con afán de lucro"*).
-- **Licencia de Software:** Todo el código de este repositorio se distribuye bajo la licencia **GNU General Public License v3.0 (GPL-3.0)**, al ser un trabajo derivado de CoC7-FoundryVTT © Miskatonic Investigative Society. Consulta [`LICENSE`](LICENSE) y [`NOTICE.md`](NOTICE.md).
+- **Licencia de Software:** Todo el código de este repositorio se distribuye bajo la licencia **GNU General Public License v3.0 (GPL-3.0)**, al ser un trabajo derivado de Cd100-FoundryVTT © Miskatonic Investigative Society. Consulta [`LICENSE`](LICENSE) y [`NOTICE.md`](NOTICE.md).
 
 ---
 

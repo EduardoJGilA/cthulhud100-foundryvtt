@@ -1,13 +1,13 @@
 /* global fromUuid game NotesLayer ui */
 import { FOLDER_ID } from '../constants.js'
-import CoC7ChatCombinedMessage from './chat-combined-message.js'
-import CoC7ChatOpposedMessage from './chat-opposed-message.js'
-import CoC7Check from './check.js'
-import CoC7ConCheck from '../apps/con-check.js'
-import CoC7InvestigatorWizard from './investigator-wizard.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ChatCombinedMessage from './chat-combined-message.js'
+import Cd100ChatOpposedMessage from './chat-opposed-message.js'
+import Cd100Check from './check.js'
+import Cd100ConCheck from '../apps/con-check.js'
+import Cd100InvestigatorWizard from './investigator-wizard.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7SystemSocket {
+export default class Cd100SystemSocket {
   /**
    * Call Socket
    * @param {object} data
@@ -19,19 +19,19 @@ export default class CoC7SystemSocket {
       if (game.user.id === data.listener) {
         switch (data.type) {
           case 'characterWizard':
-            CoC7InvestigatorWizard.createCharacterFromData(data.payload)
+            Cd100InvestigatorWizard.createCharacterFromData(data.payload)
             break
           case 'chatCombinedMessageJoin':
-            CoC7ChatCombinedMessage.joinGroupMessage(data.options)
+            Cd100ChatCombinedMessage.joinGroupMessage(data.options)
             break
           case 'chatCombinedMessageNew':
-            CoC7ChatCombinedMessage.newGroupMessage(data.config)
+            Cd100ChatCombinedMessage.newGroupMessage(data.config)
             break
           case 'chatOpposedMessageJoin':
-            CoC7ChatOpposedMessage.joinGroupMessage(data.options)
+            Cd100ChatOpposedMessage.joinGroupMessage(data.options)
             break
           case 'chatOpposedMessageNew':
-            CoC7ChatOpposedMessage.newGroupMessage(data.config)
+            Cd100ChatOpposedMessage.newGroupMessage(data.config)
             break
           case 'gmTradeItemTo':
             if (typeof data.itemFrom === 'string' && typeof data.actorTo === 'string') {
@@ -46,17 +46,17 @@ export default class CoC7SystemSocket {
             }
             break
           case 'messagePermission':
-            CoC7SystemSocket.allowUserToUpdateMessage(data)
+            Cd100SystemSocket.allowUserToUpdateMessage(data)
             break
           case 'open-character':
             game.actors.get(data.payload).sheet.render({ force: true })
             break
           case 'thanksUpdatedMessage':
             if (['messageId'].every(k => typeof data[k] !== 'undefined')) {
-              const index = game.CoC7.messagePermissionQueue.findIndex(o => o.messageId === data.messageId)
+              const index = game.Cd100.messagePermissionQueue.findIndex(o => o.messageId === data.messageId)
               if (index > -1) {
-                game.CoC7.messagePermissionQueue.splice(data.index, 1)
-                CoC7SystemSocket.messagePermissionQueue(data.messageId)
+                game.Cd100.messagePermissionQueue.splice(data.index, 1)
+                Cd100SystemSocket.messagePermissionQueue(data.messageId)
               }
             }
             break
@@ -66,14 +66,14 @@ export default class CoC7SystemSocket {
               if (message) {
                 await message.update(data.updates)
                 switch (message.flags[FOLDER_ID]?.load?.as) {
-                  case 'CoC7Check':
-                    (await CoC7Check.loadFromMessage(message)).runCallback()
+                  case 'Cd100Check':
+                    (await Cd100Check.loadFromMessage(message)).runCallback()
                     break
-                  case 'CoC7ConCheck':
-                    (await CoC7ConCheck.loadFromMessage(message)).runCallback()
+                  case 'Cd100ConCheck':
+                    (await Cd100ConCheck.loadFromMessage(message)).runCallback()
                     break
                 }
-                CoC7SystemSocket.triggerSocket({
+                Cd100SystemSocket.triggerSocket({
                   type: 'thanksUpdatedMessage',
                   messageId: data.messageId,
                   listener: data.from
@@ -82,23 +82,23 @@ export default class CoC7SystemSocket {
             }
             break
           case 'callbackCheck':
-            (await CoC7Check.loadFromMessage(game.messages.get(data.messageId))).runCallback()
+            (await Cd100Check.loadFromMessage(game.messages.get(data.messageId))).runCallback()
             break
           case 'callbackConCheck':
-            (await CoC7ConCheck.loadFromMessage(game.messages.get(data.messageId))).runCallback()
+            (await Cd100ConCheck.loadFromMessage(game.messages.get(data.messageId))).runCallback()
             break
         }
       }
     } else {
       switch (data.type) {
         case 'lockOpenCharacterSheets':
-          CoC7Utilities.lockOpenCharacterSheets()
+          Cd100Utilities.lockOpenCharacterSheets()
           break
         case 'refreshOpenDocumentSheet':
-          CoC7Utilities.refreshOpenDocumentSheet(data.uuid)
+          Cd100Utilities.refreshOpenDocumentSheet(data.uuid)
           break
         case 'refreshOpenOwnerCharacterSheets':
-          CoC7Utilities.refreshOpenOwnerCharacterSheets()
+          Cd100Utilities.refreshOpenOwnerCharacterSheets()
           break
         case 'toggleMapNotes':
           game.settings.set('core', NotesLayer.TOGGLE_SETTING, data.toggle === true)
@@ -112,9 +112,9 @@ export default class CoC7SystemSocket {
    * @param {string} messageId
    */
   static async messagePermissionQueue (messageId) {
-    const index = game.CoC7.messagePermissionQueue.findIndex(o => o.messageId === messageId)
+    const index = game.Cd100.messagePermissionQueue.findIndex(o => o.messageId === messageId)
     if (index > -1) {
-      const data = game.CoC7.messagePermissionQueue[index]
+      const data = game.Cd100.messagePermissionQueue[index]
       const message = game.messages.get(data.messageId)
       if (message) {
         await message.update({
@@ -139,7 +139,7 @@ export default class CoC7SystemSocket {
   static requestKeeperAction (data) {
     if (game.user.isGM) {
       data.listener = game.user.id
-      CoC7SystemSocket.callSocket(data)
+      Cd100SystemSocket.callSocket(data)
       return true
     } else {
       const keeper = game.users.find(u => u.active && u.isGM)
@@ -148,7 +148,7 @@ export default class CoC7SystemSocket {
         game.socket.emit('system.' + FOLDER_ID, data)
         return true
       } else {
-        ui.notifications.error('CoC7.ErrorMissingKeeperUser', { localize: true })
+        ui.notifications.error('Cd100.ErrorMissingKeeperUser', { localize: true })
         return false
       }
     }
@@ -162,7 +162,7 @@ export default class CoC7SystemSocket {
    */
   static triggerSocket (data) {
     game.socket.emit('system.' + FOLDER_ID, data)
-    CoC7SystemSocket.callSocket(data)
+    Cd100SystemSocket.callSocket(data)
   }
 
   /**
@@ -174,11 +174,11 @@ export default class CoC7SystemSocket {
     if (['messageId', 'who', 'updates'].every(k => typeof data[k] !== 'undefined')) {
       const message = game.messages.get(data.messageId)
       const user = game.users.get(data.who)
-      if (message && user && (await CoC7Utilities.canModifyActor({ message, user })).length) {
-        const index = game.CoC7.messagePermissionQueue.findIndex(o => o.messageId === data.messageId)
-        game.CoC7.messagePermissionQueue.push(data)
+      if (message && user && (await Cd100Utilities.canModifyActor({ message, user })).length) {
+        const index = game.Cd100.messagePermissionQueue.findIndex(o => o.messageId === data.messageId)
+        game.Cd100.messagePermissionQueue.push(data)
         if (index === -1) {
-          CoC7SystemSocket.messagePermissionQueue(data.messageId)
+          Cd100SystemSocket.messagePermissionQueue(data.messageId)
         }
       }
     }

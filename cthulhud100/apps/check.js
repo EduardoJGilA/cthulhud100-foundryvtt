@@ -1,12 +1,12 @@
 /* global ChatMessage foundry fromUuid game renderTemplate ui */
 import { FOLDER_ID, CHAT_MESSAGE_MODE, CHARACTERISTIC_MULTIPLIER } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7ModelsItemSkillSystem from '../models/item/skill-system.js'
-import CoC7RollNormalize from './roll-normalize.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100ModelsItemSkillSystem from '../models/item/skill-system.js'
+import Cd100RollNormalize from './roll-normalize.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7Check {
+export default class Cd100Check {
   #allowPush
   #appliedDevelopment
   #asyncActor
@@ -40,10 +40,10 @@ export default class CoC7Check {
     // this.#callbackContext = undefined
     // this.#callbackUuid = undefined
     this.#cardOpen = true
-    this.#cardType = CoC7RollNormalize.CARD_TYPE.NORMAL
+    this.#cardType = Cd100RollNormalize.CARD_TYPE.NORMAL
     this.#customFlavor = false
-    this.#dicePool = CoC7DicePool.newPool({
-      difficulty: CoC7DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
+    this.#dicePool = Cd100DicePool.newPool({
+      difficulty: Cd100DicePool.difficultyLevel[game.settings.get(FOLDER_ID, 'defaultCheckDifficulty')],
       flatDiceModifier: 0,
       flatThresholdModifier: 0,
       poolModifiers: [0],
@@ -79,9 +79,9 @@ export default class CoC7Check {
   }
 
   /**
-   * Create CoC7Check from message
+   * Create Cd100Check from message
    * @param {Document} message
-   * @returns {CoC7Check}
+   * @returns {Cd100Check}
    */
   static async loadFromMessage (message) {
     const keys = [
@@ -104,8 +104,8 @@ export default class CoC7Check {
       'standbyRightIcon'
       // 'type' - not needed for manual roll
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7Check' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && CoC7DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.dicePool)) {
-      const check = new CoC7Check()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100Check' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && Cd100DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.dicePool)) {
+      const check = new Cd100Check()
       check.message = message
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       check.actor = load.actorUuid
@@ -118,7 +118,7 @@ export default class CoC7Check {
         check.#cardType = load.cardType
       }
       check.#customFlavor = load.customFlavor
-      check.#dicePool = CoC7DicePool.fromObject(load.dicePool)
+      check.#dicePool = Cd100DicePool.fromObject(load.dicePool)
       check.#isCombat = load.isCombat
       check.#isForced = load.isForced
       check.#isForcedFailure = load.isForcedFailure
@@ -129,15 +129,15 @@ export default class CoC7Check {
       check.#standbyRightIcon = load.standbyRightIcon
       check.#type = load.type
       switch (check.#type) {
-        case CoC7Check.type.skill:
-        case CoC7Check.type.item:
+        case Cd100Check.type.skill:
+        case Cd100Check.type.item:
           check.item = await fromUuid(check.#key)
           break
       }
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -156,10 +156,10 @@ export default class CoC7Check {
           html.querySelectorAll('.dice-total').forEach((element) => {
             if (element.innerHTML === '?') {
               if (message.flags?.[FOLDER_ID]?.load.isForcedFailure) {
-                element.innerHTML = game.i18n.localize('CoC7.Failure')
+                element.innerHTML = game.i18n.localize('Cd100.Failure')
                 element.classList.add('fumble')
               } else if (message.flags?.[FOLDER_ID]?.load.isForcedSuccess) {
-                element.innerHTML = game.i18n.localize('CoC7.Success')
+                element.innerHTML = game.i18n.localize('Cd100.Success')
                 element.classList.add('critical')
               }
             }
@@ -170,7 +170,7 @@ export default class CoC7Check {
     if (game.user.isGM || allowed.length) {
       html.querySelectorAll('button[data-action]').forEach((element) => {
         if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-          element.addEventListener('click', event => CoC7Check._onClickEvent(event, message))
+          element.addEventListener('click', event => Cd100Check._onClickEvent(event, message))
         }
       })
     }
@@ -276,12 +276,12 @@ export default class CoC7Check {
    */
   get name () {
     switch (this.#type) {
-      case CoC7Check.type.attribute:
-        return CoC7Utilities.getAttributeNames(this.#key)?.label
-      case CoC7Check.type.characteristic:
-        return CoC7Utilities.getCharacteristicNames(this.#key)?.label
-      case CoC7Check.type.skill:
-      case CoC7Check.type.item:
+      case Cd100Check.type.attribute:
+        return Cd100Utilities.getAttributeNames(this.#key)?.label
+      case Cd100Check.type.characteristic:
+        return Cd100Utilities.getCharacteristicNames(this.#key)?.label
+      case Cd100Check.type.skill:
+      case Cd100Check.type.item:
         if (this.item) {
           return this.item.name
         }
@@ -299,41 +299,41 @@ export default class CoC7Check {
       return this.#customFlavor
     }
     let flavor = ''
-    if (this.#cardType === CoC7RollNormalize.CARD_TYPE.IDEA_CHECK) {
-      return game.i18n.format('CoC7.CheckRollResult', {
-        name: game.i18n.localize('CoC7.IdeaCheck'),
+    if (this.#cardType === Cd100RollNormalize.CARD_TYPE.IDEA_CHECK) {
+      return game.i18n.format('Cd100.CheckRollResult', {
+        name: game.i18n.localize('Cd100.IdeaCheck'),
         value: this.#dicePool.thresholdString,
-        difficulty: CoC7DicePool.difficultyString(this.#dicePool.difficulty)
+        difficulty: Cd100DicePool.difficultyString(this.#dicePool.difficulty)
       })
-    } else if (this.#cardType === CoC7RollNormalize.CARD_TYPE.KNOW_CHECK) {
-      return game.i18n.format('CoC7.CheckRollResult', {
-        name: game.i18n.localize('CoC7.KnowCheck'),
+    } else if (this.#cardType === Cd100RollNormalize.CARD_TYPE.KNOW_CHECK) {
+      return game.i18n.format('Cd100.CheckRollResult', {
+        name: game.i18n.localize('Cd100.KnowCheck'),
         value: this.#dicePool.thresholdString,
-        difficulty: CoC7DicePool.difficultyString(this.#dicePool.difficulty)
+        difficulty: Cd100DicePool.difficultyString(this.#dicePool.difficulty)
       })
     }
     switch (this.#type) {
-      case CoC7Check.type.attribute:
-      case CoC7Check.type.characteristic:
-      case CoC7Check.type.skill:
-        flavor = game.i18n.format('CoC7.CheckResult', {
+      case Cd100Check.type.attribute:
+      case Cd100Check.type.characteristic:
+      case Cd100Check.type.skill:
+        flavor = game.i18n.format('Cd100.CheckResult', {
           name: this.name,
           value: this.#dicePool.thresholdString,
-          difficulty: CoC7DicePool.difficultyString(this.#dicePool.difficulty)
+          difficulty: Cd100DicePool.difficultyString(this.#dicePool.difficulty)
         })
         break
-      case CoC7Check.type.item:
-        flavor = game.i18n.format('CoC7.ItemCheckResult', {
+      case Cd100Check.type.item:
+        flavor = game.i18n.format('Cd100.ItemCheckResult', {
           item: this.name,
           skill: this.item?.system.skillMain?.name ?? '',
           value: this.#dicePool.thresholdString,
-          difficulty: CoC7DicePool.difficultyString(this.#dicePool.difficulty)
+          difficulty: Cd100DicePool.difficultyString(this.#dicePool.difficulty)
         })
         break
-      case CoC7Check.type.value:
-        flavor = game.i18n.format('CoC7.CheckRawValue', {
+      case Cd100Check.type.value:
+        flavor = game.i18n.format('Cd100.CheckRawValue', {
           rawvalue: this.#dicePool.thresholdString,
-          difficulty: CoC7DicePool.difficultyString(this.#dicePool.difficulty)
+          difficulty: Cd100DicePool.difficultyString(this.#dicePool.difficulty)
         })
         break
     }
@@ -434,7 +434,7 @@ export default class CoC7Check {
   async flagForDevelopment () {
     if (game.settings.get(FOLDER_ID, 'xpEnabled')) {
       let value
-      if (this.#dicePool.difficulty !== CoC7DicePool.difficultyLevel.unknown && !!this.item && this.item.system instanceof CoC7ModelsItemSkillSystem && !this.item.system.properties.noxpgain) {
+      if (this.#dicePool.difficulty !== Cd100DicePool.difficultyLevel.unknown && !!this.item && this.item.system instanceof Cd100ModelsItemSkillSystem && !this.item.system.properties.noxpgain) {
         if (this.#rollMode !== CHAT_MESSAGE_MODE.BLIND) {
           if (!this.#isForced && !this.#appliedDevelopment) {
             if (this.item.system.flags.developement === false && this.#dicePool.isRolledSuccess) {
@@ -447,7 +447,7 @@ export default class CoC7Check {
       }
       if (value === true || value === false) {
         this.#appliedDevelopment = value
-        await CoC7Utilities.messageRollFlagForDevelopment(this.message.id, this.item, value)
+        await Cd100Utilities.messageRollFlagForDevelopment(this.message.id, this.item, value)
       }
     }
   }
@@ -463,12 +463,12 @@ export default class CoC7Check {
     if (!this.#isStandby && this.#cardOpen) {
       switch (diceGroups.length) {
         case 0:
-          ui.notifications.warn('CoC7.Errors.UnparsableDice', { localize: true })
+          ui.notifications.warn('Cd100.Errors.UnparsableDice', { localize: true })
           throw new Error('No Dice')
         case 1:
           foundry.utils.mergeObject(buttons, this.#dicePool.availableButtons({ luckAvailable: actor?.system.attribs.lck.value ?? 0, isPushable: this.#allowPush, key: this.#key }))
           if (this.#rollMode === CHAT_MESSAGE_MODE.BLIND) {
-            if (this.#dicePool.difficulty !== CoC7DicePool.difficultyLevel.unknown) {
+            if (this.#dicePool.difficulty !== Cd100DicePool.difficultyLevel.unknown) {
               buttons.revealCheck = true
             }
             if (typeof this.#dicePool.threshold !== 'undefined' && !this.#isForced) {
@@ -481,47 +481,47 @@ export default class CoC7Check {
                 buttons.decreaseSuccessLevel = true
               }
             }
-            if (!!this.item && this.item.system instanceof CoC7ModelsItemSkillSystem && !this.item.system.properties.noxpgain && !this.item.system.flags.developement) {
+            if (!!this.item && this.item.system instanceof Cd100ModelsItemSkillSystem && !this.item.system.properties.noxpgain && !this.item.system.flags.developement) {
               buttons.flagForDevelopment = true
             }
           }
           break
       }
     }
-    const thresholdRanges = CoC7DicePool.thresholdRanges(this.#dicePool.threshold, this.#dicePool.flatThresholdModifier)
+    const thresholdRanges = Cd100DicePool.thresholdRanges(this.#dicePool.threshold, this.#dicePool.flatThresholdModifier)
     const data = {
       actorImg: (actor ? (actor.isToken ? actor.token.texture.src : actor.img) : ''),
       actorName: (actor ? (actor.isToken ? actor.token.name : actor.name) : ''),
       actorUuid: actor?.uuid,
       bonusDice: Math.abs(this.#dicePool.poolModifier),
-      bonusType: game.i18n.localize(this.#dicePool.poolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus'),
+      bonusType: game.i18n.localize(this.#dicePool.poolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus'),
       buttons,
       cardOpen: this.#cardOpen,
       diceGroups,
       difficulty: this.#dicePool.difficulty,
       difficultyLevels: [
         {
-          difficulty: CoC7DicePool.difficultyLevel.regular,
-          name: 'CoC7.RollDifficultyRegular',
-          title: 'CoC7.RollDifficultyRegularTitle',
-          threshold: thresholdRanges[CoC7DicePool.difficultyLevel.regular]?.[1] ?? null
+          difficulty: Cd100DicePool.difficultyLevel.regular,
+          name: 'Cd100.RollDifficultyRegular',
+          title: 'Cd100.RollDifficultyRegularTitle',
+          threshold: thresholdRanges[Cd100DicePool.difficultyLevel.regular]?.[1] ?? null
         },
         {
-          difficulty: CoC7DicePool.difficultyLevel.hard,
-          name: 'CoC7.RollDifficultyHard',
-          title: 'CoC7.RollDifficultyHardTitle',
-          threshold: thresholdRanges[CoC7DicePool.difficultyLevel.hard]?.[1] ?? null
+          difficulty: Cd100DicePool.difficultyLevel.hard,
+          name: 'Cd100.RollDifficultyHard',
+          title: 'Cd100.RollDifficultyHardTitle',
+          threshold: thresholdRanges[Cd100DicePool.difficultyLevel.hard]?.[1] ?? null
         },
         {
-          difficulty: CoC7DicePool.difficultyLevel.extreme,
-          name: 'CoC7.RollDifficultyExtreme',
-          title: 'CoC7.RollDifficultyExtremeTitle',
-          threshold: thresholdRanges[CoC7DicePool.difficultyLevel.extreme]?.[1] ?? null
+          difficulty: Cd100DicePool.difficultyLevel.extreme,
+          name: 'Cd100.RollDifficultyExtreme',
+          title: 'Cd100.RollDifficultyExtremeTitle',
+          threshold: thresholdRanges[Cd100DicePool.difficultyLevel.extreme]?.[1] ?? null
         },
         {
-          difficulty: CoC7DicePool.difficultyLevel.critical,
-          name: 'CoC7.RollDifficultyCritical',
-          title: 'CoC7.RollDifficultyCriticalTitle',
+          difficulty: Cd100DicePool.difficultyLevel.critical,
+          name: 'Cd100.RollDifficultyCritical',
+          title: 'Cd100.RollDifficultyCriticalTitle',
           threshold: 1
         }
       ],
@@ -533,7 +533,7 @@ export default class CoC7Check {
       isForced: this.#isForced,
       foundryGeneration: game.release.generation,
       isBlind: this.#rollMode === CHAT_MESSAGE_MODE.BLIND,
-      isUnknownDifficulty: this.#dicePool.difficulty === CoC7DicePool.difficultyLevel.unknown,
+      isUnknownDifficulty: this.#dicePool.difficulty === Cd100DicePool.difficultyLevel.unknown,
       luckSpent: this.#dicePool.luckSpent,
       name: this.name,
       standbyRightIcon: this.#standbyRightIcon
@@ -567,7 +567,7 @@ export default class CoC7Check {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7Check',
+            as: 'Cd100Check',
             actorUuid: data?.actorUuid,
             allowPush: this.#allowPush,
             appliedDevelopment: this.#appliedDevelopment,
@@ -645,7 +645,7 @@ export default class CoC7Check {
    * @param {string} attribute
    */
   async rollAttribute (attribute) {
-    this.#type = CoC7Check.type.attribute
+    this.#type = Cd100Check.type.attribute
     this.#key = attribute
     await this.#setThreshold()
     await this.#performRoll()
@@ -656,7 +656,7 @@ export default class CoC7Check {
    * @param {string} characteristic
    */
   async rollCharacteristic (characteristic) {
-    this.#type = CoC7Check.type.characteristic
+    this.#type = Cd100Check.type.characteristic
     this.#key = characteristic
     await this.#setThreshold()
     await this.#performRoll()
@@ -667,7 +667,7 @@ export default class CoC7Check {
    * @param {string} uuid
    */
   async rollSkill (uuid) {
-    this.#type = CoC7Check.type.skill
+    this.#type = Cd100Check.type.skill
     this.#key = uuid
     this.item = await fromUuid(this.#key)
     if (this.item) {
@@ -683,7 +683,7 @@ export default class CoC7Check {
    * @param {int} threshold
    */
   async rollManual (threshold) {
-    this.#type = CoC7Check.type.value
+    this.#type = Cd100Check.type.value
     if (!isNaN(parseInt(threshold, 10))) {
       this.#dicePool.threshold = parseInt(threshold, 10)
     }
@@ -696,7 +696,7 @@ export default class CoC7Check {
    * @param {boolean} useAlternativeSkill
    */
   async rollWeapon (uuid, useAlternativeSkill) {
-    this.#type = CoC7Check.type.item
+    this.#type = Cd100Check.type.item
     this.#key = uuid
     this.item = await fromUuid(this.#key)
     if (this.item) {
@@ -734,18 +734,18 @@ export default class CoC7Check {
    */
   async #setThreshold (useAlternativeSkill = false) {
     let threshold
-    if (this.#type === CoC7Check.type.attribute && this.#key && typeof this.#asyncActor !== 'undefined') {
+    if (this.#type === Cd100Check.type.attribute && this.#key && typeof this.#asyncActor !== 'undefined') {
       threshold = parseInt((await this.#asyncActor)?.system?.attribs?.[this.#key]?.value, 10)
-    } else if (this.#type === CoC7Check.type.characteristic && this.#key && typeof this.#asyncActor !== 'undefined') {
-      if (this.#cardType === CoC7RollNormalize.CARD_TYPE.IDEA_CHECK) {
+    } else if (this.#type === Cd100Check.type.characteristic && this.#key && typeof this.#asyncActor !== 'undefined') {
+      if (this.#cardType === Cd100RollNormalize.CARD_TYPE.IDEA_CHECK) {
         threshold = parseInt((await this.#asyncActor)?.system?.config?.idea?.value, 10)
-      } else if (this.#cardType === CoC7RollNormalize.CARD_TYPE.KNOW_CHECK) {
+      } else if (this.#cardType === Cd100RollNormalize.CARD_TYPE.KNOW_CHECK) {
         threshold = parseInt((await this.#asyncActor)?.system?.config?.know?.value, 10)
       } else {
         // Characteristics are stored 3-18; a check is rolled against value x5
         threshold = parseInt((await this.#asyncActor)?.system?.characteristics?.[this.#key]?.value, 10) * CHARACTERISTIC_MULTIPLIER
       }
-    } else if (this.#type === CoC7Check.type.skill && this.#key) {
+    } else if (this.#type === Cd100Check.type.skill && this.#key) {
       if (!this.item) {
         this.item = await fromUuid(this.#key)
       }
@@ -754,7 +754,7 @@ export default class CoC7Check {
         threshold = parseInt(this.item.system.value, 10)
         threshold += await this.#mentalStabilityModifier(this.item.system.category)
       }
-    } else if (this.#type === CoC7Check.type.item && this.#key) {
+    } else if (this.#type === Cd100Check.type.item && this.#key) {
       if (!this.item) {
         this.item = await fromUuid(this.#key)
       }
@@ -771,7 +771,7 @@ export default class CoC7Check {
       threshold = undefined
     }
     if (typeof threshold === 'undefined') {
-      ui.notifications.warn('CoC7.Errors.UnparsableThreshold', { localize: true })
+      ui.notifications.warn('Cd100.Errors.UnparsableThreshold', { localize: true })
       throw new Error('No threshold')
     }
     this.#dicePool.threshold = threshold
@@ -800,7 +800,7 @@ export default class CoC7Check {
     if (this.message) {
       const diff = foundry.utils.diffObject(this.message.toObject(), await this.getChatData())
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -853,7 +853,7 @@ export default class CoC7Check {
         {
           const quantity = event.currentTarget.dataset.quantity
           if (quantity) {
-            const check = await CoC7Check.loadFromMessage(message)
+            const check = await Cd100Check.loadFromMessage(message)
             try {
               if (await check.#dicePool.addDiceToPool(quantity)) {
                 check.updateMessage()
@@ -862,20 +862,20 @@ export default class CoC7Check {
               ui.notifications.warn(err.message)
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'decreaseSuccessLevel':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           check.#dicePool.forceResult({ direction: -1 })
           check.updateMessage()
         }
         break
       case 'flagForDevelopment':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           check.#appliedDevelopment = true
           await check.item.update({ 'system.flags.developement': true })
           check.updateMessage()
@@ -883,8 +883,8 @@ export default class CoC7Check {
         break
       case 'forceFail':
         {
-          const check = await CoC7Check.loadFromMessage(message)
-          check.#dicePool.forceResult({ successLevel: CoC7DicePool.successLevel.failure })
+          const check = await Cd100Check.loadFromMessage(message)
+          check.#dicePool.forceResult({ successLevel: Cd100DicePool.successLevel.failure })
           check.#isForced = true
           check.#isForcedFailure = true
           check.updateMessage()
@@ -892,8 +892,8 @@ export default class CoC7Check {
         break
       case 'forcePass':
         {
-          const check = await CoC7Check.loadFromMessage(message)
-          check.#dicePool.forceResult({ successLevel: CoC7DicePool.successLevel.regular })
+          const check = await Cd100Check.loadFromMessage(message)
+          check.#dicePool.forceResult({ successLevel: Cd100DicePool.successLevel.regular })
           check.#isForced = true
           check.#isForcedSuccess = true
           check.updateMessage()
@@ -901,7 +901,7 @@ export default class CoC7Check {
         break
       case 'increaseSuccessLevel':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           check.#dicePool.forceResult({ direction: 1 })
           check.updateMessage()
         }
@@ -910,7 +910,7 @@ export default class CoC7Check {
         {
           const luckSpend = event.currentTarget?.dataset?.luckSpend
           if (luckSpend) {
-            const check = await CoC7Check.loadFromMessage(message)
+            const check = await Cd100Check.loadFromMessage(message)
             if (check) {
               const actor = (await check.#asyncActor)
               if (actor) {
@@ -920,13 +920,13 @@ export default class CoC7Check {
               }
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'push':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           document.querySelector('li.chat-message.message[data-message-id="' + message.id + '"] .expanded').classList.remove('expanded')
           await check.#dicePool.pushRoll()
           check.updateMessage()
@@ -934,14 +934,14 @@ export default class CoC7Check {
         break
       case 'revealCheck':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           check.#rollMode = CHAT_MESSAGE_MODE.PUBLIC
           check.updateMessage()
         }
         break
       case 'rollCheckCard':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           check.standby = false
           await check.#dicePool.roll()
           check.updateMessage()
@@ -949,7 +949,7 @@ export default class CoC7Check {
         break
       case 'setValue':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           const value = event.currentTarget.dataset.value
           if (set && value) {
@@ -959,17 +959,17 @@ export default class CoC7Check {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'toggleValue':
         {
-          const check = await CoC7Check.loadFromMessage(message)
+          const check = await Cd100Check.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           if (check && set) {
             switch (set) {
@@ -978,11 +978,11 @@ export default class CoC7Check {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -1120,7 +1120,7 @@ export default class CoC7Check {
       if (actor) {
         actorUuid = actor.uuid
       } else {
-        actorUuid = CoC7Utilities.oldStyleToUuid(message.speaker)
+        actorUuid = Cd100Utilities.oldStyleToUuid(message.speaker)
         cardOpen = false
       }
       const diceModifier = Number(contents.dataset.diceModifier || 0)
@@ -1148,7 +1148,7 @@ export default class CoC7Check {
         ['flags.' + FOLDER_ID + '.-=type']: null,
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=GMSelfRoll']: null,
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7Check',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100Check',
         ['flags.' + FOLDER_ID + '.load.actorUuid']: actorUuid,
         ['flags.' + FOLDER_ID + '.load.allowPush']: contents.dataset.canBePushed === 'true',
         ['flags.' + FOLDER_ID + '.load.appliedDevelopment']: contents.dataset.flaggedForDevelopment === 'true',
@@ -1161,7 +1161,7 @@ export default class CoC7Check {
         ['flags.' + FOLDER_ID + '.load.isStandby']: contents.dataset.standby === 'true',
         ['flags.' + FOLDER_ID + '.load.dicePool.bonusCount']: Math.max(diceModifier, 0),
         ['flags.' + FOLDER_ID + '.load.dicePool.currentPoolModifier']: diceModifier,
-        ['flags.' + FOLDER_ID + '.load.dicePool.difficulty']: Number(contents.dataset.difficulty || CoC7DicePool.difficultyLevel.regular),
+        ['flags.' + FOLDER_ID + '.load.dicePool.difficulty']: Number(contents.dataset.difficulty || Cd100DicePool.difficultyLevel.regular),
         ['flags.' + FOLDER_ID + '.load.dicePool.flatDiceModifier']: Number(contents.dataset.flatDiceModifier || 0),
         ['flags.' + FOLDER_ID + '.load.dicePool.flatThresholdModifier']: Number(contents.dataset.flatThresholdModifier || 0),
         ['flags.' + FOLDER_ID + '.load.dicePool.luckSpent']: Number(contents.dataset.totalLuckSpent || 0),
@@ -1248,7 +1248,7 @@ export default class CoC7Check {
         }
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7Check.loadFromMessage(merged)
+      const check = await Cd100Check.loadFromMessage(merged)
       const chatData = await check.getChatData()
       update.content = chatData.content
       update._id = message.id

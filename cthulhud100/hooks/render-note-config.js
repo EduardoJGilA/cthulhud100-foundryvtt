@@ -13,7 +13,7 @@ export default function (application, element, context, options) {
   /* // FoundryVTT V12 */
   if (game.release.generation === 12) {
     const lastGroup = element.find('[name=texture\\.tint]').closest('div.form-group')
-    lastGroup.after('<div class="form-group"><label for="' + application.id + '-hide-background">' + game.i18n.localize('CoC7.MapNoteNoBackground') + '</label><input type="checkbox" name="flags.' + FOLDER_ID + '.hide-background" id="' + application.id + '-hide-background"' + (hideBackground ? ' checked="checked"' : '') + '></div>')
+    lastGroup.after('<div class="form-group"><label for="' + application.id + '-hide-background">' + game.i18n.localize('Cd100.MapNoteNoBackground') + '</label><input type="checkbox" name="flags.' + FOLDER_ID + '.hide-background" id="' + application.id + '-hide-background"' + (hideBackground ? ' checked="checked"' : '') + '></div>')
     application.setPosition({ height: 'auto' })
   } else {
     const formGroup = element.querySelector('[name=texture\\.tint]').closest('div.form-group')
@@ -22,7 +22,7 @@ export default function (application, element, context, options) {
     formGroup.after(newGroup)
     const label = document.createElement('label')
     label.setAttribute('for', application.id + '-hide-background')
-    label.innerText = game.i18n.localize('CoC7.MapNoteNoBackground')
+    label.innerText = game.i18n.localize('Cd100.MapNoteNoBackground')
     const div = document.createElement('div')
     div.classList.add('form-fields')
     const input = document.createElement('input')

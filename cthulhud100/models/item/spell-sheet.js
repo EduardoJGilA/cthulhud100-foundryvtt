@@ -1,9 +1,9 @@
 /* global CONFIG DragDrop foundry game Item TextEditor */
 import { FOLDER_ID, SPELL_COST_TYPE_KEYS } from '../../constants.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemSpellSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemSpellSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 550,
@@ -43,18 +43,18 @@ export default class CoC7ModelsItemSpellSheet extends CoC7ModelsItemGlobalSheet 
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       }
     }
     if (game.user.isGM) {
       tabs.details = {
         icon: '',
-        label: 'CoC7.Details'
+        label: 'Cd100.Details'
       }
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -113,7 +113,7 @@ export default class CoC7ModelsItemSpellSheet extends CoC7ModelsItemGlobalSheet 
             secrets: context.editable
           }
         )
-        context._costListTypes = Object.entries(SPELL_COST_TYPE_KEYS).reduce((c, e) => { c.push({ key: e[0], name: game.i18n.localize(e[1].name), group: game.i18n.localize(e[1].group) }); return c }, []).sort(CoC7Utilities.sortByNameKey)
+        context._costListTypes = Object.entries(SPELL_COST_TYPE_KEYS).reduce((c, e) => { c.push({ key: e[0], name: game.i18n.localize(e[1].name), group: game.i18n.localize(e[1].group) }); return c }, []).sort(Cd100Utilities.sortByNameKey)
         context._costListCosts = CONFIG.Item.dataModels.spell.availableCosts()
         break
       case 'keeper':
@@ -213,7 +213,7 @@ export default class CoC7ModelsItemSpellSheet extends CoC7ModelsItemGlobalSheet 
    */
   _onDragStart (event) {
     const data = {
-      type: 'CoC7SpellCostList',
+      type: 'Cd100SpellCostList',
       index: Number(event.currentTarget.dataset.index)
     }
     event.dataTransfer.setData('text/plain', JSON.stringify(data))
@@ -227,7 +227,7 @@ export default class CoC7ModelsItemSpellSheet extends CoC7ModelsItemGlobalSheet 
     const indexDrop = Number(event.currentTarget.dataset.index)
     const dataString = event.dataTransfer.getData('text/plain')
     const dropData = JSON.parse(dataString)
-    if (dropData.type === 'CoC7SpellCostList' && dropData.index !== indexDrop) {
+    if (dropData.type === 'Cd100SpellCostList' && dropData.index !== indexDrop) {
       const costList = this.document.system.costList
       const dragged = costList.splice(dropData.index, 1)
       costList.splice(indexDrop, 0, ...dragged)

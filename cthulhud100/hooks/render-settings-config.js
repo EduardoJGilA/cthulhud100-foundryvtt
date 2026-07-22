@@ -1,6 +1,6 @@
 /* global game */
 import { FOLDER_ID } from '../constants.js'
-import CoC7DirectoryPicker from '../apps/directory-picker.js'
+import Cd100DirectoryPicker from '../apps/directory-picker.js'
 
 /**
  * Create header element
@@ -29,7 +29,7 @@ function createTitleNode (text) {
  * @param {ApplicationRenderOptions} options
  */
 export default function (application, element, context, options) {
-  CoC7DirectoryPicker.processHtml(element)
+  Cd100DirectoryPicker.processHtml(element)
   let systemTab
   /* // FoundryVTT V12 */
   if (typeof element.querySelector !== 'undefined') {

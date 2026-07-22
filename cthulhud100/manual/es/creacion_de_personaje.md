@@ -41,7 +41,7 @@ Las [Configuraciones](objeto_configuracion.md) son conjuntos predefinidos de hab
    - En la pestaña de _Detalles_, puedes:
        - Seleccionar las _Épocas de Cthulhu_ donde esta configuración es válida.
        - Definir las secciones de transfondo y sus nombres (haz clic en el `+` para agregar secciones de transfondo adicionales).
-       - Arrastrar objetos predeterminados como @Compendium[CoC7.items.3elxAwnv7WCUNwng]{Golpe}.
+       - Arrastrar objetos predeterminados como @Compendium[Cd100.items.3elxAwnv7WCUNwng]{Golpe}.
        - Mostrar/Ocultar la pestaña de _Características_ con la casilla de verificación _Habilitar características_.
    - La pestaña de _Características_ te permite definir la fórmula para lanzar los dados de cada característica.
    - La pestaña de _Habilidades_ te permite definir el conjunto predeterminado de habilidades arrastrando objetos de tipo _habilidad_ al área de _habilidades comunes_.

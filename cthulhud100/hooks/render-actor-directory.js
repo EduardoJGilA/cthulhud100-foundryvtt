@@ -1,7 +1,7 @@
 /* global CONST foundry game */
 import { FOLDER_ID } from '../constants.js'
-import CoC7ActorImporterDialog from '../apps/actor-importer-dialog.js'
-import CoC7InvestigatorWizard from '../apps/investigator-wizard.js'
+import Cd100ActorImporterDialog from '../apps/actor-importer-dialog.js'
+import Cd100InvestigatorWizard from '../apps/investigator-wizard.js'
 
 /**
  * Render Hook
@@ -28,15 +28,15 @@ export default function (application, element, context, options) {
     link.type = 'button'
     link.dataset.action = 'investigatorWizard'
     const span = document.createElement('span')
-    span.textContent = game.i18n.localize('CoC7.InvestigatorWizard.Title')
+    span.textContent = game.i18n.localize('Cd100.InvestigatorWizard.Title')
     link.append(span)
     /* // FoundryVTT v12 */
     if (foundry.utils.isNewerVersion(game.version, '13')) {
-      application.options.actions.investigatorWizard = () => { CoC7InvestigatorWizard.create() }
+      application.options.actions.investigatorWizard = () => { Cd100InvestigatorWizard.create() }
       element.querySelector('footer.directory-footer').append(link)
     } else {
       element.find('footer.directory-footer').append(link)
-      element.find('button[data-action=investigatorWizard').click(() => { CoC7InvestigatorWizard.create() })
+      element.find('button[data-action=investigatorWizard').click(() => { Cd100InvestigatorWizard.create() })
     }
   }
 
@@ -45,15 +45,15 @@ export default function (application, element, context, options) {
     link.type = 'button'
     link.dataset.action = 'actorImporter'
     const span = document.createElement('span')
-    span.textContent = game.i18n.localize('CoC7.ActorImporter')
+    span.textContent = game.i18n.localize('Cd100.ActorImporter')
     link.append(span)
     /* // FoundryVTT v12 */
     if (foundry.utils.isNewerVersion(game.version, '13')) {
-      application.options.actions.actorImporter = () => { CoC7ActorImporterDialog.create() }
+      application.options.actions.actorImporter = () => { Cd100ActorImporterDialog.create() }
       element.querySelector('footer.directory-footer').append(link)
     } else {
       element.find('footer.directory-footer').append(link)
-      element.find('button[data-action=actorImporter').click(() => { CoC7ActorImporterDialog.create() })
+      element.find('button[data-action=actorImporter').click(() => { Cd100ActorImporterDialog.create() })
     }
   }
 }

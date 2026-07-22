@@ -1,5 +1,5 @@
-import CoC7Utilities from '../apps/utilities.js'
+import Cd100Utilities from '../apps/utilities.js'
 
 export default function (hotbar, data, slot) {
-  return CoC7Utilities.createMacro(hotbar, data, slot)
+  return Cd100Utilities.createMacro(hotbar, data, slot)
 }

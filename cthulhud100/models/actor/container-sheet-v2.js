@@ -1,8 +1,8 @@
 /* global foundry game TextEditor */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsActorGlobalSheet from './global-sheet.js'
+import Cd100ModelsActorGlobalSheet from './global-sheet.js'
 
-export default class CoC7ModelsActorContainerSheetV2 extends CoC7ModelsActorGlobalSheet {
+export default class Cd100ModelsActorContainerSheetV2 extends Cd100ModelsActorGlobalSheet {
   static DEFAULT_OPTIONS = {
     classes: ['dialog', 'item', 'container'],
     position: {
@@ -52,24 +52,24 @@ export default class CoC7ModelsActorContainerSheetV2 extends CoC7ModelsActorGlob
     const tabs = {
       items: {
         icon: '',
-        label: 'CoC7.Items'
+        label: 'Cd100.Items'
       },
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
     tabs.locked = {
       cssClass: 'icon-only-tab ' + (this.allowUnlock ? 'unlock-control' : 'unlock-control-disabled'),
       icon: (context.document.system.flags.locked ? 'fa-solid fa-lock' : 'fa-solid fa-lock-open'),
-      tooltip: (context.document.system.flags.locked ? 'CoC7.UnlockActor' : 'CoC7.LockActor')
+      tooltip: (context.document.system.flags.locked ? 'Cd100.UnlockActor' : 'Cd100.LockActor')
     }
 
     context.tabs = this.getTabs('primary', 'items', tabs)

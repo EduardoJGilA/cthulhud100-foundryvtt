@@ -1,34 +1,34 @@
 /* global CONFIG CONST foundry game ui */
 import { FOLDER_ID, ERAS } from '../constants.js'
-import CoC7SettingsGameRules from '../apps/settings-game-rules.js'
-import CoC7SettingsHouseRules from '../apps/settings-house-rules.js'
-import CoC7Utilities from '../apps/utilities.js'
+import Cd100SettingsGameRules from '../apps/settings-game-rules.js'
+import Cd100SettingsHouseRules from '../apps/settings-house-rules.js'
+import Cd100Utilities from '../apps/utilities.js'
 import deprecated from '../deprecated.js'
 
 export default function () {
   game.settings.registerMenu(FOLDER_ID, 'gameRules', {
-    name: 'CoC7.Settings.Rules.Name',
-    label: 'CoC7.Settings.Rules.Label',
-    hint: 'CoC7.Settings.Rules.Hint',
+    name: 'Cd100.Settings.Rules.Name',
+    label: 'Cd100.Settings.Rules.Label',
+    hint: 'Cd100.Settings.Rules.Hint',
     icon: 'fa-solid fa-book',
-    type: CoC7SettingsGameRules,
+    type: Cd100SettingsGameRules,
     restricted: true
   })
-  CoC7SettingsGameRules.registerSettings()
+  Cd100SettingsGameRules.registerSettings()
 
   game.settings.registerMenu(FOLDER_ID, 'houseRules', {
-    name: 'CoC7.Settings.HouseRules.Title',
-    label: 'CoC7.Settings.HouseRules.Label',
-    hint: 'CoC7.Settings.HouseRules.Hint',
+    name: 'Cd100.Settings.HouseRules.Title',
+    label: 'Cd100.Settings.HouseRules.Label',
+    hint: 'Cd100.Settings.HouseRules.Hint',
     icon: 'fa-solid fa-dial',
-    type: CoC7SettingsHouseRules,
+    type: Cd100SettingsHouseRules,
     restricted: true
   })
-  CoC7SettingsHouseRules.registerSettings()
+  Cd100SettingsHouseRules.registerSettings()
 
   game.settings.register(FOLDER_ID, 'dholeUploadDirectory', {
-    name: 'CoC7.Settings.DholeUpload.Directory.Name',
-    hint: 'CoC7.Settings.DholeUpload.Directory.Hint',
+    name: 'Cd100.Settings.DholeUpload.Directory.Name',
+    hint: 'Cd100.Settings.DholeUpload.Directory.Hint',
     scope: 'world',
     config: true,
     type: String,
@@ -36,8 +36,8 @@ export default function () {
   })
 
   game.settings.register(FOLDER_ID, 'worldEra', {
-    name: 'CoC7.Settings.WorldEra.Name',
-    hint: 'CoC7.Settings.WorldEra.Hint',
+    name: 'Cd100.Settings.WorldEra.Name',
+    hint: 'Cd100.Settings.WorldEra.Hint',
     scope: 'world',
     // Cthulhu d100: only one era remains, so there is nothing to pick
     config: false,
@@ -51,7 +51,7 @@ export default function () {
           label: game.i18n.localize(e[1].name)
         })
         return c
-      }, []).sort(CoC7Utilities.sortByLabelKey).reduce((c, e) => {
+      }, []).sort(Cd100Utilities.sortByLabelKey).reduce((c, e) => {
         c[e.value] = e.label
         return c
       }, {})
@@ -61,13 +61,13 @@ export default function () {
       }, {}),
     onChange: () => {
       ui.players.render(deprecated.renderForce)
-      game.CoC7.skillNames.refreshList()
+      game.Cd100.skillNames.refreshList()
     }
   })
 
   game.settings.register(FOLDER_ID, 'showWorldEra', {
-    name: 'CoC7.Settings.ShowWorldEra.Name',
-    hint: 'CoC7.Settings.ShowWorldEra.Hint',
+    name: 'Cd100.Settings.ShowWorldEra.Name',
+    hint: 'Cd100.Settings.ShowWorldEra.Hint',
     scope: 'world',
     // Cthulhu d100: with a single era the badge says the same thing on every sheet
     config: false,
@@ -80,16 +80,16 @@ export default function () {
   })
 
   game.settings.register(FOLDER_ID, 'dropCoCID', {
-    name: 'CoC7.Settings.DropCoCID.Name',
-    hint: 'CoC7.Settings.DropCoCID.Hint',
+    name: 'Cd100.Settings.DropCoCID.Name',
+    hint: 'Cd100.Settings.DropCoCID.Hint',
     scope: 'world',
     config: true,
     default: '',
     type: String,
     choices: {
-      '': 'CoC7.Settings.DropCoCID.Prompt',
-      Y: 'CoC7.Settings.DropCoCID.UseCoCID',
-      N: 'CoC7.Settings.DropCoCID.IgnoreCoCID'
+      '': 'Cd100.Settings.DropCoCID.Prompt',
+      Y: 'Cd100.Settings.DropCoCID.UseCoCID',
+      N: 'Cd100.Settings.DropCoCID.IgnoreCoCID'
     }
   })
 
@@ -160,20 +160,20 @@ export default function () {
   // Cthulhu d100 ships two complete madness systems and expects the table to
   // pick one (rulebook chapter 3).
   game.settings.register(FOLDER_ID, 'sanitySystem', {
-    name: 'CoC7.Settings.SanitySystem.Name',
-    hint: 'CoC7.Settings.SanitySystem.Hint',
+    name: 'Cd100.Settings.SanitySystem.Name',
+    hint: 'Cd100.Settings.SanitySystem.Hint',
     scope: 'world',
     config: true,
     default: 'classic',
     type: String,
     choices: {
-      classic: 'CoC7.Settings.SanitySystem.Classic',
-      alternative: 'CoC7.Settings.SanitySystem.Alternative'
+      classic: 'Cd100.Settings.SanitySystem.Classic',
+      alternative: 'Cd100.Settings.SanitySystem.Alternative'
     }
   })
   game.settings.register(FOLDER_ID, 'hitLocationRule', {
-    name: 'CoC7.Settings.HitLocationRule.Name',
-    hint: 'CoC7.Settings.HitLocationRule.Hint',
+    name: 'Cd100.Settings.HitLocationRule.Name',
+    hint: 'Cd100.Settings.HitLocationRule.Hint',
     scope: 'world',
     config: true,
     default: false,
@@ -338,7 +338,7 @@ export default function () {
     type: Boolean
   })
   game.settings.register(FOLDER_ID, 'toolTipDelay', {
-    name: 'CoC7.toolTipDelay',
+    name: 'Cd100.toolTipDelay',
     scope: 'world',
     config: true,
     default: 1500,
@@ -398,8 +398,8 @@ export default function () {
     type: Boolean
   })
   game.settings.register(FOLDER_ID, 'sheetLegacySpellCosts', {
-    name: 'CoC7.SETTINGS.LegacySpellCosts',
-    hint: 'CoC7.SETTINGS.LegacySpellCostsHint',
+    name: 'Cd100.SETTINGS.LegacySpellCosts',
+    hint: 'Cd100.SETTINGS.LegacySpellCostsHint',
     scope: 'world',
     config: true,
     default: false,

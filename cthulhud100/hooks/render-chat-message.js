@@ -1,4 +1,4 @@
-import CoC7RenderChatMessageHTML from './render-chat-message-html.js'
+import Cd100RenderChatMessageHTML from './render-chat-message-html.js'
 
 /**
  * Render Hook
@@ -8,5 +8,5 @@ import CoC7RenderChatMessageHTML from './render-chat-message-html.js'
  * @param {any} messageData
  */
 export default function (message, html, messageData) {
-  CoC7RenderChatMessageHTML(message, html[0], messageData)
+  Cd100RenderChatMessageHTML(message, html[0], messageData)
 }

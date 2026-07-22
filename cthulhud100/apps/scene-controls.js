@@ -1,15 +1,15 @@
 /* global canvas game */
 // cSpell:words devphase charcreate xptoggle fakeroll startrest gmtools
 import { FOLDER_ID } from '../constants.js'
-import CoC7ActorImporterDialog from './actor-importer-dialog.js'
-import CoC7ContentLinkDialog from './content-link-dialog.js'
-import CoC7InvestigatorWizard from './investigator-wizard.js'
-import CoC7MenuLayer from './menu-layer.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ActorImporterDialog from './actor-importer-dialog.js'
+import Cd100ContentLinkDialog from './content-link-dialog.js'
+import Cd100InvestigatorWizard from './investigator-wizard.js'
+import Cd100MenuLayer from './menu-layer.js'
+import Cd100Utilities from './utilities.js'
 import CoCIDActorUpdateItems from './coc-id-actor-update-items.js'
 import CoCIDCompendiumPopulate from './coc-id-compendium-populate.js'
 
-export default class CoC7SceneControls {
+export default class Cd100SceneControls {
   /**
    * Get Scene Control Buttons
    * @param {SceneControl} controls
@@ -18,7 +18,7 @@ export default class CoC7SceneControls {
     const isKeeper = game.user.isGM
     const menu = {
       name: 'coc7menu',
-      title: 'CoC7.GmTools',
+      title: 'Cd100.GmTools',
       order: 11,
       icon: 'game-icon game-icon-tentacle-strike',
       activeTool: 'coc7dummy',
@@ -41,66 +41,66 @@ export default class CoC7SceneControls {
           icon: 'fa-solid fa-angle-double-up',
           name: 'devphase',
           active: game.settings.get(FOLDER_ID, 'developmentEnabled'),
-          title: 'CoC7.DevPhase',
-          onChange: (event, toggled) => CoC7Utilities.toggleDevPhase(toggled)
+          title: 'Cd100.DevPhase',
+          onChange: (event, toggled) => Cd100Utilities.toggleDevPhase(toggled)
         },
         charcreate: {
           toggle: true,
           icon: 'fa-solid fa-user-edit',
           name: 'charcreate',
           active: game.settings.get(FOLDER_ID, 'charCreationEnabled'),
-          title: 'CoC7.CharCreationMode',
-          onChange: (event, toggled) => CoC7Utilities.toggleCharCreation(toggled)
+          title: 'Cd100.CharCreationMode',
+          onChange: (event, toggled) => Cd100Utilities.toggleCharCreation(toggled)
         },
         'actor-coc-id-best': {
           button: true,
           icon: 'fa-solid fa-fingerprint',
           name: 'actor-coc-id-best',
-          title: 'CoC7.ActorCoCIDItemsBest',
+          title: 'Cd100.ActorCoCIDItemsBest',
           onChange: () => CoCIDActorUpdateItems.create()
         },
         'cocid-compendium-import': {
           button: true,
           icon: 'fa-solid fa-book-user',
           name: 'cocid-compendium-import',
-          title: 'CoC7.CoCIDCompendiumPopulate',
+          title: 'Cd100.CoCIDCompendiumPopulate',
           onChange: () => CoCIDCompendiumPopulate.create()
         },
         'actor-import': {
           button: true,
           icon: 'fa-solid fa-user-plus',
           name: 'actor-import',
-          title: 'CoC7.ActorImporter',
-          onChange: () => CoC7ActorImporterDialog.create()
+          title: 'Cd100.ActorImporter',
+          onChange: () => Cd100ActorImporterDialog.create()
         },
         'investigator-wizard': {
           button: true,
           icon: 'fa-solid fa-user-check',
           name: 'investigator-wizard',
-          title: 'CoC7.InvestigatorWizard.Title',
-          onChange: () => CoC7InvestigatorWizard.create()
+          title: 'Cd100.InvestigatorWizard.Title',
+          onChange: () => Cd100InvestigatorWizard.create()
         },
         xptoggle: {
           toggle: true,
           icon: 'fa-solid fa-certificate',
           name: 'xptoggle',
           active: game.settings.get(FOLDER_ID, 'xpEnabled'),
-          title: 'CoC7.toggleXP',
-          onChange: (event, toggled) => CoC7Utilities.toggleXPGain(toggled)
+          title: 'Cd100.toggleXP',
+          onChange: (event, toggled) => Cd100Utilities.toggleXPGain(toggled)
         },
         fakeroll: {
           button: true,
           icon: 'game-icon game-icon-card-joker',
           name: 'fakeroll',
-          title: 'CoC7.FakeRoll',
-          onChange: () => CoC7Utilities.fakeRollMessage()
+          title: 'Cd100.FakeRoll',
+          onChange: () => Cd100Utilities.fakeRollMessage()
         },
         startrest: {
           button: true,
           icon: 'fa-solid fa-moon',
           name: 'startrest',
-          title: 'CoC7.startRest',
-          onChange: () => CoC7Utilities.restTargets()
+          title: 'Cd100.startRest',
+          onChange: () => Cd100Utilities.restTargets()
         }
       }
     }
@@ -119,7 +119,7 @@ export default class CoC7SceneControls {
         c.push(menu.tools[i])
         return c
       }, [])
-      canvas.coc7gmtools = new CoC7MenuLayer()
+      canvas.coc7gmtools = new Cd100MenuLayer()
       menu.layer = 'coc7gmtools'
       controls.push(menu)
     } else {
@@ -150,11 +150,11 @@ export default class CoC7SceneControls {
             toggle: true,
             icon: 'game-icon game-icon-dice-fire',
             name: 'alwaysCrit',
-            active: game.CoC7.dev.dice.alwaysCrit,
+            active: game.Cd100.dev.dice.alwaysCrit,
             title: 'All rolls will crit',
             onChange: (event, toggled) => {
-              game.CoC7.dev.dice.alwaysCrit = toggled
-              if (toggled && game.CoC7.dev.dice.alwaysFumble) {
+              game.Cd100.dev.dice.alwaysCrit = toggled
+              if (toggled && game.Cd100.dev.dice.alwaysFumble) {
                 document.querySelector('button[data-action="tool"][data-tool="alwaysFumble"]')?.click()
                 /* // FoundryVTT V12 */
                 document.querySelector('li.control-tool.toggle[data-tool="alwaysFumble"]')?.click()
@@ -165,11 +165,11 @@ export default class CoC7SceneControls {
             toggle: true,
             icon: 'game-icon game-icon-fire-extinguisher',
             name: 'alwaysFumble',
-            active: game.CoC7.dev.dice.alwaysFumble,
+            active: game.Cd100.dev.dice.alwaysFumble,
             title: 'All rolls will fumble',
             onChange: (event, toggled) => {
-              game.CoC7.dev.dice.alwaysFumble = toggled
-              if (toggled && game.CoC7.dev.dice.alwaysCrit) {
+              game.Cd100.dev.dice.alwaysFumble = toggled
+              if (toggled && game.Cd100.dev.dice.alwaysCrit) {
                 document.querySelector('button[data-action="tool"][data-tool="alwaysCrit"]')?.click()
                 /* // FoundryVTT V12 */
                 document.querySelector('li.control-tool.toggle[data-tool="alwaysCrit"]')?.click()
@@ -193,7 +193,7 @@ export default class CoC7SceneControls {
           c.push(menu.tools[i])
           return c
         }, [])
-        canvas.coc7devMenu = new CoC7MenuLayer()
+        canvas.coc7devMenu = new Cd100MenuLayer()
         menu.layer = 'coc7devMenu'
         controls.push(menu)
       } else {
@@ -221,31 +221,31 @@ export default class CoC7SceneControls {
           const menuButton = document.createElement('button')
           menuButton.classList.add('control', 'ui-control', 'tool', 'icon', 'coc7-menu', 'coc7-create-link', 'fa-solid', 'fa-link')
           menuButton.type = 'button'
-          menuButton.dataset.tooltip = 'CoC7.CreateLink'
+          menuButton.dataset.tooltip = 'Cd100.CreateLink'
           menuLi.appendChild(menuButton)
           keeperMenu.insertAdjacentHTML('afterend', menuLi.outerHTML)
-          element.querySelector('button.coc7-create-link').addEventListener('click', event => CoC7ContentLinkDialog.create())
+          element.querySelector('button.coc7-create-link').addEventListener('click', event => Cd100ContentLinkDialog.create())
         }
         {
           const menuLi = document.createElement('li')
           const menuButton = document.createElement('button')
           menuButton.classList.add('control', 'ui-control', 'tool', 'icon', 'coc7-menu', 'coc7-dice-roll', 'game-icon', 'game-icon-d10')
           menuButton.type = 'button'
-          menuButton.dataset.tooltip = 'CoC7.RollDice'
+          menuButton.dataset.tooltip = 'Cd100.RollDice'
           menuLi.appendChild(menuButton)
           keeperMenu.insertAdjacentHTML('afterend', menuLi.outerHTML)
-          element.querySelector('.coc7-menu.coc7-dice-roll').addEventListener('click', event => CoC7Utilities.rollDice(event))
+          element.querySelector('.coc7-menu.coc7-dice-roll').addEventListener('click', event => Cd100Utilities.rollDice(event))
         }
       }
     } else {
       const keeperMenu = element.find('.game-icon-tentacle-strike').parent()
       keeperMenu.addClass('coc7-menu')
       if (isKeeper) {
-        keeperMenu.after('<li class="scene-control coc7-menu coc7-create-link" data-tooltip="CoC7.CreateLink"><i class="fa-solid fa-link"></i></li>')
+        keeperMenu.after('<li class="scene-control coc7-menu coc7-create-link" data-tooltip="Cd100.CreateLink"><i class="fa-solid fa-link"></i></li>')
       }
-      keeperMenu.after('<li class="scene-control coc7-menu coc7-dice-roll" data-tooltip="CoC7.RollDice"><i class="game-icon game-icon-d10"></i></li>')
-      element.find('.coc7-menu.coc7-dice-roll').click(event => CoC7Utilities.rollDice(event))
-      element.find('.coc7-menu.coc7-create-link').click(event => CoC7ContentLinkDialog.create())
+      keeperMenu.after('<li class="scene-control coc7-menu coc7-dice-roll" data-tooltip="Cd100.RollDice"><i class="game-icon game-icon-d10"></i></li>')
+      element.find('.coc7-menu.coc7-dice-roll').click(event => Cd100Utilities.rollDice(event))
+      element.find('.coc7-menu.coc7-create-link').click(event => Cd100ContentLinkDialog.create())
     }
   }
 }

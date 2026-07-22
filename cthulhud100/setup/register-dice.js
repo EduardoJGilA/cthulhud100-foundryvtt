@@ -1,8 +1,8 @@
 /* global CONFIG */
-import CoC7DecaderDie from '../apps/decader-die.js'
-import CoC7DecaderDieOther from '../apps/decader-die-other.js'
+import Cd100DecaderDie from '../apps/decader-die.js'
+import Cd100DecaderDieOther from '../apps/decader-die-other.js'
 
 export default function () {
-  CONFIG.Dice.terms.t = CoC7DecaderDie
-  CONFIG.Dice.terms.o = CoC7DecaderDieOther
+  CONFIG.Dice.terms.t = Cd100DecaderDie
+  CONFIG.Dice.terms.o = Cd100DecaderDieOther
 }

@@ -2,7 +2,7 @@
   <div class="book-details flexrow">
     <div class="book-type">
       <fieldset class="flexcol">
-        <legend>{{localize 'CoC7.BookType'}}</legend>
+        <legend>{{localize 'Cd100.BookType'}}</legend>
         <div class="toggle-row flexrow">
           <div class="toggle-attributes flexrow" data-set="type">
             {{#each _types as |row|}}
@@ -11,14 +11,14 @@
           </div>
         </div>
         <div class="flexrow">
-          <label>{{localize 'CoC7.DifficultyLevel'}}:</label>
+          <label>{{localize 'Cd100.DifficultyLevel'}}:</label>
           <select name="system.difficultyLevel">
             {{selectOptions difficultyLevels selected=document.system.difficultyLevel localize=true valueAttr='key' labelAttr='label'}}
           </select>
         </div>
         {{#if document.system.type.mythos}}
           <div class="flexrow">
-            <label>{{localize 'CoC7.StudyTime'}}:</label>
+            <label>{{localize 'Cd100.StudyTime'}}:</label>
             {{#if knownNecessary}}
               <input type="number" class="known-value-change short" data-known="necessary" value="{{knownNecessary}}" />
             {{else}}
@@ -37,7 +37,7 @@
         {{/if}}
         {{#if (or document.system.type.mythos document.system.type.occult)}}
           <div class="flexrow">
-            <label>{{localize 'CoC7.SANLoss'}}:</label>
+            <label>{{localize 'Cd100.SANLoss'}}:</label>
             <input type="text" name="system.sanityLoss" value="{{document.system.sanityLoss}}" />
           </div>
         {{/if}}
@@ -46,24 +46,24 @@
     <div class="book-gains">
       {{#if (or document.system.type.mythos document.system.type.occult)}}
         <fieldset class=" flexcol">
-          <legend>{{localize 'CoC7.Gains'}}</legend>
+          <legend>{{localize 'Cd100.Gains'}}</legend>
           {{#if document.system.type.mythos}}
             <div class="flexrow">
-              <label>{{localize 'CoC7.CthulhuMythosInitial'}}:</label>
+              <label>{{localize 'Cd100.CthulhuMythosInitial'}}:</label>
               <input type="number" class="short" name="system.gains.cthulhuMythos.initial" value="{{document.system.gains.cthulhuMythos.initial}}" />
             </div>
             <div class="flexrow">
-              <label>{{localize 'CoC7.CthulhuMythosFinal'}}:</label>
+              <label>{{localize 'Cd100.CthulhuMythosFinal'}}:</label>
               <input type="number" class="short" name="system.gains.cthulhuMythos.final" value="{{document.system.gains.cthulhuMythos.final}}" />
             </div>
             <div class="flexrow">
-              <label>{{localize 'CoC7.MythosRating'}}:</label>
+              <label>{{localize 'Cd100.MythosRating'}}:</label>
               <input type="number" class="short" name="system.mythosRating" value="{{document.system.mythosRating}}" />
             </div>
           {{/if}}
           {{#if document.system.type.occult}}
             <div class="flexrow">
-              <label>{{localize 'CoC7.Occult'}}:</label>
+              <label>{{localize 'Cd100.Occult'}}:</label>
               <input type="number" class="short" name="system.gains.occult" value="{{document.system.gains.occult}}" />
             </div>
           {{/if}}
@@ -74,8 +74,8 @@
   {{#if document.system.type.other}}
     <div class="book-other flexcol">
       <div class="book-other-header">
-        <div>{{localize 'CoC7.Skill'}}</div>
-        <div>{{localize 'CoC7.Gains'}}</div>
+        <div>{{localize 'Cd100.Skill'}}</div>
+        <div>{{localize 'Cd100.Gains'}}</div>
         <div class="item-controls">
           <a class="item-control" data-action="add-other-gains"><i class="fa-regular fa-plus-circle"></i></a>
         </div>

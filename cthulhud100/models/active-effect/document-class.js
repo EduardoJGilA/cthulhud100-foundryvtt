@@ -1,5 +1,5 @@
 /* global ActiveEffect */
-export default class CoC7ModelsActiveEffectDocumentClass extends ActiveEffect {
+export default class Cd100ModelsActiveEffectDocumentClass extends ActiveEffect {
   /**
    * Apply ActiveEffect change to Actor
    * @param {Document} actor

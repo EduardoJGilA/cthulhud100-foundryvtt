@@ -30,7 +30,7 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
    */
   static get triggerButtons () {
     const buttons = super.triggerButtons
-    buttons[ChaosiumCanvasInterfaceTileToggle.triggerButton.Both] = 'CoC7.ChaosiumCanvasInterface.Buttons.Both'
+    buttons[ChaosiumCanvasInterfaceTileToggle.triggerButton.Both] = 'Cd100.ChaosiumCanvasInterface.Buttons.Both'
     return buttons
   }
 
@@ -54,14 +54,14 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
       triggerButton: new fields.NumberField({
         choices: ChaosiumCanvasInterfaceTileToggle.triggerButtons,
         initial: ChaosiumCanvasInterfaceTileToggle.triggerButton.Left,
-        label: 'CoC7.ChaosiumCanvasInterface.TileToggle.Button.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.Button.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.TileToggle.Button.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.Button.Hint'
       }),
       action: new fields.NumberField({
         choices: ChaosiumCanvasInterface.actionToggles,
         initial: ChaosiumCanvasInterface.actionToggle.Off,
-        label: 'CoC7.ChaosiumCanvasInterface.DrawingToggle.Action.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.DrawingToggle.Action.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.DrawingToggle.Action.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.DrawingToggle.Action.Hint',
         required: true
       }),
       tileUuids: new fields.SetField(
@@ -69,8 +69,8 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
           type: 'Tile'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.TileToggle.Tile.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.Tile.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.TileToggle.Tile.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.Tile.Hint'
         }
       ),
       journalEntryUuids: new fields.SetField(
@@ -78,22 +78,22 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
           type: 'JournalEntry'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.TileToggle.JournalEntry.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.JournalEntry.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.TileToggle.JournalEntry.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.JournalEntry.Hint'
         }
       ),
       permissionDocument: new fields.NumberField({
         choices: Object.keys(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS[k]); return c }, {}),
         initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-        label: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionDocument.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionDocument.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionDocument.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionDocument.Hint',
         required: true
       }),
       permissionDocumentHide: new fields.NumberField({
         choices: Object.keys(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS[k]); return c }, {}),
         initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE,
-        label: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionDocumentHide.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionDocumentHide.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionDocumentHide.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionDocumentHide.Hint',
         required: true
       }),
       journalEntryPageUuids: new fields.SetField(
@@ -101,22 +101,22 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
           type: 'JournalEntryPage'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.TileToggle.JournalEntryPage.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.JournalEntryPage.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.TileToggle.JournalEntryPage.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.JournalEntryPage.Hint'
         }
       ),
       permissionPage: new fields.NumberField({
         choices: Object.keys(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS[k]); return c }, {}),
         initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
-        label: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionPage.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionPage.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionPage.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionPage.Hint',
         required: true
       }),
       permissionPageHide: new fields.NumberField({
         choices: Object.keys(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceTileToggle.PERMISSIONS[k]); return c }, {}),
         initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE,
-        label: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionPageHide.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.PermissionPageHide.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionPageHide.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.PermissionPageHide.Hint',
         required: true
       }),
       regionBehaviorUuids: new fields.SetField(
@@ -124,30 +124,30 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
           type: 'RegionBehavior'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.TileToggle.RegionBehavior.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.RegionBehavior.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.TileToggle.RegionBehavior.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.RegionBehavior.Hint'
         }
       ),
       regionButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Right,
-        label: 'CoC7.ChaosiumCanvasInterface.TileToggle.TriggerButton.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.TriggerButton.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.TileToggle.TriggerButton.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.TriggerButton.Hint'
       }),
       regionUuids: new fields.SetField(
         new fields.DocumentUUIDField({
           type: 'Region'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.TriggerRegionUuids.Hint'
         }
       ),
       triggerAsButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Left,
-        label: 'CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.TileToggle.TriggerAsButton.Hint'
       })
     }
   }
@@ -234,9 +234,9 @@ export default class ChaosiumCanvasInterfaceTileToggle extends ChaosiumCanvasInt
         setTimeout(() => {
           if (button === this.regionButton) {
             if (this.triggerAsButton === ChaosiumCanvasInterface.triggerButton.Right) {
-              game.CoC7.ClickRegionRightUuid(uuid)
+              game.Cd100.ClickRegionRightUuid(uuid)
             } else if (this.triggerAsButton === ChaosiumCanvasInterface.triggerButton.Left) {
-              game.CoC7.ClickRegionLeftUuid(uuid)
+              game.Cd100.ClickRegionLeftUuid(uuid)
             }
           }
         }, 100)

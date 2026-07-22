@@ -8,8 +8,8 @@ export default class ChaosiumCanvasInterfaceAmbientLightToggle extends ChaosiumC
    */
   static get actionToggles () {
     const buttons = super.actionToggles
-    buttons[ChaosiumCanvasInterface.actionToggle.On] = 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Action.On'
-    buttons[ChaosiumCanvasInterface.actionToggle.Off] = 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Action.Off'
+    buttons[ChaosiumCanvasInterface.actionToggle.On] = 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Action.On'
+    buttons[ChaosiumCanvasInterface.actionToggle.Off] = 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Action.Off'
     return buttons
   }
 
@@ -31,14 +31,14 @@ export default class ChaosiumCanvasInterfaceAmbientLightToggle extends ChaosiumC
       triggerButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Left,
-        label: 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Button.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Button.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Button.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Button.Hint'
       }),
       action: new fields.NumberField({
         choices: ChaosiumCanvasInterfaceAmbientLightToggle.actionToggles,
         initial: ChaosiumCanvasInterface.actionToggle.Off,
-        label: 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Action.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Action.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Action.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Action.Hint',
         required: true
       }),
       lightUuids: new fields.SetField(
@@ -46,8 +46,8 @@ export default class ChaosiumCanvasInterfaceAmbientLightToggle extends ChaosiumC
           type: 'AmbientLight'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Light.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.AmbientLightToggle.Light.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Light.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.AmbientLightToggle.Light.Hint'
         }
       )
     }

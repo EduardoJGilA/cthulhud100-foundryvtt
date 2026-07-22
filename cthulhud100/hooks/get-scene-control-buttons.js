@@ -1,9 +1,9 @@
-import CoC7SceneControls from '../apps/scene-controls.js'
+import Cd100SceneControls from '../apps/scene-controls.js'
 
 /**
  * Get Scene Control Buttons
  * @param {SceneControl} controls
  */
 export default function (controls) {
-  CoC7SceneControls.getButtons(controls)
+  Cd100SceneControls.getButtons(controls)
 }

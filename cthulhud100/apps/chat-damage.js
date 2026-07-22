@@ -1,12 +1,12 @@
 /* global ChatMessage foundry fromUuid game renderTemplate Roll TextEditor TokenDocument ui */
 import { FOLDER_ID, CHAT_MESSAGE_MODE } from '../constants.js'
-import CoC7ActorPickerDialog from './actor-picker-dialog.js'
-import CoC7ChatCombatMelee from './chat-combat-melee.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ActorPickerDialog from './actor-picker-dialog.js'
+import Cd100ChatCombatMelee from './chat-combat-melee.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ChatDamage {
+export default class Cd100ChatDamage {
   #asyncAttacker
   #asyncItem
   #asyncTarget
@@ -45,17 +45,17 @@ export default class CoC7ChatDamage {
    */
   async #updateFromCombatMelee ({ attacker, target, targetUuid }) {
     const messageAttacker = game.messages.get(attacker)
-    if (messageAttacker?.flags?.[FOLDER_ID]?.load?.as === 'CoC7ChatCombatMelee') {
+    if (messageAttacker?.flags?.[FOLDER_ID]?.load?.as === 'Cd100ChatCombatMelee') {
       this.#isCritical = false
       this.#isImpale = false
       this.#rollDamage = false
-      const attackerMessage = await CoC7ChatCombatMelee.loadFromMessage(messageAttacker)
+      const attackerMessage = await Cd100ChatCombatMelee.loadFromMessage(messageAttacker)
       let targetMessage
       const attackerData = await attackerMessage.getTemplateData()
       const messageTarget = (target === '' ? false : game.messages.get(target))
       let targetData
-      if (messageTarget?.flags?.[FOLDER_ID]?.load?.as === 'CoC7ChatCombatMelee') {
-        targetMessage = await CoC7ChatCombatMelee.loadFromMessage(messageTarget)
+      if (messageTarget?.flags?.[FOLDER_ID]?.load?.as === 'Cd100ChatCombatMelee') {
+        targetMessage = await Cd100ChatCombatMelee.loadFromMessage(messageTarget)
         targetData = await targetMessage.getTemplateData()
       }
       let checkCritical = false
@@ -63,23 +63,23 @@ export default class CoC7ChatDamage {
         this.attacker = attackerData.attackerUuid
         this.item = attackerData.itemUuid
         this.target = attackerData.targetUuid
-        if (attackerData.successLevel >= CoC7DicePool.successLevel.regular) {
+        if (attackerData.successLevel >= Cd100DicePool.successLevel.regular) {
           checkCritical = true
-          this.#resultText = game.i18n.format('CoC7.WinnerRollDamage', {
+          this.#resultText = game.i18n.format('Cd100.WinnerRollDamage', {
             name: attackerData.attackerName
           })
           this.#rollDamage = true
         } else {
-          this.#resultText = game.i18n.format('CoC7.InitiatorMissed', {
+          this.#resultText = game.i18n.format('Cd100.InitiatorMissed', {
             name: attackerData.attackerName
           })
         }
       } else if (targetData?.isDodge) {
-        if (attackerData.successLevel < CoC7DicePool.successLevel.regular && targetData.successLevel < CoC7DicePool.successLevel.regular) {
-          this.#resultText = game.i18n.localize('CoC7.NoWinner')
+        if (attackerData.successLevel < Cd100DicePool.successLevel.regular && targetData.successLevel < Cd100DicePool.successLevel.regular) {
+          this.#resultText = game.i18n.localize('Cd100.NoWinner')
         } else if (attackerData.successLevel > targetData.successLevel) {
           checkCritical = true
-          this.#resultText = game.i18n.format('CoC7.WinnerRollDamage', {
+          this.#resultText = game.i18n.format('Cd100.WinnerRollDamage', {
             name: attackerData.attackerName
           })
           this.attacker = attackerData.attackerUuid
@@ -87,7 +87,7 @@ export default class CoC7ChatDamage {
           this.target = attackerData.targetUuid
           this.#rollDamage = true
         } else {
-          this.#resultText = game.i18n.format('CoC7.DodgeSuccess', {
+          this.#resultText = game.i18n.format('Cd100.DodgeSuccess', {
             name: attackerData.targetName
           })
           this.attacker = attackerData.targetUuid
@@ -95,11 +95,11 @@ export default class CoC7ChatDamage {
           this.target = attackerData.attackerUuid
         }
       } else if (targetData?.isFightBack) {
-        if (attackerData.successLevel < CoC7DicePool.successLevel.regular && targetData.successLevel < CoC7DicePool.successLevel.regular) {
-          this.#resultText = game.i18n.localize('CoC7.NoWinner')
+        if (attackerData.successLevel < Cd100DicePool.successLevel.regular && targetData.successLevel < Cd100DicePool.successLevel.regular) {
+          this.#resultText = game.i18n.localize('Cd100.NoWinner')
         } else if (attackerData.successLevel >= targetData.successLevel) {
           checkCritical = true
-          this.#resultText = game.i18n.format('CoC7.WinnerRollDamage', {
+          this.#resultText = game.i18n.format('Cd100.WinnerRollDamage', {
             name: attackerData.attackerName
           })
           this.attacker = attackerData.attackerUuid
@@ -107,7 +107,7 @@ export default class CoC7ChatDamage {
           this.target = attackerData.targetUuid
           this.#rollDamage = true
         } else {
-          this.#resultText = game.i18n.format('CoC7.WinnerRollDamage', {
+          this.#resultText = game.i18n.format('Cd100.WinnerRollDamage', {
             name: attackerData.targetName
           })
           this.attacker = attackerData.targetUuid
@@ -116,11 +116,11 @@ export default class CoC7ChatDamage {
           this.#rollDamage = true
         }
       } else if (targetData?.isManeuver) {
-        if (attackerData.successLevel < CoC7DicePool.successLevel.regular && targetData.successLevel < CoC7DicePool.successLevel.regular) {
-          this.#resultText = game.i18n.localize('CoC7.NoWinner')
+        if (attackerData.successLevel < Cd100DicePool.successLevel.regular && targetData.successLevel < Cd100DicePool.successLevel.regular) {
+          this.#resultText = game.i18n.localize('Cd100.NoWinner')
         } else if (attackerData.successLevel >= targetData.successLevel) {
           checkCritical = true
-          this.#resultText = game.i18n.format('CoC7.WinnerRollDamage', {
+          this.#resultText = game.i18n.format('Cd100.WinnerRollDamage', {
             name: attackerData.attackerName
           })
           this.attacker = attackerData.attackerUuid
@@ -128,7 +128,7 @@ export default class CoC7ChatDamage {
           this.target = attackerData.targetUuid
           this.#rollDamage = true
         } else {
-          this.#resultText = game.i18n.format('CoC7.ManeuverSuccess', {
+          this.#resultText = game.i18n.format('Cd100.ManeuverSuccess', {
             name: attackerData.targetName
           })
           this.attacker = attackerData.targetUuid
@@ -137,7 +137,7 @@ export default class CoC7ChatDamage {
         }
       } else if (attackerData.isSuccess) {
         checkCritical = true
-        this.#resultText = game.i18n.format('CoC7.WinnerRollDamage', {
+        this.#resultText = game.i18n.format('Cd100.WinnerRollDamage', {
           name: attackerData.attackerName
         })
         this.attacker = attackerData.attackerUuid
@@ -145,13 +145,13 @@ export default class CoC7ChatDamage {
         this.target = targetUuid
         this.#rollDamage = true
       } else {
-        this.#resultText = game.i18n.format('CoC7.InitiatorMissed', {
+        this.#resultText = game.i18n.format('Cd100.InitiatorMissed', {
           name: attackerData.attackerName
         })
         this.attacker = attackerData.attackerUuid
         this.item = attackerData.itemUuid
       }
-      if (checkCritical && attackerData.successLevel >= CoC7DicePool.successLevel.special) {
+      if (checkCritical && attackerData.successLevel >= Cd100DicePool.successLevel.special) {
         this.#isCritical = true
         const item = (await this.item)
         if (item?.system?.properties.impl ?? false) {
@@ -177,7 +177,7 @@ export default class CoC7ChatDamage {
    * @param {string} options.targetUuid Actor UUID
    */
   static async createFromCombatMelee ({ attacker, target = '', targetUuid = '' }) {
-    const check = new CoC7ChatDamage()
+    const check = new Cd100ChatDamage()
     const setup = await check.#updateFromCombatMelee({ attacker, target, targetUuid })
     if (typeof setup.attackerMessage !== 'undefined') {
       const targetActor = (await check.target)
@@ -216,8 +216,8 @@ export default class CoC7ChatDamage {
    * @param {Actor} options.target
    */
   static async createFromActors ({ attacker, weapon, isCritical, target } = {}) {
-    const check = new CoC7ChatDamage()
-    check.#resultText = game.i18n.format('CoC7.WinnerRollDamage', {
+    const check = new Cd100ChatDamage()
+    check.#resultText = game.i18n.format('Cd100.WinnerRollDamage', {
       name: attacker.name
     })
     check.attacker = attacker.uuid
@@ -246,7 +246,7 @@ export default class CoC7ChatDamage {
    * @param {boolean} options.isCritical
    */
   static async createFromWeapon ({ attackerUuid, weaponUuid, damageRange, isCritical = false } = {}) {
-    const check = new CoC7ChatDamage()
+    const check = new Cd100ChatDamage()
     check.attacker = attackerUuid
     check.item = weaponUuid
     check.#damageRange = damageRange
@@ -263,9 +263,9 @@ export default class CoC7ChatDamage {
   }
 
   /**
-   * Create CoC7ChatDamage from message
+   * Create Cd100ChatDamage from message
    * @param {Document} message
-   * @returns {CoC7ChatDamage}
+   * @returns {Cd100ChatDamage}
    */
   static async loadFromMessage (message) {
     const keys = [
@@ -282,8 +282,8 @@ export default class CoC7ChatDamage {
       // 'targetArmor'
       // 'targetUuid' - Target not required
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7ChatDamage' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined')) {
-      const check = new CoC7ChatDamage()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100ChatDamage' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined')) {
+      const check = new Cd100ChatDamage()
       check.message = message
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       check.attacker = load.attackerUuid
@@ -300,8 +300,8 @@ export default class CoC7ChatDamage {
       check.#targetArmor = load.targetArmor
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -372,7 +372,7 @@ export default class CoC7ChatDamage {
         const formulaDb = ((db ?? '').toString().trim() === '' ? 0 : db).toString().replace(/\s+/g, '')
         weaponDB = (!formulaDb.startsWith('-') ? '+' : '') + formulaDb
       } else if (addHalfDB) {
-        weaponDB = CoC7Utilities.halfDB(db)
+        weaponDB = Cd100Utilities.halfDB(db)
       }
     }
     // Cthulhu d100 leathery skin: a firearm only ever does its minimum damage
@@ -407,14 +407,14 @@ export default class CoC7ChatDamage {
     }
     if (!this.#ignoreArmor) {
       if (this.#isArmorFormula) {
-        return game.i18n.localize('CoC7.ArmorWillFormula')
+        return game.i18n.localize('Cd100.ArmorWillFormula')
       }
       const armor = parseInt(this.#targetArmor, 10)
       if (!isNaN(armor)) {
         value = value - armor
       }
       if (value <= 0) {
-        return game.i18n.localize('CoC7.ArmorAbsorbsDamage')
+        return game.i18n.localize('Cd100.ArmorAbsorbsDamage')
       }
     }
     return value
@@ -475,7 +475,7 @@ export default class CoC7ChatDamage {
     const data = {
       attackerImg: (attacker ? (attacker.isToken ? attacker.token.texture.src : (attacker instanceof TokenDocument ? attacker.texture.src : attacker.img)) : ''),
       attackerName: (attacker ? (attacker.isToken ? attacker.token.name : attacker.name) : ''),
-      attackerUuid: CoC7Utilities.getActorUuid(attacker),
+      attackerUuid: Cd100Utilities.getActorUuid(attacker),
       cardOpen: this.#cardOpen,
       damageFormula: await this.#damageFormula(),
       displayActorOnCard: game.settings.get(FOLDER_ID, 'displayActorOnCard'),
@@ -507,7 +507,7 @@ export default class CoC7ChatDamage {
       targetArmor: this.#targetArmor,
       targetImg: (target ? (target.isToken ? target.token.texture.src : (target instanceof TokenDocument ? target.texture.src : target.img)) : ''),
       targetName: (target ? (target.isToken ? target.token.name : target.name) : ''),
-      targetUuid: CoC7Utilities.getActorUuid(target),
+      targetUuid: Cd100Utilities.getActorUuid(target),
       weaponAddFullDB: item?.system?.properties?.addb ?? false,
       weaponAddHalfDB: item?.system?.properties?.ahdb ?? false,
       weaponDamage: item?.system?.range?.[this.#damageRange]?.damage
@@ -523,7 +523,7 @@ export default class CoC7ChatDamage {
     }
     if (!data.targetUuid) {
       data.targetImg = 'icons/svg/mystery-man-black.svg'
-      data.targetName = game.i18n.localize('CoC7.NoTarget')
+      data.targetName = game.i18n.localize('Cd100.NoTarget')
     }
     if (!data.rollHtml && data.isDamageInflicted) {
       // Number only damage inflicted fake roll
@@ -542,7 +542,7 @@ export default class CoC7ChatDamage {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7ChatDamage',
+            as: 'Cd100ChatDamage',
             actorUuids: [data.attackerUuid, data.targetUuid],
             attackerUuid: data.attackerUuid,
             cardOpen: this.#cardOpen,
@@ -592,7 +592,7 @@ export default class CoC7ChatDamage {
     switch (event.target?.type) {
       case 'text':
         {
-          const check = await CoC7ChatDamage.loadFromMessage(message)
+          const check = await Cd100ChatDamage.loadFromMessage(message)
           if (check) {
             const newValue = document.querySelector('[data-message-id="' + message.id + '"] input[type=text]')?.value
             if (typeof newValue !== 'undefined') {
@@ -600,7 +600,7 @@ export default class CoC7ChatDamage {
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -616,32 +616,32 @@ export default class CoC7ChatDamage {
     switch (event.currentTarget?.dataset?.action) {
       case 'applyValue':
         {
-          const check = await CoC7ChatDamage.loadFromMessage(message)
+          const check = await Cd100ChatDamage.loadFromMessage(message)
           if (check) {
             const damage = await check.#inflictDamageText()
             if (typeof damage !== 'string') {
-              const actorUuid = await CoC7ActorPickerDialog.create({ preferTargeted: true })
-              const actor = await CoC7Utilities.getActorFromUuid(actorUuid)
+              const actorUuid = await Cd100ActorPickerDialog.create({ preferTargeted: true })
+              const actor = await Cd100Utilities.getActorFromUuid(actorUuid)
               if (actor) {
                 const damageTaken = await actor.dealDamage(damage)
                 ChatMessage.create({
                   speaker: { alias: actor.name },
-                  content: game.i18n.localize('CoC7.DamageInflicted') + ': ' + damageTaken
+                  content: game.i18n.localize('Cd100.DamageInflicted') + ': ' + damageTaken
                 })
               } else {
-                ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
               }
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'dealDamage':
         {
-          const check = await CoC7ChatDamage.loadFromMessage(message)
+          const check = await Cd100ChatDamage.loadFromMessage(message)
           if (check) {
             const damage = await check.#inflictDamageText()
             if (typeof damage !== 'string') {
@@ -649,31 +649,31 @@ export default class CoC7ChatDamage {
               targetActor.dealDamage(damage, { ignoreArmor: true })
               check.#isDamageInflicted = true
               check.updateMessage()
-            } else if (damage === game.i18n.localize('CoC7.ArmorAbsorbsDamage')) {
+            } else if (damage === game.i18n.localize('Cd100.ArmorAbsorbsDamage')) {
               check.#isDamageInflicted = true
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'rollArmor':
         {
-          const check = await CoC7ChatDamage.loadFromMessage(message)
+          const check = await Cd100ChatDamage.loadFromMessage(message)
           if (check) {
             await check.rollArmor(message.id)
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'rollDamage':
         {
-          const check = await CoC7ChatDamage.loadFromMessage(message)
+          const check = await Cd100ChatDamage.loadFromMessage(message)
           if (check) {
             if (check.#isArmorFormula) {
               await check.rollArmor(message.id)
@@ -681,13 +681,13 @@ export default class CoC7ChatDamage {
             await check.rollDamage()
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'toggleValue':
         {
-          const check = await CoC7ChatDamage.loadFromMessage(message)
+          const check = await Cd100ChatDamage.loadFromMessage(message)
           const set = event.currentTarget?.dataset?.set
           if (check && set) {
             switch (set) {
@@ -707,11 +707,11 @@ export default class CoC7ChatDamage {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -728,12 +728,12 @@ export default class CoC7ChatDamage {
   static async _onRenderMessage (message, html, context, allowed) {
     html.querySelectorAll('[data-action]').forEach((element) => {
       if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-        element.addEventListener('click', event => CoC7ChatDamage._onClickEvent(event, message))
+        element.addEventListener('click', event => Cd100ChatDamage._onClickEvent(event, message))
       }
     })
     html.querySelectorAll('input[type=text]').forEach((element) => {
       if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-        element.addEventListener('change', event => CoC7ChatDamage._onChangeEvent(event, message))
+        element.addEventListener('change', event => Cd100ChatDamage._onChangeEvent(event, message))
       }
     })
     html.querySelectorAll('.coc7-formatted-text').forEach((element) => {
@@ -759,7 +759,7 @@ export default class CoC7ChatDamage {
     if (this.message) {
       const diff = foundry.utils.diffObject(this.message.toObject(), await this.getChatData())
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -785,8 +785,8 @@ export default class CoC7ChatDamage {
     const contents = div.children[0]
     if (contents) {
       const dataSet = JSON.parse(decodeURIComponent(contents.dataset.object))
-      let attackerUuid = CoC7Utilities.oldStyleToUuid(dataSet.actorKey)
-      let targetUuid = (dataSet._targetKey ? CoC7Utilities.oldStyleToUuid(dataSet._targetKey) : null)
+      let attackerUuid = Cd100Utilities.oldStyleToUuid(dataSet.actorKey)
+      let targetUuid = (dataSet._targetKey ? Cd100Utilities.oldStyleToUuid(dataSet._targetKey) : null)
       let attacker = await fromUuid(attackerUuid)
       if (attacker?.actor) {
         attacker = attacker.actor
@@ -804,7 +804,7 @@ export default class CoC7ChatDamage {
         itemUuid = (attacker.actor ?? attacker).items.get(dataSet.itemId).uuid
       }
       const update = {
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatDamage',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatDamage',
         ['flags.' + FOLDER_ID + '.load.actorUuids']: [attackerUuid, targetUuid],
         ['flags.' + FOLDER_ID + '.load.attackerUuid']: attackerUuid,
         ['flags.' + FOLDER_ID + '.load.cardOpen']: dataSet.damageInflicted ?? false,
@@ -821,7 +821,7 @@ export default class CoC7ChatDamage {
         rolls: (dataSet.roll ? [Roll.fromData(dataSet.roll)] : [])
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7ChatDamage.loadFromMessage(merged)
+      const check = await Cd100ChatDamage.loadFromMessage(merged)
       if (check) {
         const data = await check.getTemplateData()
         update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/damage.hbs', data)
@@ -845,8 +845,8 @@ export default class CoC7ChatDamage {
     div.innerHTML = message.content
     const contents = div.children[0]
     if (contents) {
-      let attackerUuid = CoC7Utilities.oldStyleToUuid(contents.dataset.actorKey)
-      let targetUuid = (contents.dataset.targetKey ? CoC7Utilities.oldStyleToUuid(contents.dataset.targetKey) : null)
+      let attackerUuid = Cd100Utilities.oldStyleToUuid(contents.dataset.actorKey)
+      let targetUuid = (contents.dataset.targetKey ? Cd100Utilities.oldStyleToUuid(contents.dataset.targetKey) : null)
       let attacker = await fromUuid(attackerUuid)
       if (attacker?.actor) {
         attacker = attacker.actor
@@ -865,7 +865,7 @@ export default class CoC7ChatDamage {
         itemUuid = (attacker.actor ?? attacker).items.get(button?.dataset.weapon).uuid
       }
       const update = {
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatDamage',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatDamage',
         ['flags.' + FOLDER_ID + '.load.actorUuids']: [attackerUuid, targetUuid],
         ['flags.' + FOLDER_ID + '.load.attackerUuid']: attackerUuid,
         ['flags.' + FOLDER_ID + '.load.cardOpen']: false,
@@ -881,7 +881,7 @@ export default class CoC7ChatDamage {
         ['flags.' + FOLDER_ID + '.load.targetUuid']: targetUuid
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7ChatDamage.loadFromMessage(merged)
+      const check = await Cd100ChatDamage.loadFromMessage(merged)
       if (check) {
         const data = await check.getTemplateData()
         update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/damage.hbs', data)

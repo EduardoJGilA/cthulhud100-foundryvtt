@@ -6,9 +6,9 @@ export default class ChaosiumCanvasInterface extends foundry.data.regionBehavior
    */
   static get actionToggles () {
     return {
-      [ChaosiumCanvasInterface.actionToggle.On]: 'CoC7.ChaosiumCanvasInterface.Actions.Show',
-      [ChaosiumCanvasInterface.actionToggle.Off]: 'CoC7.ChaosiumCanvasInterface.Actions.Hide',
-      [ChaosiumCanvasInterface.actionToggle.Toggle]: 'CoC7.ChaosiumCanvasInterface.Actions.Toggle'
+      [ChaosiumCanvasInterface.actionToggle.On]: 'Cd100.ChaosiumCanvasInterface.Actions.Show',
+      [ChaosiumCanvasInterface.actionToggle.Off]: 'Cd100.ChaosiumCanvasInterface.Actions.Hide',
+      [ChaosiumCanvasInterface.actionToggle.Toggle]: 'Cd100.ChaosiumCanvasInterface.Actions.Toggle'
     }
   }
 
@@ -30,8 +30,8 @@ export default class ChaosiumCanvasInterface extends foundry.data.regionBehavior
    */
   static get triggerButtons () {
     return {
-      [ChaosiumCanvasInterface.triggerButton.Left]: 'CoC7.ChaosiumCanvasInterface.Buttons.Left',
-      [ChaosiumCanvasInterface.triggerButton.Right]: 'CoC7.ChaosiumCanvasInterface.Buttons.Right'
+      [ChaosiumCanvasInterface.triggerButton.Left]: 'Cd100.ChaosiumCanvasInterface.Buttons.Left',
+      [ChaosiumCanvasInterface.triggerButton.Right]: 'Cd100.ChaosiumCanvasInterface.Buttons.Right'
     }
   }
 

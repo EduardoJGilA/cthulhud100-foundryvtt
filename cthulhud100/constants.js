@@ -11,12 +11,12 @@ export const CHARACTERISTIC_MULTIPLIER = 5
 
 // Character creation skill points (rulebook chapter 7): EST x20 to spend inside
 // the chosen profession, plus INT x10 to spend on anything on the sheet.
-// CoC7 used EDU x4 (or x2) and INT x2 respectively.
+// Cd100 used EDU x4 (or x2) and INT x2 respectively.
 export const OCCUPATION_SKILL_POINTS_PER_EDU = 20
 export const PERSONAL_SKILL_POINTS_PER_INT = 10
 
 // A character with only 1 or 2 hit points left is unconscious, and comes round
-// once healed back to 3 (rulebook chapter 5). CoC7 only passed out at 0.
+// once healed back to 3 (rulebook chapter 5). Cd100 only passed out at 0.
 export const UNCONSCIOUS_HP_THRESHOLD = 2
 
 // The rulebook defines no list of eras. It assumes "la era clasica, los anos 20"
@@ -31,7 +31,7 @@ export const UNCONSCIOUS_HP_THRESHOLD = 2
 // all 116 entries reference it.
 export const ERAS = {
   standard: {
-    name: 'CoC7.EraStandard',
+    name: 'Cd100.EraStandard',
     icon: 'game-icon game-icon-tentacles-skull'
   }
 }
@@ -46,12 +46,12 @@ export const MONETARY_FORMAT_KEYS = {
 }
 
 export const MONETARY_FORMATS = {
-  decimalLeft: 'CoC7.MonetaryFormatDecimalLeft',
-  decimalRight: 'CoC7.MonetaryFormatDecimalRight',
-  integerLeft: 'CoC7.MonetaryFormatIntegerLeft',
-  integerRight: 'CoC7.MonetaryFormatIntegerRight',
-  lsd: 'CoC7.MonetaryFormatLsd',
-  roman: 'CoC7.MonetaryFormatRoman'
+  decimalLeft: 'Cd100.MonetaryFormatDecimalLeft',
+  decimalRight: 'Cd100.MonetaryFormatDecimalRight',
+  integerLeft: 'Cd100.MonetaryFormatIntegerLeft',
+  integerRight: 'Cd100.MonetaryFormatIntegerRight',
+  lsd: 'Cd100.MonetaryFormatLsd',
+  roman: 'Cd100.MonetaryFormatRoman'
 }
 
 export const MONETARY_TYPE_KEYS = {
@@ -68,39 +68,39 @@ export const MONETARY_TYPE_KEYS = {
 
 export const MONETARY_TYPES = {
   none: {
-    name: 'CoC7.MonetaryTypeNone',
+    name: 'Cd100.MonetaryTypeNone',
     filter: []
   },
   asses: {
-    name: 'CoC7.MonetaryTypeAsses',
+    name: 'Cd100.MonetaryTypeAsses',
     filter: ['roman']
   },
   sestertii: {
-    name: 'CoC7.MonetaryTypeSestertii',
+    name: 'Cd100.MonetaryTypeSestertii',
     filter: ['roman']
   },
   quinarii: {
-    name: 'CoC7.MonetaryTypeQuinarii',
+    name: 'Cd100.MonetaryTypeQuinarii',
     filter: ['roman']
   },
   denarii: {
-    name: 'CoC7.MonetaryTypeDenarii',
+    name: 'Cd100.MonetaryTypeDenarii',
     filter: ['roman']
   },
   d: {
-    name: 'CoC7.MonetaryTypeDeniers',
+    name: 'Cd100.MonetaryTypeDeniers',
     filter: ['lsd']
   },
   s: {
-    name: 'CoC7.MonetaryTypeSous',
+    name: 'Cd100.MonetaryTypeSous',
     filter: ['lsd']
   },
   value: {
-    name: 'CoC7.MonetaryTypeOne',
+    name: 'Cd100.MonetaryTypeOne',
     filter: []
   },
   multiplier: {
-    name: 'CoC7.MonetaryTypeCreditRating',
+    name: 'Cd100.MonetaryTypeCreditRating',
     filter: []
   }
 }
@@ -117,9 +117,9 @@ export const STATUS_EFFECTS = {
 }
 
 export const FIGHTING_NAMES = {
-  fighting: 'CoC7.FightingSpecializationName',
-  firearm: 'CoC7.FirearmSpecializationName',
-  ranged: 'CoC7.RangedSpecializationName'
+  fighting: 'Cd100.FightingSpecializationName',
+  firearm: 'Cd100.FirearmSpecializationName',
+  ranged: 'Cd100.RangedSpecializationName'
 }
 
 // Call of Cthulhu turned eleven combat situations into bonus or penalty dice.
@@ -160,57 +160,57 @@ export const TRADE_ALLOWED = [
 
 export const SPELL_COST_TYPE_KEYS = {
   additionalCasterPromptAdd: {
-    name: 'CoC7.Spell.Cost.AdditionalCasterPromptAdd',
-    group: 'CoC7.Spell.Group.AdditionalCasters'
+    name: 'Cd100.Spell.Cost.AdditionalCasterPromptAdd',
+    group: 'Cd100.Spell.Group.AdditionalCasters'
   },
   additionalCasterCost: {
-    name: 'CoC7.Spell.Cost.AdditionalCasterCost',
-    group: 'CoC7.Spell.Group.AdditionalCasters'
+    name: 'Cd100.Spell.Cost.AdditionalCasterCost',
+    group: 'Cd100.Spell.Group.AdditionalCasters'
   },
   additionalCasterPromptRequireNumber: {
-    name: 'CoC7.Spell.Cost.AdditionalCasterPromptRequireNumber',
-    group: 'CoC7.Spell.Group.AdditionalCasters'
+    name: 'Cd100.Spell.Cost.AdditionalCasterPromptRequireNumber',
+    group: 'Cd100.Spell.Group.AdditionalCasters'
   },
   additionalInformation: {
-    name: 'CoC7.Spell.Cost.AdditionalInformation',
-    group: 'CoC7.Spell.Group.CasterCosts'
+    name: 'Cd100.Spell.Cost.AdditionalInformation',
+    group: 'Cd100.Spell.Group.CasterCosts'
   },
   castingTime: {
-    name: 'CoC7.Spell.Cost.CastingTime',
-    group: 'CoC7.Spell.Group.CastingTime'
+    name: 'Cd100.Spell.Cost.CastingTime',
+    group: 'Cd100.Spell.Group.CastingTime'
   },
   casterCost: {
-    name: 'CoC7.Spell.Cost.CasterCost',
-    group: 'CoC7.Spell.Group.CasterCosts'
+    name: 'Cd100.Spell.Cost.CasterCost',
+    group: 'Cd100.Spell.Group.CasterCosts'
   },
   promptRequireNumber: {
-    name: 'CoC7.Spell.Cost.PromptRequireNumber',
-    group: 'CoC7.Spell.Group.Prompt'
+    name: 'Cd100.Spell.Cost.PromptRequireNumber',
+    group: 'Cd100.Spell.Group.Prompt'
   },
   promptShowText: {
-    name: 'CoC7.Spell.Cost.PromptShowText',
-    group: 'CoC7.Spell.Group.Prompt'
+    name: 'Cd100.Spell.Cost.PromptShowText',
+    group: 'Cd100.Spell.Group.Prompt'
   },
   promptShowVariable: {
-    name: 'CoC7.Spell.Cost.PromptShowVariable',
-    group: 'CoC7.Spell.Group.Prompt'
+    name: 'Cd100.Spell.Cost.PromptShowVariable',
+    group: 'Cd100.Spell.Group.Prompt'
   },
   promptToggleButton: {
-    name: 'CoC7.Spell.Cost.PromptToggleButton',
-    group: 'CoC7.Spell.Group.Prompt'
+    name: 'Cd100.Spell.Cost.PromptToggleButton',
+    group: 'Cd100.Spell.Group.Prompt'
   },
   setVariable: {
-    name: 'CoC7.Spell.Cost.SetVariable',
-    group: 'CoC7.Spell.Group.System'
+    name: 'Cd100.Spell.Cost.SetVariable',
+    group: 'Cd100.Spell.Group.System'
   },
   triggerPrompt: {
-    name: 'CoC7.Spell.Cost.TriggerPrompt',
-    group: 'CoC7.Spell.Group.Prompt'
+    name: 'Cd100.Spell.Cost.TriggerPrompt',
+    group: 'Cd100.Spell.Group.Prompt'
   }
 }
 
 export const TALENT_ADJUSTMENT_TYPES = {
   disableCombatPool: {
-    name: 'CoC7.Talent.Type.DisableCombatPool'
+    name: 'Cd100.Talent.Type.DisableCombatPool'
   }
 }

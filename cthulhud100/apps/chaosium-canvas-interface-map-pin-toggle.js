@@ -35,21 +35,21 @@ export default class ChaosiumCanvasInterfaceMapPinToggle extends ChaosiumCanvasI
       triggerButton: new fields.NumberField({
         choices: ChaosiumCanvasInterface.triggerButtons,
         initial: ChaosiumCanvasInterface.triggerButton.Left,
-        label: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Button.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Button.Hint'
+        label: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Button.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Button.Hint'
       }),
       action: new fields.NumberField({
         choices: ChaosiumCanvasInterface.actionToggles,
         initial: ChaosiumCanvasInterface.actionToggle.Off,
-        label: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Action.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Action.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Action.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Action.Hint',
         required: true
       }),
       documentUuids: new fields.SetField(
         new fields.DocumentUUIDField(),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Document.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Document.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Document.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Document.Hint'
         }
       ),
       noteUuids: new fields.SetField(
@@ -57,22 +57,22 @@ export default class ChaosiumCanvasInterfaceMapPinToggle extends ChaosiumCanvasI
           type: 'Note'
         }),
         {
-          label: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Note.Title',
-          hint: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.Note.Hint'
+          label: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Note.Title',
+          hint: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.Note.Hint'
         }
       ),
       permissionShow: new fields.NumberField({
         choices: Object.keys(ChaosiumCanvasInterfaceMapPinToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceMapPinToggle.PERMISSIONS[k]); return c }, {}),
         initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
-        label: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.PermissionShow.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.PermissionShow.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.PermissionShow.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.PermissionShow.Hint',
         required: true
       }),
       permissionHide: new fields.NumberField({
         choices: Object.keys(ChaosiumCanvasInterfaceMapPinToggle.PERMISSIONS).reduce((c, k) => { c[k] = game.i18n.localize(ChaosiumCanvasInterfaceMapPinToggle.PERMISSIONS[k]); return c }, {}),
         initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE,
-        label: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.PermissionHide.Title',
-        hint: 'CoC7.ChaosiumCanvasInterface.MapPinToggle.PermissionHide.Hint',
+        label: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.PermissionHide.Title',
+        hint: 'Cd100.ChaosiumCanvasInterface.MapPinToggle.PermissionHide.Hint',
         required: true
       })
     }

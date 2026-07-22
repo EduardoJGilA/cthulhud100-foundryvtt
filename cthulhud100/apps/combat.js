@@ -1,8 +1,8 @@
 /* global game */
 import { FOLDER_ID } from '../constants.js'
-import CoC7DicePool from './dice-pool.js'
+import Cd100DicePool from './dice-pool.js'
 
-export default class CoC7Combat {
+export default class Cd100Combat {
   /**
    * Render Hook
    * @param {ApplicationV2} application
@@ -33,13 +33,13 @@ export default class CoC7Combat {
         const combatant = context.combat.combatants.get(combatantId)
         const theButton = newButton.cloneNode(true)
         if (combatant.getFlag(FOLDER_ID, 'hasGun')) {
-          theButton.setAttribute('title', game.i18n.localize('CoC7.PutGunAway'))
+          theButton.setAttribute('title', game.i18n.localize('Cd100.PutGunAway'))
           theButton.classList.add('active')
         } else {
-          theButton.setAttribute('title', game.i18n.localize('CoC7.DrawGun'))
+          theButton.setAttribute('title', game.i18n.localize('Cd100.DrawGun'))
         }
         combatantControls.prepend(theButton)
-        theButton.onclick = CoC7Combat._onToggleGun
+        theButton.onclick = Cd100Combat._onToggleGun
         if (combatant.initiative !== null) {
           if (game.settings.get(FOLDER_ID, 'initiativeRule') === 'optional' && game.settings.get(FOLDER_ID, 'displayInitAsText')) {
             const tokenInitiative = element.querySelector('.token-initiative')
@@ -48,25 +48,25 @@ export default class CoC7Combat {
             const parts = combatant.initiative.toString().match(/^(-?\d+)(?:\.(\d+))?$/)
             initiativeText.title = parts[2] ?? 0
             switch (parseInt(parts[1], 10)) {
-              case CoC7DicePool.successLevel.fumble:
+              case Cd100DicePool.successLevel.fumble:
                 tokenInitiative.classList.add('fumble')
-                initiativeText.innerText = game.i18n.localize('CoC7.Fumble')
+                initiativeText.innerText = game.i18n.localize('Cd100.Fumble')
                 break
-              case CoC7DicePool.successLevel.failure:
+              case Cd100DicePool.successLevel.failure:
                 tokenInitiative.classList.add('failure')
-                initiativeText.innerText = game.i18n.localize('CoC7.Failure')
+                initiativeText.innerText = game.i18n.localize('Cd100.Failure')
                 break
-              case CoC7DicePool.successLevel.regular:
+              case Cd100DicePool.successLevel.regular:
                 tokenInitiative.classList.add('regular-success')
-                initiativeText.innerText = game.i18n.localize('CoC7.RollDifficultyRegular')
+                initiativeText.innerText = game.i18n.localize('Cd100.RollDifficultyRegular')
                 break
-              case CoC7DicePool.successLevel.special:
+              case Cd100DicePool.successLevel.special:
                 tokenInitiative.classList.add('special-success')
-                initiativeText.innerText = game.i18n.localize('CoC7.RollDifficultySpecial')
+                initiativeText.innerText = game.i18n.localize('Cd100.RollDifficultySpecial')
                 break
-              case CoC7DicePool.successLevel.critical:
+              case Cd100DicePool.successLevel.critical:
                 tokenInitiative.classList.add('critical')
-                initiativeText.innerText = game.i18n.localize('CoC7.RollDifficultyCritical')
+                initiativeText.innerText = game.i18n.localize('Cd100.RollDifficultyCritical')
                 break
             }
           } else if (combatant.initiative < 0) {

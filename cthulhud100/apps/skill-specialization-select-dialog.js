@@ -1,7 +1,7 @@
 /* global foundry game */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7SkillSpecializationSelectDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100SkillSpecializationSelectDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -21,7 +21,7 @@ export default class CoC7SkillSpecializationSelectDialog extends foundry.applica
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7SkillSpecializationSelectDialog.#onSubmit
+      handler: Cd100SkillSpecializationSelectDialog.#onSubmit
     },
     position: {
       width: 410
@@ -42,7 +42,7 @@ export default class CoC7SkillSpecializationSelectDialog extends foundry.applica
    * @inheritdoc
    */
   get title () {
-    return game.i18n.format('CoC7.SkillSpecSelectTitle', {
+    return game.i18n.format('Cd100.SkillSpecSelectTitle', {
       specialization: this.coc7Config.specializationName
     })
   }
@@ -124,14 +124,14 @@ export default class CoC7SkillSpecializationSelectDialog extends foundry.applica
           context.buttons.push({
             type: 'submit',
             action: 'close',
-            label: 'CoC7.Migrate.ButtonSkip',
+            label: 'Cd100.Migrate.ButtonSkip',
             icon: 'fa-solid fa-ban'
           })
         }
         context.buttons.push({
           type: 'submit',
           action: 'validate',
-          label: 'CoC7.Validate',
+          label: 'Cd100.Validate',
           icon: 'fa-solid fa-check'
         })
         break
@@ -170,7 +170,7 @@ export default class CoC7SkillSpecializationSelectDialog extends foundry.applica
    */
   static async create ({ skills = [], allowCustom = false, fixedBaseValue = false, specializationName = '', label = '', baseValue = null, allowSkip = true } = {}) {
     return await new Promise(resolve => {
-      new CoC7SkillSpecializationSelectDialog({}, {}, {
+      new Cd100SkillSpecializationSelectDialog({}, {}, {
         allowCustom,
         allowSelect: skills.length > 0,
         allowSkip,

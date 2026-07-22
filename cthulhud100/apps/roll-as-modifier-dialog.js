@@ -1,8 +1,8 @@
 /* global CONFIG foundry game */
 import { FOLDER_ID } from '../constants.js'
-import CoC7Utilities from './utilities.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7RollAsModifierDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export default class Cd100RollAsModifierDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   /**
    * @inheritdoc
    */
@@ -11,9 +11,9 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
     super(...args)
     this.coc7Config = coc7Config
     this.coc7Config.allSkills = {}
-    game.CoC7.cocid.fromCoCIDRegexBest({ cocidRegExp: /^i\.skill\./, type: 'i', showLoading: true }).then((items) => {
+    game.Cd100.cocid.fromCoCIDRegexBest({ cocidRegExp: /^i\.skill\./, type: 'i', showLoading: true }).then((items) => {
       for (const item of items) {
-        this.coc7Config.allSkills[item.flags.CoC7.cocidFlag.id] = item.name
+        this.coc7Config.allSkills[item.flags.Cd100.cocidFlag.id] = item.name
       }
       if (this.coc7Config.type === 'SKILL') {
         this.render({ force: true })
@@ -39,9 +39,9 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
    */
   static get ACTIVE_EFFECT_METHOD_NAMES () {
     return {
-      [CoC7RollAsModifierDialog.ACTIVE_EFFECT_METHODS.NONE]: 'CoC7.RollAsModifier.ActiveEffect.None',
-      [CoC7RollAsModifierDialog.ACTIVE_EFFECT_METHODS.GROUPED]: 'CoC7.RollAsModifier.ActiveEffect.Grouped',
-      [CoC7RollAsModifierDialog.ACTIVE_EFFECT_METHODS.INDIVIDUAL]: 'CoC7.RollAsModifier.ActiveEffect.Individual'
+      [Cd100RollAsModifierDialog.ACTIVE_EFFECT_METHODS.NONE]: 'Cd100.RollAsModifier.ActiveEffect.None',
+      [Cd100RollAsModifierDialog.ACTIVE_EFFECT_METHODS.GROUPED]: 'Cd100.RollAsModifier.ActiveEffect.Grouped',
+      [Cd100RollAsModifierDialog.ACTIVE_EFFECT_METHODS.INDIVIDUAL]: 'Cd100.RollAsModifier.ActiveEffect.Individual'
     }
   }
 
@@ -79,9 +79,9 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
    */
   static get MODIFIER_NAMES () {
     return {
-      [CoC7RollAsModifierDialog.MODIFIERS.NONE]: 'CoC7.RollAsModifier.Modifier.None',
-      [CoC7RollAsModifierDialog.MODIFIERS.DAMAGE_MODIFY]: 'CoC7.RollAsModifier.Modifier.DamageNumber',
-      [CoC7RollAsModifierDialog.MODIFIERS.HEAL_MODIFY]: 'CoC7.RollAsModifier.Modifier.HealNumber'
+      [Cd100RollAsModifierDialog.MODIFIERS.NONE]: 'Cd100.RollAsModifier.Modifier.None',
+      [Cd100RollAsModifierDialog.MODIFIERS.DAMAGE_MODIFY]: 'Cd100.RollAsModifier.Modifier.DamageNumber',
+      [Cd100RollAsModifierDialog.MODIFIERS.HEAL_MODIFY]: 'Cd100.RollAsModifier.Modifier.HealNumber'
     }
   }
 
@@ -103,9 +103,9 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
    */
   static get TYPE_NAMES () {
     return {
-      [CoC7RollAsModifierDialog.TYPES.ATTRIBUTE]: 'CoC7.RollAsModifier.Type.Attribute',
-      [CoC7RollAsModifierDialog.TYPES.CHARACTERISTIC]: 'CoC7.RollAsModifier.Type.Characteristic',
-      [CoC7RollAsModifierDialog.TYPES.SKILL]: 'CoC7.RollAsModifier.Type.Skill'
+      [Cd100RollAsModifierDialog.TYPES.ATTRIBUTE]: 'Cd100.RollAsModifier.Type.Attribute',
+      [Cd100RollAsModifierDialog.TYPES.CHARACTERISTIC]: 'Cd100.RollAsModifier.Type.Characteristic',
+      [Cd100RollAsModifierDialog.TYPES.SKILL]: 'Cd100.RollAsModifier.Type.Skill'
     }
   }
 
@@ -113,14 +113,14 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
     tag: 'form',
     classes: ['coc7', 'dialog', 'roll-as-modifier'],
     window: {
-      title: 'CoC7.RollAsModifier.Title',
+      title: 'Cd100.RollAsModifier.Title',
       contentClasses: [
         'standard-form'
       ]
     },
     form: {
       closeOnSubmit: false,
-      handler: CoC7RollAsModifierDialog.#onSubmit
+      handler: Cd100RollAsModifierDialog.#onSubmit
     },
     position: {
       width: 500
@@ -143,21 +143,21 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
    * @returns {string}
    */
   static async create ({ message } = {}) {
-    const modifier = message.flags[FOLDER_ID]?.load?.modifier ?? CoC7RollAsModifierDialog.MODIFIERS.DAMAGE_MODIFY
-    const type = message.flags[FOLDER_ID]?.load?.type ?? CoC7RollAsModifierDialog.TYPES.ATTRIBUTE
-    const activeEffect = message.flags[FOLDER_ID]?.load?.activeEffect ?? CoC7RollAsModifierDialog.ACTIVE_EFFECT_METHODS.NONE
+    const modifier = message.flags[FOLDER_ID]?.load?.modifier ?? Cd100RollAsModifierDialog.MODIFIERS.DAMAGE_MODIFY
+    const type = message.flags[FOLDER_ID]?.load?.type ?? Cd100RollAsModifierDialog.TYPES.ATTRIBUTE
+    const activeEffect = message.flags[FOLDER_ID]?.load?.activeEffect ?? Cd100RollAsModifierDialog.ACTIVE_EFFECT_METHODS.NONE
     const value = message.flags[FOLDER_ID]?.load?.value ?? 'hp'
     return await new Promise(resolve => {
-      new CoC7RollAsModifierDialog({}, {}, {
+      new Cd100RollAsModifierDialog({}, {}, {
         activeEffect,
         message,
         modifier,
         resolve,
         type,
         value: {
-          ATTRIBUTE: (type === CoC7RollAsModifierDialog.TYPES.ATTRIBUTE ? value : ''),
-          CHARACTERISTIC: (type === CoC7RollAsModifierDialog.TYPES.CHARACTERISTIC ? value : ''),
-          SKILL: (type === CoC7RollAsModifierDialog.TYPES.SKILL ? value : '')
+          ATTRIBUTE: (type === Cd100RollAsModifierDialog.TYPES.ATTRIBUTE ? value : ''),
+          CHARACTERISTIC: (type === Cd100RollAsModifierDialog.TYPES.CHARACTERISTIC ? value : ''),
+          SKILL: (type === Cd100RollAsModifierDialog.TYPES.SKILL ? value : '')
         }
       }).render({ force: true })
     })
@@ -187,13 +187,13 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
     }
     let name = ''
     switch (this.coc7Config.type) {
-      case CoC7RollAsModifierDialog.TYPES.ATTRIBUTE:
+      case Cd100RollAsModifierDialog.TYPES.ATTRIBUTE:
         name = CONFIG.Actor.dataModels.character.schema.getField('attribs').getField(this.coc7Config.value[this.coc7Config.type]).hint
         break
-      case CoC7RollAsModifierDialog.TYPES.CHARACTERISTIC:
+      case Cd100RollAsModifierDialog.TYPES.CHARACTERISTIC:
         name = CONFIG.Actor.dataModels.character.schema.getField('characteristics').getField(this.coc7Config.value[this.coc7Config.type]).hint
         break
-      case CoC7RollAsModifierDialog.TYPES.SKILL:
+      case Cd100RollAsModifierDialog.TYPES.SKILL:
         name = this.coc7Config.allSkills[this.coc7Config.value[this.coc7Config.type]]
         break
     }
@@ -223,11 +223,11 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
         {
           context._modifier = []
           context.modifier = this.coc7Config.modifier
-          const options = Object.keys(CoC7RollAsModifierDialog.MODIFIER_NAMES)
+          const options = Object.keys(Cd100RollAsModifierDialog.MODIFIER_NAMES)
           for (const id of options) {
             context._modifier.push({
               id,
-              name: CoC7RollAsModifierDialog.MODIFIER_NAMES[id],
+              name: Cd100RollAsModifierDialog.MODIFIER_NAMES[id],
               tooltip: '',
               isEnabled: this.coc7Config.modifier === id
             })
@@ -236,11 +236,11 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
         {
           context._type = []
           context.type = this.coc7Config.type
-          const options = Object.keys(CoC7RollAsModifierDialog.TYPE_NAMES)
+          const options = Object.keys(Cd100RollAsModifierDialog.TYPE_NAMES)
           for (const id of options) {
             context._type.push({
               id,
-              name: CoC7RollAsModifierDialog.TYPE_NAMES[id],
+              name: Cd100RollAsModifierDialog.TYPE_NAMES[id],
               tooltip: '',
               isEnabled: this.coc7Config.type === id
             })
@@ -249,11 +249,11 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
         {
           context._activeEffect = []
           context.activeEffect = this.coc7Config.activeEffect
-          const options = Object.keys(CoC7RollAsModifierDialog.ACTIVE_EFFECT_METHOD_NAMES)
+          const options = Object.keys(Cd100RollAsModifierDialog.ACTIVE_EFFECT_METHOD_NAMES)
           for (const id of options) {
             context._activeEffect.push({
               id,
-              name: CoC7RollAsModifierDialog.ACTIVE_EFFECT_METHOD_NAMES[id],
+              name: Cd100RollAsModifierDialog.ACTIVE_EFFECT_METHOD_NAMES[id],
               tooltip: '',
               isEnabled: this.coc7Config.activeEffect === id
             })
@@ -262,9 +262,9 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
         context._values = []
         context.value = this.coc7Config.value[this.coc7Config.type] ?? ''
         switch (this.coc7Config.type) {
-          case CoC7RollAsModifierDialog.TYPES.ATTRIBUTE:
+          case Cd100RollAsModifierDialog.TYPES.ATTRIBUTE:
             {
-              const options = CoC7RollAsModifierDialog.ATTRIBUTES
+              const options = Cd100RollAsModifierDialog.ATTRIBUTES
               for (const key of options) {
                 const val = CONFIG.Actor.dataModels.character.defineSchema().attribs.getField(key).hint ?? false
                 if (val) {
@@ -276,9 +276,9 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
               }
             }
             break
-          case CoC7RollAsModifierDialog.TYPES.CHARACTERISTIC:
+          case Cd100RollAsModifierDialog.TYPES.CHARACTERISTIC:
             {
-              const options = CoC7RollAsModifierDialog.CHARACTERISTICS
+              const options = Cd100RollAsModifierDialog.CHARACTERISTICS
               for (const key of options) {
                 const val = CONFIG.Actor.dataModels.character.defineSchema().characteristics.getField(key).hint ?? false
                 if (val) {
@@ -290,7 +290,7 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
               }
             }
             break
-          case CoC7RollAsModifierDialog.TYPES.SKILL:
+          case Cd100RollAsModifierDialog.TYPES.SKILL:
             for (const key of Object.keys(this.coc7Config.allSkills)) {
               context._values.push({
                 key,
@@ -298,20 +298,20 @@ export default class CoC7RollAsModifierDialog extends foundry.applications.api.H
               })
             }
         }
-        context._values.sort(CoC7Utilities.sortByNameKey)
+        context._values.sort(Cd100Utilities.sortByNameKey)
         break
       case 'footer':
         context.buttons = [
           {
             type: 'submit',
             action: 'close',
-            label: 'CoC7.Cancel',
+            label: 'Cd100.Cancel',
             icon: 'fa-solid fa-times'
           },
           {
             type: 'submit',
             action: 'validate',
-            label: 'CoC7.Validate',
+            label: 'Cd100.Validate',
             icon: 'fa-solid fa-check'
           }
         ]

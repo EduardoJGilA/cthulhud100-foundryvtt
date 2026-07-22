@@ -1,13 +1,13 @@
 /* global ChatMessage foundry fromUuid game Hooks renderTemplate TextEditor TokenDocument ui */
 import { FOLDER_ID, CHAT_MESSAGE_MODE, DICE_POOL_REASONS } from '../constants.js'
-import CoC7ActorPickerDialog from './actor-picker-dialog.js'
-import CoC7ChatDropdown from './chat-dropdown.js'
-import CoC7ChatDamage from './chat-damage.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ActorPickerDialog from './actor-picker-dialog.js'
+import Cd100ChatDropdown from './chat-dropdown.js'
+import Cd100ChatDamage from './chat-damage.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ChatCombatMelee {
+export default class Cd100ChatCombatMelee {
   #asyncAttacker
   #asyncTarget
   #asyncItem
@@ -29,12 +29,12 @@ export default class CoC7ChatCombatMelee {
    */
   constructor () {
     this.#checkRevealed = true
-    this.#dicePool = CoC7DicePool.newPool({ })
+    this.#dicePool = Cd100DicePool.newPool({ })
     this.#isAutoSuccess = false
     this.#isNoResponse = false
     this.#noConsequence = false
     this.#poolModifier = 0
-    this.#participant = CoC7ChatCombatMelee.participant.initiator
+    this.#participant = Cd100ChatCombatMelee.participant.initiator
     this.#poolKeys = []
     this.#responded = false
   }
@@ -57,11 +57,11 @@ export default class CoC7ChatCombatMelee {
    */
   static async _changeTargetActor (event, message) {
     if (game.user.isGM) {
-      const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+      const check = await Cd100ChatCombatMelee.loadFromMessage(message)
       if (check) {
-        const selected = CoC7Utilities.getActorUuid(await check.target)
-        const notAutomaticUuid = CoC7Utilities.getActorUuid(await check.attacker)
-        const actorUuid = await CoC7ActorPickerDialog.create({ allowNoActor: true, notAutomaticUuid, selected })
+        const selected = Cd100Utilities.getActorUuid(await check.target)
+        const notAutomaticUuid = Cd100Utilities.getActorUuid(await check.attacker)
+        const actorUuid = await Cd100ActorPickerDialog.create({ allowNoActor: true, notAutomaticUuid, selected })
         check.target = actorUuid
         check.updateMessage()
       }
@@ -71,15 +71,15 @@ export default class CoC7ChatCombatMelee {
   /**
    * Create melee initiator message
    * @param {object} options
-   * @param {CoC7ChatCombatMelee|null} options.attackerCheck
+   * @param {Cd100ChatCombatMelee|null} options.attackerCheck
    * @param {string|null} options.attackerUuid
    * @param {string} options.itemUuid
    * @param {integer} options.participant
    * @param {string|null} options.targetUuid
    */
-  static async createMessage ({ attackerCheck, attackerUuid, itemUuid, participant = CoC7ChatCombatMelee.participant.initiator, targetUuid } = {}) {
+  static async createMessage ({ attackerCheck, attackerUuid, itemUuid, participant = Cd100ChatCombatMelee.participant.initiator, targetUuid } = {}) {
     if (attackerUuid) {
-      const check = new CoC7ChatCombatMelee()
+      const check = new Cd100ChatCombatMelee()
       check.#attackerMessageId = attackerCheck?.message.id
       check.attacker = attackerUuid
       check.item = itemUuid
@@ -89,19 +89,19 @@ export default class CoC7ChatCombatMelee {
       const chatData = await check.getChatData()
       const targetMessage = await ChatMessage.create(chatData)
       if (targetMessage && attackerCheck) {
-        const check = await CoC7ChatCombatMelee.loadFromMessage(attackerCheck.message)
+        const check = await Cd100ChatCombatMelee.loadFromMessage(attackerCheck.message)
         check.#targetMessageId = targetMessage.id
         check.updateMessage()
       }
       return
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableRoll', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableRoll', { localize: true })
   }
 
   /**
-   * Create CoC7ChatCombatMelee from message
+   * Create Cd100ChatCombatMelee from message
    * @param {Document} message
-   * @returns {CoC7ChatCombatMelee}
+   * @returns {Cd100ChatCombatMelee}
    */
   static async loadFromMessage (message) {
     const keys = [
@@ -119,15 +119,15 @@ export default class CoC7ChatCombatMelee {
       'responded'
       // 'targetMessageId'
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7ChatCombatMelee' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && CoC7DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.dicePool)) {
-      const check = new CoC7ChatCombatMelee()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100ChatCombatMelee' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined') && Cd100DicePool.isValidPool(message.flags[FOLDER_ID]?.load?.dicePool)) {
+      const check = new Cd100ChatCombatMelee()
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       check.message = message
       check.#attackerMessageId = load.attackerMessageId
       check.attacker = load.attackerUuid
       check.#checkRevealed = load.checkRevealed
       check.#damageMessageId = load.damageMessageId
-      check.#dicePool = CoC7DicePool.fromObject(load.dicePool)
+      check.#dicePool = Cd100DicePool.fromObject(load.dicePool)
       check.#isAutoSuccess = load.isAutoSuccess
       check.#isNoResponse = load.isNoResponse
       check.item = load.itemUuid
@@ -142,8 +142,8 @@ export default class CoC7ChatCombatMelee {
       check.#targetMessageId = load.targetMessageId
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -155,13 +155,13 @@ export default class CoC7ChatCombatMelee {
     switch (event.target?.type) {
       case 'range':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           const set = event.target?.name
           if (check && set) {
             switch (set) {
               case 'poolModifier':
                 check.#poolModifier = event.target.value
-                CoC7Utilities.messageUpdatedThen(message.id, () => {
+                Cd100Utilities.messageUpdatedThen(message.id, () => {
                   setTimeout(() => {
                     document.querySelector('[data-message-id="' + message.id + '"] input[type=range][name=' + set + ']').focus()
                   }, 50)
@@ -169,11 +169,11 @@ export default class CoC7ChatCombatMelee {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -189,7 +189,7 @@ export default class CoC7ChatCombatMelee {
     switch (event.currentTarget?.dataset?.action) {
       case 'attackerRoll':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           check.#checkRevealed = !game.user.isGM
           const attacker = (await check.attacker)
           const skill = attacker.items.get(event.target.dataset.skill)
@@ -199,7 +199,7 @@ export default class CoC7ChatCombatMelee {
             check.#dicePool.threshold = threshold
             await check.#dicePool.roll()
             if (check.#dicePool.isRolledSuccess) {
-              await CoC7Utilities.messageRollFlagForDevelopment(message.id, skill, true)
+              await Cd100Utilities.messageRollFlagForDevelopment(message.id, skill, true)
             }
             if (check.#isAutoSuccess && !check.#dicePool.isFumble && !check.#dicePool.isSuccess) {
               check.#dicePool.setSuccess(true)
@@ -207,22 +207,22 @@ export default class CoC7ChatCombatMelee {
             const target = (await check.target)
             if (target) {
               if (!check.#isAutoSuccess) {
-                CoC7Utilities.messageUpdatedThen(message.id, () => {
-                  CoC7ChatCombatMelee.createMessage({ attackerCheck: check, attackerUuid: attacker.uuid, targetUuid: target.uuid, participant: CoC7ChatCombatMelee.participant.target })
+                Cd100Utilities.messageUpdatedThen(message.id, () => {
+                  Cd100ChatCombatMelee.createMessage({ attackerCheck: check, attackerUuid: attacker.uuid, targetUuid: target.uuid, participant: Cd100ChatCombatMelee.participant.target })
                 })
               } else {
-                CoC7Utilities.messageUpdatedWithRollThen(message.id, () => {
-                  CoC7ChatDamage.createFromCombatMelee({ attacker: message.id, targetUuid: CoC7Utilities.getActorUuid(target) })
+                Cd100Utilities.messageUpdatedWithRollThen(message.id, () => {
+                  Cd100ChatDamage.createFromCombatMelee({ attacker: message.id, targetUuid: Cd100Utilities.getActorUuid(target) })
                 })
               }
             } else if (check.#dicePool.isSuccess) {
-              CoC7Utilities.messageUpdatedWithRollThen(message.id, () => {
-                CoC7ChatDamage.createFromCombatMelee({ attacker: message.id })
+              Cd100Utilities.messageUpdatedWithRollThen(message.id, () => {
+                Cd100ChatDamage.createFromCombatMelee({ attacker: message.id })
               })
             }
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
@@ -230,31 +230,31 @@ export default class CoC7ChatCombatMelee {
         {
           const quantity = event.currentTarget.dataset.quantity
           if (quantity) {
-            const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+            const check = await Cd100ChatCombatMelee.loadFromMessage(message)
             try {
               if (await check.#dicePool.addDiceToPool(quantity)) {
                 Hooks.once('updateChatMessage', (document, changed, options, userId) => {
                   if (game.user.id === userId && changed._id === message.id) {
                     if (typeof check.message.flags[FOLDER_ID].load.damageMessageId === 'undefined' && typeof check.message.flags[FOLDER_ID].load.targetUuid !== 'string' && check.#dicePool.isSuccess) {
-                      CoC7ChatDamage.createFromCombatMelee({ attacker: check.message.id })
+                      Cd100ChatDamage.createFromCombatMelee({ attacker: check.message.id })
                     }
                   }
                 })
                 check.updateMessage()
               } else {
-                ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
               }
             } catch (err) {
               ui.notifications.warn(err.message)
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'dodge':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           const target = (await check.target)
           if (target) {
             const item = target.items.find(doc => doc.system.isDodge)
@@ -263,10 +263,10 @@ export default class CoC7ChatCombatMelee {
               await check.#setInitialPoolModifier(check.target)
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -274,7 +274,7 @@ export default class CoC7ChatCombatMelee {
         {
           const luckSpend = event.currentTarget?.dataset?.luckSpend
           if (luckSpend) {
-            const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+            const check = await Cd100ChatCombatMelee.loadFromMessage(message)
             if (check) {
               const actor = await fromUuid(check.message.flags[FOLDER_ID].load.actorUuid)
               if (actor) {
@@ -282,7 +282,7 @@ export default class CoC7ChatCombatMelee {
                   Hooks.once('updateChatMessage', (document, changed, options, userId) => {
                     if (game.user.id === userId && changed._id === message.id) {
                       if (typeof check.message.flags[FOLDER_ID].load.damageMessageId === 'undefined' && typeof check.message.flags[FOLDER_ID].load.targetUuid !== 'string' && check.#dicePool.isSuccess) {
-                        CoC7ChatDamage.createFromCombatMelee({ attacker: check.message.id })
+                        Cd100ChatDamage.createFromCombatMelee({ attacker: check.message.id })
                       }
                     }
                   })
@@ -291,20 +291,20 @@ export default class CoC7ChatCombatMelee {
               }
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'revealCheck':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           check.#checkRevealed = true
           check.updateMessage()
         }
         break
       case 'setFightBack':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           const target = (await check.target)
           const buttons = []
           for (const doc of target.items) {
@@ -319,13 +319,13 @@ export default class CoC7ChatCombatMelee {
               }
             }
           }
-          buttons.sort(CoC7Utilities.sortByNameKey)
-          CoC7ChatDropdown.makeDropdown({ message, buttons, target: event.currentTarget, callback: CoC7ChatCombatMelee._onClickEvent })
+          buttons.sort(Cd100Utilities.sortByNameKey)
+          Cd100ChatDropdown.makeDropdown({ message, buttons, target: event.currentTarget, callback: Cd100ChatCombatMelee._onClickEvent })
         }
         break
       case 'setItem':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           const target = (await check.target)
           const itemId = event.currentTarget?.dataset?.itemId
           if (target && itemId) {
@@ -336,16 +336,16 @@ export default class CoC7ChatCombatMelee {
               await check.#setInitialPoolModifier(check.target)
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'setManeuvers':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           const target = (await check.target)
           const buttons = []
           for (const doc of target.items) {
@@ -357,30 +357,30 @@ export default class CoC7ChatCombatMelee {
               })
             }
           }
-          buttons.sort(CoC7Utilities.sortByNameKey)
-          CoC7ChatDropdown.makeDropdown({ message, buttons, target: event.currentTarget, callback: CoC7ChatCombatMelee._onClickEvent })
+          buttons.sort(Cd100Utilities.sortByNameKey)
+          Cd100ChatDropdown.makeDropdown({ message, buttons, target: event.currentTarget, callback: Cd100ChatCombatMelee._onClickEvent })
         }
         break
       case 'setNoResponse':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           if (check) {
             check.item = null
             check.#isNoResponse = true
             check.updateMessage()
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'targetRoll':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           check.#checkRevealed = true
           if (check.#isNoResponse) {
             check.#responded = true
-            CoC7Utilities.messageUpdatedThen(message.id, () => {
-              CoC7ChatDamage.createFromCombatMelee({ attacker: check.#attackerMessageId, target: check.message.id })
+            Cd100Utilities.messageUpdatedThen(message.id, () => {
+              Cd100ChatDamage.createFromCombatMelee({ attacker: check.#attackerMessageId, target: check.message.id })
             })
             check.updateMessage()
           } else {
@@ -400,22 +400,22 @@ export default class CoC7ChatCombatMelee {
               check.#dicePool.threshold = threshold
               await check.#dicePool.roll()
               if (check.#dicePool.isRolledSuccess) {
-                await CoC7Utilities.messageRollFlagForDevelopment(message.id, skill ?? item, true)
+                await Cd100Utilities.messageRollFlagForDevelopment(message.id, skill ?? item, true)
               }
               check.#responded = true
-              CoC7Utilities.messageUpdatedWithRollThen(message.id, () => {
-                CoC7ChatDamage.createFromCombatMelee({ attacker: check.#attackerMessageId, target: check.message.id })
+              Cd100Utilities.messageUpdatedWithRollThen(message.id, () => {
+                Cd100ChatDamage.createFromCombatMelee({ attacker: check.#attackerMessageId, target: check.message.id })
               })
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
             }
           }
         }
         break
       case 'togglePoolKey':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           const set = event.currentTarget?.dataset?.set
           if (check && set) {
             if (DICE_POOL_REASONS[set]?.forMelee === true) {
@@ -428,16 +428,16 @@ export default class CoC7ChatCombatMelee {
               }
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'toggleValue':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           const set = event.currentTarget?.dataset?.set
           if (check && set) {
             switch (set) {
@@ -446,17 +446,17 @@ export default class CoC7ChatCombatMelee {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'useLuckForWeaponFailure':
         {
-          const check = await CoC7ChatCombatMelee.loadFromMessage(message)
+          const check = await Cd100ChatCombatMelee.loadFromMessage(message)
           if (check) {
             const actor = await fromUuid(check.message.flags[FOLDER_ID].load.actorUuid)
             if (actor) {
@@ -464,11 +464,11 @@ export default class CoC7ChatCombatMelee {
               if (newLuck >= 0 && await actor.spendLuck(10) !== false) {
                 check.#noConsequence = true
               } else {
-                ui.notifications.warn('CoC7.NotEnoughLuck', { localize: true })
+                ui.notifications.warn('Cd100.NotEnoughLuck', { localize: true })
               }
               check.updateMessage()
             } else {
-              ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
             }
           }
         }
@@ -487,17 +487,17 @@ export default class CoC7ChatCombatMelee {
     if (game.user.isGM || allowed) {
       html.querySelectorAll('[data-action]').forEach((element) => {
         if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-          element.addEventListener('click', event => CoC7ChatCombatMelee._onClickEvent(event, message))
+          element.addEventListener('click', event => Cd100ChatCombatMelee._onClickEvent(event, message))
         }
       })
     }
     if (game.user.isGM) {
       html.querySelectorAll('.change-actor').forEach((element) => {
         element.classList.add('clickable')
-        element.addEventListener('dblclick', event => CoC7ChatCombatMelee._changeTargetActor(event, message))
+        element.addEventListener('dblclick', event => Cd100ChatCombatMelee._changeTargetActor(event, message))
       })
       html.querySelectorAll('input[type=range]').forEach((element) => {
-        element.addEventListener('change', event => CoC7ChatCombatMelee._onChangeEvent(event, message))
+        element.addEventListener('change', event => Cd100ChatCombatMelee._onChangeEvent(event, message))
       })
     }
     html.querySelectorAll('.coc7-formatted-text').forEach((element) => {
@@ -599,10 +599,10 @@ export default class CoC7ChatCombatMelee {
       attackerImg: (attacker ? (attacker.isToken ? attacker.token.texture.src : attacker.img) : ''),
       attackerName: (attacker ? (attacker.isToken ? attacker.token.name : attacker.name) : ''),
       attackerTalent: [],
-      attackerUuid: CoC7Utilities.getActorUuid(attacker),
+      attackerUuid: Cd100Utilities.getActorUuid(attacker),
       badConsequence: !this.#noConsequence && (this.#dicePool.isMalfunction || this.#dicePool.isFumble),
       bonusDice: Math.abs(this.#dicePool.poolModifier),
-      bonusType: game.i18n.localize(this.#dicePool.poolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus'),
+      bonusType: game.i18n.localize(this.#dicePool.poolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus'),
       buttons: {},
       canLuckAwayConsequences: game.settings.get(FOLDER_ID, 'pulpRuleLuckMalfunction'),
       checkRevealed: this.#checkRevealed,
@@ -631,7 +631,7 @@ export default class CoC7ChatCombatMelee {
       isRolledSuccess: (this.#dicePool.isRolled ? this.#dicePool.isRolledSuccess : false),
       isSuccess: (this.#dicePool.isRolled ? this.#dicePool.isSuccess : false),
       itemImg: (this.#isNoResponse ? false : item?.img),
-      itemName: (this.#isNoResponse ? game.i18n.localize('CoC7.NoResponse') : (item?.name ?? '...')),
+      itemName: (this.#isNoResponse ? game.i18n.localize('Cd100.NoResponse') : (item?.name ?? '...')),
       itemUuid: (this.#isNoResponse ? false : item?.uuid),
       poolBonus: [],
       poolPenalty: [],
@@ -645,15 +645,15 @@ export default class CoC7ChatCombatMelee {
       skillValue: 0,
       successLevel: (this.#dicePool.isRolled ? this.#dicePool.successLevel : ''),
       tags: [
-        game.i18n.localize('CoC7.Combat')
+        game.i18n.localize('Cd100.Combat')
       ],
       targetImg: (target ? (target.isToken ? target.token.texture.src : (target instanceof TokenDocument ? target.texture.src : target.img)) : ''),
       targetName: (target ? (target.isToken ? target.token.name : target.name) : ''),
       targetTalent: [],
-      targetUuid: CoC7Utilities.getActorUuid(target),
+      targetUuid: Cd100Utilities.getActorUuid(target),
       template: ''
     }
-    const dicePoolReasons = CoC7Utilities.dicePoolReasons({ forMelee: true })
+    const dicePoolReasons = Cd100Utilities.dicePoolReasons({ forMelee: true })
     const attackerKeys = Object.keys(dicePoolReasons).filter(k => dicePoolReasons[k].ifAttacker)
     const attackerTalents = attacker?.items?.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool' && attackerKeys.includes(row.config.disable))) ?? []
     const attackerPoolDisabled = attackerTalents.filter(doc => doc.type === 'talent' && doc.system.adjustments.find(row => row.type === 'disableCombatPool')).reduce((c, doc) => { c = c.concat(doc.system.adjustments.filter(row => row.type === 'disableCombatPool' && attackerKeys.includes(row.config.disable)).map(doc => doc.config.disable)); return c }, [])
@@ -683,7 +683,7 @@ export default class CoC7ChatCombatMelee {
       }
     }
     if (data.hasMalfunction) {
-      data.malfunctionTxt = game.i18n.format('CoC7.Malfunction', {
+      data.malfunctionTxt = game.i18n.format('Cd100.Malfunction', {
         itemName: item.name
       })
     }
@@ -694,17 +694,17 @@ export default class CoC7ChatCombatMelee {
     if (item?.system?.skill?.alternativ?.id) {
       data.skills.push(item?.system?.skillAlternative)
     }
-    data.finalPoolModifier = Math.max(-CoC7DicePool.maxDicePenalty, Math.min(CoC7DicePool.maxDiceBonus, data.finalPoolModifier))
+    data.finalPoolModifier = Math.max(-Cd100DicePool.maxDicePenalty, Math.min(Cd100DicePool.maxDiceBonus, data.finalPoolModifier))
     if (data.finalPoolModifier < 0) {
-      data.tags.push(Math.abs(data.finalPoolModifier) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty'))
+      data.tags.push(Math.abs(data.finalPoolModifier) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty'))
     } else if (data.finalPoolModifier > 0) {
-      data.tags.push(data.finalPoolModifier + ' ' + game.i18n.localize('CoC7.DiceModifierBonus'))
+      data.tags.push(data.finalPoolModifier + ' ' + game.i18n.localize('Cd100.DiceModifierBonus'))
     }
-    data.poolBonus.sort(CoC7Utilities.sortByNameKey)
-    data.poolPenalty.sort(CoC7Utilities.sortByNameKey)
+    data.poolBonus.sort(Cd100Utilities.sortByNameKey)
+    data.poolPenalty.sort(Cd100Utilities.sortByNameKey)
     if (!data.targetUuid) {
       data.targetImg = 'icons/svg/mystery-man-black.svg'
-      data.targetName = game.i18n.localize('CoC7.NoTarget')
+      data.targetName = game.i18n.localize('Cd100.NoTarget')
     }
     if (data.hasWeaponSpecial) {
       data.enrichedWeaponDescriptionSpecial = await (foundry.applications.ux?.TextEditor.implementation ?? TextEditor).enrichHTML(
@@ -717,12 +717,12 @@ export default class CoC7ChatCombatMelee {
     }
     let actor
     switch (this.#participant) {
-      case CoC7ChatCombatMelee.participant.initiator:
+      case Cd100ChatCombatMelee.participant.initiator:
         data.template = 'systems/' + FOLDER_ID + '/templates/chat/melee-initiator.hbs'
         data.actorUuid = data.attackerUuid
         actor = attacker
         break
-      case CoC7ChatCombatMelee.participant.target:
+      case Cd100ChatCombatMelee.participant.target:
         data.template = 'systems/' + FOLDER_ID + '/templates/chat/melee-target.hbs'
         data.actorUuid = data.targetUuid
         actor = target
@@ -759,7 +759,7 @@ export default class CoC7ChatCombatMelee {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7ChatCombatMelee',
+            as: 'Cd100ChatCombatMelee',
             dicePool: this.#dicePool.toObject(),
             actorUuid: data.actorUuid,
             attackerMessageId: this.#attackerMessageId,
@@ -820,7 +820,7 @@ export default class CoC7ChatCombatMelee {
         poolModifier += item.system?.bonusDice ?? 0
       }
     }
-    this.#poolModifier = Math.max(-CoC7DicePool.maxDicePenalty, Math.min(CoC7DicePool.maxDiceBonus, poolModifier))
+    this.#poolModifier = Math.max(-Cd100DicePool.maxDicePenalty, Math.min(Cd100DicePool.maxDiceBonus, poolModifier))
   }
 
   /**
@@ -830,7 +830,7 @@ export default class CoC7ChatCombatMelee {
     if (this.message) {
       const diff = foundry.utils.diffObject(this.message.toObject(), await this.getChatData())
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -841,7 +841,7 @@ export default class CoC7ChatCombatMelee {
         if (typeof this.message.flags[FOLDER_ID].load.damageMessageId === 'string') {
           const damageMessage = game.messages.get(this.message.flags[FOLDER_ID].load.damageMessageId)
           if (damageMessage && damageMessage.rolls.length === 0) {
-            const check = await CoC7ChatDamage.loadFromMessage(damageMessage)
+            const check = await Cd100ChatDamage.loadFromMessage(damageMessage)
             if (check) {
               check.updateFromCombatMelee({
                 attacker: this.message.flags[FOLDER_ID].load.attackerMessageId ?? this.message.id,
@@ -850,7 +850,7 @@ export default class CoC7ChatCombatMelee {
             }
           }
         }
-        Hooks.call('messageUpdatedCoC7', this.message.id)
+        Hooks.call('messageUpdatedCd100', this.message.id)
       }
     }
   }
@@ -919,10 +919,10 @@ export default class CoC7ChatCombatMelee {
         }
       }
       const update = {
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatCombatMelee',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatCombatMelee',
         ['flags.' + FOLDER_ID + '.load.dicePool.bonusCount']: Math.max(poolModifier, 0),
         ['flags.' + FOLDER_ID + '.load.dicePool.currentPoolModifier']: poolModifier,
-        ['flags.' + FOLDER_ID + '.load.dicePool.difficulty']: Number(contents.dataset.difficulty || CoC7DicePool.difficultyLevel.regular),
+        ['flags.' + FOLDER_ID + '.load.dicePool.difficulty']: Number(contents.dataset.difficulty || Cd100DicePool.difficultyLevel.regular),
         ['flags.' + FOLDER_ID + '.load.dicePool.flatDiceModifier']: 0,
         ['flags.' + FOLDER_ID + '.load.dicePool.flatThresholdModifier']: 0,
         ['flags.' + FOLDER_ID + '.load.dicePool.luckSpent']: 0,
@@ -939,7 +939,7 @@ export default class CoC7ChatCombatMelee {
         ],
         ['flags.' + FOLDER_ID + '.load.dicePool.suppressRollData']: false,
         ['flags.' + FOLDER_ID + '.load.dicePool.threshold']: Number(threshold),
-        ['flags.' + FOLDER_ID + '.load.actorUuid']: CoC7Utilities.oldStyleToUuid(contents.dataset.actorKey),
+        ['flags.' + FOLDER_ID + '.load.actorUuid']: Cd100Utilities.oldStyleToUuid(contents.dataset.actorKey),
         ['flags.' + FOLDER_ID + '.load.attackerMessageId']: contents.dataset.parentMessageId ?? undefined,
         ['flags.' + FOLDER_ID + '.load.cardOpen']: true,
         ['flags.' + FOLDER_ID + '.load.checkRevealed']: contents.dataset.checkRevealed !== 'false',
@@ -949,17 +949,17 @@ export default class CoC7ChatCombatMelee {
         ['flags.' + FOLDER_ID + '.load.poolKeys']: poolKeys,
         ['flags.' + FOLDER_ID + '.load.poolModifier']: poolModifier,
         ['flags.' + FOLDER_ID + '.load.responded']: false,
-        ['flags.' + FOLDER_ID + '.load.targetUuid']: CoC7Utilities.oldStyleToUuid(contents.dataset.targetKey)
+        ['flags.' + FOLDER_ID + '.load.targetUuid']: Cd100Utilities.oldStyleToUuid(contents.dataset.targetKey)
       }
       if (contents.classList.contains('initiator')) {
-        update['flags.' + FOLDER_ID + '.load.participant'] = CoC7ChatCombatMelee.participant.initiator
+        update['flags.' + FOLDER_ID + '.load.participant'] = Cd100ChatCombatMelee.participant.initiator
       } else {
-        update['flags.' + FOLDER_ID + '.load.participant'] = CoC7ChatCombatMelee.participant.target
+        update['flags.' + FOLDER_ID + '.load.participant'] = Cd100ChatCombatMelee.participant.target
       }
       update['flags.' + FOLDER_ID + '.load.attackerUuid'] = update['flags.' + FOLDER_ID + '.load.actorUuid']
       update['flags.' + FOLDER_ID + '.load.itemUuid'] = update['flags.' + FOLDER_ID + '.load.actorUuid'] + '.Item.' + contents.dataset.itemId
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7ChatCombatMelee.loadFromMessage(merged)
+      const check = await Cd100ChatCombatMelee.loadFromMessage(merged)
       const data = await check.getTemplateData()
       update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)(data.template, data)
       update._id = message.id

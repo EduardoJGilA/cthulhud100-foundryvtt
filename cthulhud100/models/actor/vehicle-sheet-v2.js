@@ -1,8 +1,8 @@
 /* global foundry game TextEditor */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsActorGlobalSheet from './global-sheet.js'
+import Cd100ModelsActorGlobalSheet from './global-sheet.js'
 
-export default class CoC7ModelsActorVehicleSheetV2 extends CoC7ModelsActorGlobalSheet {
+export default class Cd100ModelsActorVehicleSheetV2 extends Cd100ModelsActorGlobalSheet {
   static DEFAULT_OPTIONS = {
     classes: ['dialog', 'item', 'vehicle'],
     position: {
@@ -43,18 +43,18 @@ export default class CoC7ModelsActorVehicleSheetV2 extends CoC7ModelsActorGlobal
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       }
     }
     if (game.user.isGM) {
       tabs.details = {
         icon: '',
-        label: 'CoC7.Details'
+        label: 'Cd100.Details'
       }
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -77,7 +77,7 @@ export default class CoC7ModelsActorVehicleSheetV2 extends CoC7ModelsActorGlobal
       case 'header':
         context._properties = []
         if (context.document.system.properties.armed) {
-          context._properties.push(game.i18n.localize('CoC7.ArmedVehicle'))
+          context._properties.push(game.i18n.localize('Cd100.ArmedVehicle'))
         }
         break
       case 'description':

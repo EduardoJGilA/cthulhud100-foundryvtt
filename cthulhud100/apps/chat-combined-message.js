@@ -1,12 +1,12 @@
 /* global ChatMessage foundry fromUuid game renderTemplate TokenDocument ui */
 // cSpell:words combinedall combinedany
 import { FOLDER_ID } from '../constants.js'
-import CoC7ActorPickerDialog from './actor-picker-dialog.js'
-import CoC7DicePool from './dice-pool.js'
-import CoC7SystemSocket from './system-socket.js'
-import CoC7Utilities from './utilities.js'
+import Cd100ActorPickerDialog from './actor-picker-dialog.js'
+import Cd100DicePool from './dice-pool.js'
+import Cd100SystemSocket from './system-socket.js'
+import Cd100Utilities from './utilities.js'
 
-export default class CoC7ChatCombinedMessage {
+export default class Cd100ChatCombinedMessage {
   #actorRolls
   #cardOpen
   #combinedFixed
@@ -20,7 +20,7 @@ export default class CoC7ChatCombinedMessage {
     this.#actorRolls = {}
     this.#cardOpen = true
     this.#combinedFixed = false
-    this.#combinedType = CoC7ChatCombinedMessage.combinedType.none
+    this.#combinedType = Cd100ChatCombinedMessage.combinedType.none
     this.#isCombat = false
     // this.message = undefined
   }
@@ -48,7 +48,7 @@ export default class CoC7ChatCombinedMessage {
     if (game.user.isGM || allowed) {
       html.querySelectorAll('[data-action]').forEach((element) => {
         if (game.user.isGM || allowed.includes(element.parentElement.dataset.actorUuid)) {
-          element.addEventListener('click', event => CoC7ChatCombinedMessage._onClickEvent(event, message))
+          element.addEventListener('click', event => Cd100ChatCombinedMessage._onClickEvent(event, message))
         }
       })
     }
@@ -66,22 +66,22 @@ export default class CoC7ChatCombinedMessage {
     const config = {
       actorRolls: {},
       combinedFixed: false,
-      combinedType: (options.type === 'combinedall' ? CoC7ChatCombinedMessage.combinedType.all : (options.type === 'combinedany' ? CoC7ChatCombinedMessage.combinedType.any : CoC7ChatCombinedMessage.combinedType.none)),
+      combinedType: (options.type === 'combinedall' ? Cd100ChatCombinedMessage.combinedType.all : (options.type === 'combinedany' ? Cd100ChatCombinedMessage.combinedType.any : Cd100ChatCombinedMessage.combinedType.none)),
       isCombat: options.isCombat
     }
-    config.combinedFixed = (config.combinedType !== CoC7ChatCombinedMessage.combinedType.none)
+    config.combinedFixed = (config.combinedType !== Cd100ChatCombinedMessage.combinedType.none)
 
     let defaultUuid = options.defaultActor ?? ''
     for (const offset in options.rollRequisites) {
-      const parsedRoll = await CoC7ChatCombinedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true, defaultUuid })
+      const parsedRoll = await Cd100ChatCombinedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true, defaultUuid })
       if (!parsedRoll) {
-        ui.notifications.warn('CoC7.Errors.UnparsableRoll', { localize: true })
+        ui.notifications.warn('Cd100.Errors.UnparsableRoll', { localize: true })
         return
       }
       if (defaultUuid === '' || defaultUuid === parsedRoll.actorUuid) {
         defaultUuid = parsedRoll.actorUuid
       } else {
-        ui.notifications.error('CoC7.ErrorCombinedRollsRequireSingleActor', { localize: true })
+        ui.notifications.error('Cd100.ErrorCombinedRollsRequireSingleActor', { localize: true })
         return
       }
       if (typeof config.actorRolls[parsedRoll.actorUuid] === 'undefined') {
@@ -94,9 +94,9 @@ export default class CoC7ChatCombinedMessage {
       }
     }
     if (game.user.isGM) {
-      CoC7ChatCombinedMessage.newGroupMessage(config)
+      Cd100ChatCombinedMessage.newGroupMessage(config)
     } else {
-      CoC7SystemSocket.requestKeeperAction({
+      Cd100SystemSocket.requestKeeperAction({
         type: 'chatCombinedMessageNew',
         config
       })
@@ -110,7 +110,7 @@ export default class CoC7ChatCombinedMessage {
    */
   static async getActor (identifier) {
     if (identifier.match(/^a\./)) {
-      return ((await game.CoC7.cocid.fromCoCID(identifier))?.[0]) ?? null
+      return ((await game.Cd100.cocid.fromCoCID(identifier))?.[0]) ?? null
     }
     if (identifier.indexOf('.') > -1) {
       return await fromUuid(identifier)
@@ -128,9 +128,9 @@ export default class CoC7ChatCombinedMessage {
     if (game.user.isGM) {
       const groups = {}
       for (const offset in options.rollRequisites) {
-        const parsedRoll = await CoC7ChatCombinedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true })
+        const parsedRoll = await Cd100ChatCombinedMessage.parseRolls({ roll: options.rollRequisites[offset], quick: true })
         if (!parsedRoll) {
-          ui.notifications.warn('CoC7.Errors.UnparsableRoll', { localize: true })
+          ui.notifications.warn('Cd100.Errors.UnparsableRoll', { localize: true })
           return
         }
         const actorUuid = parsedRoll.actorUuid
@@ -145,14 +145,14 @@ export default class CoC7ChatCombinedMessage {
         groups[actorUuid].rollRequisites.push(options.rollRequisites[offset])
       }
       for (const actorUuid in groups) {
-        let messages = ui.chat.collection.filter(message => message.flags.CoC7?.load?.as === 'CoC7ChatCombinedMessage' && message.flags.CoC7?.load?.cardOpen === true && message.flags.CoC7?.load?.actorUuids.every(k => k === actorUuid))
+        let messages = ui.chat.collection.filter(message => message.flags.Cd100?.load?.as === 'Cd100ChatCombinedMessage' && message.flags.Cd100?.load?.cardOpen === true && message.flags.Cd100?.load?.actorUuids.every(k => k === actorUuid))
         if (messages.length) {
           // Old messages can't be used if message is more than a day old
           const timestamp = new Date(messages[messages.length - 1].timestamp)
           const now = new Date()
           const timeDiffSec = (now - timestamp) / 1000
           if (24 * 60 * 60 < timeDiffSec) {
-            const check = await CoC7ChatCombinedMessage.loadFromMessage(messages[messages.length - 1])
+            const check = await Cd100ChatCombinedMessage.loadFromMessage(messages[messages.length - 1])
             if (check) {
               check.#cardOpen = false
               check.updateMessage()
@@ -161,7 +161,7 @@ export default class CoC7ChatCombinedMessage {
           }
         }
         if (messages.length) {
-          const check = await CoC7ChatCombinedMessage.loadFromMessage(messages[messages.length - 1])
+          const check = await Cd100ChatCombinedMessage.loadFromMessage(messages[messages.length - 1])
           if (check) {
             if (!check.#actorRolls[actorUuid].dicePool.isRolled) {
               for (const parsedRoll of groups[actorUuid].parsedRolls) {
@@ -176,11 +176,11 @@ export default class CoC7ChatCombinedMessage {
             }
           }
         } else {
-          CoC7ChatCombinedMessage.createGroupMessage(options)
+          Cd100ChatCombinedMessage.createGroupMessage(options)
         }
       }
     } else {
-      CoC7SystemSocket.requestKeeperAction({
+      Cd100SystemSocket.requestKeeperAction({
         type: 'chatCombinedMessageJoin',
         options
       })
@@ -188,10 +188,10 @@ export default class CoC7ChatCombinedMessage {
   }
 
   /**
-   * Create CoC7ChatCombinedMessage from message
+   * Create Cd100ChatCombinedMessage from message
    * @param {Document} message
    * @param {boolean} isMigratingMessage
-   * @returns {CoC7ChatCombinedMessage}
+   * @returns {Cd100ChatCombinedMessage}
    */
   static async loadFromMessage (message, isMigratingMessage = false) {
     const keys = [
@@ -201,8 +201,8 @@ export default class CoC7ChatCombinedMessage {
       'combinedType',
       'isCombat'
     ]
-    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'CoC7ChatCombinedMessage' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined')) {
-      const check = new CoC7ChatCombinedMessage()
+    if (message.id && message.flags[FOLDER_ID]?.load?.as === 'Cd100ChatCombinedMessage' && keys.every(k => typeof message.flags[FOLDER_ID]?.load?.[k] !== 'undefined')) {
+      const check = new Cd100ChatCombinedMessage()
       check.message = message
       const load = foundry.utils.duplicate(message.flags[FOLDER_ID].load)
       check.#actorRolls = Object.keys(load.actorRolls).reduce((c, k) => { c[k.replace(/\//g, '.')] = load.actorRolls[k]; return c }, {})
@@ -213,17 +213,17 @@ export default class CoC7ChatCombinedMessage {
       for (const actorUuid in check.#actorRolls) {
         const actor = await fromUuid(actorUuid)
         if (actor || isMigratingMessage) {
-          check.#actorRolls[actorUuid].dicePool = CoC7DicePool.fromObject(check.#actorRolls[actorUuid].dicePool)
+          check.#actorRolls[actorUuid].dicePool = Cd100DicePool.fromObject(check.#actorRolls[actorUuid].dicePool)
           check.#actorRolls[actorUuid].playerOwnersOnline = game.users.filter(u => !u.isGM && u.active && actor?.canUserModify(u, 'update')).map(u => { return u.uuid })
         } else {
-          ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+          ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
           return false
         }
       }
       return check
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -236,7 +236,7 @@ export default class CoC7ChatCombinedMessage {
    */
   static async newGroupMessage (config) {
     if (['actorRolls', 'combinedFixed', 'combinedType', 'isCombat'].every(k => typeof config[k] !== 'undefined')) {
-      const check = new CoC7ChatCombinedMessage()
+      const check = new Cd100ChatCombinedMessage()
       check.#actorRolls = {}
       check.#cardOpen = true
       check.#combinedFixed = config.combinedFixed
@@ -251,8 +251,8 @@ export default class CoC7ChatCombinedMessage {
       await ChatMessage.create(chatData)
       return
     }
-    ui.notifications.warn('CoC7.Errors.UnableToLoadMessage', { localize: true })
-    throw new Error('CoC7.Errors.UnableToLoadMessage')
+    ui.notifications.warn('Cd100.Errors.UnableToLoadMessage', { localize: true })
+    throw new Error('Cd100.Errors.UnableToLoadMessage')
   }
 
   /**
@@ -267,7 +267,7 @@ export default class CoC7ChatCombinedMessage {
           const quantity = event.currentTarget.dataset.quantity
           const actorRollOffset = event.currentTarget.dataset.actorRollOffset
           if (quantity && typeof actorRollOffset !== 'undefined') {
-            const check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+            const check = await Cd100ChatCombinedMessage.loadFromMessage(message)
             try {
               const actorUuid = Object.keys(check.#actorRolls)[0] ?? ''
               if (typeof check.#actorRolls[actorUuid].rolls[actorRollOffset] !== 'undefined') {
@@ -276,13 +276,13 @@ export default class CoC7ChatCombinedMessage {
                   check.updateMessage()
                 }
               } else {
-                ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
               }
             } catch (err) {
               ui.notifications.warn(err.message)
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
@@ -290,7 +290,7 @@ export default class CoC7ChatCombinedMessage {
         {
           const luckSpend = event.currentTarget?.dataset?.luckSpend
           if (luckSpend) {
-            const check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+            const check = await Cd100ChatCombinedMessage.loadFromMessage(message)
             if (check) {
               const actorUuid = Object.keys(check.#actorRolls)[0] ?? ''
               if (actorUuid && !check.#actorRolls[actorUuid].dicePool.isPushed) {
@@ -303,13 +303,13 @@ export default class CoC7ChatCombinedMessage {
               }
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
           }
         }
         break
       case 'push':
         {
-          const check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+          const check = await Cd100ChatCombinedMessage.loadFromMessage(message)
           const actorUuid = Object.keys(check.#actorRolls)[0] ?? ''
           document.querySelector('li.chat-message.message[data-message-id="' + message.id + '"] .expanded').classList.remove('expanded')
           await check.#actorRolls[actorUuid].dicePool.pushRoll()
@@ -318,7 +318,7 @@ export default class CoC7ChatCombinedMessage {
         break
       case 'removeRoll':
         {
-          const check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+          const check = await Cd100ChatCombinedMessage.loadFromMessage(message)
           const actorUuid = event.currentTarget.dataset.actorUuid
           const actorRollOffset = event.currentTarget.dataset.actorRollOffset
           if (check && actorUuid && typeof actorRollOffset !== 'undefined' && typeof check.#actorRolls[actorUuid] !== 'undefined' && typeof check.#actorRolls[actorUuid].rolls[actorRollOffset] !== 'undefined') {
@@ -333,7 +333,7 @@ export default class CoC7ChatCombinedMessage {
         break
       case 'rollActor':
         {
-          const check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+          const check = await Cd100ChatCombinedMessage.loadFromMessage(message)
           const actorUuid = event.currentTarget.dataset.actorUuid
           if (check && actorUuid) {
             await check.rollForActor(actorUuid)
@@ -343,7 +343,7 @@ export default class CoC7ChatCombinedMessage {
         break
       case 'setValue':
         {
-          const check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+          const check = await Cd100ChatCombinedMessage.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           const value = event.currentTarget.dataset.value
           if (check && set && value) {
@@ -353,17 +353,17 @@ export default class CoC7ChatCombinedMessage {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
       case 'toggleValue':
         {
-          const check = await CoC7ChatCombinedMessage.loadFromMessage(message)
+          const check = await Cd100ChatCombinedMessage.loadFromMessage(message)
           const set = event.currentTarget.dataset.set
           if (check && set) {
             switch (set) {
@@ -385,11 +385,11 @@ export default class CoC7ChatCombinedMessage {
                 check.updateMessage()
                 break
               default:
-                ui.notifications.warn('CoC7.Errors.UnparsableModification', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnparsableModification', { localize: true })
                 break
             }
           } else {
-            ui.notifications.warn('CoC7.Errors.UnparsableMessage', { localize: true })
+            ui.notifications.warn('Cd100.Errors.UnparsableMessage', { localize: true })
           }
         }
         break
@@ -421,7 +421,7 @@ export default class CoC7ChatCombinedMessage {
         playerOwnersOnline: [],
         portrait: '',
         roll: {
-          difficulty: ((difficulty ?? '').toString() === '0' ? CoC7DicePool.difficultyLevel.unknown : (difficulty ? parseInt(difficulty, 10) : (game.settings.get(FOLDER_ID, 'defaultCheckDifficulty') === 'unknown' ? CoC7DicePool.difficultyLevel.unknown : CoC7DicePool.difficultyLevel.regular))),
+          difficulty: ((difficulty ?? '').toString() === '0' ? Cd100DicePool.difficultyLevel.unknown : (difficulty ? parseInt(difficulty, 10) : (game.settings.get(FOLDER_ID, 'defaultCheckDifficulty') === 'unknown' ? Cd100DicePool.difficultyLevel.unknown : Cd100DicePool.difficultyLevel.regular))),
           flatDiceModifier: 0,
           flatThresholdModifier: 0,
           fullName: '-',
@@ -437,16 +437,16 @@ export default class CoC7ChatCombinedMessage {
       }
       let actor
       if (match.groups.actor) {
-        actor = await CoC7ChatCombinedMessage.getActor(match.groups.actor.substring(0, match.groups.actor.length - 1))
+        actor = await Cd100ChatCombinedMessage.getActor(match.groups.actor.substring(0, match.groups.actor.length - 1))
         if (!actor) {
           return null
         }
         parsedRoll.actorUuid = actor.uuid
         parsedRoll.playerOwnersOnline = game.users.filter(u => !u.isGM && u.active && actor.canUserModify(u, 'update')).map(u => { return u.uuid })
       } else {
-        parsedRoll.actorUuid = await CoC7ActorPickerDialog.create()
+        parsedRoll.actorUuid = await Cd100ActorPickerDialog.create()
         if (!parsedRoll.actorUuid) {
-          ui.notifications.warn('CoC7.WarnNoControlledActor', { localize: true })
+          ui.notifications.warn('Cd100.WarnNoControlledActor', { localize: true })
           return null
         }
         actor = await fromUuid(parsedRoll.actorUuid)
@@ -469,7 +469,7 @@ export default class CoC7ChatCombinedMessage {
    * @returns {string}
    */
   get flavor () {
-    return game.i18n.localize('CoC7.CombinedRollCard') + (this.#combinedType === CoC7ChatCombinedMessage.combinedType.any ? ' (' + game.i18n.localize('CoC7.Any') + ')' : (this.#combinedType === CoC7ChatCombinedMessage.combinedType.all ? ' (' + game.i18n.localize('CoC7.All') + ')' : ''))
+    return game.i18n.localize('Cd100.CombinedRollCard') + (this.#combinedType === Cd100ChatCombinedMessage.combinedType.any ? ' (' + game.i18n.localize('Cd100.Any') + ')' : (this.#combinedType === Cd100ChatCombinedMessage.combinedType.all ? ' (' + game.i18n.localize('Cd100.All') + ')' : ''))
   }
 
   /**
@@ -484,7 +484,7 @@ export default class CoC7ChatCombinedMessage {
       if (typeof this.#actorRolls[actorUuid] === 'undefined') {
         this.#actorRolls[actorUuid] = foundry.utils.duplicate(data)
         this.#actorRolls[actorUuid].rolls = []
-        this.#actorRolls[actorUuid].dicePool = CoC7DicePool.newPool({ })
+        this.#actorRolls[actorUuid].dicePool = Cd100DicePool.newPool({ })
       }
       this.#actorRolls[actorUuid].portrait = (actor instanceof TokenDocument ? actor.texture.src : actor.portrait)
       this.#actorRolls[actorUuid].build = actor.system.attribs.build.value ?? 0
@@ -497,27 +497,27 @@ export default class CoC7ChatCombinedMessage {
         roll.isPushable = false
         switch (roll.type) {
           case 'characteristic':
-            roll.shortName = CoC7Utilities.getCharacteristicNames(roll.key)?.short ?? '-'
+            roll.shortName = Cd100Utilities.getCharacteristicNames(roll.key)?.short ?? '-'
             if (roll.shortName === '-') {
-              ui.notifications.warn('CoC7.Errors.UnknownCharacteristic', { localize: true })
+              ui.notifications.warn('Cd100.Errors.UnknownCharacteristic', { localize: true })
               return false
             }
-            roll.fullName = CoC7Utilities.getCharacteristicNames(roll.key)?.label ?? '-'
+            roll.fullName = Cd100Utilities.getCharacteristicNames(roll.key)?.label ?? '-'
             roll.tags.push(roll.shortName)
             roll.threshold = actor.system?.characteristics[roll.key]?.value ?? 1
             break
           case 'attribute':
             if (['lck', 'san'].includes(roll.key)) {
-              roll.shortName = CoC7Utilities.getAttributeNames(roll.key)?.short ?? '-'
+              roll.shortName = Cd100Utilities.getAttributeNames(roll.key)?.short ?? '-'
               if (roll.shortName === '-') {
-                ui.notifications.warn('CoC7.Errors.UnknownAttribute', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnknownAttribute', { localize: true })
                 return false
               }
-              roll.fullName = CoC7Utilities.getAttributeNames(roll.key)?.label ?? '-'
+              roll.fullName = Cd100Utilities.getAttributeNames(roll.key)?.label ?? '-'
               roll.tags.push(roll.shortName)
               roll.threshold = actor.system?.attribs[roll.key]?.value ?? 1
             } else {
-              ui.notifications.warn('CoC7.Errors.IncorrectAttribute', { localize: true })
+              ui.notifications.warn('Cd100.Errors.IncorrectAttribute', { localize: true })
               return false
             }
             break
@@ -530,7 +530,7 @@ export default class CoC7ChatCombinedMessage {
                 roll.threshold = skill.system.value
                 roll.isPushable = !this.#isCombat && (skill.system.properties?.push ?? false)
               } else {
-                ui.notifications.warn('CoC7.Errors.UnknownSkill', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnknownSkill', { localize: true })
                 return false
               }
             }
@@ -548,43 +548,43 @@ export default class CoC7ChatCombinedMessage {
                   roll.threshold = skill.system.value
                   roll.isPushable = !this.#isCombat && (skill.system.properties?.push ?? false)
                 } else {
-                  ui.notifications.warn('CoC7.Errors.UnknownSkill', { localize: true })
+                  ui.notifications.warn('Cd100.Errors.UnknownSkill', { localize: true })
                   return false
                 }
               } else {
-                ui.notifications.warn('CoC7.Errors.UnknownWeapon', { localize: true })
+                ui.notifications.warn('Cd100.Errors.UnknownWeapon', { localize: true })
                 return false
               }
             }
             break
         }
         if (roll.poolModifier < 0) {
-          roll.tags.push(Math.abs(roll.poolModifier) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty'))
+          roll.tags.push(Math.abs(roll.poolModifier) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty'))
         } else if (roll.poolModifier > 0) {
-          roll.tags.push(roll.poolModifier + ' ' + game.i18n.localize('CoC7.DiceModifierBonus'))
+          roll.tags.push(roll.poolModifier + ' ' + game.i18n.localize('Cd100.DiceModifierBonus'))
         }
         switch (roll.difficulty) {
-          case CoC7DicePool.difficultyLevel.regular:
-            roll.tags.push(game.i18n.localize('CoC7.RollDifficultyRegularTitle'))
+          case Cd100DicePool.difficultyLevel.regular:
+            roll.tags.push(game.i18n.localize('Cd100.RollDifficultyRegularTitle'))
             break
-          case CoC7DicePool.difficultyLevel.hard:
-            roll.tags.push(game.i18n.localize('CoC7.RollDifficultyHardTitle'))
+          case Cd100DicePool.difficultyLevel.hard:
+            roll.tags.push(game.i18n.localize('Cd100.RollDifficultyHardTitle'))
             break
-          case CoC7DicePool.difficultyLevel.extreme:
-            roll.tags.push(game.i18n.localize('CoC7.RollDifficultyExtremeTitle'))
+          case Cd100DicePool.difficultyLevel.extreme:
+            roll.tags.push(game.i18n.localize('Cd100.RollDifficultyExtremeTitle'))
             break
-          case CoC7DicePool.difficultyLevel.critical:
-            roll.tags.push(game.i18n.localize('CoC7.RollDifficultyCriticalTitle'))
+          case Cd100DicePool.difficultyLevel.critical:
+            roll.tags.push(game.i18n.localize('Cd100.RollDifficultyCriticalTitle'))
             break
         }
         if (roll.pushing) {
-          roll.tags.push(game.i18n.localize('CoC7.Pushing'))
+          roll.tags.push(game.i18n.localize('Cd100.Pushing'))
         }
         this.#actorRolls[actorUuid].rolls.push(roll)
       }
       return true
     }
-    ui.notifications.warn('CoC7.Errors.UnparsableActor', { localize: true })
+    ui.notifications.warn('Cd100.Errors.UnparsableActor', { localize: true })
     return false
   }
 
@@ -601,7 +601,7 @@ export default class CoC7ChatCombinedMessage {
       combinedFixed: this.#combinedFixed,
       combinedSuccess: false,
       combinedType: this.#combinedType,
-      combinedTypes: CoC7ChatCombinedMessage.combinedType,
+      combinedTypes: Cd100ChatCombinedMessage.combinedType,
       displayResultType: game.settings.get(FOLDER_ID, 'displayResultType'),
       displayCheckSuccessLevel: game.settings.get(FOLDER_ID, 'displayCheckSuccessLevel'),
       foundryGeneration: game.release.generation,
@@ -630,13 +630,13 @@ export default class CoC7ChatCombinedMessage {
         const diceGroup = foundry.utils.mergeObject(this.#actorRolls[actorUuid].dicePool.diceGroups.pop() ?? {}, roll, { inplace: false })
         diceGroup.isPushed = this.#actorRolls[actorUuid].dicePool.isPushed
         diceGroup.luckSpent = this.#actorRolls[actorUuid].dicePool.luckSpent
-        diceGroup.flavor = game.i18n.format('CoC7.CheckResult', {
+        diceGroup.flavor = game.i18n.format('Cd100.CheckResult', {
           name: (roll.fullName !== '-' ? roll.fullName : (roll.shortName ?? '')),
           value: roll.threshold,
-          difficulty: CoC7DicePool.difficultyString(roll.difficulty)
+          difficulty: Cd100DicePool.difficultyString(roll.difficulty)
         })
         diceGroup.bonusDice = Math.abs(roll.poolModifier)
-        diceGroup.bonusType = game.i18n.localize(roll.poolModifier < 0 ? 'CoC7.DiceModifierPenalty' : 'CoC7.DiceModifierBonus')
+        diceGroup.bonusType = game.i18n.localize(roll.poolModifier < 0 ? 'Cd100.DiceModifierPenalty' : 'Cd100.DiceModifierBonus')
         diceGroup.removable = true
         if (typeof diceGroup.isSuccess !== 'undefined') {
           successes.push(diceGroup.isSuccess)
@@ -656,14 +656,14 @@ export default class CoC7ChatCombinedMessage {
     }
     if (data.allRollsComplete) {
       switch (data.combinedType) {
-        case CoC7ChatCombinedMessage.combinedType.all:
+        case Cd100ChatCombinedMessage.combinedType.all:
           if (successes.every(b => b === true)) {
             data.combinedSuccess = true
           } else {
             data.combinedFailure = true
           }
           break
-        case CoC7ChatCombinedMessage.combinedType.any:
+        case Cd100ChatCombinedMessage.combinedType.any:
           if (successes.some(b => b === true)) {
             data.combinedSuccess = true
           } else {
@@ -685,7 +685,7 @@ export default class CoC7ChatCombinedMessage {
       flags: {
         [FOLDER_ID]: {
           load: {
-            as: 'CoC7ChatCombinedMessage',
+            as: 'Cd100ChatCombinedMessage',
             actorRolls: Object.keys(this.#actorRolls).reduce((c, k) => {
               c[k.replace(/\./g, '/')] = Object.keys(this.#actorRolls[k]).reduce((c, k2) => {
                 if (k2 === 'dicePool') {
@@ -740,7 +740,7 @@ export default class CoC7ChatCombinedMessage {
     if (this.message) {
       const diff = foundry.utils.diffObject(this.message.toObject(), await this.getChatData())
       if (!this.message.canUserModify(game.user, 'update')) {
-        CoC7SystemSocket.requestKeeperAction({
+        Cd100SystemSocket.requestKeeperAction({
           type: 'messagePermission',
           messageId: this.message.id,
           who: game.user.id,
@@ -795,7 +795,7 @@ export default class CoC7ChatCombinedMessage {
       const actorRolls = {}
       const actorDecaders = {}
       for (const roll of dataSet.rolls) {
-        const uuid = CoC7Utilities.oldStyleToUuid(roll.actorKey)
+        const uuid = Cd100Utilities.oldStyleToUuid(roll.actorKey)
         if (actorUuid === '') {
           actorUuid = uuid
         }
@@ -816,14 +816,14 @@ export default class CoC7ChatCombinedMessage {
         if (typeof roll.characteristic === 'string') {
           currentRoll.type = 'characteristic'
           currentRoll.key = roll.characteristic
-          currentRoll.shortName = CoC7Utilities.getCharacteristicNames(roll.characteristic)?.short ?? '-'
-          currentRoll.fullName = CoC7Utilities.getCharacteristicNames(roll.characteristic)?.label ?? '-'
+          currentRoll.shortName = Cd100Utilities.getCharacteristicNames(roll.characteristic)?.short ?? '-'
+          currentRoll.fullName = Cd100Utilities.getCharacteristicNames(roll.characteristic)?.label ?? '-'
           currentRoll.tags.push(currentRoll.shortName)
         } else if (typeof roll.attribute === 'string') {
           currentRoll.type = 'attribute'
           currentRoll.key = roll.attribute
-          currentRoll.shortName = CoC7Utilities.getAttributeNames(roll.attribute)?.short ?? '-'
-          currentRoll.fullName = CoC7Utilities.getAttributeNames(roll.attribute)?.label ?? '-'
+          currentRoll.shortName = Cd100Utilities.getAttributeNames(roll.attribute)?.short ?? '-'
+          currentRoll.fullName = Cd100Utilities.getAttributeNames(roll.attribute)?.label ?? '-'
           currentRoll.tags.push(currentRoll.shortName)
         } else {
           currentRoll.type = 'skill'
@@ -835,26 +835,26 @@ export default class CoC7ChatCombinedMessage {
           }
         }
         if (currentRoll.poolModifier < 0) {
-          currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty'))
+          currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty'))
         } else if (currentRoll.poolModifier > 0) {
-          currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('CoC7.DiceModifierBonus'))
+          currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('Cd100.DiceModifierBonus'))
         }
         switch (currentRoll.difficulty) {
-          case CoC7DicePool.difficultyLevel.regular:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyRegularTitle'))
+          case Cd100DicePool.difficultyLevel.regular:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyRegularTitle'))
             break
-          case CoC7DicePool.difficultyLevel.hard:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyHardTitle'))
+          case Cd100DicePool.difficultyLevel.hard:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyHardTitle'))
             break
-          case CoC7DicePool.difficultyLevel.extreme:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyExtremeTitle'))
+          case Cd100DicePool.difficultyLevel.extreme:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyExtremeTitle'))
             break
-          case CoC7DicePool.difficultyLevel.critical:
-            currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyCriticalTitle'))
+          case Cd100DicePool.difficultyLevel.critical:
+            currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyCriticalTitle'))
             break
         }
         if (currentRoll.isPushable) {
-          currentRoll.tags.push(game.i18n.localize('CoC7.Pushing'))
+          currentRoll.tags.push(game.i18n.localize('Cd100.Pushing'))
         }
         if (typeof roll.dices?.tens !== 'undefined') {
           if (typeof actorDecaders[uuidAsKey] === 'undefined') {
@@ -913,16 +913,16 @@ export default class CoC7ChatCombinedMessage {
         ['flags.' + FOLDER_ID + '.-=state']: null,
         /* // FoundryVTT V13 */
         ['flags.' + FOLDER_ID + '.-=initiator']: null,
-        ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatCombinedMessage',
+        ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatCombinedMessage',
         ['flags.' + FOLDER_ID + '.load.actorRolls']: actorRolls,
         ['flags.' + FOLDER_ID + '.load.actorUuids']: Object.keys(actorRolls).map(k => k.replace(/\//g, '.')),
         ['flags.' + FOLDER_ID + '.load.cardOpen']: !(message.flags?.[FOLDER_ID]?.state === 'resolved'),
         ['flags.' + FOLDER_ID + '.load.combinedFixed']: false,
-        ['flags.' + FOLDER_ID + '.load.combinedType']: (dataSet.any ? CoC7ChatCombinedMessage.combinedType.any : (dataSet.all ? CoC7ChatCombinedMessage.combinedType.all : CoC7ChatCombinedMessage.combinedType.none)),
+        ['flags.' + FOLDER_ID + '.load.combinedType']: (dataSet.any ? Cd100ChatCombinedMessage.combinedType.any : (dataSet.all ? Cd100ChatCombinedMessage.combinedType.all : Cd100ChatCombinedMessage.combinedType.none)),
         ['flags.' + FOLDER_ID + '.load.isCombat']: false
       }
       const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-      const check = await CoC7ChatCombinedMessage.loadFromMessage(merged, true)
+      const check = await Cd100ChatCombinedMessage.loadFromMessage(merged, true)
       if (check) {
         const data = await check.getTemplateData()
         update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/combined-roll.hbs', data)
@@ -949,7 +949,7 @@ export default class CoC7ChatCombinedMessage {
     const actorDecaders = {}
     for (const rollStatus of Object.keys(message.flags[FOLDER_ID]['group-message'].rollStatuses)) {
       const currentRoll = {
-        difficulty: CoC7DicePool.difficultyLevel.regular,
+        difficulty: Cd100DicePool.difficultyLevel.regular,
         flatDiceModifier: 0,
         flatThresholdModifier: 0,
         fullName: '-',
@@ -982,12 +982,12 @@ export default class CoC7ChatCombinedMessage {
         currentRoll.type = match.groups.type
       }
       if (currentRoll.type === 'characteristic') {
-        currentRoll.shortName = CoC7Utilities.getCharacteristicNames(currentRoll.key)?.short ?? '-'
-        currentRoll.fullName = CoC7Utilities.getCharacteristicNames(currentRoll.key)?.label ?? '-'
+        currentRoll.shortName = Cd100Utilities.getCharacteristicNames(currentRoll.key)?.short ?? '-'
+        currentRoll.fullName = Cd100Utilities.getCharacteristicNames(currentRoll.key)?.label ?? '-'
         currentRoll.tags.push(currentRoll.shortName)
       } else if (currentRoll.type === 'attribute') {
-        currentRoll.shortName = CoC7Utilities.getAttributeNames(currentRoll.key)?.short ?? '-'
-        currentRoll.fullName = CoC7Utilities.getAttributeNames(currentRoll.key)?.label ?? '-'
+        currentRoll.shortName = Cd100Utilities.getAttributeNames(currentRoll.key)?.short ?? '-'
+        currentRoll.fullName = Cd100Utilities.getAttributeNames(currentRoll.key)?.label ?? '-'
         currentRoll.tags.push(currentRoll.shortName)
       } else {
         currentRoll.shortName = message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].shortName ?? '-'
@@ -995,26 +995,26 @@ export default class CoC7ChatCombinedMessage {
         currentRoll.tags.push(currentRoll.shortName)
       }
       if (currentRoll.poolModifier < 0) {
-        currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('CoC7.DiceModifierPenalty'))
+        currentRoll.tags.push(Math.abs(currentRoll.poolModifier) + ' ' + game.i18n.localize('Cd100.DiceModifierPenalty'))
       } else if (currentRoll.poolModifier > 0) {
-        currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('CoC7.DiceModifierBonus'))
+        currentRoll.tags.push(currentRoll.poolModifier + ' ' + game.i18n.localize('Cd100.DiceModifierBonus'))
       }
       switch (currentRoll.difficulty) {
-        case CoC7DicePool.difficultyLevel.regular:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyRegularTitle'))
+        case Cd100DicePool.difficultyLevel.regular:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyRegularTitle'))
           break
-        case CoC7DicePool.difficultyLevel.hard:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyHardTitle'))
+        case Cd100DicePool.difficultyLevel.hard:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyHardTitle'))
           break
-        case CoC7DicePool.difficultyLevel.extreme:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyExtremeTitle'))
+        case Cd100DicePool.difficultyLevel.extreme:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyExtremeTitle'))
           break
-        case CoC7DicePool.difficultyLevel.critical:
-          currentRoll.tags.push(game.i18n.localize('CoC7.RollDifficultyCriticalTitle'))
+        case Cd100DicePool.difficultyLevel.critical:
+          currentRoll.tags.push(game.i18n.localize('Cd100.RollDifficultyCriticalTitle'))
           break
       }
       if (currentRoll.isPushable) {
-        currentRoll.tags.push(game.i18n.localize('CoC7.Pushing'))
+        currentRoll.tags.push(game.i18n.localize('Cd100.Pushing'))
       }
       if (typeof message.flags[FOLDER_ID]['group-message'].rollStatuses[rollStatus].completed?.dices.tens !== 'undefined') {
         if (typeof actorDecaders[uuidAsKey] === 'undefined') {
@@ -1069,7 +1069,7 @@ export default class CoC7ChatCombinedMessage {
     const update = {
       /* // FoundryVTT V13 */
       ['flags.' + FOLDER_ID + '.-=group-message']: null,
-      ['flags.' + FOLDER_ID + '.load.as']: 'CoC7ChatCombinedMessage',
+      ['flags.' + FOLDER_ID + '.load.as']: 'Cd100ChatCombinedMessage',
       ['flags.' + FOLDER_ID + '.load.actorRolls']: actorRolls,
       ['flags.' + FOLDER_ID + '.load.actorUuids']: Object.keys(actorRolls).map(k => k.replace(/\//g, '.')),
       ['flags.' + FOLDER_ID + '.load.cardOpen']: (message.flags?.[FOLDER_ID]?.resolved === true),
@@ -1078,7 +1078,7 @@ export default class CoC7ChatCombinedMessage {
       ['flags.' + FOLDER_ID + '.load.isCombat']: false
     }
     const merged = foundry.utils.mergeObject(message, update, { inplace: false })
-    const check = await CoC7ChatCombinedMessage.loadFromMessage(merged, true)
+    const check = await Cd100ChatCombinedMessage.loadFromMessage(merged, true)
     if (check) {
       const data = await check.getTemplateData()
       update.content = await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/chat/combined-roll.hbs', data)

@@ -1,7 +1,7 @@
 /* global foundry renderTemplate */
 import { FOLDER_ID } from '../constants.js'
 
-export default class CoC7SanDataDialog extends foundry.applications.api.DialogV2 {
+export default class Cd100SanDataDialog extends foundry.applications.api.DialogV2 {
   /**
    * Prompt for Sanity Check details
    * @param {object} options
@@ -16,7 +16,7 @@ export default class CoC7SanDataDialog extends foundry.applications.api.DialogV2
     await this.prompt({
       classes: ['coc7', 'dialog', 'bonus-selection'],
       window: {
-        title: 'CoC7.SanDataSelectionWindow'
+        title: 'Cd100.SanDataSelectionWindow'
       },
       content: await (foundry.applications.handlebars?.renderTemplate ?? renderTemplate)('systems/' + FOLDER_ID + '/templates/apps/san-data-dialog.hbs', data),
       ok: {

@@ -1,7 +1,7 @@
 /* global foundry game */
-import CoC7ModelsItemGlobalSystem from './global-system.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
 
-export default class CoC7ModelsItemArmorSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemArmorSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Default img
    * @returns {string}
@@ -31,9 +31,9 @@ export default class CoC7ModelsItemArmorSystem extends CoC7ModelsItemGlobalSyste
    */
   static emptyObject (options) {
     const object = foundry.utils.mergeObject({
-      name: game.i18n.localize('CoC7.NewArmorName'),
+      name: game.i18n.localize('Cd100.NewArmorName'),
       type: 'armor',
-      system: new CoC7ModelsItemArmorSystem().toObject()
+      system: new Cd100ModelsItemArmorSystem().toObject()
     }, options)
     return object
   }

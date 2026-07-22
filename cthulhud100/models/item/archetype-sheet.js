@@ -1,8 +1,8 @@
 /* global DragDrop foundry game TextEditor */
 import { FOLDER_ID } from '../../constants.js'
-import CoC7ModelsItemGlobalSheet from './global-sheet.js'
+import Cd100ModelsItemGlobalSheet from './global-sheet.js'
 
-export default class CoC7ModelsItemArchetypeSheet extends CoC7ModelsItemGlobalSheet {
+export default class Cd100ModelsItemArchetypeSheet extends Cd100ModelsItemGlobalSheet {
   static DEFAULT_OPTIONS = {
     position: {
       width: 520,
@@ -104,22 +104,22 @@ export default class CoC7ModelsItemArchetypeSheet extends CoC7ModelsItemGlobalSh
     const tabs = {
       description: {
         icon: '',
-        label: 'CoC7.Description'
+        label: 'Cd100.Description'
       },
       details: {
         icon: '',
-        label: 'CoC7.Details'
+        label: 'Cd100.Details'
       },
       skills: {
         icon: '',
-        label: 'CoC7.Skills'
+        label: 'Cd100.Skills'
       }
     }
     if (game.user.isGM) {
       tabs.keeper = {
         cssClass: 'icon-only-tab',
         icon: 'game-icon game-icon-tentacles-skull',
-        tooltip: 'CoC7.GmNotes'
+        tooltip: 'Cd100.GmNotes'
       }
     }
 
@@ -145,12 +145,12 @@ export default class CoC7ModelsItemArchetypeSheet extends CoC7ModelsItemGlobalSh
             c.push(game.i18n.localize('CHARAC.' + i[0].toUpperCase()))
           }
           return c
-        }, []).join(` ${game.i18n.localize('CoC7.Or')} `)
+        }, []).join(` ${game.i18n.localize('Cd100.Or')} `)
         break
       case 'description':
         context._properties = [
-          `${game.i18n.localize('CoC7.PulpTalents')}: ${context.document.system.talents}`,
-          `${game.i18n.localize('CoC7.BonusPoints')}: ${context.document.system.bonusPoints}`
+          `${game.i18n.localize('Cd100.PulpTalents')}: ${context.document.system.talents}`,
+          `${game.i18n.localize('Cd100.BonusPoints')}: ${context.document.system.bonusPoints}`
         ]
         /* // FoundryVTT V12 */
         context.enrichedDescriptionValue = await (foundry.applications.ux?.TextEditor.implementation ?? TextEditor).enrichHTML(

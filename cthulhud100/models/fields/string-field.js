@@ -1,5 +1,5 @@
 /* global foundry Roll */
-export default class CoC7StringField extends foundry.data.fields.StringField {
+export default class Cd100StringField extends foundry.data.fields.StringField {
   /**
    * Active Effect on String Field Add as a formula
    * @param {string} value

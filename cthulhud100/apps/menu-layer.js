@@ -1,6 +1,6 @@
 /* global foundry PlaceablesLayer */
 /* // FoundryVTT V12 */
-export default class CoC7MenuLayer extends (foundry.canvas?.layers?.PlaceablesLayer ?? PlaceablesLayer) {
+export default class Cd100MenuLayer extends (foundry.canvas?.layers?.PlaceablesLayer ?? PlaceablesLayer) {
   /**
    * @inheritdoc
    */

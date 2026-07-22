@@ -1,8 +1,8 @@
 /* global foundry */
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemExperiencePackageSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemExperiencePackageSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -16,9 +16,9 @@ export default class CoC7ModelsItemExperiencePackageSystem extends CoC7ModelsIte
       }),
       age: new fields.StringField({ initial: '' }),
       properties: new fields.SchemaField({
-        cthulhuGain: new fields.BooleanField({ label: 'CoC7.MythosGain', initial: false }),
-        sanityLoss: new fields.BooleanField({ label: 'CoC7.SANLoss', initial: false }),
-        sanitySame: new fields.BooleanField({ label: 'CoC7.SANSameLossAsMythosGain', initial: false })
+        cthulhuGain: new fields.BooleanField({ label: 'Cd100.MythosGain', initial: false }),
+        sanityLoss: new fields.BooleanField({ label: 'Cd100.SANLoss', initial: false }),
+        sanitySame: new fields.BooleanField({ label: 'Cd100.SANSameLossAsMythosGain', initial: false })
       }),
       cthulhuGain: new fields.StringField({ initial: '' }),
       sanityLoss: new fields.StringField({ initial: '' }),
@@ -106,7 +106,7 @@ export default class CoC7ModelsItemExperiencePackageSystem extends CoC7ModelsIte
    * @returns {Array}
    */
   async skillGroups () {
-    return CoC7Utilities.getEmbeddedGroupedSkills(this.parent)
+    return Cd100Utilities.getEmbeddedGroupedSkills(this.parent)
   }
 
   /**
@@ -114,6 +114,6 @@ export default class CoC7ModelsItemExperiencePackageSystem extends CoC7ModelsIte
    * @returns {Array}
    */
   async items () {
-    return CoC7Utilities.getEmbeddedItems(this.parent, 'system')
+    return Cd100Utilities.getEmbeddedItems(this.parent, 'system')
   }
 }

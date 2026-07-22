@@ -1,8 +1,8 @@
 /* global foundry */
-import CoC7ModelsItemGlobalSystem from './global-system.js'
-import CoC7Utilities from '../../apps/utilities.js'
+import Cd100ModelsItemGlobalSystem from './global-system.js'
+import Cd100Utilities from '../../apps/utilities.js'
 
-export default class CoC7ModelsItemArchetypeSystem extends CoC7ModelsItemGlobalSystem {
+export default class Cd100ModelsItemArchetypeSystem extends Cd100ModelsItemGlobalSystem {
   /**
    * Create Schema
    * @returns {DataSchema}
@@ -76,6 +76,6 @@ export default class CoC7ModelsItemArchetypeSystem extends CoC7ModelsItemGlobalS
    * @returns {Array}
    */
   async items () {
-    return CoC7Utilities.getEmbeddedItems(this.parent, 'system')
+    return Cd100Utilities.getEmbeddedItems(this.parent, 'system')
   }
 }
