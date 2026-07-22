@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1 mayormente hecha; lista para la primera prueba en Foundry (ver checklist abajo). Pendientes: F0.5, F1.5, F1.6, F2-F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1 mayormente hecha y F6 (publicación) lista. Siguiente paso: primera prueba en Foundry (ver checklist). Pendientes: F0.5, F1.5, F1.6, F2-F5
 
 ---
 
@@ -648,6 +648,56 @@ ApplicationV1 y refleja las dos fichas del PDF (pp. 49-50, "clásica" y "alterna
 - [ ] `npm run translations-check` limpio
 - [ ] Español y inglés completos al 100%; el resto puede quedar parcial, documentado
       en el README
+
+---
+
+## F6 — Publicación automática ✅ commit `a6409cd`
+
+**Objetivo:** no volver a montar una release a mano.
+
+- [x] `.github/workflows/release.yml`: al empujar una etiqueta de versión, compila,
+      empaqueta y publica la release con `system.json` y `system.zip`
+- [x] Sella la versión y las URLs de `manifest` / `download` en el manifiesto a partir
+      de la etiqueta
+- [x] Paso de verificación que **aborta la release** si el manifiesto empaquetado tiene
+      el `id` o la versión equivocados, o le faltan campos obligatorios
+- [x] Probado localmente reproduciendo toda la secuencia contra un directorio temporal
+- [ ] Falta ejecutarlo de verdad en GitHub (requiere que el repo tenga remoto y push)
+
+### Cómo publicar
+
+```bash
+git tag 0.2.0
+git push origin 0.2.0
+```
+
+También se puede lanzar a mano desde la pestaña Actions (`workflow_dispatch`), indicando
+la versión.
+
+### URL de instalación en Foundry
+
+```
+https://github.com/EduardoJGilA/cthulhud100-foundryvtt/releases/latest/download/system.json
+```
+
+Apunta siempre a la última release, así que Foundry detecta las actualizaciones solo.
+
+> **Dos trampas de este repositorio**, ya sorteadas en el workflow. Si alguien lo
+> reescribe, que no las reintroduzca:
+>
+> 1. **`npm ci` no funciona.** `package-lock.json` está en `.gitignore` (heredado de
+>    upstream), así que no hay lockfile. El job usa `npm install`.
+> 2. **El build no escribe en `dist/`.** `scripts/webpack-config.js:319-323` sobreescribe
+>    `output.path` con la ruta de Foundry sacada de `fvtt.config.json`, que está en
+>    `.gitignore` y no existe en CI. El job escribe uno desechable apuntando al workspace
+>    y recoge el resultado de `build/Data/systems/cthulhud100`.
+>
+> El zip se crea **desde dentro** del directorio del sistema. Si se comprime la carpeta
+> entera, Foundry recibe un nivel de anidamiento de más y la instalación falla.
+>
+> **Antes de la primera release de verdad:** subir la versión en `static/system.json`
+> (ahora `0.1.0`) y decidir si `compatibility.minimum` sigue siendo `12`. El sistema solo
+> se ha probado contra Foundry 14.
 
 ---
 
