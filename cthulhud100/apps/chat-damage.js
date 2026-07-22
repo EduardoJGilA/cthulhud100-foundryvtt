@@ -155,7 +155,13 @@ export default class CoC7ChatDamage {
         this.#isCritical = true
         const item = (await this.item)
         if (item?.system?.properties.impl ?? false) {
-          this.#isImpale = true
+          // Leathery skin stops a firearm doubling through an impale, on top of
+          // reducing it to minimum damage (see #damageFormula)
+          const leathery = (await this.target)?.system?.leatherySkin ?? false
+          const firearm = (item?.system?.properties.firearm ?? false)
+          if (!(leathery && firearm)) {
+            this.#isImpale = true
+          }
         }
       }
       return { attackerMessage, targetMessage }
@@ -368,6 +374,12 @@ export default class CoC7ChatDamage {
       } else if (addHalfDB) {
         weaponDB = CoC7Utilities.halfDB(db)
       }
+    }
+    // Cthulhu d100 leathery skin: a firearm only ever does its minimum damage
+    // against it, whatever the roll. The impale doubling is refused separately.
+    const leathery = (await this.target)?.system?.leatherySkin ?? false
+    if (leathery && (item?.system?.properties?.firearm ?? false)) {
+      return new Roll(weaponDamage + weaponDB).evaluateSync({ minimize: true }).total.toString()
     }
     if (this.#isCritical) {
       const maxDamage = new Roll(weaponDamage + weaponDB).evaluateSync({ maximize: true }).total.toString()
