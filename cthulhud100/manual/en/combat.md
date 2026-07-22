@@ -1,41 +1,192 @@
 # Combat
 
+Cthulhu d100 resolves combat by **comparing results**, not with an opposed roll. The
+attacker rolls, the defender rolls, and the two success levels are crossed on a table that
+decides what happens. The system does that cross for you.
+
+A turn lasts **12 seconds**, so five turns to the minute.
+
 ## Starting the combat
 
-On the scene select the tokens involved on the combat right click on one of them and on the bottom right click on the _Toggle combat state_ icon. This will add the actors corresponding to the selected tokens to the combat tab.
-Then on the combat tab you can _start the combat_.
-
-The combat tracker will help you to track both the initiatives of the different actors and the combat rounds.
+On the scene select the tokens involved, right click one of them and click the _Toggle
+combat state_ icon at the bottom right. That adds the matching actors to the combat tab,
+where you can _start the combat_.
 
 ## Initiative
 
-On foundry combat turns are ordered by initiative, in the system this is usually the _DEX_ of the actor. So to set the initiatives click on the dice icon of each actor or just the icon with 3 persons on the top left of the combat tab to set all at once.
+Order is set by **DEX** on its 3-18 scale: the higher the DEX, the sooner you act. Click
+the dice icon on each actor, or the three-people icon at the top left of the combat tab to
+roll them all at once.
 
-Next to each actor on the combat tab there are 3 icons:
+On a tie, whoever has the higher percentage in the skill being used goes first. If they are
+still tied, both attack simultaneously.
 
-- _A target_: to _draw the gun_ (this will add 50 to that character initiative)
-- _A crossed eye_: to show/hide the corresponding actor on the list.
-- _A skull_: to mark a character as defeated and skip it for the following turns.
+Modifiers to DEX for initiative purposes:
 
-## Select target / targets
+| Situation | Effect |
+|---|---|
+| **Surprise** | DEX halved, first turn only |
+| **Readying a weapon** (drawing, cocking, unsheathing) | −5 DEX |
+| **Reloading and firing** in the same turn | DEX halved |
+| **Waiting** | lowers effective DEX as far as wanted, never below 1 |
+| **Focusing on a target** | +10% to the skill for every 5 points of DEX delayed |
 
-During an actor's turn, to attack the first thing to do is to select the target or targets, this can be done by doing a _right click_ on the target's token and then clicking on the _target_ icon (bottom left). Or set the _target_ mode on from the left tool bar and click on the targets.
+> A surprised character can still dodge or block at their normal DEX. The penalty only
+> affects when their turn to attack comes round.
 
-Then open the actor's sheet and click on the **name** of the item that will be used for the attack. This can be from a single shot of a long range weapon, or some melee attack or a maneuver.
-This click will start the attack workflow on the chat, the chat card will allow selecting further options of the attack depending on the type of attack.
+Next to each actor in the combat tab there are several icons: a weapon to mark a readied
+firearm, a crossed-out eye to hide them from the list, a skull to mark them defeated, and a
+target to point them out.
 
-> Tip: if you _right click_ on the combat tracker sheet icon, this will pop put this as a little window and you then you can see both the combat tracker window and results of the combat on the chat.
+## Declaring actions
 
-## Melee
+Before the turn begins everyone declares what they intend to do, in **decreasing** order of
+initiative.
 
-## Maneuvers
+You may end up doing something other than what you declared, but it costs **−20%** to the
+skill involved. The exception is abandoning your plan simply to dodge or block, which
+carries no penalty.
 
-Not implemented yet.
+## Attack sequence
 
-## Single Shot
+1. **Attack**: `1D100` against the percentage of the weapon's skill.
+2. **React**: the target may dodge or block, if they have not already spent their action.
+3. **Roll damage**: the weapon's dice plus the attacker's damage modifier.
+4. **Apply**: subtract armour, then deduct hit points.
 
-## Automate fire
+## Dodge and Block tables
 
-### Multiple Targets
+Rows are the **attacker's** result, columns the **defender's**. The outcome applies to the
+attacker.
 
-## Reload
+### Dodge
+
+| Att \ Def | Fumble | Failure | Success | Special | Critical |
+|---|---|---|---|---|---|
+| **Fumble** | Miss | Miss | Fumble | Fumble | Fumble |
+| **Failure** | Miss | Miss | Miss | Fumble | Fumble |
+| **Success** | Impale | Hit | Miss | Miss | Fumble |
+| **Special** | Max. D | Impale | Hit | Miss | Miss |
+| **Critical** | Max. D | Max. D | Impale | Hit | Miss |
+
+### Block
+
+| Att \ Def | Fumble | Failure | Success | Special | Critical |
+|---|---|---|---|---|---|
+| **Fumble** | Miss | Miss | Fumble | Fumble | Fumble |
+| **Failure** | Miss | Miss | Miss | Fumble (−6 HP) | Fumble (−4 HP) |
+| **Success** | Impale | Hit | Miss | Miss | Fumble (−2 HP) |
+| **Special** | Max. D | Impale | Hit | Miss | Miss |
+| **Critical** | Max. D | Max. D | Impale | Hit | Miss |
+
+`Max. D` is the weapon's maximum damage, as if every damage die had rolled its highest
+face. `−N HP` are resistance points the attacker's weapon loses.
+
+## Impaling
+
+An attack that comes up **Special** — a roll at or under a fifth of the effective
+percentage — impales: damage is **doubled**.
+
+Armour still applies normally. A dodge or block that comes up Special or Critical cancels
+the blow entirely; a plain success reduces it to normal damage but does not stop it.
+
+## Blocking and dodging
+
+**Blocking** uses up the turn's action and can only be done **once per turn**. Announce it
+immediately after the roll for the attack you want to stop. The object used takes the
+blow's original damage. There is no 20% penalty for changing the declared action.
+
+**Dodging** also uses up the action, but you may exceptionally dodge more than one attack:
+from the second onwards each attempt takes a cumulative **−30%**.
+
+A character who chooses to act **purely defensively** gains **+20%** to any dodge or block
+check until the following turn.
+
+## Other melee rules
+
+| Rule | Effect |
+|---|---|
+| **Number of attackers** | A target can only be attacked by five opponents at once, fewer if they cannot be surrounded |
+| **Natural weapons** | Teeth and claws can block other natural weapons and unarmed attacks, but not firearms |
+| **Unarmed combat** | An unarmed fighter blocked by a bladed weapon takes that weapon's damage |
+| **Knocking out** | Must be declared before rolling. If the damage would be a Major Wound the target is unconscious for `1D10+10` turns. If it would only be a Minor Wound the attempt fails and inflicts the weapon's minimum damage without the damage modifier |
+| **Grappling** | On a successful attack the target cannot move or act this turn or the next. An opposed STR against STR check also disarms them. Breaking free: `DEX×3`% |
+| **Prone or under cover** | −20% to your own Dodge; anyone shooting at you takes −20% as well |
+
+## Ranged attacks
+
+Range modifies the skill **before** any other modifier:
+
+| Distance | Skill |
+|---|---|
+| Within `DEX×3` metres (point blank) | `×2` |
+| Within the weapon's base range | `×1` |
+| Up to twice the base range | `÷2` |
+| Up to three times | `÷4` |
+| Up to four times | `÷8` |
+
+> At contact distance many missile weapons that are not firearms are simply unusable.
+
+### Firearms
+
+**Bursts**: every bullet after the first grants **+5%**, up to a maximum of twice the
+skill's percentage. The cap is 20 bullets per turn. If the attack hits, roll randomly for
+how many bullets connect (`1D4` for four shots, for instance).
+
+Firing a burst at **several targets** grants no such bonus and is resolved separately for
+each one.
+
+**Malfunctions**: every weapon has a malfunction value. If the roll equals or exceeds it,
+the weapon fails. Non-automatics do not fire that turn. Automatics and semi-automatics jam
+and need a check against the weapon's skill or Craft (Gunsmithing); on a success they come
+back after `1D6` turns.
+
+**Reloading**: a full turn for every two bullets or to change a magazine; two full turns to
+change a machine gun belt.
+
+**Telescopic sights**: delaying initiative to half your DEX doubles the effective range and
+extends the point blank rule to `DEX×6` metres. It cannot be combined with focusing on a
+target. On rifles, aiming through a scope multiplies base range by four without touching
+DEX.
+
+**Silencers**: halve the effective range and last `1D100+10` shots.
+
+### The damage modifier by attack type
+
+| Type | Modifier |
+|---|---|
+| Melee and unarmed | full |
+| Thrown weapons | **half** |
+| Firearms | **not applied** |
+
+## Hit locations (optional)
+
+Enabled in the system settings. It slows combat down, so it is worth using only if your
+group enjoys tactical fights.
+
+Roll `1D20`:
+
+| 1D20 | Location |
+|---|---|
+| 1–3 | Right leg |
+| 4–6 | Left leg |
+| 7–9 | Abdomen |
+| 10–12 | Chest |
+| 13–15 | Right arm |
+| 16–18 | Left arm |
+| 19–20 | Head |
+
+Each location has its own pool of hit points, derived from SIZ plus CON. When one reaches 0
+or goes negative the system applies the matching effects: head and chest cause immediate
+unconsciousness with bleeding, the abdomen drops the character, and limbs are left useless.
+
+If the negative equals or exceeds that location's original hit points the effects are far
+worse: the head means immediate death, and chest or abdomen require passing `CON×4`% every
+turn to avoid dying. Even passing them, the character dies if the wound is not treated
+within a number of turns equal to the average, rounded up, of CON and POW.
+
+## Inanimate objects
+
+Every object has resistance points. At zero it breaks. You can declare an attack against an
+object an opponent is carrying; the Keeper may apply a negative modifier for its size or if
+it is only partly exposed.
