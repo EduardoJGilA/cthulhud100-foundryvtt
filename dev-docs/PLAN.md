@@ -695,3 +695,69 @@ distintos, así que no se pierde ningún documento.
 | Fecha | Fase | Qué se hizo | Quién |
 |---|---|---|---|
 | 2026-07-21 | — | Análisis del fork, extracción del reglamento, decisión de estrategia, este plan | Claude Opus 4.8 |
+
+---
+
+## Auditoría independiente — 2026-07-22
+
+Revisión de los datos y el código contra `reglas-cthulhu-d100.md`, no contra las casillas.
+Varias marcadas ✅ no se sostienen.
+
+### Verificado correcto
+
+| Área | Comprobación |
+|---|---|
+| Tabla de MD | 20 bandas `-1D8`→`+5D10`, coinciden |
+| Niveles de éxito | los 100 valores de 1-100 coinciden con la tabla de pág. 6 |
+| PV / PM / Cordura | `ceil((TAM+CON)/2)` · POD · POD×5 |
+| Tablas Esquiva/Bloqueo | las 25 celdas coinciden |
+| Localización de impactos | 7 bandas 1D20 + PV por banda |
+| Barras de cordura | `ceil/floor/ceil` (POD 13 → 7/6/7) |
+| Chequeo enfrentado | `50 + (a-p)×5` acotado a [0,100] |
+| Alcance a quemarropa | `DES×3` metros |
+| Magia | `21 - INT` días, PM = POD |
+| Modificadores de circunstancia | ±10 / ±20 en `roll-dialog.js` |
+| Compendios | armas 41 (10+6+25), profesiones 10, heridas graves 14, pérdidas EM 13 |
+| Referencias al id del paquete | sin restos de `CoC7` como id/uuid/ruta/scope |
+
+### Casillas ✅ que son falsas
+
+1. **F3 completa (21 casillas ✅) — el sistema alternativo de cordura NO tiene interfaz.**
+   `apps/mental-stability.js` son 296 líneas correctas, `global-system.js:313` calcula
+   `config.mentalStability` y `character-sheet-v3.js:109` lo mete en el contexto. Pero
+   **ninguna plantilla `.hbs` lo consume** (0 coincidencias en `static/templates/`).
+   Las tres barras, el estado y la Locura Subyacente no se ven ni se pueden marcar.
+   Es la carencia más grande del proyecto: lógica sin interfaz.
+
+2. **F1.6 — la iluminación no existe.** Sin código ni claves i18n para penumbra `×1/2`,
+   oscuridad `×1/4`, ni el tope `min(POD×3, INT×3)`. Los modificadores de circunstancia
+   sí están; la iluminación no.
+
+3. **F5.3 "Estética"** — el prefijo `coc7-` sigue en 137 sitios, `cd100-` en 0.
+
+### Bugs corregidos en esta auditoría
+
+- Tirada de mejora daba `1D10` (CoC7) en vez de `1D3`; umbral de éxito automático 95 en
+  vez de 98. Los personajes subían a más del triple de velocidad
+- 7 claves i18n referenciadas y nunca definidas, salían crudas. La más visible, la
+  etiqueta de la hoja de Profesión
+- UUID del manual con el id viejo (`Compendium.CoC7.system-doc`) — botón muerto
+- 3 emisiones de socket en canales muertos (`system.CoC7`, `system.coc7`)
+- Colores hardcodeados en la ficha v2, sin variables de tema
+
+### Pendiente
+
+- [ ] **Interfaz del sistema alternativo de cordura** — lo más urgente
+- [ ] Iluminación
+- [ ] `combate.md` son 43 líneas y no documenta ni empalar, ni esquiva/bloqueo, ni
+      localización, ni declaración de acciones. Sigue siendo el manual de CoC7
+- [ ] Residuos en el manual: `primer_investigador.md` remite a Chaosium,
+      `objeto_arquetipo.md` documenta arquetipos Pulp, `efectos.md` documenta Corpulencia
+- [ ] `Build` (Corpulencia): `document-class.js:2395` usa la tabla percentil de CoC7, con
+      atributos 3-18 devuelve **siempre -2**. Código muerto visible en la ficha
+- [ ] 14 eras de CoC7 (Pulp, Dark Ages, Gaslight, Invictus…) en 16 archivos. d100 no tiene
+- [ ] `san.dailyLimit` se calcula de dos formas distintas: `document-class.js:794` da POD,
+      `investigator-wizard.js:2236` da `floor(POD/5)`
+- [ ] Suerte gastable y 55 ajustes `pulpRule*`
+- [ ] Módulo de persecuciones (`chase`), ajeno a d100
+- [ ] Compendio de habilidades: 33 entradas, menos que la lista del manual
