@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1, F2.1-F2.3, F3.0/F3.2/F3.3 y F6 hechas. Pendientes: F0.5, F2.4, resto de F3, F4, F5
+> **Última actualización:** 2026-07-21 · **Fase actual:** F1, F2.1-F2.3, F3 (lógica completa) y F6 hechas. Pendientes: F0.5, F2.4, cartas de chat de F3, F4, F5
 
 ---
 
@@ -582,25 +582,24 @@ barras de 7/6/7 casillas; al llenar la primera y marcar una de la segunda pasa a
 - [ ] Los modificadores de estado deben distinguir habilidades **de Acción** del resto:
       requiere que cada habilidad conozca su categoría (viene de F2.1)
 
-### F3.4 — Sistema alternativo: recuperación
-- [ ] Chequeo `INT×5%` al cesar el estímulo, con modificador por estado
-      (Tranquilo `+10`, Intranquilo `0`, Tenso `-10`, Enajenación `-20`)
-- [ ] Éxito → borra las tres barras. Fallo → `+1D6` puntos de tensión
-- [ ] Cada hora sin impactos → nuevo chequeo con `+10%` acumulativo
+### F3.4 — Sistema alternativo: recuperación 🟡 lógica hecha, falta la carta de chat
+- [x] `recoveryThreshold()`: `INT×5` con modificador por estado y `+10%` acumulativo
+      por hora tranquila
+- [x] `applyRecovery()`: éxito borra las tres barras, fallo suma `1D6`
+- [ ] Carta de chat que lance el chequeo y aplique el resultado
 
-### F3.5 — Locura a largo plazo
-- [ ] Al final de sesión: `1D6`; si es **menor** que la Locura Subyacente → trastorno
-- [ ] Gravedad = `Locura Subyacente - resultado`, sin máximo
-- [ ] Tabla de gravedad 1-6 con ejemplos (§6b)
-- [ ] Los puntos de Locura Subyacente **no** se pierden al desarrollar el trastorno
-- [ ] Segundo trastorno: agudizar (`max(antiguo,nuevo)+1`) o paralelo, a elección del GM
-- [ ] **Acostumbrarse a la tensión**: cada impacto se reduce en tantos puntos como
-      Locura Subyacente tenga el personaje
-- [ ] Tratamiento: chequeo mensual de Psicología/Psicoanálisis con `-10%` por grado;
-      éxito `-1` grado y `-1` punto; crítico `-2` y `-2`. Gravedad 1-3 ambulatorio, 4+ internamiento
-- [ ] Tomos de los Mitos: pérdida `×2`; cada vez que iguale el POD (o fracción)
-      → `+1` Locura Subyacente
-- [ ] Tabla de pérdidas de referencia (§6b) como RollTable del compendio
+### F3.5 — Locura a largo plazo 🟡 lógica hecha, falta la interfaz
+- [x] `disorderSeverity()`: `1D6` contra Locura Subyacente, gravedad = diferencia
+- [x] Los puntos de Locura Subyacente **no** se pierden al desarrollar el trastorno
+- [x] "Acostumbrarse a la tensión" dentro de `applyHit()`
+- [x] `treatmentThreshold()` y `applyTreatment()`: `-10%` por grado, éxito `-1/-1`,
+      crítico `-2/-2`
+- [x] `tomeMadness()`: pérdida `×2`, un punto por múltiplo entero del POD
+- [ ] Trastornos como items o efectos en la ficha; hoy solo se calcula la gravedad
+- [ ] Segundo trastorno: agudizar (`max(antiguo,nuevo)+1`) o paralelo — decisión del GM,
+      sin automatizar
+- [ ] Tabla de gravedad 1-6 con ejemplos y tabla de pérdidas (§6b) como RollTables
+- [ ] Internamiento para gravedad 4+ (regla de mesa, quizá no valga la pena automatizar)
 
 ---
 
