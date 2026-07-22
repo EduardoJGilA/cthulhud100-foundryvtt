@@ -1278,5 +1278,6 @@
   "CoC7.CircumstanceFavourable": "Favorevoli (+10%)",
   "CoC7.CircumstanceNormal": "Normali",
   "CoC7.CircumstanceUnfavourable": "Sfavorevoli (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "Molto sfavorevoli (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "Molto sfavorevoli (-20%)",
+  "CoC7.Circumstances": "Circostanze"
 }

@@ -1357,5 +1357,6 @@
   "CoC7.CircumstanceFavourable": "Günstig (+10%)",
   "CoC7.CircumstanceNormal": "Normal",
   "CoC7.CircumstanceUnfavourable": "Ungünstig (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "Sehr ungünstig (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "Sehr ungünstig (-20%)",
+  "CoC7.Circumstances": "Umstände"
 }

@@ -1199,5 +1199,6 @@
   "CoC7.CircumstanceFavourable": "Благоприятные (+10%)",
   "CoC7.CircumstanceNormal": "Обычные",
   "CoC7.CircumstanceUnfavourable": "Неблагоприятные (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "Очень неблагоприятные (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "Очень неблагоприятные (-20%)",
+  "CoC7.Circumstances": "Обстоятельства"
 }

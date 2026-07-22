@@ -1458,5 +1458,6 @@
   "CoC7.CircumstanceFavourable": "유리 (+10%)",
   "CoC7.CircumstanceNormal": "보통",
   "CoC7.CircumstanceUnfavourable": "불리 (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "매우 불리 (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "매우 불리 (-20%)",
+  "CoC7.Circumstances": "상황"
 }

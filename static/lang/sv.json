@@ -1814,5 +1814,6 @@
   "CoC7.CircumstanceFavourable": "Gynnsamma (+10%)",
   "CoC7.CircumstanceNormal": "Normala",
   "CoC7.CircumstanceUnfavourable": "Ogynnsamma (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "Mycket ogynnsamma (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "Mycket ogynnsamma (-20%)",
+  "CoC7.Circumstances": "Omständigheter"
 }

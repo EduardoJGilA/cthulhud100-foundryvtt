@@ -1628,5 +1628,6 @@
   "CoC7.CircumstanceFavourable": "有利 (+10%)",
   "CoC7.CircumstanceNormal": "通常",
   "CoC7.CircumstanceUnfavourable": "不利 (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "非常に不利 (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "非常に不利 (-20%)",
+  "CoC7.Circumstances": "状況"
 }

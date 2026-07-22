@@ -1315,5 +1315,6 @@
   "CoC7.CircumstanceFavourable": "Příznivé (+10%)",
   "CoC7.CircumstanceNormal": "Normální",
   "CoC7.CircumstanceUnfavourable": "Nepříznivé (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "Velmi nepříznivé (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "Velmi nepříznivé (-20%)",
+  "CoC7.Circumstances": "Okolnosti"
 }

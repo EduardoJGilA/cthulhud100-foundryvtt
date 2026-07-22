@@ -1314,5 +1314,6 @@
   "CoC7.CircumstanceFavourable": "Сприятливі (+10%)",
   "CoC7.CircumstanceNormal": "Звичайні",
   "CoC7.CircumstanceUnfavourable": "Несприятливі (-10%)",
-  "CoC7.CircumstanceVeryUnfavourable": "Дуже несприятливі (-20%)"
+  "CoC7.CircumstanceVeryUnfavourable": "Дуже несприятливі (-20%)",
+  "CoC7.Circumstances": "Обставини"
 }

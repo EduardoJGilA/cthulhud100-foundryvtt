@@ -91,6 +91,12 @@ export default class CoC7RollDialog extends foundry.applications.api.DialogV2 {
           }
           if (typeof button.form.elements.flatThresholdModifier !== 'undefined') {
             data.options.flatThresholdModifier = button.form.elements.flatThresholdModifier.valueAsNumber
+            // The circumstance dropdown is a shortcut onto the same modifier, so
+            // add it rather than letting the two fight over the value.
+            const circumstance = parseInt(button.form.elements.circumstanceModifier?.value ?? 0, 10)
+            if (!isNaN(circumstance) && circumstance !== 0) {
+              data.options.flatThresholdModifier += circumstance
+            }
           }
           if (typeof button.form.elements.poolModifier !== 'undefined') {
             data.options.poolModifier = button.form.elements.poolModifier.valueAsNumber

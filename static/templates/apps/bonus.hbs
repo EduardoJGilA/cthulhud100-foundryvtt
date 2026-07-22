@@ -32,6 +32,15 @@
   {{/if}}
 
   {{#if allowFlatThresholdModifier}}
+    {{!-- Cthulhu d100 circumstance modifiers. A shortcut that fills in the
+          threshold modifier below, which is the value actually submitted. --}}
+    <div class="form-group">
+      <label>{{localize 'CoC7.Circumstances'}}</label>
+      <select name="circumstanceModifier" data-cd100-circumstance>
+        {{selectOptions circumstanceModifiers selected=0 localize=true valueAttr='key' labelAttr='val'}}
+      </select>
+    </div>
+
     <div class="form-group">
       <label>{{localize 'CoC7.FlatModifier'}}</label>
       <input type="number" name="flatThresholdModifier" value="{{options.flatThresholdModifier}}" />
