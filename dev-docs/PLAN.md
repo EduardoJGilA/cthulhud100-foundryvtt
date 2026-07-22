@@ -4,7 +4,7 @@
 > el trabajo sin contexto previo. Marca las casillas `[x]` conforme se completen tareas y
 > añade notas bajo cada una si el resultado difiere de lo previsto.
 >
-> **Última actualización:** 2026-07-21 · **Fase actual:** F1, F2.1-F2.3, F3 (lógica completa) y F6 hechas. Pendientes: F0.5, F2.4, cartas de chat de F3, F4, F5
+> **Última actualización:** 2026-07-22 · **Fase actual:** F1, F2.1-F2.3, F3 (lógica) y F4 (tablas) hechas; F6 lista. Pendientes: F0.5, F2.4, cartas de chat de F3 y F4, F5
 
 ---
 
@@ -612,12 +612,13 @@ enfrentada.
 Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Crítico produce
 "Falla".
 
-### F4.1 — Iniciativa y estructura de turno
-- [ ] Iniciativa por **DES 3-18**; empate → mayor % en la habilidad implicada;
-      empate persistente → simultáneo
+### F4.1 — Iniciativa y estructura de turno 🟡
+- [x] Iniciativa por **DES 3-18** en `apps/combat-tables.js initiative()`, cableada en
+      `document-class.js`. Cubre preparar arma (`-5`), sorpresa (mitad) y retraso
+      voluntario, nunca por debajo de 1
+- [ ] Desempate por mayor % en la habilidad implicada, luego simultáneo
 - [ ] Turno de 12 segundos, 5 por minuto
-- [ ] **Declaración de acciones** en orden decreciente de iniciativa; cambiar lo declarado
-      → `-20%`, salvo si se cambia a esquivar o bloquear
+- [ ] **Declaración de acciones** y el `-20%` por cambiar lo declarado
 
 ### F4.2 — Tablas cruzadas
 - [ ] Tabla de **Esquiva** 5×5 (§7). Resultado aplicado al **Atacante**
@@ -636,19 +637,22 @@ Fallo produce "Empala" (daño ×2); el mismo atacante contra un defensor con Cr�
 - [ ] Noquear, Centrarse (`+10%` por 5 DES retrasados), Presa, Defenderse (`+20%`),
       Esperar, Sorpresa (DES a la mitad el primer turno), Cubierto/tumbado (`-20%`)
 
-### F4.4 — Distancia y armas de fuego
-- [ ] Tabla de alcance: `DES×3` m → `×2`; alcance básico → `×1`; 2× → `/2`; 3× → `/4`; 4× → `/8`.
-      **Se aplica antes que los demás modificadores**
+### F4.4 — Distancia y armas de fuego 🟡
+- [x] Tabla de alcance en `rangeMultiplier()`, verificada en los 5 tramos y el corte
+- [x] `aimBonus()`: `+10%` por cada 5 puntos de DES retrasados
+- [ ] Cablearlo a `chat-combat-ranged.js`, que aún usa la regla de CoC7
 - [ ] Preparar arma (`-5` DES), recargar, ráfagas (`+5%` por bala, tope doble del %,
       máximo 20 balas/turno), ráfaga a varios objetivos
 - [ ] Encasquillado por valor de Disfunción; reparación con habilidad o Maestría/Armería,
       `1D6` turnos
 - [ ] Miras telescópicas y silenciadores
 
-### F4.5 — Localización de impactos (opcional)
+### F4.5 — Localización de impactos (opcional) 🟡
+- [x] Tabla `1D20` de 7 localizaciones (`hitLocation()`), reparto 3/3/3/3/3/3/2 verificado
+- [x] PV por localización según `TAM+CON` (`locationHitPoints()`), 14 bandas verificadas
+- [x] `bleedOutTurns()` = `ceil((CON+POD)/2)`
 - [ ] Ajuste de mundo para activarla
-- [ ] Tabla `1D20` de 7 localizaciones
-- [ ] PV por localización según `TAM+CON` (tabla de 7 columnas)
+- [ ] Reserva de PV por localización en el actor y efectos al llegar a 0 o negativo
 - [ ] Efectos a 0 o negativo, y efectos en o por debajo de `-X`, por localización
 - [ ] Muerte por hemorragia si no se trata en `ceil((CON+POD)/2)` turnos
 
