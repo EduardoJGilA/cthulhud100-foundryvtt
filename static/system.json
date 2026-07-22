@@ -2,7 +2,7 @@
   "id": "cthulhud100",
   "title": "Cthulhu d100",
   "description": "An unofficial, independent implementation of the Cthulhu d100 rules (Three Fourteen Games, 2011) for Foundry Virtual Tabletop. Not affiliated with Chaosium Inc.",
-  "version": "0.1.5",
+  "version": "0.1.10",
   "authors": [
     {
       "name": "EduardoJGilA"
@@ -234,7 +234,7 @@
   "secondaryTokenAttribute": "attribs.san",
   "url": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt",
   "manifest": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt/releases/latest/download/system.json",
-  "download": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt/releases/download/0.1.5/system.zip",
+  "download": "https://github.com/EduardoJGilA/cthulhud100-foundryvtt/releases/download/0.1.10/system.zip",
   "media": [
     {
       "type": "setup",
