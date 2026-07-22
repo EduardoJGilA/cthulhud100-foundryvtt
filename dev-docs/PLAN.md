@@ -545,10 +545,14 @@ sistema, con reparto de `EST×20` + `INT×10` puntos.
 > `i.skill.cthulhu-mythos`, pero el compendio decía `i.skill.mitos-de-cthulhu`, así que
 > **la restricción nunca se aplicaba**. Corregido.
 >
-> **Pendiente relacionado:** el código espera `i.skill.throw` y `i.skill.fighting-throw`,
-> que no existen en d100. Las armas arrojadizas del compendio apuntan a una habilidad
-> "Lanzar" que **tampoco está en la lista de habilidades del manual**. Hay que decidir si
-> se crea o si se resuelven con Armas de Cuerpo a Cuerpo.
+> **Resuelto.** Volviendo al cap. 2 del PDF: **Armas de Cuerpo a Cuerpo tiene cuatro
+> especializaciones**, no dos. Cortas 20%, Largas 15%, **Armas de proyectil 10%** (arcos,
+> ballestas) y **Armas arrojadizas 10%** (cuchillos, shuriken). Base genérica 10%.
+> Las arrojadizas del compendio ya apuntan ahí. "Lanzar" sobrevive solo donde el libro
+> lo pone: como especialización de Armas de Fuego para granadas.
+>
+> `i.skill.throw` y `i.skill.fighting-throw` siguen sin existir en d100; el código de
+> upstream que los busca simplemente no encontrará nada, que es el comportamiento correcto.
 
 ---
 
